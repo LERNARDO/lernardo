@@ -26,7 +26,7 @@ class GroupActivityProfileController {
 
   def beforeInterceptor = [
           action:{
-            params.date = params.date ? Date.parse("dd. MM. yy hh:mm", params.date) : null},
+            params.date = params.date ? Date.parse("dd. MM. yy HH:mm", params.date) : null},
             only:['save','update']
   ]
 

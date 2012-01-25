@@ -30,7 +30,7 @@
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration') ?: calculatedDuration}"/> (min)
             </td>
             <td valign="top" class="value">
-              <g:textField name="date" class="datetimepicker" value="${new Date().format('dd. MM. yyyy hh:mm')}"/>
+              <g:textField name="date" class="datetimepicker" value="${new Date().format('dd. MM. yyyy HH:mm')}"/>
             </td>
           </tr>
 
