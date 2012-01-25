@@ -762,7 +762,7 @@ class BootStrap {
         }
 
         // create some links to that group
-        def links = 5 // amount of clients to add
+        def links = dummies // amount of clients to add
         List clients = []
         for ( j in 1..links ) {
           def done = false
@@ -806,7 +806,7 @@ class BootStrap {
         }
 
         // create some links to that group
-        def links = generator.nextInt(3) + 2 // amount of activity templates to add
+        def links = generator.nextInt(dummies) + 1 // amount of activity templates to add
         List activitytemplates = []
         for ( j in 1..links ) {
           def done = false
