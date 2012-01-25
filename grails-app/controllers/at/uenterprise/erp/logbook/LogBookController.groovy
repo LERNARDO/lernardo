@@ -284,11 +284,11 @@ class LogBookController {
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     List entities = Entity.createCriteria().list {
-      or {
-        eq("type", metaDataService.etUser)
-        eq("type", metaDataService.etOperator)
+      //or {
+      //  eq("type", metaDataService.etUser)
+      //  eq("type", metaDataService.etOperator)
         eq("type", metaDataService.etEducator)
-      }
+      //}
     }
     return [process: process, facilities: facilities, entities: entities]
   }
@@ -337,11 +337,11 @@ class LogBookController {
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     List entities = Entity.createCriteria().list {
-      or {
-        eq("type", metaDataService.etUser)
-        eq("type", metaDataService.etOperator)
+      //or {
+      //  eq("type", metaDataService.etUser)
+      //  eq("type", metaDataService.etOperator)
         eq("type", metaDataService.etEducator)
-      }
+      //}
     }
 
     List currentEntities = []

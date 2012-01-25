@@ -47,7 +47,7 @@
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="types"/></td>
+        <td class="one"><g:message code="usertypes"/></td>
         <td class="two">
           <g:if test="${process.types}">
             <ul>
@@ -63,7 +63,7 @@
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="users"/></td>
+        <td class="one"><g:message code="directSelection"/></td>
         <td class="two">
           <g:if test="${process.entities}">
             <ul>

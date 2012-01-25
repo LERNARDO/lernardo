@@ -394,10 +394,11 @@ class HelperTagLib {
 
           // check if the current entity may see the checkbox
           def typeOK = false
-          if ((currentEntity.type == metaDataService.etEducator && proc.process.types.contains('educator')) ||
+          if ((currentEntity?.user?.authorities?.find {it.authority == 'ROLE_ADMIN'} ? true : false) ||
+              (currentEntity.type == metaDataService.etEducator && proc.process.types.contains('educator')) ||
               (currentEntity.type == metaDataService.etOperator && proc.process.types.contains('operator')) ||
               (functionService.findByLink(currentEntity, null, metaDataService.ltLeadEducator) && proc.process.types.contains('leadEducator')))
-            typeOK = false
+            typeOK = true
 
           if (proc.process.entities.contains(currentEntity.id.toString()) || typeOK) {
 

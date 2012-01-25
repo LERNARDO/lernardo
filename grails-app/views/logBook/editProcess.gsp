@@ -47,14 +47,14 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="types"/></td>
+          <td valign="top" class="name"><g:message code="usertypes"/></td>
           <td valign="top" class="value">
             <g:select name="types" from="['educator','leadEducator','operator']" multiple="true" valueMessagePrefix="profiletype" value="${process.types}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="users"/></td>
+          <td valign="top" class="name"><g:message code="directSelection"/></td>
           <td valign="top" class="value">
             <g:select name="entities" from="${entities}" multiple="true" optionKey="id" optionValue="profile" value="${currentEntities}"/>
           </td>

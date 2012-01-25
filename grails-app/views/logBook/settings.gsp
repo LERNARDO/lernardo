@@ -11,13 +11,13 @@
   </div>
 </div>
 
-<erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
+%{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">--}%
   <div class="tabGrey">
     <div class="second">
       <h1><g:link controller="logBook" action="evaluation"><g:message code="evaluation2"/></g:link></h1>
     </div>
   </div>
-</erp:accessCheck>
+%{--</erp:accessCheck>--}%
 
 <div class="tabGrey">
   <div class="second">
