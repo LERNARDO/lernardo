@@ -3,7 +3,7 @@
   <ul>
     <g:each in="${entity.profile.favorites}" var="fav">
       <g:set var="favorite" value="${Entity.get(fav.toInteger())}"/>
-      <li class="icon-star"><g:link controller="${favorite.type.supertype.name +'Profile'}" action="show" id="${favorite.id}" params="[entity:favorite.id]">${favorite.profile.fullName}</g:link></li>
+      <li class="icon-star"><g:link controller="${favorite.type.supertype.name +'Profile'}" action="show" id="${favorite.id}" params="[entity:favorite.id]">${favorite.profile.fullName}</g:link> (<g:message code="short.${favorite.type.supertype.name}"/>)</li>
     </g:each>
   </ul>
 </g:if>
