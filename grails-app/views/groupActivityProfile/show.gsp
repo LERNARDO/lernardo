@@ -115,7 +115,7 @@
             </p>
             <ul>
               <g:each in="${templates}" var="template">
-                <li><g:link class="hover" controller="templateProfile" action="show" data-idd="${template.id}" id="${template.id}">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span></li>
+                <li><g:link class="hover" controller="templateProfile" action="show" data-idd="${template.id}" id="${template.id}" params="[entity: template.id]">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span></li>
               </g:each>
             </ul>
           </g:if>

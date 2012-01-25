@@ -298,12 +298,12 @@
             <td class="two">
               <g:if test="${activity.profile.methods}">
                 <g:each in="${activity.profile.methods}" var="method">
-                  <ul style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc;">
-                    <li><span class="bold">${method.name.encodeAsHTML()}</span></li>
-                    <li>${method.description.decodeHTML()}</li>
-                    %{--<g:each in="${method.elements}" var="element">
-                      <li>${element.name} <div id="starBox${element.id}" class="starbox">--}%%{--<erp:starBox element="${element.id}" template="${activity}"/>--}%%{--</div></li>
-                    </g:each>--}%
+                  <g:message code="name"/>: ${method.name.encodeAsHTML()}<br/>
+                  <g:message code="description"/>: ${method.description.decodeHTML()}<br/>
+                  <ul style="padding: 5px; margin: 0 0 5px 10px; border-bottom: 1px dashed #ccc;">
+                    <g:each in="${method.elements}" var="element">
+                      <li>${element.name} (${element.voting}/2)</li>
+                    </g:each>
                   </ul>
                 </g:each>
               </g:if>
