@@ -267,6 +267,7 @@
     </table>
   </div>
 
+<h4><g:message code="management"/></h4>
   <div class="zusatz">
     <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#performances');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>

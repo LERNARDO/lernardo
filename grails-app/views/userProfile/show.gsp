@@ -57,7 +57,7 @@
         </tbody>
       </table>
 
-      <div class="email">
+      %{--<div class="email">
         <table width="100%">
           <tr>
             <erp:isSystemAdmin entity="${currentEntity}">
@@ -81,7 +81,7 @@
             </erp:accessCheck>
           </tr>
         </table>
-      </div>
+      </div>--}%
 
     </div>
 

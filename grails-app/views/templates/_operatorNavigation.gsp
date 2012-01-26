@@ -8,7 +8,26 @@
         </erp:accessCheck>
       </div>
     </td>
-    <td style="padding-left: 10px; vertical-align: bottom;">
+    <td style="padding-left: 10px; vertical-align: top;">
+      <table class="info">
+        <tr>
+          <td><erp:isSystemAdmin entity="${currentEntity}">
+            <g:if test="${entity.user.enabled}"><img class="tooltip" data-tooltip="${message(code: 'isActive')}" src="${resource(dir: 'images/icons', file: 'icon_enabled.png')}" alt="aktiv" style="top: 1px; position: relative"/></g:if><g:else><img class="tooltip" data-tooltip="${message(code: 'isInactive')}" src="${resource(dir: 'images/icons', file: 'icon_disabled.png')}" alt="inaktiv"/></g:else> <g:formatBoolean boolean="${entity.user.enabled}" true="${message(code:'active')}" false="${message(code:'inactive')}"/>
+          </erp:isSystemAdmin></td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><img src="${resource(dir: 'images/icons', file: 'icon_mail.png')}" alt="mail" style="top: 1px; position: relative"/> ${fieldValue(bean: entity, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
       <div class="buttons" style="margin-bottom: 0;">
         <g:form id="${entity.id}">
           <erp:accessCheck entity="${currentEntity}" me="${entity}">
@@ -25,6 +44,11 @@
             </g:if>
           </erp:notMe>
         </g:form>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
+          <g:form controller="profile" action="changePassword" id="${entity.id}">
+            <g:submitButton class="buttonGreen" name="submit" value="${message(code: 'change.pwd')}"/>
+          </g:form>
+        </erp:accessCheck>
         <div class="spacer"></div>
       </div>
     </td>

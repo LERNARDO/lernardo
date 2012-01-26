@@ -106,6 +106,7 @@
         });
       </script>
 
+      <h4><g:message code="management"/></h4>
       <div class="zusatz">
         <h5><g:message code="activities"/></h5>
         <div class="zusatz-show">

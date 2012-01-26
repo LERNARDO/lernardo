@@ -266,6 +266,7 @@
     </table>
   </div>
 
+  <h4><g:message code="management"/></h4>
   <div class="zusatz">
     <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#dates');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>

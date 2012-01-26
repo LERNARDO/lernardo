@@ -78,6 +78,7 @@
       </tbody>
     </table>
 
+    <h4><g:message code="management"/></h4>
     <div class="zusatz">
       <h5><g:message code="labels"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${project}" checkoperator="true"><a onclick="toggle('#labels');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>

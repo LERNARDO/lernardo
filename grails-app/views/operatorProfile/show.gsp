@@ -65,7 +65,7 @@
         </tbody>
       </table>
 
-      <div class="email">
+      %{--<div class="email">
         <table width="100%">
           <tr>
             <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
@@ -89,8 +89,9 @@
             </erp:accessCheck>
           </tr>
         </table>
-      </div>
+      </div>--}%
 
+    <h4><g:message code="management"/></h4>
     <div class="zusatz">
       <h5><g:message code="facilities"/> <erp:accessCheck entity="${currentEntity}" me="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">

@@ -39,6 +39,7 @@
         </tbody>
       </table>
 
+      <h4><g:message code="management"/></h4>
       <div class="zusatz">
         <h5><g:message code="representatives"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#representatives');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/>

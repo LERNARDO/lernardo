@@ -90,6 +90,7 @@
         </tbody>
       </table>
 
+      <h4><g:message code="management"/></h4>
       <div class="zusatz">
         <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="resources" style="display:none">
