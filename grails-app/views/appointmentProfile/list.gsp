@@ -9,13 +9,13 @@
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Aktuelle Termine</h1>
+    <h1><g:message code="appointment.current"/></h1>
   </div>
 </div>
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="appointmentProfile" action="listold">Vergangene Termine</g:link></h1>
+    <h1><g:link controller="appointmentProfile" action="listold"><g:message code="appointment.old"/></g:link></h1>
   </div>
 </div>
 
@@ -32,7 +32,7 @@
       <div class="buttons">
         <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'appointment')])}"/></div>
-          <div class="button"><g:link class="buttonGray" controller="calendar" action="show">Zum Kalender</g:link></div>
+          <div class="button"><g:link class="buttonGray" controller="calendar" action="show"><g:message code="toCalendar"/></g:link></div>
           <div class="spacer"></div>
         </g:form>
       </div>

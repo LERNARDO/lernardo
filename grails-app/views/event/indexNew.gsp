@@ -34,35 +34,22 @@
   <div id="descriptions">
     <div class="description" id="reddescription" style="display: none;">
       <p class="bold"><g:message code="database"/></p>
-      <p>In der Datenbank hast du die Möglichkeit, verschiedene Profile wie PädagogInnen,
-      Betreute, Erziehungsberechtigte etc. zu erstellen bzw. einzusehen. Weiters kannst du
-      hier verschiedene Betreutengruppen und Familien anlegen und so umfassende Daten zu
-      deinen Betreuten sammeln.</p>
+      <p><g:message code="info.database"/></p>
     </div>
 
     <div class="description" id="greendescription" style="display: none;">
       <p class="bold"><g:message code="organisation"/></p>
-      <p>Im Menüpunkt Organisation kannst du regelmäßig wiederkehrende Abläufe wie
-      Anwesenheit der Betreuten und Teilnahme am Mittagessen dokumentieren,
-      mit Kosten versehen und auswerten. Dies erleichtert die Verrechnung mit den
-      Erziehungsberechtigten, die ebenfalls in diesem Bereich dokumentiert werden kann.</p>
+      <p><g:message code="info.organisation"/></p>
     </div>
 
     <div class="description" id="bluedescription" style="display: none;">
       <p class="bold"><g:message code="planning"/></p>
-      <p>Hier kannst du dir Anregungen zu den verschiedensten Aktivitäten und Projekten holen,
-      Vorlagen anlegen und natürlich auch selbst Aktivitäten planen. Zudem hast du die
-      Möglichkeit, bereits angelegte Vorlagen zu kommentieren und für deinen Zweck individuell
-      anzupassen.</p>
+      <p><g:message code="info.planning"/></p>
     </div>
 
     <div class="description" id="yellowdescription" style="display: none;">
       <p class="bold"><g:message code="administration"/></p>
-      <p>Dieser Bereich richtet sich vor allem an den bzw. die Betreiber. Unter „Setup“ kannst
-      du verschiedene Voreinstellungen wie Sprachen, Nationalitäten, Schulstufen,
-      Arbeitsbeschreibungen etc. anlegen, die für die Datenbank sinnvoll erscheinen. Um den
-      Aktivitätenpool sinnvoll strukturieren zu können, hast du als Betreiber hier die Möglichkeit,
-      Bewertungsmethoden und Labels festzulegen.</p>
+      <p><g:message code="info.administration"/></p>
     </div>
   </div>
 
