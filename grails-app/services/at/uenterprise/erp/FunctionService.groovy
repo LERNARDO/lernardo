@@ -26,6 +26,23 @@ class FunctionService {
   boolean transactional = true
 
   /**
+   * Finds a link matching all 3 parameters
+   *
+   * @author Alexander Zeillinger
+   * @param source REQUIRED The source entity
+   * @param target REQUIRED The target entity
+   * @param type REQUIRED The link type
+   */
+  Link findExactLink(Entity source, Entity target, LinkType type) {
+    def link = Link.createCriteria().get {
+      eq('source', source)
+      eq('target', target)
+      eq('type', type)
+    }
+    return link
+  }
+
+  /**
    * Creates a default calendar object
    *
    * @author Alexander Zeillinger

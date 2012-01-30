@@ -644,10 +644,17 @@ class GroupActivityProfileController {
     calendar.setTime(group.profile.date)
     calendar.add(Calendar.MINUTE, group.profile.realDuration)
 
-    Link link = linkHelperService.createLink(resource, group, metaDataService.ltResourcePlanned) {link, dad ->
-      dad.beginDate = group.profile.date.getTime() / 1000
-      dad.endDate = calendar.getTime().getTime() / 1000
-      dad.amount = params.amount
+    Link existing = functionService.findExactLink(resource, group, metaDataService.ltResourcePlanned)
+
+    if (!existing) {
+      Link link = linkHelperService.createLink(resource, group, metaDataService.ltResourcePlanned) {link, dad ->
+        dad.beginDate = group.profile.date.getTime() / 1000
+        dad.endDate = calendar.getTime().getTime() / 1000
+        dad.amount = params.amount
+      }
+    }
+    else {
+      existing.das.amount++
     }
 
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
