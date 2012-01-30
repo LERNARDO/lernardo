@@ -11,3 +11,7 @@
 <g:else>
   <span class="italic red"><g:message code="resource.profile.notPlanned"/></span>
 </g:else>
+
+<script type="text/javascript">
+  ${remoteFunction(update: "plannableresources", action: "refreshplannableresources", id: group.id)}
+</script>

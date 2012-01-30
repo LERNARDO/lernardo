@@ -41,7 +41,7 @@
           <td class="one"><g:message code="groupActivityTemplate"/>:</td>
           <td class="two">
             <g:if test="${template}">
-              <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
+              <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}" params="[entity: template?.id]">${template?.profile?.fullName?.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic"><g:message code="template.notAvailable"/></span>
@@ -254,17 +254,17 @@
         <div class="zusatz-add" id="resources" style="display:none">
           <span class="bold"><g:message code="resources.required"/></span>
           <g:if test="${requiredResources}">
-            <ul style="margin-left: 5px">
+            <ul style="margin: 5px 5px 0 5px;">
               <g:each in="${requiredResources}" var="requiredResource">
                 <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
               </g:each>
             </ul>
           </g:if>
           <g:else>
-            <div class="gray" style="margin-bottom: 5px"><g:message code="resources.noneRequired"/></div>
+            <div class="italic" style="margin: 5px;"><g:message code="resources.noneRequired"/></div>
           </g:else>
 
-          <span class="bold"><g:message code="resource.profile"/></span> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${group.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
+          <span class="bold"><g:message code="resource.profile"/></span> %{--<g:remoteLink update="plannableresources" action="refreshplannableresources" id="${group.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>--}%
           <div id="plannableresources">
             <g:render template="plannableresources" model="[plannableResources: plannableResources, group: group]"/>
           </div>

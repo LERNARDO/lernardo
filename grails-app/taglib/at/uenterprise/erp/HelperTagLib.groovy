@@ -560,6 +560,7 @@ class HelperTagLib {
 
     // set the initial amount of how many units are available to the total amount of the resource
     int free = attrs.resource.profile.amount
+    List reservedIn = []
 
     // now check for every link if it falls into the duration of the entity and if yes reduce the available amount
     links.each { Link link ->
@@ -570,10 +571,11 @@ class HelperTagLib {
 
      if (!(resourceBegin >= entityEnd || resourceEnd <= entityBegin)) {
        free -= link.das.amount.toInteger()
+       reservedIn.add(link.target)
      }
     }
 
-    out << body(resourceFree: free)
+    out << body(resourceFree: free, reservedIn: reservedIn)
   }
 
   /**
