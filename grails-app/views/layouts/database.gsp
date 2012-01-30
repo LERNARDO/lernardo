@@ -330,12 +330,8 @@
         <div class="profile-box">
           <div class="second">
             <div class="header"><g:message code="privat.head.online"/></div>
-            <ul>
-              <erp:getOnlineUsers>
-                <g:each in="${onlineUsers}" var="entity">
-                  <li class="icon-online"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
-                </g:each>
-              </erp:getOnlineUsers>
+            <ul id="onlineusers">
+              <g:render template="/templates/onlineUsers"/>
             </ul>
           </div>
         </div>

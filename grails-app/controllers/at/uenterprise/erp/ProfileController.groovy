@@ -342,6 +342,10 @@ class ProfileController {
     RequestContextUtils.getLocaleResolver(request).setLocale(request, response, currentEntity.user.locale)
     redirect controller: "app", action: "start"
   }
+
+  def updateonline = {
+    render template: "/templates/onlineUsers"
+  }
 }
 
 /*
