@@ -110,17 +110,17 @@
       <div class="zusatz-add" id="resources" style="display:none">
         <span class="bold"><g:message code="resources.required"/></span>
         <g:if test="${requiredResources}">
-          <ul style="margin-left: 5px">
+          <ul style="margin: 5px 5px 0 15px;">
             <g:each in="${requiredResources}" var="requiredResource">
               <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
             </g:each>
           </ul>
         </g:if>
         <g:else>
-          <div class="gray" style="margin-bottom: 5px"><g:message code="resources.noneRequired"/></div>
+          <div class="italic" style="margin: 5px;"><g:message code="resources.noneRequired"/></div>
         </g:else>
 
-        <span class="bold"><g:message code="resource.profile"/></span> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}" before="showspinner('#plannableresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
+        <span class="bold"><g:message code="resource.profile"/></span> %{--<g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}" before="showspinner('#plannableresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>--}%
         <div id="plannableresources">
           <erp:getProjectDayUnits projectDay="${projectDay}">
             <g:if test="${units}">

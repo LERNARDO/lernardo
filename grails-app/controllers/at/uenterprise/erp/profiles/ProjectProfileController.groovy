@@ -801,6 +801,16 @@ class ProjectProfileController {
 
   def removeFacility = {
     def breaking = functionService.breakEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
+
+    // find all project days of project
+    Entity project = Entity.get(params.id)
+    List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+    // delete for every project day the planned resources
+    projectDays.each { Entity pd ->
+      Link.findAllByTargetAndType(pd, metaDataService.ltResourcePlanned).each {it.delete()}
+    }
+
     render template: 'facilities', model: [facilities: breaking.results2, project: breaking.source, entity: entityHelperService.loggedIn]
   }
 
@@ -897,11 +907,12 @@ class ProjectProfileController {
 
   def updateprojectday = {
     Entity project = Entity.get(params.project)
-    Entity projectDay = Entity.get(params.id)
 
     // find all project days linked to this project
     List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
     projectDays.sort {it.profile.date}
+
+    Entity projectDay = params.id ? Entity.get(params.id) : projectDays[0]
 
     // find projectTemplate of this project
     Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
@@ -1341,10 +1352,17 @@ class ProjectProfileController {
 
     // make sure no resource is planned if the duration is 0 (which means no project unit has been set yet)
     if (duration > 0) {
-      Link link = linkHelperService.createLink(resource, projectDay, metaDataService.ltResourcePlanned) {link, dad ->
-        dad.beginDate = projectDay.profile.date.getTime() / 1000
-        dad.endDate = calendar.getTime().getTime() / 1000
-        dad.amount = params.amount
+      Link existing = functionService.findExactLink(resource, projectDay, metaDataService.ltResourcePlanned)
+
+      if (!existing) {
+        Link link = linkHelperService.createLink(resource, projectDay, metaDataService.ltResourcePlanned) {link, dad ->
+          dad.beginDate = projectDay.profile.date.getTime() / 1000
+          dad.endDate = calendar.getTime().getTime() / 1000
+          dad.amount = params.amount
+        }
+      }
+      else {
+        existing.das.amount++
       }
     }
     else {
@@ -1604,6 +1622,14 @@ class ProjectProfileController {
     projectDay.delete()
 
     redirect action: "show", id: project.id
+  }
+
+  def refreshplannedresources = {
+    Entity group = Entity.get(params.id)
+
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
+
+    render template: 'resources', model: [resources: resources, projectDay: group, entity: entityHelperService.loggedIn]
   }
 
 }
