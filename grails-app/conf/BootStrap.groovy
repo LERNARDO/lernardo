@@ -281,9 +281,9 @@ class BootStrap {
           prf.firstName = "educatorFirstName" + i
           prf.lastName = "educatorLastName" + i
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
-          prf.currentCountry = "dummyCountry"
-          prf.currentZip = "1234"
-          prf.currentCity = "dummyCity"
+          //prf.currentCountry = "dummyCountry"
+          //prf.currentZip = "1234"
+          //prf.currentCity = "dummyCity"
           prf.currentStreet = "dummyStreet"
           prf.originCountry = "dummyCountry"
           prf.originZip = "1234"
@@ -326,9 +326,9 @@ class BootStrap {
           prf.firstName = "parentFirstName"
           prf.lastName = "parentLastName"
           prf.gender = generator.nextInt(2) + 1
-          prf.currentCountry = "dummyCountry"
-          prf.currentZip = "1234"
-          prf.currentCity = "dummyCity"
+          //prf.currentCountry = "dummyCountry"
+          //prf.currentZip = "1234"
+          //prf.currentCity = "dummyCity"
           prf.currentStreet = "dummyStreet"
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.maritalStatus = "dummyStatus"
@@ -361,8 +361,8 @@ class BootStrap {
           prf.lastName = "clientLastName"
           prf.gender = generator.nextInt(2) + 1
           prf.interests = "dummyInterests"
-          prf.currentCountry = "dummyCountry"
-          prf.currentZip = "1234"
+          //prf.currentCountry = "dummyCountry"
+          //prf.currentZip = "1234"
           prf.currentStreet = "dummyStreet"
           prf.originCountry = "dummyCountry"
           prf.originZip = "1234"

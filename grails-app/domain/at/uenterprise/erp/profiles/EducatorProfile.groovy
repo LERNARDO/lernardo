@@ -27,9 +27,9 @@ class EducatorProfile extends Profile {
   Date      birthDate
   Byte      gender
 
-  String currentCountry
-  String currentZip
-  String currentCity
+  //String currentCountry
+  //String currentZip
+  //String currentCity
   String currentStreet
 
   String originCountry
@@ -77,9 +77,9 @@ class EducatorProfile extends Profile {
     education       blank: true
     interests       blank: true, maxSize: 2000
 
-    currentCountry  size: 1..50, maxSize: 50
-    currentZip      size: 4..10
-    currentCity     size: 2..50, maxSize: 50
+    //currentCountry  size: 1..50, maxSize: 50
+    //currentZip      size: 4..10
+    //currentCity     size: 2..50, maxSize: 50
     currentStreet   size: 2..50, maxSize: 50
 
     originCountry   nullable: true, size: 1..50

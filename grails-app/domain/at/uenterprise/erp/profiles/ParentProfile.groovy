@@ -23,9 +23,9 @@ class ParentProfile extends Profile {
 
   String comment
 
-  String currentCountry
-  String currentZip
-  String currentCity
+  //String currentCountry
+  //String currentZip
+  //String currentCity
   String currentStreet
 
   String maritalStatus
@@ -46,9 +46,9 @@ class ParentProfile extends Profile {
     fullName              blank: true, size: 1..100, maxSize: 100
     firstName             blank: false, size: 2..50, maxSize: 50
     lastName              blank: false, size: 2..50, maxSize: 50
-    currentCountry        nullable: true, size: 1..50
-    currentZip            size: 4..10
-    currentCity           size: 2..50, maxSize: 50
+    //currentCountry        nullable: true, size: 1..50
+    //currentZip            size: 4..10
+    //currentCity           size: 2..50, maxSize: 50
     currentStreet         size: 2..50, maxSize: 50
     jobIncome             nullable: true
     jobFrequency          nullable: true, blank: true, maxSize: 50

@@ -52,10 +52,11 @@ class EducatorProfileController {
       return
     }
 
+    Entity colonia = functionService.findByLink(null, educator, metaDataService.ltColonia)
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
-    return [educator: educator, enlistedBy: enlistedBy]
+    return [educator: educator, enlistedBy: enlistedBy, colonia: colonia]
   }
 
   def delete = {
@@ -79,6 +80,9 @@ class EducatorProfileController {
   }
 
   def edit = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
     Entity educator = Entity.get(params.id)
     Entity entity = params.entity ? educator : entityHelperService.loggedIn
 
@@ -88,10 +92,25 @@ class EducatorProfileController {
       return
     }
 
+    Entity colonia = functionService.findByLink(null, educator, metaDataService.ltColonia)
+
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
-    return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner), enlistedBy: enlistedBy, entity: entity]
+    return [educator: educator,
+            partner: Entity.findAllByType(metaDataService.etPartner),
+            enlistedBy: enlistedBy,
+            entity: entity,
+            colonia: colonia,
+            allColonies: allColonies]
 
   }
 
@@ -112,6 +131,10 @@ class EducatorProfileController {
     //if (educator.id == entityHelperService.loggedIn.id)
     //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
+    // update link to colonia
+    Link.findByTargetAndType(educator, metaDataService.ltColonia)?.delete()
+    new Link(source: Entity.get(params.currentColonia), target: educator, type: metaDataService.ltColonia).save()
+
     if (educator.profile.save() && educator.user.save() && educator.save()) {
 
       // create link to partner
@@ -124,12 +147,34 @@ class EducatorProfileController {
       redirect action: 'show', id: educator.id, params: [entity: educator.id]
     }
     else {
-      render view: 'edit', model: [educator: educator, entity: educator, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      params.sort = params.sort ?: "fullName"
+      params.order = params.order ?: "asc"
+
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+      render view: 'edit', model: [educator: educator, entity: educator, allColonies: allColonies]
     }
   }
 
   def create = {
-    return [partner: Entity.findAllByType(metaDataService.etPartner)]
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    return [partner: Entity.findAllByType(metaDataService.etPartner),
+            allColonies: allColonies]
   }
 
   def save = {
@@ -157,10 +202,23 @@ class EducatorProfileController {
       // link educator to colonia
       //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
 
+      // create link to colonia
+      new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()
+
       flash.message = message(code: "object.created", args: [message(code: "educator"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
+      params.sort = params.sort ?: "fullName"
+      params.order = params.order ?: "asc"
+
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+      render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonies: allColonies])
     }
 
   }

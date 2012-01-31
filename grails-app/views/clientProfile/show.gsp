@@ -68,10 +68,10 @@
         <td class="two">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
       </tr>
 
-      <tr class="prop">
+      %{--<tr class="prop">
         <td class="one"><g:message code="zip"/>:</td>
         <td class="two">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-      </tr>
+      </tr>--}%
 
       <tr class="prop">
         <td class="one"><g:message code="groupColony"/>:</td>
@@ -79,10 +79,10 @@
             code="noData"/></div></g:else></td>
       </tr>
 
-      <tr class="prop">
+      %{--<tr class="prop">
         <td class="one"><g:message code="country"/>:</td>
         <td class="two">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-      </tr>
+      </tr>--}%
 
     </table>
 

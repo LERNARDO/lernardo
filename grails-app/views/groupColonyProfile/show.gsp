@@ -36,6 +36,16 @@
           <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
+        <tr class="prop">
+          <td class="one"><g:message code="zip"/>:</td>
+          <td class="two">${fieldValue(bean: group, field: 'profile.zip').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="country"/>:</td>
+          <td class="two">${fieldValue(bean: group, field: 'profile.country').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        </tr>
+
         </tbody>
       </table>
 

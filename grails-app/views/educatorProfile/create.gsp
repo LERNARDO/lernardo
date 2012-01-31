@@ -135,7 +135,7 @@
             </td>
           </tr>
 
-          <tr class="prop">
+          %{--<tr class="prop">
             <td valign="top" class="name"><g:message code="zip"/></td>
             <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="10" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
@@ -153,6 +153,13 @@
             <td valign="top" class="name"><g:message code="country"/></td>
             <td valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
+            </td>
+          </tr>--}%
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="groupColony"/></td>
+            <td valign="top" class="value">
+              <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
 

@@ -126,7 +126,7 @@
         <td class="two">${fieldValue(bean: educator, field: 'profile.currentStreet') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
       </tr>
 
-      <tr class="prop">
+      %{--<tr class="prop">
         <td class="one"><g:message code="zip"/>:</td>
         <td class="two">${fieldValue(bean: educator, field: 'profile.currentZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
       </tr>
@@ -139,6 +139,12 @@
       <tr class="prop">
         <td class="one"><g:message code="country"/>:</td>
         <td class="two">${fieldValue(bean: educator, field: 'profile.currentCountry') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>--}%
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupColony"/>:</td>
+        <td class="two"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name + 'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+            code="noData"/></div></g:else></td>
       </tr>
 
     </table>

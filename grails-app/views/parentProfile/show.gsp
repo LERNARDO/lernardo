@@ -59,7 +59,7 @@
             <h4><g:message code="educator.profile.curAddress"/></h4>
             <table>
 
-              <tr class="prop">
+              %{--<tr class="prop">
                 <td class="one"><g:message code="country"/>:</td>
                 <td class="two">${fieldValue(bean: parent, field: 'profile.currentCountry') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
               </tr>
@@ -67,16 +67,22 @@
               <tr class="prop">
                 <td class="one"><g:message code="city"/>:</td>
                 <td class="two">${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-              </tr>
+              </tr>--}%
 
               <tr class="prop">
                 <td class="one"><g:message code="street"/>:</td>
                 <td class="two">${fieldValue(bean: parent, field: 'profile.currentStreet') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
               </tr>
 
-              <tr class="prop">
+              %{--<tr class="prop">
                 <td class="one"><g:message code="zip"/>:</td>
                 <td class="two">${fieldValue(bean: parent, field: 'profile.currentZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
+              </tr>--}%
+
+              <tr class="prop">
+                <td class="one"><g:message code="groupColony"/>:</td>
+                <td class="two"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name + 'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+                    code="noData"/></div></g:else></td>
               </tr>
 
             </table>

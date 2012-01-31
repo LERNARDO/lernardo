@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="database"/>
   <title><g:message code="object.create" args="[message(code: 'groupColony')]"/></title>
@@ -14,27 +15,38 @@
     <g:render template="/templates/errors" model="[bean: group]"/>
 
     <g:form>
-      <div>
-        <table>
-          <tbody>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
-            <td valign="top" class="name"><g:message code="description"/></td>
-          </tr>
+      <table>
 
-          <tr class="prop">
-            <td width="200px" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="27" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
-            </td>
-            <td valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="30" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          </tbody>
-        </table>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="5" cols="40" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="zip"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.zip', 'errors')}" size="5" name="zip" value="${fieldValue(bean: group, field: 'profile.zip').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="country"/></td>
+          <td valign="top" class="value">
+            <g:select name="country" from="${Setup.list()[0]?.nationalities}" value="${group?.profile?.country}" noSelection="['': message(code: 'unknown')]"/>
+          </td>
+        </tr>
+
+      </table>
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>

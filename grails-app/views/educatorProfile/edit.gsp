@@ -90,15 +90,15 @@
           <table width="100%">
             <tr>
               <td valign="top" class="name"><g:message code="street"/></td>
-              <td valign="top" class="name"><g:message code="zip"/></td>
-              <td valign="top" class="name"><g:message code="city"/></td>
-              <td valign="top" class="name"><g:message code="country"/></td>
+              %{--<td valign="top" class="name"><g:message code="zip"/></td>--}%
+              <td valign="top" class="name"><g:message code="groupColony"/></td>
+              %{--<td valign="top" class="name"><g:message code="country"/></td>--}%
             </tr>
             <tr>
               <td height="35" valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.currentStreet.maxSize} ${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="41" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
               </td>
-              <td valign="top" class="value">
+              %{--<td valign="top" class="value">
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="12" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
@@ -106,8 +106,10 @@
               </td>
               <td valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.currentCountry.maxSize} ${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
+              </td>--}%
+              <td valign="top" class="value">
+                <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile" value="${colonia?.id}"/>
               </td>
-
             </tr>
           </table>
         </div>

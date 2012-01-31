@@ -87,25 +87,25 @@
           </tr>
 
           <tr>
-            <td valign="top" class="name"><g:message code="country"/></td>
-            <td valign="top" class="name"><g:message code="city"/></td>
+            %{--<td valign="top" class="name"><g:message code="country"/></td>--}%
+            <td valign="top" class="name"><g:message code="groupColony"/></td>
             <td valign="top" class="name"><g:message code="street"/></td>
-            <td valign="top" class="name"><g:message code="zip"/></td>
+            %{--<td valign="top" class="name"><g:message code="zip"/></td>--}%
           </tr>
 
           <tr>
-            <td valign="top" class="value">
+            %{--<td valign="top" class="value">
               <g:select name="currentCountry" from="${Setup.list()[0]?.nationalities}" value="${parent?.profile?.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
-            </td>
+            </td>--}%
             <td width="105" valign="top" class="value">
-              <g:textField class="countable${parent.profile.constraints.currentCity.maxSize} ${hasErrors(bean: parent, field: 'profile.currentCity', 'errors')}" size="30" name="currentCity" value="${fieldValue(bean: parent, field: 'profile.currentCity').decodeHTML()}"/>
+              <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile" value="${colonia?.id}"/>
             </td>
             <td width="210" valign="top" class="value">
               <g:textField class="countable${parent.profile.constraints.currentStreet.maxSize} ${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
             </td>
-            <td valign="top" class="value">
+            %{--<td valign="top" class="value">
               <g:textField class="${hasErrors(bean: parent, field: 'profile.currentZip', 'errors')}" size="10" name="currentZip" value="${fieldValue(bean: parent, field: 'profile.currentZip').decodeHTML()}"/>
-            </td>
+            </td>--}%
           </tr>
         </table>
 

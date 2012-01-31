@@ -6,6 +6,7 @@ import at.openfactory.ep.EntityHelperService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 import java.util.regex.Pattern
+import at.openfactory.ep.Link
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -49,10 +50,11 @@ class ParentProfileController {
       return
     }
 
+    Entity colonia = functionService.findByLink(null, parent, metaDataService.ltColonia)
     // find family of the parent if there is one
     Entity family = functionService.findByLink(parent, null, metaDataService.ltGroupMemberParent)
 
-    return [parent: parent, family: family]
+    return [parent: parent, family: family, colonia: colonia]
 
   }
 
@@ -77,6 +79,9 @@ class ParentProfileController {
   }
 
   def edit = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
     Entity parent = Entity.get(params.id)
 
     if (!parent) {
@@ -85,7 +90,17 @@ class ParentProfileController {
       return
     }
 
-    return [parent: parent]
+    Entity colonia = functionService.findByLink(null, parent, metaDataService.ltColonia)
+
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    return [parent: parent, colonia: colonia, allColonies: allColonies]
 
   }
 
@@ -119,16 +134,44 @@ class ParentProfileController {
     //println "child object has errors? " + parent.profile.hasErrors()
     //println parent.profile.errors.each {println it}
 
+    // update link to colonia
+    Link.findByTargetAndType(parent, metaDataService.ltColonia)?.delete()
+    new Link(source: Entity.get(params.currentColonia), target: parent, type: metaDataService.ltColonia).save()
+
     if (parent.profile.save() && parent.user.save() && parent.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "parent"), parent.profile.fullName])
       redirect action: 'show', id: parent.id, params: [entity: parent.id]
     }
     else {
-      render view: 'edit', model: [parent: parent]
+      params.sort = params.sort ?: "fullName"
+      params.order = params.order ?: "asc"
+      Entity colonia = functionService.findByLink(null, parent, metaDataService.ltColonia)
+
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+      render view: 'edit', model: [parent: parent, colonia: colonia, allColonies: allColonies]
     }
   }
 
-  def create = {}
+  def create = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    return [allColonies: allColonies]
+  }
 
   def save = {
     EntityType etParent = metaDataService.etParent
@@ -146,10 +189,23 @@ class ParentProfileController {
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
+      // create link to colonia
+      new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()
+      
       flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [parent: ee.entity])
+      params.sort = params.sort ?: "fullName"
+      params.order = params.order ?: "asc"
+
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+      render(view: "create", model: [parent: ee.entity, allColonies: allColonies])
     }
 
   }
