@@ -50,11 +50,11 @@ class ParentProfileController {
       return
     }
 
-    Entity colonia = functionService.findByLink(null, parent, metaDataService.ltColonia)
+    Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
     // find family of the parent if there is one
     Entity family = functionService.findByLink(parent, null, metaDataService.ltGroupMemberParent)
 
-    return [parent: parent, family: family, colonia: colonia]
+    return [parent: parent, family: family, colony: colony]
 
   }
 
@@ -90,7 +90,7 @@ class ParentProfileController {
       return
     }
 
-    Entity colonia = functionService.findByLink(null, parent, metaDataService.ltColonia)
+    Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
 
     def c = Entity.createCriteria()
     def allColonies = c.list {
@@ -100,7 +100,7 @@ class ParentProfileController {
       }
     }
 
-    return [parent: parent, colonia: colonia, allColonies: allColonies]
+    return [parent: parent, colony: colony, allColonies: allColonies]
 
   }
 
@@ -134,9 +134,9 @@ class ParentProfileController {
     //println "child object has errors? " + parent.profile.hasErrors()
     //println parent.profile.errors.each {println it}
 
-    // update link to colonia
+    // update link to colony
     Link.findByTargetAndType(parent, metaDataService.ltColonia)?.delete()
-    new Link(source: Entity.get(params.currentColonia), target: parent, type: metaDataService.ltColonia).save()
+    new Link(source: Entity.get(params.currentColony), target: parent, type: metaDataService.ltColonia).save()
 
     if (parent.profile.save() && parent.user.save() && parent.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "parent"), parent.profile.fullName])
@@ -145,7 +145,7 @@ class ParentProfileController {
     else {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
-      Entity colonia = functionService.findByLink(null, parent, metaDataService.ltColonia)
+      Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
 
       def c = Entity.createCriteria()
       def allColonies = c.list {
@@ -154,7 +154,7 @@ class ParentProfileController {
           order(params.sort, params.order)
         }
       }
-      render view: 'edit', model: [parent: parent, colonia: colonia, allColonies: allColonies]
+      render view: 'edit', model: [parent: parent, colony: colony, allColonies: allColonies]
     }
   }
 
@@ -189,8 +189,8 @@ class ParentProfileController {
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
-      // create link to colonia
-      new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()
+      // create link to colony
+      new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
       
       flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]

@@ -52,11 +52,11 @@ class EducatorProfileController {
       return
     }
 
-    Entity colonia = functionService.findByLink(null, educator, metaDataService.ltColonia)
+    Entity colony = functionService.findByLink(null, educator, metaDataService.ltColonia)
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
-    return [educator: educator, enlistedBy: enlistedBy, colonia: colonia]
+    return [educator: educator, enlistedBy: enlistedBy, colony: colony]
   }
 
   def delete = {
@@ -92,7 +92,7 @@ class EducatorProfileController {
       return
     }
 
-    Entity colonia = functionService.findByLink(null, educator, metaDataService.ltColonia)
+    Entity colony = functionService.findByLink(null, educator, metaDataService.ltColonia)
 
     def c = Entity.createCriteria()
     def allColonies = c.list {
@@ -109,7 +109,7 @@ class EducatorProfileController {
             partner: Entity.findAllByType(metaDataService.etPartner),
             enlistedBy: enlistedBy,
             entity: entity,
-            colonia: colonia,
+            colony: colony,
             allColonies: allColonies]
 
   }
@@ -131,9 +131,9 @@ class EducatorProfileController {
     //if (educator.id == entityHelperService.loggedIn.id)
     //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
-    // update link to colonia
+    // update link to colony
     Link.findByTargetAndType(educator, metaDataService.ltColonia)?.delete()
-    new Link(source: Entity.get(params.currentColonia), target: educator, type: metaDataService.ltColonia).save()
+    new Link(source: Entity.get(params.currentColony), target: educator, type: metaDataService.ltColonia).save()
 
     if (educator.profile.save() && educator.user.save() && educator.save()) {
 
@@ -199,11 +199,11 @@ class EducatorProfileController {
         new Link(source: entity, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
       }
 
-      // link educator to colonia
+      // link educator to colony
       //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
 
-      // create link to colonia
-      new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()
+      // create link to colony
+      new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
 
       flash.message = message(code: "object.created", args: [message(code: "educator"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]

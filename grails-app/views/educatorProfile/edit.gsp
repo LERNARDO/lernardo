@@ -108,7 +108,7 @@
                 <g:textField class="countable${educator.profile.constraints.currentCountry.maxSize} ${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
               </td>--}%
               <td valign="top" class="value">
-                <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile" value="${colonia?.id}"/>
+                <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile" value="${colony?.id}"/>
               </td>
             </tr>
           </table>

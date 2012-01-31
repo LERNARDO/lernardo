@@ -3,7 +3,7 @@
 <h2><g:message code="profile.overview.groups"/></h2>
 
 <div class="box">
-  <div class="bold"><g:message code="groupColonies"/> (${allColonias})</div>
+  <div class="bold"><g:message code="groupColonies"/> (${allColonies})</div>
   <g:link controller="groupColonyProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_colonia.png')}" alt="Notiz" align="top"/></g:link>
   <div><g:link controller="groupColonyProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
   <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">

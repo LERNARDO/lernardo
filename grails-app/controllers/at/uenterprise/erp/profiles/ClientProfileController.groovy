@@ -59,12 +59,12 @@ class ClientProfileController {
       return
     }
 
-    Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
+    Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
     Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
     List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
-    return [client: client, colonia: colonia, family: family, pates: pates, facilities: facilities]
+    return [client: client, colony: colony, family: family, pates: pates, facilities: facilities]
 
   }
 
@@ -100,7 +100,7 @@ class ClientProfileController {
       return
     }
 
-    Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
+    Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
 
     def c = Entity.createCriteria()
     def allColonies = c.list {
@@ -119,7 +119,7 @@ class ClientProfileController {
     }
 
     return [client: client,
-            colonia: colonia,
+            colony: colony,
             allColonies: allColonies,
             allFacilities: allFacilities]
   }
@@ -157,9 +157,9 @@ class ClientProfileController {
     //if (client.id == entityHelperService.loggedIn.id)
     //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
-    // update link to colonia
+    // update link to colony
     Link.findByTargetAndType(client, metaDataService.ltColonia)?.delete()
-    new Link(source: Entity.get(params.currentColonia), target: client, type: metaDataService.ltColonia).save()
+    new Link(source: Entity.get(params.currentColony), target: client, type: metaDataService.ltColonia).save()
 
     // update link to school
     //Link.findByTargetAndType(client, metaDataService.ltFacility)?.delete()
@@ -172,7 +172,7 @@ class ClientProfileController {
     else {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
-      Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
+      Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
       //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
       def c = Entity.createCriteria()
@@ -190,7 +190,7 @@ class ClientProfileController {
           order(params.sort, params.order)
         }
       }
-      render view: 'edit', model: [client: client, colonia: colonia, allColonies: allColonies, allFacilities: allFacilities]
+      render view: 'edit', model: [client: client, colony: colony, allColonies: allColonies, allFacilities: allFacilities]
     }
   }
 
@@ -252,8 +252,8 @@ class ClientProfileController {
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
-      // create link to colonia
-      new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()
+      // create link to colony
+      new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
 
       // create link to school
       //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()

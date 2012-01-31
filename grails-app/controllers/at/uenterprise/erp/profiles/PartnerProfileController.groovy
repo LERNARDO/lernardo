@@ -83,7 +83,7 @@ class PartnerProfileController {
       return
     }
 
-    return [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [partner: partner]
 
   }
 
@@ -105,9 +105,7 @@ class PartnerProfileController {
     }
   }
 
-  def create = {
-    return [allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
-  }
+  def create = {}
 
   def save = {
     EntityType etPartner = metaDataService.etPartner

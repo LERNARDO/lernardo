@@ -113,10 +113,10 @@ class FacilityProfileController {
       return
     }
 
-    // find colonia of this facility
+    // find colony of this facility
     Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
-    return [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [facility: facility, colony: colony, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
     
   }
 
@@ -127,25 +127,25 @@ class FacilityProfileController {
 
     if (facility.profile.save() && facility.save()) {
 
-      // delete previously linked colonia
+      // delete previously linked colony
       Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)?.delete()
 
-      // link new colonia to facility
-      new Link(source: facility, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
+      // link new colony to facility
+      new Link(source: facility, target: Entity.get(params.colony), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "object.updated", args: [message(code: "facility"), facility.profile.fullName])
       redirect action: 'show', id: facility.id, params: [entity: facility.id]
     }
     else {
-      // find colonia of this facility
+      // find colony of this facility
       Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
-      render view: 'edit', model: [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      render view: 'edit', model: [facility: facility, colony: colony, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
   def create = {
-    return [allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
   }
 
   def save = {
@@ -157,13 +157,13 @@ class FacilityProfileController {
         ent.profile.properties = params
       }
 
-      // link facility to colonia
-      new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
+      // link facility to colony
+      new Link(source: entity, target: Entity.get(params.colony), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "object.created", args: [message(code: "facility"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [facility: ee.entity, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
+      render(view: "create", model: [facility: ee.entity, allColonies: Entity.findAllByType(metaDataService.etGroupColony)])
     }
 
   }

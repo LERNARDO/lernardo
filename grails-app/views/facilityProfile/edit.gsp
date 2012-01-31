@@ -36,7 +36,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="groupColony"/></td>
           <td valign="top" class="value">
-            <g:select from="${allColonias}" name="colonia" optionKey="id" optionValue="profile"/>
+            <g:select from="${allColonies}" name="colony" optionKey="id" optionValue="profile"/>
           </td>
         </tr>
 

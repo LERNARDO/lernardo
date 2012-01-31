@@ -63,7 +63,7 @@
               </tr>
               <tr>
                 <td class="gray"><g:message code="groupColony"/></td>
-                <td><g:select name="colonia" from="${allColonias}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>
+                <td><g:select name="colony" from="${allColonies}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>
               </tr>
               <tr>
                 <td class="gray"><g:message code="facility"/></td>

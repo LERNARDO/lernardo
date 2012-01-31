@@ -57,14 +57,14 @@ class GroupClientProfileController {
     // find all clients linked to this group
     List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
 
-    List allColonias = Entity.findAllByType(metaDataService.etGroupColony)
+    List allColonies = Entity.findAllByType(metaDataService.etGroupColony)
     List allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
     return [group: group,
             entity: entity,
             clients: clients,
             allClients: allClients,
-            allColonias: allColonias,
+            allColonies: allColonies,
             allFacilities: allFacilities]
 
   }
@@ -203,12 +203,12 @@ class GroupClientProfileController {
     // perform colony check
     List finalClients = []
 
-    if (params.colonia != "all") {
+    if (params.colony != "all") {
       allClients.each { Entity client ->
 
         def d = Link.createCriteria()
         def result = d.get {
-          eq("source", Entity.get(params.colonia))
+          eq("source", Entity.get(params.colony))
           eq("target", client)
           eq("type", metaDataService.ltColonia)
         }

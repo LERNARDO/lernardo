@@ -98,7 +98,7 @@
               <g:select name="currentCountry" from="${Setup.list()[0]?.nationalities}" value="${parent?.profile?.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
             </td>--}%
             <td width="105" valign="top" class="value">
-              <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile" value="${colonia?.id}"/>
+              <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile" value="${colony?.id}"/>
             </td>
             <td width="210" valign="top" class="value">
               <g:textField class="countable${parent.profile.constraints.currentStreet.maxSize} ${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
@@ -112,9 +112,9 @@
         <table>
 
           <tr>
-            <td valign="top" class="name"><g:message code="client.profile.socialSecurityNumber"/></td>
+            <td valign="top" class="name"><g:message code="socialSecurityNumber"/></td>
             <td valign="top" class="name"><g:message code="phone"/></td>
-            <td valign="top" class="name"><g:message code="client.profile.citizenship"/></td>
+            <td valign="top" class="name"><g:message code="citizenship"/></td>
           <tr>
 
           <tr>

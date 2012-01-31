@@ -81,7 +81,7 @@
 
               <tr class="prop">
                 <td class="one"><g:message code="groupColony"/>:</td>
-                <td class="two"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name + 'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+                <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
                     code="noData"/></div></g:else></td>
               </tr>
 
@@ -94,7 +94,7 @@
             <table>
 
               <tr class="prop">
-                <td class="one"><g:message code="client.profile.socialSecurityNumber"/>:</td>
+                <td class="one"><g:message code="socialSecurityNumber"/>:</td>
                 <td class="two">${fieldValue(bean: parent, field: 'profile.socialSecurityNumber') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
               </tr>
 
@@ -104,7 +104,7 @@
               </tr>
 
               <tr class="prop">
-                <td class="one"><g:message code="client.profile.citizenship"/>:</td>
+                <td class="one"><g:message code="citizenship"/>:</td>
                 <td class="two">${fieldValue(bean: parent, field: 'profile.citizenship') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
               </tr>
 

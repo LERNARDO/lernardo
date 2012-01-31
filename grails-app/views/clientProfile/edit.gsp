@@ -77,7 +77,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="groupColony"/></td>
             <td valign="top" class="value">
-              <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile" value="${colonia?.id}"/>
+              <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile" value="${colony?.id}"/>
             </td>
           </tr>
 
@@ -234,14 +234,14 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.citizenship"/></td>
+            <td valign="top" class="name"><g:message code="citizenship"/></td>
             <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.citizenship', 'errors')}" size="15" name="citizenship" value="${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.socialSecurityNumber"/></td>
+            <td valign="top" class="name"><g:message code="socialSecurityNumber"/></td>
             <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.socialSecurityNumber', 'errors')}" size="30" name="socialSecurityNumber" value="${fieldValue(bean: client, field: 'profile.socialSecurityNumber')}"/>
             </td>

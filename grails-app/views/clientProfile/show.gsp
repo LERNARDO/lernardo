@@ -75,7 +75,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="groupColony"/>:</td>
-        <td class="two"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name + 'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+        <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
             code="noData"/></div></g:else></td>
       </tr>
 
@@ -226,12 +226,12 @@
       </g:if>
 
       <tr class="prop">
-        <td class="one"><g:message code="client.profile.citizenship"/> (${grailsApplication.config.currency}):</td>
+        <td class="one"><g:message code="citizenship"/> (${grailsApplication.config.currency}):</td>
         <td class="two">${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML() ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="client.profile.socialSecurityNumber"/>:</td>
+        <td class="one"><g:message code="socialSecurityNumber"/>:</td>
         <td class="two">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
       </tr>
 

@@ -30,7 +30,7 @@ class OverviewController {
   }
 
   def groups = {
-    render template: 'groups', model: [allColonias: Entity.countByType(metaDataService.etGroupColony),
+    render template: 'groups', model: [allColonies: Entity.countByType(metaDataService.etGroupColony),
                                        allFamilies: Entity.countByType(metaDataService.etGroupFamily),
                                        allPartnerGroups: Entity.countByType(metaDataService.etGroupPartner),
                                        allClientGroups: Entity.countByType(metaDataService.etGroupClient)]
