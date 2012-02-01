@@ -1,0 +1,3 @@
+<g:formRemote name="editHourlyWage" update="${i}c" url="[action:'updateHourlyWage', id: person.id, params:[i: i]]">
+  <g:textField size="4" name="hourlyWage" value="${fieldValue(bean: person, field: 'profile.hourlyWage')}"/> <g:actionSubmitImage value="confirm" src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="${message(code: 'confirm')}" align="top" style="border: 0"/>
+</g:formRemote>

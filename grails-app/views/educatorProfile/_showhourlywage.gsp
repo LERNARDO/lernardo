@@ -1,1 +1,0 @@
-${fieldValue(bean: educator, field: 'profile.hourlyWage')} <g:remoteLink action="changeHourlyWage" id="${educator.id}" params="[i: i]" update="${i}c"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:remoteLink>

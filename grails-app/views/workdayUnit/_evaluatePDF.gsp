@@ -62,29 +62,29 @@
       </tr>
       </thead>
       <tbody>
-      <g:each in="${educators}" status="i" var="educator">
-        <erp:showHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}">
+      <g:each in="${persons}" status="i" var="person">
+        <erp:showHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td>${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</td>
+          <td>${fieldValue(bean: person, field: 'profile.fullName').decodeHTML()}</td>
           <g:each in="${workdaycategories}" var="category">
-            <td><erp:getHoursForCategory category="${category}" educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+            <td><erp:getHoursForCategory category="${category}" educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
           </g:each>
-          <td><erp:getTotalHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-          <td><erp:getExpectedHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-          <td><erp:getSalary educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-          <td><erp:getHoursConfirmed educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+          <td><erp:getTotalHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+          <td><erp:getExpectedHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+          <td><erp:getSalary educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+          <td><erp:getHoursConfirmed educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
         </tr>
         </erp:showHours>
       </g:each>
       </tbody>
     </table>
 
-    <g:each in="${educators}" status="i" var="educator">
-      <erp:showHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}">
+    <g:each in="${persons}" status="i" var="person">
+      <erp:showHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}">
       <h1 style="page-break-before: always"><g:message code="educator.timeschedule.export.period" args="[date1, date2]"/></h1>
       <h2><g:message code="detailed.info"/></h2>
-      <h3>${educator.profile.fullName}</h3>
-      <erp:getWorkdayUnits educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/>
+      <h3>${person.profile.fullName}</h3>
+      <erp:getWorkdayUnits educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/>
       </erp:showHours>
     </g:each>
 

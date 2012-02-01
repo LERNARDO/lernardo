@@ -326,7 +326,7 @@
                   <li class="icon-setup"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="setup"/></g:link></li>
                   <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                   %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
-                  <li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]"><g:message code="timeEvaluation"/></g:link></li>
+                  <li class="icon-time"><g:link controller="workdayUnit" action="evaluation" params="[name:entity.name]"><g:message code="timeEvaluation"/></g:link></li>
                   <li class="icon-evaluation"><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allevalentries"/></g:link></li>
                   <li class="profile-netzwerk"><g:link controller="comment" action="list" id="${entity.id}"><g:message code="allComments"/></g:link></li>
                   <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profile.all"/></g:link></li>

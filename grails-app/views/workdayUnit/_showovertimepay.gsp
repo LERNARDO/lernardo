@@ -1,0 +1,1 @@
+${fieldValue(bean: person, field: 'profile.overtimePay')} <g:remoteLink action="changeOvertimePay" id="${person.id}" params="[i: i]" update="${i}d"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:remoteLink>

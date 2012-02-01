@@ -6,7 +6,7 @@
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="educatorProfile" action="times"><g:message code="timeEvaluation"/></g:link></h1>
+    <h1><g:link controller="workdayUnit" action="evaluation"><g:message code="timeEvaluation"/></g:link></h1>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="educatorProfile" action="workhours"><g:message code="educator.profile.workHours"/></g:link></h1>
+    <h1><g:link controller="workdayUnit" action="workhours"><g:message code="educator.profile.workHours"/></g:link></h1>
   </div>
 </div>
 

@@ -6,7 +6,7 @@
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="educatorProfile" action="times"><g:message code="timeEvaluation"/></g:link></h1>
+    <h1><g:link controller="workdayUnit" action="evaluation"><g:message code="timeEvaluation"/></g:link></h1>
   </div>
 </div>
 
@@ -38,16 +38,16 @@
       </tr>
       </thead>
       <tbody>
-      <g:each in="${educators}" status="i" var="educator">
+      <g:each in="${persons}" status="i" var="person">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td>
-            <erp:profileImage entity="${educator}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-            <g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link>
+            <erp:profileImage entity="${person}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+            <g:link action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
-          <td id="${i}a"><g:render template="showworkhours" model="[educator: educator, i: i]"/></td>
+          <td id="${i}a"><g:render template="showworkhours" model="[person: person, i: i]"/></td>
           %{--<td id="${i}b"><g:render template="showworkdays" model="[educator: educator, i: i]"/></td>--}%
-          <td id="${i}c"><g:render template="showhourlywage" model="[educator: educator, i: i]"/></td>
-          <td id="${i}d"><g:render template="showovertimepay" model="[educator: educator, i: i]"/></td>
+          <td id="${i}c"><g:render template="showhourlywage" model="[person: person, i: i]"/></td>
+          <td id="${i}d"><g:render template="showovertimepay" model="[person: person, i: i]"/></td>
         </tr>
       </g:each>
       </tbody>

@@ -45,7 +45,7 @@ class WorkdayUnitController {
       Entity entity = Entity.get(params.id)
 
       List workdayunits = []
-      if (entity.type.id == metaDataService.etEducator.id) {
+      if (entity.type.id == metaDataService.etEducator.id || entity.type.id == metaDataService.etUser.id) {
         entity.profile.workdayunits.each { workday ->
           if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
             workdayunits << workday
@@ -220,5 +220,121 @@ class WorkdayUnitController {
                                               datesOrdered: true,
                                               entity: entity,
                                               currentEntity: entityHelperService.loggedIn]
+    }
+
+    def evaluation = {}
+
+    def evaluate = {
+      List persons = []
+      List educators = Entity.createCriteria().list {
+        eq("type", metaDataService.etEducator)
+        profile {
+          and {
+            order('employment','asc')
+            order('firstName','asc')
+          }
+        }
+      }
+      List users = Entity.createCriteria().list {
+        eq("type", metaDataService.etUser)
+        profile {
+          order('firstName','asc')
+        }
+      }
+      persons.addAll(educators)
+      persons.addAll(users)
+
+      List workdaycategories = WorkdayCategory.list()
+
+      render template: 'evaluate', model:[persons: persons,
+                                          workdaycategories: workdaycategories,
+                                          date1: params.date1,
+                                          date2: params.date2,
+                                          entity: entityHelperService.loggedIn]
+    }
+
+    def evaluatePDF = {
+      Date date1 = Date.parse("dd. MM. yy", params.date1)
+      Date date2 = Date.parse("dd. MM. yy", params.date2)
+
+      List persons = []
+      List educators = Entity.createCriteria().list {
+        eq("type", metaDataService.etEducator)
+        profile {
+          and {
+            order('employment','asc')
+            order('firstName','asc')
+          }
+        }
+      }
+      List users = Entity.createCriteria().list {
+        eq("type", metaDataService.etUser)
+        profile {
+          order('firstName','asc')
+        }
+      }
+      persons.addAll(educators)
+      persons.addAll(users)
+
+      List workdaycategories = WorkdayCategory.list()
+      Entity currentEntity = entityHelperService.loggedIn
+      renderPdf template: 'evaluatePDF', model: [persons: persons,
+                                                 workdaycategories: workdaycategories,
+                                                 entity: currentEntity,
+                                                 date1: params.date1, date2: params.date2],
+                                                 filename: message(code: 'timeEvaluation') + '_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy") + '.pdf'
+    }
+
+    def workhours = {
+      List persons = Entity.findAllByTypeOrType(metaDataService.etEducator, metaDataService.etUser)
+      return [persons: persons]
+    }
+
+    def changeWorkHours = {
+      Entity person = Entity.get(params.id)
+      render template: 'editworkhours', model:[person: person, i: params.i]
+    }
+
+    def updateWorkHours = {
+      Entity person = Entity.get(params.id)
+      person.profile.properties = params
+      person.profile.save()
+      render template: 'showworkhours', model:[person: person, i: params.i]
+    }
+
+    def changeWorkDays = {
+      Entity person = Entity.get(params.id)
+      render template: 'editworkdays', model:[person: person, i: params.i]
+    }
+
+    def updateWorkDays = {
+      Entity person = Entity.get(params.id)
+      person.profile.workDays = params.int('workDays')
+      person.profile.save()
+      render template: 'showworkdays', model:[person: person, i: params.i]
+    }
+
+    def changeHourlyWage = {
+      Entity person = Entity.get(params.id)
+      render template: 'edithourlywage', model:[person: person, i: params.i]
+    }
+
+    def updateHourlyWage = {
+      Entity person = Entity.get(params.id)
+      person.profile.hourlyWage = params.int('hourlyWage')
+      person.profile.save()
+      render template: 'showhourlywage', model:[person: person, i: params.i]
+    }
+
+    def changeOvertimePay = {
+      Entity person = Entity.get(params.id)
+      render template: 'editovertimepay', model:[person: person, i: params.i]
+    }
+
+    def updateOvertimePay = {
+      Entity person = Entity.get(params.id)
+      person.profile.overtimePay = params.int('overtimePay')
+      person.profile.save()
+      render template: 'showovertimepay', model:[person: person, i: params.i]
     }
 }
