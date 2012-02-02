@@ -22,11 +22,17 @@ class ProjectTemplateProfile extends Profile {
   String description
   String status
   String educationalObjectiveText
+  Integer ageFrom
+  Integer ageTo
 
   static constraints = {
     fullName                  blank: false, size: 1..100, maxSize: 100
     description               blank: true, maxSize: 20000
     educationalObjectiveText  nullable: true, maxSize: 2000
+    ageFrom         nullable: true
+    ageTo           nullable: true, validator: {at, obj ->
+                                                 return at ? at >= obj.ageFrom : true
+                                               }
   }
 
   String toString() {

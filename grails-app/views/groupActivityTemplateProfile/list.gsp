@@ -49,6 +49,13 @@
             </td>
           </tr>
 
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="age"/></td>
+            <td valign="top" class="value">
+              <span class="gray"><g:message code="from"/></span> <g:textField name="ageFrom" size="5"/> <span class="gray"><g:message code="to"/></span> <g:textField name="ageTo" size="5"/>
+            </td>
+          </tr>
+
         </table>
 
         <g:submitButton name="button" value="${message(code:'define')}"/>

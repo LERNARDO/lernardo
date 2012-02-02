@@ -286,7 +286,6 @@ class TemplateProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-
     // swap age values if necessary
     if (params.int('ageTo') < params.int('ageFrom')) {
       def temp = params.ageTo

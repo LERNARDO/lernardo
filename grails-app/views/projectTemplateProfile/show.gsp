@@ -56,6 +56,16 @@
           <td class="two">${fieldValue(bean: projectTemplate, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
+        <tr class="prop">
+          <td class="one"><g:message code="activityTemplate.ageFrom"/></td>
+          <td class="two">${projectTemplate?.profile?.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="activityTemplate.ageTo"/></td>
+          <td class="two">${projectTemplate?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        </tr>
+
         </tbody>
       </table>
 
