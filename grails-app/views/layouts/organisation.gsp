@@ -20,7 +20,6 @@
   %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon.js')}" type="text/javascript"></script>
-  <script src="${g.resource(dir: 'js/jquery', file: 'jquery.periodicalupdater.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.qtip.min.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}" type="text/javascript"></script>
 
@@ -77,38 +76,21 @@
 
       $('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
 
-      // disabled for next release
-      /*$.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // not working in DEV environment
-        method: 'get',          // method; get or post
-        data: '',               // array of values to be passed to the page - e.g. {name: "John", greeting: "hello"}
-        minTimeout: 60000,      // starting value for the timeout in milliseconds
-        maxTimeout: 5000,       // maximum length of time between requests
-        multiplier: 1,          // if set to 2, timerInterval will double each time the response hasn't changed (up to maxTimeout)
-        type: 'text',           // response type - text, xml, json, etc.  See $.ajax config options
-        maxCalls: 0,            // maximum number of calls. 0 = no limit.
-        autoStop: 0             // automatically stop requests after this many returns of the same data. 0 = disabled.
-      },
-      function(data){
-        $('#livetickerbox').empty().append(data);
-      });*/
-
-      $(document).ready(function() {
-        $('.tooltip').each(function() {
-          $(this).qtip({
-            content: {
-              text: function(api) {
-                 return $(this).attr('data-tooltip');
-              }
-            },
-            position: {
-              my: 'top left',  // Position my top left...
-              at: 'right bottom', // at the bottom right of...
-              target: $(this) // my target
-            },
-            style: {
-              classes: 'ui-tooltip-blue'
+      $('.tooltip').each(function() {
+        $(this).qtip({
+          content: {
+            text: function(api) {
+               return $(this).attr('data-tooltip');
             }
-          });
+          },
+          position: {
+            my: 'top left',  // Position my top left...
+            at: 'right bottom', // at the bottom right of...
+            target: $(this) // my target
+          },
+          style: {
+            classes: 'ui-tooltip-blue'
+          }
         });
       });
 
@@ -253,9 +235,6 @@
       $('#loading').css('visibility', 'visible');
     }
 
-    function hideBigSpinner() {
-      $('#loading').css('visibility', 'hidden');
-    }
   </script>
 
   <ga:trackPageview />
