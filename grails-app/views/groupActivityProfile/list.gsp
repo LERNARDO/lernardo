@@ -13,6 +13,15 @@
 <div class="boxGray">
   <div class="second">
 
+    <div class="buttons">
+      <g:form>
+        <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="choose" value="${message(code: 'groupActivity.plan')}"/></div>
+          <div class="spacer"></div>
+        </erp:accessCheck>
+      </g:form>
+    </div>
+
     <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
 
       <table>
