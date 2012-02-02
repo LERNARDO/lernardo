@@ -83,7 +83,6 @@ class ExcelController {
       sheet.addCell(new jxl.write.Label(2, 5, message(code: 'birthDate'), formatBold))
       sheet.addCell(new jxl.write.Label(3, 5, message(code: 'street'), formatBold))
       sheet.addCell(new jxl.write.Label(4, 5, message(code: 'groupColony'), formatBold))
-      sheet.addCell(new jxl.write.Label(5, 5, message(code: 'country'), formatBold))
       sheet.addCell(new jxl.write.Label(6, 5, message(code: 'parents') + " & " + message(code: 'phone'), formatBold))
 
       def row = 6
@@ -94,7 +93,6 @@ class ExcelController {
         sheet.addCell(new jxl.write.Label(3, row, client.profile.currentStreet, format))
         Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
         sheet.addCell(new jxl.write.Label(4, row, fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: message(code:'noData'), format))
-        sheet.addCell(new jxl.write.Label(5, row, client.profile.currentCountry, format))
 
         // find family
         Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
