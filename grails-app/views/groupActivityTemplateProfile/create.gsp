@@ -14,65 +14,63 @@
     <g:render template="/templates/errors" model="[bean: group]"/>
 
     <g:form>
-      <div>
-        <table width="100%">
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
-            <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.realDuration"/></td>
-            <td valign="top" class="name"><g:message code="status"/></td>
-          </tr>
+      <table>
 
-          <tr>
-            <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="50" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/> (min)
-            </td>
-            <td valign="top" class="value">
-              <g:select name="status" from="['done','notDone','notDoneOpen']" value="${group?.profile?.status}" valueMessagePrefix="status"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="50" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="description"/></td>
-          </tr>
-          <tr>
-            <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="description" height="200px" toolbar="Basic">
-                ${fieldValue(bean:group,field:'profile.description').decodeHTML()}
-              </ckeditor:editor>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.realDuration"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/> (<g:message code="minutes"/>)
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="groupActivityTemplate.profile.educationalObjectiveText"/></td>
-          </tr>
-          <tr class="prop">
-            <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
-                ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
-              </ckeditor:editor>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="status"/></td>
+          <td valign="top" class="value">
+            <g:select name="status" from="['done','notDone','notDoneOpen']" value="${group?.profile?.status}" valueMessagePrefix="status"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="activityTemplate.ageFrom"/></td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean:group,field:'profile.ageFrom','errors')}" size="5" name="ageFrom" value="${fieldValue(bean:group,field:'profile.ageFrom').decodeHTML()}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="activityTemplate.ageFrom"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean:group,field:'profile.ageFrom','errors')}" size="5" name="ageFrom" value="${fieldValue(bean:group,field:'profile.ageFrom').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="activityTemplate.ageTo"/></td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean:group,field:'profile.ageTo','errors')}" size="5" name="ageTo" value="${fieldValue(bean:group,field:'profile.ageTo').decodeHTML()}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="activityTemplate.ageTo"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean:group,field:'profile.ageTo','errors')}" size="5" name="ageTo" value="${fieldValue(bean:group,field:'profile.ageTo').decodeHTML()}"/>
+          </td>
+        </tr>
 
-        </table>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <ckeditor:editor name="description" height="200px" toolbar="Basic">
+              ${fieldValue(bean:group,field:'profile.description').decodeHTML()}
+            </ckeditor:editor>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.educationalObjectiveText"/></td>
+          <td valign="top" class="value">
+            <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
+              ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
+            </ckeditor:editor>
+          </td>
+        </tr>
+
+      </table>
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
