@@ -414,6 +414,9 @@ class CalendarController {
 
     def c = Entity.createCriteria()
     def results = c.list {
+      user {
+        eq("enabled", true)
+      }
       or {
         if (params.child)
           eq("type", metaDataService.etChild)

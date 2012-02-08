@@ -32,13 +32,39 @@ class EducatorProfileController {
     EntityType etEducator = metaDataService.etEducator
     def educators = Entity.createCriteria().list {
       eq("type", etEducator)
+      user {
+        eq('enabled', true)
+      }
       profile {
         order(params.sort, params.order)
       }
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalEducators = Entity.countByType(etEducator)
+    int totalEducators = Entity.findAllByType(etEducator).findAll{it.user.enabled}.size()//Entity.countByType(etEducator)
+
+    return [educators: educators, totalEducators: totalEducators]
+  }
+
+  def listInactive = {
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    EntityType etEducator = metaDataService.etEducator
+    def educators = Entity.createCriteria().list {
+      eq("type", etEducator)
+      user {
+        eq('enabled', false)
+      }
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+    int totalEducators = Entity.findAllByType(etEducator).findAll{!it.user.enabled}.size()//Entity.countByType(etEducator)
 
     return [educators: educators, totalEducators: totalEducators]
   }
@@ -238,13 +264,23 @@ class EducatorProfileController {
       // date.date = functionService.convertToUTC(date.date)
       date.type = educator.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
       educator.profile.addToDates(date)
+      
+      // change active/inactive status
+      educator.user.enabled = date.type == 'entry'
+      educator.user.save()
     }
     render template: 'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
   }
 
   def removeDate = {
     Entity educator = Entity.get(params.id)
-    educator.profile.removeFromDates(CDate.get(params.date))
+    CDate date = CDate.get(params.date)
+    educator.profile.removeFromDates(date)
+
+    // change active/inactive status
+    educator.user.enabled = date.type == 'exit'
+    educator.user.save()
+
     render template: 'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
   }
 }

@@ -121,7 +121,7 @@ class ProjectProfileController {
       List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
 
       // get all educators
-      def allEducators = Entity.findAllByType(metaDataService.etEducator)
+      def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
 
       // get all parents
       def families = []
@@ -924,7 +924,7 @@ class ProjectProfileController {
     def allParents = Entity.findAllByType(metaDataService.etParent)
 
     // get all educators
-    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
 
     // get all plannable resources
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
@@ -988,13 +988,16 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator), projectDay: params.id])
+      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id])
       return
     }
 
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etEducator)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -1022,13 +1025,16 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator), projectDay: params.id])
+      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id])
       return
     }
 
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etEducator)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -1542,7 +1548,7 @@ class ProjectProfileController {
     List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
     
     def allParents = Entity.findAllByType(metaDataService.etParent)
-    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
     List requiredResources = []

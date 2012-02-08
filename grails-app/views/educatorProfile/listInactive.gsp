@@ -10,15 +10,15 @@
   </div>
 </div>--}%
 
-<div class="tabGreen">
+<div class="tabGrey">
   <div class="second">
-    <h1><g:message code="educators.active"/></h1>
+    <h1><g:link controller="educatorProfile" action="list"><g:message code="educators.active"/></g:link></h1>
   </div>
 </div>
 
-<div class="tabGrey">
+<div class="tabGreen">
   <div class="second">
-    <h1><g:link controller="educatorProfile" action="listInactive"><g:message code="educators.inactive"/></g:link></h1>
+    <h1><g:message code="educators.inactive"/></h1>
   </div>
 </div>
 
@@ -40,7 +40,7 @@
       </div>
     </erp:accessCheck>
 
-    <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[educator: 'yes', enabled: 'true']]" before="showspinner('#membersearch-results')" />
+    <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[educator: 'yes', enabled: 'false']]" before="showspinner('#membersearch-results')" />
     <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
 
     <table class="default-table">

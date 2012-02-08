@@ -241,6 +241,9 @@ class MsgController {
 
     def c = Entity.createCriteria()
     def results = c.list {
+      user {
+        eq("enabled", true)
+      }
       or {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etEducator)

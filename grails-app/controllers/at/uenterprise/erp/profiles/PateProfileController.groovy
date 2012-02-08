@@ -50,7 +50,7 @@ class PateProfileController {
 
     List godchildren = functionService.findAllByLink(null, pate, metaDataService.ltPate)
 
-    return [pate: pate, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
+    return [pate: pate, allChildren: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}, godchildren: godchildren]
 
   }
 
@@ -83,7 +83,7 @@ class PateProfileController {
       return
     }
 
-    return [pate: pate, clients: Entity.findAllByType(metaDataService.etClient)]
+    return [pate: pate, clients: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}]
     
   }
 
@@ -107,7 +107,7 @@ class PateProfileController {
   }
 
   def create = {
-    return [clients: Entity.findAllByType(metaDataService.etClient)]
+    return [clients: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}]
   }
 
   def save = {
@@ -124,7 +124,7 @@ class PateProfileController {
       flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient)])
+      render(view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}])
     }
 
   }
@@ -153,6 +153,9 @@ class PateProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etClient)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {

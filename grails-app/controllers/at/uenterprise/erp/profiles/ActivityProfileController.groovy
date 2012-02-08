@@ -447,6 +447,9 @@ class ActivityProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etEducator)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -466,7 +469,7 @@ class ActivityProfileController {
   }
 
   /*
-   * retrieves all educators matching the search parameter
+   * retrieves all clients matching the search parameter
    */
   def remoteClients = {
     if (!params.value) {

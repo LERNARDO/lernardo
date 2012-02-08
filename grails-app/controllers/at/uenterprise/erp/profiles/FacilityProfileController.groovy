@@ -58,7 +58,7 @@ class FacilityProfileController {
     // find all resources of this facility
     List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
-    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll {it.user.enabled}
     // find all educators of this facility
     List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
 
@@ -347,6 +347,9 @@ class FacilityProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etEducator)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -377,6 +380,9 @@ class FacilityProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etEducator)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {

@@ -37,13 +37,41 @@ class ClientProfileController {
     EntityType etClient = metaDataService.etClient
     def clients = Entity.createCriteria().list {
       eq("type", etClient)
+      user {
+        eq('enabled', true)
+      }
       profile {
         order(params.sort, params.order)
       }
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalClients = Entity.countByType(etClient)
+    int totalClients = Entity.findAllByType(etClient).findAll{it.user.enabled}.size()//Entity.countByType(etClient)
+
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
+    return [clients: clients, totalClients: totalClients, facilities: facilities]
+  }
+
+  def listInactive = {
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    EntityType etClient = metaDataService.etClient
+    def clients = Entity.createCriteria().list {
+      eq("type", etClient)
+      user {
+        eq('enabled', false)
+      }
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+    int totalClients = Entity.findAllByType(etClient).findAll{!it.user.enabled}.size()//Entity.countByType(etEducator)
 
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
@@ -339,13 +367,23 @@ class ClientProfileController {
       // date.date = functionService.convertToUTC(date.date)
       date.type = client.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
       client.profile.addToDates(date)
+
+      // change active/inactive status
+      client.user.enabled = date.type == 'exit'
+      client.user.save()
     }
     render template: 'dates', model: [client: client, entity: entityHelperService.loggedIn]
   }
 
   def removeDate = {
     Entity client = Entity.get(params.id)
-    client.profile.removeFromDates(CDate.get(params.date))
+    CDate date = CDate.get(params.date)
+    client.profile.removeFromDates(date)
+
+    // change active/inactive status
+    client.user.enabled = date.type == 'exit'
+    client.user.save()
+
     render template: 'dates', model: [client: client, entity: entityHelperService.loggedIn]
   }
 

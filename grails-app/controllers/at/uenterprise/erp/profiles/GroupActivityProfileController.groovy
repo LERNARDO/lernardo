@@ -743,13 +743,16 @@ class GroupActivityProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator), group: params.id])
+      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, group: params.id])
       return
     }
 
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etEducator)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -783,13 +786,16 @@ class GroupActivityProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator), group: params.id])
+      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, group: params.id])
       return
     }
 
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etEducator)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {

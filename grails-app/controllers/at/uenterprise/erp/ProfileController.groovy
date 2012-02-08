@@ -43,6 +43,9 @@ class ProfileController {
     
     def c = Entity.createCriteria()
     def userList = c.list {
+      user {
+        eq("enabled", true)
+      }
       or {
         if (params.user)
           eq("type", metaDataService.etUser)

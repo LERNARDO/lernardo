@@ -71,7 +71,7 @@ class GroupColonyProfileController {
     // find all partners linked to this group
     List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner)
 
-    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
     // find all educators linked to this group
     List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator)
 

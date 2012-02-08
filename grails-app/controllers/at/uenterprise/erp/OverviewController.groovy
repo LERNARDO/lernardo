@@ -80,6 +80,9 @@ class OverviewController {
     if (params.glossary == "Alle") {
       def c = Entity.createCriteria()
       users = c.list {
+        user {
+          eq("enabled", true)
+        }
         or {
           eq("type", metaDataService.etChild)
           eq("type", metaDataService.etClient)
@@ -102,6 +105,9 @@ class OverviewController {
       //log.debug("start glossary for " + params.glossary)
       def c = Entity.createCriteria()
       users = c.list {
+        user {
+          eq("enabled", true)
+        }
         or {
           eq("type", metaDataService.etChild)
           eq("type", metaDataService.etClient)
@@ -141,6 +147,11 @@ class OverviewController {
 
     def c = Entity.createCriteria()
     def results = c.list {
+      if (params.enabled) {
+        user {
+          eq("enabled", params.enabled == "true")
+        }
+      }
       or {
         if (params.child)
           eq("type", metaDataService.etChild)

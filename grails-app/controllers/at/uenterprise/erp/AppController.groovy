@@ -571,6 +571,9 @@ class AppController {
 
     def c = Entity.createCriteria()
     def results = c.list {
+      user {
+        eq("enabled", true)
+      }
       or {
         eq("type", metaDataService.etUser)
         eq("type", metaDataService.etEducator)
@@ -610,7 +613,7 @@ class AppController {
       try {
         currentEntity = securityManager.login (request, params.userid, params.password)
       } catch (SecurityManagerException sme) {
-        flash.message = message(code: "security.login.notFound")
+        flash.message = message(code: sme.code)
         redirect (controller: "static", action: "start")
         return
       }

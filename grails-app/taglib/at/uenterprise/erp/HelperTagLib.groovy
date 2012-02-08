@@ -606,13 +606,13 @@ class HelperTagLib {
 
     List results = []
 
-    List educators = Entity.findAllByType(metaDataService.etEducator)
+    List educators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
     educators.each { Entity educator ->
       if (sdf.format(educator.profile.birthDate) == sdf.format(date))
         results.add(educator)
     }
 
-    List clients = Entity.findAllByType(metaDataService.etClient)
+    List clients = Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}
     clients.each { Entity client ->
       if (sdf.format(client.profile.birthDate) == sdf.format(date))
         results.add(client)

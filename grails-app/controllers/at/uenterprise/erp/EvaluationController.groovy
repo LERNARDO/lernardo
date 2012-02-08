@@ -149,6 +149,9 @@ class EvaluationController {
     def c = Entity.createCriteria()
     def educators = c.list {
       eq('type', metaDataService.etEducator)
+      user {
+        eq("enabled", true)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {
