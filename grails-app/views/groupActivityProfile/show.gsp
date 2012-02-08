@@ -12,7 +12,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/groupActivityNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/groupActivityNavigation" model="[entity: group]"/>
 
     <div class="tabnav">
       <ul>
