@@ -129,6 +129,10 @@ class GroupActivityTemplateProfileController {
     Entity group = Entity.get(params.id)
 
     group.profile.properties = params
+    if (!params.ageFrom)
+      group.profile.ageFrom = 0
+    if (!params.ageTo)
+      group.profile.ageTo = 100
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "groupActivityTemplate"), group.profile.fullName])
@@ -225,6 +229,10 @@ class GroupActivityTemplateProfileController {
       Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
+        if (!params.ageFrom)
+          ent.profile.ageFrom = 0
+        if (!params.ageTo)
+          ent.profile.ageTo = 100
       }
       // add default profile image
       File file = ApplicationHolder.application.parentContext.getResource("images/default_groupactivitytemplate.png").getFile()
@@ -563,6 +571,13 @@ class GroupActivityTemplateProfileController {
 
   def updateselect2 = {
 
+    // swap age values if necessary
+    if (params.int('ageTo') < params.int('ageFrom')) {
+      def temp = params.ageTo
+      params.ageTo = params.ageFrom
+      params.ageFrom = temp
+    }
+
     def numberOfAllTemplates = Entity.countByType(metaDataService.etGroupActivityTemplate)
 
     def allTemplates = Entity.createCriteria().list  {
@@ -579,6 +594,10 @@ class GroupActivityTemplateProfileController {
           between('realDuration', params.duration1.toInteger(), params.duration2.toInteger())
         if (params.sort)
           order(params.sort, params.order)
+        if (params.ageFrom)
+          le('ageFrom', params.ageFrom.toInteger())
+        if (params.ageTo)
+          ge('ageTo', params.ageTo.toInteger())
       }
     }
 

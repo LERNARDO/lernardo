@@ -61,6 +61,16 @@
           <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
+        <tr class="prop">
+          <td class="one"><g:message code="activityTemplate.ageFrom"/></td>
+          <td class="two">${group?.profile?.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="activityTemplate.ageTo"/></td>
+          <td class="two">${group?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        </tr>
+
         </tbody>
       </table>
 

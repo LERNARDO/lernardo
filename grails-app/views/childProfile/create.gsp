@@ -17,69 +17,76 @@
 
     <g:form>
 
-      <div>
-        <table>
-          <tbody>
+      <table>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="gender"/></td>
-            <td valign="top" class="name"><g:message code="firstName"/></td>
-            <td valign="top" class="name"><g:message code="lastName"/></td>
-            <td valign="top" class="name"><g:message code="birthDate"/></td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="gender"/></td>
+          <td valign="top" class="value">
+            <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:child,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+          </td>
+        </tr>
 
-          <tr>
-            <td width="120" height="35" valign="top" class="value">
-              <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:child,field:'profile.gender')}" optionKey="key" optionValue="value"/>
-            </td>
-            <td width="200" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: child, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: child, field: 'profile.firstName').decodeHTML()}"/>
-            </td>
-            <td width="280" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}" size="35" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName').decodeHTML()}"/>
-            </td>
-            <td height="35" valign="top" class="value">
-              <g:textField class="datepicker-birthday ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" name="birthDate" size="30" value="${formatDate(date: child?.profile?.birthDate, format: 'dd. MM. yyyy' )}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="firstName"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: child, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: child, field: 'profile.firstName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td>&nbsp;</td>
-            <td><g:message code="child.profile.jobType"/></td>
-            <td><g:message code="child.profile.jobIncome"/>  (${grailsApplication.config.currency})</td>
-            <td><g:message code="child.profile.jobFrequency"/></td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="lastName"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}" size="35" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          <tr>
-            <td valign="top" class="value">
-              <g:message code="child.profile.job"/>
-              <g:checkBox name="job" value="${child?.profile?.job}"/>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
-              <g:select name="jobtypes" multiple="true" from="${Setup.list()[0]?.workDescriptions}" value="${child?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
-              <g:textField size="35" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
-            </td>
-            <td class="value ${hasErrors(bean: child, field: 'profile.jobFrequency', 'errors')}">
-              <g:textField class="countable50" size="30" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="birthDate"/></td>
+          <td valign="top" class="value">
+            <g:textField class="datepicker-birthday ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" name="birthDate" size="30" value="${formatDate(date: child?.profile?.birthDate, format: 'dd. MM. yyyy' )}"/>
+          </td>
+        </tr>
 
-        <div class="email">
-          <g:message code="active"/>
-          <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <g:message code="email"/>:
-          : &nbsp;
-          <g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="60" maxlength="80" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
-          &nbsp;&nbsp;
-          <g:message code="showTips"/>
-          <g:checkBox name="showTips" value="${child?.profile?.showTips}"/>
-        </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="child.profile.job"/></td>
+          <td valign="top" class="value">
+            <g:checkBox name="job" value="${child?.profile?.job}"/>
+          </td>
+        </tr>
 
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="child.profile.jobType"/></td>
+          <td valign="top" class="value">
+            <g:select name="jobtypes" multiple="true" from="${Setup.list()[0]?.workDescriptions}" value="${child?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="child.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
+          <td valign="top" class="value">
+            <g:textField size="10" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="child.profile.jobFrequency"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50" size="30" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
+          </td>
+        </tr>
+
+      </table>
+
+      <div class="email">
+        <g:message code="active"/>
+        <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <g:message code="email"/>:
+        : &nbsp;
+        <g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="60" maxlength="80" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
+        &nbsp;&nbsp;
+        <g:message code="showTips"/>
+        <g:checkBox name="showTips" value="${child?.profile?.showTips}"/>
       </div>
 
       <div class="buttons">

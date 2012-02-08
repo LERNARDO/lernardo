@@ -8,10 +8,10 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 250px;
-    margin-top: -125px;
-    width: 300px;
-    margin-left: -150px;
+    height: 300px;
+    margin-top: -150px;
+    width: 450px;
+    margin-left: -225px;
     border: 3px solid #ee8100;
     border-radius: 5px;
     padding: 10px;

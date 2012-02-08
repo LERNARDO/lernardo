@@ -32,6 +32,20 @@
         </tr>
 
         <tr class="prop">
+          <td valign="top" class="name"><g:message code="activityTemplate.ageFrom"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean:projectTemplate,field:'profile.ageFrom','errors')}" size="5" name="ageFrom" value="${fieldValue(bean:projectTemplate,field:'profile.ageFrom').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="activityTemplate.ageTo"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean:projectTemplate,field:'profile.ageTo','errors')}" size="5" name="ageTo" value="${fieldValue(bean:projectTemplate,field:'profile.ageTo').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
           <td valign="top" class="name"><g:message code="description"/></td>
           <td valign="top" class="value">
             <ckeditor:editor name="description" height="200px" toolbar="Basic">

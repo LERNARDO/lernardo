@@ -25,11 +25,17 @@ class GroupActivityTemplateProfile extends Profile {
   Integer realDuration
   Date    dateCreated
   Date    lastUpdated
+  Integer ageFrom
+  Integer ageTo
 
   static constraints = {
     fullName                  blank: false, size: 1..100, maxSize: 100
     description               blank: true, maxSize: 20000
     educationalObjectiveText  blank: true, maxSize: 2000
+    ageFrom         nullable: true
+    ageTo           nullable: true, validator: {at, obj ->
+                                                 return at ? at >= obj.ageFrom : true
+                                               }
   }
 
   String toString() {

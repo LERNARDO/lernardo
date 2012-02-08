@@ -127,6 +127,10 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.id)
 
     projectTemplate.profile.properties = params
+    if (!params.ageFrom)
+      projectTemplate.profile.ageFrom = 0
+    if (!params.ageTo)
+      projectTemplate.profile.ageTo = 100
 
     if (projectTemplate.profile.save() && projectTemplate.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
@@ -221,6 +225,10 @@ class ProjectTemplateProfileController {
       Entity entity = entityHelperService.createEntity("projectTemplate", etProjectTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
+        if (!params.ageFrom)
+          ent.profile.ageFrom = 0
+        if (!params.ageTo)
+          ent.profile.ageTo = 100
       }
       // add default profile image
       File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
@@ -614,6 +622,13 @@ class ProjectTemplateProfileController {
 
 def updateselect = {
 
+    // swap age values if necessary
+    if (params.int('ageTo') < params.int('ageFrom')) {
+      def temp = params.ageTo
+      params.ageTo = params.ageFrom
+      params.ageFrom = temp
+    }
+
     def numberOfAllTemplates = Entity.countByType(metaDataService.etProjectTemplate)
 
     def allTemplates = Entity.createCriteria().list  {
@@ -628,6 +643,11 @@ def updateselect = {
       profile {
         if (params.sort)
           order(params.sort, params.order)
+        if (params.ageFrom) {
+          le('ageFrom', params.ageFrom.toInteger())
+        }
+        if (params.ageTo)
+          ge('ageTo', params.ageTo.toInteger())
       }
     }
 

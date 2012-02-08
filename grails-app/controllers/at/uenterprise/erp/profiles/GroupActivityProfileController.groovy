@@ -252,8 +252,48 @@ class GroupActivityProfileController {
     }
   }
 
+  def choose = {
+
+  }
+
+  def remoteTemplates = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etGroupActivityTemplate)
+      //or {
+      //ilike('name', "%" + params.value + "%")
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+      }
+      //}
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'templateresults', model: [results: results])
+    }
+  }
+
+  def addTemplate = {
+    Entity template = Entity.get(params.id)
+
+    def msg = message(code: "activityTemplate.selected")
+    render ("<b>${msg}</b> ${template.profile.fullName}")
+  }
+
   def create = {
     Entity groupActivityTemplate = Entity.get(params.id)
+    if (!groupActivityTemplate)
+      groupActivityTemplate = Entity.get(params.template)
 
     // find all templates linked to this group
     List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)

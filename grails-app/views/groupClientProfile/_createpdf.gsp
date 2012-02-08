@@ -50,7 +50,6 @@
           <th><g:message code="birthDate"/></th>
           <th><g:message code="street"/></th>
           <th><g:message code="groupColony"/></th>
-          <th><g:message code="country"/></th>
           <th><g:message code="parents"/> &amp; <g:message code="phone"/></th>
         </tr>
         </thead>
@@ -61,7 +60,6 @@
             <td valign="top"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
             <td valign="top">${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
             <td valign="top"><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</erp:getColony></td>
-            <td valign="top">${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
             <td valign="top">
               <erp:getParentsOfClient client="${client}">
                 <g:each in="${parents}" var="parent">

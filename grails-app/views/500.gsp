@@ -8,9 +8,14 @@
   <body>
     <div id="container">
         <img src="${resource(dir: 'images/icons', file: 'icon_alert.png')}" alt="${message(code: 'error')}"/>
-        <h1>We are sorry but something went wrong!</h1>
-        <p>A mail has been sent to the developers which will try to fix the problem immediately.</p>
-        <p><b>Timestamp:</b> <g:formatDate date="${new Date()}" format="dd.MM.yyyy - HH:mm"/> (UTC)</p></p>
+        <p style="text-align: left;"><g:message code="error500_1"/></p>
+        <p style="text-align: left;"><g:message code="error500_2"/></p>
+        <ul style="text-align: left;">
+          <li><g:message code="error500_3"/></li>
+          <li><g:message code="error500_4"/></li>
+          <li><g:message code="error500_5"/></li>
+        </ul>
+        <p style="text-align: left;"><g:message code="error500_6"/></p>
     </div>
   </body>
 </html>
