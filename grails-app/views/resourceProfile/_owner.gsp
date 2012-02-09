@@ -1,7 +1,7 @@
 <g:if test="${resowner}">
   <ul>
     <g:each in="${resowner}" var="owner">
-      <li><g:link controller="${owner.type.supertype.name +'Profile'}" action="show" id="${owner.id}" params="[entity:owner.id]">${owner.profile.fullName}</g:link> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${resource}"><g:remoteLink action="removeOwner" update="owner2" id="${resource.id}" params="[owner: owner.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
+      <li><g:link controller="${owner.type.supertype.name +'Profile'}" action="show" id="${owner.id}">${owner.profile.fullName}</g:link> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${resource}"><g:remoteLink action="removeOwner" update="owner2" id="${resource.id}" params="[owner: owner.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
     </g:each>
   </ul>
 </g:if>

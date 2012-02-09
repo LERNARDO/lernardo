@@ -260,11 +260,11 @@
 
     <div id="subheader">
       <ul>
-        <li><g:link controller="event" action="indexNew" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
-        <li><g:link controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
-        <li><g:link controller="logBook" action="entries" id="${entity.id}" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
+        <li><g:link controller="event" action="index" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
+        <li><g:link controller="educatorProfile" action="index" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
+        <li><g:link controller="logBook" action="entries" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
         <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
-        <li style="border-right: none;"><g:link class="activeyellow" controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
+        <li style="border-right: none;"><g:link class="activeyellow" controller="setup" action="show" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
       </ul>
       <div class="clear"></div>
     </div>
@@ -302,13 +302,13 @@
                 %{--<erp:isSystemAdmin entity="${currentEntity}">
                   <li class="icon-admin"><g:link controller="admin" action="stuff">Admin Stuff</g:link></li>
                 </erp:isSystemAdmin>--}%
-                  <li class="icon-setup"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="setup"/></g:link></li>
+                  <li class="icon-setup"><g:link controller="setup" action="show"><g:message code="setup"/></g:link></li>
                   <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                   %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
-                  <li class="icon-time"><g:link controller="workdayUnit" action="evaluation" params="[name:entity.name]"><g:message code="timeEvaluation"/></g:link></li>
+                  <li class="icon-time"><g:link controller="workdayUnit" action="evaluation"><g:message code="timeEvaluation"/></g:link></li>
                   <li class="icon-evaluation"><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allevalentries"/></g:link></li>
-                  <li class="profile-netzwerk"><g:link controller="comment" action="list" id="${entity.id}"><g:message code="allComments"/></g:link></li>
-                  <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profile.all"/></g:link></li>
+                  <li class="profile-netzwerk"><g:link controller="comment" action="list"><g:message code="allComments"/></g:link></li>
+                  <li class="icon-all"><g:link controller="profile" action="list"><g:message code="profile.all"/></g:link></li>
                   %{--<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                     <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
                   </erp:accessCheck>--}%

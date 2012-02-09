@@ -59,7 +59,7 @@ class ResourceProfileController {
       Entity location = functionService.findByLink(resource, null, metaDataService.ltResource)
       Entity resowner = functionService.findByLink(null, resource, metaDataService.ltOwner)
       List resresponsible = functionService.findAllByLink(null, resource, metaDataService.ltResponsible)
-      [resource: resource, location: location, entity: resource, resowner: resowner, resresponsible: resresponsible]
+      [resource: resource, location: location, resowner: resowner, resresponsible: resresponsible]
     }
   }
 

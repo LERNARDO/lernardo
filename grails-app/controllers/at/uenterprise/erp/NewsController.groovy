@@ -41,16 +41,16 @@ class NewsController {
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "news"), news.title])
         news.delete(flush: true)
-        redirect controller: "event", action: "indexNew"
+        redirect controller: "event", action: "index"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "news"), news.title])
-        redirect controller: "event", action: "indexNew"
+        redirect controller: "event", action: "index"
       }
     }
     else {
       flash.message = message(code: "object.notFound", args: [message(code: "news")])
-      redirect controller: "event", action: "indexNew"
+      redirect controller: "event", action: "index"
     }
   }
 
@@ -62,7 +62,7 @@ class NewsController {
     news.author = currentEntity
     if (news.save()) {
       flash.message = message(code: "object.created", args: [message(code: "news"), news.title])
-      redirect controller: "event", action: "indexNew"
+      redirect controller: "event", action: "index"
     }
     else {
       render view:"create", model:[news: news]
@@ -75,7 +75,7 @@ class NewsController {
       news.properties = params
       if (news.save()) {
         flash.message = message(code: "object.updated", args: [message(code: "news"), news.title])
-        redirect controller: "event", action: "indexNew"
+        redirect controller: "event", action: "index"
       }
       else {
         render view: 'edit', model: [news: news]
@@ -83,7 +83,7 @@ class NewsController {
     }
     else {
       flash.message = message(code: "object.notFound", args: [message(code: "news")])
-      redirect controller: "event", action: "indexNew"
+      redirect controller: "event", action: "index"
     }
   }
   

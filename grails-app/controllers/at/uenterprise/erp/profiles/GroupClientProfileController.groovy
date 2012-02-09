@@ -45,7 +45,6 @@ class GroupClientProfileController {
 
   def show = {
     Entity group = Entity.get(params.id)
-    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       flash.message = message(code: "object.notFound", args: [message(code: "groupClient")])
@@ -61,7 +60,6 @@ class GroupClientProfileController {
     List allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
     return [group: group,
-            entity: entity,
             clients: clients,
             allClients: allClients,
             allColonies: allColonies,

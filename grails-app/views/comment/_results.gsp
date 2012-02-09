@@ -8,7 +8,7 @@
               <tr>
                 <td style="vertical-align: top">
                   <div class="userpic">
-                    <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">
+                    <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}">
                       <erp:profileImage entity="${creator}" width="50" height="65" align="left"/>
                     </g:link>
                   </div>
@@ -21,8 +21,8 @@
                     </div>
                   </erp:accessCheck>--}%
                   <div class="infobar">
-                    <span class="gray"><g:message code="from"/> <span class="name"><g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">${creator.profile.fullName}</g:link></span>
-                    <g:message code="atDate"/> <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.key.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> zu <g:link controller="${comment.value.type.supertype.name +'Profile'}" action="show" id="${comment.value.id}" params="[entity:comment.value.id]">${comment.value.profile.fullName}</g:link></span>
+                    <span class="gray"><g:message code="from"/> <span class="name"><g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}">${creator.profile.fullName.decodeHTML()}</g:link></span>
+                    <g:message code="atDate"/> <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.key.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> zu <g:link controller="${comment.value.type.supertype.name +'Profile'}" action="show" id="${comment.value.id}">${comment.value.profile.fullName.decodeHTML()}</g:link></span>
                   </div>
                   <div class="content">${comment.key.content.decodeHTML()}</div>
                 </td>

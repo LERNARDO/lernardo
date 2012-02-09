@@ -47,7 +47,6 @@ class GroupColonyProfileController {
 
   def show = {
     def group = Entity.get(params.id)
-    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       // flash.message = "groupProfile not found with id ${params.id}"
@@ -79,7 +78,6 @@ class GroupColonyProfileController {
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
     return [group: group,
-            entity: entity,
             facilities: facilities,
             allFacilities: allFacilities,
             resources: resources,

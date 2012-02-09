@@ -16,21 +16,20 @@ class HelperController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
+    Entity currentEntity = entityHelperService.loggedIn
 
     List helpers = []
-    if (entity.type.id == metaDataService.etUser.id)
+    if (currentEntity.type.id == metaDataService.etUser.id)
       helpers = Helper.list()
     else {
       Helper.list().each {
-        if (it.types.contains(entity.type.name))
+        if (it.types.contains(currentEntity.type.name))
           helpers << it
       }
     }
 
     return [helperInstanceList: helpers,
-            helperInstanceTotal: helpers.size(),
-            entity: entity]
+            helperInstanceTotal: helpers.size()]
   }
 
   def show = {
@@ -46,7 +45,7 @@ class HelperController {
 
   }
 
-  def delete = {
+  def del = {
     Helper helperInstance = Helper.get(params.id)
     if (helperInstance) {
       try {
@@ -67,7 +66,6 @@ class HelperController {
 
   def edit = {
     Helper helperInstance = Helper.get(params.id)
-    Entity entity = Entity.get(params.entity)
 
     if (!helperInstance) {
       flash.message = message(code: "object.notFound", args: [message(code: "helper")])
@@ -75,14 +73,13 @@ class HelperController {
       return
     }
 
-    return [helperInstance: helperInstance,
-              entity: entity]
+    return [helperInstance: helperInstance]
 
   }
 
   def update = {
     Helper helperInstance = Helper.get(params.id)
-    Entity entity = Entity.get(params.name)
+
     if (helperInstance) {
       helperInstance.properties = params
 
@@ -99,10 +96,10 @@ class HelperController {
 
       if (helperInstance.save()) {
         flash.message = message(code: "helper.updated")
-        redirect action: 'list', id: entity.id
+        redirect action: 'list'
       }
       else {
-        render view: 'edit', model: [helperInstance: helperInstance, entity: entity]
+        render view: 'edit', model: [helperInstance: helperInstance]
       }
     }
     else {
@@ -114,15 +111,13 @@ class HelperController {
   def create = {
     Helper helperInstance = new Helper()
     helperInstance.properties = params
-    Entity entity = Entity.get(params.entity)
 
-    return [helperInstance: helperInstance,
-            entity: entity]
+    return [helperInstance: helperInstance]
   }
 
   def save = {
     Helper helperInstance = new Helper(params)
-    Entity entity = Entity.get(params.id)
+    Entity currentEntity = entityHelperService.loggedIn
 
     List types = params.list('types')
 
@@ -131,13 +126,13 @@ class HelperController {
     }
 
     if (helperInstance.save(flush: true)) {
-      functionService.createEvent(EVENT_TYPE.HELPER_CREATED, entity.id.toInteger(), helperInstance.id.toInteger())
+      functionService.createEvent(EVENT_TYPE.HELPER_CREATED, currentEntity.id.toInteger(), helperInstance.id.toInteger())
 
       flash.message = message(code: "helper.created")
-      redirect action: "list", id: entity.id
+      redirect action: "list"
     }
     else {
-      render view: 'create', model: [helperInstance: helperInstance, entity: entity]
+      render view: 'create', model: [helperInstance: helperInstance]
     }
   }
 }

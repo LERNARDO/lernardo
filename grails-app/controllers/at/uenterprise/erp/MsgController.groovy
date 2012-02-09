@@ -88,9 +88,9 @@ class MsgController {
       else
         message.read = true
 
-    return ['msgInstance': message,
-            'entity':Entity.get(params.entity),
-            'box':params.box]
+    return [msgInstance: message,
+            entity: Entity.get(params.entity),
+            box: params.box]
 
   }
 
@@ -154,7 +154,7 @@ class MsgController {
     Entity entity = Entity.get(params.id)
     return [msgInstance:message,
             receiver:entity,
-            entity: Entity.get(params.entity),
+            entity: entity,
             reply: params.reply ?: 'false']
   }
 

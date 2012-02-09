@@ -12,14 +12,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/templateNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/templateNavigation" model="[entity: template]"/>
 
     <div class="tabnav">
       <ul>
-        <li><g:link controller="templateProfile" action="show" id="${template.id}" params="[entity: template.id]"><g:message code="profile"/></g:link></li>
-        <li><g:remoteLink update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
+        <li><g:link controller="templateProfile" action="show" id="${template.id}"><g:message code="profile"/></g:link></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${template.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${template}"/></g:remoteLink></li>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${entity.id}"><g:message code="comments"/> (${template.profile.comments.size()}) </g:remoteLink></li>
+          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${template.id}"><g:message code="comments"/> (${template.profile.comments.size()}) </g:remoteLink></li>
         </erp:accessCheck>
       </ul>
     </div>
@@ -39,7 +39,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/></td>
-          <td class="two"><g:link controller="templateProfile" action="show" id="${template.id}" params="[entity: template.id]">${template.profile.fullName}</g:link></td>
+          <td class="two">${template.profile.fullName.decodeHTML()}</td>
         </tr>
 
         <tr class="prop">

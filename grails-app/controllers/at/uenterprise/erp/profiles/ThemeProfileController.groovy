@@ -57,7 +57,6 @@ class ThemeProfileController {
 
   def show = {
     Entity theme = Entity.get(params.id)
-    Entity entity = params.entity ? theme : entityHelperService.loggedIn
 
     if (!theme) {
       flash.message = message(code: "object.notFound", args: [message(code: "theme")])
@@ -88,8 +87,7 @@ class ThemeProfileController {
        allActivityGroups: allActivityGroups,
        activitygroups: activitygroups,
        facility: facility,
-       parenttheme: parenttheme,
-       entity: entity]
+       parenttheme: parenttheme]
     }
   }
 

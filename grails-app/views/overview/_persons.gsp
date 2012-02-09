@@ -12,8 +12,8 @@
 </div>
 <div class="box">
   <div class="bold"><g:message code="educators"/> (${allEducators})</div>
-  <g:link controller="educatorProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_paedagoge.png')}" alt="Notiz" align="top"/></g:link>
-  <div><g:link controller="educatorProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
+  <g:link controller="educatorProfile" action="index"><img src="${g.resource(dir:'images/icons', file:'kf_paedagoge.png')}" alt="Notiz" align="top"/></g:link>
+  <div><g:link controller="educatorProfile" action="index"><g:message code="profile.overview.showAll"/></g:link></div>
   <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
     <div><g:link controller="educatorProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
   </erp:accessCheck>

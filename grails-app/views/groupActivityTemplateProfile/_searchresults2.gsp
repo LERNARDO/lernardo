@@ -17,7 +17,7 @@
   <tbody>
   <g:each status="i" in="${allTemplates}" var="templateInstance">
     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-      <td><g:link action="show" id="${templateInstance.id}" params="[entity: templateInstance.id]">${templateInstance.profile.fullName.decodeHTML()}</g:link></td>
+      <td><g:link action="show" id="${templateInstance.id}">${templateInstance.profile.fullName.decodeHTML()}</g:link></td>
       <td><erp:getGroupSize entity="${templateInstance}"/></td>
       <td>${fieldValue(bean: templateInstance, field: 'profile.realDuration')}</td>
       <td><erp:createdBy entity="${templateInstance}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>

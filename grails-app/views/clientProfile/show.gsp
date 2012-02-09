@@ -20,8 +20,8 @@
     <li><g:link controller="clientProfile" action="show" id="${client.id}"><g:message code="profile"/></g:link></li>
     <li><g:remoteLink update="content" controller="publication" action="list" id="${client.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${client}"/></g:remoteLink></li>
     <li><g:link controller="msg" action="inbox" id="${client.id}"><g:message code="privat.posts"/></g:link></li>
-    <li><g:link controller="appointmentProfile" action="index" id="${client.id}" params="[entity: client.id]"><g:message code="appointments"/></g:link></li>
-    <li><g:link style="border-right: none" controller="evaluation" action="list" id="${client.id}" params="[entity: client.id]"><g:message code="privat.evaluation"/></g:link></li>
+    <li><g:link controller="appointmentProfile" action="index" id="${client.id}"><g:message code="appointments"/></g:link></li>
+    <li><g:link style="border-right: none" controller="evaluation" action="list" id="${client.id}"><g:message code="privat.evaluation"/></g:link></li>
   </ul>
 </div>
 
@@ -447,7 +447,7 @@
       <g:if test="${pates}">
         <ul>
           <g:each in="${pates}" var="pate">
-            <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}" params="[entity: pate.id]">${pate.profile.fullName}</g:link></li>
+            <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}">${pate.profile.fullName.decodeHTML()}</g:link></li>
           </g:each>
         </ul>
       </g:if>

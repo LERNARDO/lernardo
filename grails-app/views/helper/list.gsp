@@ -22,7 +22,7 @@
 
     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
       <div class="buttons">
-        <g:form params="[entity:entity.id]">
+        <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'helper')])}"/></div>
           <div class="spacer"></div>
         </g:form>
@@ -41,10 +41,10 @@
         <p>
           <a name="${i}">${helperInstance.title}</a>
           <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-            <g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link>
-            <g:link class="helperButton" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
+            <g:link class="helperButton" action="edit" id="${helperInstance.id}"><g:message code="edit"/></g:link>
+            <g:link class="helperButton" action="del" id="${helperInstance.id}" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
           </erp:accessCheck>
-          Hilfethema für: <g:join in="${helperInstance.types}"/>
+          <g:message code="helper"/> für: <g:join in="${helperInstance.types}"/>
           ${helperInstance.content.decodeHTML()}
         </p>
       </div>

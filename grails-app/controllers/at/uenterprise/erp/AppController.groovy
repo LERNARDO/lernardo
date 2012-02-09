@@ -316,7 +316,7 @@ class AppController {
       // create a calendar object for user if it doesn't exist already (added on 16.02.2011)
       if (!currentEntity.profile.calendar) currentEntity.profile.calendar = functionService.createDefaultCalendar(currentEntity)
 
-      redirect controller: 'event', action: 'indexNew', id: currentEntity.id
+      redirect controller: 'event', action: 'index'
     }
     else
       redirect action: 'home'

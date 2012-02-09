@@ -11,14 +11,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/projectTemplateNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/projectTemplateNavigation" model="[entity: projectTemplate]"/>
 
     <div class="tabnav">
       <ul>
-        <li><g:link controller="${projectTemplate.type.supertype.name+'Profile'}" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]"><g:message code="profile"/></g:link></li>
-        <li><g:remoteLink update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
+        <li><g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}"><g:message code="profile"/></g:link></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${projectTemplate.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${projectTemplate}"/></g:remoteLink></li>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${entity.id}"><g:message code="comments"/> (${projectTemplate.profile.comments.size()}) </g:remoteLink></li>
+          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${projectTemplate.id}"><g:message code="comments"/> (${projectTemplate.profile.comments.size()}) </g:remoteLink></li>
         </erp:accessCheck>
       </ul>
     </div>
@@ -38,7 +38,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two"><g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td class="two">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">

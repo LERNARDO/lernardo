@@ -43,7 +43,7 @@
         </g:if>
       </div>
       <div class="links">
-        <g:link controller="event" action="indexNew">&#187; <g:message code="backToList"/></g:link>
+        <g:link controller="event" action="index">&#187; <g:message code="backToList"/></g:link>
       </div>
     </div>
   </div>

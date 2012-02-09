@@ -10,7 +10,7 @@
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
       <div class="buttons" style="margin-bottom: 0;">
-        <g:form id="${entity.id}" params="[entity: entity?.id]">
+        <g:form id="${entity.id}">
           <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${entity}" checkstatus="${entity}" checkoperator="true">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           </erp:accessCheck>
@@ -19,7 +19,7 @@
           </erp:accessCheck>
           <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
             <g:if test="${entity.profile.status == 'done'}">
-              <g:link class="buttonGreen" controller="projectProfile" action="create" id="${entity.id}" params="[entity: entity?.id]"><g:message code="project.plan"/></g:link>
+              <g:link class="buttonGreen" controller="projectProfile" action="create" id="${entity.id}"><g:message code="project.plan"/></g:link>
             </g:if>
             <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'projectTemplate.duplicate')}" /></div>
           </erp:accessCheck>

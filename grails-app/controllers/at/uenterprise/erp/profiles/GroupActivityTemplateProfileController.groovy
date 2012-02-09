@@ -40,7 +40,6 @@ class GroupActivityTemplateProfileController {
 
   def show = {
     def group = Entity.get(params.id)
-    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       flash.message = message(code: "object.notFound", args: [message(code: "groupActivityTemplate")])
@@ -80,7 +79,6 @@ class GroupActivityTemplateProfileController {
     }
 
     return [group: group,
-            entity: entity,
             allTemplates: allTemplates,
             templates: templates,
             calculatedDuration: calculatedDuration,

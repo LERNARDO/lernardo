@@ -65,10 +65,10 @@
       <span class="box">
         %{--<a href="?lang=de"><img src="${g.resource(dir:'images/icons', file:'flag_at.png')}" alt="German"/></a> <a href="?lang=es"><img src="${g.resource(dir:'images/icons', file:'flag_mx.png')}" alt="Spanish"/></a> <a href="?lang=en"><img src="${g.resource(dir:'images/icons', file:'flag_gb.png')}" alt="English"/></a>--}%
         <g:link controller="profile" action="changeLanguage" params="[locale: 'de_DE']"><img src="${g.resource(dir:'images/icons', file:'flag_at.png')}" alt="German"/></g:link> <g:link controller="profile" action="changeLanguage" params="[locale: 'es_ES']"><img src="${g.resource(dir:'images/icons', file:'flag_mx.png')}" alt="Spanish"/></g:link> <g:link controller="profile" action="changeLanguage" params="[locale: 'en_GB']"><img src="${g.resource(dir:'images/icons', file:'flag_gb.png')}" alt="English"/></g:link>
-        <g:link class="tooltip" data-tooltip="${message(code: 'privat.head.help')}" controller="helper" id="${currentEntity.id}"><img src="${g.resource(dir:'images/icons', file:'icon_help.png')}" alt="Help" style="position: relative; top: 2px;"/></g:link>
+        <g:link class="tooltip" data-tooltip="${message(code: 'privat.head.help')}" controller="helper"><img src="${g.resource(dir:'images/icons', file:'icon_help.png')}" alt="Help" style="position: relative; top: 2px;"/></g:link>
       </span>
       <span class="box">
-        <g:link class="me" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}" params="[entity:currentEntity.id]"><erp:profileImage entity="${currentEntity}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 3px 10px;"/> ${currentEntity?.profile?.fullName}</g:link>
+        <g:link class="me" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}"><erp:profileImage entity="${currentEntity}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 3px 10px;"/> ${currentEntity?.profile?.fullName}</g:link>
       </span>
       <span class="box" style="border-right: none;">
         %{--<g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/></g:link>--}%

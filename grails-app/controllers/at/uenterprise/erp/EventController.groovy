@@ -6,29 +6,15 @@ import at.openfactory.ep.EntityHelperService
 class EventController {
   EntityHelperService entityHelperService
 
-  /*
-   * shows the events page
-   */
   def index = {
-    params.sort = 'dateCreated'
-    params.order = 'desc'
-    params.max = params.int('max') ?: 10
-    
-    List events = Event.list(params)
-
-    return [events: events,
-            totalEvents: Event.count()]
   }
-  
+
   def delete = {
     Event event = Event.get(params.id)
     event.delete(flush: true)
-    redirect action: 'indexNew'
+    redirect action: 'index'
   }
-  
-  def indexNew = {
-  }
-  
+
   def remoteEvents = {
     params.max = 10
     params.sort = 'dateCreated'

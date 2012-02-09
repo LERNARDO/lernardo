@@ -45,7 +45,6 @@ class GroupFamilyProfileController {
 
   def show = {
     def group = Entity.get(params.id)
-    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       flash.message = message(code: "object.notFound", args: [message(code: "groupFamily")])
@@ -70,7 +69,6 @@ class GroupFamilyProfileController {
     totalLinks += childs.size()
 
     return [group: group,
-            entity: entity,
             parents: parents,
             clients: clients,
             allClients: allClients,

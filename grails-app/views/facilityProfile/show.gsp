@@ -11,13 +11,13 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/facilityNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/facilityNavigation" model="[entity: facility]"/>
 
     <div class="tabnav">
       <ul>
         <li><g:link controller="facilityProfile" action="show" id="${facility.id}"><g:message code="profile"/></g:link></li>
-        <li><g:remoteLink update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
-        <li><g:link style="border-right: none" controller="dayroutine" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="dayroutine"/></g:link></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${facility.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${facility}"/></g:remoteLink></li>
+        <li><g:link style="border-right: none" controller="dayroutine" action="list" id="${facility.id}"><g:message code="dayroutine"/></g:link></li>
       </ul>
     </div>
 
@@ -29,7 +29,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
+          <td class="two"><g:link action="show" id="${facility.id}">${facility.profile.fullName.decodeHTML()}</g:link></td>
         </tr>
 
         <tr class="prop">
@@ -41,7 +41,7 @@
           <td class="one"><g:message code="groupColony"/>:</td>
           <td class="two">
             <g:if test="${colony}">
-              <g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link>
+              <g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic red"><g:message code="facility.profile.noCol"/></span>

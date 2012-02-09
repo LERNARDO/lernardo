@@ -43,7 +43,6 @@ class GroupPartnerProfileController {
 
   def show = {
     def group = Entity.get(params.id)
-    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       flash.message = message(code: "object.notFound", args: [message(code: "groupPartner")])
@@ -56,7 +55,6 @@ class GroupPartnerProfileController {
     List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
 
     return [group: group,
-            entity: entity,
             partners: partners,
             allPartners: allPartners]
 

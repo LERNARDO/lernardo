@@ -53,7 +53,6 @@ class CommentController {
   }
 
   def list = {
-
   }
 
   def updatelist = {

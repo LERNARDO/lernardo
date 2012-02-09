@@ -18,7 +18,7 @@
       </div>
     </g:hasErrors>
 
-    <g:form id="${entity.id}" params="[name:entity.id]">
+    <g:form>
       <table width="100%">
         <tbody>
 

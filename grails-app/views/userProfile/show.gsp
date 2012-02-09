@@ -6,23 +6,20 @@
 <div class="boxHeader">
   <div class="second">
     <h1><g:message code="user"/> - ${user.profile.fullName}</h1>
-    %{--<div class="icons" style="text-align: right;">
-      <g:link action="edit" id="${user.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:link>
-    </div>--}%
   </div>
 </div>
 <div class="boxGray" style="clear: both;">
   <div class="second">
 
-    <g:render template="/templates/userNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/userNavigation" model="[entity: user]"/>
 
     <div class="tabnav">
       <ul>
         <li><g:link controller="userProfile" action="show" id="${user.id}"><g:message code="profile"/></g:link></li>
-        <li><g:remoteLink update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
-        <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
-        <li><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
-        <li><g:link style="border-right: none" controller="workdayUnit" action="index" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.workday"/></g:link></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${user.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${user}"/></g:remoteLink></li>
+        <li><g:link controller="msg" action="inbox" id="${user.id}"><g:message code="privat.posts"/></g:link></li>
+        <li><g:link controller="appointmentProfile" action="index" id="${user.id}"><g:message code="appointments"/></g:link></li>
+        <li><g:link style="border-right: none" controller="workdayUnit" action="index" id="${user.id}"><g:message code="privat.workday"/></g:link></li>
       </ul>
     </div>
 

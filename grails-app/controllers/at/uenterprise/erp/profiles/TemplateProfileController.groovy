@@ -84,12 +84,10 @@ class TemplateProfileController {
 
   def show = {
     Entity template = Entity.get(params.id)
-    Entity entity = params.entity ? template : entityHelperService.loggedIn
 
     def allMethods = Method.findAllByType('template')
 
     return [template: template,
-            entity: entity,
             allMethods: allMethods,
             allLabels: functionService.getLabels()]
   }

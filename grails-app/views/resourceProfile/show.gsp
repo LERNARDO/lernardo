@@ -11,14 +11,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/defaultNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/defaultNavigation" model="[entity: resource]"/>
 
     <h4><g:message code="profile"/></h4>
     <table>
 
       <tr class="prop">
         <td class="one"><g:message code="location"/>:</td>
-        <td class="two"><g:link controller="${location.type.supertype.name +'Profile'}" action="show" id="${location.id}" params="[entity: location.id]">${fieldValue(bean: location, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        <td class="two"><g:link controller="${location.type.supertype.name +'Profile'}" action="show" id="${location.id}">${fieldValue(bean: location, field: 'profile.fullName').decodeHTML()}</g:link></td>
       </tr>
 
       <tr class="prop">

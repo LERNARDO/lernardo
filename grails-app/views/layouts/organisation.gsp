@@ -260,12 +260,12 @@
 
     <div id="subheader">
       <ul>
-        <li><g:link controller="event" action="indexNew" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
-        <li><g:link controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
-        <li><g:link class="activegreen" controller="logBook" action="entries" id="${entity.id}" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
+        <li><g:link controller="event" action="index" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
+        <li><g:link controller="educatorProfile" action="index" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
+        <li><g:link class="activegreen" controller="logBook" action="entries" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
         <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-          <li style="border-right: none;"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
+          <li style="border-right: none;"><g:link controller="setup" action="show" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
         </erp:accessCheck>
       </ul>
       <div class="clear"></div>
@@ -301,7 +301,7 @@
             %{--<div class="area"><g:message code="organisation"/></div>--}%
             <ul>
               <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-                <li class="icon-operator"><g:link controller="logBook" action="entries" id="${entity.id}"><g:message code="logBook"/></g:link></li>
+                <li class="icon-operator"><g:link controller="logBook" action="entries"><g:message code="logBook"/></g:link></li>
               </erp:accessCheck>
             </ul>
 

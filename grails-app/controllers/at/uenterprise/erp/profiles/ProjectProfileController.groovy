@@ -92,7 +92,6 @@ class ProjectProfileController {
 
   def show = {
     Entity project = Entity.get(params.id)
-    Entity entity = params.entity ? project : entityHelperService.loggedIn
 
     if (!project) {
       flash.message = message(code: "object.notFound", args: [message(code: "project")])
@@ -233,7 +232,6 @@ class ProjectProfileController {
       List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
 
       [project: project,
-              entity: entity,
               projectUnits: projectUnits,
               allGroupActivityTemplates: allGroupActivityTemplates,
               calculatedDuration: calculatedDuration,

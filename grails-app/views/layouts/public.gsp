@@ -24,7 +24,7 @@
           <a href="${g.resource(dir:'')}">${grailsApplication.config.application.name}</a>
         </erp:isNotLoggedIn>
         <erp:isLoggedIn>
-          <g:link controller="event" action="indexNew">${grailsApplication.config.application.name}</g:link>
+          <g:link controller="event" action="index">${grailsApplication.config.application.name}</g:link>
         </erp:isLoggedIn>
       </div>
       <div class="subtitle">

@@ -80,7 +80,6 @@ class GroupActivityProfileController {
 
   def show = {
     Entity group = Entity.get(params.id)
-    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       // flash.message = "groupProfile not found with id ${params.id}"
@@ -180,7 +179,6 @@ class GroupActivityProfileController {
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
 
     return [group: group,
-            entity: entity,
             templates: templates,
             calculatedDuration: calculatedDuration,
             educators: educators,

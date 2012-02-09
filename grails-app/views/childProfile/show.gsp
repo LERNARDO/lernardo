@@ -18,7 +18,7 @@
           <li><g:link controller="childProfile" action="show" id="${child.id}"><g:message code="profile"/></g:link></li>
           <li><g:remoteLink update="content" controller="publication" action="list" id="${child.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${child}"/></g:remoteLink></li>
           <li><g:link controller="msg" action="inbox" id="${child.id}"><g:message code="privat.posts"/></g:link></li>
-          <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${child.id}" params="[entity:child.id]"><g:message code="appointments"/></g:link></li>
+          <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${child.id}"><g:message code="appointments"/></g:link></li>
         </ul>
       </div>
 

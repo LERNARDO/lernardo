@@ -1,106 +1,91 @@
 <%@ page import="at.openfactory.ep.Entity" %>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="start"/>
   <title><g:message code="events"/></title>
+
+  <script type="text/javascript">
+      $(function() {
+        ${remoteFunction(controller:"event", action: "remoteEvents", update: "events", before: "showspinner('#events')")}
+        ${remoteFunction(controller:"event", action: "remoteNews", update: "news", before: "showspinner('#news')")}
+      });
+    </script>
+
 </head>
 
 <body>
 
-<div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="events"/></h1>
+<div id="welcome">
+  <div id="head">
+    <span style="color: #aaa;"><g:message code="welcomeTo"/></span> ${grailsApplication.config.application.name}
   </div>
+
+  <ul id="boxes">
+    <li class="redbox"><g:link controller="educatorProfile" action="index" onclick="showBigSpinner()" onmouseover="jQuery('#reddescription').show();" onmouseout="jQuery('#reddescription').hide();">${message(code: 'database').toUpperCase()}</g:link></li>
+    <li class="greenbox"><g:link controller="logBook" action="entries" onclick="showBigSpinner()" onmouseover="jQuery('#greendescription').show();" onmouseout="jQuery('#greendescription').hide();">${message(code: 'organisation').toUpperCase()}</g:link></li>
+    <li class="bluebox"><g:link controller="templateProfile" action="index" onclick="showBigSpinner()" onmouseover="jQuery('#bluedescription').show();" onmouseout="jQuery('#bluedescription').hide();">${message(code: 'planning').toUpperCase()}</g:link></li>
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+      <li class="yellowbox"><g:link controller="setup" action="show" onclick="showBigSpinner()" onmouseover="jQuery('#yellowdescription').show();" onmouseout="jQuery('#yellowdescription').hide();">${message(code: 'administration').toUpperCase()}</g:link></li>
+    </erp:accessCheck>
+  </ul>
+
+  <div class="clear"></div>
+
+  <div id="descriptions">
+    <div class="description" id="reddescription" style="display: none;">
+      <p class="bold"><g:message code="database"/></p>
+      <p><g:message code="info.database"/></p>
+    </div>
+
+    <div class="description" id="greendescription" style="display: none;">
+      <p class="bold"><g:message code="organisation"/></p>
+      <p><g:message code="info.organisation"/></p>
+    </div>
+
+    <div class="description" id="bluedescription" style="display: none;">
+      <p class="bold"><g:message code="planning"/></p>
+      <p><g:message code="info.planning"/></p>
+    </div>
+
+    <div class="description" id="yellowdescription" style="display: none;">
+      <p class="bold"><g:message code="administration"/></p>
+      <p><g:message code="info.administration"/></p>
+    </div>
+  </div>
+
 </div>
-<div class="boxGray">
-  <div class="second">
 
-    <g:if test="${events}">
-      <table class="default-table">
-        <tbody>
-        <erp:getBirthdays>
-          <g:if test="${entities}">
-            <g:each in="${entities}" var="entity">
-              <tr>
-                <td style="width: 40px;">
-                  <erp:profileImage entity="${entity}" width="30" style="vertical-align: middle;"/>
-                </td>
-                <td class="gray">
-                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><span class="bold">${entity.profile.fullName}</span></g:link> hat heute Geburtstag! <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/>
-                </td>
-              </tr>
-            </g:each>
-          </g:if>
-        </erp:getBirthdays>
-        <g:each in="${events}" status="i" var="event">
-          <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-            <td style="width: 40px;">
-              <erp:profileImage entity="${Entity.get(event.who)}" width="30" style="vertical-align: middle;"/>
-            </td>
-            <td class="gray">
-              <g:formatDate date="${event.date}" format="EE dd. MMM. yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
-              <erp:getEvent event="${event}"/> <erp:isSystemAdmin entity="${currentEntity}"><g:link action="delete" id="${event.id}" onclick="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/></g:link></erp:isSystemAdmin>
-            </td>
-          </tr>
-        </g:each>
-        </tbody>
-      </table>
 
-      <div class="paginateButtons">
-        <g:paginate total="${totalEvents}"/>
+<div class="yui3-g">
+
+  <div class="yui3-u-1-2">
+    <div class="boxHeader" style="padding-right: 20px;">
+      <div class="second">
+        <h1><g:message code="events"/></h1>
       </div>
-    </g:if>
+    </div>
 
-    %{--<p><span class="strong"><g:message code="tomorrow"/></span></p>
-    <p>
-      <g:if test="${eventsTomorrow}">
-        <g:each in="${eventsTomorrow}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/><br/>
-        </g:each>
-      </g:if>
-      <g:else>
-        <span class="italic"><g:message code="profile.showNews.tomorrowMsg"/></span>
-      </g:else>
-    </p>
-    <div class="cleartop"></div>
+    <div class="boxGray" style="padding-right: 20px;">
+      <div class="second" id="events">
 
-    <p><span class="strong"><g:message code="today"/> (<g:formatDate date="${Calendar.getInstance().time}" format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>)</span></p>
-
-    <erp:getBirthdays>
-      <g:if test="${entities}">
-        <p>
-          <g:each in="${entities}" var="entity">
-            <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="${message(code:'birthday')}" valign="top"/> <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link> hat heute Geburtstag!<br/>
-          </g:each>
-        </p>
-      </g:if>
-    </erp:getBirthdays>
-
-    <p>
-      <g:if test="${eventsToday}">
-        <g:each in="${eventsToday}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/><br/>
-        </g:each>
-      </g:if>
-      <g:else>
-        <span class="italic"><g:message code="profile.showNews.todayMsg"/></span>
-      </g:else>
-    </p>
-    <div class="cleartop"></div>
-
-    <p><span class="strong"><g:message code="yesterday"/></span></p>
-    <p>
-      <g:if test="${eventsYesterday}">
-        <g:each in="${eventsYesterday}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/><br/>
-        </g:each>
-      </g:if>
-      <g:else>
-        <span class="italic"><g:message code="profile.showNews.yesterdayMsg"/></span>
-      </g:else>
-    </p>--}%
-    
+      </div>
+    </div>
   </div>
+
+  <div class="yui3-u-1-2">
+    <div class="boxHeader">
+      <div class="second">
+        <h1><g:message code="newsp"/></h1>
+      </div>
+    </div>
+
+    <div class="boxGray">
+      <div class="second" id="news">
+
+      </div>
+    </div>
+  </div>
+
 </div>
 
 </body>

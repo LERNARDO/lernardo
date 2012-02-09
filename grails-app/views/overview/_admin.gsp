@@ -17,7 +17,7 @@
 <div class="box">
   <div class="bold"><g:message code="management"/></div>
   <g:link controller="profile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_verwaltung.png')}" alt="Notiz" align="top"/></g:link>
-  <div><g:link controller="profile" action="list" params="[name:currentEntity.name]"><g:message code="profile.overview.showAll"/></g:link></div>
+  <div><g:link controller="profile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
 </div>
 
 </erp:getCurrentEntity>

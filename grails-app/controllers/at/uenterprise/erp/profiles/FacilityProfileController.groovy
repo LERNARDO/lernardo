@@ -47,7 +47,6 @@ class FacilityProfileController {
 
   def show = {
     Entity facility = Entity.get(params.id)
-    Entity entity = params.entity ? facility : entityHelperService.loggedIn
 
     if (!facility) {
       flash.message = message(code: "object.notFound", args: [message(code: "facility")])
@@ -73,7 +72,6 @@ class FacilityProfileController {
     Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
     return [facility: facility,
-            entity: entity,
             allEducators: allEducators,
             educators: educators,
             allClientGroups: allClientGroups,

@@ -41,7 +41,7 @@
       <g:if test="${entities}">
         <p>
           <g:each in="${entities}" var="entity">
-            <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="${message(code:'birthday')}" valign="top"/> <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link> hat heute Geburtstag!<br/>
+            <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="${message(code:'birthday')}" valign="top"/> <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName.decodeHTML()}</g:link> hat heute Geburtstag!<br/>
           </g:each>
         </p>
       </g:if>

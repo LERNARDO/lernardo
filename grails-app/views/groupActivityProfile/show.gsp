@@ -16,10 +16,10 @@
 
     <div class="tabnav">
       <ul>
-        <li><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]"><g:message code="profile"/></g:link></li>
-        <li><g:remoteLink update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
+        <li><g:link controller="groupActivityProfile" action="show" id="${group.id}"><g:message code="profile"/></g:link></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${group.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${group}"/></g:remoteLink></li>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${entity.id}"><g:message code="comments"/> (${group.profile.comments.size()}) </g:remoteLink></li>
+          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${group.id}"><g:message code="comments"/> (${group.profile.comments.size()}) </g:remoteLink></li>
         </erp:accessCheck>
       </ul>
     </div>
@@ -41,7 +41,7 @@
           <td class="one"><g:message code="groupActivityTemplate"/>:</td>
           <td class="two">
             <g:if test="${template}">
-              <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}" params="[entity: template?.id]">${template?.profile?.fullName?.decodeHTML()}</g:link>
+              ${template?.profile?.fullName?.decodeHTML()}
             </g:if>
             <g:else>
               <span class="italic"><g:message code="template.notAvailable"/></span>
@@ -116,7 +116,7 @@
             </p>
             <ul>
               <g:each in="${templates}" var="template">
-                <li><g:link class="hover" controller="templateProfile" action="show" data-idd="${template.id}" id="${template.id}" params="[entity: template.id]">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span></li>
+                <li><g:link class="hover" controller="templateProfile" action="show" data-idd="${template.id}" id="${template.id}">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span></li>
               </g:each>
             </ul>
           </g:if>

@@ -38,7 +38,6 @@ class ProjectTemplateProfileController {
 
   def show = {
     Entity projectTemplate = Entity.get(params.id)
-    Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
       flash.message = message(code: "object.notFound", args: [message(code: "projectTemplate")])
@@ -80,7 +79,6 @@ class ProjectTemplateProfileController {
       }
 
       [projectTemplate: projectTemplate,
-              entity: entity,
               projectUnitTemplates: projectUnitTemplates,
               calculatedDuration: calculatedDuration,
               instances: instances,

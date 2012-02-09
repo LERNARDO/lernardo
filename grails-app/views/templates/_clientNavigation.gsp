@@ -20,7 +20,7 @@
           <erp:getFavorite entity="${entity}"/>
           <erp:notMe entity="${entity}">
             <g:if test="${entity.user.enabled}">
-              <g:link class="buttonGreen" controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.msgCreate"/></g:link>
+              <g:link class="buttonGreen" controller="msg" action="create" id="${entity.id}"><g:message code="privat.msgCreate"/></g:link>
             </g:if>
           </erp:notMe>
         </g:form>

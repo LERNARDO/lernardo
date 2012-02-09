@@ -11,12 +11,12 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/defaultNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/defaultNavigation" model="[entity: group]"/>
 
     <div class="tabnav">
       <ul>
         <li><g:link controller="groupFamilyProfile" action="show" id="${group.id}"><g:message code="profile"/></g:link></li>
-        <li><g:remoteLink style="border-right: none;" update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
+        <li><g:remoteLink style="border-right: none;" update="content" controller="publication" action="list" id="${group.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${group}"/></g:remoteLink></li>
       </ul>
     </div>
 

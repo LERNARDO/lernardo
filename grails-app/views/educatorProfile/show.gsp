@@ -20,9 +20,9 @@
     <li><g:link controller="educatorProfile" action="show" id="${educator.id}"><g:message code="profile"/></g:link></li>
     <li><g:remoteLink update="content" controller="publication" action="list" id="${educator.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${educator}"/></g:remoteLink></li>
     <li><g:link controller="msg" action="inbox" id="${educator.id}"><g:message code="privat.posts"/></g:link></li>
-    <li><g:link controller="appointmentProfile" action="index" id="${educator.id}" params="[entity: educator.id]"><g:message code="appointments"/></g:link></li>
-    <li><g:link controller="evaluation" action="myevaluations" id="${educator.id}" params="[entity: educator.id]"><g:message code="privat.evaluation"/></g:link></li>
-    <li><g:link style="border-right: none" controller="workdayUnit" action="index" id="${educator.id}" params="[entity: educator.id]"><g:message code="privat.workday"/></g:link></li>
+    <li><g:link controller="appointmentProfile" action="index" id="${educator.id}"><g:message code="appointments"/></g:link></li>
+    <li><g:link controller="evaluation" action="myevaluations" id="${educator.id}"><g:message code="privat.evaluation"/></g:link></li>
+    <li><g:link style="border-right: none" controller="workdayUnit" action="index" id="${educator.id}"><g:message code="privat.workday"/></g:link></li>
   </ul>
 </div>
 

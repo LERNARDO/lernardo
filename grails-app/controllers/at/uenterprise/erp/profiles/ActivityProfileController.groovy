@@ -168,14 +168,12 @@ class ActivityProfileController {
    */
   def show = {
     Entity activity = Entity.get(params.id)
-    Entity entity = params.entity ? activity : entityHelperService.loggedIn
 
     //List clients = Entity.findAllByType(metaDataService.etClient)
 
     List allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
     return [activity: activity,
-            entity: entity,
             //clientsOld: clients,
             educators: functionService.findAllByLink(null, activity, metaDataService.ltActEducator),
             clients: functionService.findAllByLink(null, activity, metaDataService.ltActClient),

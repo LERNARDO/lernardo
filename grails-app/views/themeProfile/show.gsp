@@ -11,12 +11,12 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/themeNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/themeNavigation" model="[entity: theme]"/>
 
     <div class="tabnav">
       <ul>
-        <li><g:link controller="${entity.type.supertype.name+'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="profile"/></g:link></li>
-        <li><g:remoteLink style="border-right: none;" update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
+        <li><g:link controller="themeProfile" action="show" id="${theme.id}"><g:message code="profile"/></g:link></li>
+        <li><g:remoteLink style="border-right: none;" update="content" controller="publication" action="list" id="${theme.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${theme}"/></g:remoteLink></li>
       </ul>
     </div>
 
@@ -53,7 +53,7 @@
           <td class="one"><g:message code="themes.superior"/>:</td>
           <td class="two">
             <g:if test="${parenttheme}">
-              <g:link controller="themeProfile" action="show" id="${parenttheme.id}" params="[entity: parenttheme.id]">${parenttheme.profile.fullName}</g:link>
+              <g:link controller="themeProfile" action="show" id="${parenttheme.id}">${parenttheme.profile.fullName.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic">Keinem übergeordneten Thema zugeordnet!</span>
