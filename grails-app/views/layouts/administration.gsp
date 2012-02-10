@@ -297,7 +297,6 @@
             <div class="header"><g:message code="privat.head.admin"/></div>
 
             <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-              <div class="area"><g:message code="privat.head.admin"/></div>
               <ul>
                 %{--<erp:isSystemAdmin entity="${currentEntity}">
                   <li class="icon-admin"><g:link controller="admin" action="stuff">Admin Stuff</g:link></li>

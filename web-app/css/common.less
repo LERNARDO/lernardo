@@ -29,6 +29,10 @@
 
 // selectors
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: verdana,arial,helvetica,sans-serif;
     font-size: 12px;
@@ -36,6 +40,7 @@ body {
     min-width: 1200px;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 a {
@@ -164,13 +169,23 @@ a {
 #ft {
     font-size: 11px;
     text-align: center;
-    margin: 20px 20px 0 20px;
-    padding: 10px;
+    //margin: 20px 20px 0 20px;
+    padding: 10px 0 0 0;
     border-top: 1px solid #ddd;
     a {
-        color: #29957d;
+        color: @cyan;
         margin-left: 20px;
     }
+    position: absolute;
+    bottom: 0;
+    height: 25px;
+    width: 100%;
+    background: #eee;
+}
+
+#private {
+    min-height: 100%;
+    position: relative;
 }
 
 #grid {
@@ -182,6 +197,8 @@ a {
 #main {
     width: 100%;
     border-left: 1px solid #ddd;
+    //padding-bottom: 50px;
+    margin-bottom: 55px;
 }
 
 #right {
@@ -214,7 +231,8 @@ a {
     padding: 0 15px;
     ul {
       li {
-        padding-left: 15px;
+        padding: 5px 0 5px 20px;
+        margin: 0;
       }
     }
     a {
@@ -224,213 +242,213 @@ a {
         }
     }
     .profile-profil {
-        background: url(../images/icons/icon_profile.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_profile.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_profile.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_profile.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-nachricht {
-        background: url(../images/icons/icon_mail.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_mail.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_mail.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_mail.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-telefon {
-        background: url(../images/icons/icon_handy.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_handy.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_handy.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_handy.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-leistung {
-        background: url(../images/icons/icon_star.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_star.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_star.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_star.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-netzwerk {
-        background: url(../images/icons/icon_contact.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_contact.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_contact.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_contact.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-galerie {
-        background: url(../images/icons/icon_galerie.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_galerie.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_galerie.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_galerie.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-activities {
-        background: url(../images/icons/icon_activities.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_activities.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_activities.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_activities.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-calendar {
-        background: url(../images/icons/icon_calendar.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_calendar.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_calendar.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_calendar.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-location {
-        background: url(../images/icons/icon_location.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_location.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_location.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_location.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .profile-template {
-        background: url(../images/icons/icon_template.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_template.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_template.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_template.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-person {
-        background: url(../images/icons/icon_person.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_person.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_person.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_person.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-edit {
-        background: url(../images/icons/icon_edit.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_edit.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_edit.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_edit.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-help {
-        background: url(../images/icons/icon_help.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_help.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_help.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_help.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-admin {
-        background: url(../images/icons/icon_admin.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_admin.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_admin.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_admin.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-news {
-        background: url(../images/icons/icon_news.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_news.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_news.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_news.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-text {
-        background: url(../images/icons/icon_text.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_text.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_text.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_text.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-document {
-        background: url(../images/icons/icon_document.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_document.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_document.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_document.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-group {
-        background: url(../images/icons/icon_group.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_group.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_group.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_group.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-facility {
-        background: url(../images/icons/icon_facility.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_facility.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_facility.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_facility.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-partner {
-        background: url(../images/icons/icon_partner.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_partner.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_partner.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_partner.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-pate {
-        background: url(../images/icons/icon_pate.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_pate.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_pate.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_pate.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-colony {
-        background: url(../images/icons/icon_colony.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_colony.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_colony.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_colony.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-child {
-        background: url(../images/icons/icon_child.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_child.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_child.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_child.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-grouppartner {
-        background: url(../images/icons/icon_grouppartner.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_grouppartner.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_grouppartner.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_grouppartner.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-all {
-        background: url(../images/icons/icon_all.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_all.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_all.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_all.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-parents {
-        background: url(../images/icons/icon_parents.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_parents.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_parents.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_parents.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-educators {
-        background: url(../images/icons/icon_educators.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_educators.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_educators.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_educators.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-methods {
-        background: url(../images/icons/icon_methods.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_methods.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_methods.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_methods.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-operator {
-        background: url(../images/icons/icon_operator.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_operator.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_operator.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_operator.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-export {
-        background: url(../images/icons/icon_export.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_export.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_export.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_export.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-time {
-        background: url(../images/icons/icon_time.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_time.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_time.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_time.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-evaluation {
-        background: url(../images/icons/icon_evaluation.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_evaluation.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_evaluation.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_evaluation.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-appointments {
-        background: url(../images/icons/icon_appointments.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_appointments.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_appointments.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_appointments.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-setup {
-        background: url(../images/icons/icon_setup.png) 0 50% no-repeat;
+        background: url(../images/icons/icon_setup.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/icon_setup.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/icon_setup.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-online {
-        background: url(../images/icons/online.png) 0 50% no-repeat;
+        background: url(../images/icons/online.png) 5px 50% no-repeat;
         &:hover {
-            background: url(../images/icons/online.png) 0 50% no-repeat lighten(@cyan, 50%);
+            background: url(../images/icons/online.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
 }
@@ -520,13 +538,13 @@ ol li {
     padding-bottom: 5px; }
 
 h1 {
-        color: darken(@cyan, 10%);
-        margin: 0 0 10px 0;
-        padding: 0 0 5px 0;
-        font-weight: normal;
-        font-size: 20px;
-        border-bottom: 1px solid lighten(@cyan, 40%);
-    }
+    color: darken(@cyan, 10%);
+    margin: 0 0 10px 0;
+    padding: 0 0 5px 0;
+    font-weight: normal;
+    font-size: 20px;
+    border-bottom: 1px solid lighten(@cyan, 40%);
+}
 
 h2 {
     padding-bottom: 10px;
@@ -1371,6 +1389,21 @@ table#msg-composer td {
     }
 }
 
+.tabGreen {
+    margin: 0 0 10px 0;
+    h1 {
+        color: darken(@cyan, 10%);
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-weight: normal;
+        font-size: 20px;
+        padding: 0 0 5px 0;
+        border-bottom: 1px solid lighten(@cyan, 0%);
+        text-align: center;
+    }
+}
+
 .tabGrey {
     margin: 0 0 10px 0;
     h1 {
@@ -1380,7 +1413,6 @@ table#msg-composer td {
         font-weight: normal;
         font-size: 20px;
         text-align: center;
-
     }
     a {
         color: darken(@gray, 10%);
@@ -1862,21 +1894,6 @@ table#msg-composer td {
     color: #777;
 }
 
-.tabGreen {
-    margin: 0 0 10px 0;
-    h1 {
-        color: darken(@cyan, 10%);
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-weight: normal;
-        font-size: 20px;
-        padding: 0 0 5px 0;
-        border-bottom: 1px solid lighten(@cyan, 0%);
-        text-align: center;
-    }
-}
-
 #news-container {
     h1 {
         color: #7e7e7e;
@@ -1945,11 +1962,11 @@ table#msg-composer td {
         }
         .header {
             border-bottom: 1px solid #ddd;
-            padding-bottom: 3px;
+            padding-bottom: 5px;
             text-align: center;
-            color: #22725B;
-            font-size: 13px;
-            font-weight: bold;
+            color: @cyan;
+            font-size: 16px;
+            //font-weight: bold;
             margin-bottom: 6px;
         }
         .area {
