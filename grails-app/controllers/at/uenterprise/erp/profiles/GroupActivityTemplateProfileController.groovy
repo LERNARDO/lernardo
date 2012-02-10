@@ -35,7 +35,9 @@ class GroupActivityTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    return [allLabels: functionService.getLabels()]
+    int totalTemplates = Entity.countByType(metaDataService.etGroupActivityTemplate)
+    return [allLabels: functionService.getLabels(),
+            totalTemplates: totalTemplates]
   }
 
   def show = {

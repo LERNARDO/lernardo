@@ -33,7 +33,9 @@ class ProjectTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    return [allLabels: functionService.getLabels()]
+    int totalProjectTemplates = Entity.countByType(metaDataService.etProjectTemplate)
+    return [allLabels: functionService.getLabels(),
+        totalProjectTemplates: totalProjectTemplates]
   }
 
   def show = {

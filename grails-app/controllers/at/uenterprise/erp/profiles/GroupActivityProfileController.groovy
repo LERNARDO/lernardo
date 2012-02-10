@@ -50,8 +50,8 @@ class GroupActivityProfileController {
       }
       maxResults(params.max)
       firstResult(params.offset)
-    }
-    int totalGroupActivities = Entity.countByType(etGroupActivity)*/
+    }*/
+    int totalGroupActivities = Entity.countByType(metaDataService.etGroupActivity)
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -72,8 +72,8 @@ class GroupActivityProfileController {
     else
       themes = Entity.findAllByType(metaDataService.etTheme)
 
-    return [/*groups: groupActivities,
-            totalGroupActivities: totalGroupActivities,*/
+    return [/*groups: groupActivities,*/
+            totalGroupActivities: totalGroupActivities,
             themes: themes,
             allLabels: functionService.getLabels()]
   }

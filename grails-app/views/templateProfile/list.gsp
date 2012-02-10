@@ -17,6 +17,10 @@
 <div class="boxGray">
   <div class="second">
 
+    <div class="info-msg">
+      <g:message code="object.total" args="[totalTemplates, message(code: 'activityTemplates')]"/>
+    </div>
+
     <div class="buttons">
       <g:form>
         <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">

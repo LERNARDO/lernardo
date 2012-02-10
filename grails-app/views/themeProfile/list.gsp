@@ -12,6 +12,10 @@
 <div class="boxGray">
   <div class="second">
 
+    <div class="info-msg">
+      <g:message code="object.total" args="[allThemes, message(code: 'themes')]"/>
+    </div>
+
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities ?: null}" >
       <div class="buttons">
         <g:form>
@@ -20,10 +24,6 @@
         </g:form>
       </div>
     </erp:accessCheck>
-
-    <div class="info-msg">
-      <g:message code="object.found" args="[allThemes, message(code: 'themes')]"/>
-    </div>
 
     <div id="themelist">
       <g:render template="themes" model="[themes:themes]"/>

@@ -13,6 +13,10 @@
 <div class="boxGray">
   <div class="second">
 
+    <div class="info-msg">
+      <g:message code="object.total" args="[totalProjects, message(code: 'projects')]"/>
+    </div>
+
     <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
 
       <table>

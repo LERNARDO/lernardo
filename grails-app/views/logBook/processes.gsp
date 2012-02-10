@@ -36,6 +36,10 @@
 <div class="boxGray">
   <div class="second">
 
+    <div class="info-msg">
+      <g:message code="object.total" args="[processes.size(), message(code: 'processes')]"/>
+    </div>
+
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
         <div class="buttons">
           <g:form controller="logBook" action="createProcess">

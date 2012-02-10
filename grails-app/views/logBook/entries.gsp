@@ -36,11 +36,13 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:formRemote name="formRemote" url="[controller:'logBook', action:'showEntry']" update="entry" before="showspinner('#entry');">
-      <g:message code="facility"/>: <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
-      <g:message code="date"/>: <g:textField name="date" size="10" class="datepicker" value="${formatDate(date: new Date(), format: 'dd. MM. yyyy')}"/>
-      <g:submitButton name="button" value="OK"/>
-    </g:formRemote>
+    <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
+      <g:formRemote name="formRemote" url="[controller:'logBook', action:'showEntry']" update="entry" before="showspinner('#entry');">
+        <span class="gray"><g:message code="facility"/>:</span> <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
+        <span class="gray" style="margin-left: 10px;"><g:message code="date"/>:</span> <g:textField name="date" size="10" class="datepicker" value="${formatDate(date: new Date(), format: 'dd. MM. yyyy')}"/>
+        <g:submitButton name="button" value="OK"/>
+      </g:formRemote>
+    </div>
 
     <div id="entry"></div>
 

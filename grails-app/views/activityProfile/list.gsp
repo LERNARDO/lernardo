@@ -33,15 +33,15 @@
 
     %{--<div class="clear"></div>--}%
 
-    <div class="buttons">
-      <g:link class="buttonGreen" controller="activityProfile" action="create"><g:message code="themeRoom.create"/></g:link>
-      <div class="clear"></div>
-    </div>
-
     <div class="info-msg">
       ${activityCount} <g:message code="themeRooms"/>
       <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
       <g:message code="found"/>
+    </div>
+
+    <div class="buttons">
+      <g:link class="buttonGreen" controller="activityProfile" action="create"><g:message code="themeRoom.create"/></g:link>
+      <div class="clear"></div>
     </div>
 
     <div id="select-box">
