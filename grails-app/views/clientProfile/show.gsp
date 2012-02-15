@@ -215,7 +215,7 @@
 
       <g:if test="${client.profile.support}">
         <tr class="prop">
-          <td class="one"><g:message code="client.profile.support"/> (${grailsApplication.config.currency}):</td>
+          <td class="one"><g:message code="client.profile.support"/>:</td>
           <td class="two"><g:formatBoolean boolean="${client.profile.support}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
         </tr>
 
@@ -226,7 +226,7 @@
       </g:if>
 
       <tr class="prop">
-        <td class="one"><g:message code="citizenship"/> (${grailsApplication.config.currency}):</td>
+        <td class="one"><g:message code="citizenship"/>:</td>
         <td class="two">${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML() ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
       </tr>
 

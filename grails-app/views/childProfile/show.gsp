@@ -70,7 +70,7 @@
             </tr>
 
             <tr class="prop">
-              <td class="one"><g:message code="child.profile.jobIncome"/>:</td>
+              <td class="one"><g:message code="child.profile.jobIncome"/> (${grailsApplication.config.currency}):</td>
               <td class="two">${fieldValue(bean: child, field: 'profile.jobIncome') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
             </tr>
 
