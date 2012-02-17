@@ -60,24 +60,8 @@ class CalendarController {
   def show = {
     Entity currentEntity = entityHelperService.loggedIn
 
-    /*List educators = []
-    
-    if (currentEntity.type.id == metaDataService.etEducator.id) {
-      // find facility the educator is working for
-      def facility = functionService.findByLink(currentEntity, null, metaDataService.ltWorking)
-
-      if (facility) {
-        // find all educators working in that facility
-        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
-        educators.remove(currentEntity)
-      }
-    }
-    else
-      educators = Entity.findAllByType(metaDataService.etEducator)*/
-    
-    Set calEntities = currentEntity?.profile?.calendar?.entities
-
-    //calEntities = calEntities.sort() {it.entity.profile.firstName}
+    List calEntities = currentEntity?.profile?.calendar?.entities?.toArray()
+    calEntities = calEntities.sort {it.entity.profile.fullName}
 
     List operators = Entity.findAllByType(metaDataService.etOperator)
 
