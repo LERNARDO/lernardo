@@ -2,6 +2,7 @@
   <meta name="layout" content="planning"/>
   <title><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</title>
 </head>
+
 <body>
 <div class="boxHeader">
   <div class="second">
@@ -137,8 +138,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="clients"/> (${clients.size()}) <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#clients');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+        <h5><g:message code="clients"/> (${clients.size()}) <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="clients" style="display:none">
 
           <g:message code="search"/>:<br/>
@@ -158,7 +158,7 @@
         </div>
       </div>
 
-      <div id="content">
+    </div>
 
     %{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
       <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: project]"/>

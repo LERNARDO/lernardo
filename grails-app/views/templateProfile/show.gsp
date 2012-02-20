@@ -152,6 +152,7 @@
           <g:render template="labels" model="[template: template, entity: currentEntity]"/>
         </div>
       </div>
+
     </div>
 
   </div>

@@ -1445,7 +1445,8 @@ class HelperTagLib {
   def getProjectUnitActivityGroups = {attrs, body ->
     List projectUnitActivityGroups = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnit)
     if (projectUnitActivityGroups)
-      projectUnitActivityGroups.each {out << body(activityGroups: it)}
+      //projectUnitActivityGroups.each {out << body(activityGroups: it)}
+      out << body(activityGroups: projectUnitActivityGroups)
     else
       out << '<span class="italic">Keine Aktivitätsblockvorlagen gefunden</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
