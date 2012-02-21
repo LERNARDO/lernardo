@@ -33,8 +33,6 @@
      <span class="gray"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
   </p>
 
-
-
   Diesen Projekttag verschieben (Datum und/oder Uhrzeit):
   <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'moveProjectDay', id: projectDay.id]" update="projectDay" before="showspinner('#projectDay')">
     <table>
@@ -104,37 +102,35 @@
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="resources.planned"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#resources');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="resources.planned"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
-      <div class="zusatz-add" id="resources" style="display:none">
-        <span class="bold"><g:message code="resources.required"/></span>
-        <g:if test="${requiredResources}">
-          <ul style="margin: 5px 5px 0 15px;">
-            <g:each in="${requiredResources}" var="requiredResource">
-              <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
-            </g:each>
-          </ul>
-        </g:if>
-        <g:else>
-          <div class="italic" style="margin: 5px;"><g:message code="resources.noneRequired"/></div>
-        </g:else>
+    <div class="zusatz-add" id="resources" style="display:none">
+      <span class="bold"><g:message code="resources.required"/></span>
+      <g:if test="${requiredResources}">
+        <ul style="margin: 5px 5px 0 15px;">
+          <g:each in="${requiredResources}" var="requiredResource">
+            <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+          </g:each>
+        </ul>
+      </g:if>
+      <g:else>
+        <div class="italic" style="margin: 5px;"><g:message code="resources.noneRequired"/></div>
+      </g:else>
 
-        <span class="bold"><g:message code="resource.profile"/></span> %{--<g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}" before="showspinner('#plannableresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>--}%
-        <div id="plannableresources">
-          <erp:getProjectDayUnits projectDay="${projectDay}">
-            <g:if test="${units}">
-              <g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>
-            </g:if>
-            <g:else>
-              <span class="italic"><g:message code="resources.planInfo"/></span><br/>
-            </g:else>
-          </erp:getProjectDayUnits>
-        </div>
+      <span class="bold"><g:message code="resource.profile"/></span> %{--<g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}" before="showspinner('#plannableresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>--}%
+      <div id="plannableresources">
+        <erp:getProjectDayUnits projectDay="${projectDay}">
+          <g:if test="${units}">
+            <g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>
+          </g:if>
+          <g:else>
+            <span class="italic"><g:message code="resources.planInfo"/></span><br/>
+          </g:else>
+        </erp:getProjectDayUnits>
       </div>
-      <div class="zusatz-show" id="resources2">
-        <g:render template="resources" model="[resources: resources, entity: entity, projectDay: projectDay]"/>
-      </div>
+    </div>
+    <div class="zusatz-show" id="resources2">
+      <g:render template="resources" model="[resources: resources, entity: entity, projectDay: projectDay]"/>
     </div>
   </div>
 
