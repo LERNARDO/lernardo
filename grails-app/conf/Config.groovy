@@ -39,11 +39,42 @@ grails.converters.encoding = "UTF-8"
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 
-// this has to be updated every time a new plugin version of jquery is installed
-grails.views.javascript.library = "jquery"
-jquery {
-    sources = 'jquery' // Holds the value where to store jQuery-js files /web-app/js/
-    version = '1.7.1' // The jQuery version in use
+// this could be defined in "AppResources.groovy" but we need to reference "customer"
+grails.resources.modules = {
+  common {
+    dependsOn 'jquery'
+    resource url: 'css/cssreset-min.css'
+    resource url: 'css/cssfonts-min.css'
+    resource url: 'css/public.less', attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_common'
+  }
+
+  start {
+    dependsOn 'jquery, jquery-ui'
+    resource url: 'css/cssreset-min.css'
+    resource url: 'css/cssfonts-min.css'
+    resource url: 'css/grids-min.css'
+    resource url: 'css/jquery.qtip.min.css'
+    resource url: 'css/common.less', attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_start'
+    resource url: "css/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_start'
+
+    resource url: "js/jquery/jquery.qtip.min.js"
+  }
+
+  other {
+    dependsOn 'jquery, jquery-ui'
+    resource url: 'css/cssreset-min.css'
+    resource url: 'css/cssfonts-min.css'
+    resource url: 'css/grids-min.css'
+    resource url: 'css/jquery.qtip.min.css'
+    resource url: 'css/kolorpicker.css'
+    resource url: 'css/common.less', attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_start'
+    resource url: "css/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_start'
+
+    resource url: "js/jquery/jquery.qtip.min.js"
+    resource url: "js/jquery/jquery.jqEasyCharCounter.min.js"
+    resource url: "js/jquery/jquery-ui-timepicker-addon.js"
+    resource url: "js/jquery/jquery.kolorpicker.js"
+  }
 }
 
 // this is the mail plugin configuration

@@ -1,9 +1,12 @@
-grails.project.plugins.dir="./plugins"
-grails.plugin.location.obase = "./plugins/obase-2.0"
+grails.plugin.location."obase" = "./plugins/obase-2.0"
+
+grails.project.source.level = 1.6
 
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir	= "target/test-reports"
+
+grails.compile.artefacts.closures.convert = true
 
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 

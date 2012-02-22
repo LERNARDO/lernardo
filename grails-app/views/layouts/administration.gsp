@@ -4,26 +4,10 @@
 <head>
   <meta charset="utf-8" />
   <title>${grailsApplication.config.application.name} ${grailsApplication.config.customerName} - <g:layoutTitle/></title>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset.css" type="text/css">
-  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssfonts/fonts.css" type="text/css">
-  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css" type="text/css">
-  <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.qtip.min.css')}" type="text/css">
-  <link rel="stylesheet" href="${resource(dir: 'css', file: 'kolorpicker.css')}" type="text/css">
-  <g:set var="customer" value="${grailsApplication.config.customer}"/>
-  <less:stylesheet name="common" />
-  <less:stylesheet name="${customer}" />
-  <less:scripts />
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
-  <g:javascript library="jquery" plugin="jquery"/>
-  <jqui:resources/>
-  <ckeditor:resources />
-  %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
-  <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
-  <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon.js')}" type="text/javascript"></script>
-  <script src="${g.resource(dir: 'js/jquery', file: 'jquery.qtip.min.js')}" type="text/javascript"></script>
-  <script src="${g.resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}" type="text/javascript"></script>
+  <r:require modules="other"/>
 
-  <script type="text/javascript">
+  <r:script disposition="defer">
     // TODO: the following custom JavaScript functions have to be defined here else Chrome 10 and IE 9 are not able to find them, find out why..
     // hides an element
     hideform = function(id) {
@@ -235,24 +219,25 @@
       $('#loading').css('visibility', 'visible');
     }
 
-  </script>
+  </r:script>
 
-  <ga:trackPageview />
+  <r:layoutResources/>
   <g:layoutHead />
+  <ckeditor:resources />
+  <ga:trackPageview />
 
 </head>
+
 <body>
+  <div id="loading" style="position:absolute; left: 50%; text-align:center; top:50%; visibility: hidden;">
+  <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
 
-<div id="loading" style="position:absolute; left: 50%; text-align:center; top:50%; visibility: hidden;">
-<img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
+  <g:if test="${!entity}">
+    <g:set var="entity" value="${currentEntity}"/>
+  </g:if>
 
-<g:if test="${!entity}">
-  <g:set var="entity" value="${currentEntity}"/>
-</g:if>
 
-%{--<div id="erp"><div class="title">ERP</div></div>--}%
-
-<div id="private">
+  <div id="private">
 
     <div id="hd">
       <g:render template="/templates/header"/>
@@ -347,7 +332,8 @@
       <g:render template="/templates/footer"/>
     </div>
 
-</div>
+  </div>
 
+  <r:layoutResources/>
 </body>
 </html>

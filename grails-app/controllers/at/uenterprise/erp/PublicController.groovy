@@ -1,6 +1,6 @@
 package at.uenterprise.erp
 
-class StaticController {
+class PublicController {
 
     def terms = {}
 
@@ -8,5 +8,5 @@ class StaticController {
 
     def imprint = {}
 
-    def start = { }
+    def start = {}
 }

@@ -326,7 +326,7 @@ class AppController {
    * this is the public start
    */
   def home = {
-    redirect controller: "static", action: "start"
+    redirect controller: "public", action: "start"
   }
 
   /*
@@ -357,7 +357,7 @@ class AppController {
       }
 
       flash.message = message(code: "account.message", args: [params.email])
-      redirect controller: 'static', action: 'start'
+      redirect controller: 'public', action: 'start'
     }
     else {
       flash.message = message(code: "account.notFound", args: [params.email])
@@ -600,12 +600,12 @@ class AppController {
   def do_login = {
       if (!params.userid) {
         flash.message = message(code: "security.login.emptyuid")
-        redirect (controller: "static", action: "start")
+        redirect (controller: "public", action: "start")
         return
       }
       if (!params.password) {
         flash.message = message(code: "security.login.emptypwd")
-        redirect (controller: "static", action: "start")
+        redirect (controller: "public", action: "start")
         return
       }
 
@@ -614,7 +614,7 @@ class AppController {
         currentEntity = securityManager.login (request, params.userid, params.password)
       } catch (SecurityManagerException sme) {
         flash.message = message(code: sme.code)
-        redirect (controller: "static", action: "start")
+        redirect (controller: "public", action: "start")
         return
       }
 

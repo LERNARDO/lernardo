@@ -25,6 +25,42 @@ class FunctionService {
 
   boolean transactional = true
 
+  int calculateDurationPU(List projectUnits) {
+    // find all groupActivityTemplates linked to all projectUnits of this project
+    List groupActivityTemplates = []
+
+    projectUnits.each { Entity pu ->
+      def links = findAllByLink(null, pu, metaDataService.ltProjectUnitMember)
+      if (links.size() > 0)
+        groupActivityTemplates.addAll(links)
+    }
+
+    def calculatedDuration = 0
+    groupActivityTemplates.each {
+      calculatedDuration += it.profile.realDuration
+    }
+
+    return calculatedDuration
+  }
+
+  int calculateDurationPUT(List projectUnitTemplates) {
+    // find all groupActivityTemplates linked to all projectUnitTemplates of this projectTemplate
+    List groupActivityTemplates = []
+
+    projectUnitTemplates.each { Entity put ->
+      List gats = findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+      if (gats.size() > 0)
+        groupActivityTemplates.addAll(gats)
+    }
+
+    int calculatedDuration = groupActivityTemplates*.profile.realDuration.sum(0)
+    /*groupActivityTemplates.each {
+      calculatedDuration += it.profile.realDuration
+    }*/
+
+    return calculatedDuration
+  }
+
   /**
    * Finds a link matching all 3 parameters
    *

@@ -151,7 +151,7 @@ class ProjectProfileController {
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
       // calculate realDuration
-      int calculatedDuration = calculateDuration(projectUnits)
+      int calculatedDuration = functionService.calculateDurationPU(projectUnits)
 
       // find all themes which are at the project time
       List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= project.profile.startDate && it.profile.endDate >= project.profile.endDate}
@@ -739,7 +739,7 @@ class ProjectProfileController {
     List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
 
     // calculate realDuration
-    int calculatedDuration = calculateDuration(projectUnits)
+    int calculatedDuration = functionService.calculateDurationPU(projectUnits)
 
     render template: 'projectUnits', model: [projectUnits: projectUnits, project: project, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
   }
@@ -762,27 +762,9 @@ class ProjectProfileController {
     List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
 
     // calculate realDuration
-    int calculatedDuration = calculateDuration(projectUnits)
+    int calculatedDuration = functionService.calculateDurationPU(projectUnits)
 
     render template: 'projectUnits', model: [projectUnits: projectUnits, project: project, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
-  }
-
-  int calculateDuration(List projectUnits) {
-    // find all groupActivityTemplates linked to all projectUnits of this project
-    List groupActivityTemplates = []
-
-    projectUnits.each { Entity pu ->
-      def links = functionService.findAllByLink(null, pu, metaDataService.ltProjectUnitMember)
-      if (links.size() > 0)
-        groupActivityTemplates.addAll(links)
-    }
-
-    def calculatedDuration = 0
-    groupActivityTemplates.each {
-      calculatedDuration += it.profile.realDuration
-    }
-
-    return calculatedDuration
   }
 
   def removeClient = {

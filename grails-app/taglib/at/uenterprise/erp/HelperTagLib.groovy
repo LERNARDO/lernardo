@@ -647,8 +647,10 @@ class HelperTagLib {
     attrs.each {key, val ->
       imgattrs[key] = val
     }
-    def mkp = new groovy.xml.MarkupBuilder(out)
-    mkp { img (imgattrs) }
+    //def mkp = new groovy.xml.MarkupBuilder(out)
+    //log.info mkp { img (imgattrs) }
+    //mkp { img (imgattrs) }
+    out << '<img src="' + imgattrs['src'] + '" width="' + imgattrs['width'] + '" style="' + imgattrs['style'] + '" />'
   }
 
   def truncate = {attrs ->
@@ -656,7 +658,7 @@ class HelperTagLib {
   }
 
   /**
-   * Retrieves all online users who where active within the last 5 minutes
+   * Retrieves all online users who were active within the last 5 minutes
    *
    * @author Alexander Zeillinger
    */

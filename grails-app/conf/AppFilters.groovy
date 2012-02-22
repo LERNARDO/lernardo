@@ -28,7 +28,7 @@ class AppFilters {
     }
 
     // checks if a user is logged in before executing an action
-    loginCheck(controller: "(app|security|static)", invert: true) {
+    loginCheck(controller: "(app|security|public)", invert: true) {
       before = {
         Entity e = entityHelperService.getLoggedIn()
         if (e)

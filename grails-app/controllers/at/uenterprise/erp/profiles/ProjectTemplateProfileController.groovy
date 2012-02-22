@@ -54,7 +54,7 @@ class ProjectTemplateProfileController {
       }
 
       // calculate realDuration
-      int calculatedDuration = calculateDuration(projectUnitTemplates)
+      int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
       // find all instances of this template
       List instances = functionService.findAllByLink(projectTemplate, null, metaDataService.ltProjectTemplate)
@@ -293,7 +293,7 @@ class ProjectTemplateProfileController {
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
       // calculate realDuration
-      int calculatedDuration = calculateDuration(projectUnitTemplates)
+      int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates,
                                                        projectUnitTemplates: projectUnitTemplates,
@@ -315,7 +315,7 @@ class ProjectTemplateProfileController {
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
       // calculate realDuration
-      int calculatedDuration = calculateDuration(projectUnitTemplates)
+      int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates,
                                                        projectUnitTemplates: projectUnitTemplates,
@@ -357,7 +357,7 @@ class ProjectTemplateProfileController {
     List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
     // calculate realDuration
-    int calculatedDuration = calculateDuration(projectUnitTemplates)
+    int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
 
 
@@ -393,7 +393,7 @@ class ProjectTemplateProfileController {
     // List projectUnits = links.collect {it.source}
 
     // calculate realDuration
-    //int calculatedDuration = calculateDuration(projectUnits)
+    //int calculatedDuration = functionService.calculateDurationPU(projectUnits)
 
     //render '<span style="color: #0b0; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde hinzugefügt</span>'
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates,
@@ -425,7 +425,7 @@ class ProjectTemplateProfileController {
     //List projectUnits = links.collect {it.source}
 
     // calculate realDuration
-    //int calculatedDuration = calculateDuration(projectUnits)
+    //int calculatedDuration = functionService.calculateDurationPU(projectUnits)
 
     //render '<span style="color: #b00; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde entfernt</span><br/>'
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, entity: entityHelperService.loggedIn, i: params.i, projectTemplate: projectTemplate]
@@ -438,27 +438,9 @@ class ProjectTemplateProfileController {
     List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
 
     // calculate realDuration
-    int calculatedDuration = calculateDuration(projectUnitTemplates)
+    int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
     render template:'updateduration', model:[calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]   
-  }
-
-  int calculateDuration(List projectUnitTemplates) {
-    // find all groupActivityTemplates linked to all projectUnitTemplates of this projectTemplate
-    List groupActivityTemplates = []
-
-    projectUnitTemplates.each { Entity put ->
-      List gats = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
-      if (gats.size() > 0)
-        groupActivityTemplates.addAll(gats)
-    }
-
-    int calculatedDuration = groupActivityTemplates*.profile.realDuration.sum(0)
-    /*groupActivityTemplates.each {
-      calculatedDuration += it.profile.realDuration
-    }*/
-
-    return calculatedDuration
   }
 
   /*
