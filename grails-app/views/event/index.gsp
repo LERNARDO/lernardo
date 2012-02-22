@@ -5,11 +5,11 @@
   <title><g:message code="events"/></title>
 
   <script type="text/javascript">
-      $(function() {
-        ${remoteFunction(controller:"event", action: "remoteEvents", update: "events", before: "showspinner('#events')")}
-        ${remoteFunction(controller:"event", action: "remoteNews", update: "news", before: "showspinner('#news')")}
-      });
-    </script>
+    $(function() {
+      ${remoteFunction(controller:"event", action: "remoteEvents", update: "events", before: "showspinner('#events')")}
+      ${remoteFunction(controller:"event", action: "remoteNews", update: "news", before: "showspinner('#news')")}
+    });
+  </script>
 
 </head>
 

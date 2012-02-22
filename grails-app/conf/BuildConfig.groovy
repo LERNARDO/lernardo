@@ -6,6 +6,7 @@ grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir	= "target/test-reports"
 
+// converts pre 2.0 action closures to methods, see http://grails.org/doc/latest/guide/theWebLayer.html#controllers
 grails.compile.artefacts.closures.convert = true
 
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
