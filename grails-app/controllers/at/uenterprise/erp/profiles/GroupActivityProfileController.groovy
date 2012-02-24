@@ -137,10 +137,10 @@ class GroupActivityProfileController {
     List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup)
 
     List requiredResources = []
-    if (template?.profile?.resources)
-      requiredResources.addAll(template?.profile?.resources)
+    if (template?.profile?.aresources)
+      requiredResources.addAll(template?.profile?.aresources)
     templates.each {
-      requiredResources.addAll(it.profile.resources)
+      requiredResources.addAll(it.profile.aresources)
     }
 
     List plannableResources = []

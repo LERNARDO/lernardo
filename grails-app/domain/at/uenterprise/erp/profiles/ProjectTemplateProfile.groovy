@@ -17,7 +17,7 @@ class ProjectTemplateProfile extends Profile {
   static hasMany = [comments: Comment,
                     labels: Label,
                     templates: String,
-                    resources: Resource]
+                    aresources: Resource]
 
   String description
   String status
