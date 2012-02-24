@@ -17,7 +17,7 @@ class TemplateProfile extends Profile {
   static hasMany = [methods: Method,
                     comments: Comment,
                     labels: Label,
-                    aresources: Resource]
+                    resources: Resource]
 
   String  description
   String  chosenMaterials

@@ -271,8 +271,8 @@
           <tr class="prop">
             <td class="one"><g:message code="resources.required"/>:</td>
             <td class="two">
-              <g:if test="${activity.profile.aresources}">
-                <g:each in="${activity.profile.aresources}" var="resource">
+              <g:if test="${activity.profile.resources}">
+                <g:each in="${activity.profile.resources}" var="resource">
                   <div style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc;">
                     <ul>
                       <li><span class="bold"><g:message code="name"/>:</span> ${resource.name.encodeAsHTML()}</li>

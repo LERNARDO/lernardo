@@ -17,7 +17,7 @@ class GroupActivityTemplateProfile extends Profile {
   static hasMany = [comments: Comment,
                     labels: Label,
                     templates: String,
-                    aresources: Resource]
+                    resources: Resource]
 
   String  description
   String  status

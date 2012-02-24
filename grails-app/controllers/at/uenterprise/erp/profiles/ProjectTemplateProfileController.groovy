@@ -72,11 +72,11 @@ class ProjectTemplateProfileController {
       List groupActivityTemplateResources = []
       List templateResources = []
       groupActivityTemplates.each { Entity groupActivityTemplate ->
-        groupActivityTemplateResources.addAll(groupActivityTemplate.profile.aresources)
+        groupActivityTemplateResources.addAll(groupActivityTemplate.profile.resources)
         // get all templates linked to the groupActivityTemplate
         List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
         templates.each {
-          templateResources.addAll(it.profile.aresources)
+          templateResources.addAll(it.profile.resources)
         }
       }
 
@@ -591,11 +591,11 @@ class ProjectTemplateProfileController {
       List groupActivityTemplateResources = []
       List templateResources = []
       groupActivityTemplates.each { Entity groupActivityTemplate ->
-        groupActivityTemplateResources.addAll(groupActivityTemplate.profile.aresources)
+        groupActivityTemplateResources.addAll(groupActivityTemplate.profile.resources)
         // get all templates linked to the groupActivityTemplate
         List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
         templates.each {
-          templateResources.addAll(it.profile.aresources)
+          templateResources.addAll(it.profile.resources)
         }
       }
 

@@ -77,7 +77,7 @@ class GroupActivityTemplateProfileController {
     // get all resources of all templates
     List templateResources = []
     templates.each {
-      templateResources.addAll(it.profile.aresources)
+      templateResources.addAll(it.profile.resources)
     }
 
     return [group: group,
@@ -169,7 +169,7 @@ class GroupActivityTemplateProfileController {
     }
 
     // copy all resources
-    original.profile.aresources.each { res ->
+    original.profile.resources.each { res ->
       Resource resource = new Resource()
 
       resource.name = res.name
@@ -178,7 +178,7 @@ class GroupActivityTemplateProfileController {
 
       resource.save(flush: true)
 
-      entity.profile.addToAresources(resource)
+      entity.profile.addToResources(resource)
     }
 
     entity.profile.save(flush: true)
