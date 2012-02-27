@@ -910,7 +910,8 @@ class ProjectProfileController {
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
     List requiredResources = []
-      requiredResources.addAll(template.profile.resources)
+      if (template)
+        requiredResources.addAll(template.profile.resources)
       // find all project units linked to the project day
       List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
