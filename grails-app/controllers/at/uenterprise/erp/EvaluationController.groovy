@@ -337,34 +337,37 @@ class EvaluationController {
   }
 
    /*
-   * retrieves users matching the search parameter of the instant search
+   * retrieves group activities or project units matching the search parameter of the instant search
    */
   def searchMe = {
-    Date searchDate = new Date()
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.myDate))
-        searchDate = Date.parse("dd. MM. yy", params.myDate)
+    Date searchDate = params.date('myDate', 'dd. MM. yyyy')
 
-    def c = Entity.createCriteria()
-    List entities = c.list {
-      or {
-          eq("type", metaDataService.etGroupActivity)
-          eq("type", metaDataService.etProjectUnit)
-        }
-    }
+    if (searchDate) {
+      def c = Entity.createCriteria()
+      List entities = c.list {
+        or {
+            eq("type", metaDataService.etGroupActivity)
+            eq("type", metaDataService.etProjectUnit)
+          }
+      }
 
-    SimpleDateFormat sdf = new SimpleDateFormat("d M yyyy", new Locale("en"))
+      SimpleDateFormat sdf = new SimpleDateFormat("d M yyyy", new Locale("en"))
 
-    List results = []
-    results.addAll(entities?.findAll { entity ->
-      sdf.format(entity.profile.date) == sdf.format(searchDate)
-    })
+      List results = []
+      results.addAll(entities?.findAll { entity ->
+        sdf.format(entity.profile.date) == sdf.format(searchDate)
+      })
 
-    if (results.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") + '</span>'
-      return
+      if (results.size() == 0) {
+        render '<span class="italic">' + message(code: "searchMe.empty") + '</span>'
+        return
+      }
+      else {
+        render(template: 'searchresults', model: [results: results])
+      }
     }
     else {
-      render(template: 'searchresults', model: [results: results])
+        render '<span class="italic">' + message(code: "date.notValid") + '</span>'
     }
   }
 

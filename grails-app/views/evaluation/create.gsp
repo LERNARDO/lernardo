@@ -39,7 +39,7 @@
           <g:select name="linkedentity" id="hiddenselect" from="[target]" optionKey="id" optionValue="profile" value="${target?.id}"/>
         </g:if>
         <g:else>
-          <g:select name="linkedentity" id="hiddenselect" />
+          <g:select name="linkedentity" id="hiddenselect" from="[]"/>
         </g:else>
       </p>
 
