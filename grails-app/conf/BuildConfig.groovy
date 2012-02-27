@@ -1,6 +1,6 @@
 grails.plugin.location."obase" = "./plugins/obase-2.0"
 
-grails.project.source.level = 1.6
+//grails.project.source.level = 1.6
 
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
