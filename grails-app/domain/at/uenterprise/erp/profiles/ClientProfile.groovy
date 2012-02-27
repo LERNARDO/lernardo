@@ -68,7 +68,6 @@ class ClientProfile extends Profile {
 
   Boolean showTips = true
 
-  // for Lernardo
   String  citizenship
   Integer socialSecurityNumber
 

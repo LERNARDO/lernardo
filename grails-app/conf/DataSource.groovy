@@ -1,5 +1,5 @@
 /*
-* dataSource and environments configuration were moved to externalized file "lernardo-config.groovy"
+* dataSource and environments configuration were moved to externalized file "nuedo-config.groovy"
 */
 
 hibernate {

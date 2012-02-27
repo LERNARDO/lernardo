@@ -9,7 +9,7 @@ import grails.util.Environment
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
 def myenv = Environment.current;
-def configFile = "file:${System.properties.'catalina.base' ?: System.properties.'base.dir'}/app-config/lernardo-config.groovy"
+def configFile = "file:${System.properties.'catalina.base' ?: System.properties.'base.dir'}/app-config/nuedo-config.groovy"
 println "[$myenv] reading configuration from $configFile"
 grails.config.locations = [ configFile ]
 
@@ -181,4 +181,4 @@ locales = [new Locale ("de", "DE"), new Locale ("es", "ES"), new Locale ("en", "
 TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
 
 // application name
-application.name  = "ERPEL"
+application.name  = "Nuedo"

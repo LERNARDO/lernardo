@@ -37,7 +37,6 @@ class ParentProfile extends Profile {
 
   Boolean showTips = true
 
-  // for Lernardo
   Integer socialSecurityNumber
   String  phone
   String  citizenship
