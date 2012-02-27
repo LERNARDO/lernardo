@@ -24,10 +24,11 @@
         <div id="remoteTemplates"></div>
 
         <div style="visibility: hidden">
-          <g:textField name="template" id="hiddentextfield1" value="default"/>
+          <g:textField name="template" id="hiddentextfield1" value=""/>
         </div>
 
         <div id="templates2">
+          <span class="gray"><g:message code="groupActivityTemplate.choose"/></span>
         </div>
       </div>
 

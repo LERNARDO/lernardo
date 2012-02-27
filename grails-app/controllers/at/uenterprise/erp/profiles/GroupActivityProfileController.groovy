@@ -292,6 +292,10 @@ class GroupActivityProfileController {
     Entity groupActivityTemplate = Entity.get(params.id)
     if (!groupActivityTemplate)
       groupActivityTemplate = Entity.get(params.template)
+    if (!groupActivityTemplate) {
+      redirect action: "choose"
+      return
+    }
 
     // find all templates linked to this group
     List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
