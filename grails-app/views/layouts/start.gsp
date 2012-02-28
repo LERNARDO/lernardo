@@ -8,45 +8,24 @@
   <r:require modules="start"/>
 
   <r:script disposition="defer">
-    // TODO: the following custom JavaScript functions have to be defined here else Chrome 10 and IE 9 are not able to find them, find out why..
-    // hides an element
-    hideform = function(id) {
-      $(id).hide('slow');
-    };
-
-    // shows an element
-    showform = function(id) {
-      $(id).show('slow');
-    };
-
-    // clears the text of an element
-    cleartext = function(){
-      document.getElementById('hide').value='';
-    };
-
     // shows the spinner
-    showspinner = function(id) {
+    function showspinner(id) {
       $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
-    };
+    }
 
     // toggle element
-    toggle = function(id) {
+    function toggle(id) {
       $(id).toggle(400);
-    };
-
-    // fadetoggle element
-    ftoggle = function(id) {
-      $(id).fadeToggle(400);
-    };
+    }
 
     // clears the value of multiple elements
-    clearElements = function(elements) {
+    function clearElements(elements) {
       for (x = 0; x <= elements.length; x++)
         $(elements[x]).val('');
-    };
+    }
 
     // toggles the disabled attribute of an element
-    toggleDisabled = function(id) {
+    function toggleDisabled(id) {
       var status = $(id).attr('disabled');
       if (!status) {
         $(id).attr('disabled', 'disabled');
@@ -54,7 +33,11 @@
       }
       else
         $(id).removeAttr('disabled');
-    };
+    }
+
+    function showBigSpinner() {
+      $('#loading').css('visibility', 'visible');
+    }
 
     $(document).ready(function() {
 
@@ -79,10 +62,6 @@
       $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 
     });
-
-    function showBigSpinner() {
-      $('#loading').css('visibility', 'visible');
-    }
 
   </r:script>
 
