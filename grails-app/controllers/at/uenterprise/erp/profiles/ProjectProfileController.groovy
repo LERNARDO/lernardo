@@ -28,16 +28,16 @@ class ProjectProfileController {
 
   def beforeInterceptor = [
           action:{
-            params.mondayStart = params.mondayStart ? Date.parse("HH:mm", params.mondayStart) : null
-            params.tuesdayStart = params.tuesdayStart ? Date.parse("HH:mm", params.tuesdayStart) : null
-            params.wednesdayStart = params.wednesdayStart ? Date.parse("HH:mm", params.wednesdayStart) : null
-            params.thursdayStart = params.thursdayStart ? Date.parse("HH:mm", params.thursdayStart) : null
-            params.fridayStart = params.fridayStart ? Date.parse("HH:mm", params.fridayStart) : null
-            params.saturdayStart = params.saturdayStart ? Date.parse("HH:mm", params.saturdayStart) : null
-            params.sundayStart = params.sundayStart ? Date.parse("HH:mm", params.sundayStart) : null
+            params.mondayStart = params.date('mondayStart', 'HH:mm')
+            params.tuesdayStart = params.date('tuesdayStart', 'HH:mm')
+            params.wednesdayStart = params.date('wednesdayStart', 'HH:mm')
+            params.thursdayStart = params.date('thursdayStart', 'HH:mm')
+            params.fridayStart = params.date('fridayStart', 'HH:mm')
+            params.saturdayStart = params.date('saturdayStart', 'HH:mm')
+            params.sundayStart = params.date('sundayStart', 'HH:mm')
 
-            params.startDate = params.startDate ? Date.parse("dd. MM. yy", params.startDate) : null
-            params.endDate = params.endDate ? Date.parse("dd. MM. yy", params.endDate) : null},
+            params.startDate = params.date('startDate', 'dd. MM. yy')
+            params.endDate = params.date('endDate', 'dd. MM. yy')},
             only:['save','update']
   ]
 
@@ -1220,12 +1220,9 @@ class ProjectProfileController {
   }
 
   def searchbydate = {
-    def beginDate = null
-    def endDate = null
-    if (params.beginDate)
-      beginDate = Date.parse("dd. MM. yy", params.beginDate)
-    if (params.endDate)
-        endDate = Date.parse("dd. MM. yy", params.endDate)
+    Date beginDate = params.date('beginDate', 'dd. MM. yy')
+    Date endDate = params.date('endDate', 'dd. MM. yy')
+    
     if (!beginDate || !endDate)
       render '<span class="red italic">' + message(code: "date.insert.fromto") +  '</span>'
     else {
@@ -1471,7 +1468,7 @@ class ProjectProfileController {
     List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
     projectDays.sort {it.profile.date}
 
-    Date date = functionService.convertToUTC(Date.parse("dd. MM. yy HH:mm", params.date))
+    Date date = functionService.convertToUTC(params.date('date', 'dd. MM. yy HH:mm'))
 
     // calculate difference in minutes of hours and minutes of old and new date
     int difference = (date.getHours() * 60 + date.getMinutes()) - (projectDay.profile.date.getHours() * 60 + projectDay.profile.date.getMinutes())

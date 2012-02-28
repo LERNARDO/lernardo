@@ -23,24 +23,24 @@ class ActivityProfileController {
 
   def beforeInterceptor = [
           action:{
-            params.mondayStart = params.mondayStart ? Date.parse("HH:mm", params.mondayStart) : null
-            params.mondayEnd = params.mondayEnd ? Date.parse("HH:mm", params.mondayEnd) : null
-            params.tuesdayStart = params.tuesdayStart ? Date.parse("HH:mm", params.tuesdayStart) : null
-            params.tuesdayEnd = params.tuesdayEnd ? Date.parse("HH:mm", params.tuesdayEnd) : null
-            params.wednesdayStart = params.wednesdayStart ? Date.parse("HH:mm", params.wednesdayStart) : null
-            params.wednesdayEnd = params.wednesdayEnd ? Date.parse("HH:mm", params.wednesdayEnd) : null
-            params.thursdayStart = params.thursdayStart ? Date.parse("HH:mm", params.thursdayStart) : null
-            params.thursdayEnd = params.thursdayEnd ? Date.parse("HH:mm", params.thursdayEnd) : null
-            params.fridayStart = params.fridayStart ? Date.parse("HH:mm", params.fridayStart) : null
-            params.fridayEnd = params.fridayEnd ? Date.parse("HH:mm", params.fridayEnd) : null
-            params.saturdayStart = params.saturdayStart ? Date.parse("HH:mm", params.saturdayStart) : null
-            params.saturdayEnd = params.saturdayEnd ? Date.parse("HH:mm", params.saturdayEnd) : null
-            params.sundayStart = params.sundayStart ? Date.parse("HH:mm", params.sundayStart) : null
-            params.sundayEnd = params.sundayEnd ? Date.parse("HH:mm", params.sundayEnd) : null
+            params.mondayStart = params.date('mondayStart', 'HH:mm')
+            params.mondayEnd = params.date('mondayEnd', 'HH:mm')
+            params.tuesdayStart = params.date('tuesdayStart', 'HH:mm')
+            params.tuesdayEnd = params.date('tuesdayEnd', 'HH:mm')
+            params.wednesdayStart = params.date('wednesdayStart', 'HH:mm')
+            params.wednesdayEnd = params.date('wednesdayEnd', 'HH:mm')
+            params.thursdayStart = params.date('thursdayStart', 'HH:mm')
+            params.thursdayEnd = params.date('thursdayEnd', 'HH:mm')
+            params.fridayStart = params.date('fridayStart', 'HH:mm')
+            params.fridayEnd = params.date('fridayEnd', 'HH:mm')
+            params.saturdayStart = params.date('saturdayStart', 'HH:mm')
+            params.saturdayEnd = params.date('saturdayEnd', 'HH:mm')
+            params.sundayStart = params.date('sundayStart', 'HH:mm')
+            params.sundayEnd = params.date('sundayEnd', 'HH:mm')
 
-            params.periodStart = params.periodStart ? Date.parse("dd. MM. yy", params.periodStart) : null
-            params.periodEnd = params.periodEnd ? Date.parse("dd. MM. yy", params.periodEnd) : null
-            params.date = params.date ? Date.parse("dd. MM. yy, HH:mm", params.date) : null},
+            params.periodStart = params.date('periodStart', 'HH:mm')
+            params.periodEnd = params.date('periodEnd', 'HH:mm')
+            params.date = params.date('date', 'dd. MM. yy, HH:mm')},
             only:['save','update']
   ]
 
@@ -115,9 +115,7 @@ class ActivityProfileController {
 
     // get all activities between a given date range
     else {
-      Date inputDate = new Date()
-      if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.myDate))
-        inputDate = Date.parse("dd. MM. yy", params.myDate)
+      Date inputDate = params.date('myDate', 'dd. MM. yy')
 
       // get all activities of the facilities within the timeframe
       if (currentEntity.type.id == metaDataService.etEducator.id) {

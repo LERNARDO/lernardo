@@ -25,7 +25,7 @@ class GroupActivityProfileController {
 
   def beforeInterceptor = [
           action:{
-            params.date = params.date ? Date.parse("dd. MM. yy HH:mm", params.date) : null},
+            params.date = params.date('date', 'dd. MM. yy HH:mm')},
             only:['save','update']
   ]
 
@@ -573,12 +573,9 @@ class GroupActivityProfileController {
   }
 
   def searchbydate = {
-    def beginDate = null
-    def endDate = null
-    if (params.beginDate)
-      beginDate = Date.parse("dd. MM. yy", params.beginDate)
-    if (params.endDate)
-        endDate = Date.parse("dd. MM. yy", params.endDate)
+    Date beginDate = params.date('beginDate', 'dd. MM. yy')
+    Date endDate = params.date('endDate', 'dd. MM. yy')
+
     if (!beginDate || !endDate)
       render '<span class="red italic">' + message(code: "date.insert.fromto") +  '</span>'
     else {

@@ -141,21 +141,13 @@ class EducatorProfileController {
   }
 
   def update = {
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-      params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-    else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
-      params.birthDate = Date.parse("dd.MM.yy", params.birthDate)
-    else
-      params.birthDate = null
+    params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
 
     Entity educator = Entity.get(params.id)
 
     educator.profile.properties = params
-    // educator.profile.birthDate = functionService.convertToUTC(educator.profile.birthDate)
     educator.profile.fullName = params.lastName + " " + params.firstName
     educator.user.properties = params
-    //if (educator.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
     // update link to colony
     Link.findByTargetAndType(educator, metaDataService.ltColonia)?.delete()
@@ -210,14 +202,9 @@ class EducatorProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etEducator, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
-        if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-          ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-        else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
-          ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
+        ent.profile.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        // ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // create link to partner
       Link.findAllBySourceAndType(entity, metaDataService.ltEnlisted).each {it.delete()}
@@ -252,16 +239,10 @@ class EducatorProfileController {
   def addDate = {
     Entity educator = Entity.get(params.id)
 
-    if (params.date && Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.date))
-      params.date = Date.parse("dd. MM. yy", params.date)
-    else if (params.date && Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.date))
-      params.date = Date.parse("dd.MM.yy", params.date)
-    else
-      params.date = null
+    params.date = params.date('date', 'dd. MM. yy') ?: params.date('date', 'dd.MM.yy')
 
     if (params.date) {
       CDate date = new CDate(params)
-      // date.date = functionService.convertToUTC(date.date)
       date.type = educator.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
       educator.profile.addToDates(date)
       

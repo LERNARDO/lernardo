@@ -105,22 +105,13 @@ class ParentProfileController {
   }
 
   def update = {
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-      params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-    else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
-      params.birthDate = Date.parse("dd.MM.yy", params.birthDate)
-    else
-      params.birthDate = null
+    params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
 
     Entity parent = Entity.get(params.id)
 
     parent.profile.properties = params
-    // parent.profile.birthDate = functionService.convertToUTC(parent.profile.birthDate)
     parent.profile.fullName = params.lastName + " " + params.firstName
     parent.user.properties = params
-
-    //if (parent.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
 
     // TODO: find out how to properly handle this cascading validation stuff
     // "parent.hasErrors()" returns false even though properties in the nested class "profile" did not validate
@@ -180,14 +171,9 @@ class ParentProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etParent, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
-        if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-          ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-        else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
-          ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
+        ent.profile.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        //ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // create link to colony
       new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()

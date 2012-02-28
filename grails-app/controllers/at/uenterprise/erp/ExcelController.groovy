@@ -121,8 +121,8 @@ class ExcelController {
         sheet.setColumnView(x, cell)
       }
 
-      Date date1 = Date.parse("dd. MM. yy", params.date1)
-      Date date2 = Date.parse("dd. MM. yy", params.date2)
+      Date date1 = params.date('date1','dd. MM. yy')
+      Date date2 = params.date('date2','dd. MM. yy')
 
       List workdaycategories = WorkdayCategory.list()
 
@@ -200,8 +200,8 @@ class ExcelController {
         sheet.setColumnView(x, cell)
       }
 
-      Date date1 = Date.parse("dd. MM. yy", params.date1)
-      Date date2 = Date.parse("dd. MM. yy", params.date2)
+      Date date1 = params.date('date1', 'dd. MM. yy')
+      Date date2 = params.date('date2', 'dd. MM. yy')
 
       List workdaycategories = WorkdayCategory.list()
 

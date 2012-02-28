@@ -59,8 +59,8 @@ class DayroutineController {
     routine.title = title
     routine.description = description
 
-    routine.dateFrom = Date.parse("HH:mm", params.dateFrom)
-    routine.dateTo = Date.parse("HH:mm", params.dateTo)
+    routine.dateFrom = Date.parse("HH:mm", dateFrom)
+    routine.dateTo = Date.parse("HH:mm", dateTo)
 
     routine.dateFrom = functionService.convertToUTC(routine.dateFrom)
     routine.dateTo = functionService.convertToUTC(routine.dateTo)
@@ -78,8 +78,8 @@ class DayroutineController {
     Dayroutine routine = Dayroutine.get(params.id)
     routine.properties = params
 
-    routine.dateFrom = Date.parse("HH:mm", params.dateFrom)
-    routine.dateTo = Date.parse("HH:mm", params.dateTo)
+    routine.dateFrom = params.date('dateFrom', 'HH:mm')
+    routine.dateTo = params.date('dateTo', 'HH:mm')
 
     routine.dateFrom = functionService.convertToUTC(routine.dateFrom)
     routine.dateTo = functionService.convertToUTC(routine.dateTo)

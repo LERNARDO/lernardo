@@ -11,7 +11,8 @@ class WorkdayUnitController {
 
     def beforeInterceptor = [
             action:{
-              params.date = params.date ? Date.parse("dd. MM. yy", params.date) : null}, only:['showunits']
+              params.date = params.date('date', 'dd. MM. yy')},
+            only:['showunits']
     ]
 
     def index = {
@@ -28,16 +29,16 @@ class WorkdayUnitController {
     def showreport = {
       Entity entity = Entity.get(params.id)
       List workdaycategories = WorkdayCategory.list()
-      Date date1 = Date.parse("dd. MM. yy", params.date1)
-      Date date2 = Date.parse("dd. MM. yy", params.date2)
+      Date date1 = params.date('date1', 'dd. MM. yy')
+      Date date2 = params.date('date2', 'dd. MM. yy')
       render template: 'results', model:[entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2]
     }
 
     def createpdf = {
       Entity entity = Entity.get(params.id)
       List workdaycategories = WorkdayCategory.list()
-      Date date1 = Date.parse("dd. MM. yy", params.date1)
-      Date date2 = Date.parse("dd. MM. yy", params.date2)
+      Date date1 = params.date('date1', 'dd. MM. yy')
+      Date date2 = params.date('date2', 'dd. MM. yy')
       renderPdf template: 'createpdf', model: [entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2], filename: message(code: 'privat.workday') + '_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy") + '.pdf'
     }
 
@@ -90,7 +91,7 @@ class WorkdayUnitController {
       Calendar calendar = Calendar.getInstance()
 
       // set start
-      Date from = params.from ? Date.parse("HH:mm", params.from) : null
+      Date from = params.date('from', 'HH:mm')
       calendar.setTime(workdayUnit.date1)
       calendar.set (Calendar.HOUR_OF_DAY, from.getHours())
       calendar.set (Calendar.MINUTE, from.getMinutes())
@@ -98,7 +99,7 @@ class WorkdayUnitController {
       workdayUnit.date1 = functionService.convertToUTC(workdayUnit.date1)
 
       // set end
-      Date to = params.to ? Date.parse("HH:mm", params.to) : null
+      Date to = params.date('to', 'HH:mm')
       calendar.set (Calendar.HOUR_OF_DAY, to.getHours())
       calendar.set (Calendar.MINUTE, to.getMinutes())
       workdayUnit.date2 = calendar.getTime()
@@ -117,7 +118,7 @@ class WorkdayUnitController {
       Calendar calendar = Calendar.getInstance()
 
       // set start
-      Date from = params.from ? Date.parse("HH:mm", params.from) : null
+      Date from = params.date('from', 'HH:mm')
       calendar.setTime(params.date)
       calendar.set (Calendar.HOUR_OF_DAY, from.getHours())
       calendar.set (Calendar.MINUTE, from.getMinutes())
@@ -125,7 +126,7 @@ class WorkdayUnitController {
       workdayUnit.date1 = functionService.convertToUTC(workdayUnit.date1)
 
       // set end
-      Date to = params.to ? Date.parse("HH:mm", params.to) : null
+      Date to = params.date('to', 'HH:mm')
       calendar.set (Calendar.HOUR_OF_DAY, to.getHours())
       calendar.set (Calendar.MINUTE, to.getMinutes())
       workdayUnit.date2 = calendar.getTime()
@@ -254,8 +255,8 @@ class WorkdayUnitController {
     }
 
     def evaluatePDF = {
-      Date date1 = Date.parse("dd. MM. yy", params.date1)
-      Date date2 = Date.parse("dd. MM. yy", params.date2)
+      Date date1 = params.date('date1', 'dd. MM. yy')
+      Date date2 = params.date('date2', 'dd. MM. yy')
 
       List persons = []
       List educators = Entity.createCriteria().list {

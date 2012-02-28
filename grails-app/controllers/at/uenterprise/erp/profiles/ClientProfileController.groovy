@@ -153,37 +153,15 @@ class ClientProfileController {
   }
 
   def update = {
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-      params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-    else
-      params.birthDate = null
-
-    if ( params.schoolDropoutDate ) {
-      if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolDropoutDate))
-        params.schoolDropoutDate = Date.parse("dd. MM. yy", params.schoolDropoutDate)
-      else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolDropoutDate))
-        params.schoolDropoutDate = Date.parse("dd.MM.yy", params.schoolDropoutDate)
-    }
-
-    if ( params.schoolRestartDate ) {
-      if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolRestartDate))
-        params.schoolRestartDate = Date.parse("dd. MM. yy", params.schoolRestartDate)
-      else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolRestartDate))
-        params.schoolRestartDate = Date.parse("dd.MM.yy", params.schoolRestartDate)
-    }
+    params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
+    params.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
+    params.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
 
     Entity client = Entity.get(params.id)
 
     client.profile.properties = params
-//    client.profile.birthDate = functionService.convertToUTC(client.profile.birthDate)
-//    if (client.profile.schoolDropoutDate)
-//        client.profile.schoolDropoutDate = functionService.convertToUTC(client.profile.schoolDropoutDate)
-//    if (client.profile.schoolRestartDate)
-//        client.profile.schoolRestartDate = functionService.convertToUTC(client.profile.schoolRestartDate)
     client.profile.fullName = params.lastName + " " + params.firstName
     client.user.properties = params
-    //if (client.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
     // update link to colony
     Link.findByTargetAndType(client, metaDataService.ltColonia)?.delete()
@@ -254,31 +232,11 @@ class ClientProfileController {
 
         ent.profile.properties = params
         ent.user.properties = params
-        if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-          ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-        else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
-          ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
+        ent.profile.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
+        ent.profile.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
+        ent.profile.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        // ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
-        if ( params.schoolDropoutDate ) {
-          if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolDropoutDate))
-            ent.profile.schoolDropoutDate = Date.parse("dd. MM. yy", params.schoolDropoutDate)
-          else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolDropoutDate))
-            ent.profile.schoolDropoutDate = Date.parse("dd.MM.yy", params.schoolDropoutDate)
-        }
-//        if (ent.profile.schoolDropoutDate)
-//            ent.profile.schoolDropoutDate = functionService.convertToUTC(ent.profile.schoolDropoutDate)
-
-        if ( params.schoolRestartDate ) {
-          if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolRestartDate))
-            ent.profile.schoolRestartDate = Date.parse("dd. MM. yy", params.schoolRestartDate)
-          else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolRestartDate))
-            ent.profile.schoolRestartDate = Date.parse("dd.MM.yy", params.schoolRestartDate)
-        }
-        //if (ent.profile.schoolRestartDate)
-        //    ent.profile.schoolRestartDate = functionService.convertToUTC(ent.profile.schoolRestartDate)
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // create link to colony
       new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
@@ -355,16 +313,10 @@ class ClientProfileController {
   def addDate = {
     Entity client = Entity.get(params.id)
 
-    if (params.date && Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.date))
-      params.date = Date.parse("dd. MM. yy", params.date)
-    else if (params.date && Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.date))
-      params.date = Date.parse("dd.MM.yy", params.date)
-    else
-      params.date = null
+    params.date = params.date('date', 'dd. MM. yy') ?: params.date('date', 'dd.MM.yy')
 
     if (params.date) {
       CDate date = new CDate(params)
-      // date.date = functionService.convertToUTC(date.date)
       date.type = client.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
       client.profile.addToDates(date)
 

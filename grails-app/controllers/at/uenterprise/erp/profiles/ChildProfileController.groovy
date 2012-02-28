@@ -13,12 +13,12 @@ class ChildProfileController {
   FunctionService functionService
   def securityManager
 
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
   def index = {
     redirect action: "list", params: params
   }
-
-  // the delete, save and update actions only accept POST requests
-  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
     params.offset = params.int('offset') ?: 0
@@ -53,7 +53,6 @@ class ChildProfileController {
     Entity family = functionService.findByLink(child, null, metaDataService.ltGroupMemberChild)
 
     return [child: child, family: family]
-
   }
 
   def delete = {
@@ -87,26 +86,16 @@ class ChildProfileController {
     }
 
     return [child: child]
-
   }
 
   def update = {
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-      params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-    else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
-      params.birthDate = Date.parse("dd.MM.yy", params.birthDate)
-    else
-      params.birthDate = null
-
+    params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
+    
     Entity child = Entity.get(params.id)
 
     child.profile.properties = params
-    // child.profile.birthDate = functionService.convertToUTC(child.profile.birthDate)
     child.profile.fullName = params.lastName + " " + params.firstName
     child.user.properties = params
-
-    //if (child.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, child.user.locale)
 
     if (child.profile.save() && child.user.save() && child.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "child"), child.profile.fullName])
@@ -126,14 +115,10 @@ class ChildProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etChild, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
-        if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-          ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-        else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
-          ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
+        ent.profile.birthDate = params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "object.created", args: [message(code: "child"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]

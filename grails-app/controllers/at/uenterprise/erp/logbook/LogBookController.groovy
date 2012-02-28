@@ -26,7 +26,7 @@ class LogBookController {
 
   def showEntry = {
     Entity facility = Entity.get(params.facility)
-    Date date = Date.parse("dd. MM. yy", params.date)
+    Date date = params.date('date', 'dd. MM. yy')
 
     Entity currentEntity = entityHelperService.loggedIn
     List facilities = Entity.findAllByType(metaDataService.etFacility)
@@ -43,7 +43,7 @@ class LogBookController {
 
   def createEntry = {
     Entity facility = Entity.get(params.facility)
-    Date date = Date.parse("dd. MM. yy", params.date)
+    Date date = params.date('date', 'dd. MM. yy')
 
     Entity currentEntity = entityHelperService.loggedIn
     List facilities = Entity.findAllByType(metaDataService.etFacility)
@@ -74,7 +74,7 @@ class LogBookController {
 
   def deleteEntry = {
     Entity facility = Entity.get(params.facility.toLong())
-    Date date = Date.parse("dd. MM. yy", params.date)
+    Date date = params.date('date', 'dd. MM. yy')
 
     LogEntry.findByDateAndFacility(date, facility)?.delete(flush: true)
 
@@ -181,9 +181,7 @@ class LogBookController {
 
   def showEvaluation = {
     Entity facility = Entity.get(params.facility)
-    Date date = params.date
-    if (!date)
-      date = Date.parse("dd. MM. yy", params.date2)
+    Date date = params.date ?: params.date('date2', 'dd. MM. yy')
 
     LogMonth logMonth = LogMonth.findByDate(date)
 
@@ -261,7 +259,7 @@ class LogBookController {
 
   def createpdf = {
     Entity facility = Entity.get(params.facility.toInteger())
-    Date date = Date.parse("dd. MM. yy", params.date)
+    Date date = params.date('date', 'dd. MM. yy')
     LogMonth logMonth = LogMonth.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
     renderPdf template: 'printEvaluation', model: [currentEntity: currentEntity, logMonth: logMonth, facility: facility, date: date], filename: "Logbuch" + '.pdf'
@@ -424,21 +422,21 @@ class LogBookController {
     attendance.saturday = params.saturday ? true : false
     attendance.sunday = params.sunday ? true : false
 
-    attendance.mondayFrom = params.mondayFrom ? Date.parse("HH:mm", params.mondayFrom) : null
-    attendance.tuesdayFrom = params.tuesdayFrom ? Date.parse("HH:mm", params.tuesdayFrom) : null
-    attendance.wednesdayFrom = params.wednesdayFrom ? Date.parse("HH:mm", params.wednesdayFrom) : null
-    attendance.thursdayFrom = params.thursdayFrom ? Date.parse("HH:mm", params.thursdayFrom) : null
-    attendance.fridayFrom = params.fridayFrom ? Date.parse("HH:mm", params.fridayFrom) : null
-    attendance.saturdayFrom = params.saturdayFrom ? Date.parse("HH:mm", params.saturdayFrom) : null
-    attendance.sundayFrom = params.sundayFrom ? Date.parse("HH:mm", params.sundayFrom) : null
+    attendance.mondayFrom = params.date('mondayFrom', 'HH:mm')
+    attendance.tuesdayFrom = params.date('tuesdayFrom', 'HH:mm')
+    attendance.wednesdayFrom = params.date('wednesdayFrom', 'HH:mm')
+    attendance.thursdayFrom = params.date('thursdayFrom', 'HH:mm')
+    attendance.fridayFrom = params.date('fridayFrom', 'HH:mm')
+    attendance.saturdayFrom = params.date('saturdayFrom', 'HH:mm')
+    attendance.sundayFrom = params.date('sundayFrom', 'HH:mm')
 
-    attendance.mondayTo = params.mondayTo ? Date.parse("HH:mm", params.mondayTo) : null
-    attendance.tuesdayTo = params.tuesdayTo ? Date.parse("HH:mm", params.tuesdayTo) : null
-    attendance.wednesdayTo = params.wednesdayTo ? Date.parse("HH:mm", params.wednesdayTo) : null
-    attendance.thursdayTo = params.thursdayTo ? Date.parse("HH:mm", params.thursdayTo) : null
-    attendance.fridayTo = params.fridayTo ? Date.parse("HH:mm", params.fridayTo) : null
-    attendance.saturdayTo = params.saturdayTo ? Date.parse("HH:mm", params.saturdayTo) : null
-    attendance.sundayTo = params.sundayTo ? Date.parse("HH:mm", params.sundayTo) : null
+    attendance.mondayTo = params.date('mondayTo', 'HH:mm')
+    attendance.tuesdayTo = params.date('tuesdayTo', 'HH:mm')
+    attendance.wednesdayTo = params.date('wednesdayTo', 'HH:mm')
+    attendance.thursdayTo = params.date('thursdayTo', 'HH:mm')
+    attendance.fridayTo = params.date('fridayTo', 'HH:mm')
+    attendance.saturdayTo = params.date('saturdayTo', 'HH:mm')
+    attendance.sundayTo = params.date('sundayTo', 'HH:mm')
 
     attendance.save()
 

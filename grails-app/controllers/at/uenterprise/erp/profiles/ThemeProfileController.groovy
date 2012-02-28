@@ -18,8 +18,8 @@ class ThemeProfileController {
 
   def beforeInterceptor = [
           action:{
-            params.startDate = params.startDate ? Date.parse("dd. MM. yy", params.startDate) : null
-            params.endDate = params.endDate ? Date.parse("dd. MM. yy", params.endDate) : null},
+            params.startDate = params.date('startDate', 'dd. MM. yy')
+            params.endDate = params.date('endDate', 'dd. MM. yy')},
             only:['save','update']
   ]
   
