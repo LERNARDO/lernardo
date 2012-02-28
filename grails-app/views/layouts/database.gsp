@@ -223,6 +223,11 @@
   </r:script>
 
   <r:layoutResources/>
+
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}"></script>
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon.js')}"></script>
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
+
   <g:layoutHead />
   <ckeditor:resources />
   <ga:trackPageview />
