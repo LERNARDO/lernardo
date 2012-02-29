@@ -65,7 +65,7 @@
           <div class="buttons">
             <div class="button"><g:actionSubmit class="buttonGreen" action="saveNotification" value="${message(code: 'notification.send')}" /></div>
             <div class="button"><g:actionSubmit class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" value="${message(code: 'cancel')}" /></div>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </div>
         </g:form>
 

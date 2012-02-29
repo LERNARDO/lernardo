@@ -44,7 +44,7 @@
         <div class="buttons">
           <g:form controller="logBook" action="createProcess">
             <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'object.create', args: [message(code: 'process')])}"/></div>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:form>
         </div>
     </erp:accessCheck>

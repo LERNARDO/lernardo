@@ -36,7 +36,7 @@
         <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'client')])}" /></div>
         </g:form>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
     </erp:accessCheck>
 

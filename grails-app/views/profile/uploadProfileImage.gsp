@@ -33,7 +33,7 @@
             <g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}"><g:message code="delete"/></g:link>
           </g:if>
           <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}"><g:message code="cancel"/></g:link>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </div>
         
       </g:uploadForm>

@@ -17,7 +17,7 @@
 
 %{--    <div class="buttons">
       <g:link class="buttonGreen" action="create" id="${entity.id}"><g:message code="evaluation.create"/></g:link>
-      <div class="spacer"></div>
+      <div class="clear"></div>
     </div>--}%
 
     <ul>

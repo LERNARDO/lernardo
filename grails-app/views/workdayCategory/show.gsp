@@ -36,7 +36,7 @@
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
         </g:form>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
     </erp:accessCheck>
 

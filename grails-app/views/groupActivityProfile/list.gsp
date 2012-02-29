@@ -21,7 +21,7 @@
       <g:form>
         <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
           <div class="button"><g:actionSubmit class="buttonGreen" action="choose" value="${message(code: 'groupActivity.plan')}"/></div>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </erp:accessCheck>
       </g:form>
     </div>

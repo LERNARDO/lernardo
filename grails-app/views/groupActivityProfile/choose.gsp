@@ -35,7 +35,7 @@
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'groupActivity.plan')}"/></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}"/></div>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
 
     </g:form>

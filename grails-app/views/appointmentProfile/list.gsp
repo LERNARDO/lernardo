@@ -33,7 +33,7 @@
         <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'appointment')])}"/></div>
           <div class="button"><g:link class="buttonGray" controller="calendar" action="show"><g:message code="toCalendar"/></g:link></div>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </g:form>
       </div>
     </erp:accessCheck>

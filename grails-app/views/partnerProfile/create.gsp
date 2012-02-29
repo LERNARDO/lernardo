@@ -97,7 +97,7 @@
             </td>
             %{--<td width="130" valign="top" class="name"><g:message code="languageSelection"/></td>
             <td valign="top" class="value">
-              <erp:localeSelect class="drop-down-150" name="locale" value="${partner?.user?.locale}"/>
+              <erp:localeSelect name="locale" value="${partner?.user?.locale}"/>
             </td>--}%
           </tr>
         </table>
@@ -106,7 +106,7 @@
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}" /></div>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
 
     </g:form>

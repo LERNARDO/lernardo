@@ -129,9 +129,9 @@
         <div class="zusatz-add" id="labels" style="display:none">
           <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addLabel', id:group.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
-            %{--<div class="spacer"></div>--}%
+            %{--<div class="clear"></div>--}%
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            %{--<div class="spacer"></div>--}%
+            %{--<div class="clear"></div>--}%
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="labels2">
@@ -221,9 +221,9 @@
             <div id="parentselect">
               <g:render template="parentselect" model="[allParents: allParents, group: group]"/>
             </div>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="parents2">
@@ -237,9 +237,9 @@
         <div class="zusatz-add" id="partners" style="display:none">
           <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">
             <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="partners2">

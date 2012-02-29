@@ -49,7 +49,7 @@
             <g:submitButton class="buttonGreen" name="submit" value="${message(code: 'change.pwd')}"/>
           </g:form>
         </erp:accessCheck>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
     </td>
   </tr>

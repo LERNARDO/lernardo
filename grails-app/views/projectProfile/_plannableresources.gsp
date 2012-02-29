@@ -22,7 +22,7 @@
 
               </div>
             </g:each>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:if>
         </li>
       </erp:getResourceFree>

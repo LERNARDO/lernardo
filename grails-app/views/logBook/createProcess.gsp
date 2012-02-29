@@ -69,7 +69,7 @@
     <div class="buttons">
       <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}" /></div>
       <g:link class="buttonGray" action="processes"><g:message code="cancel"/></g:link>
-      <div class="spacer"></div>
+      <div class="clear"></div>
     </div>
 
   </g:form>

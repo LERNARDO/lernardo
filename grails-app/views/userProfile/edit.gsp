@@ -51,7 +51,7 @@
             </td>
             %{--<td>
               <g:message code="languageSelection"/>:
-              <erp:localeSelect class="drop-down-150" name="locale" value="${user?.user?.locale}"/>
+              <erp:localeSelect name="locale" value="${user?.user?.locale}"/>
             </td>--}%
           </tr>
         </table>
@@ -60,7 +60,7 @@
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
 
     </g:form>

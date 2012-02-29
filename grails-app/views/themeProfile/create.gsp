@@ -48,7 +48,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="facility"/></td>
           <td valign="top" class="value">
-            <g:select class="drop-down-220" from="${allFacilities}" name="facility" optionKey="id" optionValue="profile" value=""/>
+            <g:select from="${allFacilities}" name="facility" optionKey="id" optionValue="profile" value=""/>
           </td>
         </tr>
 
@@ -64,7 +64,7 @@
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}" /></div>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
       
     </g:form>

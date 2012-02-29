@@ -21,7 +21,7 @@
       <g:form>
         <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'projectTemplate')])}"/></div>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </erp:accessCheck>
       </g:form>
     </div>
@@ -55,7 +55,7 @@
         </table>
 
         <g:submitButton name="button" value="${message(code:'define')}"/>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </g:formRemote>
     </div>
 

@@ -21,7 +21,7 @@
 
     %{--<div class="buttons">
       <g:link class="buttonGreen" controller="msg" action="inbox" id="${entity.id}"><g:message code="msg.inbox"/></g:link>
-      <div class="spacer"></div>
+      <div class="clear"></div>
     </div>--}%
 
     <g:if test="${totalMessages == 0}">

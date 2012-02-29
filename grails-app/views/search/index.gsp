@@ -27,7 +27,7 @@
 
     </div>
   </g:each>
-  <div class="spacer"></div>
+  <div class="clear"></div>
 </g:if>
 <g:else>
   <span class="italic"><g:message code="noResultsFound"/></span>

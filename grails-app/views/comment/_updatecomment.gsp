@@ -2,6 +2,6 @@
   <g:textArea rows="5" cols="70" name="content" value="${comment.content}"/>
   <div class="buttons">
     <g:submitButton name="submitButton" class="buttonGreen" value="${message(code:'change')}"/>
-    <div class="spacer"></div>
+    <div class="clear"></div>
   </div>
 </g:formRemote>

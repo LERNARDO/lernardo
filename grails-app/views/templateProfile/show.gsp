@@ -110,9 +110,9 @@
                 <td><g:textField size="5" name="amount" value="1"/></td>
               </tr>
             </table>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
 
         </div>
@@ -127,9 +127,9 @@
         <div class="zusatz-add" id="methods" style="display:none">
           <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="showspinner('#methods2');" after="toggle('#methods');">
             <g:select name="method" from="${allMethods}" optionKey="id" optionValue="name"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="methods2">
@@ -143,9 +143,9 @@
         <div class="zusatz-add" id="labels" style="display:none">
           <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addLabel', id:template.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="labels2">

@@ -18,7 +18,7 @@
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
           <erp:getFavorite entity="${entity}"/>
         </g:form>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
     </td>
   </tr>

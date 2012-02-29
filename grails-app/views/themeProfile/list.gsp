@@ -20,7 +20,7 @@
       <div class="buttons">
         <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'theme')])}"/></div>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </g:form>
       </div>
     </erp:accessCheck>

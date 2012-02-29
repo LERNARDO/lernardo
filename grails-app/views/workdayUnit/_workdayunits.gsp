@@ -77,9 +77,9 @@
             </tr>
           </table>
 
-          <div class="spacer"></div>
+          <div class="clear"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </g:formRemote>
       </div>
     </g:if>

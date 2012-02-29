@@ -25,7 +25,7 @@
             </g:if>
           </erp:notMe>
         </g:form>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
     </td>
   </tr>

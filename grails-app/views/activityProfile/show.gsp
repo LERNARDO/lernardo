@@ -119,9 +119,9 @@
               <g:formRemote name="formRemote" url="[controller:'activityProfile', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
                 <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
                 <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
-                <div class="spacer"></div>
+                <div class="clear"></div>
                 <g:submitButton name="button" value="${message(code:'add')}"/>
-                <div class="spacer"></div>
+                <div class="clear"></div>
               </g:formRemote>
             </div>
             <div id="clients2">

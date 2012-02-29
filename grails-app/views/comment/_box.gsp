@@ -17,7 +17,7 @@
         </div>
         <div class="buttons">
           <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'add')}"/></div>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </div>
       </g:formRemote>
     </div>

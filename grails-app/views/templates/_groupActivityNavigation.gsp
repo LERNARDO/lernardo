@@ -19,7 +19,7 @@
           <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div> <div style="float: left; padding: 7px 0 0 0;"><g:checkBox name="printtemplates" value=""/></div><div style="float: left; padding: 7px 0 0 5px;"> <g:message code="activityTemplates.with"/></div>
           <erp:getFavorite entity="${entity}"/>
         </g:form>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
     </td>
   </tr>

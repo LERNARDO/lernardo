@@ -82,9 +82,9 @@
           <g:if test="${allProjects}">
             <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addProject', id: theme.id]" update="projects2" before="showspinner('#projects2');"  after="toggle('#projects');">
               <g:select name="project" from="${allProjects}" optionKey="id" optionValue="profile"/>
-              <div class="spacer"></div>
+              <div class="clear"></div>
               <g:submitButton name="button" value="${message(code:'add')}"/>
-              <div class="spacer"></div>
+              <div class="clear"></div>
             </g:formRemote>
           </g:if>
           <g:else>
@@ -103,9 +103,9 @@
           <g:if test="${allActivityGroups}">
             <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addActivityGroup', id: theme.id]" update="activitygroups2" before="showspinner('#activitygroups2');" after="toggle('#activitygroups');">
               <g:select name="activitygroup" from="${allActivityGroups}" optionKey="id" optionValue="profile"/>
-              <div class="spacer"></div>
+              <div class="clear"></div>
               <g:submitButton name="button" value="${message(code:'add')}"/>
-              <div class="spacer"></div>
+              <div class="clear"></div>
             </g:formRemote>
           </g:if>
           <g:else>

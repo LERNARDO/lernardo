@@ -85,9 +85,9 @@
         <div class="zusatz-add" id="labels" style="display:none">
           <g:formRemote name="formRemote2" url="[controller:'groupActivityTemplateProfile', action:'addLabel', id:group.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="labels2">
@@ -143,7 +143,7 @@
             </table>
 
             <g:submitButton name="button" value="${message(code:'define')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
 
           <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2" before="showspinner('#templates2');" after="toggle('#templates');">
@@ -177,9 +177,9 @@
                 <td><g:textField size="5" name="amount" value="1"/></td>
               </tr>
             </table>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
 
         </div>

@@ -42,7 +42,7 @@
         <div class="buttons">
           <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="${message(code: 'change')}" /></div>
           <g:remoteLink class="buttonGray" update="content" controller="publication" action="list" id="${entity.id}"><g:message code="cancel"/></g:remoteLink>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </div>
 
       </g:formRemote>

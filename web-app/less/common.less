@@ -520,9 +520,6 @@ ol li {
     .toolTip .second {
         padding: 5px; }
 
-.spacer {
-    clear: both; }
-
 .bold {
     font-weight: bold;
     padding-bottom: 3px; }
@@ -610,21 +607,6 @@ ul {
     float: left;
     list-style-type: none;
     margin-right: 10px; }
-
-#imgmenu {
-    ol {
-        height: 115px;
-        li {
-            float: left;
-            padding: 0;
-            list-style-type: none;
-            margin-left: 0;
-            a {
-                text-decoration: none;
-            }
-        }
-    }
-}
 
 #banner {
     height: 115px;
@@ -715,54 +697,7 @@ input[type=text]:hover, select:hover, textarea:hover {
      border: 1px solid #666;
 }
 
-.innersidebox {
-    background: #f0f0f0;
-    padding: 5px 10px 10px 10px; }
-
-.sideboxheader {
-    border-bottom: 1px solid #7b7b7b;
-    font-weight: bold;
-    padding-bottom: 3px;
-    text-align: center; }
-
-.sideboxcontent {
-    padding-top: 10px;
-    ul {
-        margin-left: 10px;
-        li {
-            margin: 0 0 3px 5px;
-            list-style-type: disc;
-        }
-    }
-}
-
-.quoter {
-    margin: 7px 0 0 0;
-    padding: 0;
-    text-align: right; }
-
-.quote {
-    font-style: italic;
-    line-height: 18px; }
-
-/* ----- REGISTER ----- */
-
-#registerbox table td {
-    padding: 5px;
-    text-align: right;
-    width: 150px; }
-
 /* ----- TABLES ----- */
-
-.listing {
-    width: 100%; }
-    .listing tr {
-        border-bottom: 1px dotted #999; }
-    .listing td {
-        padding: 4px; }
-    .listing td.name {
-        width: 125px;
-        font-weight: bold; }
 
 .row-educator {
     background-color: #C6DAFF; }
@@ -1027,9 +962,6 @@ a {
     }
 }
 
-.activity-list-head {
-    padding-top: 6px; }
-
 #newTemplate {
     border: 1px solid #333;
     background: #666;
@@ -1046,10 +978,6 @@ a {
 table#msg-composer td {
     padding: 3px 5px; }
 
-#inbox-message-overview.message-rows {
-  border-collapse: collapse;
-  width: 100%; }
-
 .show-msg td.msg-title {
   font-weight: bold;
   font-size: 16px;
@@ -1063,91 +991,7 @@ table#msg-composer td {
   margin-top: 10px;
   padding-top: 10px; }
 
-#inbox-message-overview.message-rows tr td {
-  border-bottom: 1px solid #eeeeee;
-  padding: 5px 5px; }
-
-.message-rows .checkbox-toggle {
-  width: 35px; }
-
-.message-rows .checkbox-toggle input{
-  margin-left: 8px; }
-
-.message-rows .profile-pic {
-  line-height: 1px;
-  width: 50px; }
-
-.message-rows td.name-date {
-  width: 150px; }
-
-.message-rows .name-date .name {
-  width: 170px;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  margin-right: 20px; }
-
-.message-rows .name-date .date {
-  color: #777777;
-  display: block;
-  font-size: 11px;
-  padding: 1px 0 0; }
-
-.message-rows .name-date .state {
-  color: #AA0000;
-  font-size: 11px;
-  padding: 1px 0 4px;
-  font-weight: bold; }
-
-.message-rows .msg-unread {
-  background-color: #d5dce0; }
-
-.message-rows .msg-unread .subject {
-  font-weight: bold; }
-
-.message-rows .subject {
-  margin-right: 10px; }
-
-.message-rows .subject .subject-text {
-  padding-left: 22px; }
-
-.message-rows .delete-msg {
-  width: 80px;
-  font-size: 11px;
-  text-align: right; }
-
-.message-rows .delete-msg a {
-  margin-right: 8px; }
-
-.info-msg-postbox {
-  padding:5px;
-  color: #606060;
-  text-align: left; }
-
-#inbox-footer {
-  margin-top: -1px;
-  padding: 3px 0 2px;
-  height: 15px; }
-
-.pager-container {
-  float: right;
-  margin: 0 0;
-  text-align: right;
-  width: 200px;
-  padding-right: 15px; }
-
-.pager-container .page-list li {
-  display: inline; }
-
-#inbox-footer .pager-container .page-list a.current,
-#inbox-footer .pager-container .page-list a.current:hover {
-  border-bottom:2px solid #89b7da;
-  font-weight: bold; }
-
 /* ----- MEMBERS ----- */
-
-.search-field {
-    margin-bottom: 15px; }
 
 .member {
     padding: 5px;
@@ -1235,15 +1079,10 @@ table#msg-composer td {
 }
 
 #flash-msg {
-    //padding: 5px;
     position: absolute;
     top: 74px;
     left: 600px;
-    //text-align: center;
     color: #6c6;
-    //border: 1px solid #4a4;
-    //background-color: #6c6;
-    //border-radius: 5px;
     z-index: 200; }
 
 .info-msg {
@@ -1291,82 +1130,21 @@ table#msg-composer td {
 #jobType {
 	width: 175px; }
 
-.felder {
-	background-color: #FFF;
-	border: 1px solid #000;
-	padding: 2.5px; }
-
 .overview {
     float: left;
     margin: 0 10px 10px 0;
     .box {
-        background: #efefef !important;
-        border: 1px solid #dedede !important;
+        margin: 0 15px 15px 0;
+        text-align: center;
+        float: left;
+        padding: 5px;
+        height: 100px;
+        background: #efefef;
+        border: 1px solid #dedede;
         &:hover {
-            border: 1px solid #cdcdcd !important;
-            background: #dedede !important;
+            border: 1px solid #cdcdcd;
+            background: #dedede;
         }
-    }
-}
-
-.drop-down-280 {
-	width: 280px; }
-.drop-down-240 {
-	width: 240px; }
-.drop-down-205 {
-	width: 205px; }
-.drop-down-200 {
-	width: 200px; }
-.drop-down-210 {
-	width: 210px; }
-.drop-down-220 {
-	width: 220px; }
-.drop-down-150 {
-	width: 150px; }
-.liste-280 {
-	width: 280px;
-	height: 60px; }
-.liste-300 {
-	width: 300px;
-	height: 35px; }
-.liste-200 {
-	width: 200px;
-	height: 60px; }
-.liste-210 {
-	width: 210px;
-	height: 60px; }
-.liste-190 {
-	width: 190px;
-	height: 60px; }
-#liste-200 {
-	width: 200px;
-	height: 65px; }
-#liste-240 {
-	width: 240px;
-	height: 60px; }
-#liste-450 {
-	width: 450px;
-	height: 60px; }
-#drop-down-220 {
-	width: 220px; }
-
-.detail {
-	float:left;
-	width:100px; }
-
-.gruppierung {
-	width: 800px;
-	clear:both; }
-
-.hinweis {
-    background: #ccc;
-    padding: 4px 5px;
-    color: #ccc;
-	font-size: 12px;
-    &:hover {
-        background: #666;
-		color: #fff;
-        text-decoration: none;
     }
 }
 
@@ -1440,10 +1218,6 @@ table#msg-composer td {
 
 .clearFloat {
     clear: both; }
-
-.long-field {
-    width: 330px;
-    height: 80px; }
 
 .atag {
     border: 1px solid #ccc;
@@ -1598,8 +1372,6 @@ table#msg-composer td {
         padding: 0;
     }
 }
-
-
 
 #livetickerbox {
     margin-bottom: 15px;
@@ -1972,7 +1744,6 @@ table#msg-composer td {
             text-align: center;
             color: @cyan;
             font-size: 16px;
-            //font-weight: bold;
             margin-bottom: 6px;
         }
         .area {
@@ -2009,7 +1780,6 @@ table.info {
         vertical-align: top;
         padding: 0 5px;
         height: 27px;
-        //border: 1px solid #eee;
         width: 200px;
     }
 }

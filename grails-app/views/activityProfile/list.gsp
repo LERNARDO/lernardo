@@ -51,7 +51,7 @@
         <div class="buttons">
           <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="OK"/></div>
           <div class="button"><g:link class="buttonGreen" action="list" params="[myDate: 'all']"><g:message code="all"/></g:link></div>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </div>
       </g:form>
     </div>

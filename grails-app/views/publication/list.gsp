@@ -21,7 +21,7 @@
       <div class="buttons">
         <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'publication.upload')}"/></div>
-          <div class="spacer"></div>
+          <div class="clear"></div>
         </g:form>
       </div>
     </erp:accessCheck>

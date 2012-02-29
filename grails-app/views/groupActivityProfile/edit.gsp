@@ -42,7 +42,7 @@
 
           <tr class="prop">
             <td colspan="3" valign="top" class="value">
-              <g:select class="drop-down-240" from="['succeeded','notSucceeded']" name="educationalObjective" value="${group.profile.educationalObjective}" noSelection="['': message(code: 'none')]" valueMessagePrefix="goal"/>
+              <g:select from="['succeeded','notSucceeded']" name="educationalObjective" value="${group.profile.educationalObjective}" noSelection="['': message(code: 'none')]" valueMessagePrefix="goal"/>
             </td>
           </tr>
 
@@ -77,7 +77,7 @@
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
 
     </g:form>

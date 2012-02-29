@@ -44,7 +44,7 @@
       <div class="buttons">
         <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="${message(code: 'send')}"/></div>
         <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="cancel"/></g:link>
-        <div class="spacer"></div>
+        <div class="clear"></div>
       </div>
 
     </g:form>

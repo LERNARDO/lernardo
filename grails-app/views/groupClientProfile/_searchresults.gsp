@@ -19,7 +19,7 @@
 
     </div>
   </g:each>
-  <div class="spacer"></div>
+  <div class="clear"></div>
 
   <script type="text/javascript">
 
@@ -68,7 +68,7 @@
   <div id="hidden" style="display: none"></div>
 
   <g:submitButton style="margin-top: 5px" onclick="kontrolle();" name="button" value="${message(code:'add')}"/>
-  <div class="spacer"></div>
+  <div class="clear"></div>
 
 </g:if>
 <g:else>

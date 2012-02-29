@@ -95,9 +95,9 @@
                 <td><g:textField id="cFunction" size="30" name="function" value=""/></td>
               </tr>
             </table>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="representatives2">
@@ -139,9 +139,9 @@
               </tr>
             </table>
 
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="resources2">

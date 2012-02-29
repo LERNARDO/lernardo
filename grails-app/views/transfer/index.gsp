@@ -17,16 +17,16 @@
       Kinder importieren:
       <g:form controller="transfer" action="importChildren" enctype="multipart/form-data">
           <input type="file" name="file" size="50"/>
-          <div class="spacer"></div>
+          <div class="clear"></div>
           <g:submitButton name="submitButton" value="Import"/>
-          <div class="spacer"></div>
+          <div class="clear"></div>
       </g:form>
 
       Kinder exportieren:
       %{--<export:formats formats="['xml']" action="exportChildren" />--}%
-      <div class="spacer"></div>
+      <div class="clear"></div>
       <g:link class="buttonGreen" action="exportChildren">Export</g:link>
-      <div class="spacer"></div>
+      <div class="clear"></div>
     </div>
   </div>
 </body>

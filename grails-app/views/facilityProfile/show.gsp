@@ -168,9 +168,9 @@
               </tr>
             </table>
 
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="contacts2">
@@ -209,9 +209,9 @@
                 <td><g:select name="classification" from="${grailsApplication.config.resourceclasses}" value="" valueMessagePrefix="resourceclass"/></td>
               </tr>
             </table>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="resources2">

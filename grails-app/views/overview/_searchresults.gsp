@@ -15,4 +15,4 @@
     
   </div>
 </g:each>
-<div class="spacer"></div>
+<div class="clear"></div>

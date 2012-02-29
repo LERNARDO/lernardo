@@ -86,7 +86,7 @@
             </table>
 
             <g:submitButton name="button" value="${message(code:'groupClient.clients.define')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
 
           <g:formRemote name="formRemote" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2" before="showspinner('#clients2')">

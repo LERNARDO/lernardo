@@ -30,7 +30,7 @@
     <div class="buttons">
       %{--<g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.outbox"/></g:link>--}%
       <g:link class="buttonGreen" controller="msg" action="createMany" id="${entity.id}"><g:message code="msg.create"/></g:link>
-      <div class="spacer"></div>
+      <div class="clear"></div>
     </div>
 
     <g:if test="${totalMessages == 0}">

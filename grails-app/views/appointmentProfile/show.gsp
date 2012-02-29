@@ -64,7 +64,7 @@
         </erp:accessCheck>
         <g:link class="buttonGray" action="list" id="${currentEntity.id}"><g:message code="back"/></g:link>
       </g:form>
-      <div class="spacer"></div>
+      <div class="clear"></div>
     </div>
 
   </div>

@@ -89,9 +89,9 @@
         <div class="zusatz-add" id="labels" style="display:none">
           <g:formRemote name="formRemote2" url="[controller:'projectProfile', action:'addLabel', id:project.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
+            <div class="clear"></div>
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="labels2">
@@ -106,9 +106,9 @@
           <g:if test="${allThemes}">
             <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addTheme', id: project.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
               <g:select name="theme" from="${allThemes}" optionKey="id" optionValue="profile"/>
-              <div class="spacer"></div>
+              <div class="clear"></div>
               <g:submitButton name="button" value="${message(code:'add')}"/>
-              <div class="spacer"></div>
+              <div class="clear"></div>
             </g:formRemote>
           </g:if>
           <g:else>

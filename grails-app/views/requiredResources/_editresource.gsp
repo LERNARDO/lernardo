@@ -13,7 +13,7 @@
       <td><g:textField size="5" name="amount" value="${resourceInstance.amount}"/></td>
     </tr>
   </table>
-  <div class="spacer"></div>
+  <div class="clear"></div>
   <g:submitButton name="button" value="${message(code:'save')}"/>
-  <div class="spacer"></div>
+  <div class="clear"></div>
 </g:formRemote>
