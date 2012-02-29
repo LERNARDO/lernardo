@@ -37,9 +37,6 @@ class ClientProfile extends Profile {
   Date      birthDate
   Integer   gender
 
-  //String currentCountry
-  //String currentZip
-  //String currentCity // not used anymore since 03.03.2011
   String currentStreet
 
   String originCountry
@@ -75,9 +72,6 @@ class ClientProfile extends Profile {
     fullName              blank: true, size: 1..100, maxSize: 100
     firstName             blank: false, size: 2..50, maxSize: 50
     lastName              blank: false, size: 2..50, maxSize: 50
-    //currentCountry        size: 2..50, maxSize: 50
-    //currentZip            size: 4..10
-    //currentCity           nullable: true, size: 2..50, maxSize: 50
     currentStreet         size: 2..50, maxSize: 50
     originCountry         size: 2..50, maxSize: 50
     originZip             nullable: true, size: 4..10

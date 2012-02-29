@@ -167,12 +167,9 @@ class ActivityProfileController {
   def show = {
     Entity activity = Entity.get(params.id)
 
-    //List clients = Entity.findAllByType(metaDataService.etClient)
-
     List allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
     return [activity: activity,
-            //clientsOld: clients,
             educators: functionService.findAllByLink(null, activity, metaDataService.ltActEducator),
             clients: functionService.findAllByLink(null, activity, metaDataService.ltActClient),
             facilities: functionService.findAllByLink(null, activity, metaDataService.ltActFacility),
@@ -387,7 +384,6 @@ class ActivityProfileController {
   def addTemplate = {
     Entity template = Entity.get(params.id)
 
-    // render ("<b>Gewählte Vorlage:</b> ${template.profile.fullName}")
     def msg = message(code: "activityTemplate.selected")
     render ("<b>${msg}</b> ${template.profile.fullName}")
   }
@@ -500,7 +496,6 @@ class ActivityProfileController {
   def markFacility = {
     Entity facility = Entity.get(params.id)
 
-    // render ("<b>Gewählte Einrichtung:</b> ${facility.profile.fullName}")
     def msg = message(code: "facility.profile.selected")
     render ("<b>${msg}</b> ${facility.profile.fullName}")
   }

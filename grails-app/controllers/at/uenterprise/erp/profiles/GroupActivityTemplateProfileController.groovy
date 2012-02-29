@@ -116,7 +116,6 @@ class GroupActivityTemplateProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      // flash.message = "groupProfile not found with id ${params.id}"
       flash.message = message(code: "object.notFound", args: [message(code: "groupActivityTemplate")])
       redirect action: 'list'
     }
@@ -306,7 +305,6 @@ class GroupActivityTemplateProfileController {
   }
 
   def updateselect = {
-    //println params
     //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
     def method1lower = params.list('method1lower')
     def method1upper = params.list('method1upper')

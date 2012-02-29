@@ -41,7 +41,7 @@ class EducatorProfileController {
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalEducators = Entity.findAllByType(etEducator).findAll{it.user.enabled}.size()//Entity.countByType(etEducator)
+    int totalEducators = Entity.findAllByType(etEducator).findAll{it.user.enabled}.size()
 
     return [educators: educators, totalEducators: totalEducators]
   }
@@ -64,7 +64,7 @@ class EducatorProfileController {
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalEducators = Entity.findAllByType(etEducator).findAll{!it.user.enabled}.size()//Entity.countByType(etEducator)
+    int totalEducators = Entity.findAllByType(etEducator).findAll{!it.user.enabled}.size()
 
     return [educators: educators, totalEducators: totalEducators]
   }

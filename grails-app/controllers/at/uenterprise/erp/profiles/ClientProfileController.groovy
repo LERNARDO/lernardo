@@ -46,7 +46,7 @@ class ClientProfileController {
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalClients = Entity.findAllByType(etClient).findAll{it.user.enabled}.size()//Entity.countByType(etClient)
+    int totalClients = Entity.findAllByType(etClient).findAll{it.user.enabled}.size()
 
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
@@ -71,7 +71,7 @@ class ClientProfileController {
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalClients = Entity.findAllByType(etClient).findAll{!it.user.enabled}.size()//Entity.countByType(etEducator)
+    int totalClients = Entity.findAllByType(etClient).findAll{!it.user.enabled}.size()
 
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 

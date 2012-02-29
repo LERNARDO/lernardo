@@ -100,7 +100,6 @@ class AppointmentProfileController {
 
     def show = {
       Entity appointment = Entity.get(params.id)
-      //Entity entity = params.entity ? appointment : entityHelperService.loggedIn
 
       if (appointment) {
         // find owner of appointment

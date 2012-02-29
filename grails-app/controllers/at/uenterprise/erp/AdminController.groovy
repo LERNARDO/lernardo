@@ -28,8 +28,8 @@ class AdminController {
       if (params.id != 'null') {
           Entity entity = Entity.get(params.id)
 
-          List targets = Link.findAllBySource(entity) //?.collect {it.target}
-          List sources = Link.findAllByTarget(entity) //?.collect {it.source}
+          List targets = Link.findAllBySource(entity)
+          List sources = Link.findAllByTarget(entity)
 
           render template: 'linksresults', model:[entity: entity, targets: targets, sources: sources]
       }
@@ -107,8 +107,6 @@ class AdminController {
    */
   def checkDB = {
     render "Reading all entities of type facility<br/>"
-
-    //List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     params.offset = params.int('offset') ?: 0
     params.max = Math.min(params.int('max') ?: 15, 100)

@@ -49,7 +49,6 @@ class GroupColonyProfileController {
     def group = Entity.get(params.id)
 
     if (!group) {
-      // flash.message = "groupProfile not found with id ${params.id}"
       flash.message = message(code: "object.notFound", args: [message(code: "groupColony")])
       redirect(action: list)
       return
@@ -103,7 +102,6 @@ class GroupColonyProfileController {
       }
     }
     else {
-      // flash.message = "groupProfile not found with id ${params.id}"
       flash.message = message(code: "object.notFound", args: [message(code: "groupColony")])
       redirect(action: "list")
     }
