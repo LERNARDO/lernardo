@@ -229,6 +229,7 @@
                   <li class="icon-evaluation"><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allevalentries"/></g:link></li>
                   <li class="profile-netzwerk"><g:link controller="comment" action="list"><g:message code="allComments"/></g:link></li>
                   <li class="icon-all"><g:link controller="profile" action="list"><g:message code="profile.all"/></g:link></li>
+                  <li class="icon-resource"><g:link controller="resourceProfile" action="list"><g:message code="allResources"/></g:link></li>
                   %{--<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                     <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
                   </erp:accessCheck>--}%

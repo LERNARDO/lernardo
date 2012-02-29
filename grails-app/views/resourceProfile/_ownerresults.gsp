@@ -1,7 +1,7 @@
 <g:if test="${results}">
   <div class="remoteresults">
     <g:each in="${results}" var="entity">
-      <g:remoteLink url="[controller:'resourceProfile', action:'addOwner', id:resource, params:[entity: entity.id]]" update="owner2" before="showspinner('#owner2'); toggle('#owner');">
+      <g:remoteLink url="[controller:'resourceProfile', action:'addOwner', id: resourceInstance, params:[entity: entity.id]]" update="owner2" before="showspinner('#owner2'); toggle('#owner');">
       <div class="remoteresult">
         <table>
           <tr>

@@ -49,17 +49,17 @@ class ResourceProfileController {
   }
 
   def show = {
-    Entity resource = Entity.get(params.id)
+    Entity resourceInstance = Entity.get(params.id)
 
-    if (!resource) {
+    if (!resourceInstance) {
       flash.message = message(code: "object.notFound", args: [message(code: "resource")])
       redirect(action: list)
     }
     else {
-      Entity location = functionService.findByLink(resource, null, metaDataService.ltResource)
-      Entity resowner = functionService.findByLink(null, resource, metaDataService.ltOwner)
-      List resresponsible = functionService.findAllByLink(null, resource, metaDataService.ltResponsible)
-      [resource: resource, location: location, resowner: resowner, resresponsible: resresponsible]
+      Entity location = functionService.findByLink(resourceInstance, null, metaDataService.ltResource)
+      Entity resowner = functionService.findByLink(null, resourceInstance, metaDataService.ltOwner)
+      List resresponsible = functionService.findAllByLink(null, resourceInstance, metaDataService.ltResponsible)
+      [resourceInstance: resourceInstance, location: location, resowner: resowner, resresponsible: resresponsible]
     }
   }
 
@@ -91,7 +91,7 @@ class ResourceProfileController {
       redirect action: 'list'
     }
     else {
-      [resource: resource, entity: resource]
+      [resourceInstance: resource, entity: resource]
     }
   }
 
@@ -105,7 +105,7 @@ class ResourceProfileController {
       redirect action: 'show', id: resource.id
     }
     else {
-      render view: 'edit', model: [resource: resource]
+      render view: 'edit', model: [resourceInstance: resource]
     }
   }
 
@@ -125,7 +125,7 @@ class ResourceProfileController {
       flash.message = message(code: "object.created", args: [message(code: "resource"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [resource: ee.entity, entity: currentEntity])
+      render(view: "create", model: [resourceInstance: ee.entity, entity: currentEntity])
     }
 
   }
@@ -165,7 +165,7 @@ class ResourceProfileController {
       return
     }
     else {
-      render(template: 'ownerresults', model: [results: results, resource: params.id])
+      render(template: 'ownerresults', model: [results: results, resourceInstance: params.id])
     }
   }
 
@@ -179,18 +179,18 @@ class ResourceProfileController {
       def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltOwner)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
-      render template: 'owner', model: [resowner: linking.results, resource: linking.target, entity: entityHelperService.loggedIn]
+      render template: 'owner', model: [resowner: linking.results, resourceInstance: linking.target, entity: entityHelperService.loggedIn]
     }
     else {
       render '<span class="red italic">' + message(code: 'alreadyAssignedToOwner') + '</span>'
-      render template: 'owner', model: [resowner: functionService.findByLink(null, resource, metaDataService.ltOwner), resource: resource, entity: entityHelperService.loggedIn]
+      render template: 'owner', model: [resowner: functionService.findByLink(null, resource, metaDataService.ltOwner), resourceInstance: resource, entity: entityHelperService.loggedIn]
     }
 
   }
 
   def removeOwner = {
     def breaking = functionService.breakEntities(params.owner, params.id, metaDataService.ltOwner)
-    render template: 'owner', model: [resowner: breaking.results, resource: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'owner', model: [resowner: breaking.results, resourceInstance: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   /*
@@ -226,7 +226,7 @@ class ResourceProfileController {
       return
     }
     else {
-      render(template: 'responsibleresults', model: [results: results, resource: params.id])
+      render(template: 'responsibleresults', model: [results: results, resourceInstance: params.id])
     }
   }
 
@@ -235,13 +235,13 @@ class ResourceProfileController {
     def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
-    render template: 'responsible', model: [resresponsible: linking.results, resource: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'responsible', model: [resresponsible: linking.results, resourceInstance: linking.target, entity: entityHelperService.loggedIn]
 
   }
 
   def removeResponsible = {
     def breaking = functionService.breakEntities(params.responsible, params.id, metaDataService.ltResponsible)
-    render template: 'responsible', model: [resresponsible: breaking.results, resource: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'responsible', model: [resresponsible: breaking.results, resourceInstance: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   // Required resources below
@@ -264,7 +264,7 @@ class ResourceProfileController {
   def removeResource = {
     Entity template = Entity.get(params.id)
 
-    Resource resource = Resource.get(params.resource)
+    Resource resource = Resource.get(params.resourceInstance)
     template.profile.removeFromResources(resource)
 
     render template: '/requiredResources/resources', model: [template: template, entity: entityHelperService.loggedIn]
@@ -273,17 +273,17 @@ class ResourceProfileController {
   def editResource = {
     Entity template = Entity.get(params.id)
 
-    Resource resource = Resource.get(params.resource)
-    render template: '/requiredResources/editresource', model: [template: template, resource: resource, i: params.i, entity: entityHelperService.loggedIn]
+    Resource resource = Resource.get(params.resourceInstance)
+    render template: '/requiredResources/editresource', model: [template: template, resourceInstance: resource, i: params.i, entity: entityHelperService.loggedIn]
   }
 
   def updateResource = {
     Entity template = Entity.get(params.id)
 
-    Resource resource = Resource.get(params.resource)
+    Resource resource = Resource.get(params.resourceInstance)
     resource.properties = params
     resource.save()
-    render template: '/requiredResources/showresource', model: [template: template, resource: resource, i: params.i, entity: entityHelperService.loggedIn]
+    render template: '/requiredResources/showresource', model: [template: template, resourceInstance: resource, i: params.i, entity: entityHelperService.loggedIn]
   }
 
 

@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: resource]"/>
 
-    <g:form action="update" id="${resource?.id}">
+    <g:form action="update" id="${resourceInstance?.id}">
       <div>
         <table>
           <tbody>
@@ -24,7 +24,7 @@
 
           <tr class="prop">
             <td width="540" valign="top" class="value">
-              <g:textField class="countable${resource.profile.constraints.fullName.maxSize} ${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}" size="80" maxlength="80" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable${resourceInstance.profile.constraints.fullName.maxSize} ${hasErrors(bean: resourceInstance, field: 'profile.fullName', 'errors')}" size="80" maxlength="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -33,7 +33,7 @@
           </tr>
           <tr>
             <td valign="top" class="value">
-              <g:textArea class="countable${resource.profile.constraints.description.maxSize} ${hasErrors(bean: resource, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resource, field: 'profile.description').decodeHTML()}"/>
+              <g:textArea class="countable${resourceInstance.profile.constraints.description.maxSize} ${hasErrors(bean: resourceInstance, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resourceInstance, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -43,7 +43,7 @@
 
           <tr class="prop">
             <td width="540" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: resource, field: 'profile.amount', 'errors')}" size="5" maxlength="5" name="amount" value="${fieldValue(bean: resource, field: 'profile.amount')}"/>
+              <g:textField class="${hasErrors(bean: resourceInstance, field: 'profile.amount', 'errors')}" size="5" maxlength="5" name="amount" value="${fieldValue(bean: resourceInstance, field: 'profile.amount')}"/>
             </td>
           </tr>
 
@@ -53,7 +53,7 @@
 
           <tr class="prop">
             <td width="540" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: resource, field: 'profile.costs', 'errors')}" size="5" maxlength="5" name="costs" value="${fieldValue(bean: resource, field: 'profile.costs')}"/>
+              <g:textField class="${hasErrors(bean: resourceInstance, field: 'profile.costs', 'errors')}" size="5" maxlength="5" name="costs" value="${fieldValue(bean: resourceInstance, field: 'profile.costs')}"/>
             </td>
           </tr>
 
@@ -84,7 +84,7 @@
 
       <div class="buttons">
         <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}"/></div>
-        <g:link class="buttonGray" action="show" id="${resource?.id}"><g:message code="cancel"/></g:link>
+        <g:link class="buttonGray" action="show" id="${resourceInstance?.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
       

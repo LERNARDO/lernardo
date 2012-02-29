@@ -29,6 +29,36 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  // let an operator, the resource owner and resource responsible do stuff
+  def checkResourceAccess = {attrs, body ->
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    def a = Link.createCriteria()
+    def owner = a.get {
+      eq('source', currentEntity)
+      eq('target', attrs.entity)
+      eq('type', metaDataService.ltOwner)
+    }
+
+    def b = Link.createCriteria()
+    def responsible = b.get {
+      eq('source', currentEntity)
+      eq('target', attrs.entity)
+      eq('type', metaDataService.ltResponsible)
+    }
+
+    def ok = false
+    if ((currentEntity?.user?.authorities?.find {it.authority == 'ROLE_ADMIN'} ? true : false) ||
+        (currentEntity.type.id == metaDataService.etOperator.id) ||
+        (owner ? true : false) ||
+        (responsible ? true : false))
+      ok = true
+
+    if (ok)
+      out << body()
+  }
+
   /**
    * Renders the + or - Favorite button
    *

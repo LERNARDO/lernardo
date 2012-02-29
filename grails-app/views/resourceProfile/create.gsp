@@ -11,7 +11,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/errors" model="[bean: resource]"/>
+    <g:render template="/templates/errors" model="[bean: resourceInstance]"/>
 
     <g:form action="save">
       <div>
@@ -24,7 +24,7 @@
 
           <tr class="prop">
             <td width="540" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}" size="80" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: resourceInstance, field: 'profile.fullName', 'errors')}" size="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -33,7 +33,7 @@
           </tr>
           <tr>
             <td valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: resource, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resource, field: 'profile.description')}"/>
+              <g:textArea class="countable2000 ${hasErrors(bean: resourceInstance, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resourceInstance, field: 'profile.description')}"/>
             </td>
           </tr>
 
