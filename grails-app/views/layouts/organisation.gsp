@@ -167,10 +167,6 @@
   <div id="loading" style="position: absolute; left: 50%; text-align: center; top: 50%; visibility: hidden; z-index: 1000;">
   <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
 
-  <g:if test="${!entity}">
-    <g:set var="entity" value="${currentEntity}"/>
-  </g:if>
-
   <div id="private">
 
     <div id="hd">
@@ -193,31 +189,12 @@
     <div class="yui3-g" id="grid">
 
       <div class="yui3-u" id="left">
-        %{--<div class="boxHeader">
-          <div class="second">
-            <h1>${entity.profile.fullName} <g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img class="tooltip" data-tooltip="${message(code: 'isActive')}" src="${resource(dir: 'images/icons', file: 'icon_enabled.png')}" alt="aktiv" style="top: 1px; position: relative"/></g:if><g:else><img class="tooltip" data-tooltip="${message(code: 'isInactive')}" src="${resource(dir: 'images/icons', file: 'icon_disabled.png')}" alt="inaktiv"/></g:else></g:if></h1>
-          </div>
-        </div>
-
-        <div class="profile-box" style="border-top-left-radius: 0; border-top-right-radius: 0">
-          <div class="second">
-
-            <g:if test="${entity.type.supertype.name == 'user' || entity.type.supertype.name == 'child' || entity.type.supertype.name == 'client' || entity.type.supertype.name == 'educator' || entity.type.supertype.name == 'parent' || entity.type.supertype.name == 'partner' || entity.type.supertype.name == 'pate' || entity.type.supertype.name == 'operator' || entity.type.supertype.name == 'facility' || entity.type.supertype.name == 'groupActivity' || entity.type.supertype.name == 'project'}">
-              <g:render template="/templates/${entity.type.supertype.name +'Navigation'}" model="[entity: entity]"/>
-            </g:if>
-            <g:else>
-              <g:render template="/templates/defaultNavigation" model="[entity: entity]"/>
-            </g:else>
-
-          </div>
-        </div>--}%
 
         <div class="profile-box">
           <div class="second">
 
             <div class="header"><g:message code="organisation"/></div>
 
-            %{--<div class="area"><g:message code="organisation"/></div>--}%
             <ul>
               <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
                 <li class="icon-operator"><g:link controller="logBook" action="entries"><g:message code="logBook"/></g:link></li>
@@ -235,8 +212,6 @@
             </ul>
           </div>
         </div>
-
-        %{--<div id="livetickerbox"></div>--}%
 
       </div>
 

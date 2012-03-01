@@ -1,6 +1,4 @@
-<%@ page import="at.openfactory.ep.Entity" %>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="start"/>
   <title><g:message code="events"/></title>
 

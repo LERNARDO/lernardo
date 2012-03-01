@@ -39,12 +39,15 @@
     <g:each in="${helperInstanceList}" status="i" var="helperInstance">
       <div class="helperbox">
         <p>
-          <a name="${i}">${helperInstance.title}</a>
+          <a name="${i}" style="color: #444; font-weight: bold;">${helperInstance.title}</a>
           <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-            <g:link class="helperButton" action="edit" id="${helperInstance.id}"><g:message code="edit"/></g:link>
-            <g:link class="helperButton" action="del" id="${helperInstance.id}" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
+            <g:link action="edit" id="${helperInstance.id}"><img src="${g.resource(dir:'images/icons', file:'icon_edit2.png')}" alt="Edit" align="top"/></g:link>
+            <g:link action="del" id="${helperInstance.id}" onclick="return confirm('${message(code:'delete.warn')}');"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Remove" align="top"/></g:link>
           </erp:accessCheck>
-          <g:message code="helper"/> für: <g:join in="${helperInstance.types}"/>
+          <span class="gray">(<g:message code="helper"/> für: 
+          <g:each in="${helperInstance.types}" var="type">
+            <g:message code="profiletype.${type}"/>,
+          </g:each>)</span>
           ${helperInstance.content.decodeHTML()}
         </p>
       </div>

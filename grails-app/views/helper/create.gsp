@@ -19,31 +19,32 @@
     </g:hasErrors>
 
     <g:form>
-      <table width="100%">
-        <tbody>
 
-        <tr>
-          <td valign="top" class="label"><g:message code="title"/>:</td>
-          <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="50" value="${fieldValue(bean:helperInstance, field:'title')}"/></td>
+      <table>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="title"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: helperInstance, field: 'title', 'errors')}" name="title" size="50" value="${fieldValue(bean:helperInstance, field:'title')}"/>
+          </td>
         </tr>
 
-        <tr>
-          <td class="label"><g:message code="text"/>:</td>
-          <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="text"/></td>
+          <td valign="top" class="value">
             <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:helperInstance,field:'content').decodeHTML()}
             </ckeditor:editor>
           </td>
         </tr>
 
-        <tr>
-          <td class="label">Für:</td>
-          <td class="value ${hasErrors(bean: helperInstance, field: 'types', 'errors')}">
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="for2"/></td>
+          <td valign="top" class="value">
             <g:select name="types" multiple="true" from="${grailsApplication.config.helpertypes}" value="${helperInstance?.types}" valueMessagePrefix="profiletype"/>
           </td>
         </tr>
 
-        </tbody>
       </table>
 
       <div class="buttons">

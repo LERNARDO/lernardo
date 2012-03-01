@@ -54,6 +54,7 @@ grails.resources.modules = {
     resource url: 'css/cssfonts-min.css'
     resource url: 'css/grids-min.css'
     resource url: 'css/jquery.qtip.min.css'
+    resource url: 'css/kolorpicker.css'
     //resource url: 'less/common.less', attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_start'
     resource url: "less/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_start'
 

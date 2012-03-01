@@ -67,7 +67,8 @@
   <tr>
     <td style="padding-right: 15px; vertical-align: top; width: 250px;">
 
-      <h1><g:message code="imgmenu.calendar.name"/></h1>
+      <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; text-align: center; color: #36808E; font-size: 16px; margin-bottom: 6px;"><g:message code="imgmenu.calendar.name"/></div>
+      %{--<h1><g:message code="imgmenu.calendar.name"/></h1>--}%
 
       %{--<erp:getActiveCalPerson id="${currentEntity.id}">
         <div class="calenderperson">

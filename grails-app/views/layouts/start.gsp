@@ -66,6 +66,9 @@
   </r:script>
 
   <r:layoutResources/>
+
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
+
   <g:layoutHead />
   <ckeditor:resources />
   <ga:trackPageview />
@@ -74,10 +77,6 @@
 <body>
   <div id="loading" style="position: absolute; left: 50%; text-align: center; top: 50%; visibility: hidden; z-index: 1000;">
   <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
-
-  <g:if test="${!entity}">
-    <g:set var="entity" value="${currentEntity}"/>
-  </g:if>
 
   <div id="private">
 

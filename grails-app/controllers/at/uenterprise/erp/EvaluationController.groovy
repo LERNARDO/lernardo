@@ -38,7 +38,7 @@ class EvaluationController {
     params.order = params.order ?: 'desc'
     def show = params.show ?: false
     List evaluations = Evaluation.list(params)
-    Entity entity = Entity.get(params.id)
+    Entity entity = entityHelperService.loggedIn
     return [evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity, show: show]
   }
 

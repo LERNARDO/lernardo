@@ -1,13 +1,27 @@
+// variables
+
 @background-top: #ECECDE;
 @background-bottom: #E2E2CD;
 @box: #F5F5EF;
 @brown: #808372;
 @forgot: #36808E;
 
+// mixins
+
+.gradient (@origin: top, @start: #ffffff, @stop: #000000) {
+	background-color: @start; // fallback
+	background-image: -webkit-linear-gradient(@origin, @start, @stop); // Chrome, Safari
+	background-image: -moz-linear-gradient(@origin, @start, @stop); // Firefox
+	background-image: -o-linear-gradient(@origin, @start, @stop); // Opera
+	background-image: -ms-linear-gradient(@origin, @start, @stop); // IE
+	background-image: linear-gradient(@origin, @start, @stop); // W3C
+}
+
+// selectors
+
 html {
-    background: @background-bottom;
-    background: -moz-linear-gradient(-90deg, @background-top, @background-bottom);
-    background: -webkit-gradient(linear, left top, left bottom, from(@background-top), to(@background-bottom));
+    background: url(../images/stripe.png);
+    //.gradient(top, @background-top, @background-bottom);
     height: 100%;
 }
 
