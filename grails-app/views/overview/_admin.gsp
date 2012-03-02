@@ -1,5 +1,3 @@
-<erp:getCurrentEntity>
-
 <h2><g:message code="profile.overview.admin"/></h2>
 
 <div class="box">
@@ -19,5 +17,3 @@
   <g:link controller="profile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_verwaltung.png')}" alt="Notiz" align="top"/></g:link>
   <div><g:link controller="profile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
 </div>
-
-</erp:getCurrentEntity>

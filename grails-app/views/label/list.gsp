@@ -31,7 +31,7 @@
       <g:message code="object.total" args="[labelInstanceTotal, message(code: 'labels')]"/>
     </div>
 
-     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+     <erp:accessCheck types="['Betreiber']">
       <div class="buttons">
         <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'label')])}"/></div>

@@ -54,7 +54,7 @@
     </table>
 
     <div class="zusatz">
-      <h5><g:message code="owner"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#owner'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <h5><g:message code="owner"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#owner'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="owner" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -63,12 +63,12 @@
 
       </div>
       <div class="zusatz-show" id="owner2">
-        <g:render template="owner" model="[resowner: resowner, resourceInstance: resourceInstance, entity: currentEntity]"/>
+        <g:render template="owner" model="[resowner: resowner, resourceInstance: resourceInstance]"/>
       </div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="responsible"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#responsible'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <h5><g:message code="responsible"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#responsible'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="responsible" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -77,7 +77,7 @@
 
       </div>
       <div class="zusatz-show" id="responsible2">
-        <g:render template="responsible" model="[resresponsible: resresponsible, resourceInstance: resourceInstance, entity: currentEntity]"/>
+        <g:render template="responsible" model="[resresponsible: resresponsible, resourceInstance: resourceInstance]"/>
       </div>
     </div>
 

@@ -10,7 +10,7 @@
 </g:if>
 
 <span class="tagbuttons">
-  <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${target}">
+  <erp:accessCheck types="['Betreiber']" creatorof="${target}">
     <g:if test="${!tags[0]}">
     <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'absent', update: update]"><g:message code="tag.asAbsent"/></g:remoteLink>
     </g:if>

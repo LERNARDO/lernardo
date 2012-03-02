@@ -42,7 +42,7 @@
 
       <h4><g:message code="management"/></h4>
       <div class="zusatz">
-        <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');
+        <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#clients');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="clients" style="display:none;">
           <p class="gray"><g:message code="groupClient.clients.info"/></p>
@@ -97,7 +97,7 @@
 
         </div>
         <div class="zusatz-show" id="clients2">
-          <g:render template="clients" model="[clients: clients, group: group, entity: currentEntity]"/>
+          <g:render template="clients" model="[clients: clients, group: group]"/>
         </div>
       </div>
 

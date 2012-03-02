@@ -51,7 +51,7 @@
 
       <h4><g:message code="management"/></h4>
       <div class="zusatz">
-        <h5><g:message code="representatives"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#representatives');
+        <h5><g:message code="representatives"/> <erp:accessCheck types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#representatives');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/>
         </a></erp:accessCheck></h5>
         <div class="zusatz-add" id="representatives" style="display:none">
@@ -106,7 +106,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources');
+        <h5><g:message code="resource.profile"/> <erp:accessCheck types="['Betreiber']"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="resources" style="display:none">
           <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
@@ -150,7 +150,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="facilities"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#facilities');
+        <h5><g:message code="facilities"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#facilities');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="facilities" style="display:none">
           <p class="gray"><g:message code="groupColony.facilityNote"/></p>
@@ -165,7 +165,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="partners"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#partners');
+        <h5><g:message code="partners"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#partners');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="partners" style="display:none">
           <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">

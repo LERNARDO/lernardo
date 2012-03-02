@@ -443,7 +443,7 @@ class AppController {
     else
       tags.add(false)
 
-    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update, currentEntity: entityHelperService.loggedIn]
+    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update]
   }
 
   /*
@@ -515,7 +515,7 @@ class AppController {
     else
       tags.add(false)
 
-    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update, currentEntity: entityHelperService.loggedIn]
+    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update]
   }
 
   /*

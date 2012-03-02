@@ -45,7 +45,7 @@
           <td class="two"><a href="mailto:${fieldValue(bean: user, field: 'user.email').decodeHTML()}">${fieldValue(bean: user, field: 'user.email').decodeHTML()}</a></td>
         </tr>
 
-        <erp:isSystemAdmin entity="${currentEntity}">
+        <erp:isSystemAdmin>
           <tr class="prop">
             <td class="one"><g:message code="active"/>:</td>
             <td class="two"><span style="color: ${user.user.enabled ? '#090' : '#900'}"><g:formatBoolean boolean="${user.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></span></td>
@@ -58,7 +58,7 @@
       %{--<div class="email">
         <table width="100%">
           <tr>
-            <erp:isSystemAdmin entity="${currentEntity}">
+            <erp:isSystemAdmin>
               <td>
                 <span class="bold"><g:message code="active"/> </span>
                 <g:formatBoolean boolean="${user.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
@@ -68,7 +68,7 @@
               <span class="bold"><g:message code="email"/>: </span>
               ${fieldValue(bean: user, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${user}">
+            <erp:accessCheck types="['Betreiber']" me="${user}">
               <td>
                 <g:form controller="profile" action="changePassword" id="${user.id}">
                   <span class="bold"><g:message code="password"/>: </span>

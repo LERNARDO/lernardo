@@ -243,7 +243,7 @@
     <table style="width: 100%">
 
       <tr>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+        <erp:accessCheck types="['Betreiber']">
           <td>
             <span class="bold"><g:message code="active"/></span>
             <g:formatBoolean boolean="${educator.user.enabled}" true="${message(code: 'yes')}"
@@ -258,7 +258,7 @@
           <span class="bold"><g:message code="languageSelection"/>:</span>
           ${educator?.user?.locale?.getDisplayLanguage()}
         </td>--}%
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${educator}">
+        <erp:accessCheck types="['Betreiber']" me="${educator}">
           <td>
             <g:form controller="profile" action="changePassword" id="${educator.id}">
               <span class="bold"><g:message code="password"/>:</span>
@@ -274,7 +274,7 @@
 
   <h4><g:message code="management"/></h4>
   <div class="zusatz">
-    <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#dates');
+    <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#dates');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="dates" style="display:none">
@@ -285,7 +285,7 @@
     </div>
 
     <div class="zusatz-show" id="dates2">
-      <g:render template="dates" model="[educator: educator, entity: currentEntity]"/>
+      <g:render template="dates" model="[educator: educator]"/>
     </div>
   </div>
 

@@ -2,7 +2,7 @@
   <div class="item">
     <div class="header">
       <div class="title">
-        <g:link controller="news" action="show" id="${newsitem.id}">${newsitem.title}</g:link> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${newsitem.author}">
+        <g:link controller="news" action="show" id="${newsitem.id}">${newsitem.title}</g:link> <erp:accessCheck types="['Betreiber']" me="${newsitem.author}">
           <g:link controller="news" action="edit" id="${newsitem.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" /></g:link>
            <g:link controller="news" action="delete" class="adminlink" onclick="return confirm('Neuigkeit wirklich löschen?');" id="${newsitem.id}"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="${message(code: 'remove')}" /></g:link>
         </erp:accessCheck>

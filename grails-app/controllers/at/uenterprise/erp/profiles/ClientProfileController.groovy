@@ -21,12 +21,12 @@ class ClientProfileController {
   def securityManager
   FunctionService functionService
 
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
   def index = {
     redirect action: "list", params: params
   }
-
-  // the delete, save and update actions only accept POST requests
-  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
     params.offset = params.int('offset') ?: 0
@@ -274,40 +274,39 @@ class ClientProfileController {
     Performances performance = new Performances(params)
     Entity client = Entity.get(params.id)
     client.profile.addToPerformances(performance)
-    render template: 'performances', model: [client: client, currentEntity: entityHelperService.loggedIn]
+    render template: 'performances', model: [client: client]
   }
 
   def removePerformance = {
     Entity client = Entity.get(params.id)
     client.profile.removeFromPerformances(Performances.get(params.performance))
-    render template: 'performances', model: [client: client, currentEntity: entityHelperService.loggedIn]
+    render template: 'performances', model: [client: client]
   }
 
   def addHealth = {
     Healths health = new Healths(params)
     Entity client = Entity.get(params.id)
     client.profile.addToHealths(health)
-    render template: 'healths', model: [client: client, currentEntity: entityHelperService.loggedIn]
+    render template: 'healths', model: [client: client]
   }
 
   def removeHealth = {
     Entity client = Entity.get(params.id)
     client.profile.removeFromHealths(Healths.get(params.health))
-    render template: 'healths', model: [client: client, currentEntity: entityHelperService.loggedIn]
+    render template: 'healths', model: [client: client]
   }
 
   def addMaterial = {
     Materials material = new Materials(params)
-    // material.date = functionService.convertToUTC(material.date)
     Entity client = Entity.get(params.id)
     client.profile.addToMaterials(material)
-    render template: 'materials', model: [client: client, currentEntity: entityHelperService.loggedIn]
+    render template: 'materials', model: [client: client]
   }
 
   def removeMaterial = {
     Entity client = Entity.get(params.id)
     client.profile.removeFromMaterials(Materials.get(params.material))
-    render template: 'materials', model: [client: client, currentEntity: entityHelperService.loggedIn]
+    render template: 'materials', model: [client: client]
   }
 
   def addDate = {
@@ -324,7 +323,7 @@ class ClientProfileController {
       client.user.enabled = date.type == 'exit'
       client.user.save()
     }
-    render template: 'dates', model: [client: client, entity: entityHelperService.loggedIn]
+    render template: 'dates', model: [client: client]
   }
 
   def removeDate = {
@@ -336,32 +335,32 @@ class ClientProfileController {
     client.user.enabled = date.type == 'exit'
     client.user.save()
 
-    render template: 'dates', model: [client: client, entity: entityHelperService.loggedIn]
+    render template: 'dates', model: [client: client]
   }
 
   def addCollector = {
     Collector collector = new Collector(params)
     Entity client = Entity.get(params.id)
     client.profile.addToCollectors(collector)
-    render template: 'collectors', model: [client: client, currentEntity: entityHelperService.loggedIn]
+    render template: 'collectors', model: [client: client]
   }
 
   def removeCollector = {
     Entity client = Entity.get(params.id)
     client.profile.removeFromCollectors(Collector.get(params.collector))
-    render template: 'collectors', model: [client: client, currentEntity: entityHelperService.loggedIn]
+    render template: 'collectors', model: [client: client]
   }
 
   def addContact = {ContactCommand cc ->
     Entity client = Entity.get(params.id)
     if (cc.hasErrors()) {
       render '<p class="italic red">'+message(code: "client.profile.name.insert")+'</p>'
-      render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
+      render template: 'contacts', model: [client: client]
       return
     }
     Contact contact = new Contact(params)
     client.profile.addToContacts(contact)
-    render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
+    render template: 'contacts', model: [client: client]
   }
 
   def removeContact = {

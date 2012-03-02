@@ -27,11 +27,11 @@
       </tbody>
     </table>
 
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+    <erp:accessCheck types="['Betreiber']">
       <div class="buttons">
         <g:form id="${workdayCategoryInstance?.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-          <erp:accessCheck entity="${currentEntity}">
+          <erp:accessCheck>
             <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>

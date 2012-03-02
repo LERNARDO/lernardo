@@ -147,12 +147,12 @@ class GroupClientProfileController {
       }
     }
 
-    render template: 'clients', model: [clients: functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberClient), group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberClient), group: Entity.get(params.id)]
   }
 
   def removeClient = {
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-    render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: breaking.results, group: breaking.target]
   }
 
   def updateselect = {

@@ -1195,7 +1195,7 @@ class HelperTagLib {
   /**
    * Modular access check
    *
-   * @attr entity REQUIRED The entity which should be checked for access
+   * @attr entity The entity which should be checked for access, defaults to current entity
    * @attr types The types to check against
    * @attr roles The roles to check against
    * @attr checkoperator Check if the entity is an operator
@@ -1205,7 +1205,7 @@ class HelperTagLib {
    * @attr log Enables logging for current taglib call
    */
   def accessCheck = {attrs, body ->
-    Entity entity = attrs.entity
+    Entity entity = attrs.entity ?: entityHelperService.loggedIn
 
     boolean isOpen = true
     if (attrs.checkstatus) {
@@ -1911,13 +1911,9 @@ class HelperTagLib {
       out << body()
   }
 
-  def notAdmin = {attrs, body ->
-    if (!attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
   def isSystemAdmin = {attrs, body ->
-    if (attrs.entity.user.authorities.find {it.authority == 'ROLE_SYSTEMADMIN'} )
+    Entity entity = attrs.entity ?: entityHelperService.loggedIn
+    if (entity.user.authorities.find {it.authority == 'ROLE_SYSTEMADMIN'} )
       out << body()
   }
 
@@ -2018,13 +2014,6 @@ class HelperTagLib {
     def result = currentEntity.profile.calendar.entities.find {it.entity.id.toString() == attrs.id.toString()}
 
     out << body(active: result)
-  }
-
-  /**
-   * returns the currently logged in entity
-   */
-  def getCurrentEntity = {attrs, body ->
-    out << body(currentEntity: entityHelperService.loggedIn)
   }
 
   /**

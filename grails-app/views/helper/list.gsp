@@ -20,7 +20,7 @@
       </g:else>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+    <erp:accessCheck roles="['ROLE_ADMIN']">
       <div class="buttons">
         <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'helper')])}"/></div>
@@ -40,7 +40,7 @@
       <div class="helperbox">
         <p>
           <a name="${i}" style="color: #444; font-weight: bold;">${helperInstance.title}</a>
-          <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+          <erp:accessCheck roles="['ROLE_ADMIN']">
             <g:link action="edit" id="${helperInstance.id}"><img src="${g.resource(dir:'images/icons', file:'icon_edit2.png')}" alt="Edit" align="top"/></g:link>
             <g:link action="del" id="${helperInstance.id}" onclick="return confirm('${message(code:'delete.warn')}');"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Remove" align="top"/></g:link>
           </erp:accessCheck>

@@ -1,7 +1,7 @@
 <g:if test="${projects}">
   <ul>
   <g:each in="${projects}" var="project">
-    <li><g:link controller="${project.type.supertype.name +'Profile'}" action="show" id="${project.id}">${project.profile.fullName.decodeHTML()}</g:link> <erp:accessCheck entity="${entity}" types="['Betreiber']"><g:remoteLink action="removeProject" update="projects2" id="${theme.id}" params="[project: project.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
+    <li><g:link controller="${project.type.supertype.name +'Profile'}" action="show" id="${project.id}">${project.profile.fullName.decodeHTML()}</g:link> <erp:accessCheck types="['Betreiber']"><g:remoteLink action="removeProject" update="projects2" id="${theme.id}" params="[project: project.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
   </g:each>
   </ul>
 </g:if>

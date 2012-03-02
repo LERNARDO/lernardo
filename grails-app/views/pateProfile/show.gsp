@@ -92,7 +92,7 @@
         <div class="email">
           <table width="100%">
             <tr>
-              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+              <erp:accessCheck types="['Betreiber']">
                 <td>
                   <span class="bold"><g:message code="active"/> </span>
                   <g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
@@ -102,7 +102,7 @@
                 <span class="bold"><g:message code="email"/>: </span>
                 ${fieldValue(bean: pate, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
               </td>
-              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${pate}">
+              <erp:accessCheck types="['Betreiber']" me="${pate}">
                 <td>
                   <g:form controller="profile" action="changePassword" id="${pate.id}">
                     <span class="bold"><g:message code="password"/>: </span>
@@ -117,7 +117,7 @@
 
         <h4><g:message code="management"/></h4>
         <div class="zusatz">
-          <h5><g:message code="pate.profile.gcs"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#godchildren');
+          <h5><g:message code="pate.profile.gcs"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#godchildren');
           return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
           <div class="zusatz-add" id="godchildren" style="display:none">
 
@@ -127,7 +127,7 @@
 
           </div>
           <div class="zusatz-show" id="godchildren2">
-            <g:render template="godchildren" model="[godchildren: godchildren, pate: pate, entity: currentEntity]"/>
+            <g:render template="godchildren" model="[godchildren: godchildren, pate: pate]"/>
           </div>
         </div>
 

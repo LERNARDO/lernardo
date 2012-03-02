@@ -92,8 +92,7 @@ class ParentProfileController {
 
     Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)

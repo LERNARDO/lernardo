@@ -1,7 +1,7 @@
 <g:if test="${methodInstance.elements}">
   <g:each in="${methodInstance.elements}" var="element" status="i">
     <div id="element${i}">
-      <g:render template="element" model="[element: element, i: i, entity: entity, methodInstance: methodInstance]"/>
+      <g:render template="element" model="[element: element, i: i, methodInstance: methodInstance]"/>
     </div>
   </g:each>
 </g:if>

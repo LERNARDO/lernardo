@@ -91,7 +91,7 @@
       <div class="email">
         <table width="100%">
           <tr>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+            <erp:accessCheck types="['Betreiber']">
               <td>
                 <span class="bold"><g:message code="active"/> </span>
                 <g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
@@ -101,7 +101,7 @@
               <span class="bold"><g:message code="email"/>: </span>
               ${fieldValue(bean: partner, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${partner}">
+            <erp:accessCheck types="['Betreiber']" me="${partner}">
               <td>
                 <g:form controller="profile" action="changePassword" id="${partner.id}">
                   <span class="bold"><g:message code="password"/>: </span>
@@ -116,7 +116,7 @@
 
       <h4><g:message code="management"/></h4>
       <div class="zusatz">
-        <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');
+        <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="contacts" style="display:none">
           <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
@@ -166,7 +166,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="contacts2">
-          <g:render template="contacts" model="[partner: partner, entity: currentEntity]"/>
+          <g:render template="contacts" model="[partner: partner]"/>
         </div>
       </div>
 

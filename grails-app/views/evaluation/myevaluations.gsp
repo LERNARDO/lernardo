@@ -23,7 +23,7 @@
   </div>
 </div>
 
-%{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+%{--<erp:accessCheck types="['Betreiber']">
   <div class="tabGrey">
     <div class="second">
       <h1><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allentry"/></g:link></h1>

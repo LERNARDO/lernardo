@@ -185,7 +185,7 @@
       <div class="email">
         <table width="100%">
           <tr>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+            <erp:accessCheck types="['Betreiber']">
               <td>
                 <span class="bold"><g:message code="active"/></span>
                 <g:formatBoolean boolean="${parent.user.enabled}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/>
@@ -195,7 +195,7 @@
               <span class="bold"><g:message code="email"/>:</span>
               ${fieldValue(bean: parent, field: 'user.email') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}
             </td>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${parent}">
+            <erp:accessCheck types="['Betreiber']" me="${parent}">
               <td>
                 <g:form controller="profile" action="changePassword" id="${parent.id}">
                   <span class="bold"><g:message code="password"/>:</span>

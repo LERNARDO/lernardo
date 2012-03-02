@@ -250,7 +250,7 @@ class EducatorProfileController {
       educator.user.enabled = date.type == 'entry'
       educator.user.save()
     }
-    render template: 'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
+    render template: 'dates', model: [educator: educator]
   }
 
   def removeDate = {
@@ -262,6 +262,6 @@ class EducatorProfileController {
     educator.user.enabled = date.type == 'exit'
     educator.user.save()
 
-    render template: 'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
+    render template: 'dates', model: [educator: educator]
   }
 }

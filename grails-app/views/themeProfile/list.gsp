@@ -16,7 +16,7 @@
       <g:message code="object.total" args="[allThemes, message(code: 'themes')]"/>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities ?: null}" >
+    <erp:accessCheck types="['Betreiber']" facilities="${facilities ?: null}" >
       <div class="buttons">
         <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'theme')])}"/></div>

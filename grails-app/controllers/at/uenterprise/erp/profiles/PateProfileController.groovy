@@ -133,12 +133,12 @@ class PateProfileController {
     def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltPate)
     if (linking.duplicate)
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    render template:'godchildren', model: [godchildren: linking.results, pate: linking.target, entity: entityHelperService.loggedIn]
+    render template:'godchildren', model: [godchildren: linking.results, pate: linking.target]
   }
 
   def removeGodchildren = {
     def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltPate)
-    render template:'godchildren', model: [godchildren: breaking.results, pate: breaking.target, entity: entityHelperService.loggedIn]
+    render template:'godchildren', model: [godchildren: breaking.results, pate: breaking.target]
   }
 
   /*

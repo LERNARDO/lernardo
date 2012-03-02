@@ -15,7 +15,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
+    <erp:accessCheck types="['Betreiber','Pädagoge']">
       <div class="buttons">
         <g:form controller="news" action="create">
           <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'object.create', args: [message(code: 'news')])}"/></div>
@@ -25,7 +25,7 @@
     </erp:accessCheck>
 
     <div id="news-container">
-      <g:render template="newsitems" model="[news: news, newsCount: newsCount, currentEntity: currentEntity]"/>
+      <g:render template="newsitems" model="[news: news, newsCount: newsCount]"/>
     </div>
 
     <div class="paginateButtons">

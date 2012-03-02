@@ -11,7 +11,7 @@
     <td style="padding-left: 10px; vertical-align: top;">
       <table class="info">
         <tr>
-          <td><erp:isSystemAdmin entity="${currentEntity}">
+          <td><erp:isSystemAdmin>
             <g:if test="${entity.user.enabled}"><img class="tooltip" data-tooltip="${message(code: 'isActive')}" src="${resource(dir: 'images/icons', file: 'icon_enabled.png')}" alt="aktiv" style="top: 1px; position: relative"/></g:if><g:else><img class="tooltip" data-tooltip="${message(code: 'isInactive')}" src="${resource(dir: 'images/icons', file: 'icon_disabled.png')}" alt="inaktiv"/></g:else> <g:formatBoolean boolean="${entity.user.enabled}" true="${message(code:'active')}" false="${message(code:'inactive')}"/>
           </erp:isSystemAdmin></td>
           <td>&nbsp;</td>

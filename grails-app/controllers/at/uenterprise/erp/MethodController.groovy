@@ -116,7 +116,7 @@ class MethodController {
       meth.addToElements(new Element(name: element.name))
     }
 
-    render template: 'elements', model: [methodInstance: method, entity: entityHelperService.loggedIn]
+    render template: 'elements', model: [methodInstance: method]
   }
 
   def removeElement = {
@@ -138,7 +138,7 @@ class MethodController {
 
     element.delete(flush: true)
 
-    render template: 'elements', model: [methodInstance: method, entity: entityHelperService.loggedIn]
+    render template: 'elements', model: [methodInstance: method]
   }
 
   def editElement = {

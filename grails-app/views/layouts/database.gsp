@@ -180,7 +180,7 @@
         <li><g:link class="activered" controller="educatorProfile" action="index" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
         <li><g:link controller="logBook" action="entries" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
         <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+        <erp:accessCheck types="['Betreiber']">
           <li style="border-right: none;"><g:link controller="setup" action="show" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
         </erp:accessCheck>
       </ul>
@@ -197,7 +197,7 @@
             <div class="header"><g:message code="database"/></div>
 
             <ul>
-              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+              <erp:accessCheck roles="['ROLE_ADMIN']">
                 <li class="icon-operator"><g:link controller="operatorProfile" action="list"><g:message code="operator"/></g:link></li>
               </erp:accessCheck>
               <li class="icon-educators"><g:link controller="educatorProfile" action="list" onclick="showBigSpinner()"><g:message code="educators"/></g:link></li>
@@ -211,7 +211,7 @@
               <li class="icon-facility"><g:link controller="facilityProfile" action="list" onclick="showBigSpinner()"><g:message code="facilities"/></g:link></li>
               <li class="icon-group"><g:link controller="groupClientProfile" action="list" onclick="showBigSpinner()"><g:message code="groupClients"/></g:link></li>
               <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="list" onclick="showBigSpinner()"><g:message code="groupPartners"/></g:link></li>
-              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+              <erp:accessCheck roles="['ROLE_ADMIN']">
                 <li class="icon-admin"><g:link controller="userProfile" action="list"><g:message code="user"/></g:link></li>
               </erp:accessCheck>
             </ul>

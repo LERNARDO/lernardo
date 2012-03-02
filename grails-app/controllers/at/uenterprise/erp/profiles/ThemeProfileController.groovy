@@ -274,23 +274,23 @@ class ThemeProfileController {
     def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    render template: 'projects', model: [projects: linking.results, theme: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'projects', model: [projects: linking.results, theme: linking.target]
   }
 
   def removeProject = {
     def breaking = functionService.breakEntities(params.project, params.id, metaDataService.ltGroupMember)
-    render template: 'projects', model: [projects: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'projects', model: [projects: breaking.results, theme: breaking.target]
   }
 
   def addActivityGroup = {
     def linking = functionService.linkEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    render template: 'activitygroups', model: [activitygroups: linking.results, theme: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'activitygroups', model: [activitygroups: linking.results, theme: linking.target]
   }
 
   def removeActivityGroup = {
     def breaking = functionService.breakEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
-    render template: 'activitygroups', model: [activitygroups: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'activitygroups', model: [activitygroups: breaking.results, theme: breaking.target]
   }
 }

@@ -22,7 +22,7 @@
     <li class="redbox"><g:link controller="educatorProfile" action="index" onclick="showBigSpinner()" onmouseover="jQuery('#reddescription').show();" onmouseout="jQuery('#reddescription').hide();">${message(code: 'database').toUpperCase()}</g:link></li>
     <li class="greenbox"><g:link controller="logBook" action="entries" onclick="showBigSpinner()" onmouseover="jQuery('#greendescription').show();" onmouseout="jQuery('#greendescription').hide();">${message(code: 'organisation').toUpperCase()}</g:link></li>
     <li class="bluebox"><g:link controller="templateProfile" action="index" onclick="showBigSpinner()" onmouseover="jQuery('#bluedescription').show();" onmouseout="jQuery('#bluedescription').hide();">${message(code: 'planning').toUpperCase()}</g:link></li>
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+    <erp:accessCheck types="['Betreiber']">
       <li class="yellowbox"><g:link controller="setup" action="show" onclick="showBigSpinner()" onmouseover="jQuery('#yellowdescription').show();" onmouseout="jQuery('#yellowdescription').hide();">${message(code: 'administration').toUpperCase()}</g:link></li>
     </erp:accessCheck>
   </ul>

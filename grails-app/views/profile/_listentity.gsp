@@ -23,7 +23,7 @@
 </td>
 <td id="entity-roles-${i}" style="width: 200px;"><g:if test="${entity.user}"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></g:if></td>
 <td style="width: 300px;">
-  <erp:isSystemAdmin entity="${currentEntity}">
+  <erp:isSystemAdmin>
     <g:if test="${entity.user}">
       <div class="buttons">
         <erp:hasNotRoles entity="${entity}" roles="['ROLE_ADMIN']">

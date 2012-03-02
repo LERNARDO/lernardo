@@ -24,7 +24,7 @@
           </td>
         </tr>
 
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}">
+        <erp:accessCheck types="['Betreiber']" creatorof="${projectTemplate}">
         <tr class="prop">
           <td valign="top" class="name"><g:message code="status"/></td>
           <td valign="top" class="value">

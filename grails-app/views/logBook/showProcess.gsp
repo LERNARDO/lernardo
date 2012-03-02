@@ -83,7 +83,7 @@
 
     <div class="buttons">
       <g:form id="${process.id}">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
+        <erp:accessCheck types="['Betreiber']" facilities="${facilities}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="editProcess" value="${message(code: 'edit')}" /></div>
           %{--<div class="button"><g:actionSubmit class="buttonRed" action="deleteProcess" value="${message(code: 'delete')}" /></div>--}%
         </erp:accessCheck>

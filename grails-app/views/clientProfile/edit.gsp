@@ -252,7 +252,7 @@
         <div class="email">
           <table width="100%">
             <tr>
-              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+              <erp:accessCheck types="['Betreiber']">
                 <td>
                   <g:message code="active"/>
                   <g:checkBox name="enabled" value="${client?.user?.enabled}" style="vertical-align: bottom"/>

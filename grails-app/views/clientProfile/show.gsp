@@ -244,7 +244,7 @@
   <div class="email">
     <table width="100%">
       <tr>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+        <erp:accessCheck types="['Betreiber']">
           <td>
             <span class="bold"><g:message code="active"/></span>
             <g:formatBoolean boolean="${client.user.enabled}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/>
@@ -254,7 +254,7 @@
           <span class="bold"><g:message code="email"/>:</span>
           ${fieldValue(bean: client, field: 'user.email') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}
         </td>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${client}">
+        <erp:accessCheck types="['Betreiber']" me="${client}">
           <td>
             <g:form controller="profile" action="changePassword" id="${client.id}">
               <span class="bold"><g:message code="password"/>:</span>
@@ -269,11 +269,11 @@
 
 <h4><g:message code="management"/></h4>
   <div class="zusatz">
-    <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#performances');
+    <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#performances');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="performances" style="display:none">
-      <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addPerformance', id: client.id]" update="performances2" before="showspinner('#performances2');" after="toggle('#performances');">
+      <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addPerformance', id: client.id]" update="performances2" before="showspinner('#performances2');" after="toggle('#performances'); clearElements(['#performancetext']);">
         <table>
           <tr>
             <td valign="middle"><g:message code="date"/>:</td>
@@ -281,7 +281,7 @@
           </tr>
           <tr>
             <td valign="top"><g:message code="text"/>:</td>
-            <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+            <td><g:textArea id="performancetext" rows="5" cols="100" name="text" value=""/></td>
           </tr>
           <tr>
             <td></td>
@@ -292,16 +292,16 @@
     </div>
 
     <div class="zusatz-show" id="performances2">
-      <g:render template="performances" model="[client: client, entity: currentEntity]"/>
+      <g:render template="performances" model="[client: client]"/>
     </div>
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="client.profile.healthNotes"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#healths');
+    <h5><g:message code="client.profile.healthNotes"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#healths');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="healths" style="display:none">
-      <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addHealth', id: client.id]" update="healths2" before="showspinner('#healths2');" after="toggle('#healths');">
+      <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addHealth', id: client.id]" update="healths2" before="showspinner('#healths2');" after="toggle('#healths'); clearElements(['#healthstext']);">
         <table>
           <tr>
             <td valign="middle"><g:message code="date"/>:</td>
@@ -309,7 +309,7 @@
           </tr>
           <tr>
             <td valign="top"><g:message code="text"/>:</td>
-            <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+            <td><g:textArea id="healthstext" rows="5" cols="100" name="text" value=""/></td>
           </tr>
           <tr>
             <td></td>
@@ -320,16 +320,16 @@
     </div>
 
     <div class="zusatz-show" id="healths2">
-      <g:render template="healths" model="[client: client, entity: currentEntity]"/>
+      <g:render template="healths" model="[client: client]"/>
     </div>
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="client.profile.materials"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#materials');
+    <h5><g:message code="client.profile.materials"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#materials');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="materials" style="display:none">
-      <g:formRemote name="formRemote3" url="[controller: 'clientProfile', action: 'addMaterial', id: client.id]" update="materials2" before="showspinner('#materials2');" after="toggle('#materials');">
+      <g:formRemote name="formRemote3" url="[controller: 'clientProfile', action: 'addMaterial', id: client.id]" update="materials2" before="showspinner('#materials2');" after="toggle('#materials'); clearElements(['#materialstext']);">
         <table>
           <tr>
             <td valign="middle"><g:message code="date"/>:</td>
@@ -337,7 +337,7 @@
           </tr>
           <tr>
             <td valign="top"><g:message code="text"/>:</td>
-            <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+            <td><g:textArea id="materialstext" rows="5" cols="100" name="text" value=""/></td>
           </tr>
           <tr>
             <td></td>
@@ -348,12 +348,12 @@
     </div>
 
     <div class="zusatz-show" id="materials2">
-      <g:render template="materials" model="[client: client, entity: currentEntity]"/>
+      <g:render template="materials" model="[client: client]"/>
     </div>
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#dates');
+    <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#dates');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="dates" style="display:none">
@@ -364,12 +364,12 @@
     </div>
 
     <div class="zusatz-show" id="dates2">
-      <g:render template="dates" model="[client: client, entity: currentEntity]"/>
+      <g:render template="dates" model="[client: client]"/>
     </div>
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="client.profile.collectors"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#collectors');
+    <h5><g:message code="client.profile.collectors"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#collectors');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="collectors" style="display:none">
@@ -379,12 +379,12 @@
     </div>
 
     <div class="zusatz-show" id="collectors2">
-      <g:render template="collectors" model="[client: client, entity: currentEntity]"/>
+      <g:render template="collectors" model="[client: client]"/>
     </div>
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="educator.profile.emContact"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#contacts');
+    <h5><g:message code="educator.profile.emContact"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#contacts');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="contacts" style="display:none">
@@ -436,7 +436,7 @@
     </div>
 
     <div class="zusatz-show" id="contacts2">
-      <g:render template="contacts" model="[client: client, entity: currentEntity]"/>
+      <g:render template="contacts" model="[client: client]"/>
     </div>
   </div>
 

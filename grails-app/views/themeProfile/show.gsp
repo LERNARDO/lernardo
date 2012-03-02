@@ -24,7 +24,7 @@
 
       <h4><g:message code="profile"/></h4>
 
-      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: theme]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
+      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: theme]"/></span> <erp:accessCheck roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
       <div class="zusatz-add" id="setcreator" style="display:none">
         <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${theme.id}" before="showspinner('#remoteCreators');"/>
@@ -76,7 +76,7 @@
 
       <h4><g:message code="management"/></h4>
       <div class="zusatz">
-        <h5><g:message code="projects"/><erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#projects');
+        <h5><g:message code="projects"/><erp:accessCheck types="['Betreiber']"><a onclick="toggle('#projects');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="projects" style="display:none">
           <g:if test="${allProjects}">
@@ -92,12 +92,12 @@
           </g:else>
         </div>
         <div class="zusatz-show" id="projects2">
-          <g:render template="projects" model="[projects: projects, theme: theme, entity: currentEntity]"/>
+          <g:render template="projects" model="[projects: projects, theme: theme]"/>
         </div>
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="groupActivities"/><erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#activitygroups');
+        <h5><g:message code="groupActivities"/><erp:accessCheck types="['Betreiber']"><a onclick="toggle('#activitygroups');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsblöcke zuordnen"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="activitygroups" style="display:none">
           <g:if test="${allActivityGroups}">
@@ -113,7 +113,7 @@
           </g:else>
         </div>
         <div class="zusatz-show" id="activitygroups2">
-          <g:render template="activitygroups" model="[activitygroups: activitygroups, theme: theme, entity: currentEntity]"/>
+          <g:render template="activitygroups" model="[activitygroups: activitygroups, theme: theme]"/>
         </div>
       </div>
 

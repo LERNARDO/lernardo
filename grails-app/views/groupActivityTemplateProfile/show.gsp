@@ -17,7 +17,7 @@
       <ul>
         <li><g:link controller="groupActivityTemplateProfile" action="show" id="${group.id}"><g:message code="profile"/></g:link></li>
         <li><g:remoteLink update="content" controller="publication" action="list" id="${group.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${group}"/></g:remoteLink></li>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
+        <erp:accessCheck types="['Betreiber','Pädagoge']">
           <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${group.id}"><g:message code="comments"/> (${group.profile.comments.size()}) </g:remoteLink></li>
         </erp:accessCheck>
       </ul>
@@ -26,7 +26,7 @@
     <div id="content">
       <h4><g:message code="profile"/></h4>
 
-      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: group]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
+      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: group]"/></span> <erp:accessCheck roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
       <div class="zusatz-add" id="setcreator" style="display:none">
         <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${group.id}" before="showspinner('#remoteCreators');"/>
@@ -80,7 +80,7 @@
 
       <h4><g:message code="management"/></h4>
       <div class="zusatz">
-        <h5><g:message code="labels"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="toggle('#labels');
+        <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="toggle('#labels');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="labels" style="display:none">
           <g:formRemote name="formRemote2" url="[controller:'groupActivityTemplateProfile', action:'addLabel', id:group.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
@@ -96,7 +96,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="activityTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+        <h5><g:message code="activityTemplates"/> <erp:accessCheck types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="templates" style="display:none">
           <p><g:message code="activityTemplate.list.hint2"/></p>
           <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect');">
@@ -159,7 +159,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+        <h5><g:message code="resources.required"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="resources" style="display:none">
 
           <g:formRemote name="formRemote" url="[controller:'resourceProfile', action:'addResource', id: group.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
@@ -222,7 +222,7 @@
   </div>
 </div>
 
-%{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
+%{--<erp:accessCheck types="['Betreiber','Pädagoge']">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: group]"/>
 </erp:accessCheck>--}%
 

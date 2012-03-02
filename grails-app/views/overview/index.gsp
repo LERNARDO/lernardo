@@ -35,7 +35,7 @@
 <div class="boxGray">
   <div class="second">
 
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+      <erp:accessCheck roles="['ROLE_ADMIN']">
         <div class="overview" id="admin"></div>
       </erp:accessCheck>
       <div class="overview" id="persons"></div>

@@ -11,7 +11,7 @@
   </div>
 </div>
 
-%{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">--}%
+%{--<erp:accessCheck types="['Betreiber']" facilities="${facilities}">--}%
   <div class="tabGrey">
     <div class="second">
       <h1><g:link controller="logBook" action="evaluation"><g:message code="evaluation2"/></g:link></h1>
@@ -40,7 +40,7 @@
       <g:message code="object.total" args="[processes.size(), message(code: 'processes')]"/>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
+    <erp:accessCheck types="['Betreiber']" facilities="${facilities}">
         <div class="buttons">
           <g:form controller="logBook" action="createProcess">
             <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'object.create', args: [message(code: 'process')])}"/></div>

@@ -81,7 +81,7 @@
 
       <h4><g:message code="management"/></h4>
       <div class="zusatz">
-        <h5><g:message code="parents"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#parents');
+        <h5><g:message code="parents"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#parents');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="parents" style="display:none">
 
@@ -96,7 +96,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');
+        <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#clients');
         return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="clients" style="display:none">
 
@@ -111,7 +111,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="children"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#childs');
+        <h5><g:message code="children"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#childs');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="childs" style="display:none">
 

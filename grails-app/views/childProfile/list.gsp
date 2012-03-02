@@ -15,7 +15,7 @@
       <g:message code="object.total" args="[totalChildren, message(code: 'children')]"/>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+    <erp:accessCheck types="['Betreiber']">
       <div class="buttons">
         <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'child')])}"/></div>

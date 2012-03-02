@@ -142,19 +142,19 @@ class PartnerProfileController {
     Entity partner = Entity.get(params.id)
     if (cc.hasErrors()) {
       render '<p class="italic red">'+message(code: "object.notCreated", args: [message(code: "partner.profile.contact")])+'</p>'
-      render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
+      render template: 'contacts', model: [partner: partner]
       return
     }
     Contact contact = new Contact(params)
     partner.profile.addToContacts(contact)
-    render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
+    render template: 'contacts', model: [partner: partner]
   }
 
   def removeContact = {
     Entity partner = Entity.get(params.id)
     partner.profile.removeFromContacts(Contact.get(params.contact))
     Contact.get(params.contact).delete()
-    render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
+    render template: 'contacts', model: [partner: partner]
   }
 
   def editContact = {

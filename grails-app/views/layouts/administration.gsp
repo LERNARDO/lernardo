@@ -194,7 +194,7 @@
 
             <div class="header"><g:message code="administration"/></div>
 
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+            <erp:accessCheck types="['Betreiber']">
               <ul>
                   <li class="icon-setup"><g:link controller="setup" action="show"><g:message code="setup"/></g:link></li>
                   <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>

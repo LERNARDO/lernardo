@@ -19,7 +19,7 @@
 
     <div class="buttons">
       <g:form>
-        <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
+        <erp:accessCheck types="['Pädagoge','Betreiber']">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'projectTemplate')])}"/></div>
           <div class="clear"></div>
         </erp:accessCheck>

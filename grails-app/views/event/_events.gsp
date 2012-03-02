@@ -23,9 +23,7 @@
         </td>
         <td class="gray">
           <g:formatDate date="${event.date}" format="EE dd. MMM. yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
-          <erp:getEvent event="${event}"/> <erp:isSystemAdmin entity="${currentEntity}"><g:link action="delete" id="${event.id}"
-                                                                                                onclick="if(!confirm('${message(code:'delete.warn')}')) return false"><img
-              src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/></g:link></erp:isSystemAdmin>
+          <erp:getEvent event="${event}"/> <erp:isSystemAdmin><g:link action="delete" id="${event.id}" onclick="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/></g:link></erp:isSystemAdmin>
         </td>
       </tr>
     </g:each>

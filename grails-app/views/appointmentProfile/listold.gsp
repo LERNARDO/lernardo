@@ -26,7 +26,7 @@
       <g:message code="object.found" args="[appointmentProfileInstanceTotal, message(code: 'appointments')]"/>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
+    <erp:accessCheck types="['Betreiber']" me="${entity}">
       <div class="buttons">
         <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'appointment')])}"/></div>
@@ -60,7 +60,7 @@
             </td>
             <td style="line-height: 20px;">
               <g:if test="${appointmentProfileInstance.profile.isPrivate}">
-                <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
+                <erp:accessCheck types="['Betreiber']" me="${entity}">
                   <span class="bold"><g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link></span><br/>
                   ${fieldValue(bean: appointmentProfileInstance, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
                   <g:set var="negation" value="negation"/> %{-- see below note why this is set --}%
