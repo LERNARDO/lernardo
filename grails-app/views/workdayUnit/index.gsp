@@ -14,7 +14,7 @@
     <h1><g:link controller="workdayUnit" action="report" id="${entity.id}"><g:message code="report"/></g:link></h1>
   </div>
 </div>
-<div class="clearFloat"></div>
+<div class="clear"></div>
 
 <div class="boxGray">
   <div class="second">

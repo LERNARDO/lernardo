@@ -14,7 +14,7 @@
     <h1><g:message code="report"/></h1>
   </div>
 </div>
-<div class="clearFloat"></div>
+<div class="clear"></div>
 
 <div class="boxGray">
   <div class="second">

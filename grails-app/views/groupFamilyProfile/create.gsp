@@ -62,7 +62,7 @@
 
           <tr>
             <td colspan="3" valign="top" class="value">
-              <g:select class="max-textbox" name="familyProblems" from="${Setup.list()[0]?.familyProblems}" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
+              <g:select name="familyProblems" from="${Setup.list()[0]?.familyProblems}" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
             </td>
           </tr>
 

@@ -22,7 +22,7 @@
     <h1><g:link controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.outbox"/></g:link></h1>
   </div>
 </div>
-<div class="clearFloat"></div>
+<div class="clear"></div>
 
 <div class="boxGray">
   <div class="second">

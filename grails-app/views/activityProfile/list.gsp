@@ -26,12 +26,8 @@
   </div>
 </div>
 
-%{--<div class="clearFloat"></div>--}%
-
 <div class="boxGray">
   <div class="second">
-
-    %{--<div class="clear"></div>--}%
 
     <div class="info-msg">
       ${activityCount} <g:message code="themeRooms"/>

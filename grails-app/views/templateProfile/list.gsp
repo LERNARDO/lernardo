@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="clearFloat"></div>
+<div class="clear"></div>
 
 <div class="boxGray">
   <div class="second">
