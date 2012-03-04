@@ -89,7 +89,7 @@
 
         </div>
         <div class="zusatz-show" id="leadeducators2">
-          <g:render template="leadeducators" model="[leadeducators: leadeducators, entity: currentEntity]"/>
+          <g:render template="leadeducators" model="[leadeducators: leadeducators]"/>
         </div>
       </div>
 
@@ -104,7 +104,7 @@
 
         </div>
         <div class="zusatz-show" id="educators2">
-          <g:render template="educators" model="[educators: educators, entity: currentEntity, facility: facility]"/>
+          <g:render template="educators" model="[educators: educators, facility: facility]"/>
         </div>
       </div>
 
@@ -119,7 +119,7 @@
 
         </div>
         <div class="zusatz-show" id="clients2">
-          <g:render template="clients" model="[clients: clients, entity: currentEntity, facility: facility]"/>
+          <g:render template="clients" model="[clients: clients, facility: facility]"/>
         </div>
       </div>
 
@@ -174,7 +174,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="contacts2">
-          <g:render template="contacts" model="[facility: facility, entity: currentEntity]"/>
+          <g:render template="contacts" model="[facility: facility]"/>
         </div>
       </div>
 
@@ -215,7 +215,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="resources2">
-          <g:render template="resources" model="[resources: resources, facility: facility, entity: currentEntity]"/>
+          <g:render template="resources" model="[resources: resources, facility: facility]"/>
         </div>
       </div>
 

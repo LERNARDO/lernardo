@@ -68,32 +68,6 @@
     <td style="padding-right: 15px; vertical-align: top; width: 250px;">
 
       <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; text-align: center; color: #36808E; font-size: 16px; margin-bottom: 6px;"><g:message code="imgmenu.calendar.name"/></div>
-      %{--<h1><g:message code="imgmenu.calendar.name"/></h1>--}%
-
-      %{--<erp:getActiveCalPerson id="${currentEntity.id}">
-        <div class="calenderperson">
-          <table style="width: 100%;">
-            <tr>
-              <td>
-                <a class="name" style="display: block; text-decoration: none;" href="#" onclick="togglePerson('person','${currentEntity.id}','-1'); return false;">
-                  <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${currentEntity.id}','${i}','${active}');"/>
-                  <div id="personcolor-1" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${currentEntity.profile.color ?: '#ccc'}; background-color: ${currentEntity.profile.color ?: '#ccc'};"></div> <erp:truncate string="${currentEntity.profile.fullName.decodeHTML()}"/></div>
-                  <div id="personcolor-1-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${currentEntity.profile.fullName.decodeHTML()}"/></div>
-                </a>
-              </td>
-              <td width="35">
-                <a href="#" onclick="$('#colorme').toggle();"><img class="calendercolorpicker" src="${resource(dir: 'images/icons', file: 'bullet_arrow_down.png')}" alt="options" style="top: 2px; position: relative"/></a>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="colorme" style="display: none; background: #eee; padding: 10px;">
-          <g:form controller="profile" action="updateColor" id="${currentEntity.id}">
-            <g:textField name="color" value="${currentEntity.profile.color ?: '#FFFFFF'}" class="kolorPicker"/>
-            <g:submitButton name="submit" value="OK"/>
-          </g:form>
-        </div>
-      </erp:getActiveCalPerson>--}%
 
       <div class="calenderperson">
         <table style="width: 100%;">

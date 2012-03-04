@@ -514,7 +514,7 @@ class ProjectTemplateProfileController {
 
         entity.profile.addToLabels(label)
     }
-    render template: 'labels', model: [projectTemplate: entity, entity: entityHelperService.loggedIn]
+    render template: 'labels', model: [projectTemplate: entity]
   }
 
   /*
@@ -524,7 +524,7 @@ class ProjectTemplateProfileController {
     Entity group = Entity.get(params.id)
     group.profile.removeFromLabels(Label.get(params.label))
     Label.get(params.label).delete()
-    render template: 'labels', model: [projectTemplate: group, entity: entityHelperService.loggedIn]
+    render template: 'labels', model: [projectTemplate: group]
   }
 
   def moveUp = {

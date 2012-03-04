@@ -504,12 +504,12 @@ class ActivityProfileController {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltActEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'educators', model: [educators: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'educators', model: [educators: linking.results, activity: linking.target]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltActEducator)
-    render template: 'educators', model: [educators: breaking.results, activity: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'educators', model: [educators: breaking.results, activity: breaking.target]
   }
 
   def addClient = {
@@ -527,7 +527,7 @@ class ActivityProfileController {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
-      render template: 'clients', model: [clients: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]
+      render template: 'clients', model: [clients: linking.results, activity: linking.target]
     }
     // if the entity is a client group get all clients and add them
     else if (clientgroup.type.id == metaDataService.etGroupClient.id) {
@@ -541,13 +541,13 @@ class ActivityProfileController {
       }
 
       List clients2 = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
-      render template: 'clients', model: [clients: clients2, activity: activity, entity: entityHelperService.loggedIn]
+      render template: 'clients', model: [clients: clients2, activity: activity]
     }
   }
 
   def removeClient = {
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltActClient)
-    render template: 'clients', model: [clients: breaking.results, activity: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: breaking.results, activity: breaking.target]
   }
 
   def updateEducators = {
@@ -594,19 +594,19 @@ class ActivityProfileController {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltActFacility)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-      render template: 'facilities', model: [facilities: linking.results2, activity: linking.source, entity: entityHelperService.loggedIn]
+      render template: 'facilities', model: [facilities: linking.results2, activity: linking.source]
     }
     else {
       List facilities = functionService.findAllByLink(group, null, metaDataService.ltActFacility)
       render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
-      render template: 'facilities', model: [facilities: facilities, activity: group, entity: entityHelperService.loggedIn]
+      render template: 'facilities', model: [facilities: facilities, activity: group]
     }
 
   }
 
   def removeFacility = {
     def breaking = functionService.breakEntities(params.id, params.facility, metaDataService.ltActFacility)
-    render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
+    render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source]
   }
 }
 

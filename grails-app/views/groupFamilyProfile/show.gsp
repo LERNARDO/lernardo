@@ -91,7 +91,7 @@
 
         </div>
         <div class="zusatz-show" id="parents2">
-          <g:render template="parents" model="[parents: parents, group: group, entity: currentEntity]"/>
+          <g:render template="parents" model="[parents: parents, group: group]"/>
         </div>
       </div>
 
@@ -106,7 +106,7 @@
 
         </div>
         <div class="zusatz-show" id="clients2">
-          <g:render template="clients" model="[clients: clients, group: group, entity: currentEntity]"/>
+          <g:render template="clients" model="[clients: clients, group: group]"/>
         </div>
       </div>
 
@@ -121,7 +121,7 @@
 
         </div>
         <div class="zusatz-show" id="childs2">
-          <g:render template="childs" model="[childs: childs, group: group, entity: currentEntity]"/>
+          <g:render template="childs" model="[childs: childs, group: group]"/>
         </div>
       </div>
 

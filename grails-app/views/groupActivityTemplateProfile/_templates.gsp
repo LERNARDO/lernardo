@@ -27,7 +27,7 @@
   </p>
 
   <ol id="templatesOrdered">
-    <g:render template="templates2" model="[templates: templates, group: group, entity: entity]"/>
+    <g:render template="templates2" model="[templates: templates, group: group]"/>
   </ol>
 
 </g:if>

@@ -255,7 +255,7 @@ class ResourceProfileController {
     Resource resource = new Resource(params)
     template.profile.addToResources(resource)
 
-    render template: '/requiredResources/resources', model: [template: template, entity: entityHelperService.loggedIn]
+    render template: '/requiredResources/resources', model: [template: template]
   }
 
   /*
@@ -267,7 +267,7 @@ class ResourceProfileController {
     Resource resource = Resource.get(params.resourceInstance)
     template.profile.removeFromResources(resource)
 
-    render template: '/requiredResources/resources', model: [template: template, entity: entityHelperService.loggedIn]
+    render template: '/requiredResources/resources', model: [template: template]
   }
 
   def editResource = {

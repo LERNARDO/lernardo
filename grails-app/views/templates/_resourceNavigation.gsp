@@ -3,7 +3,7 @@
     <td>
       <div style="width: 130px;" onmouseover="$('#mypic').css('opacity', '1');" onmouseout="$('#mypic').css('opacity', '0');">
         <erp:profileImage entity="${entity}" width="130"/>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${entity}">
+        <erp:accessCheck types="['Betreiber']" creatorof="${entity}">
           <div id="mypic"><g:link controller="profile" action="uploadProfileImage" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></div>
         </erp:accessCheck>
       </div>

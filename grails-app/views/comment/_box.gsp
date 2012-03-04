@@ -22,7 +22,7 @@
       </g:formRemote>
     </div>
 
-    <g:render template="/comment/comments" model="[currentEntity: currentEntity, commented: commented]"/>
+    <g:render template="/comment/comments" model="[commented: commented]"/>
 
   </div>
 </div>

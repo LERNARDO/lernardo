@@ -86,14 +86,14 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="labels2">
-          <g:render template="labels" model="[projectTemplate: projectTemplate, entity: currentEntity]"/>
+          <g:render template="labels" model="[projectTemplate: projectTemplate]"/>
         </div>
       </div>
 
       <div class="zusatz">
         <h5><g:message code="projectUnitTemplates"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="${message(code: 'add')}"/></g:remoteLink></erp:accessCheck></h5>
         <div class="zusatz-show" id="projectunittemplates2">
-          <g:render template="projectUnitTemplates" model="[projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: currentEntity, allLabels: allLabels]"/>
+          <g:render template="projectUnitTemplates" model="[projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, allLabels: allLabels]"/>
         </div>
       </div>
 
@@ -123,7 +123,7 @@
 
         </div>
         <div class="zusatz-show" id="resources2">
-          <g:render template="/requiredResources/resources" model="[template: projectTemplate, entity: currentEntity]"/>
+          <g:render template="/requiredResources/resources" model="[template: projectTemplate]"/>
         </div>
         <div id="templateresources">
           <g:render template="templateresources" model="[templateResources: templateResources, groupActivityTemplateResources: groupActivityTemplateResources, projectTemplate: projectTemplate]"/>
@@ -149,9 +149,5 @@
 
   </div>
 </div>
-
-%{--<erp:accessCheck types="['Betreiber','Pädagoge']">
-  <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: projectTemplate]"/>
-</erp:accessCheck>--}%
 
 </body>

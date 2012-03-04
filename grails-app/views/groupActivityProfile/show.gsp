@@ -135,7 +135,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="labels2">
-          <g:render template="labels" model="[group: group, entity: currentEntity]"/>
+          <g:render template="labels" model="[group: group]"/>
         </div>
       </div>
 
@@ -154,7 +154,7 @@
           </g:else>
         </div>
         <div class="zusatz-show" id="themes2">
-          <g:render template="themes" model="[themes: themes, group: group, entity: currentEntity]"/>
+          <g:render template="themes" model="[themes: themes, group: group]"/>
         </div>
       </div>
 
@@ -168,7 +168,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="facilities2">
-          <g:render template="facilities" model="[facilities: facilities, group: group, entity: currentEntity]"/>
+          <g:render template="facilities" model="[facilities: facilities, group: group]"/>
         </div>
       </div>
 
@@ -181,7 +181,7 @@
           <div id="educatorresults"></div>
         </div>
         <div class="zusatz-show" id="educators2">
-          <g:render template="educators" model="[educators: educators, entity: currentEntity]"/>
+          <g:render template="educators" model="[educators: educators]"/>
         </div>
       </div>
 
@@ -194,7 +194,7 @@
           <div id="substituteresults"></div>
         </div>
         <div class="zusatz-show" id="substitutes2">
-          <g:render template="substitutes" model="[substitutes: substitutes, entity: currentEntity]"/>
+          <g:render template="substitutes" model="[substitutes: substitutes]"/>
         </div>
       </div>
 
@@ -209,7 +209,7 @@
 
         </div>
         <div class="zusatz-show" id="clients2">
-          <g:render template="clients" model="[clients: clients, entity: currentEntity]"/>
+          <g:render template="clients" model="[clients: clients]"/>
         </div>
       </div>
 
@@ -227,7 +227,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="parents2">
-          <g:render template="parents" model="[parents: parents, entity: currentEntity]"/>
+          <g:render template="parents" model="[parents: parents]"/>
         </div>
       </div>
 
@@ -243,7 +243,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="partners2">
-          <g:render template="partners" model="[partners: partners, entity: currentEntity]"/>
+          <g:render template="partners" model="[partners: partners]"/>
         </div>
       </div>
 
@@ -270,7 +270,7 @@
           </div>
         </div>
         <div class="zusatz-show" id="resources2">
-          <g:render template="resources" model="[resources: resources, entity: currentEntity, group: group]"/>
+          <g:render template="resources" model="[resources: resources, group: group]"/>
         </div>
       </div>
 
@@ -278,9 +278,5 @@
 
   </div>
 </div>
-
-%{--<erp:accessCheck types="['Betreiber','Pädagoge']">
-  <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: group]"/>
-</erp:accessCheck>--}%
 
 </body>

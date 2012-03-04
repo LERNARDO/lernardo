@@ -2,7 +2,7 @@
   <g:each in="${resources}" var="resource">
     <div style="border: 1px solid #ccc; margin-top: 5px; border-radius: 5px; background: #fefefe; padding: 5px;">
       <ul>
-        <li><span class="bold"><g:message code="name"/>:</span> <g:link controller="resourceProfile" action="show" id="${resource.id}">${resource.profile.fullName.decodeHTML()}</g:link> <erp:accessCheck entity="${entity}" types="['Betreiber']"><g:remoteLink action="removeResource" update="resources2" id="${group.id}" params="[resource: resource.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
+        <li><span class="bold"><g:message code="name"/>:</span> <g:link controller="resourceProfile" action="show" id="${resource.id}">${resource.profile.fullName.decodeHTML()}</g:link> <erp:accessCheck types="['Betreiber']"><g:remoteLink action="removeResource" update="resources2" id="${group.id}" params="[resource: resource.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
         <li><g:message code="description"/>: ${resource.profile.description ?: '<span class="gray">' + message(code: 'noData') + '</span>'}</li>
         <li><g:message code="resource.profile.amount"/>: ${resource.profile.amount}</li>
         <li><g:message code="resource.profile.costs"/>: ${resource.profile.costs}</li>

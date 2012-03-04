@@ -68,13 +68,11 @@
       <p><g:message code="educators"/>:</p>
       <span id="educators">
         <p class="gray"><g:message code="selectFacility"/></p>
-        %{--<g:render template="educatorsFound" model="[educators: ac?.educators, currentEntity: currentEntity]"/>--}%
       </span>
 
       <p><g:message code="clients"/>:</p>
       <span id="clients">
         <p class="gray"><g:message code="selectFacility"/></p>
-        %{--<g:render template="clientsFound" model="[clients: ac?.clients, currentEntity: currentEntity]"/>--}%
       </span>
 
       <table width="100%" class="${hasErrors(bean: ac, field: 'weekdays', 'errors')}">

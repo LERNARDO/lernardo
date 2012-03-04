@@ -91,7 +91,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="labels2">
-          <g:render template="labels" model="[group: group, entity: currentEntity]"/>
+          <g:render template="labels" model="[group: group]"/>
         </div>
       </div>
 
@@ -154,7 +154,7 @@
 
         </div>
         <div class="zusatz-show" id="templates2">
-          <g:render template="templates" model="[group: group, templates: templates, entity: currentEntity]"/>
+          <g:render template="templates" model="[group: group, templates: templates]"/>
         </div>
       </div>
 
@@ -184,7 +184,7 @@
 
         </div>
         <div class="zusatz-show" id="resources2">
-          <g:render template="/requiredResources/resources" model="[template: group, entity: currentEntity]"/>
+          <g:render template="/requiredResources/resources" model="[template: group]"/>
         </div>
         <g:if test="${templateResources}">
           <p><span class="bold"><g:message code="fromTemplates"/>:</span></p>
@@ -221,9 +221,5 @@
 
   </div>
 </div>
-
-%{--<erp:accessCheck types="['Betreiber','Pädagoge']">
-  <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: group]"/>
-</erp:accessCheck>--}%
 
 </body>

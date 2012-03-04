@@ -213,8 +213,7 @@ class PublicationController {
             publications: publications,
             activitytemplatesdocuments: activitytemplatesdocuments,
             groupactivitytemplatesdocuments: groupactivitytemplatesdocuments,
-            projecttemplatedocuments: projecttemplatedocuments,
-            currentEntity: entityHelperService.loggedIn]
+            projecttemplatedocuments: projecttemplatedocuments]
   }
 
   def create = {

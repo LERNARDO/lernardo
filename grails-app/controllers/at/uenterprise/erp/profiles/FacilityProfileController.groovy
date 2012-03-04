@@ -180,7 +180,7 @@ class FacilityProfileController {
     // find all resources of this facility
     List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
-    render template: 'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [resources: resources, facility: facility]
   }
 
   def removeResource = {
@@ -200,31 +200,31 @@ class FacilityProfileController {
     // find all resources of this facility
     List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
-    render template: 'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [resources: resources, facility: facility]
   }
 
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'educators', model: [educators: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'educators', model: [educators: linking.results, facility: linking.target]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltWorking)
-    render template: 'educators', model: [educators: breaking.results, facility: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'educators', model: [educators: breaking.results, facility: breaking.target]
   }
 
   def addLeadEducator = {
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'leadeducators', model: [leadeducators: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'leadeducators', model: [leadeducators: linking.results, facility: linking.target]
   }
 
   def removeLeadEducator = {
     def breaking = functionService.breakEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
-    render template: 'leadeducators', model: [leadeducators: breaking.results, facility: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'leadeducators', model: [leadeducators: breaking.results, facility: breaking.target]
   }
 
   def addClients = {
@@ -238,7 +238,7 @@ class FacilityProfileController {
         render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
       else
         new Attendance(client: clientgroup, facility: facility).save(failOnError: true)
-      render template: 'clients', model: [clients: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
+      render template: 'clients', model: [clients: linking.results, facility: linking.target]
     }
     // if the entity is a client group get all clients and add them
     else if (clientgroup.type.id == metaDataService.etGroupClient.id) {
@@ -254,7 +254,7 @@ class FacilityProfileController {
       }
 
       List clients2 = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
-      render template: 'clients', model: [clients: clients2, facility: facility, entity: entityHelperService.loggedIn]
+      render template: 'clients', model: [clients: clients2, facility: facility]
     }
 
 
@@ -303,13 +303,13 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
     if (cc.hasErrors()) {
       render '<p class="italic red">'+message(code: "facility.profile.name.insert")+'</p>'
-      render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+      render template: 'contacts', model: [facility: facility]
       return
     }
     else {
       Contact contact = new Contact(params)
       facility.profile.addToContacts(contact)
-      render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+      render template: 'contacts', model: [facility: facility]
     }
   }
 
@@ -317,7 +317,7 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
     facility.profile.removeFromContacts(Contact.get(params.contact))
     Contact.get(params.contact).delete()
-    render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+    render template: 'contacts', model: [facility: facility]
   }
 
   def editContact = {

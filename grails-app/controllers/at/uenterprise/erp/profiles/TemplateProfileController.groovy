@@ -245,7 +245,7 @@ class TemplateProfileController {
 
         template.profile.addToMethods(method)
     }
-    render template: 'methods', model: [template: template, entity: entityHelperService.loggedIn]
+    render template: 'methods', model: [template: template]
   }
 
   /*
@@ -255,7 +255,7 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     template.profile.removeFromMethods(Method.get(params.method))
     Method.get(params.method).delete()
-    render template: 'methods', model: [template: template, entity: entityHelperService.loggedIn]
+    render template: 'methods', model: [template: template]
   }
 
   /*
@@ -494,7 +494,7 @@ class TemplateProfileController {
 
         entity.profile.addToLabels(label)
     }
-    render template: 'labels', model: [template: entity, entity: entityHelperService.loggedIn]
+    render template: 'labels', model: [template: entity]
   }
 
     /*
@@ -504,7 +504,7 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     template.profile.removeFromLabels(Label.get(params.label))
     Label.get(params.label).delete()
-    render template: 'labels', model: [template: template, entity: entityHelperService.loggedIn]
+    render template: 'labels', model: [template: template]
   }
 
 }

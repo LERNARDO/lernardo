@@ -13,12 +13,11 @@ class CommentController {
   def delete = {
     Entity entity = Entity.get(params.id)
     Comment comment = Comment.get(params.comment)
-    Entity currentEntity = entityHelperService.loggedIn
 
     entity.profile.removeFromComments(comment)
     comment.delete()
 
-    render template:'comments', model:[commented: entity, currentEntity: currentEntity]
+    render template:'comments', model:[commented: entity]
   }
 
   def create = {
@@ -34,7 +33,7 @@ class CommentController {
 
     functionService.createEvent(EVENT_TYPE.COMMENT_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
-    render template:'comments', model:[commented: entity, currentEntity: currentEntity]
+    render template:'comments', model:[commented: entity]
   }
 
   def edit = {
@@ -45,11 +44,10 @@ class CommentController {
 
   def update = {
     Entity entity = Entity.get(params.id)
-    Entity currentEntity = entityHelperService.loggedIn
     Comment comment = Comment.get(params.comment)
     comment.content = params.content
     comment.save()
-    render template: 'comment', model: [i:params.i, comment: comment, commented: entity, currentEntity: currentEntity]
+    render template: 'comment', model: [i: params.i, comment: comment, commented: entity]
   }
 
   def list = {
@@ -90,7 +88,7 @@ class CommentController {
 
   def show = {
     Entity entity = Entity.get(params.id)
-    render template: "box", model: [currentEntity: entityHelperService.loggedIn, commented: entity]
+    render template: "box", model: [commented: entity]
   }
 
 }

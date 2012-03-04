@@ -95,7 +95,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="labels2">
-          <g:render template="labels" model="[project: project, entity: currentEntity]"/>
+          <g:render template="labels" model="[project: project]"/>
         </div>
       </div>
 
@@ -160,9 +160,6 @@
 
     </div>
 
-    %{--<erp:accessCheck types="['Betreiber','Pädagoge']">
-      <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: project]"/>
-    </erp:accessCheck>--}%
   </div>
 </div>
 

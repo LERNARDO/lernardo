@@ -169,7 +169,7 @@ class GroupColonyProfileController {
     // find all resources linked to this group
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
-    render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [resources: resources, group: group]
   }
 
   def removeResource = {
@@ -189,27 +189,27 @@ class GroupColonyProfileController {
     // find all resources linked to this group
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
-    render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [resources: resources, group: group]
   }
 
   def addRepresentative = {ContactCommand cc ->
     Entity group = Entity.get(params.id)
     if (cc.hasErrors()) {
       render '<p class="italic red">'+message(code: "groupColony.profile.name.insert")+'</p>'
-      render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+      render template: 'representatives', model: [group: group]
       return
     }
     else {
       Contact contact = new Contact(params)
       group.profile.addToRepresentatives(contact)
-      render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+      render template: 'representatives', model: [group: group]
     }
   }
 
   def removeRepresentative = {
     Entity group = Entity.get(params.id)
     group.profile.removeFromRepresentatives(Contact.get(params.representative))
-    render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+    render template: 'representatives', model: [group: group]
   }
 
   def editRepresentative = {
@@ -242,24 +242,24 @@ class GroupColonyProfileController {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'facilities', model: [facilities: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'facilities', model: [facilities: linking.results, group: linking.target]
   }
 
   def removeFacility = {
     def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
-    render template: 'facilities', model: [facilities: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'facilities', model: [facilities: breaking.results, group: breaking.target]
   }
 
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'partners', model: [partners: linking.results, group: linking.target]
   }
 
   def removePartner = {
     def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
-    render template: 'partners', model: [partners: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'partners', model: [partners: breaking.results, group: breaking.target]
   }
 
   def addEducator = {

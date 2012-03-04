@@ -101,7 +101,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="representatives2">
-          <g:render template="representatives" model="[group: group, entity: currentEntity]"/>
+          <g:render template="representatives" model="[group: group]"/>
         </div>
       </div>
 
@@ -145,7 +145,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="resources2">
-          <g:render template="resources" model="[resources: resources, group: group, entity: currentEntity]"/>
+          <g:render template="resources" model="[resources: resources, group: group]"/>
         </div>
       </div>
 
@@ -160,7 +160,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="facilities2">
-          <g:render template="facilities" model="[facilities: facilities, group: group, entity: currentEntity]"/>
+          <g:render template="facilities" model="[facilities: facilities, group: group]"/>
         </div>
       </div>
 
@@ -174,7 +174,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="partners2">
-          <g:render template="partners" model="[partners: partners, group: group, entity: currentEntity]"/>
+          <g:render template="partners" model="[partners: partners, group: group]"/>
         </div>
       </div>
 

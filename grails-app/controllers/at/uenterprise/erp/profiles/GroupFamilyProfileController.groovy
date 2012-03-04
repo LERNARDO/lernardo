@@ -153,19 +153,19 @@ class GroupFamilyProfileController {
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
-      render template: 'parents', model: [parents: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+      render template: 'parents', model: [parents: linking.results, group: linking.target]
       }
     else {
       render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
       List parents = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberParent)
-      render template: 'parents', model: [parents: parents, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+      render template: 'parents', model: [parents: parents, group: Entity.get(params.id)]
     }
 
   }
 
   def removeParent = {
     def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
-    render template: 'parents', model: [parents: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'parents', model: [parents: breaking.results, group: breaking.target]
   }
 
   def addClient = {
@@ -176,12 +176,12 @@ class GroupFamilyProfileController {
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
-      render template: 'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+      render template: 'clients', model: [clients: linking.results, group: linking.target]
     }
     else {
       render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
       List clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupFamily)
-      render template: 'clients', model: [clients: clients, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+      render template: 'clients', model: [clients: clients, group: Entity.get(params.id)]
     }
   }
 
@@ -198,12 +198,12 @@ class GroupFamilyProfileController {
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
-      render template: 'childs', model: [childs: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+      render template: 'childs', model: [childs: linking.results, group: linking.target]
     }
     else {
       render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
       List childs = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberChild)
-      render template: 'childs', model: [childs: childs, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+      render template: 'childs', model: [childs: childs, group: Entity.get(params.id)]
     }
   }
 

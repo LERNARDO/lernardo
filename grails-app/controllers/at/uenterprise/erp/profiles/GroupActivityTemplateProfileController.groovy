@@ -283,7 +283,7 @@ class GroupActivityTemplateProfileController {
       calculatedDuration += it.profile.duration
     }
 
-    render template: 'templates', model: [templates: templates, group: Entity.get(params.id), entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+    render template: 'templates', model: [templates: templates, group: Entity.get(params.id), calculatedDuration: calculatedDuration]
   }
 
   def removeTemplate = {
@@ -301,7 +301,7 @@ class GroupActivityTemplateProfileController {
       calculatedDuration += it.profile.duration
     }
 
-    render template: 'templates', model: [templates: templates, group: breaking.target, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+    render template: 'templates', model: [templates: templates, group: breaking.target, calculatedDuration: calculatedDuration]
   }
 
   def updateselect = {
@@ -528,7 +528,7 @@ class GroupActivityTemplateProfileController {
 
         entity.profile.addToLabels(label)
     }
-    render template: 'labels', model: [group: entity, entity: entityHelperService.loggedIn]
+    render template: 'labels', model: [group: entity]
   }
 
   /*
@@ -538,7 +538,7 @@ class GroupActivityTemplateProfileController {
     Entity group = Entity.get(params.id)
     group.profile.removeFromLabels(Label.get(params.label))
     Label.get(params.label).delete()
-    render template: 'labels', model: [group: group, entity: entityHelperService.loggedIn]
+    render template: 'labels', model: [group: group]
   }
 
    def moveUp = {

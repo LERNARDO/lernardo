@@ -3,7 +3,7 @@
     <td>
       <div style="width: 130px;" onmouseover="$('#mypic').css('opacity', '1');" onmouseout="$('#mypic').css('opacity', '0');">
         <erp:profileImage entity="${entity}" width="130"/>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
+        <erp:accessCheck types="['Betreiber']" me="${entity}">
           <div id="mypic"><g:link controller="profile" action="uploadProfileImage" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></div>
         </erp:accessCheck>
       </div>
@@ -30,10 +30,10 @@
       </table>
       <div class="buttons" style="margin-bottom: 0;">
         <g:form id="${entity.id}">
-          <erp:accessCheck entity="${currentEntity}" me="${entity}">
+          <erp:accessCheck me="${entity}">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           </erp:accessCheck>
-          <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+          <erp:accessCheck roles="['ROLE_ADMIN']">
             <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
@@ -44,7 +44,7 @@
             </g:if>
           </erp:notMe>
         </g:form>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
+        <erp:accessCheck types="['Betreiber']" me="${entity}">
           <g:form controller="profile" action="changePassword" id="${entity.id}">
             <g:submitButton class="buttonGreen" name="submit" value="${message(code: 'change.pwd')}"/>
           </g:form>

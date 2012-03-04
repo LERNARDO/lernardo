@@ -17,7 +17,7 @@
     %{--<td><erp:getFileType type="${pub.asset.storage.contentType}"/></td>--}%
     <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
     <td class="action">
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${pub}">
+      <erp:accessCheck types="['Betreiber']" creatorof="${pub}">
         <g:formRemote name="formRemote" url="[controller:'publication', action:'edit', id: pub.id]" update="content" before="showspinner('#content');">
           <div class="buttons" style="margin: 0;">
             <div class="button"><g:submitButton class="buttonGray" name="submitButton" action="edit" value="${message(code: 'edit')}" /></div>
