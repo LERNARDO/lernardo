@@ -47,7 +47,7 @@
         </erp:notEnabled>
       </div>
     </g:if>
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+    <erp:accessCheck roles="['ROLE_ADMIN']">
       <g:if test="${!entity?.user?.authorities*.authority?.contains('ROLE_SYSTEMADMIN')}">
         <g:form controller="${entity.type.supertype.name + 'Profile'}" id="${entity.id}">
           <div class="buttons">

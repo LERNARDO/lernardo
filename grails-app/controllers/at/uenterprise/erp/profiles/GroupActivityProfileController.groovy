@@ -453,7 +453,7 @@ class GroupActivityProfileController {
     functionService.breakEntities(params.client, params.id, metaDataService.ltAbsent)
     functionService.breakEntities(params.client, params.id, metaDataService.ltIll)
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-    render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: breaking.results, group: breaking.target]
   }
 
   def updateparents = {
@@ -692,7 +692,7 @@ class GroupActivityProfileController {
     }
 
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
-    render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, group: group]
+    render template: 'resources', model: [resources: resources, group: group]
   }
 
   def unplanresource = {
@@ -709,7 +709,7 @@ class GroupActivityProfileController {
     }
 
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
-    render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, group: group]
+    render template: 'resources', model: [resources: resources, group: group]
   }
 
   def refreshplannableresources = {
@@ -733,7 +733,7 @@ class GroupActivityProfileController {
 
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
     
-    render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [resources: resources, group: group]
   }
 
   /*

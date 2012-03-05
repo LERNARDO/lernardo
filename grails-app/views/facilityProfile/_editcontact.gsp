@@ -8,6 +8,6 @@
   <div><g:textField size="30" name="phone" value="${representative.phone}" placeholder="${message(code: 'phone')}"/></div>
   <div><g:textField size="30" name="email" value="${representative.email}" placeholder="${message(code: 'email')}"/></div>
   <div><g:textField size="30" name="function" value="${representative.function}" placeholder="${message(code: 'contact.function')}"/></div>
-  <erp:accessCheck entity="${entity}" types="['Betreiber']" facilities="[facility]"><g:submitButton name="button" value="${message(code:'change')}"/></erp:accessCheck>
+  <erp:accessCheck types="['Betreiber']" facilities="[facility]"><g:submitButton name="button" value="${message(code:'change')}"/></erp:accessCheck>
   <div class="clear"></div>
 </g:formRemote>

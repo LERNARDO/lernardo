@@ -1,4 +1,4 @@
-<erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
+<erp:accessCheck types="['Betreiber']" facilities="${facilities}">
   <g:remoteLink update="entry" class="buttonGreen" action="deleteEntry" params="[facility: facility, date: date]">Eintrag löschen</g:remoteLink>
   <div class="clear"></div>
 </erp:accessCheck>
@@ -37,7 +37,7 @@
   <span class="bold"><g:message code="confirmed"/></span><br/>
   <g:if test="${entry.isChecked}">
     <g:set var="canChange" value="false"/>
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
+    <erp:accessCheck types="['Betreiber']" facilities="${facilities}">
       <g:set var="canChange" value="true"/>
     </erp:accessCheck>
     <g:checkBox name="checkbox" disabled="${canChange != 'true'}" value="${entry.isChecked}" onclick="${remoteFunction(update: 'entry', action: 'updateEntry', id: entry.id)}"/>

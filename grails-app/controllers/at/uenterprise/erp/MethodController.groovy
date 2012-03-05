@@ -159,6 +159,6 @@ class MethodController {
 
     element.name = params.name
     element.save(flush: true)
-    render template: 'element', model: [methodInstance: method, element: element, i: params.i, entity: entityHelperService.loggedIn]
+    render template: 'element', model: [methodInstance: method, element: element, i: params.i]
   }
 }

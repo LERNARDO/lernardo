@@ -92,7 +92,7 @@
     </erp:accessCheck>
 
     <div id="news-container">
-      <g:render template="newsitems" model="[news: news, newsCount: newsCount, currentEntity: currentEntity]"/>
+      <g:render template="newsitems" model="[news: news, newsCount: newsCount]"/>
     </div>
 
   </div>

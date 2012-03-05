@@ -30,4 +30,4 @@
 </table>
 
 <br/>
-<g:link action="evaluatePDF" id="${entity.id}" params="[date1: date1, date2: date2]"><img src="${g.resource(dir: 'images/icons', file: 'icon_pdf.png')}" alt="PDF" align="top"/> PDF</g:link>
+<g:link action="evaluatePDF" params="[date1: date1, date2: date2]"><img src="${g.resource(dir: 'images/icons', file: 'icon_pdf.png')}" alt="PDF" align="top"/> PDF</g:link>

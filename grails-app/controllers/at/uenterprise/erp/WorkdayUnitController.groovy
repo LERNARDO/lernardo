@@ -250,8 +250,7 @@ class WorkdayUnitController {
       render template: 'evaluate', model:[persons: persons,
                                           workdaycategories: workdaycategories,
                                           date1: params.date1,
-                                          date2: params.date2,
-                                          entity: entityHelperService.loggedIn]
+                                          date2: params.date2]
     }
 
     def evaluatePDF = {

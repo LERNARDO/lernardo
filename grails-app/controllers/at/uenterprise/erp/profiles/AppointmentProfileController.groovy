@@ -192,7 +192,7 @@ class AppointmentProfileController {
         flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile.fullName])
         redirect action: 'show', id: entity.id, params: [entity: entity]
       } catch (EntityException ee) {
-        render(view: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner, currentEntity: entityHelperService.loggedIn])
+        render(view: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner])
       }
 
     }

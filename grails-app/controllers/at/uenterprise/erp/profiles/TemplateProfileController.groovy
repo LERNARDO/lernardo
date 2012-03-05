@@ -454,7 +454,6 @@ class TemplateProfileController {
     render(template: 'searchresults', model: [allTemplates: finalList,
                                               totalTemplates: finalList.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
-                                              currentEntity: entityHelperService.loggedIn,
                                               paginate: false,
                                               method1: params.method1,
                                               method2: params.method2,

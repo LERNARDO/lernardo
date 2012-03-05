@@ -551,7 +551,7 @@ class GroupActivityTemplateProfileController {
     group.profile.templates.each {
       templates.add(Entity.get(it.toInteger()))
     }
-    render template: 'templates2', model: [group: group, templates: templates, entity: entityHelperService.loggedIn]
+    render template: 'templates2', model: [group: group, templates: templates]
   }
 
   def moveDown = {
@@ -564,7 +564,7 @@ class GroupActivityTemplateProfileController {
     group.profile.templates.each {
       templates.add(Entity.get(it.toInteger()))
     }
-    render template: 'templates2', model: [group: group, templates: templates, entity: entityHelperService.loggedIn]
+    render template: 'templates2', model: [group: group, templates: templates]
   }
 
   def updateselect2 = {
@@ -618,7 +618,6 @@ class GroupActivityTemplateProfileController {
     render(template: 'searchresults2', model: [allTemplates: finalList,
                                               totalTemplates: finalList.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
-                                              currentEntity: entityHelperService.loggedIn,
                                               paginate: false,
                                               name: params.name,
                                               duration1: params.duration1,

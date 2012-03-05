@@ -116,7 +116,7 @@
           </g:else>
         </div>
         <div class="zusatz-show" id="themes2">
-          <g:render template="themes" model="[themes: themes, project: project, entity: currentEntity]"/>
+          <g:render template="themes" model="[themes: themes, project: project]"/>
         </div>
       </div>
 
@@ -133,7 +133,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="facilities2">
-          <g:render template="facilities" model="[facilities: facilities, project: project, entity: currentEntity]"/>
+          <g:render template="facilities" model="[facilities: facilities, project: project]"/>
         </div>
       </div>
 
@@ -147,14 +147,14 @@
 
         </div>
         <div class="zusatz-show" id="clients2">
-          <g:render template="clients" model="[clients: clients, entity: currentEntity]"/>
+          <g:render template="clients" model="[clients: clients]"/>
         </div>
       </div>
 
       <div class="zusatz">
         <h5><g:message code="projectDays"/> (${projectDays.size()})</h5>
         <div id="projectDay">
-          <g:render template="projectdaynav" model="[project: project, projectDays: projectDays, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, units: units, active: active, entity: currentEntity, plannableResources: plannableResources, requiredResources: requiredResources]"/>
+          <g:render template="projectdaynav" model="[project: project, projectDays: projectDays, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, units: units, active: active, plannableResources: plannableResources, requiredResources: requiredResources]"/>
         </div>
       </div>
 

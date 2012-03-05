@@ -86,7 +86,7 @@ class EvaluationController {
         def upperBound = params.offset + params.max < totalEvaluations ? params.offset + params.max : totalEvaluations
         evaluations = evaluations.subList(params.offset, upperBound)
 
-        render template: "evaluations", model:[evaluationInstanceList: evaluations, entity: entity, currentEntity: entityHelperService.loggedIn, value: params.value, paginate: 'own', totalEvaluations: totalEvaluations]
+        render template: "evaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, paginate: 'own', totalEvaluations: totalEvaluations]
       }
       else
         render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
@@ -128,7 +128,6 @@ class EvaluationController {
                                              totalEvaluations: totalEvaluations,
                                              entity: entity,
                                              value: params.value,
-                                             currentEntity: entityHelperService.loggedIn,
                                              paginate: 'allClient']
     }
     else
@@ -171,7 +170,6 @@ class EvaluationController {
                                              totalEvaluations: totalEvaluations,
                                              entity: entity,
                                              value: params.value,
-                                             currentEntity: entityHelperService.loggedIn,
                                              paginate: 'allEducator']
     }
     else

@@ -215,27 +215,27 @@ class GroupColonyProfileController {
   def editRepresentative = {
     Entity group = Entity.get(params.id)
     Contact representative = Contact.get(params.representative)
-    render template: 'editrepresentative', model: [group: group, representative: representative, entity: entityHelperService.loggedIn]
+    render template: 'editrepresentative', model: [group: group, representative: representative]
   }
 
   def updateRepresentative = {
     Entity group = Entity.get(params.id)
     Contact contact = Contact.get(params.representative)
     contact.properties = params
-    render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+    render template: 'representatives', model: [group: group]
   }
 
   def addBuilding = {
     Building building = new Building(params)
     Entity group = Entity.get(params.id)
     group.profile.addToBuildings(building)
-    render template: 'buildings', model: [group: group, entity: entityHelperService.loggedIn]
+    render template: 'buildings', model: [group: group]
   }
 
   def removeBuilding = {
     Entity group = Entity.get(params.id)
     group.profile.removeFromBuildings(Building.get(params.building))
-    render template: 'buildings', model: [group: group, entity: entityHelperService.loggedIn]
+    render template: 'buildings', model: [group: group]
   }
 
   def addFacility = {
@@ -266,12 +266,12 @@ class GroupColonyProfileController {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'educators', model: [educators: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'educators', model: [educators: linking.results, group: linking.target]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
-    render template: 'educators', model: [educators: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'educators', model: [educators: breaking.results, group: breaking.target]
   }
 
 }

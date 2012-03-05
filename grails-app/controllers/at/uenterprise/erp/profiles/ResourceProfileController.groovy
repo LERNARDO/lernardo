@@ -114,8 +114,6 @@ class ResourceProfileController {
   def save = {
     EntityType etResource = metaDataService.etResource
 
-    Entity currentEntity = entityHelperService.loggedIn
-
     try {
       Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -125,7 +123,7 @@ class ResourceProfileController {
       flash.message = message(code: "object.created", args: [message(code: "resource"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [resourceInstance: ee.entity, entity: currentEntity])
+      render(view: "create", model: [resourceInstance: ee.entity])
     }
 
   }
@@ -274,7 +272,7 @@ class ResourceProfileController {
     Entity template = Entity.get(params.id)
 
     Resource resource = Resource.get(params.resourceInstance)
-    render template: '/requiredResources/editresource', model: [template: template, resourceInstance: resource, i: params.i, entity: entityHelperService.loggedIn]
+    render template: '/requiredResources/editresource', model: [template: template, resourceInstance: resource, i: params.i]
   }
 
   def updateResource = {
@@ -283,7 +281,7 @@ class ResourceProfileController {
     Resource resource = Resource.get(params.resourceInstance)
     resource.properties = params
     resource.save()
-    render template: '/requiredResources/showresource', model: [template: template, resourceInstance: resource, i: params.i, entity: entityHelperService.loggedIn]
+    render template: '/requiredResources/showresource', model: [template: template, resourceInstance: resource, i: params.i]
   }
 
 

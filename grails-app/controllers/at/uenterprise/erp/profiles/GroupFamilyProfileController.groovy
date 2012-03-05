@@ -187,7 +187,7 @@ class GroupFamilyProfileController {
 
   def removeClient = {
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupFamily)
-    render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: breaking.results, group: breaking.target]
   }
 
   def addChild = {
@@ -209,7 +209,7 @@ class GroupFamilyProfileController {
 
   def removeChild = {
     def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
-    render template: 'childs', model: [childs: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'childs', model: [childs: breaking.results, group: breaking.target]
   }
 
   /*

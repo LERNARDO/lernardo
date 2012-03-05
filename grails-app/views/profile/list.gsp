@@ -42,7 +42,7 @@
         <tbody>
         <g:each in="${entityList}" var="entity" status="i">
           <tr id="listentity-${i}">
-            <g:render template="listentity" model="[entity: entity, currentEntity: currentEntity, i: i]"/>
+            <g:render template="listentity" model="[entity: entity, i: i]"/>
           </tr>
         </g:each>
         </tbody>

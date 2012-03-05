@@ -37,7 +37,7 @@
     <span class="italic red">An diesem Datum gibt es bereits einen anderen Projekttag!</span>
   </g:if>
 
-  <h5><g:message code="projectUnits"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+  <h5><g:message code="projectUnits"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
   <div id="units" style="display:none;">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addUnit', id:projectDay.id]" update="units2" before="showspinner('#units2')">
       <table>
@@ -51,12 +51,12 @@
 
   <div id="units2">
     <erp:getProjectDayUnits projectDay="${projectDay}">
-      <g:render template="units" model="[units: units, project: project, projectDay: projectDay, allParents: allParents, allPartners: allPartners, entity: entity]"/>
+      <g:render template="units" model="[units: units, project: project, projectDay: projectDay, allParents: allParents, allPartners: allPartners]"/>
     </erp:getProjectDayUnits>
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="educators"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div id="educators" style="display:none">
 
       <g:message code="search"/>:<br/>
@@ -67,13 +67,13 @@
 
     <div id="educators2">
       <erp:getProjectDayEducators projectDay="${projectDay}">
-        <g:render template="educators" model="[educators: educators, project: project, projectDay: projectDay, entity: entity]"/>
+        <g:render template="educators" model="[educators: educators, project: project, projectDay: projectDay]"/>
       </erp:getProjectDayEducators>
     </div>
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="substitutes"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="substitutes"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div id="substitutes" style="display:none">
 
       <g:message code="search"/>:<br/>
@@ -84,13 +84,13 @@
 
     <div id="substitutes2">
       <erp:getProjectDaySubstitutes projectDay="${projectDay}">
-        <g:render template="substitutes" model="[substitutes: substitutes, project: project, projectDay: projectDay, entity: entity]"/>
+        <g:render template="substitutes" model="[substitutes: substitutes, project: project, projectDay: projectDay]"/>
       </erp:getProjectDaySubstitutes>
     </div>
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="resources.planned"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="resources.planned"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="resources" style="display:none">
       <span class="bold"><g:message code="resources.required"/></span>
@@ -118,7 +118,7 @@
       </div>
     </div>
     <div class="zusatz-show" id="resources2">
-      <g:render template="resources" model="[resources: resources, entity: entity, projectDay: projectDay]"/>
+      <g:render template="resources" model="[resources: resources, projectDay: projectDay]"/>
     </div>
   </div>
 

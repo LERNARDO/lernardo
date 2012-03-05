@@ -276,7 +276,7 @@ class FacilityProfileController {
     // find all clients of this facility
     clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
-    render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]*/
+    render template: 'clients', model: [clients: clients, facility: facility]*/
   }
 
   def removeClient = {
@@ -296,7 +296,7 @@ class FacilityProfileController {
     // find all clients of this facility
     List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
-    render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: clients, facility: facility]
   }
 
   def addContact = {ContactCommand cc ->
@@ -323,14 +323,14 @@ class FacilityProfileController {
   def editContact = {
     Entity facility = Entity.get(params.id)
     Contact contact = Contact.get(params.contact)
-    render template: 'editcontact', model: [facility: facility, representative: contact, entity: entityHelperService.loggedIn]
+    render template: 'editcontact', model: [facility: facility, representative: contact]
   }
 
   def updateContact = {
     Entity facility = Entity.get(params.id)
     Contact contact = Contact.get(params.representative)
     contact.properties = params
-    render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+    render template: 'contacts', model: [facility: facility]
   }
 
   /*

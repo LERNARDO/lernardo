@@ -298,7 +298,6 @@ class ProjectTemplateProfileController {
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates,
                                                        projectUnitTemplates: projectUnitTemplates,
                                                        projectTemplate: projectTemplate,
-                                                       entity: entityHelperService.loggedIn,
                                                        calculatedDuration: calculatedDuration,
                                                        allLabels: Label.findAllByType('template', params)]
     } catch (at.openfactory.ep.EntityException ee) {
@@ -320,7 +319,6 @@ class ProjectTemplateProfileController {
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates,
                                                        projectUnitTemplates: projectUnitTemplates,
                                                        projectTemplate: projectTemplate,
-                                                       entity: entityHelperService.loggedIn,
                                                        calculatedDuration: calculatedDuration,
                                                        allLabels: Label.findAllByType('template', params)]
     }
@@ -364,7 +362,6 @@ class ProjectTemplateProfileController {
     render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates,
                                                      projectUnitTemplates: projectUnitTemplates,
                                                      projectTemplate: projectTemplate,
-                                                     entity: entityHelperService.loggedIn,
                                                      calculatedDuration: calculatedDuration,
                                                      allLabels: Label.findAllByType('template', params)]
   }
@@ -398,7 +395,6 @@ class ProjectTemplateProfileController {
     //render '<span style="color: #0b0; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde hinzugefügt</span>'
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates,
                                                        unit: projectUnitTemplate,
-                                                       entity: entityHelperService.loggedIn,
                                                        i: params.i,
                                                        projectTemplate: projectTemplate]
   }
@@ -428,7 +424,7 @@ class ProjectTemplateProfileController {
     //int calculatedDuration = functionService.calculateDurationPU(projectUnits)
 
     //render '<span style="color: #b00; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde entfernt</span><br/>'
-    render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, entity: entityHelperService.loggedIn, i: params.i, projectTemplate: projectTemplate]
+    render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, i: params.i, projectTemplate: projectTemplate]
   }
 
   def updateduration = {
@@ -545,7 +541,7 @@ class ProjectTemplateProfileController {
         eq("status", "done")
       }
     }
-    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, entity: entityHelperService.loggedIn, allGroupActivityTemplates: allGroupActivityTemplates]
+    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, allGroupActivityTemplates: allGroupActivityTemplates]
   }
 
   def moveDown = {
@@ -566,7 +562,7 @@ class ProjectTemplateProfileController {
         eq("status", "done")
       }
     }
-    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, entity: entityHelperService.loggedIn, allGroupActivityTemplates: allGroupActivityTemplates]
+    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, allGroupActivityTemplates: allGroupActivityTemplates]
   }
 
   def refreshtemplateresources = {
@@ -652,7 +648,6 @@ def updateselect = {
     render(template: 'searchresults', model: [allTemplates: finalList,
                                               totalTemplates: finalList.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
-                                              currentEntity: entityHelperService.loggedIn,
                                               paginate: false,
                                               name: params.name])
   }

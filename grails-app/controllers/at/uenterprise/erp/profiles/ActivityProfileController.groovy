@@ -187,7 +187,7 @@ class ActivityProfileController {
   def save = {ActivityCommand ac ->
 
     if (ac.hasErrors()) {
-      render view: 'create', model:['ac':ac, currentEntity: entityHelperService.loggedIn]
+      render view: 'create', model:['ac':ac]
       return
     }
 
@@ -342,13 +342,13 @@ class ActivityProfileController {
     Entity activity = Entity.get(params.id)
 
     activity.profile.addToClientEvaluations(clientEvaluation)
-    render template: 'clientsOld', model: [activity: activity, entity: entityHelperService.loggedIn]
+    render template: 'clientsOLD', model: [activity: activity]
   }
 
   def removeClientOld = {
     Entity activity = Entity.get(params.id)
     activity.profile.removeFromClientEvaluations(ClientEvaluation.get(params.clientEvaluation))
-    render template: 'clientsOld', model: [activity: activity, entity: entityHelperService.loggedIn]
+    render template: 'clientsOLD', model: [activity: activity]
   }
 
   /*
@@ -517,7 +517,7 @@ class ActivityProfileController {
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
-    render template: 'clients', model: [clients: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]*/
+    render template: 'clients', model: [clients: linking.results, activity: linking.target]*/
 
     Entity activity = Entity.get(params.id)
     Entity clientgroup = Entity.get(params.client)

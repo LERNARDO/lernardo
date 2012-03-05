@@ -132,11 +132,11 @@ class OperatorProfileController {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltOperation)
     if (linking.duplicate)
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    render template: 'facilities', model: [facilities: linking.results, operator: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'facilities', model: [facilities: linking.results, operator: linking.target]
   }
 
   def removeFacility = {
     def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltOperation)
-    render template: 'facilities', model: [facilities: breaking.results, operator: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'facilities', model: [facilities: breaking.results, operator: breaking.target]
   }
 }

@@ -300,7 +300,7 @@ class PublicationController {
               chain (action:'list', id:publication.entity.id)
           }
           else {
-              render view:'edit', model:[entity: entityHelperService.loggedIn, publication:publication]
+              render view:'edit', model:[publication:publication]
           }
       }
       else {

@@ -7,7 +7,7 @@
     <div class="clear"></div>
   </div>
 
-  <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}">
+  <erp:accessCheck types="['Betreiber']" creatorof="${project}">
     <g:if test="${projectDays.size() > 1}">
       <div class="buttons">
         <g:link class="buttonRed" controller="projectProfile" action="deleteProjectDay" id="${day.id}" params="[project: project.id]" onclick="return confirm('${message(code: 'sure')}');">Projekttag löschen</g:link>
@@ -17,7 +17,7 @@
   </erp:accessCheck>
 
   <div class="zusatz-show">
-    <g:render template="projectday" model="[project: project, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, units: units, entity: entity, plannableResources: plannableResources, requiredResources: requiredResources, outOfRange: outOfRange, conflictingDate: conflictingDate]"/>
+    <g:render template="projectday" model="[project: project, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, units: units, plannableResources: plannableResources, requiredResources: requiredResources, outOfRange: outOfRange, conflictingDate: conflictingDate]"/>
   </div>
 
 </g:if>

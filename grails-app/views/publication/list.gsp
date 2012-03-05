@@ -29,7 +29,7 @@
     %{--render own documents--}%
 
     <g:if test="${publications}">
-      <g:render template="pubtype" model="[entity: entity, publist: publications, currentEntity: currentEntity]"/>
+      <g:render template="pubtype" model="[entity: entity, publist: publications]"/>
     </g:if>
 
     %{--render other documents--}%

@@ -367,7 +367,7 @@ class ClientProfileController {
     Entity client = Entity.get(params.id)
     client.profile.removeFromContacts(Contact.get(params.contact))
     Contact.get(params.contact).delete()
-    render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
+    render template: 'contacts', model: [client: client]
   }
 
 }

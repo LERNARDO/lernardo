@@ -83,7 +83,7 @@ class ProfileController {
     entity?.user?.addToAuthorities(metaDataService.adminRole)
     Entity currentEntity = entityHelperService.loggedIn
     functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators gegeben.").save()
-    render template:'listentity', model:[entity: entity, currentEntity: currentEntity, i: params.i]
+    render template:'listentity', model:[entity: entity, i: params.i]
   }
 
   /*
@@ -95,7 +95,7 @@ class ProfileController {
     entity.user.removeFromAuthorities(role)
     Entity currentEntity = entityHelperService.loggedIn
     functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators genommen.").save()
-    render template:'listentity', model:[entity: entity, currentEntity: currentEntity, i: params.i]
+    render template:'listentity', model:[entity: entity, i: params.i]
   }
 
   /*
@@ -113,7 +113,7 @@ class ProfileController {
 
     //Link.findAllBySourceOrTarget(entity, entity)?.each { it.delete() }
 
-    render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
+    render template:'listentity', model:[entity: entity, i: params.i]
   }
 
   /*
@@ -129,7 +129,7 @@ class ProfileController {
 
     entity.user.enabled = true
 
-    render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
+    render template:'listentity', model:[entity: entity, i: params.i]
   }
 
   /*

@@ -28,7 +28,6 @@ class LogBookController {
     Entity facility = Entity.get(params.facility)
     Date date = params.date('date', 'dd. MM. yy')
 
-    Entity currentEntity = entityHelperService.loggedIn
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     LogEntry entry = LogEntry.findByDateAndFacility(date, facility)
@@ -38,14 +37,13 @@ class LogBookController {
     if (!entry)
         render "${remoteLink(update: 'entry', class: 'buttonGreen', action: 'createEntry', params: [facility: params.facility, date: params.date]) {message(code: 'logBook.create')}}"
     else
-        render template: "entry", model: [entry: entry, date: params.date, facility: params.facility, currentEntity: currentEntity, facilities: facilities]
+        render template: "entry", model: [entry: entry, date: params.date, facility: params.facility, facilities: facilities]
   }
 
   def createEntry = {
     Entity facility = Entity.get(params.facility)
     Date date = params.date('date', 'dd. MM. yy')
 
-    Entity currentEntity = entityHelperService.loggedIn
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     LogEntry entry = new LogEntry(date: date, facility: facility).save()
@@ -69,7 +67,7 @@ class LogBookController {
     entry.save(flush: true)
 
     render createTimeLine(date, facility)
-    render template: "entry", model: [entry: entry, date: params.date, facility: params.facility, currentEntity: currentEntity, facilities: facilities]
+    render template: "entry", model: [entry: entry, date: params.date, facility: params.facility, facilities: facilities]
   }
 
   def deleteEntry = {
@@ -85,7 +83,6 @@ class LogBookController {
   def updateEntry = {
     LogEntry entry = LogEntry.get(params.id)
 
-    Entity currentEntity = entityHelperService.loggedIn
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     //entry.isChecked != entry.isChecked
@@ -97,14 +94,13 @@ class LogBookController {
     entry.save(flush: true)
 
     render createTimeLine(entry.date, entry.facility)
-    render template: "entry", model: [entry: entry, currentEntity: currentEntity, facilities: facilities]
+    render template: "entry", model: [entry: entry, facilities: facilities]
   }
 
   def updateEntryProcess = {
     LogEntry entry = LogEntry.get(params.entry)
     ProcessAttended process = ProcessAttended.get(params.id)
 
-    Entity currentEntity = entityHelperService.loggedIn
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     if (process.hasParticipated)
@@ -115,7 +111,7 @@ class LogBookController {
     process.save(flush: true)
 
     render createTimeLine(entry.date, entry.facility)
-    render template: "entry", model: [entry: entry, currentEntity: currentEntity, facilities: facilities]
+    render template: "entry", model: [entry: entry, facilities: facilities]
   }
 
   String createTimeLine(date, facility) {
@@ -389,7 +385,6 @@ class LogBookController {
   }
 
   def showAttendances = {
-    Entity currentEntity = entityHelperService.loggedIn
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     Entity facility = Entity.get(params.facility)
@@ -397,7 +392,7 @@ class LogBookController {
     // find all attendances of this facility
     List attendances = Attendance.findAllByFacility(facility)
 
-    render template: 'attendances', model: [attendances: attendances, currentEntity: currentEntity, facilities: facilities]
+    render template: 'attendances', model: [attendances: attendances, facilities: facilities]
   }
 
   def editAttendance = {
@@ -407,7 +402,6 @@ class LogBookController {
   }
 
   def updateAttendance = {
-    Entity currentEntity = entityHelperService.loggedIn
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     Attendance attendance = Attendance.get(params.id)
@@ -440,6 +434,6 @@ class LogBookController {
 
     attendance.save()
 
-    render template: 'showAttendance', model: [attendance: attendance, i: params.i, currentEntity: currentEntity, facilities: facilities]
+    render template: 'showAttendance', model: [attendance: attendance, i: params.i, facilities: facilities]
   }
 }

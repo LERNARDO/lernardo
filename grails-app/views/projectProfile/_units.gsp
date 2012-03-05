@@ -6,7 +6,7 @@
 
             <tr class="prop">
               <td class="one"><g:message code="name"/></td>
-              <td class="two">${unit.profile.fullName.decodeHTML()} <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink><g:remoteLink action="moveUp" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_up.png')}" alt="${message(code:'up')}" align="top"/></g:remoteLink><g:remoteLink action="moveDown" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_down.png')}" alt="${message(code:'down')}" align="top"/></g:remoteLink></erp:accessCheck></td>
+              <td class="two">${unit.profile.fullName.decodeHTML()} <erp:accessCheck types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink><g:remoteLink action="moveUp" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_up.png')}" alt="${message(code:'up')}" align="top"/></g:remoteLink><g:remoteLink action="moveDown" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_down.png')}" alt="${message(code:'down')}" align="top"/></g:remoteLink></erp:accessCheck></td>
             </tr>
 
             <tr class="prop">
@@ -49,7 +49,7 @@
         </ol>
       </erp:getProjectUnitActivityGroups>
 
-      <h5 style="margin-bottom: 5px;"><g:message code="parents"/> <erp:getProjectUnitParentsCount projectUnit="${unit}"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#parents${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></h5>
+      <h5 style="margin-bottom: 5px;"><g:message code="parents"/> <erp:getProjectUnitParentsCount projectUnit="${unit}"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#parents${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></h5>
       <div id="parents${i}" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addParent', id:unit.id, params:[i: i]]" update="parents2${i}" before="showspinner('#parents2${i}')">
           <table>
@@ -63,11 +63,11 @@
 
       <div id="parents2${i}">
         <erp:getProjectUnitParents projectUnit="${unit}">
-          <g:render template="parents" model="[parents: parents, project: project, unit: unit, i: i, entity: entity]"/>
+          <g:render template="parents" model="[parents: parents, project: project, unit: unit, i: i]"/>
         </erp:getProjectUnitParents>
       </div>
 
-      <h5 style="margin-bottom: 5px;"><g:message code="partners"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#partners${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></h5>
+      <h5 style="margin-bottom: 5px;"><g:message code="partners"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#partners${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></h5>
       <div id="partners${i}" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addPartner', id:unit.id, params:[i: i]]" update="partners2${i}" before="showspinner('#partners2${i}')">
           <table>
@@ -81,7 +81,7 @@
 
       <div id="partners2${i}">
         <erp:getProjectUnitPartners projectUnit="${unit}">
-          <g:render template="partners" model="[partners: partners, project: project, unit: unit, i: i, entity: entity]"/>
+          <g:render template="partners" model="[partners: partners, project: project, unit: unit, i: i]"/>
         </erp:getProjectUnitPartners>
       </div>
 

@@ -129,13 +129,13 @@ class PartnerProfileController {
     String service = params.service
     Entity partner = Entity.get(params.id)
     partner.profile.addToServices(service)
-    render template: 'services', model: [partner: partner, entity: entityHelperService.loggedIn]
+    render template: 'services', model: [partner: partner]
   }
 
   def removeService = {
     Entity partner = Entity.get(params.id)
     partner.profile.services.remove(params.service)
-    render template: 'services', model: [partner: partner, entity: entityHelperService.loggedIn]
+    render template: 'services', model: [partner: partner]
   }
 
   def addContact = {ContactCommand cc ->
@@ -160,14 +160,14 @@ class PartnerProfileController {
   def editContact = {
     Entity partner = Entity.get(params.id)
     Contact contact = Contact.get(params.contact)
-    render template: 'editcontact', model: [partner: partner, representative: contact, entity: entityHelperService.loggedIn]
+    render template: 'editcontact', model: [partner: partner, representative: contact]
   }
 
   def updateContact = {
     Entity partner = Entity.get(params.id)
     Contact contact = Contact.get(params.representative)
     contact.properties = params
-    render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
+    render template: 'contacts', model: [partner: partner]
   }
 }
 
