@@ -41,7 +41,7 @@
           <td class="one"><g:message code="groupActivityTemplate"/>:</td>
           <td class="two">
             <g:if test="${template}">
-              ${template?.profile?.fullName?.decodeHTML()}
+              <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic"><g:message code="template.notAvailable"/></span>

@@ -118,6 +118,7 @@ class GroupActivityProfileController {
     Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
 
     List templatesOfGroup = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all templates linked to this group
+
     List templates = []
     template?.profile?.templates?.each {
       Entity temp = Entity.get(it.toInteger())

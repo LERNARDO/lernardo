@@ -25,6 +25,12 @@ class FunctionService {
 
   boolean transactional = true
 
+  /**
+   * Calculates the duration of a list of project units based on each units group activity templates durations
+   *
+   * @author Alexander Zeillinger
+   * @param projectUnits REQUIRED The project units to calculate the duration from
+   */
   int calculateDurationPU(List projectUnits) {
     // find all groupActivityTemplates linked to all projectUnits of this project
     List groupActivityTemplates = []
@@ -43,6 +49,12 @@ class FunctionService {
     return calculatedDuration
   }
 
+  /**
+   * Calculates the duration of a list of project unit templates based on each units group activity templates durations
+   *
+   * @author Alexander Zeillinger
+   * @param projectUnitTemplates REQUIRED The project unit templates to calculate the duration from
+   */
   int calculateDurationPUT(List projectUnitTemplates) {
     // find all groupActivityTemplates linked to all projectUnitTemplates of this projectTemplate
     List groupActivityTemplates = []
