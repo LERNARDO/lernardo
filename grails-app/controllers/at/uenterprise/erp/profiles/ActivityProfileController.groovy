@@ -38,8 +38,8 @@ class ActivityProfileController {
             params.sundayStart = params.date('sundayStart', 'HH:mm')
             params.sundayEnd = params.date('sundayEnd', 'HH:mm')
 
-            params.periodStart = params.date('periodStart', 'HH:mm')
-            params.periodEnd = params.date('periodEnd', 'HH:mm')
+            params.periodStart = params.date('periodStart', 'dd. MM. yy')
+            params.periodEnd = params.date('periodEnd', 'dd. MM. yy')
             params.date = params.date('date', 'dd. MM. yy, HH:mm')},
             only:['save','update']
   ]
@@ -674,9 +674,11 @@ class ActivityCommand {
     sundayEnd     nullable: true, validator: {val, obj ->
                     return val >= obj.sundayStart
                   }
+    /*
+    // removed since 2.0.1 as this boolean check is suddenly broken, FIXME
     weekdays      validator: {val, obj ->
                     return !(!obj.monday && !obj.tuesday && !obj.wednesday && !obj.thursday && !obj.friday && !obj.saturday && !obj.sunday)
-                  }
+                  }*/
   }
 
 }
