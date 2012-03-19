@@ -14,53 +14,54 @@
     <g:render template="/templates/errors" model="[bean: group]"/>
 
     <g:form params="[template: template.id]">
-        <table width="100%">
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
-            <td valign="top" class="name"><g:message code="groupActivity.profile.realDuration"/></td>
-            <td valign="top" class="name"><g:message code="date"/></td>
-          </tr>
+      <table>
 
-          <tr>
-            <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="50" name="fullName" value="${workAroundName.decodeHTML()}"/>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration') ?: calculatedDuration}"/> (min)
-            </td>
-            <td valign="top" class="value">
-              <g:textField name="date" class="datetimepicker" value="${new Date().format('dd. MM. yyyy HH:mm')}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="50" name="fullName" value="${workAroundName.decodeHTML()}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="groupActivity.profile.educationalObjectiveText"/></td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="groupActivity.profile.realDuration"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="5" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration') ?: calculatedDuration}"/> <span><g:message code="minutes"/></span> <span class="gray">(<g:message code="calculatedTotalDuration"/>: ${calculatedDuration} <g:message code="minutes"/>)</span>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
-                ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
-              </ckeditor:editor>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="groupActivity.profile.educationalObjectiveText"/></td>
+          <td valign="top" class="value">
+            <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
+              ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
+            </ckeditor:editor>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="description"/></td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <ckeditor:editor name="description" height="200px" toolbar="Basic">
+              ${fieldValue(bean:group,field:'profile.description') ? fieldValue(bean:group,field:'profile.description').decodeHTML() : fieldValue(bean:template,field:'profile.description').decodeHTML()}
+            </ckeditor:editor>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="description" height="200px" toolbar="Basic">
-                ${fieldValue(bean:group,field:'profile.description') ? fieldValue(bean:group,field:'profile.description').decodeHTML() : fieldValue(bean:template,field:'profile.description').decodeHTML()}
-              </ckeditor:editor>
-            </td>
-          </tr>
+        %{--<tr class="prop">
+          <td valign="top" class="name"><g:message code="date"/></td>
+          <td valign="top" class="value">
+            <g:textField name="date" class="datetimepicker" value="${new Date().format('dd. MM. yyyy HH:mm')}"/>
+          </td>
+        </tr>--}%
 
-        </table>
-
-      <p><g:message code="calculatedTotalDuration"/>: ${calculatedDuration} <g:message code="minutes"/></p>
+      </table>
+      
+      <span class="ga_tab" style="border-right: none;"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params:[type: 'single']]" update="ga_content" before="showspinner('#ga_content')">Einmalig</g:remoteLink></span><span class="ga_tab"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params:[type: 'multiple']]" update="ga_content" before="showspinner('#ga_content')">Zeitraum</g:remoteLink></span>
+      <div id="ga_content" class="ga_content">
+        <g:render template="single" />
+      </div>
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>

@@ -15,6 +15,7 @@ import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
 import at.openfactory.ep.LinkHelperService
 import at.uenterprise.erp.Label
+import java.text.SimpleDateFormat
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -25,7 +26,17 @@ class GroupActivityProfileController {
 
   def beforeInterceptor = [
           action:{
-            params.date = params.date('date', 'dd. MM. yy HH:mm')},
+            params.date = params.date('date', 'dd. MM. yy HH:mm')
+            params.mondayStart = params.date('mondayStart', 'HH:mm')
+            params.tuesdayStart = params.date('tuesdayStart', 'HH:mm')
+            params.wednesdayStart = params.date('wednesdayStart', 'HH:mm')
+            params.thursdayStart = params.date('thursdayStart', 'HH:mm')
+            params.fridayStart = params.date('fridayStart', 'HH:mm')
+            params.saturdayStart = params.date('saturdayStart', 'HH:mm')
+            params.sundayStart = params.date('sundayStart', 'HH:mm')
+
+            params.periodStart = params.date('periodStart', 'dd. MM. yy')
+            params.periodEnd = params.date('periodEnd', 'dd. MM. yy')},
             only:['save','update']
   ]
 
@@ -307,67 +318,173 @@ class GroupActivityProfileController {
     return [template: groupActivityTemplate, calculatedDuration: calculatedDuration, workAroundName: groupActivityTemplate.profile.fullName]
   }
 
-  def save = {
+  def save = {GroupActivityCommand ac ->
     Entity groupActivityTemplate = Entity.get(params.template)
-    EntityType etGroupActivity = metaDataService.etGroupActivity
 
+    if (ac.hasErrors()) {
+      render view: 'create', model:['ac':ac, template: groupActivityTemplate]
+      return
+    }
+
+    EntityType etGroupActivity = metaDataService.etGroupActivity
     Entity currentEntity = entityHelperService.loggedIn
 
-    try {
-      Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.properties = params
-        ent.profile.educationalObjective = ""
-        ent.profile.date = functionService.convertToUTC(ent.profile.date)
-      }
-      // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
-      groupActivityTemplate.assets.each { Asset asset ->
-        if (asset.type == "profile") {
-          new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+    // single day
+    if (params.date != null) {
+      try {
+        Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
+          ent.profile.properties = params
+          ent.profile.educationalObjective = ""
+          ent.profile.date = functionService.convertToUTC(ent.profile.date)
         }
+        // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
+        groupActivityTemplate.assets.each { Asset asset ->
+          if (asset.type == "profile") {
+            new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+          }
+        }
+
+        // save creator
+        new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+
+        // find all templates linked to the groupActivityTemplate
+        List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+
+        // and link them to the new groupActivity
+        templates.each { Entity template ->
+          new Link(source: template, target: entity, type: metaDataService.ltGroupMember).save()
+        }
+
+        // link template to instance
+        new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
+
+        // loop through all labels of the original and create them in the copy
+        groupActivityTemplate.profile.labels.each { Label la ->
+          Label label = new Label()
+
+          label.name = la.name
+          label.description = la.description
+          label.type = "instance"
+
+          label.save(flush: true)
+
+          entity.profile.addToLabels(label)
+        }
+
+        new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
+        flash.message = message(code: "object.created", args: [message(code: "groupActivity"), entity.profile.fullName])
+        redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      } catch (EntityException ee) {
+
+        // find all templates linked to the groupActivityTemplate
+        List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+
+        def calculatedDuration = 0
+        templates.each {
+          calculatedDuration += it.profile.duration
+        }
+
+        render(view: "create", model: [group: ee.entity, workAroundName: ee.entity.profile.fullName, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
       }
+    }
+    // multiple days
+    else {
+      Date periodStart = params.periodStart
+      Date periodEnd = params.periodEnd
 
-      // save creator
-      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+      // subtract one minute of the period end for correct calculation
+      periodEnd.setHours(23)
+      periodEnd.setMinutes(59)
 
-      // find all templates linked to the groupActivityTemplate
-      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
-      // and link them to the new groupActivity
-      templates.each { Entity template ->
-        new Link(source: template, target: entity, type: metaDataService.ltGroupMember).save()
+      Date currentDate = periodStart
+      while (currentDate <= periodEnd) {
+
+        if ((params.monday && df.format(currentDate) == 'Monday') ||
+            (params.tuesday && df.format(currentDate) == 'Tuesday') ||
+            (params.wednesday && df.format(currentDate) == 'Wednesday') ||
+            (params.thursday && df.format(currentDate) == 'Thursday') ||
+            (params.friday && df.format(currentDate) == 'Friday') ||
+            (params.saturday && df.format(currentDate) == 'Saturday') ||
+            (params.sunday && df.format(currentDate) == 'Sunday')) {
+
+          Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
+            ent.profile = profileHelperService.createProfileFor(ent) as Profile
+            ent.profile.properties = params
+            ent.profile.educationalObjective = ""
+            ent.profile.date = currentDate
+            if (df.format(currentDate) == 'Monday') {
+              ent.profile.date.setHours(params.mondayStart.getHours())
+              ent.profile.date.setMinutes(params.mondayStart.getMinutes())
+            }
+            else if (df.format(currentDate) == 'Tuesday') {
+              ent.profile.date.setHours(params.tuesdayStart.getHours())
+              ent.profile.date.setMinutes(params.tuesdayStart.getMinutes())
+            }
+            else if (df.format(currentDate) == 'Wednesday') {
+              ent.profile.date.setHours(params.wednesdayStart.getHours())
+              ent.profile.date.setMinutes(params.wednesdayStart.getMinutes())
+            }
+            else if (df.format(currentDate) == 'Thursday') {
+              ent.profile.date.setHours(params.thursdayStart.getHours())
+              ent.profile.date.setMinutes(params.thursdayStart.getMinutes())
+            }
+            else if (df.format(currentDate) == 'Friday') {
+              ent.profile.date.setHours(params.fridayStart.getHours())
+              ent.profile.date.setMinutes(params.fridayStart.getMinutes())
+            }
+            else if (df.format(currentDate) == 'Saturday') {
+              ent.profile.date.setHours(params.saturdayStart.getHours())
+              ent.profile.date.setMinutes(params.saturdayStart.getMinutes())
+            }
+            else if (df.format(currentDate) == 'Sunday') {
+              ent.profile.date.setHours(params.sundayStart.getHours())
+              ent.profile.date.setMinutes(params.sundayStart.getMinutes())
+            }
+          }
+
+          // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
+          groupActivityTemplate.assets.each { Asset asset ->
+            if (asset.type == "profile") {
+              new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+            }
+          }
+
+          // save creator
+          new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+
+          // find all templates linked to the groupActivityTemplate
+          List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+
+          // and link them to the new groupActivity
+          templates.each { Entity template ->
+            new Link(source: template, target: entity, type: metaDataService.ltGroupMember).save()
+          }
+
+          // link template to instance
+          new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
+
+          // loop through all labels of the original and create them in the copy
+          groupActivityTemplate.profile.labels.each { Label la ->
+            Label label = new Label()
+
+            label.name = la.name
+            label.description = la.description
+            label.type = "instance"
+
+            label.save(flush: true)
+
+            entity.profile.addToLabels(label)
+          }
+
+          new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
+        }
+
+        currentDate += 1
       }
-
-      // link template to instance
-      new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
-
-      // loop through all labels of the original and create them in the copy
-      groupActivityTemplate.profile.labels.each { Label la ->
-        Label label = new Label()
-
-        label.name = la.name
-        label.description = la.description
-        label.type = "instance"
-
-        label.save(flush: true)
-
-        entity.profile.addToLabels(label)
-      }
-
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
-      flash.message = message(code: "object.created", args: [message(code: "groupActivity"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
-    } catch (EntityException ee) {
-
-      // find all templates linked to the groupActivityTemplate
-      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
-
-      def calculatedDuration = 0
-      templates.each {
-        calculatedDuration += it.profile.duration
-      }
-
-      render(view: "create", model: [group: ee.entity, workAroundName: ee.entity.profile.fullName, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
+      redirect action: 'list'
     }
 
   }
@@ -850,6 +967,47 @@ class GroupActivityProfileController {
     else {
       render(template: 'substituteresults', model: [results: results, group: params.id])
     }
+  }
+
+  def updatecontent = {
+    render template: params.type
+  }
+
+}
+
+class GroupActivityCommand {
+  String fullName
+  Date periodStart
+  Date periodEnd
+
+  /*Date mondayStart
+  Date tuesdayStart
+  Date wednesdayStart
+  Date thursdayStart
+  Date fridayStart
+  Date saturdayStart
+  Date sundayStart
+
+  Boolean monday
+  Boolean tuesday
+  Boolean wednesday
+  Boolean thursday
+  Boolean friday
+  Boolean saturday
+  Boolean sunday
+  Boolean weekdays*/
+
+  static constraints = {
+    fullName      blank: false
+    periodStart   nullable: true
+    periodEnd     nullable: true, validator: {val, obj ->
+      return val >= obj.periodStart
+    }
+    /*
+    // removed since 2.0.1 as this boolean check is suddenly broken, FIXME
+    weekdays      validator: {val, obj ->
+                    return !(!obj.monday && !obj.tuesday && !obj.wednesday && !obj.thursday && !obj.friday && !obj.saturday && !obj.sunday)
+                  }*/
   }
 
 }
