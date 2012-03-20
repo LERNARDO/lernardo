@@ -27,6 +27,13 @@
 	background-image: linear-gradient(@origin, @start, @stop); // W3C
 }
 
+.transition (@color: #fff, @duration: 1s, @timing: linear) {
+  -webkit-transition: @color @duration @timing;
+  -moz-transition: @color @duration @timing;
+  -o-transition: @color @duration @timing;
+  transition: @color @duration @timing;
+}
+
 // selectors
 
 html {
@@ -53,6 +60,11 @@ a {
     background: lighten(@brown, 40%);
     position: relative;
     border-bottom: 1px solid lighten(@brown, 30%);
+    .transition(opacity, 0.3s, ease-in-out);
+    opacity: 0.7;
+    &:hover {
+      opacity: 1.0;
+    }
     #info {
         text-align: right;
         float: right;
@@ -137,9 +149,11 @@ a {
             a {
                 padding: 4px 20px 7px 20px;
                 color: #eee;
+                                    .transition(all, 0.3s, ease-in-out);
                 &:hover {
                     color: #fff;
-                    background: #555;
+                    background: #666;
+
                 }
                 &.activegray {
                     background: @gray;
@@ -1709,4 +1723,64 @@ table.info {
     padding: 5px;
     background: #ddd;
     margin-top: 5px;
+}
+
+// tag design from: http://html5snippets.com/snippets/46-css3-label-tag
+.tag {
+    font: 10px/1 sans-serif;
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.43, rgb(250,192,75)),
+        color-stop(0.7, rgb(252,219,110))
+    );
+    background-image: -moz-linear-gradient(
+        center bottom,
+        rgb(250,192,75) 43%,
+        rgb(252,219,110) 70%
+    );
+    border: 1px solid #cc912d;
+    color: #986538;
+    display: block;
+    float: left;
+    //clear: both;
+    font-weight: 700;
+    margin: 0 15px 0 10px;
+    padding: 6px 6px 6px 8px;
+    position: relative;
+    text-transform: lowercase;
+    z-index: 1;
+    border-radius: 0 3px 3px 0;
+}
+
+.tail {
+    background-image: -webkit-gradient(
+        linear,
+        100% 100%,
+        0 0,
+        color-stop(.3, rgb(250,192,75)),
+        color-stop(.7, rgb(252,219,110)));
+    border: 1px solid #cc912d;
+    border-right: 0;
+    border-top: 0;
+    position: absolute;
+    height: 15px;
+    left: -9px;
+    top: 3px;
+    width: 15px;
+    z-index: -1;
+    -webkit-transform: rotate(45deg);
+}
+
+.hole {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 1px 0 1px #eee;
+    border: 1px solid #cc912d;
+    position: absolute;
+    height: 5px;
+    top: 8px;
+    left: -3px;
+    width: 5px;
 }
