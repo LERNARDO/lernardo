@@ -157,6 +157,3 @@ if (customer == "noe") {
     // google.analytics.enabled = false
 
 }
-
-
-

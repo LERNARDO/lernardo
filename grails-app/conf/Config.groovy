@@ -184,3 +184,7 @@ TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
 
 // application name
 application.name  = "Nuedo"
+
+ckeditor {
+  config = "/js/ckconfig.gsp"
+}
