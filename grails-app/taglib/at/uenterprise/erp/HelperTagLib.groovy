@@ -230,7 +230,10 @@ class HelperTagLib {
     out << '<th>' + message(code: "total") + grailsApplication.config.currencySymbol + '</th>'
     out << '</tr>'
 
-    logMonth?.clients?.each { LogClient client ->
+    List clients = logMonth?.clients
+    clients.sort {it.client.profile.lastName}
+
+    clients?.each { LogClient client ->
 
       def processes2 = client.processes
       processes2 = processes2?.sort {it.process.name}
@@ -373,7 +376,10 @@ class HelperTagLib {
     out << '<th>' + message(code: "total") + grailsApplication.config.currencySymbol + '</th>'
     out << '</tr>'
 
-    logMonth?.clients?.each { LogClient client ->
+    List clients = logMonth?.clients
+    clients.sort {it.client.profile.lastName}
+
+    clients?.each { LogClient client ->
 
       def processes2 = client.processes
       processes2 = processes2?.sort {it.process.name}

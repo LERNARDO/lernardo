@@ -391,6 +391,7 @@ class LogBookController {
 
     // find all attendances of this facility
     List attendances = Attendance.findAllByFacility(facility)
+    attendances = attendances.sort {it.client.profile.lastName}
 
     render template: 'attendances', model: [attendances: attendances, facilities: facilities]
   }

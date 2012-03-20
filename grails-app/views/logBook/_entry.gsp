@@ -14,7 +14,11 @@
       <th>${process.process.name}</th>
     </g:each>
   </tr>
-  <g:each in="${entry.attendees}" var="attendee">
+  <%
+    List attendees = entry.attendees
+    attendees.sort {it.client.profile.lastName}
+  %>
+  <g:each in="${attendees}" var="attendee">
     <tr>
       <td>${attendee.client.profile.fullName.decodeHTML()}</td>
       <g:each in="${attendee.processes}" var="process">
