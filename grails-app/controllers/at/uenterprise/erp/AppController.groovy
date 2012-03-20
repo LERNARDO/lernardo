@@ -568,6 +568,10 @@ class AppController {
       render ""
       return
     }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      return
+    }
 
     def c = Entity.createCriteria()
     def results = c.list {

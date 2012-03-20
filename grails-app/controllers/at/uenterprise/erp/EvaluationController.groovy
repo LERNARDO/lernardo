@@ -104,6 +104,10 @@ class EvaluationController {
       render ""
       return
     }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      return
+    }
 
     // find matching clients
     def c = Entity.createCriteria()
@@ -141,6 +145,10 @@ class EvaluationController {
 
     if (!params.value) {
       render ""
+      return
+    }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
       return
     }
 

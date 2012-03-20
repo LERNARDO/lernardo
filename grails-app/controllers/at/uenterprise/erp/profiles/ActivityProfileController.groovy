@@ -355,8 +355,13 @@ class ActivityProfileController {
    * retrieves all templates matching the search parameter
    */
   def remoteTemplates = {
+
     if (!params.value) {
       render ""
+      return
+    }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
       return
     }
 
@@ -394,6 +399,10 @@ class ActivityProfileController {
   def remoteFacilities = {
     if (!params.value) {
       render ""
+      return
+    }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
       return
     }
     
@@ -435,6 +444,10 @@ class ActivityProfileController {
       render ""
       return
     }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      return
+    }
 
     def c = Entity.createCriteria()
     def results = c.list {
@@ -466,6 +479,10 @@ class ActivityProfileController {
   def remoteClients = {
     if (!params.value) {
       render ""
+      return
+    }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
       return
     }
 
