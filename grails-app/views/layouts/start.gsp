@@ -8,6 +8,15 @@
   <r:require modules="start"/>
 
   <r:script disposition="defer">
+
+    $(document).bind('keydown', 'ctrl+e', function(){
+        showBigSpinner();
+        $.get("${createLink(controller: "educatorProfile")}", function(data) {
+            $('body').html(data);
+        });
+        return false;
+    });
+
     // shows the spinner
     function showspinner(id) {
       $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
@@ -67,7 +76,8 @@
 
   <r:layoutResources/>
 
-  %{--<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>--}%
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.hotkeys-0.7.9.min.js')}"></script>
 
   <g:layoutHead />
   <ckeditor:resources />
