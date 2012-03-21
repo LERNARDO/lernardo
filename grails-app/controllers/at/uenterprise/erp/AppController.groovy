@@ -40,7 +40,7 @@ class AppController {
       // response.sendError(404, 'no matching asset')
       def res = grailsApplication.mainContext.getResource ("images/default_asset.jpg")
       if (res) {
-        response.contentType = "image/jpg"
+        response.contentType = "image/jpeg"
         response.contentLength = res.getFile().size()
         response.outputStream << res.inputStream
         response.outputStream.flush()
