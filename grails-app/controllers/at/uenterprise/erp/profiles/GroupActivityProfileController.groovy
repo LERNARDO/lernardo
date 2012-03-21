@@ -682,7 +682,8 @@ class GroupActivityProfileController {
     List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
     Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
 
-    renderPdf template: 'createpdf', model: [entity: currentEntity,
+    renderPdf template: 'createpdf', model: [pageformat: params.pageformat,
+                                             entity: currentEntity,
                                              group: group,
                                              activities: activities,
                                              themes: themes,
@@ -693,7 +694,8 @@ class GroupActivityProfileController {
                                              parents: parents,
                                              partners: partners,
                                              template: template,
-                                             withTemplates: params.printtemplates == "" ? 'true' : 'false'], filename: message(code: 'groupActivity') + '_' + group.profile.fullName + '.pdf'
+                                             withTemplates: params.printtemplates == "" ? 'true' : 'false'],
+                                             filename: message(code: 'groupActivity') + '_' + group.profile.fullName + '.pdf'
   }
 
   def searchbydate = {

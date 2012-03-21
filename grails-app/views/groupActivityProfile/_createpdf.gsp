@@ -5,6 +5,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title><g:message code="groupActivity"/></title>
     <style>
+      @page {
+        <g:if test="${pageformat == '1'}">
+          size: 210mm 297mm;
+        </g:if>
+        <g:if test="${pageformat == '2'}">
+          size: 297mm 210mm;
+        </g:if>
+        <g:if test="${pageformat == '3'}">
+          size: 216mm 279mm;
+        </g:if>
+        <g:if test="${pageformat == '4'}">
+          size: 279mm 216mm;
+        </g:if>
+      }
       body {
           font-size: 12px;
       }

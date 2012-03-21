@@ -67,7 +67,7 @@
 
   <r:layoutResources/>
 
-  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
+  %{--<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>--}%
 
   <g:layoutHead />
   <ckeditor:resources />

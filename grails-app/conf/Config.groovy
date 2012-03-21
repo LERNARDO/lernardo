@@ -68,6 +68,7 @@ grails.resources.modules = {
     resource url: 'css/grids-min.css'
     resource url: 'css/jquery.qtip.min.css'
     resource url: 'css/kolorpicker.css'
+    resource url: 'css/basic.css' // modal
     resource url: 'less/common.less', attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_other'
     resource url: "less/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_other'
 
@@ -188,3 +189,9 @@ application.name  = "Nuedo"
 ckeditor {
   config = "/js/ckconfig.gsp"
 }
+
+// PDFs
+// Betreutengruppe List View
+// Zeitaufzeichnung Bericht
+// Logbuch Auswertung
+// Aktivitätsblock Show View

@@ -16,7 +16,9 @@
             <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-          <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div> <div style="float: left; padding: 7px 0 0 0;"><g:checkBox name="printtemplates" value=""/></div><div style="float: left; padding: 7px 0 0 5px;"> <g:message code="activityTemplates.with"/></div>
+          <div class="button">
+            <a class="buttonGreen" href="#" onclick="jQuery('#modal').modal(); return false"><g:message code="createPDF"/></a>
+          </div>
           <erp:getFavorite entity="${entity}"/>
         </g:form>
         <div class="clear"></div>
@@ -24,3 +26,16 @@
     </td>
   </tr>
 </table>
+
+<div id="modal" style="display: none;">
+  <g:form controller="groupActivityProfile" action="createpdf" id="${entity.id}">
+    <p><g:message code="selectPageFormat"/></p>
+    <g:radioGroup name="pageformat" labels="['DIN A4 Hoch (210mm × 297mm)','DIN A4 Quer (297mm × 210mm)','Letter Hoch (216mm × 279mm)','Letter Quer (279mm × 216mm)']" values="[1,2,3,4]" value="1">
+      <p>${it.radio} ${it.label}</p>
+    </g:radioGroup>
+    <p>
+      <g:checkBox name="printtemplates" value=""/> <g:message code="activityTemplates.with"/>
+    </p>
+    <g:submitButton name="pdfbutton" value="${message(code: 'notification.send')}"/>
+  </g:form>
+</div>
