@@ -28,14 +28,16 @@ class AppController {
   /*
    * renders an image
    */
-  def get = {
+  def getImage = {
     Entity ent = Entity.get (params.entity)
     if (!ent) {
       response.sendError(404, "no such entity: '$params.entity")
       return
     }
 
-    AssetStorage store = assetService.findStorage(ent, params.type, params.select ?: 'latest' )
+    AssetStorage store = params.store
+
+    /*AssetStorage store = assetService.findStorage(ent, params.type, params.select ?: 'latest' )
     if (!store) {
       // response.sendError(404, 'no matching asset')
       def res = grailsApplication.mainContext.getResource ("images/default_asset.jpg")
@@ -46,7 +48,7 @@ class AppController {
         response.outputStream.flush()
       }
       return
-    }
+    }*/
 
     try {
       assetService.withContent(store) {content, contentType->

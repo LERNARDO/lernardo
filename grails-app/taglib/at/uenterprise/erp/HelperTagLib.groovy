@@ -20,12 +20,15 @@ import at.uenterprise.erp.logbook.LogEntry
 import at.uenterprise.erp.logbook.LogClient
 import at.uenterprise.erp.logbook.ProcessPaid
 import at.uenterprise.erp.logbook.ProcessAttended
+import at.openfactory.ep.AssetStorage
+import at.openfactory.ep.AssetService
 
 class HelperTagLib {
   EntityHelperService entityHelperService
   MetaDataService metaDataService
   SecHelperService secHelperService
   FunctionService functionService
+  AssetService assetService
   def securityManager
   static namespace = "erp"
 
@@ -678,7 +681,11 @@ class HelperTagLib {
 
   def profileImage = {attrs ->
     def imgattrs = [:]
-    imgattrs['src'] = g.createLink (controller:'app', action:'get', params:[type:'profile', entity:attrs.entity.id])
+    AssetStorage store = assetService.findStorage(attrs.entity, 'profile', 'latest' )
+    if (store)
+      imgattrs['src'] = g.createLink (controller:'app', action:'getImage', params:[type:'profile', entity:attrs.entity.id, store: store])
+    else
+      imgattrs['src'] = g.resource(dir: 'images', file: 'default_asset.jpg')
     attrs.name = attrs.entity.name
     attrs.each {key, val ->
       imgattrs[key] = val
