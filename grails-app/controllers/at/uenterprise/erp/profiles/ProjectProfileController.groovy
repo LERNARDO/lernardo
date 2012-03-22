@@ -1655,9 +1655,9 @@ class ProjectCommand {
     endDate   nullable: false, validator: {val, obj ->
                                              return val > obj.startDate
                                           }
-    weekdays  validator: {val, obj ->
+    /*weekdays  validator: {val, obj ->
                             return !(!obj.monday && !obj.tuesday && !obj.wednesday && !obj.thursday && !obj.friday && !obj.saturday && !obj.sunday)
-                         }
+                         }*/
   }
 
 }
