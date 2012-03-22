@@ -321,14 +321,7 @@ class AppController {
       redirect controller: 'event', action: 'index'
     }
     else
-      redirect action: 'home'
-  }
-
-  /*
-   * this is the public start
-   */
-  def home = {
-    redirect controller: "public", action: "start"
+      redirect controller: "public", action: "start"
   }
 
   /*

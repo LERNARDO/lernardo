@@ -34,7 +34,7 @@ class AppFilters {
         if (e)
           log.info "controller: $controllerName, action: $actionName ($e.name)"
         if (!e) {
-          redirect controller: 'app', action: 'home'
+          redirect controller: 'public', action: 'start', params: [loggedOut: "true"]
         }
       }
     }
