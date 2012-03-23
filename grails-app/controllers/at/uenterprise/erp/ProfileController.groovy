@@ -349,6 +349,56 @@ class ProfileController {
   def updateonline = {
     render template: "/templates/onlineUsers"
   }
+
+  /*
+  * retrieves all creators matching the search parameter
+  */
+  def remoteCreators = {
+
+    if (!params.value) {
+      render ""
+      return
+    }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      user {
+        eq("enabled", true)
+      }
+      or {
+        eq('type', metaDataService.etUser)
+        eq('type', metaDataService.etEducator)
+        eq('type', metaDataService.etOperator)
+      }
+      //or {
+      //ilike('name', "%" + params.value + "%")
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+      }
+      //}
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'creatorresults', model: [results: results])
+    }
+  }
+
+  def addCreator = {
+    Entity creator = Entity.get(params.id)
+
+    //render ("<span class='gray'>" + message(code: 'creator') + "</span> ${creator.profile.fullName}")
+    render ("${creator.profile.fullName}")
+  }
+
 }
 
 /*
