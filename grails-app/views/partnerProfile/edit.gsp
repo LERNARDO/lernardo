@@ -60,7 +60,7 @@
           </td>
         </tr>
 
-        <tr class="prop">
+        %{--<tr class="prop">
           <td valign="top" class="name"><g:message code="zip"/></td>
           <td valign="top" class="value">
             <g:textField class="${hasErrors(bean: partner, field: 'profile.zip', 'errors')}" size="12" name="zip" value="${fieldValue(bean: partner, field: 'profile.zip').decodeHTML()}"/>
@@ -78,6 +78,13 @@
           <td valign="top" class="name"><g:message code="country"/></td>
           <td valign="top" class="value">
             <g:select name="country" from="${Setup.list()[0]?.nationalities}" value="${partner?.profile?.country}" noSelection="['': message(code: 'unknown')]"/>
+          </td>
+        </tr>--}%
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="groupColony"/></td>
+          <td valign="top" class="value">
+            <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile" value="${colony?.id}"/>
           </td>
         </tr>
 
