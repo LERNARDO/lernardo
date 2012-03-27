@@ -70,7 +70,7 @@
           <td class="two">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
         </tr>
 
-        <tr class="prop">
+        %{--<tr class="prop">
           <td class="one"><g:message code="zip"/>:</td>
           <td class="two">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
         </tr>
@@ -83,6 +83,12 @@
         <tr class="prop">
           <td class="one"><g:message code="country"/>:</td>
           <td class="two">${fieldValue(bean: partner, field: 'profile.country') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+        </tr>--}%
+
+        <tr class="prop">
+          <td class="one"><g:message code="groupColony"/>:</td>
+          <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+              code="noData"/></div></g:else></td>
         </tr>
 
         </tbody>

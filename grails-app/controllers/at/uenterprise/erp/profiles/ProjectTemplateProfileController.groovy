@@ -609,7 +609,8 @@ def updateselect = {
 
     def numberOfAllTemplates = Entity.countByType(metaDataService.etProjectTemplate)
 
-    def allTemplates = Entity.createCriteria().list  {
+    // 1. pass - filter by object properties
+    def firstPass = Entity.createCriteria().list  {
       eq('type', metaDataService.etProjectTemplate)
       if (params.name)
         or {
@@ -629,24 +630,43 @@ def updateselect = {
       }
     }
 
-    List finalList = []
+    // 2. pass - filter by creator
+    List secondPass = []
+
+    if (params.creator != "") {
+      firstPass.each { Entity template ->
+        def creator = Link.createCriteria().get {
+          eq('source', Entity.get(params.int('creator')))
+          eq('target', template)
+          eq('type', metaDataService.ltCreator)
+        }
+        if (creator) {
+          secondPass.add(template)
+        }
+      }
+    }
+    else
+      secondPass = firstPass
+
+    // 3. filter by labels
+    List thirdPass = []
 
     if (params.labels) {
       List labels = params.list('labels')
-      allTemplates.each { Entity template ->
+      firstPass.each { Entity template ->
         template.profile.labels.each { Label label ->
           if (labels.contains(label.name)) {
-            if (!finalList.contains(template))
-              finalList.add(template)
+            if (!thirdPass.contains(template))
+              thirdPass.add(template)
           }
         }
       }
     }
     else
-      finalList = allTemplates
+      thirdPass = secondPass
 
-    render(template: 'searchresults', model: [allTemplates: finalList,
-                                              totalTemplates: finalList.size(),
+    render(template: 'searchresults', model: [allTemplates: thirdPass,
+                                              totalTemplates: thirdPass.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
                                               paginate: false,
                                               name: params.name])

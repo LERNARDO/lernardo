@@ -29,7 +29,25 @@
     <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
       <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect2']" update="searchresults" before="showspinner('#searchresults')">
 
+        <div style="margin-bottom: 10px;">
+          <span class="gray"><g:message code="creator"/>:</span><br/>
+
+          <g:remoteField size="40" name="remoteField1" update="remoteCreators" controller="profile" action="remoteCreators" before="showspinner('#remoteCreators')"/>
+          <div id="remoteCreators"></div>
+
+          <div style="visibility: hidden">
+            <g:textField name="creator" id="hiddentextfield1" value=""/>
+          </div>
+        </div>
+
         <table>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="creator"/></td>
+            <td valign="top" class="value">
+              <span id="creators2"><g:message code="none"/></span> <a href="" onclick="jQuery('#creators2').html('${message(code: 'none')}'); clearElements(['#hiddentextfield1']); return false"><img src="${g.resource(dir:'images/icons', file:'cross.png')}" alt="Delete"/></a>
+            </td>
+          </tr>
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="name"/></td>

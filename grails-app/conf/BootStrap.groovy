@@ -440,12 +440,12 @@ class BootStrap {
         entityHelperService.createEntityWithUserAndProfile ("partner" + i, etPartner, "partner" + i + "@domain.org", "partner " + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           PartnerProfile prf = (PartnerProfile)ent.profile
-          prf.zip = "12345"
-          prf.city = "dummyCity"
+          //prf.zip = "12345"
+          //prf.city = "dummyCity"
           prf.street = "dummyStreet"
           prf.phone = "dummyPhone"
           prf.description = "dummyDescription"
-          prf.country = "dummyCountry"
+          //prf.country = "dummyCountry"
           prf.website = "http://www.dummySite.com"
         }
       }

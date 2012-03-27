@@ -6,6 +6,7 @@ import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityType
 import at.uenterprise.erp.Contact
+import at.openfactory.ep.Link
 
 class PartnerProfileController {
 
@@ -50,7 +51,9 @@ class PartnerProfileController {
       return
     }
 
-    return [partner: partner]
+    Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+
+    return [partner: partner, colony: colony]
 
   }
 
@@ -83,7 +86,20 @@ class PartnerProfileController {
       return
     }
 
-    return [partner: partner]
+    Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    return [partner: partner, colony: colony, allColonies: allColonies]
 
   }
 
@@ -93,6 +109,10 @@ class PartnerProfileController {
     partner.profile.properties = params
     partner.user.properties = params
 
+    // update link to colony
+    Link.findByTargetAndType(partner, metaDataService.ltColonia)?.delete()
+    new Link(source: Entity.get(params.currentColony), target: partner, type: metaDataService.ltColonia).save()
+
     //if (partner.id == entityHelperService.loggedIn.id)
     //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
@@ -101,11 +121,35 @@ class PartnerProfileController {
       redirect action: 'show', id: partner.id, params: [entity: partner.id]
     }
     else {
-      render view: 'edit', model: [partner: partner]
+      params.sort = params.sort ?: "fullName"
+      params.order = params.order ?: "asc"
+      Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+      render view: 'edit', model: [partner: partner, colony: colony, allColonies: allColonies]
     }
   }
 
-  def create = {}
+  def create = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    [allColonies: allColonies]
+  }
 
   def save = {
     EntityType etPartner = metaDataService.etPartner
@@ -118,10 +162,23 @@ class PartnerProfileController {
         ent.profile.save()
       }
 
+      // create link to colony
+      new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
+
       flash.message = message(code: "object.created", args: [message(code: "partner"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [partner: ee.entity])
+      params.sort = params.sort ?: "fullName"
+      params.order = params.order ?: "asc"
+
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+      render(view: "create", model: [partner: ee.entity, allColonies: allColonies])
     }
 
   }

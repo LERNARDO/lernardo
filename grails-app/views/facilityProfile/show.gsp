@@ -41,7 +41,7 @@
           <td class="one"><g:message code="groupColony"/>:</td>
           <td class="two">
             <g:if test="${colony}">
-              <g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName.decodeHTML()}</g:link>
+              <g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.fullName.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic red"><g:message code="facility.profile.noCol"/></span>

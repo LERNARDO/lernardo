@@ -75,7 +75,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="groupColony"/>:</td>
-        <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+        <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
             code="noData"/></div></g:else></td>
       </tr>
 

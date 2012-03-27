@@ -8,5 +8,8 @@ class PublicController {
 
     def imprint = {}
 
-    def start = {}
+    def start = {
+      if (params.loggedOut == "true")
+        flash.message = message(code: "loggedOut")
+    }
 }
