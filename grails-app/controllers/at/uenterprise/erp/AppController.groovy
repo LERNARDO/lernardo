@@ -35,7 +35,7 @@ class AppController {
       return
     }
 
-    AssetStorage store = params.store
+    AssetStorage store = AssetStorage.get(params.store)
 
     /*AssetStorage store = assetService.findStorage(ent, params.type, params.select ?: 'latest' )
     if (!store) {
