@@ -1776,7 +1776,7 @@ class HelperTagLib {
    * returns the number of publications of an entity
    */
   def getPublicationCount = {attrs ->
-    int m = Publication.countByEntity(attrs.entity)
+    long m = Publication.countByEntity(attrs.entity)
 
     // group activity template
     if (attrs.entity.type.name == "Aktivitätsvorlagenblock") {
