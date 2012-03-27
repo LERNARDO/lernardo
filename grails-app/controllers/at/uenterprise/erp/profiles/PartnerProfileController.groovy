@@ -115,6 +115,7 @@ class PartnerProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
+        ent.profile.save()
       }
 
       flash.message = message(code: "object.created", args: [message(code: "partner"), entity.profile.fullName])

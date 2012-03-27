@@ -118,6 +118,7 @@ class ChildProfileController {
         ent.profile.birthDate = params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
+        ent.profile.save()
       }
 
       flash.message = message(code: "object.created", args: [message(code: "child"), entity.profile.fullName])

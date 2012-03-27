@@ -98,6 +98,8 @@ grails {
 // this will be used if no "from" is supplied in a mail
 grails.mail.default.from = "lernardomailer@gmail.com"
 
+grails.profiler.disable = true
+
 secmgr {
   starturl     = "/start"
   publicurl    = "/"
