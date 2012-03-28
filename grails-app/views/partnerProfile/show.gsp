@@ -31,7 +31,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two">${fieldValue(bean: pate, field: 'profile.fullName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: partner, field: 'profile.fullName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr class="prop">
