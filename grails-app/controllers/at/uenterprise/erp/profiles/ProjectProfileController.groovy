@@ -1694,7 +1694,7 @@ class ProjectProfileController {
     // 4. filter by theme
     List fourthPass = []
 
-    if (params.theme) {
+    if (params.theme != "") {
       Entity theme = Entity.get(params.theme)
       List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
 

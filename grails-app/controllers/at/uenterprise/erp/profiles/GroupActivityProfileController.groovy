@@ -983,6 +983,106 @@ class GroupActivityProfileController {
     render template: params.type
   }
 
+  def updateselect = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    // swap age values if necessary
+    if (params.int('ageTo') < params.int('ageFrom')) {
+      def temp = params.ageTo
+      params.ageTo = params.ageFrom
+      params.ageFrom = temp
+    }
+
+    Date beginDate = params.date('beginDate', 'dd. MM. yy')
+    Date endDate = params.date('endDate', 'dd. MM. yy')
+
+    def numberOfAllGroupActivities = Entity.countByType(metaDataService.etGroupActivity)
+
+    // 1. pass - filter by object properties
+    def firstPass = Entity.createCriteria().list  {
+      eq('type', metaDataService.etGroupActivity)
+      if (params.name)
+        or {
+          ilike('name', "%" + params.name + "%")
+          profile {
+            ilike('fullName', "%" + params.name + "%")
+          }
+        }
+      profile {
+        if (beginDate)
+          ge("startDate", beginDate)
+        if (endDate)
+          le("endDate", endDate)
+        if (params.ageFrom)
+          le('ageFrom', params.ageFrom.toInteger())
+        if (params.ageTo)
+          ge('ageTo', params.ageTo.toInteger())
+        if (params.sort)
+          order(params.sort, params.order)
+      }
+    }
+
+    // 2. pass - filter by creator
+    List secondPass = []
+
+    if (params.creator != "") {
+      firstPass.each { Entity template ->
+        def creator = Link.createCriteria().get {
+          eq('source', Entity.get(params.int('creator')))
+          eq('target', template)
+          eq('type', metaDataService.ltCreator)
+        }
+        if (creator) {
+          secondPass.add(template)
+        }
+      }
+    }
+    else
+      secondPass = firstPass
+
+    // 3. filter by labels
+    List thirdPass = []
+
+    if (params.labels) {
+      List labels = params.list('labels')
+      secondPass.each { Entity template ->
+        template.profile.labels.each { Label label ->
+          if (labels.contains(label.name)) {
+            if (!thirdPass.contains(template))
+              thirdPass.add(template)
+          }
+        }
+      }
+    }
+    else
+      thirdPass = secondPass
+
+    // 4. filter by theme
+    List fourthPass = []
+
+    if (params.theme != "") {
+      Entity theme = Entity.get(params.theme)
+      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
+
+      projects.each { Entity project ->
+        if (thirdPass.contains(project))
+          fourthPass.add(project)
+      }
+    }
+    else
+      fourthPass = thirdPass
+
+    render(template: 'searchresults', model: [groups: fourthPass,
+        totalGroups: fourthPass.size(),
+        numberOfAllProjects: numberOfAllGroupActivities,
+        paginate: false,
+        name: params.name,
+        ageFrom: params.ageFrom,
+        ageTo: params.ageTo])
+  }
+
+
 }
 
 class GroupActivityCommand {
