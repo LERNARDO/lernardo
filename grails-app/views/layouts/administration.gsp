@@ -8,6 +8,8 @@
   <r:require modules="other"/>
 
   <r:script disposition="defer">
+    <g:render template="/templates/shortcuts"/>
+
     // shows the spinner
     function showspinner(id) {
       $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');

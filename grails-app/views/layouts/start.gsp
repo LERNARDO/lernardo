@@ -8,14 +8,7 @@
   <r:require modules="start"/>
 
   <r:script disposition="defer">
-
-    $(document).bind('keydown', 'ctrl+e', function(){
-        showBigSpinner();
-        $.get("${createLink(controller: "educatorProfile")}", function(data) {
-            $('body').html(data);
-        });
-        return false;
-    });
+    <g:render template="/templates/shortcuts"/>
 
     // shows the spinner
     function showspinner(id) {
