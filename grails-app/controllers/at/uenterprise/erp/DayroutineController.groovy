@@ -1,6 +1,7 @@
 package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
+import grails.converters.JSON
 
 class DayroutineController {
   FunctionService functionService
@@ -94,6 +95,64 @@ class DayroutineController {
     routine.delete()
 
     render ""
+  }
+
+  def showDayRoutines = {
+    Entity entity = Entity.get(params.id)
+
+    // find all routines of the facility
+    List routines = Dayroutine.findAllByFacility(entity)
+
+    def start = new Date()
+    start.setTime(params.long('start') * 1000)
+    start.setHours(0)
+    start.setMinutes(0)
+
+    def end = new Date()
+    end.setTime(params.long('end') * 1000)
+    end.setHours(23)
+    end.setMinutes(59)
+
+    def eventList = []
+
+    def color = '#8ac'
+
+    Calendar tcalendarStart = new GregorianCalendar()
+    tcalendarStart.setTime(start)
+    tcalendarStart.add(Calendar.DATE, 1)
+
+    Calendar tcalendarEnd = new GregorianCalendar()
+    tcalendarEnd.setTime(end)
+
+    while (tcalendarStart <= tcalendarEnd) {
+      Date currentDate = tcalendarStart.getTime()
+
+      routines?.each { Dayroutine routine ->
+        if ((routine.day == "sunday" && currentDate.getDay() == 0) ||
+            (routine.day == "monday" && currentDate.getDay() == 1) ||
+            (routine.day == "tuesday" && currentDate.getDay() == 2) ||
+            (routine.day == "wednesday" && currentDate.getDay() == 3) ||
+            (routine.day == "thursday" && currentDate.getDay() == 4) ||
+            (routine.day == "friday" && currentDate.getDay() == 5) ||
+            (routine.day == "saturday" && currentDate.getDay() == 6)) {
+
+          def title = routine.title
+          def description = routine.description
+          routine.dateFrom.setYear(currentDate.getYear())
+          routine.dateFrom.setMonth(currentDate.getMonth())
+          routine.dateFrom.setDate(currentDate.getDate())
+          routine.dateTo.setYear(currentDate.getYear())
+          routine.dateTo.setMonth(currentDate.getMonth())
+          routine.dateTo.setDate(currentDate.getDate())
+          eventList << [id: routine.id, title: title, start: functionService.convertFromUTC(routine.dateFrom), end: functionService.convertFromUTC(routine.dateTo), allDay: false, color: color, description: description]
+        }
+      }
+      tcalendarStart.add(Calendar.DATE, 1)
+
+    }
+
+    def json = eventList as JSON
+    render json
   }
 
 }
