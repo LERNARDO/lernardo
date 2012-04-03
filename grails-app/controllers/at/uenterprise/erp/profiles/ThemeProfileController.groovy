@@ -9,6 +9,7 @@ import at.openfactory.ep.Link
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.EVENT_TYPE
+import at.uenterprise.erp.Label
 
 class ThemeProfileController {
   MetaDataService metaDataService
@@ -87,7 +88,8 @@ class ThemeProfileController {
        allActivityGroups: allActivityGroups,
        activitygroups: activitygroups,
        facility: facility,
-       parenttheme: parenttheme]
+       parenttheme: parenttheme,
+       allLabels: functionService.getLabels()]
     }
   }
 
@@ -292,5 +294,40 @@ class ThemeProfileController {
   def removeActivityGroup = {
     def breaking = functionService.breakEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
     render template: 'activitygroups', model: [activitygroups: breaking.results, theme: breaking.target]
+  }
+
+  /*
+  * adds a label to an entity by creating a new label instance and copying the properties from the given "label template"
+  */
+  def addLabel = {
+    Entity entity = Entity.get(params.id)
+    Label labelTemplate = Label.get(params.label)
+
+    // make sure a label can only be added once
+    Boolean canBeAdded = true
+    entity.profile.labels.each {
+      if (it.name == labelTemplate.name)
+        canBeAdded = false
+    }
+    if (canBeAdded) {
+      Label label = new Label()
+
+      label.name = labelTemplate.name
+      label.description = labelTemplate.description
+      label.type = "instance"
+
+      entity.profile.addToLabels(label)
+    }
+    render template: 'labels', model: [theme: entity]
+  }
+
+  /*
+  * removes a label from a template
+  */
+  def removeLabel = {
+    Entity theme = Entity.get(params.id)
+    theme.profile.removeFromLabels(Label.get(params.label))
+    Label.get(params.label).delete()
+    render template: 'labels', model: [theme: theme]
   }
 }
