@@ -1,5 +1,8 @@
 <g:if test="${template.profile.methods}">
-  <g:each in="${template.profile.methods}" var="method">
+  <%
+    def methods = template.profile.methods.toList().sort {it.name}
+  %>
+  <g:each in="${methods}" var="method">
     <ul style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc">
       <li><span class="bold">${method.name}</span> <erp:accessCheck types="['Betreiber','Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><g:remoteLink action="removeMethod" update="methods2" id="${template.id}" params="[method: method.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
       <g:each in="${method.elements}" var="element">

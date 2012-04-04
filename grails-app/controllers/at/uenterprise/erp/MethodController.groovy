@@ -12,6 +12,8 @@ class MethodController {
 
   def list = {
     params.max = Math.min(params.int('max') ?: 10, 100)
+    params.sort = "name"
+    params.order  = "asc"
     List methods = Method.findAllByType('template', params)
     [methodInstanceList: methods, methodInstanceTotal: methods.size()]
   }

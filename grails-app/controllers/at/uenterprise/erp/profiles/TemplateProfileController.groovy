@@ -85,7 +85,9 @@ class TemplateProfileController {
   def show = {
     Entity template = Entity.get(params.id)
 
-    def allMethods = Method.findAllByType('template')
+    params.sort = "name"
+    params.order  = "asc"
+    List allMethods = Method.findAllByType('template', params)
 
     return [template: template,
             allMethods: allMethods,
