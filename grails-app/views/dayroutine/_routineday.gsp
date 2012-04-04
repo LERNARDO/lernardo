@@ -12,6 +12,6 @@
 
 <div class="clear"></div>
 
-<div id="routines">
+<div id="routines" style="border: 1px solid #aaa; padding: 5px; background: #eee; margin: 0 0 10px 0;">
   <g:render template="routines" model="[routines: routines]"/>
 </div>

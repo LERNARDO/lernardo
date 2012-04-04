@@ -10,6 +10,7 @@ import at.uenterprise.erp.Contact
 import at.uenterprise.erp.Materials
 import at.uenterprise.erp.Performances
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.SDate
 
 /**
  * This class represents the profile of clients (children part of the educational program)
@@ -21,6 +22,7 @@ class ClientProfile extends Profile {
   SortedSet dates, materials, performances, healths
   List favorites
   static hasMany = [languages: String,
+                    schooldates: SDate,
                     dates: CDate,
                     materials: Materials,
                     performances: Performances,
@@ -46,13 +48,13 @@ class ClientProfile extends Profile {
   String school
   String schoolLevel
 
-  Boolean schoolDropout = false
-  Date    schoolDropoutDate
-  String  schoolDropoutReason
+  //Boolean schoolDropout = false
+  //Date    schoolDropoutDate
+  //String  schoolDropoutReason
 
-  Boolean schoolRestart = false
-  Date    schoolRestartDate
-  String  schoolRestartReason
+  //Boolean schoolRestart = false
+  //Date    schoolRestartDate
+  //String  schoolRestartReason
 
   Boolean job
   Integer jobIncome
@@ -79,10 +81,10 @@ class ClientProfile extends Profile {
     interests             blank: true, maxSize: 2000
     jobIncome             nullable: true
     jobFrequency          nullable: true, blank: true, maxSize: 50
-    schoolDropoutDate     nullable: true
-    schoolDropoutReason   nullable: true, blank: false, maxSize: 500
-    schoolRestartDate     nullable: true
-    schoolRestartReason   nullable: true, blank: false, maxSize: 500
+    //schoolDropoutDate     nullable: true
+    //schoolDropoutReason   nullable: true, blank: false, maxSize: 500
+    //schoolRestartDate     nullable: true
+    //schoolRestartReason   nullable: true, blank: false, maxSize: 500
     supportDescription    nullable: true, blank: true, maxSize: 500
     citizenship           nullable: true
     socialSecurityNumber  nullable: true, size: 10..10

@@ -14,6 +14,7 @@ import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Collector
 import at.uenterprise.erp.Contact
 import java.util.regex.Pattern
+import at.uenterprise.erp.SDate
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -368,6 +369,35 @@ class ClientProfileController {
     client.profile.removeFromContacts(Contact.get(params.contact))
     Contact.get(params.contact).delete()
     render template: 'contacts', model: [client: client]
+  }
+
+  def addSchoolDate = {
+    Entity client = Entity.get(params.id)
+
+    params.date = params.date('date', 'dd. MM. yy') ?: params.date('date', 'dd.MM.yy')
+
+    if (params.date) {
+      SDate date = new SDate(params)
+      date.type = client.profile.schooldates.size() % 2 == 0 ? 'entry' : 'exit'
+      client.profile.addToSchooldates(date)
+
+      // change active/inactive status
+      client.user.enabled = date.type == 'exit'
+      client.user.save()
+    }
+    render template: 'schooldates', model: [client: client]
+  }
+
+  def removeSchoolDate = {
+    Entity client = Entity.get(params.id)
+    SDate date = SDate.get(params.date)
+    client.profile.removeFromSchooldates(date)
+
+    // change active/inactive status
+    client.user.enabled = date.type == 'exit'
+    client.user.save()
+
+    render template: 'schooldates', model: [client: client]
   }
 
 }

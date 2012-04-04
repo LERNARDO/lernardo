@@ -1,6 +1,7 @@
 package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
+import at.uenterprise.erp.Label
 
 /**
  * This class represents the profile of themes
@@ -8,6 +9,8 @@ import at.openfactory.ep.Profile
  * @author  Alexander Zeillinger
  */
 class ThemeProfile extends Profile {
+
+  static hasMany = [labels: Label]
 
   String  description
   Date    startDate

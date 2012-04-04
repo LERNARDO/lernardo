@@ -1289,11 +1289,11 @@ a {
 #routinedays {
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid #aaa;
     height: 24px;
     ul {
         .active {
             border: 1px solid #888;
+            border-bottom: none;
             background: #aaa; }
         li {
             list-style-type: none;
@@ -1301,12 +1301,14 @@ a {
             border: 1px solid #aaa;
             border-top-right-radius: 5px;
             border-top-left-radius: 5px;
+            border-bottom: none;
             padding: 2px 4px;
             background: #ccc;
             margin: 0 10px 0 0;
             &:hover {
                 background-color: #8bf;
                 border: 1px solid #69f;
+                border-bottom: none;
             }
             a {
                 text-decoration: none;
@@ -1326,7 +1328,11 @@ a {
 
 .routinebox {
     border-bottom: 1px solid #ccc;
-    padding: 5px 0; }
+    padding: 5px 0;
+    &:last-child {
+      border-bottom: none;
+    }
+}
 
 .helperbox {
     border-top: 1px solid #ccc;

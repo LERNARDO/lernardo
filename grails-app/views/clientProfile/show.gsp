@@ -150,7 +150,7 @@
         </td>
       </tr>
 
-      <tr class="prop">
+      %{--<tr class="prop">
         <td class="one"><g:message code="client.profile.schoolDropout"/>:</td>
         <td class="two"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
       </tr>
@@ -178,7 +178,7 @@
       <tr class="prop">
         <td class="one"><g:message code="client.profile.schoolRestartReason"/>:</td>
         <td class="two">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-      </tr>
+      </tr>--}%
 
       <g:if test="${client.profile.job}">
         <tr class="prop">
@@ -365,6 +365,23 @@
 
     <div class="zusatz-show" id="dates2">
       <g:render template="dates" model="[client: client]"/>
+    </div>
+  </div>
+
+  <div class="zusatz">
+    <h5>Schuleintritt und -austritt <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#schooldates');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+
+    <div class="zusatz-add" id="schooldates" style="display:none">
+      <g:formRemote name="formRemote5" url="[controller: 'clientProfile', action: 'addSchoolDate', id: client.id]" update="schooldates2" before="showspinner('#schooldates2');" after="toggle('#schooldates');">
+        <g:message code="date"/> <g:textField id="schooldate" name="date" size="12" class="datepicker" value=""/><br/>
+        <g:message code="reason"/> <g:textArea cols="40" rows="5" name="reason" value=""/><br/>
+        <g:submitButton name="button" value="${message(code: 'add')}"/>
+      </g:formRemote>
+    </div>
+
+    <div class="zusatz-show" id="schooldates2">
+      <g:render template="schooldates" model="[client: client]"/>
     </div>
   </div>
 
