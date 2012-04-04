@@ -1059,12 +1059,35 @@ class ProjectProfileController {
       maxResults(15)
     }
 
-    if (results.size() == 0) {
+    // filter clients by facility: only take those clients which are linked to the facility the project is linked to
+    // if the project isn't linked to a facility yet, don't filter
+
+    // get facility
+    Entity project = Entity.get(params.id)
+    List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
+
+    List finalResults = []
+    if (facilities) {
+      // find all clients linked to the facilities
+      List clients = []
+      facilities.each { Entity facility ->
+        clients.addAll(functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient))
+      }
+
+      results?.each { Entity client ->
+        if (clients.contains(client))
+          finalResults.add(client)
+      }
+    }
+    else
+      finalResults = results
+
+    if (finalResults.size() == 0) {
       render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: results, group: params.id])
+      render(template: 'clientresults', model: [results: finalResults, group: params.id])
     }
   }
 
