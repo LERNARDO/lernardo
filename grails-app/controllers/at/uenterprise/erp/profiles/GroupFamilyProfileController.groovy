@@ -153,7 +153,7 @@ class GroupFamilyProfileController {
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
-      render template: 'parents', model: [parents: linking.results, group: linking.target]
+      render template: 'parents', model: [parents: linking.sources, group: linking.target]
       }
     else {
       render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
@@ -165,7 +165,7 @@ class GroupFamilyProfileController {
 
   def removeParent = {
     def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
-    render template: 'parents', model: [parents: breaking.results, group: breaking.target]
+    render template: 'parents', model: [parents: breaking.sources, group: breaking.target]
   }
 
   def addClient = {
@@ -176,7 +176,7 @@ class GroupFamilyProfileController {
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
-      render template: 'clients', model: [clients: linking.results, group: linking.target]
+      render template: 'clients', model: [clients: linking.sources, group: linking.target]
     }
     else {
       render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
@@ -187,7 +187,7 @@ class GroupFamilyProfileController {
 
   def removeClient = {
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupFamily)
-    render template: 'clients', model: [clients: breaking.results, group: breaking.target]
+    render template: 'clients', model: [clients: breaking.sources, group: breaking.target]
   }
 
   def addChild = {
@@ -198,7 +198,7 @@ class GroupFamilyProfileController {
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
-      render template: 'childs', model: [childs: linking.results, group: linking.target]
+      render template: 'childs', model: [childs: linking.sources, group: linking.target]
     }
     else {
       render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
@@ -209,7 +209,7 @@ class GroupFamilyProfileController {
 
   def removeChild = {
     def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
-    render template: 'childs', model: [childs: breaking.results, group: breaking.target]
+    render template: 'childs', model: [childs: breaking.sources, group: breaking.target]
   }
 
   /*

@@ -497,48 +497,48 @@ class GroupActivityProfileController {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'educators', model: [educators: linking.results, group: linking.target]
+    render template: 'educators', model: [educators: linking.sources, group: linking.target]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
-    render template: 'educators', model: [educators: breaking.results, group: breaking.target]
+    render template: 'educators', model: [educators: breaking.sources, group: breaking.target]
   }
 
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltGroupMemberSubstitute)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'substitutes', model: [substitutes: linking.results, group: linking.target]
+    render template: 'substitutes', model: [substitutes: linking.sources, group: linking.target]
   }
 
   def removeSubstitute = {
     def breaking = functionService.breakEntities(params.substitute, params.id, metaDataService.ltGroupMemberSubstitute)
-    render template: 'substitutes', model: [substitutes: breaking.results, group: breaking.target]
+    render template: 'substitutes', model: [substitutes: breaking.sources, group: breaking.target]
   }
 
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'parents', model: [parents: linking.results, group: linking.target]
+    render template: 'parents', model: [parents: linking.sources, group: linking.target]
   }
 
   def removeParent = {
     def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
-    render template: 'parents', model: [parents: breaking.results, group: breaking.target]
+    render template: 'parents', model: [parents: breaking.sources, group: breaking.target]
   }
 
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'partners', model: [partners: linking.results, group: linking.target]
+    render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 
   def removePartner = {
     def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
-    render template: 'partners', model: [partners: linking.results, group: breaking.target]
+    render template: 'partners', model: [partners: breaking.sources, group: breaking.target]
   }
 
   def addFacility = {
@@ -552,7 +552,7 @@ class GroupActivityProfileController {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-      render template: 'facilities', model: [facilities: linking.results2, group: linking.source]
+      render template: 'facilities', model: [facilities: linking.targets, group: linking.source]
     }
     else {
       List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility)
@@ -568,14 +568,14 @@ class GroupActivityProfileController {
     Entity group = Entity.get(params.id)
     Link.findAllByTargetAndType(group, metaDataService.ltResourcePlanned).each {it.delete()}
 
-    render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source]
+    render template: 'facilities', model: [facilities: breaking.targets, group: breaking.source]
   }
 
   def removeClient = {
     functionService.breakEntities(params.client, params.id, metaDataService.ltAbsent)
     functionService.breakEntities(params.client, params.id, metaDataService.ltIll)
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-    render template: 'clients', model: [clients: breaking.results, group: breaking.target]
+    render template: 'clients', model: [clients: breaking.sources, group: breaking.target]
   }
 
   def updateparents = {
@@ -588,12 +588,12 @@ class GroupActivityProfileController {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'themes', model: [themes: linking.results2, group: linking.source]
+    render template: 'themes', model: [themes: linking.targets, group: linking.source]
   }
 
   def removeTheme = {
     def breaking = functionService.breakEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
-    render template: 'themes', model: [themes: breaking.results2, group: breaking.source]
+    render template: 'themes', model: [themes: breaking.targets, group: breaking.source]
   }
 
   /*
@@ -642,7 +642,7 @@ class GroupActivityProfileController {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
-      render template: 'clients', model: [clients: linking.results, group: linking.target]
+      render template: 'clients', model: [clients: linking.sources, group: linking.target]
     }
     // if the entity is a client group get all clients and add them
     else if (entity.type.id == metaDataService.etGroupClient.id) {

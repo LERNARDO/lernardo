@@ -181,7 +181,7 @@ class ResourceProfileController {
       def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltOwner)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
-      render template: 'owner', model: [resowner: linking.results, resourceInstance: linking.target]
+      render template: 'owner', model: [resowner: linking.sources, resourceInstance: linking.target]
     }
     else {
       render '<span class="red italic">' + message(code: 'alreadyAssignedToOwner') + '</span>'
@@ -192,7 +192,7 @@ class ResourceProfileController {
 
   def removeOwner = {
     def breaking = functionService.breakEntities(params.owner, params.id, metaDataService.ltOwner)
-    render template: 'owner', model: [resowner: breaking.results, resourceInstance: breaking.target]
+    render template: 'owner', model: [resowner: breaking.sources, resourceInstance: breaking.target]
   }
 
   /*
@@ -241,13 +241,13 @@ class ResourceProfileController {
     def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
-    render template: 'responsible', model: [resresponsible: linking.results, resourceInstance: linking.target]
+    render template: 'responsible', model: [resresponsible: linking.sources, resourceInstance: linking.target]
 
   }
 
   def removeResponsible = {
     def breaking = functionService.breakEntities(params.responsible, params.id, metaDataService.ltResponsible)
-    render template: 'responsible', model: [resresponsible: breaking.results, resourceInstance: breaking.target]
+    render template: 'responsible', model: [resresponsible: breaking.sources, resourceInstance: breaking.target]
   }
 
   // Required resources below

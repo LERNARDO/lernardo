@@ -152,7 +152,7 @@ class GroupClientProfileController {
 
   def removeClient = {
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-    render template: 'clients', model: [clients: breaking.results, group: breaking.target]
+    render template: 'clients', model: [clients: breaking.sources, group: breaking.target]
   }
 
   def updateselect = {

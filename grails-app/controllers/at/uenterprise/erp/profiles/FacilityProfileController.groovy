@@ -207,24 +207,24 @@ class FacilityProfileController {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'educators', model: [educators: linking.results, facility: linking.target]
+    render template: 'educators', model: [educators: linking.sources, facility: linking.target]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltWorking)
-    render template: 'educators', model: [educators: breaking.results, facility: breaking.target]
+    render template: 'educators', model: [educators: breaking.sources, facility: breaking.target]
   }
 
   def addLeadEducator = {
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'leadeducators', model: [leadeducators: linking.results, facility: linking.target]
+    render template: 'leadeducators', model: [leadeducators: linking.sources, facility: linking.target]
   }
 
   def removeLeadEducator = {
     def breaking = functionService.breakEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
-    render template: 'leadeducators', model: [leadeducators: breaking.results, facility: breaking.target]
+    render template: 'leadeducators', model: [leadeducators: breaking.sources, facility: breaking.target]
   }
 
   def addClients = {
@@ -238,7 +238,7 @@ class FacilityProfileController {
         render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
       else
         new Attendance(client: clientgroup, facility: facility).save(failOnError: true)
-      render template: 'clients', model: [clients: linking.results, facility: linking.target]
+      render template: 'clients', model: [clients: linking.sources, facility: linking.target]
     }
     // if the entity is a client group get all clients and add them
     else if (clientgroup.type.id == metaDataService.etGroupClient.id) {
