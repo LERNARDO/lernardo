@@ -156,7 +156,7 @@ class MetaDataService {
   static final String PT_DOC2 = "Typ2"
   static final String PT_DOC3 = "Typ3"
 
-    // Roles
+  // Roles
   static final String ROLE_USER           = "ROLE_USER"
   static final String ROLE_MOD            = "ROLE_MOD"
   static final String ROLE_ADMIN          = "ROLE_ADMIN"
