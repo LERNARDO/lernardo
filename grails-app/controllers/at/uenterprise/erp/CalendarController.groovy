@@ -397,7 +397,7 @@ class CalendarController {
     List searchStrings = params.name.toString().split(" ")
 
     def c = Entity.createCriteria()
-    def results = c.list {
+    def all_results = c.listDistinct {
       user {
         eq("enabled", true)
       }
@@ -446,7 +446,12 @@ class CalendarController {
           }
         }
       }
-      maxResults(5)
+      // maxResults(5)
+    }
+
+    def results = all_results
+    if ( all_results.size() > 5 ) {
+      results = all_results.subList(0,5)
     }
 
     render template: 'searchresults', model: [results: results]
