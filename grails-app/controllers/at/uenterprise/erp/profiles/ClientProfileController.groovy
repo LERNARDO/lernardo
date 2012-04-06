@@ -15,6 +15,7 @@ import at.uenterprise.erp.Collector
 import at.uenterprise.erp.Contact
 import java.util.regex.Pattern
 import at.uenterprise.erp.SDate
+import at.uenterprise.erp.logbook.Attendance
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -91,7 +92,7 @@ class ClientProfileController {
     Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
     Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
     List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
-    List facilities = Entity.findAllByType(metaDataService.etFacility)
+    List facilities = functionService.findAllByLink(client, null, metaDataService.ltGroupMemberClient).findAll {it.type == metaDataService.etFacility}
 
     return [client: client, colony: colony, family: family, pates: pates, facilities: facilities]
 
@@ -398,6 +399,75 @@ class ClientProfileController {
     client.user.save()
 
     render template: 'schooldates', model: [client: client]
+  }
+
+  /*
+  * retrieves all facilities matching the search parameter
+  */
+  def remoteFacilities = {
+    if (!params.value) {
+      render ""
+      return
+    }
+    else if (params.value.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etFacility)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'facilityresults', model: [results: results, client: params.id])
+    }
+  }
+
+  def addFacility = {
+    Entity facility = Entity.get(params.facility)
+    Entity client = Entity.get(params.id)
+
+    def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberClient)
+    if (linking.duplicate)
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+    else
+      new Attendance(client: client, facility: facility).save(failOnError: true)
+
+    List facilities = functionService.findAllByLink(client, null, metaDataService.ltGroupMemberClient).findAll {it.type == metaDataService.etFacility}
+
+    render template: 'facilities', model: [facilities: facilities, client: linking.source]
+  }
+
+  def removeFacility = {
+    Entity facility = Entity.get(params.facility)
+    Entity client = Entity.get(params.id)
+
+    def c = Link.createCriteria()
+    def link = c.get {
+      eq('source', client)
+      eq('target', facility)
+      eq('type', metaDataService.ltGroupMemberClient)
+    }
+    link?.delete()
+
+    Attendance.findByClientAndFacility(client, facility)?.delete()
+
+    // find all facilities of this client
+    List facilities = functionService.findAllByLink(client, null, metaDataService.ltGroupMemberClient).findAll {it.type == metaDataService.etFacility}
+
+    render template: 'facilities', model: [facilities: facilities, client: client]
   }
 
 }

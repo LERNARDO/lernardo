@@ -242,36 +242,36 @@ class GroupColonyProfileController {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'facilities', model: [facilities: linking.results, group: linking.target]
+    render template: 'facilities', model: [facilities: linking.sources, group: linking.target]
   }
 
   def removeFacility = {
     def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
-    render template: 'facilities', model: [facilities: breaking.results, group: breaking.target]
+    render template: 'facilities', model: [facilities: breaking.sources, group: breaking.target]
   }
 
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'partners', model: [partners: linking.results, group: linking.target]
+    render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 
   def removePartner = {
     def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
-    render template: 'partners', model: [partners: breaking.results, group: breaking.target]
+    render template: 'partners', model: [partners: breaking.sources, group: breaking.target]
   }
 
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
-    render template: 'educators', model: [educators: linking.results, group: linking.target]
+    render template: 'educators', model: [educators: linking.sources, group: linking.target]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
-    render template: 'educators', model: [educators: breaking.results, group: breaking.target]
+    render template: 'educators', model: [educators: breaking.sources, group: breaking.target]
   }
 
 }

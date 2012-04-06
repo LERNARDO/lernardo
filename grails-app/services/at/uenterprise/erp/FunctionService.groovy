@@ -305,10 +305,10 @@ class FunctionService {
     else
       new Link(source: source, target: target, type: type).save(flush: true)
 
-    List results = findAllByLink(null, target, type)
-    List results2 = findAllByLink(source, null, type)
+    List sources = findAllByLink(null, target, type)
+    List targets = findAllByLink(source, null, type)
 
-    return [results: results, results2: results2, source: source, target: target, duplicate: duplicate]
+    return [sources: sources, targets: targets, source: source, target: target, duplicate: duplicate]
   }
 
   /**
@@ -331,10 +331,10 @@ class FunctionService {
       eq('type', type)
     }?.delete(flush: true)
 
-    List results = findAllByLink(null, target, type)
-    List results2 = findAllByLink(source, null, type)
+    List sources = findAllByLink(null, target, type)
+    List targets = findAllByLink(source, null, type)
 
-    return [results: results, results2: results2, source: source, target: target]
+    return [sources: sources, targets: targets, source: source, target: target]
   }
 
   /**

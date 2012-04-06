@@ -269,6 +269,21 @@
 
 <h4><g:message code="management"/></h4>
   <div class="zusatz">
+    <h5><g:message code="facilities"/> <erp:accessCheck types="['Betreiber','Pädagoge']"><a onclick="toggle('#facilities');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <div class="zusatz-add" id="facilities" style="display:none">
+
+      <g:message code="search"/>:<br/>
+      <g:remoteField size="40" name="remoteField" update="remoteFacilities" action="remoteFacilities" id="${client.id}" before="showspinner('#remoteFacilities');"/>
+      <div id="remoteFacilities"></div>
+
+    </div>
+    <div class="zusatz-show" id="facilities2">
+      <g:render template="facilities" model="[facilities: facilities, client: client]"/>
+    </div>
+  </div>
+
+  <div class="zusatz">
     <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#performances');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
