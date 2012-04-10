@@ -154,7 +154,7 @@ class GroupActivityProfileController {
       requiredResources.addAll(it.profile.resources)
     }
 
-    List plannableResources = []
+    /*List plannableResources = []
     facilities.each { Entity facility ->
       // add resources linked to the facility to plannable resources
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
@@ -185,7 +185,10 @@ class GroupActivityProfileController {
         eq("classification", "everywhere")
       }
     }
-    plannableResources.addAll(everywhereResources)
+    everywhereResources?.each {
+      if (!plannableResources.contains(it))
+        plannableResources.add(it)
+    }*/
 
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
 
@@ -851,6 +854,18 @@ class GroupActivityProfileController {
       // find colony the facility is linked to and add its resources as well
       Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+    }
+
+    // add all resources that are available everywhere
+    List everywhereResources = Entity.createCriteria().list {
+      eq("type", metaDataService.etResource)
+      profile {
+        eq("classification", "everywhere")
+      }
+    }
+    everywhereResources?.each {
+      if (!plannableResources.contains(it))
+        plannableResources.add(it)
     }
 
     render template: 'plannableresources', model: [plannableResources: plannableResources, group: group]

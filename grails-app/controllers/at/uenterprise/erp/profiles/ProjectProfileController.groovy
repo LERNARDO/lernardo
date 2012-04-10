@@ -1440,7 +1440,7 @@ class ProjectProfileController {
         eq("classification", "everywhere")
       }
     }
-    everywhereResources.each {
+    everywhereResources?.each {
       if (!plannableResources.contains(it))
         plannableResources.add(it)
     }
