@@ -689,10 +689,25 @@ input[type=text], select, textarea {
     padding: 4px;
 }
 input.errors, textarea.errors, select.errors {
-    border: 1px solid #f00;
+    //border: 1px solid #f00;
+    background: #fff3f3;
+    border-color: #ffaaaa;
+    color: #cc0000;
 }
 input[type=text]:hover, select:hover, textarea:hover {
      border: 1px solid #666;
+}
+
+input:invalid, select:invalid, textarea:invalid {
+    background: #fff3f3;
+    border-color: #ffaaaa;
+    color: #cc0000;
+}
+
+input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
+    -moz-box-shadow: 0 0 0.5em #ffaaaa;
+    -webkit-box-shadow: 0 0 0.5em #ffaaaa;
+    box-shadow: 0 0 0.5em #ffaaaa;
 }
 
 /* ----- TABLES ----- */
@@ -1789,4 +1804,13 @@ table.info {
     top: 8px;
     left: -3px;
     width: 5px;
+}
+
+.required-indicator {
+    color: #48802C;
+    display: inline-block;
+    font-weight: bold;
+    margin-left: 0.3em;
+    position: relative;
+    top: 0.1em;
 }
