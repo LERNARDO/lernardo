@@ -55,7 +55,7 @@ class ExcelController {
       WritableSheet sheet = workbook.createSheet(entity.profile.fullName, 0)
 
       // auto-size cells
-      for (int x = 0; x < 7; x++)
+      for (int x = 0; x < 22; x++)
       {
         def cell = sheet.getColumnView(x)
         cell.setAutosize(true)
@@ -78,21 +78,86 @@ class ExcelController {
       sheet.addCell(new jxl.write.Label(1, 3, message(code: 'createdBy', args: [currentEntity.profile.fullName, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]), format))
 
       // column headers
-      sheet.addCell(new jxl.write.Label(0, 5, message(code: 'firstName'), formatBold))
-      sheet.addCell(new jxl.write.Label(1, 5, message(code: 'lastName'), formatBold))
+      sheet.addCell(new jxl.write.Label(0, 5, message(code: 'lastName'), formatBold))
+      sheet.addCell(new jxl.write.Label(1, 5, message(code: 'firstName'), formatBold))
       sheet.addCell(new jxl.write.Label(2, 5, message(code: 'birthDate'), formatBold))
-      sheet.addCell(new jxl.write.Label(3, 5, message(code: 'street'), formatBold))
-      sheet.addCell(new jxl.write.Label(4, 5, message(code: 'groupColony'), formatBold))
-      sheet.addCell(new jxl.write.Label(6, 5, message(code: 'parents') + " & " + message(code: 'phone'), formatBold))
+      sheet.addCell(new jxl.write.Label(3, 5, message(code: 'gender'), formatBold))
+      sheet.addCell(new jxl.write.Label(4, 5, message(code: 'client.profile.interests'), formatBold))
+      sheet.addCell(new jxl.write.Label(5, 5, message(code: 'street'), formatBold))
+      sheet.addCell(new jxl.write.Label(6, 5, message(code: 'zip'), formatBold))
+      sheet.addCell(new jxl.write.Label(7, 5, message(code: 'groupColony'), formatBold))
+      sheet.addCell(new jxl.write.Label(8, 5, message(code: 'country'), formatBold))
+      sheet.addCell(new jxl.write.Label(9, 5, message(code: 'client.profile.origin') + " " + message(code: 'city'), formatBold))
+      sheet.addCell(new jxl.write.Label(10, 5, message(code: 'client.profile.origin') + " " + message(code: 'zip'), formatBold))
+      sheet.addCell(new jxl.write.Label(11, 5, message(code: 'client.profile.origin') + " " + message(code: 'country'), formatBold))
+      sheet.addCell(new jxl.write.Label(12, 5, message(code: 'familyStatus'), formatBold))
+      sheet.addCell(new jxl.write.Label(13, 5, message(code: 'languages'), formatBold))
+      sheet.addCell(new jxl.write.Label(14, 5, message(code: 'client.profile.school'), formatBold))
+      sheet.addCell(new jxl.write.Label(15, 5, message(code: 'client.profile.schoolLevel'), formatBold))
+      sheet.addCell(new jxl.write.Label(16, 5, message(code: 'socialSecurityNumber'), formatBold))
+      sheet.addCell(new jxl.write.Label(17, 5, message(code: 'client.profile.schoolPerformance'), formatBold))
+      sheet.addCell(new jxl.write.Label(18, 5, message(code: 'client.profile.healthNotes'), formatBold))
+      sheet.addCell(new jxl.write.Label(19, 5, message(code: 'client.profile.materials'), formatBold))
+      sheet.addCell(new jxl.write.Label(19, 5, message(code: 'client.date.entry') + "/" + message(code: 'client.date.exit'), formatBold))
+      sheet.addCell(new jxl.write.Label(20, 5, message(code: 'parents') + " & " + message(code: 'phone'), formatBold))
 
       def row = 6
       clients.each { Entity client ->
-        sheet.addCell(new jxl.write.Label(0, row, client.profile.firstName, format))
-        sheet.addCell(new jxl.write.Label(1, row, client.profile.lastName, format))
+        sheet.addCell(new jxl.write.Label(0, row, client.profile.lastName, format))
+        sheet.addCell(new jxl.write.Label(1, row, client.profile.firstName, format))
         sheet.addCell(new jxl.write.Label(2, row, formatDate(date: client.profile.birthDate, format: 'dd.MM.yyyy'), format))
-        sheet.addCell(new jxl.write.Label(3, row, client.profile.currentStreet, format))
+        sheet.addCell(new jxl.write.Label(3, row, client.profile.gender == 1 ? message(code: 'male') : message(code: 'female'), format))
+        sheet.addCell(new jxl.write.Label(4, row, client.profile.interests, format))
+        sheet.addCell(new jxl.write.Label(5, row, client.profile.currentStreet, format))
         Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
-        sheet.addCell(new jxl.write.Label(4, row, fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: message(code:'noData'), format))
+        sheet.addCell(new jxl.write.Label(6, row, fieldValue(bean: colony, field: 'profile.zip').decodeHTML() ?: message(code:'noData'), format))
+        sheet.addCell(new jxl.write.Label(7, row, fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: message(code:'noData'), format))
+        sheet.addCell(new jxl.write.Label(8, row, fieldValue(bean: colony, field: 'profile.country').decodeHTML() ?: message(code:'noData'), format))
+
+        sheet.addCell(new jxl.write.Label(9, row, fieldValue(bean: client, field: 'profile.originCity').decodeHTML() ?: message(code:'noData'), format))
+        sheet.addCell(new jxl.write.Label(10, row, fieldValue(bean: client, field: 'profile.originZip').decodeHTML() ?: message(code:'noData'), format))
+        sheet.addCell(new jxl.write.Label(11, row, fieldValue(bean: client, field: 'profile.originCountry').decodeHTML() ?: message(code:'noData'), format))
+        sheet.addCell(new jxl.write.Label(12, row, client.profile.familyStatus, format))
+
+        // languages
+        String languages = ""
+        client.profile.languages.each {
+          languages = languages + it + ', '
+        }
+        sheet.addCell(new jxl.write.Label(13, row, languages, format))
+
+        sheet.addCell(new jxl.write.Label(14, row, client.profile.school, format))
+        sheet.addCell(new jxl.write.Label(15, row, client.profile.schoolLevel, format))
+        sheet.addCell(new jxl.write.Label(16, row, client.profile.socialSecurityNumber, format))
+
+        // performances
+        String performances = ""
+        client.profile.performances.each {
+          performances = performances + formatDate(date: it.date, format: "dd. MM. yyyy") + " - " + it.text + ', '
+        }
+        sheet.addCell(new jxl.write.Label(17, row, performances, format))
+
+        // healths
+        String healths = ""
+        client.profile.healths.each {
+          healths = healths + formatDate(date: it.date, format: "dd. MM. yyyy") + " - " + it.text + ', '
+        }
+        sheet.addCell(new jxl.write.Label(18, row, healths, format))
+
+        // materials
+        String materials = ""
+        client.profile.materials.each {
+          materials = materials + formatDate(date: it.date, format: "dd. MM. yyyy") + " - " + it.text + ', '
+        }
+        sheet.addCell(new jxl.write.Label(19, row, materials, format))
+
+        // dates
+        String dates = ""
+        client.profile.dates.each {
+          dates = dates + formatDate(date: it.date, format: "dd. MM. yyyy") + " - " + message(code: "client.date." + it.type)
+        }
+        sheet.addCell(new jxl.write.Label(19, row, dates, format))
+
 
         // find family
         Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
@@ -104,7 +169,7 @@ class ExcelController {
         parents.each {Entity parent ->
           par = par + parent.profile.fullName + ': ' + (parent?.profile?.phone ?: message(code: 'noData')) + ', '
         } 
-        sheet.addCell(new jxl.write.Label(6, row++, par, format))
+        sheet.addCell(new jxl.write.Label(20, row++, par, format))
       }
 
     }
