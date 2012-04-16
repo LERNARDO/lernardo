@@ -28,6 +28,15 @@
             </td>
           </tr>
 
+          <g:if test="${entity.user}">
+            <tr class="prop">
+              <td valign="top" class="name"><g:message code="public"/></td>
+              <td valign="top" class="value">
+                <g:checkBox name="isPublic" value="${false}"/>
+              </td>
+            </tr>
+          </g:if>
+
         </table>
 
         %{-- 06.08.2010: disabled for now --}%

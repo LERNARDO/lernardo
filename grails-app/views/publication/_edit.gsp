@@ -27,6 +27,15 @@
             </td>
           </tr>
 
+          <g:if test="${publication.entity.user}">
+            <tr class="prop">
+              <td valign="top" class="name"><g:message code="public"/></td>
+              <td valign="top" class="value">
+                <g:checkBox name="isPublic" value="${publication.isPublic}"/>
+              </td>
+            </tr>
+          </g:if>
+
         </table>
 
         %{--<div>
@@ -41,7 +50,7 @@
 
         <div class="buttons">
           <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="${message(code: 'change')}" /></div>
-          <g:remoteLink class="buttonGray" update="content" controller="publication" action="list" id="${entity.id}"><g:message code="cancel"/></g:remoteLink>
+          <g:remoteLink class="buttonGray" update="content" controller="publication" action="list" id="${publication.entity.id}"><g:message code="cancel"/></g:remoteLink>
           <div class="clear"></div>
         </div>
 

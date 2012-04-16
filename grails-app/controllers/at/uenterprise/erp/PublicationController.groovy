@@ -210,6 +210,7 @@ class PublicationController {
     publications = publications.reverse()
 
     render template: "list", model: [entity: entity,
+        currentEntity: entityHelperService.loggedIn,
             publications: publications,
             activitytemplatesdocuments: activitytemplatesdocuments,
             groupactivitytemplatesdocuments: groupactivitytemplatesdocuments,
@@ -232,6 +233,9 @@ class PublicationController {
     Publication pub = new Publication(params)
     pub.entity = entity
     pub.type = metaDataService.ptDoc1 // temporarily hardcoded
+
+    if (!entity.user)
+      pub.isPublic = true
 
     // handle the file
     MultipartFile mpf = request.getFile('file')
@@ -282,7 +286,7 @@ class PublicationController {
     Publication publication = Publication.get(params.id)
 
     if(publication) {
-      render template: "edit", model: [entity: publication.entity, publication: publication]
+      render template: "edit", model: [publication: publication]
     }
     else {
       flash.message = message(code: "object.notFound", args:[message(code: "publication")])
@@ -294,7 +298,7 @@ class PublicationController {
   def update = {
       Publication publication = Publication.get(params.id)
       if(publication) {
-          publication.name = params.name
+          publication.properties = params
           if(publication.save()) {
               flash.message = message(code: "object.updated", args:[message(code: "publication"), publication.name])
               chain (action:'list', id:publication.entity.id)

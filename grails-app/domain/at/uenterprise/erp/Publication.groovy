@@ -17,6 +17,7 @@ class Publication {
   String          name
   Date            dateCreated
   Integer         accesslevel = 0
+  Boolean         isPublic = false
 
   static constraints = {
     name        blank: false, maxSize: 50
