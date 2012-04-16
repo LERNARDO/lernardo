@@ -149,7 +149,7 @@
             </td>
           </tr>
 
-          <tr class="prop">
+          %{--<tr class="prop">
             <td valign="top" class="name"><g:message code="client.profile.schoolDropout"/></td>
             <td valign="top" class="value">
               <g:checkBox name="schoolDropout" value="${client?.profile?.schoolDropout}"/>
@@ -189,7 +189,7 @@
             <td valign="top" class="value">
               <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="60" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>
             </td>
-          </tr>
+          </tr>--}%
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="client.profile.job"/></td>
