@@ -5,7 +5,6 @@ import at.openfactory.ep.EntityType
 import at.openfactory.ep.EntityHelperService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
-import java.util.regex.Pattern
 
 class ChildProfileController {
   MetaDataService metaDataService

@@ -12,7 +12,6 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import at.uenterprise.erp.ClientEvaluation
 import at.openfactory.ep.Asset
-import java.util.regex.Pattern
 
 class ActivityProfileController {
 

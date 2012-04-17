@@ -13,7 +13,6 @@ import at.uenterprise.erp.Healths
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Collector
 import at.uenterprise.erp.Contact
-import java.util.regex.Pattern
 import at.uenterprise.erp.SDate
 import at.uenterprise.erp.logbook.Attendance
 
