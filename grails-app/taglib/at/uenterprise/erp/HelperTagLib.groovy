@@ -167,36 +167,6 @@ class HelperTagLib {
       out << '</table>'
       }
 
-      // old
-      /*entries.each { LogEntry entry ->
-
-        out << '<p style="page-break-before: always">' + message(code: "date") + ": " + formatDate(date: entry.date, format: 'dd. MM. yyyy') + '</p>'
-        out << '<table class="default-table">'
-        out << '<tr>'
-        out << '<th>' + message(code: 'name') + '</th>'
-        entry?.attendees[0]?.processes?.each {
-          out << '<th>' + it.process.name + '</th>'
-        }
-        out << '</tr>'
-        entry?.attendees?.each { Attendee attendee ->
-          out << '<tr>'
-          out << '<td>' + attendee.client.profile.fullName.decodeHTML() + '</td>'
-          attendee?.processes?.each { ProcessAttended process ->
-            out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: message(code: 'yes'), false: "<span class='red'>" + message(code: 'no') + "</span>") + '</td>'
-          }
-          out << '</tr>'
-        }
-        out << '</table>'
-
-        out << '<p><span class="bold">' + message(code:"comment") + '</span>'
-        out << '<div id="comment">'
-        out << (entry.comment ?: '<span class="italic">' + message(code:"noData") + '</span>')
-        out << '</div></p>'
-
-        out << '<p><span class="bold">' + message(code:"confirmed") + '</span><br/>'
-        out << formatBoolean(boolean: entry.isChecked, true: message(code: 'yes'), false: message(code: 'no'))
-        out << '</p>'
-      }*/
     }
   }
 
@@ -287,16 +257,7 @@ class HelperTagLib {
         out << '<td>' + participated + '/' + total + ' - ' + costs + grailsApplication.config.currencySymbol
 
         if (proc.process.costs > 0) {
-
           out << ' ' + checkBox(name: 'checkbox', value: proc.isPaid, onclick: remoteFunction(update: "evaluation", action: "updatePaidProcess", id: proc.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]))
-
-          /*out << '' + remoteLink(update: "evaluation", action: "updatePaidProcess", id: process.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]) {
-          if (process.isPaid)
-            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_green.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
-          else
-            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_red.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
-          }*/
-
         }
         out << '</td>'
       }
@@ -450,12 +411,6 @@ class HelperTagLib {
             out << ' ' + checkBox(name: 'checkbox', value: proc.isPaid, onclick: remoteFunction(update: "evaluation", action: "updatePaidProcess", id: proc.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]))
 
           }
-          /*out << '' + remoteLink(update: "evaluation", action: "updatePaidProcess", id: process.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]) {
-          if (process.isPaid)
-            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_green.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
-          else
-            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_red.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
-          }*/
 
         }
         out << '</td>'

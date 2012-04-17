@@ -26,22 +26,20 @@
       }
       .default-table td {
           padding: 2px;
-          /*border-bottom: 1px solid #9A9A9A;*/
           border-bottom: 1px solid #9a9a9a;
           border-right: 1px solid #9a9a9a;
-      } /*lighten(@button-gray, 20%); //#9a9a9a; //#eee;*/
+      }
       .default-table td a {
           text-decoration: none;
       }
       .default-table th {
-          background: #9a9a9a; /*lighten(@button-gray, 5%); //#9A9A9A;*/
-          /*border-bottom: 1px solid #787878;*/
+          background: #9a9a9a;
           color: #fff;
           font-size: 11px;
           font-weight: bold;
           line-height: 17px;
           text-transform: uppercase;
-          padding: 10px; /*2px 6px;*/
+          padding: 10px;
       }
       .default-table th a {
           color: #fff;

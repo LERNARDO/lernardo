@@ -37,19 +37,6 @@ class AppController {
 
     AssetStorage store = AssetStorage.get(params.store)
 
-    /*AssetStorage store = assetService.findStorage(ent, params.type, params.select ?: 'latest' )
-    if (!store) {
-      // response.sendError(404, 'no matching asset')
-      def res = grailsApplication.mainContext.getResource ("images/default_asset.jpg")
-      if (res) {
-        response.contentType = "image/jpeg"
-        response.contentLength = res.getFile().size()
-        response.outputStream << res.inputStream
-        response.outputStream.flush()
-      }
-      return
-    }*/
-
     try {
       assetService.withContent(store) {content, contentType->
         log.debug ("render asset $store.storageId ($store.contentType) to response")
@@ -63,7 +50,6 @@ class AppController {
       response.sendError (500, e.message)
     }
 
-    //assetService.renderStorage (store, response)
   }
 
   def error404 = {
@@ -371,14 +357,11 @@ class AppController {
     if (!EntityTagLink.findByTagAndEntity(tag, entity)) {
       TagLinkType tlt = new TagLinkType(name: 'default').save()
 
-      EntityTagLink etl = new EntityTagLink(tag: tag, entity: entity, type: tlt).save() // IntelliJ fails to recognize the "tag" relationship
+      EntityTagLink etl = new EntityTagLink(tag: tag, entity: entity, type: tlt).save()
       entity.addToTagslinks(etl)
       tag.addToEntityLinks(etl)
 
     }
-    //else {
-    //render '<span class="red italic">' + entity.profile.fullName + ' ist bereits als ' + tag.name + ' getaggt!</span>'
-    //}
 
     // get all tags of the entity
     List tags = entity.tagslinks*.tag
@@ -526,11 +509,6 @@ class AppController {
     flash.message = message(code: 'profile.picture.deleted')
     redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
   }
-
-  //def showImage = {
-  //  def name = entityHelperService.loggedIn.name
-  //  render '<img src="' + g.createLink (controller:'asset', action:'get', params:[type: 'profile', entity:name]) + '" width="50" />'
-  //}
 
   def changeCreator = {
       Entity target = Entity.get(params.id)

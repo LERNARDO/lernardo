@@ -40,16 +40,6 @@ class AppointmentProfileController {
       appointments = appointments.findAll {it.profile.endDate > new Date()}
 
       appointments.sort {it.profile[params.sort]}
-      /*if (params.sort == "fullName")
-        appointments.sort {it.profile.fullName}
-      else if (params.sort == "beginDate")
-        appointments.sort {it.profile.beginDate}
-      else if (params.sort == "endDate")
-        appointments.sort {it.profile.endDate}
-      else if (params.sort == "allDay")
-        appointments.sort {it.profile.allDay}
-      else if (params.sort == "isPrivate")
-        appointments.sort {it.profile.isPrivate}*/
 
       if (params.order == "desc")
         appointments = appointments.reverse()
@@ -74,16 +64,6 @@ class AppointmentProfileController {
       appointments = appointments.findAll {it.profile.endDate < new Date()}
 
       appointments.sort {it.profile[params.sort]}
-      /*if (params.sort == "fullName")
-        appointments.sort {it.profile.fullName}
-      else if (params.sort == "beginDate")
-        appointments.sort {it.profile.beginDate}
-      else if (params.sort == "endDate")
-        appointments.sort {it.profile.endDate}
-      else if (params.sort == "allDay")
-        appointments.sort {it.profile.allDay}
-      else if (params.sort == "isPrivate")
-        appointments.sort {it.profile.isPrivate}*/
 
       if (params.order == "desc")
         appointments = appointments.reverse()

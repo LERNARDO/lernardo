@@ -530,12 +530,6 @@ class ActivityProfileController {
   }
 
   def addClient = {
-    /*def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
-    if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
-
-    render template: 'clients', model: [clients: linking.sources, activity: linking.target]*/
-
     Entity activity = Entity.get(params.id)
     Entity clientgroup = Entity.get(params.client)
 

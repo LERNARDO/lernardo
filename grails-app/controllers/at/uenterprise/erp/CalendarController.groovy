@@ -70,26 +70,7 @@ class CalendarController {
 
   def sort = {
     Entity currentEntity = entityHelperService.loggedIn
-
-    /*List educators = []
-
-    if (currentEntity.type.id == metaDataService.etEducator.id) {
-      // find facility the educator is working for
-      def facility = functionService.findByLink(currentEntity, null, metaDataService.ltWorking)
-
-      if (facility) {
-        // find all educators working in that facility
-        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
-        educators.remove(currentEntity)
-      }
-    }
-    else
-      educators = Entity.findAllByType(metaDataService.etEducator)*/
-
     Set calEntities = currentEntity?.profile?.calendar?.entities
-
-    //calEntities = calEntities.sort() {params.sort == "first" ? it.entity.profile.firstName : it.entity.profile.lastName}
-
     render template: 'educators', model: [calEntities: calEntities]
   }
   
@@ -103,10 +84,7 @@ class CalendarController {
       currentEntity.profile.save()
     }
 
-    //Set calEntities = currentEntity?.profile?.calendar?.entities
-
     redirect action: "show"
-    //render template: "educators", model: [calEntities: calEntities]
   }
 
   def removeEntity = {
@@ -116,10 +94,7 @@ class CalendarController {
     currentEntity.profile.calendar.removeFromEntities(calEntity)
     currentEntity.profile.save()
 
-    //Set calEntities = currentEntity?.profile?.calendar?.entities
-
     redirect action: "show"
-    //render template: "educators", model: [calEntities: calEntities]
   }
 
   def togglePersonInCal = {
@@ -139,20 +114,6 @@ class CalendarController {
       result = "true"
     }
     calEntity.save(flush: true)
-
-    // find out whether to toggle the events of the given entity on or off
-    //List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
-
-    /*if (visibleEducators.contains(params.id)) {
-      currentEntity.profile.calendar.removeFromCalendareds(params.id)
-      currentEntity.profile.save(flush: true)
-      result = "false"
-    }
-    else {
-      currentEntity.profile.calendar.addToCalendareds(params.id)
-      currentEntity.profile.save(flush: true)
-      result = "true"
-    }*/
 
     render result
     }
@@ -191,39 +152,29 @@ class CalendarController {
   }
 
   def togglePerson = {
-    //log.info "toggling person"
-
     def start = new Date()
     start.setTime(params.long('start') * 1000)
-    //log.info start
 
     def end = new Date()
     end.setTime(params.long('end') * 1000)
-    //log.info end
 
     Entity currentEntity = entityHelperService.loggedIn
     Entity entity = Entity.get(params.id)
     def eventList = []
-    //log.info currentEntity
-    //log.info entity
 
     def color = currentEntity.profile.calendar.entities.find {it.entity.id.toString() == params.id.toString()}.color//entity.profile.color ?: '#aaa'
 
     // get all appointments
     eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
-    //log.info eventList
 
     // get all group activities the educator is part of
     eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
-    //log.info eventList
 
     // get all themeroom activities the educator is part of
     eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
-    //log.info eventList
 
     // get all project units the educator is part of
     eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
-    //log.info eventList
 
     // get all project unit placeholders
     eventList.addAll(getProjectUnitPlaceHolders(start, end, entity, currentEntity, color))
@@ -275,26 +226,6 @@ class CalendarController {
     List themeRoomActivities = []
 
     themeRoomActivities.addAll(functionService.findAllByLink(entity, null, metaDataService.ltActEducator))
-
-    /*def c = Entity.createCriteria()
-    def temp = c.list {
-      eq("type", metaDataService.etActivity)
-      profile {
-        eq("type", "Themenraum")
-      }
-    }
-
-
-    temp.each { activity ->
-      def d = Link.createCriteria()
-      def result = d.get {
-        eq("source", entity)
-        eq("target", activity)
-        eq("type", metaDataService.ltActEducator)
-      }
-      if (result)
-        themeRoomActivities.add(activity)
-    }*/
 
     themeRoomActivities.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity themeRoomActivity ->
       def dateStart = new DateTime(functionService.convertFromUTC(themeRoomActivity.profile.date))
@@ -464,11 +395,6 @@ class CalendarController {
     calEntity.color = params.color
     calEntity.save()
 
-    Set calEntities = currentEntity?.profile?.calendar?.entities
-
-    //calEntities = calEntities.sort() {params.sort == "first" ? it.entity.profile.firstName : it.entity.profile.lastName}
-
     redirect action: "show"
-    //render template: "educators", model: [calEntities: calEntities]
   }
 }

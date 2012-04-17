@@ -111,8 +111,6 @@ class ProfileController {
 
     entity.user.enabled = false
 
-    //Link.findAllBySourceOrTarget(entity, entity)?.each { it.delete() }
-
     render template:'listentity', model:[entity: entity, i: params.i]
   }
 
