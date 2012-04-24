@@ -77,11 +77,23 @@ class HelperTagLib {
     out << '</span>'
   }
 
+  /**
+   * Returns an entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED An entity id to get the entity from
+   */
   def getEntity = {attrs, body ->
     Entity entity = Entity.get(attrs.entity)
     out << body(result: entity)
   }
 
+  /**
+   * Returns a link to the groupActivity or project an evaluation is linked to
+   *
+   * @author Alexander Zeillinger
+   * @attr evaluation REQUIRED The evaluation to get the link from
+   */
   def createLinkFromEvaluation = {attrs, body ->
     Evaluation evaluation = attrs.evaluation
 
@@ -634,6 +646,12 @@ class HelperTagLib {
         out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id, params:[entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: what.type.supertype.name +'Profile', action: 'show', id: what.id, params:[entity: what.id]) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
   }
 
+  /**
+   * Renders the profile image
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity to render the profile image of
+   */
   def profileImage = {attrs ->
     def imgattrs = [:]
     AssetStorage store = assetService.findStorage(attrs.entity, 'profile', 'latest' )
@@ -651,6 +669,12 @@ class HelperTagLib {
     out << '<img src="' + imgattrs['src'] + '" width="' + imgattrs['width'] + '" style="' + imgattrs['style'] + '" />'
   }
 
+  /**
+   * Truncates a string
+   *
+   * @author Alexander Zeillinger
+   * @attr string REQUIRED The string to truncate
+   */
   def truncate = {attrs ->
     out << (attrs.string.size() > 20 ? attrs.string.substring(0, 20) + "..." : attrs.string)
   }
@@ -1067,9 +1091,10 @@ class HelperTagLib {
   }
 
   /**
-   * custom tag for as long as the official implementation is broken with jQuery, see http://jira.codehaus.org/browse/GRAILS-2512--}%
-   * checked on 01.09.2011, not resolved yet
-   * TODO: check again in the future
+   * Custom remoteField tag for as long as the official implementation is broken with jQuery, see http://jira.codehaus.org/browse/GRAILS-2512
+   * checked on 24.04.2012, not resolved yet
+   *
+   * @author Alexander Zeillinger
    */
   def remoteField = { attrs, body ->
     def params = attrs['params']?:null
@@ -1085,7 +1110,11 @@ class HelperTagLib {
   }
 
   /**
-   * get the local tags of a given entity
+   * Returns the local tags of a given entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity to find the tags of
+   * @attr target REQUIRED The target the entity is linked to
    */
   def getLocalTags = {attrs, body ->
     Entity entity = attrs.entity
@@ -1119,7 +1148,10 @@ class HelperTagLib {
   }
 
   /**
-   * get the tags of a given entity
+   * Returns the global tags of a given entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity to find the tags of
    */
   def getTags = {attrs, body ->
     Entity entity = attrs.entity
@@ -1128,7 +1160,10 @@ class HelperTagLib {
   }
 
   /**
-   * checks whether to render a tag button
+   * Checks whether to render a tag button
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity to check
    */
   def showTagButton = {attrs, body ->
     List tags = attrs.tags
@@ -1138,7 +1173,10 @@ class HelperTagLib {
   }
 
   /**
-   * before deleting an entity this method finds any links to and from the entity and returns a confirmation message
+   * Finds all links to and from an entity and returns a confirmation message
+   *
+   * @author Alexander Zeillinger
+   * @attr id REQUIRED An entity id
    */
   def getLinks = {attrs ->
     Integer id = attrs.id
@@ -1163,6 +1201,7 @@ class HelperTagLib {
   /**
    * Modular access check
    *
+   * @author Alexander Zeillinger
    * @attr entity The entity which should be checked for access, defaults to current entity
    * @attr types The types to check against
    * @attr roles The roles to check against
@@ -1298,7 +1337,9 @@ class HelperTagLib {
   }
 
   /**
-   * outputs selectbox items for each language
+   * Outputs a select box with the applications configured locales
+   *
+   * @author Alexander Zeillinger
    */
   def localeSelect = {attrs ->
     def locale = RequestContextUtils.getLocale(request)
@@ -1315,8 +1356,11 @@ class HelperTagLib {
   }
 
   /**
-   * returns the filetype of a publication
+   * Returns the filetype of a publication
    * Reference: http://en.wikipedia.org/wiki/Internet_media_type
+   *
+   * @author Alexander Zeillinger
+   * @attr type REQUIRED The file media type
    */
   def getFileType = {attrs ->
     if (attrs.type == 'application/vnd.ms-excel' || attrs.type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
@@ -1344,7 +1388,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all parents of a given child
+   * Finds all parents of a given client
+   *
+   * @author Alexander Zeillinger
+   * @attr client REQUIRED The client to find the parents of
    */
   def getParentsOfClient = {attrs, body ->
     def client = attrs.client
@@ -1359,7 +1406,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds the number of units linked to a project template
+   * Finds the amount of units linked to a project template
+   *
+   * @author Alexander Zeillinger
+   * @attr template REQUIRED The project template
    */
   def getProjectTemplateUnitsCount = {attrs, body ->
     def units = Link.countByTargetAndType(attrs.template, metaDataService.ltProjectUnitTemplate)
@@ -1367,7 +1417,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds the number of clients linked to a client group
+   * Finds the amount of clients linked to a client group
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The client group
    */
   def getGroupClientsCount = {attrs, body ->
     def clients = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberClient)
@@ -1375,7 +1428,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds the project a project unit belongs to
+   * Finds the project a project unit belongs to
+   *
+   * @author Alexander Zeillinger
+   * @attr unit REQUIRED The project unit
    */
   def getProjectOfUnit = {attrs ->
     // find project day the project unit is linked to
@@ -1389,7 +1445,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all project units linked to a project day
+   * Finds all project units linked to a project day
+   *
+   * @author Alexander Zeillinger
+   * @attr projectDay REQUIRED The project day
    */
   def getProjectDayUnits = {attrs, body ->
     //List projectDayUnits = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayUnit)
@@ -1407,7 +1466,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all educators linked to a project day
+   * Finds all educators linked to a project day
+   *
+   * @author Alexander Zeillinger
+   * @attr projectDay REQUIRED The project day
    */
   def getProjectDayEducators = {attrs, body ->
     List projectDayEducators = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayEducator)
@@ -1418,7 +1480,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all supplemental educators linked to a project day
+   * Finds all supplemental educators linked to a project day
+   *
+   * @author Alexander Zeillinger
+   * @attr projectDay REQUIRED The project day
    */
   def getProjectDaySubstitutes = {attrs, body ->
     List projectDaySubstitutes = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDaySubstitute)
@@ -1429,7 +1494,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all resources linked to a project day
+   * Finds all resources linked to a project day
+   *
+   * @author Alexander Zeillinger
+   * @attr projectDay REQUIRED The project day
    */
   def getProjectDayResources = {attrs, body ->
     List projectDayResources = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayResource)
@@ -1440,7 +1508,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all activity groups linked to a project unit
+   * Finds all activity groups linked to a project unit
+   *
+   * @author Alexander Zeillinger
+   * @attr projectUnit REQUIRED The project unit
    */
   def getProjectUnitActivityGroups = {attrs, body ->
     List projectUnitActivityGroups = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnit)
@@ -1452,7 +1523,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all parents linked to a project unit
+   * Finds all parents linked to a project unit
+   *
+   * @author Alexander Zeillinger
+   * @attr projectUnit REQUIRED The project unit
    */
   def getProjectUnitParents = {attrs, body ->
     List projectUnitParents = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitParent)
@@ -1463,7 +1537,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds the number of parents linked to a project unit
+   * Finds the number of parents linked to a project unit
+   *
+   * @author Alexander Zeillinger
+   * @attr projectUnit REQUIRED The project unit
    */
   def getProjectUnitParentsCount = {attrs, body ->
     List projectUnitParents = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitParent)
@@ -1471,7 +1548,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all partners linked to a project unit
+   * Finds all partners linked to a project unit
+   *
+   * @author Alexander Zeillinger
+   * @attr projectUnit REQUIRED The project unit
    */
   def getProjectUnitPartners = {attrs, body ->
     List projectUnitPartners = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitPartner)
@@ -1482,7 +1562,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all group activity templates linked to a project unit
+   * Finds all group activity templates linked to a project unit
+   *
+   * @author Alexander Zeillinger
+   * @attr projectUnit REQUIRED The project unit
    */
   def getGroupActivityTemplates = {attrs, body ->
     List groupActivityTemplates = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitMember)
@@ -1493,7 +1576,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all resources linked to an entity
+   * Finds all resources linked to an entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity to find the linked resources from
    */
   def getResources = {attrs, body ->
     List resources = functionService.findAllByLink(null, attrs.entity, metaDataService.ltResource)
@@ -1504,7 +1590,10 @@ class HelperTagLib {
   }
 
   /**
-   * finds all group members of a given group
+   * Finds all group members of a given group
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity
    */
   def getGroup = {attrs, body ->
     List groups = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
@@ -1515,7 +1604,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the size of a group
+   * Returns the size of a group
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity
    */
   def getGroupSize = {attrs, body ->
     def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
@@ -1526,7 +1618,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns all facilities linked to a group
+   * Returns the amount of facilities linked to a group
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The group
    */
   def getGroupFacilities = {attrs, body ->
     def result = Link.countBySourceAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
@@ -1537,7 +1632,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns all resources linked to a group
+   * Returns all resources linked to a group
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The group
    */
   def getGroupResources = {attrs, body ->
     def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltResource)
@@ -1548,7 +1646,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the total duration of the activities within a group
+   * Returns the total duration of the activities within a group
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The group
    */
   def getGroupDuration = {attrs, body ->
     List groups = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
@@ -1559,7 +1660,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the entity a resource is linked to - which is either a facility or colony
+   * Returns the entity a resource is linked to - which is either a facility or colony
+   *
+   * @author Alexander Zeillinger
+   * @attr resource REQUIRED The resource
    */
   def resourceCreatedIn = {attrs, body ->
     def result = functionService.findByLink(attrs.resource, null, metaDataService.ltResource)
@@ -1568,7 +1672,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the template to a given activity
+   * Returns the template to a given activity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The activity
    */
   def getTemplate = {attrs, body ->
     Entity template = functionService.findByLink(null, attrs.entity, metaDataService.ltActTemplate)
@@ -1579,7 +1686,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns all clients to a given activity
+   * Returns all clients to a given activity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The activity
    */
   def getClients = {attrs, body ->
     List clients = functionService.findAllByLink(null, attrs.entity, metaDataService.ltActClient)
@@ -1590,7 +1700,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns all clients linked to a given pate
+   * Returns all clients linked to a given pate
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The pate
    */
   def getPateClients = {attrs, body ->
     List pateClients = functionService.findAllByLink(null, attrs.entity, metaDataService.ltPate)
@@ -1601,7 +1714,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns all educators linked to a given activity
+   * Returns all educators linked to a given activity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The activity
    */
   def getEducators = {attrs, body ->
     List educators = functionService.findAllByLink(null, attrs.entity, metaDataService.ltActEducator)
@@ -1612,7 +1728,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the facility linked to a given activity
+   * Returns the facility linked to a given activity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The activity
    */
   def getFacility = {attrs, body ->
     Entity facility = functionService.findByLink(null, attrs.entity, metaDataService.ltActFacility)
@@ -1623,7 +1742,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the facility linked to a given activity
+   * Returns the facility linked to a given project
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The project
    */
   def getFacilityOfProject = {attrs, body ->
     Entity facilityOfProject = functionService.findByLink(attrs.entity, null, metaDataService.ltGroupMemberFacility)
@@ -1634,7 +1756,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns all subthemes of a given activity
+   * Returns all subthemes of a given theme
+   *
+   * @author Alexander Zeillinger
+   * @attr theme REQUIRED The theme
    */
   def getSubThemes = {attrs, body ->
     List subThemes = functionService.findAllByLink(null, attrs.theme, metaDataService.ltSubTheme)
@@ -1643,7 +1768,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the creator of an entity
+   * Returns the creator of an entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity
    */
   def createdBy = {attrs, body ->
     def result = functionService.findByLink(null, attrs.entity, metaDataService.ltCreator)
@@ -1652,14 +1780,21 @@ class HelperTagLib {
   }
 
   /**
-   * returns the creator (entity) to a given ID
+   * Returns the creator (entity) to a given ID
+   *
+   * @author Alexander Zeillinger
+   * @attr id REQUIRED The id of an entity
    */
   def getCreator = {attrs, body ->
     out << body(creator: Entity.get(attrs.id))
   }
 
   /**
-   * sets the active state of each letter of the glossary
+   * Sets the active state of a letter of the glossary
+   *
+   * @author Alexander Zeillinger
+   * @attr glossary REQUIRED The glossary letter
+   * @attr letter REQUIRED The current letter
    */
   def active = {attrs ->
     if (attrs.glossary == attrs.letter)
@@ -1669,14 +1804,20 @@ class HelperTagLib {
   }
 
   /**
-   * finds the colony linked to a given entity
+   * Finds the colony linked to a given entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity
    */
   def getColony = {attrs, body ->
     out << body(colony: functionService.findByLink(null, attrs.entity, metaDataService.ltColonia))
   }
 
   /**
-   * returns the gender
+   * Returns the gender
+   *
+   * @author Alexander Zeillinger
+   * @attr gender REQUIRED The gender code
    */
   def showGender = {attrs ->
     if (attrs.gender == 1)
@@ -1686,7 +1827,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the number of new private messages through a service
+   * Returns the number of new private messages
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity
    */
   def getNewInboxMessages = {attrs, body ->
     def c = Msg.createCriteria()
@@ -1696,13 +1840,14 @@ class HelperTagLib {
       eq('read', false)
     }
 
-    //if (results.size() > 0)
-    //  out << "(" + results.size() + ")"
     out << body(result: result.size())
   }
 
   /**
-   * returns the number of new news (last 7 days)
+   * Returns the number of new news (last 7 days)
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The activity
    */
   def getNewNews = {attrs, body ->
 
@@ -1717,7 +1862,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the number of current appointments
+   * Returns the number of current appointments
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity
    */
   def getCurrentAppointments = {attrs, body ->
 
@@ -1728,7 +1876,10 @@ class HelperTagLib {
   }
 
   /**
-   * returns the number of publications of an entity
+   * Returns the number of publications of an entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity
    */
   def getPublicationCount = {attrs ->
     long m = Publication.countByEntity(attrs.entity)
@@ -1829,10 +1980,64 @@ class HelperTagLib {
   }
 
   /**
-   * returns the link (relationship) type between two given entities
+   * Returns the link (relationship) type between two given entities
+   *
+   * @author Alexander Zeillinger
+   * @attr source REQUIRED The link source
+   * @attr target REQUIRED The link target
    */
   def getRelationship = {attrs ->
     out << Link.findBySourceAndTarget(Entity.findByName(attrs.source), Entity.findByName(attrs.target)).type.name
+  }
+
+  /**
+   * Starbox rating used for rating elements of methods
+   *
+   * @author Alexander Zeillinger
+   * @attr element REQUIRED The element
+   */
+  def starBox = {attrs ->
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    Element element = Element.get(attrs.element)
+
+    def star = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star.png'/>"
+    def star_empty = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star_empty.png'/>"
+
+    def updateDiv = "starBox${element.id}"
+    def vote = element.voting
+
+
+    out << '<div>'
+    // if the current entity is admin, operator or the creator display this
+    if (currentEntity.user.authorities.find {it.authority == 'ROLE_ADMIN'} || currentEntity.type.id == metaDataService.etOperator.id || accessIsCreatorOf(currentEntity,attrs.template)) {
+      out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 1]) { vote > 0 ? star : star_empty }
+      out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 2]) { vote > 1 ? star : star_empty }
+      //out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 3]) { vote > 2 ? star : star_empty }
+      //out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 4]) { vote > 3 ? star : star_empty }
+      //out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 5]) { vote > 4 ? star : star_empty }
+    }
+    // else just display the images
+    else {
+      out << (vote > 0 ? star : star_empty)
+      out << (vote > 1 ? star : star_empty)
+      //out << (vote > 2 ? star : star_empty)
+      //out << (vote > 3 ? star : star_empty)
+      //out << (vote > 4 ? star : star_empty)
+    }
+    out << '</div>'
+
+  }
+
+  /**
+   * returns if a person is active in the calendareds list of an entity
+   */
+  def getActiveCalPerson = {attrs, body ->
+    Entity currentEntity = entityHelperService.loggedIn
+    def result = currentEntity.profile.calendar.entities.find {it.entity.id.toString() == attrs.id.toString()}
+
+    out << body(active: result)
   }
 
   /**
@@ -1856,16 +2061,6 @@ class HelperTagLib {
 
   def notFriend = {attrs, body ->
     if (!friend(attrs))
-      out << body()
-  }
-
-  def isBookmark = {attrs, body ->
-    if (bookmark(attrs))
-      out << body()
-  }
-
-  def notBookmark = {attrs, body ->
-    if (!bookmark(attrs))
       out << body()
   }
 
@@ -1915,78 +2110,11 @@ class HelperTagLib {
     return result ? true : false
   }
 
-  private boolean bookmark(attrs) {
-    Entity currentEntity = entityHelperService.loggedIn
-    if (!currentEntity)
-      return false
-    Entity e = attrs.entity ?: currentEntity
-    if (!e)
-      return false
-
-    def c = Link.createCriteria
-    def result = c.get {
-      eq("source", currentEntity)
-      eq("target", e)
-      eq("type", metaDataService.ltBookmark)
-    }
-    return result ? true : false
-  }
-
   /**
-   * starbox rating used for rating elements of methods
-   */
-  def starBox = {attrs ->
-
-    Entity currentEntity = entityHelperService.loggedIn
-
-    Element element = Element.get(attrs.element)
-
-    def star = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star.png'/>"
-    def star_empty = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star_empty.png'/>"
-
-    def updateDiv = "starBox${element.id}"
-    def vote = element.voting
-
-
-    out << '<div>'
-    // if the current entity is admin, operator or the creator display this
-    if (currentEntity.user.authorities.find {it.authority == 'ROLE_ADMIN'} || currentEntity.type.id == metaDataService.etOperator.id || accessIsCreatorOf(currentEntity,attrs.template)) {
-      out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 1]) { vote > 0 ? star : star_empty }
-      out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 2]) { vote > 1 ? star : star_empty }
-      //out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 3]) { vote > 2 ? star : star_empty }
-      //out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 4]) { vote > 3 ? star : star_empty }
-      //out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 5]) { vote > 4 ? star : star_empty }
-    }
-    // else just display the images
-    else {
-      out << (vote > 0 ? star : star_empty)
-      out << (vote > 1 ? star : star_empty)
-      //out << (vote > 2 ? star : star_empty)
-      //out << (vote > 3 ? star : star_empty)
-      //out << (vote > 4 ? star : star_empty)
-    }
-    out << '</div>'
-
-
-
-  }
-
-  /**
-   * returns if a person is active in the calendareds list of an entity
-   */
-  def getActiveCalPerson = {attrs, body ->
-
-    Entity currentEntity = entityHelperService.loggedIn
-
-    //def result = currentEntity.profile.calendar.calendareds.contains(attrs.id.toString())
-    def result = currentEntity.profile.calendar.entities.find {it.entity.id.toString() == attrs.id.toString()}
-
-    out << body(active: result)
-  }
-
-  /**
-   * this is a modified version of the select tag that is used by the localeselect tag
+   * This is a modified version of the select tag that is used by the localeselect tag
    * used as a workaround because the 1.3.7 implementation is broken
+   *
+   * @author Alexander Zeillinger
    */
   def eselect = { attrs ->
         def messageSource = grailsAttributes.getApplicationContext().getBean("messageSource")

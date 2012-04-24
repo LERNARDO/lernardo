@@ -1,26 +1,19 @@
 package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
-import at.openfactory.ep.Link
 import at.openfactory.ep.EntityType
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.SecHelperService
-
-import org.hibernate.SessionFactory
-
 import at.uenterprise.erp.profiles.ActivityProfile
 import org.springframework.web.multipart.MultipartFile
-import at.openfactory.ep.AssetService
 import org.springframework.web.servlet.support.RequestContextUtils
 
 class ProfileController {
   EntityHelperService entityHelperService
   MetaDataService metaDataService
-  SessionFactory sessionFactory
   FunctionService functionService
   def securityManager
   SecHelperService secHelperService
-  AssetService assetService
 
   static allowedMethods = [changePassword: 'POST']
 
@@ -106,7 +99,7 @@ class ProfileController {
     if (!entity) {
       flash.message = message(code: "object.notFound", args: [message(code: "user")])
       response.sendError(404, "no such entity")
-      return;
+      return
     }
 
     entity.user.enabled = false
@@ -122,7 +115,7 @@ class ProfileController {
     if (!entity) {
       flash.message = message(code: "object.notFound", args: [message(code: "user")])
       response.sendError(404, "no such entity")
-      return;
+      return
     }
 
     entity.user.enabled = true
