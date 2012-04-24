@@ -624,7 +624,7 @@ class HelperTagLib {
         results.add(client)
     }
 
-    results.each {out << body(entities: it)}
+    out << body(entities: results)
   }
 
   /**
@@ -694,7 +694,7 @@ class HelperTagLib {
           onlineUsers.add(entity)
     }
 
-    onlineUsers.each {out << body(onlineUsers: it)}
+    out << body(onlineUsers: onlineUsers)
   }
 
   /**
@@ -1402,7 +1402,7 @@ class HelperTagLib {
     // if there is a family, find parents
     List parents = functionService.findAllByLink(null, family, metaDataService.ltGroupMemberParent)
 
-    parents.each {out << body(parents: it)}
+    out << body(parents: parents)
   }
 
   /**
@@ -1459,10 +1459,9 @@ class HelperTagLib {
     }
 
     if (projectDayUnits)
-      projectDayUnits.each {out << body(units: it)}
+      out << body(units: projectDayUnits)
     else
       out << body(units: null)
-      //out << '<span class="italic red">' + message(code: 'projectUnits.choose') + '</span>'
   }
 
   /**
@@ -1474,7 +1473,7 @@ class HelperTagLib {
   def getProjectDayEducators = {attrs, body ->
     List projectDayEducators = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayEducator)
     if (projectDayEducators)
-      projectDayEducators.each {out << body(educators: it)}
+      out << body(educators: projectDayEducators)
     else
       out << '<span class="italic red">' + message(code: 'educators.choose') + '</span>'
   }
@@ -1488,7 +1487,7 @@ class HelperTagLib {
   def getProjectDaySubstitutes = {attrs, body ->
     List projectDaySubstitutes = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDaySubstitute)
     if (projectDaySubstitutes)
-      projectDaySubstitutes.each {out << body(educators: it)}
+      out << body(educators: projectDaySubstitutes)
     else
       out << '<span class="italic red">' + message(code: 'substitutes.choose') + '</span>'
   }
@@ -1502,7 +1501,7 @@ class HelperTagLib {
   def getProjectDayResources = {attrs, body ->
     List projectDayResources = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayResource)
     if (projectDayResources)
-      projectDayResources.each {out << body(resources: it)}
+      out << body(resources: projectDayResources)
     else
       out << '<span class="italic">' + message(code: 'resources.notAssigned') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
@@ -1516,7 +1515,6 @@ class HelperTagLib {
   def getProjectUnitActivityGroups = {attrs, body ->
     List projectUnitActivityGroups = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnit)
     if (projectUnitActivityGroups)
-      //projectUnitActivityGroups.each {out << body(activityGroups: it)}
       out << body(activityGroups: projectUnitActivityGroups)
     else
       out << '<span class="italic">Keine Aktivitätsblockvorlagen gefunden</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
@@ -1531,7 +1529,7 @@ class HelperTagLib {
   def getProjectUnitParents = {attrs, body ->
     List projectUnitParents = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitParent)
     if (projectUnitParents)
-      projectUnitParents.each {out << body(parents: it)}
+      out << body(parents: projectUnitParents)
     else
       out << '<span class="italic red">' + message(code: 'parents.choose') + '</span>'
   }
@@ -1556,7 +1554,7 @@ class HelperTagLib {
   def getProjectUnitPartners = {attrs, body ->
     List projectUnitPartners = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitPartner)
     if (projectUnitPartners)
-      projectUnitPartners.each {out << body(partners: it)}
+      out << body(partners: projectUnitPartners)
     else
       out << '<span class="italic red">' + message(code: 'partners.choose') + '</span>'
   }
@@ -1570,7 +1568,7 @@ class HelperTagLib {
   def getGroupActivityTemplates = {attrs, body ->
     List groupActivityTemplates = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitMember)
     if (groupActivityTemplates)
-      groupActivityTemplates.each {out << body(groupActivityTemplates: it)}
+      out << body(groupActivityTemplates: groupActivityTemplates)
     else
       out << '<span class="italic red" style="margin-left: 15px">' + message(code: 'groupActivityTemplates.notAssigned') + '</span>'
   }
@@ -1584,7 +1582,7 @@ class HelperTagLib {
   def getResources = {attrs, body ->
     List resources = functionService.findAllByLink(null, attrs.entity, metaDataService.ltResource)
     if (resources)
-      resources.each {out << body(resources: it)}
+      out << body(resources: resources)
     else
       out << '<span class="italic">' + message(code: 'resources.notAssigned') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
@@ -1598,7 +1596,7 @@ class HelperTagLib {
   def getGroup = {attrs, body ->
     List groups = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
     if (groups)
-      groups.each {out << body(members: it)}
+      out << body(members: groups)
     else
       out << '<span class="italic">Diese Gruppe ist leer</span>'
   }
@@ -1694,7 +1692,7 @@ class HelperTagLib {
   def getClients = {attrs, body ->
     List clients = functionService.findAllByLink(null, attrs.entity, metaDataService.ltActClient)
     if (clients)
-      clients.each {out << body(clients: it)}
+      out << body(clients: clients)
     else
       out << '<span class="italic">' + message(code: 'clients.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
   }
@@ -1708,7 +1706,7 @@ class HelperTagLib {
   def getPateClients = {attrs, body ->
     List pateClients = functionService.findAllByLink(null, attrs.entity, metaDataService.ltPate)
     if (pateClients)
-      pateClients.each {out << body(clients: it)}
+      out << body(clients: pateClients)
     else
       out << '<span class="italic">' + message(code: 'pate.profile.gcs_empty') + '</span>'
   }
@@ -1722,7 +1720,7 @@ class HelperTagLib {
   def getEducators = {attrs, body ->
     List educators = functionService.findAllByLink(null, attrs.entity, metaDataService.ltActEducator)
     if (educators)
-      educators.each {out << body(educators: it)}
+      out << body(educators: educators)
     else
       out << '<span class="italic">' + message(code: 'educators.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
   }
@@ -1764,7 +1762,7 @@ class HelperTagLib {
   def getSubThemes = {attrs, body ->
     List subThemes = functionService.findAllByLink(null, attrs.theme, metaDataService.ltSubTheme)
     if (subThemes)
-      subThemes.each {out << body(subthemes: it)}
+      out << body(subthemes: subThemes)
   }
 
   /**
