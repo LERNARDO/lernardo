@@ -7,7 +7,8 @@ import at.uenterprise.erp.profiles.ChildProfile
 import java.text.SimpleDateFormat
 
 /**
- * This class currently only contains an import method
+ * This class is used for important XML data
+ * Currently only contains an import method
  *
  * @author  Alexander Zeillinger
  */

@@ -48,20 +48,6 @@ class GroupActivityProfileController {
   }
 
   def list = {
-    /*params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    EntityType etGroupActivity = metaDataService.etGroupActivity
-    def groupActivities = Entity.createCriteria().list {
-      eq("type", etGroupActivity)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }*/
     int totalGroupActivities = Entity.countByType(metaDataService.etGroupActivity)
 
     Entity currentEntity = entityHelperService.loggedIn
@@ -83,8 +69,7 @@ class GroupActivityProfileController {
     else
       themes = Entity.findAllByType(metaDataService.etTheme)
 
-    return [/*groups: groupActivities,*/
-            totalGroupActivities: totalGroupActivities,
+    return [totalGroupActivities: totalGroupActivities,
             themes: themes,
             allLabels: functionService.getLabels()]
   }
@@ -153,42 +138,6 @@ class GroupActivityProfileController {
     templates.each {
       requiredResources.addAll(it.profile.resources)
     }
-
-    /*List plannableResources = []
-    facilities.each { Entity facility ->
-      // add resources linked to the facility to plannable resources
-      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
-      // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
-
-      // find all other facilities linked to the colony and add their resources if marked as available in colony
-      List colonyResources = []
-      List otherFacilities = functionService.findAllByLink(null, colony, metaDataService.ltGroupMemberFacility)
-      otherFacilities.each { Entity of ->
-        List tempResources = functionService.findAllByLink(null, of, metaDataService.ltResource)
-        tempResources.each { Entity tr ->
-          if (tr.profile.classification == "colony") {
-            if (!colonyResources.contains(tr)) {
-              colonyResources.add(tr)
-            }
-          }
-        }
-      }
-      plannableResources.addAll(colonyResources)
-    }
-
-    // add all resources that are available everywhere
-    List everywhereResources = Entity.createCriteria().list {
-      eq("type", metaDataService.etResource)
-      profile {
-        eq("classification", "everywhere")
-      }
-    }
-    everywhereResources?.each {
-      if (!plannableResources.contains(it))
-        plannableResources.add(it)
-    }*/
 
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
 

@@ -16,7 +16,7 @@
         </g:link>
       </erp:getNewInboxMessages>
 
-      %{--<erp:getNewNews entity="${currentEntity}">
+      %{--<erp:getNewNews>
         <g:link class="tooltip" data-tooltip="${message(code: 'newsp')}" controller="news" action="index" id="${currentEntity.id}">
         <span class="notificationbox inactive">
           <span class="gray">${result}</span> <img src="${g.resource(dir:'images/icons', file:'icon_text.png')}" alt="News" style="position: relative; top: 3px;"/>

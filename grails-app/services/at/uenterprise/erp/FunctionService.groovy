@@ -94,7 +94,7 @@ class FunctionService {
    * Creates a default calendar object
    *
    * @author Alexander Zeillinger
-   * @param entity The entity to to create the calendar for
+   * @param entity REQUIRED The entity to to create the calendar for
    */
   ECalendar createDefaultCalendar(Entity entity) {
     ECalendar eCalendar = new ECalendar()
@@ -121,7 +121,7 @@ class FunctionService {
    * Deletes all references to an entity (used before deleting an entity)
    *
    * @author Alexander Zeillinger
-   * @param entity    the entity to delete all links to and from
+   * @param entity REQUIRED The entity to delete all links to and from
    */
   def deleteReferences(Entity entity) {
     Link.findAllBySourceOrTarget(entity, entity).each {it.delete()}
@@ -155,7 +155,7 @@ class FunctionService {
    * Converts a date from UTC
    *
    * @author Alexander Zeillinger
-   * @param date the date to convert
+   * @param date REQUIRED The date to convert
    * @return a date
    */
   Date convertFromUTC(Date date) {
@@ -170,7 +170,7 @@ class FunctionService {
    * Converts a date to UTC
    *
    * @author Alexander Zeillinger
-   * @param date the date to convert
+   * @param date REQUIRED The date to convert
    * @return a date
    */
   Date convertToUTC(Date date) {
@@ -186,9 +186,9 @@ class FunctionService {
    *
    * @author Alexander Zeillinger
    * @author Rainer Oppel
-   * @param source an entity
-   * @param target an entity
-   * @param type a link type
+   * @param source REQUIRED an entity
+   * @param target REQUIRED an entity
+   * @param type REQUIRED a link type
    * @return an entity
    */
   Entity findByLink(Entity source, Entity target, LinkType type) {
@@ -235,9 +235,9 @@ class FunctionService {
    *
    * @author Alexander Zeillinger
    * @author Rainer Oppel
-   * @param source an entity
-   * @param target an entity
-   * @param type a link type
+   * @param source REQUIRED an entity
+   * @param target REQUIRED an entity
+   * @param type REQUIRED a link type
    * @return a list of entities
    */
   List findAllByLink(Entity source, Entity target, LinkType type) {
@@ -284,9 +284,9 @@ class FunctionService {
    * the source, the target and whether or not the link already existed
    *
    * @author Alexander Zeillinger
-   * @param s the ID of an entity
-   * @param t the ID of an entity
-   * @param type a link type
+   * @param s REQUIRED the ID of an entity
+   * @param t REQUIRED the ID of an entity
+   * @param type REQUIRED a link type
    * @return a map
    */
   def linkEntities(String s, String t, LinkType type) {
@@ -316,9 +316,9 @@ class FunctionService {
    * the source and the target
    *
    * @author Alexander Zeillinger
-   * @param s the ID of an entity
-   * @param t the ID of an entity
-   * @param type a link type
+   * @param s REQUIRED the ID of an entity
+   * @param t REQUIRED the ID of an entity
+   * @param type REQUIRED a link type
    * @return a map
    */
   def breakEntities(String s, String t, LinkType type) {
@@ -341,8 +341,9 @@ class FunctionService {
    * Creates an event on the dashboard
    *
    * @author Alexander Zeillinger
-   * @param entity the entity the event belongs to
-   * @param content
+   * @param type REQUIRED the event type
+   * @param who REQUIRED entity id
+   * @param what REQUIRED entity id
    * @param date
    * @return the event
    */
@@ -354,8 +355,8 @@ class FunctionService {
    * Constructs a nickname from a first name and a last name
    *
    * @author Alexander Zeillinger
-   * @param firstName
-   * @param lastName
+   * @param firstName REQUIRED the first name
+   * @param lastName REQUIRED the last name
    * @return the constructed nickname
    */
   String createNick(String firstName, String lastName) {
@@ -370,7 +371,7 @@ class FunctionService {
    * Constructs a nickname from a full name
    *
    * @author Alexander Zeillinger
-   * @param fullName
+   * @param fullName REQUIRED the full name
    * @return the constructed nickname
    */
   String createNick(String fullName) {
@@ -385,11 +386,11 @@ class FunctionService {
    * Creates a private message
    *
    * @author Alexander Zeillinger
-   * @param sender
-   * @param receiver
-   * @param entity the entity the message belongs to
-   * @param subject
-   * @param content
+   * @param sender REQUIRED the sender
+   * @param receiver REQUIRED the receiver
+   * @param entity REQUIRED the entity the message belongs to
+   * @param subject REQUIRED the subject
+   * @param content REQUIRED the content
    * @param read
    * @return the message
    */
@@ -402,7 +403,7 @@ class FunctionService {
    * Receives an activity group, finds all clients linked to it, finds all families linked to the clients and returns all parents linked to the families
    *
    * @author Alexander Zeillinger
-   * @param group an entity
+   * @param group REQUIRED an entity
    * @return a list of parents
    */
   List findParents(Entity group) {
@@ -436,7 +437,7 @@ class FunctionService {
    * Receives an activity group, finds the facility linked to it and returns all educators linked to the facility
    *
    * @author Alexander Zeillinger
-   * @param group an entity
+   * @param group REQUIRED an entity
    * @return a list of educators
    */
   List findEducators(Entity group) {
@@ -463,7 +464,7 @@ class FunctionService {
    * Returns all clients of a facility
    *
    * @author Alexander Zeillinger
-   * @param entity the facility
+   * @param entity REQUIRED the facility
    * @return a list of clients
    */
   List findClientsOf(Entity entity, def params = []) {
@@ -484,7 +485,7 @@ class FunctionService {
    * Returns all publications of an entity
    *
    * @author Alexander Zeillinger
-   * @param entity
+   * @param entity REQUIRED the entity
    * @return a list of publications
    */
   List findPublicationsOfEntity(Entity owner) {

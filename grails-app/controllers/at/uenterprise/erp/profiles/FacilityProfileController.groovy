@@ -257,26 +257,6 @@ class FacilityProfileController {
       render template: 'clients', model: [clients: clients2, facility: facility]
     }
 
-
-    /*// find all clients linked to the clientgroup
-    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
-
-    // link each client to the facility now
-    clients.each { Entity client ->
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', client)
-        eq('target', facility)
-        eq('type', metaDataService.ltGroupMemberClient)
-      }
-      if (!link)
-        new Link(source: client, target: facility, type: metaDataService.ltGroupMemberClient).save()
-    }
-
-    // find all clients of this facility
-    clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
-
-    render template: 'clients', model: [clients: clients, facility: facility]*/
   }
 
   def removeClient = {

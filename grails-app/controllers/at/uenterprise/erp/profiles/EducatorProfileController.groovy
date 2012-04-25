@@ -7,8 +7,6 @@ import at.openfactory.ep.EntityHelperService
 import at.uenterprise.erp.CDate
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
-import at.uenterprise.erp.WorkdayCategory
-import java.util.regex.Pattern
 
 class EducatorProfileController {
   MetaDataService metaDataService

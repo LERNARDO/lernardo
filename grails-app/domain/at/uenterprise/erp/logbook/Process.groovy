@@ -2,6 +2,11 @@ package at.uenterprise.erp.logbook
 
 import at.openfactory.ep.Entity
 
+/**
+ * This class represents a process used in the logbook
+ *
+ * @author  Alexander Zeillinger
+ */
 class Process {
 
   static hasMany = [facilities: Entity,
