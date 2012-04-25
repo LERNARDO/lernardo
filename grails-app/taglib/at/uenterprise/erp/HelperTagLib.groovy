@@ -5,8 +5,6 @@ import at.openfactory.ep.Link
 import java.text.SimpleDateFormat
 import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
-
-import at.openfactory.ep.SecHelperService
 import org.springframework.beans.SimpleTypeConverter
 import org.springframework.context.MessageSourceResolvable
 import org.codehaus.groovy.grails.web.util.StreamCharBuffer
@@ -26,13 +24,18 @@ import at.openfactory.ep.AssetService
 class HelperTagLib {
   EntityHelperService entityHelperService
   MetaDataService metaDataService
-  SecHelperService secHelperService
   FunctionService functionService
   AssetService assetService
   def securityManager
   static namespace = "erp"
 
-  // let an operator, the resource owner and resource responsible do stuff
+  //
+  /**
+   * Check if a resource can be accessed by an entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity to check
+   */
   def checkResourceAccess = {attrs, body ->
 
     Entity currentEntity = entityHelperService.loggedIn
