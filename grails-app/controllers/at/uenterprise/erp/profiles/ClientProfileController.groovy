@@ -155,8 +155,8 @@ class ClientProfileController {
 
   def update = {
     params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
-    params.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
-    params.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
+    //params.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
+    //params.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
 
     Entity client = Entity.get(params.id)
 
@@ -233,8 +233,8 @@ class ClientProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.profile.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
-        ent.profile.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
-        ent.profile.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
+        //ent.profile.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
+        //ent.profile.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.save()
       }

@@ -130,6 +130,8 @@
 
       $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 
+      $('.countable').jqEasyCounter();
+
       $('.countable50').jqEasyCounter({
         'maxChars': 50,
         'maxCharsWarning': 50,

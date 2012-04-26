@@ -29,7 +29,11 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
-  //
+  def getConstraintSizeMax = {attrs, body ->
+    String domainClass = "at.uenterprise.erp.profiles.${attrs.domainClass}"
+    out << grailsApplication.getClassForName(domainClass).constraints[attrs.constraint].size.getToInt()
+  }
+
   /**
    * Check if a resource can be accessed by an entity
    *
