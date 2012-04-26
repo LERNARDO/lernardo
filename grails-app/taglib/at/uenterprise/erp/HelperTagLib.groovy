@@ -29,6 +29,14 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  /**
+   * Get the range maximum of the size constraint of an attribute of a domain class
+   *
+   * @author Alexander Zeillinger
+   * @author David Zeillinger
+   * @attr domainClass REQUIRED The domain class
+   * @attr constraint REQUIRED The constraint
+   */
   def getConstraintSizeMax = {attrs, body ->
     String domainClass = "at.uenterprise.erp.profiles.${attrs.domainClass}"
     out << grailsApplication.getClassForName(domainClass).constraints[attrs.constraint].size.getToInt()

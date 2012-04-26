@@ -78,7 +78,7 @@ class GroupClientProfileController {
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupClient"), group.profile.fullName])
-        redirect(action: "show", id: params.id)
+        redirect(action: "show", id: params.id, params: [exception: e])
       }
     }
     else {
