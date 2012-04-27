@@ -158,7 +158,6 @@ class GroupActivityProfileController {
             allThemes: allThemes,
             themes: themes,
             requiredResources: requiredResources,
-            plannableResources: plannableResources,
             resources: resources,
             allLabels: functionService.getLabels()]
 

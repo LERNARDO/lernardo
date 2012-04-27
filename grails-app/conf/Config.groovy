@@ -77,7 +77,7 @@ grails.resources.modules = {
     //resource url: "js/jquery/jquery.jqEasyCharCounter.min.js"
     //resource url: "js/jquery/jquery-ui-timepicker-addon.js"
     //resource url: "js/jquery/jquery.kolorpicker.js"
-    //resource url: "js/app.js"
+    resource url: "js/app.js"
   }
 }
 

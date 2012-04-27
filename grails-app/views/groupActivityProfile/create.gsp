@@ -49,13 +49,6 @@
           </td>
         </tr>
 
-        %{--<tr class="prop">
-          <td valign="top" class="name"><g:message code="date"/></td>
-          <td valign="top" class="value">
-            <g:textField name="date" class="datetimepicker" value="${new Date().format('dd. MM. yyyy HH:mm')}"/>
-          </td>
-        </tr>--}%
-
       </table>
       
       <span class="ga_tab" style="border-right: none;"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params:[type: 'single']]" update="ga_content" before="showspinner('#ga_content')">Einmalig</g:remoteLink></span><span class="ga_tab"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params:[type: 'multiple']]" update="ga_content" before="showspinner('#ga_content')">Zeitraum</g:remoteLink></span>
