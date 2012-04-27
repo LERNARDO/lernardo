@@ -16,9 +16,7 @@
 <body>
 
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="profile.overview.glossary"/> <a onclick="toggle('#glossar-toggled'); return false" href="index.gsp#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
-  </div>
+  <h1><g:message code="profile.overview.glossary"/> <a onclick="toggle('#glossar-toggled'); return false" href="index.gsp#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
 </div>
 <div class="boxGray" id="glossar-toggled">
   <div class="second" id="userlist-results">
@@ -28,9 +26,7 @@
 </div>
 
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="profile.overview"/></h1>
-  </div>
+  <h1><g:message code="profile.overview"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">

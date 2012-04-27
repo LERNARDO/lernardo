@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="workdayCategory"/> - ${workdayCategoryInstance.name}</h1>
-  </div>
+  <h1><g:message code="workdayCategory"/> - ${workdayCategoryInstance.name}</h1>
 </div>
 <div class="boxGray" style="clear: both;">
   <div class="second">

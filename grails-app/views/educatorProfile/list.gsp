@@ -4,12 +4,6 @@
 </head>
 <body>
 
-%{--<div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="educators"/></h1>
-  </div>
-</div>--}%
-
 <div class="tabGreen">
   <div class="second">
     <h1><g:message code="educators.active"/></h1>

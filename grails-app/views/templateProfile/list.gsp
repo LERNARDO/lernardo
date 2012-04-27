@@ -7,9 +7,7 @@
 <body>
 
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="activityTemplates"/></h1>
-  </div>
+  <h1><g:message code="activityTemplates"/></h1>
 </div>
 
 <div class="clear"></div>

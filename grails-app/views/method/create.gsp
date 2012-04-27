@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="object.create" args="[message(code: 'method')]"/></h1>
-  </div>
+  <h1><g:message code="object.create" args="[message(code: 'method')]"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">

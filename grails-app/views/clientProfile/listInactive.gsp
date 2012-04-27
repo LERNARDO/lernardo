@@ -4,12 +4,6 @@
 </head>
 <body>
 
-%{--<div class="boxHeader">
-  <div class="second">
-    <h1>${message(code: 'client')}</h1>
-  </div>
-</div>--}%
-
 <div class="tabGrey">
   <div class="second">
     <h1><g:link controller="clientProfile" action="list"><g:message code="clients.active"/></g:link></h1>

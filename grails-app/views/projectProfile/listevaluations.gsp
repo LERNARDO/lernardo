@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1>Tagebucheinträge verknüpft mit ${entity.profile.fullName}</h1>
-  </div>
+  <h1>Tagebucheinträge verknüpft mit ${entity.profile.fullName}</h1>
 </div>
 <div class="boxGray">
   <div class="second">

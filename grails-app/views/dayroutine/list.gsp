@@ -22,9 +22,7 @@
 <body>
 
 <div class="boxHeader">
-  <div class="second">
-    <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></h1>
-  </div>
+  <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">

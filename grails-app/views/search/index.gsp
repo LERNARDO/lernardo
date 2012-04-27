@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="searchResults"/></h1>
-  </div>
+  <h1><g:message code="searchResults"/></h1>
 </div>
 
 <g:if test="${results}">

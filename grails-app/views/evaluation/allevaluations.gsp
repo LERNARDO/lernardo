@@ -4,22 +4,8 @@
 </head>
 <body>
 
-%{--<div class="tabGrey">
-  <div class="second">
-    <h1><g:link controller="evaluation" action="myevaluations" id="${entity.id}"><g:message code="evaluation.myentry"/></g:link></h1>
-  </div>
-</div>
-
-<div class="tabGrey">
-  <div class="second">
-    <h1><g:link controller="evaluation" action="interestingevaluations" id="${entity.id}"><g:message code="evaluation.interestentry"/></g:link></h1>
-  </div>
-</div>--}%
-
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="evaluation.allevalentries"/></h1>
-  </div>
+  <h1><g:message code="evaluation.allevalentries"/></h1>
 </div>
 
 <div class="clear"></div>
