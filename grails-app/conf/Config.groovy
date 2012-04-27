@@ -122,7 +122,7 @@ log4j = {
 
       console(
          name: 'stdout',
-         threshold: org.apache.log4j.Level.DEBUG,
+         threshold: org.apache.log4j.Level.DEBUG, // ALL | TRACE | DEBUG | INFO | WARN | ERROR | FATAL | OFF
          //layout: pattern(conversionPattern: "${appName} - %d{HH:mm:ss} - [%p] - %c -> %m%n")
          layout: pattern(conversionPattern: "%d{HH:mm:ss} - %p - %c -> %m%n")
       )
@@ -167,6 +167,7 @@ log4j = {
     info  'grails.app.dataSource'
     info  'grails.app.controller'
     info  'grails.app.service'
+    debug 'org.hibernate.SQL'
 
 }
 
