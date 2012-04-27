@@ -29,7 +29,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="firstName"/></td>
             <td valign="top" class="value">
-              <g:textField data-counter="${erp.getConstraintSizeMax(domainClass: 'ClientProfile', constraint: 'firstName')}" class="countable ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="40" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
+              <g:textField data-counter="${erp.getConstraintSizeMax(domainClass: 'ClientProfile', constraint: 'firstName')}" class="${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="40" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
             </td>
           </tr>
 
