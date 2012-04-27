@@ -2,7 +2,6 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Account
-import at.openfactory.ep.SecHelperService
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.Tag
 import at.openfactory.ep.TagLinkType
@@ -18,7 +17,6 @@ import at.openfactory.ep.security.SecurityManagerException
 //import grails.util.GrailsUtil
 
 class AppController {
-  SecHelperService secHelperService
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
