@@ -186,7 +186,7 @@ class TemplateProfileController {
       File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(EVENT_TYPE.ACTIVITY_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
@@ -476,7 +476,7 @@ class TemplateProfileController {
     else
       fourthPass = thirdPass
 
-    render(template: 'searchresults', model: [allTemplates: fourthPass,
+    render template: 'searchresults', model: [allTemplates: fourthPass,
                                               totalTemplates: fourthPass.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
                                               paginate: false,
@@ -493,7 +493,7 @@ class TemplateProfileController {
                                               duration1: params.duration1,
                                               duration2: params.duration2,
                                               ageFrom: params.ageFrom,
-                                              ageTo: params.ageTo])
+                                              ageTo: params.ageTo]
   }
 
    /*

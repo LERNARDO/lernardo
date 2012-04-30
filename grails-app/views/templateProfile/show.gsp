@@ -62,27 +62,27 @@
 
         <tr class="prop">
           <td class="one"><g:message code="description"/></td>
-          <td class="two">${template.profile.description.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${template.profile.description.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="activityTemplate.chosenMaterials"/></td>
-          <td class="two">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="activityTemplate.ageFrom"/></td>
-          <td class="two">${template?.profile?.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${template?.profile?.ageFrom ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="activityTemplate.ageTo"/></td>
-          <td class="two">${template?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${template?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="activityTemplate.goal"/></td>
-          <td class="two">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         </tbody>
@@ -93,7 +93,7 @@
         <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><a onclick="toggle('#labels');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="labels" style="display:none">
-          <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addLabel', id:template.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
+          <g:formRemote name="formRemote2" url="[controller: 'templateProfile', action: 'addLabel', id: template.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -109,7 +109,7 @@
         <h5><g:message code="resources.required"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="resources" style="display:none">
 
-          <g:formRemote name="formRemote" url="[controller:'resourceProfile', action:'addResource', id: template.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
+          <g:formRemote name="formRemote" url="[controller: 'resourceProfile', action: 'addResource', id: template.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
             <table>
               <tr>
                 <td><g:message code="name"/>:</td>
@@ -139,7 +139,7 @@
         <h5><g:message code="vMethods"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><a onclick="toggle('#methods');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="methods" style="display:none">
-          <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="showspinner('#methods2');" after="toggle('#methods');">
+          <g:formRemote name="formRemote2" url="[controller: 'templateProfile', action: 'addMethod', id: template.id]" update="methods2" before="showspinner('#methods2');" after="toggle('#methods');">
             <g:select name="method" from="${allMethods}" optionKey="id" optionValue="name"/>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>

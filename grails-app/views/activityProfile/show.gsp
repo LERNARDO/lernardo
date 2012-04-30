@@ -56,7 +56,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="description"/></td>
-          <td class="two">${template?.profile?.description?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${template?.profile?.description?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
       </table>
@@ -96,7 +96,7 @@
         <h5><g:message code="facility"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#facilities');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="facilities" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'activityProfile', action:'addFacility', id: activity.id]" update="facilities2" before="showspinner('#facilities2');">
+          <g:formRemote name="formRemote" url="[controller: 'activityProfile', action: 'addFacility', id: activity.id]" update="facilities2" before="showspinner('#facilities2');">
             <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
             <g:submitButton name="button" value="${message(code:'add')}"/>
           </g:formRemote>
@@ -114,7 +114,7 @@
             <h1><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#clients');
             return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h1>
             <div id="clients" style="display:none">
-              <g:formRemote name="formRemote" url="[controller:'activityProfile', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
+              <g:formRemote name="formRemote" url="[controller: 'activityProfile', action: 'addClient', id: activity.id]" update="clients2" before="showspinner('#clients2')">
                 <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
                 <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
                 <div class="clear"></div>

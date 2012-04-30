@@ -30,7 +30,7 @@ class ProfileController {
   def saveNotification = {NotificationCommand nc->
 
     if (nc.hasErrors()) {
-      render view:'createNotification', model:[nc: nc]
+      render view: 'createNotification', model: [nc: nc]
       return
     }
     
@@ -75,7 +75,7 @@ class ProfileController {
     entity?.user?.addToAuthorities(metaDataService.adminRole)
     Entity currentEntity = entityHelperService.loggedIn
     functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators gegeben.").save()
-    render template:'listentity', model:[entity: entity, i: params.i]
+    render template: 'listentity', model: [entity: entity, i: params.i]
   }
 
   /*
@@ -87,7 +87,7 @@ class ProfileController {
     entity.user.removeFromAuthorities(role)
     Entity currentEntity = entityHelperService.loggedIn
     functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators genommen.").save()
-    render template:'listentity', model:[entity: entity, i: params.i]
+    render template: 'listentity', model: [entity: entity, i: params.i]
   }
 
   /*
@@ -103,7 +103,7 @@ class ProfileController {
 
     entity.user.enabled = false
 
-    render template:'listentity', model:[entity: entity, i: params.i]
+    render template: 'listentity', model: [entity: entity, i: params.i]
   }
 
   /*
@@ -119,7 +119,7 @@ class ProfileController {
 
     entity.user.enabled = true
 
-    render template:'listentity', model:[entity: entity, i: params.i]
+    render template: 'listentity', model: [entity: entity, i: params.i]
   }
 
   /*
@@ -135,7 +135,7 @@ class ProfileController {
    */
   def checkPassword = {
     if (!params.password || !params.password2) {
-      render view: 'changePassword', model:[ entity: Entity.get(params.id), error: 'true']
+      render view: 'changePassword', model: [entity: Entity.get(params.id), error: 'true']
       return
     }
     if (params.password == params.password2) {
@@ -288,7 +288,7 @@ class ProfileController {
   }
 
   def saveProfilePic = {
-    forward(action:"savePic", params:[type:"profile"])
+    forward action: "savePic", params: [type: "profile"]
   }
   
   def addFavorite = {
@@ -372,11 +372,11 @@ class ProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'creatorresults', model: [results: results])
+      render template: 'creatorresults', model: [results: results]
     }
   }
 

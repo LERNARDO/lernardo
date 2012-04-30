@@ -91,7 +91,7 @@
               </erp:accessCheck>
               <td>
                 <span class="bold"><g:message code="email"/>: </span>
-                ${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+                ${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
               </td>
               <erp:accessCheck types="['Betreiber']" me="${child}">
                 <td>

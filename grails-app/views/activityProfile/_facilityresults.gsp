@@ -10,7 +10,7 @@
 <g:if test="${results}">
   <div class="remoteresults">
     <g:each in="${results}" var="entity">
-      <g:remoteLink url="[controller:'activityProfile', action:'markFacility', id: entity.id]" update="facilities2" before="kontrolle2('${entity.id}');" after="${remoteFunction(action:'updateEducators',update:'educators',id:entity.id)} ${remoteFunction(action:'updateClients',update:'clients',id:entity.id)}">
+      <g:remoteLink url="[controller: 'activityProfile', action: 'markFacility', id: entity.id]" update="facilities2" before="kontrolle2('${entity.id}');" after="${remoteFunction(action: 'updateEducators', update: 'educators', id: entity.id)} ${remoteFunction(action: 'updateClients', update: 'clients', id: entity.id)}">
       <div class="remoteresult">
         <table>
           <tr>

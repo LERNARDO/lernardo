@@ -140,7 +140,7 @@ class GroupFamilyProfileController {
       flash.message = message(code: "object.created", args: [message(code: "groupFamily"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      render(view: "create", model: [group: ee.entity])
+      render view: "create", model: [group: ee.entity]
     }
 
   }
@@ -151,12 +151,12 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
 
       render template: 'parents', model: [parents: linking.sources, group: linking.target]
       }
     else {
-      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
+      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+ '</span>'
       List parents = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberParent)
       render template: 'parents', model: [parents: parents, group: Entity.get(params.id)]
     }
@@ -174,12 +174,12 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupFamily)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
 
       render template: 'clients', model: [clients: linking.sources, group: linking.target]
     }
     else {
-      render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
+      render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+ '</span>'
       List clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupFamily)
       render template: 'clients', model: [clients: clients, group: Entity.get(params.id)]
     }
@@ -196,12 +196,12 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
 
       render template: 'childs', model: [childs: linking.sources, group: linking.target]
     }
     else {
-      render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
+      render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+ '</span>'
       List childs = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberChild)
       render template: 'childs', model: [childs: childs, group: Entity.get(params.id)]
     }
@@ -237,11 +237,11 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'parentresults', model: [results: results, group: params.id])
+      render template: 'parentresults', model: [results: results, group: params.id]
     }
   }
 
@@ -270,11 +270,11 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: results, group: params.id])
+      render template: 'clientresults', model: [results: results, group: params.id]
     }
   }
 
@@ -303,11 +303,11 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'childrenresults', model: [results: results, group: params.id])
+      render template: 'childrenresults', model: [results: results, group: params.id]
     }
   }
 

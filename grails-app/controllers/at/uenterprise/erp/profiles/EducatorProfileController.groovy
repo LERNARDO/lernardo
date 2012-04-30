@@ -226,7 +226,7 @@ class EducatorProfileController {
           order(params.sort, params.order)
         }
       }
-      render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonies: allColonies])
+      render view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonies: allColonies]
     }
 
   }

@@ -85,7 +85,7 @@ class EvaluationController {
         def upperBound = params.offset + params.max < totalEvaluations ? params.offset + params.max : totalEvaluations
         evaluations = evaluations.subList(params.offset, upperBound)
 
-        render template: "evaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, paginate: 'own', totalEvaluations: totalEvaluations]
+        render template: "evaluations", model: [evaluationInstanceList: evaluations, entity: entity, value: params.value, paginate: 'own', totalEvaluations: totalEvaluations]
       }
       else
         render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
@@ -126,7 +126,7 @@ class EvaluationController {
       def upperBound = params.offset + params.max < totalEvaluations ? params.offset + params.max : totalEvaluations
       evaluations = evaluations.subList(params.offset, upperBound)
 
-      render template: "evaluations", model:[evaluationInstanceList: evaluations,
+      render template: "evaluations", model: [evaluationInstanceList: evaluations,
                                              totalEvaluations: totalEvaluations,
                                              entity: entity,
                                              value: params.value,
@@ -171,7 +171,7 @@ class EvaluationController {
       def upperBound = params.offset + params.max < totalEvaluations ? params.offset + params.max : totalEvaluations
       evaluations = evaluations.subList(params.offset, upperBound)
 
-      render template: "evaluations", model:[evaluationInstanceList: evaluations,
+      render template: "evaluations", model: [evaluationInstanceList: evaluations,
                                              totalEvaluations: totalEvaluations,
                                              entity: entity,
                                              value: params.value,
@@ -365,7 +365,7 @@ class EvaluationController {
         return
       }
       else {
-        render(template: 'searchresults', model: [results: results])
+        render template: 'searchresults', model: [results: results]
       }
     }
     else {
@@ -377,13 +377,13 @@ class EvaluationController {
     Entity entity = Entity.get(params.id)
 
     def msg = message(code: "selection")
-    render ('<b>' + msg + '</b> <a href="' + createLink(controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + entity.profile.fullName + '</a>')
+    render ('<b>' + msg + '</b> <a href="' + createLink(controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a>')
   }
 
   def removeLinkedTo = {
     Evaluation evaluation = Evaluation.get(params.id)
     evaluation.linkedTo = null
     evaluation.save()
-    render '<span class="italic">'+message(code: "links.notLinked")+'</span>'
+    render '<span class="italic">'+message(code: "links.notLinked")+ '</span>'
   }
 }

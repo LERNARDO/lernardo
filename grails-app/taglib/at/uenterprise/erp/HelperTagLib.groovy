@@ -652,11 +652,11 @@ class HelperTagLib {
     if (!what) {
      what = Helper.get(attrs.event.what)
      if (who && what)
-       out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id, params:[entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
+       out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
     }
     else
       if (who && what)
-        out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id, params:[entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: what.type.supertype.name +'Profile', action: 'show', id: what.id, params:[entity: what.id]) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
+        out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: what.type.supertype.name + 'Profile', action: 'show', id: what.id, params: [entity: what.id]) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
   }
 
   /**
@@ -669,7 +669,7 @@ class HelperTagLib {
     def imgattrs = [:]
     AssetStorage store = assetService.findStorage(attrs.entity, 'profile', 'latest' )
     if (store)
-      imgattrs['src'] = g.createLink (controller:'app', action:'getImage', params:[type:'profile', entity:attrs.entity.id, store: store.id])
+      imgattrs['src'] = g.createLink (controller: 'app', action: 'getImage', params: [type: 'profile', entity: attrs.entity.id, store: store.id])
     else
       imgattrs['src'] = g.resource(dir: 'images', file: 'default_asset.jpg')
     attrs.name = attrs.entity.name

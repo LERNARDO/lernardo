@@ -11,11 +11,11 @@ class MsgController {
   MetaDataService metaDataService
 
   def index = {
-    redirect action:"inbox", params:params
+    redirect action: "inbox", params: params
   }
 
   // the delete, save and update actions only accept POST requests
-  static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   /*
    * shows the inbox of a given entity
@@ -69,8 +69,8 @@ class MsgController {
     def message = Msg.get(params.id)
 
     if(!message) {
-      flash.message = g.message(code: "object.notFound", args:[g.message(code: "msg")])
-      redirect action:index, params:[name:params.name]
+      flash.message = g.message(code: "object.notFound", args: [g.message(code: "msg")])
+      redirect action: "index", params: [name: params.name]
       return
     }
 
@@ -98,27 +98,27 @@ class MsgController {
     def message = Msg.get( params.id )
     if(message) {
       try {
-        flash.message = g.message(code:"object.deleted", args:[g.message(code: "msg"), message.subject])
+        flash.message = g.message(code: "object.deleted", args: [g.message(code: "msg"), message.subject])
         message.delete(flush:true)
-        redirect action:params.box, id: params.entity
+        redirect action: params.box, id: params.entity
         //render ""
       }
       catch(org.springframework.dao.DataIntegrityViolationException ex) {
-        flash.message = g.message(code: "object.notDeleted", args:[g.message(code: "msg"), message.subject])
-        redirect action:"show",id:params.id
+        flash.message = g.message(code: "object.notDeleted", args: [g.message(code: "msg"), message.subject])
+        redirect action: "show", id: params.id
       }
     }
     else {
-      flash.message = g.message(code: "object.notFound", args:[g.message(code: "msg")])
-      //redirect action:params.box, params:[name:params.name]
+      flash.message = g.message(code: "object.notFound", args: [g.message(code: "msg")])
+      //redirect action: params.box, params: [name:params.name]
     }
   }
 
   def edit = {
     def message = Msg.get( params.id )
     if(!message) {
-      flash.message = g.message(code: "object.notFound", args:[g.message(code: "msg")])
-      redirect action:'index', params:[name:params.name]
+      flash.message = g.message(code: "object.notFound", args: [g.message(code: "msg")])
+      redirect action: 'index', params: [name: params.name]
       return
     }
 
@@ -132,15 +132,15 @@ class MsgController {
       message.properties = params
       if(message.save()) {
         flash.message = "Msg ${params.id} updated"
-        redirect action:'show', id:message.id
+        redirect action: 'show', id: message.id
       }
       else {
-        render view:'edit', model:[msgInstance:message]
+        render view: 'edit', model: [msgInstance:message]
       }
     }
     else {
-      flash.message = g.message(code: "object.notFound", args:[g.message(code: "msg")])
-      redirect action:'index', params:[name:params.name]
+      flash.message = g.message(code: "object.notFound", args: [g.message(code: "msg")])
+      redirect action: 'index', params: [name:params.name]
     }
   }
 
@@ -152,8 +152,8 @@ class MsgController {
       message.subject = params.subject.decodeHTML()
 
     Entity entity = Entity.get(params.id)
-    return [msgInstance:message,
-            receiver:entity,
+    return [msgInstance: message,
+            receiver: entity,
             entity: entity,
             reply: params.reply ?: 'false']
   }
@@ -175,7 +175,7 @@ class MsgController {
       params.receivers.each { id ->
         receivers.add(Entity.get(id))
       }
-      render view: 'createMany', model:[mc: mc, entity: entity1, receivers: receivers]
+      render view: 'createMany', model: [mc: mc, entity: entity1, receivers: receivers]
       return
     }
 
@@ -203,8 +203,8 @@ class MsgController {
     }
 
     if (!failed) {
-      flash.message = message(code:"msg.sent", args:[params.subject])
-      redirect action:'inbox', id: currentEntity.id
+      flash.message = message(code: "msg.sent", args: [params.subject])
+      redirect action: 'inbox', id: currentEntity.id
     }
     else
       render view: 'createMany', model: [msgInstance: msg, entity: Entity.get(params.entity.toInteger())]
@@ -221,11 +221,11 @@ class MsgController {
     // create second instance to be saved in inbox of receiver
     def msg = functionService.createMessage(currentEntity, receiver, receiver, params.subject, params.content)
     if (msg.save()) {
-      flash.message = message(code:"msg.sent", args:[params.subject])
+      flash.message = message(code: "msg.sent", args: [params.subject])
       if (params.reply == "true")
-        redirect action:'inbox', id: currentEntity.id
+        redirect action: 'inbox', id: currentEntity.id
       else
-        redirect controller: receiver.type.supertype.name +'Profile', action:'show', id: receiver.id, params:[entity: receiver]
+        redirect controller: receiver.type.supertype.name + 'Profile', action: 'show', id: receiver.id, params: [entity: receiver]
     }
     else {
       render view: 'create', model: [msgInstance: msg, receiver: receiver, reply: params.reply, entity: Entity.get(params.entity.toInteger())]
@@ -267,11 +267,11 @@ class MsgController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'receiverresults', model: [results: results])
+      render template: 'receiverresults', model: [results: results]
     }
   }
 

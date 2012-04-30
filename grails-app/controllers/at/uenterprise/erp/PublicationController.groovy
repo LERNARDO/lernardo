@@ -248,7 +248,7 @@ class PublicationController {
 
     //log.debug "attempt to save publication: $params"
     if(pub.save(flush:true)) {
-      flash.message = message(code: "object.created", args:[message(code: "publication"), pub.name])
+      flash.message = message(code: "object.created", args: [message(code: "publication"), pub.name])
       redirect controller: pub.entity.type.supertype.name + "Profile", action: "show", id: pub.entity.id
     }
     else {
@@ -262,8 +262,8 @@ class PublicationController {
       assetService.renderStorage (pub.asset?.storage, response)
     }
     else {
-      flash.message = message(code: "object.notFound", args:[message(code: "publication")])
-      redirect (action:"list", params:[name:params.name])
+      flash.message = message(code: "object.notFound", args: [message(code: "publication")])
+      redirect (action: "list", params: [name: params.name])
     }
 
   }
@@ -272,14 +272,14 @@ class PublicationController {
     Publication pub = Publication.get(params.id)
     Entity entity = pub.entity
     if (!pub) {
-      flash.message = message(code: "object.notFound", args:[message(code: "publication")])
+      flash.message = message(code: "object.notFound", args: [message(code: "publication")])
     }
     else {
-      flash.message = message(code: "object.deleted", args:[message(code: "publication"), pub.name])
+      flash.message = message(code: "object.deleted", args: [message(code: "publication"), pub.name])
       pub.delete(flush:true)
     }
 
-    chain (action:"list", id: entity.id)
+    chain (action: "list", id: entity.id)
   }
 
   def edit = {
@@ -289,8 +289,8 @@ class PublicationController {
       render template: "edit", model: [publication: publication]
     }
     else {
-      flash.message = message(code: "object.notFound", args:[message(code: "publication")])
-      redirect action:'list'
+      flash.message = message(code: "object.notFound", args: [message(code: "publication")])
+      redirect action: 'list'
     }
 
   }
@@ -300,16 +300,16 @@ class PublicationController {
       if(publication) {
           publication.properties = params
           if(publication.save()) {
-              flash.message = message(code: "object.updated", args:[message(code: "publication"), publication.name])
-              chain (action:'list', id:publication.entity.id)
+              flash.message = message(code: "object.updated", args: [message(code: "publication"), publication.name])
+              chain (action: 'list', id: publication.entity.id)
           }
           else {
-              render view:'edit', model:[publication:publication]
+              render view: 'edit', model: [publication: publication]
           }
       }
       else {
-          flash.message = message(code: "object.notFound", args:[message(code: "publication")])
-          redirect action:"list", id:publication.entity.id
+          flash.message = message(code: "object.notFound", args: [message(code: "publication")])
+          redirect action: "list", id: publication.entity.id
       }
   }
 

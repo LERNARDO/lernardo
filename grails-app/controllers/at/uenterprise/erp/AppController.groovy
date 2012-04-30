@@ -68,7 +68,7 @@ class AppController {
     TimeZone timeZone = TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())
 
     List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
-    render template: 'livetickersmall', model:[events: events, timeZone: timeZone]
+    render template: 'livetickersmall', model: [events: events, timeZone: timeZone]
   }
 
   def showticker = {
@@ -83,7 +83,7 @@ class AppController {
     List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
     events.sort() {it.dateCreated}
     events = events.reverse()
-    render template: 'liveticker', model:[events: events]
+    render template: 'liveticker', model: [events: events]
   }
 
   def liveticker = {
@@ -282,7 +282,7 @@ class AppController {
       sendMail {
         to      "error@uenterprise.de"
         subject grailsApplication.config.application.name + " - Error 500"
-        html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
+        html    g.render(template: '/errortemplate', model: [request:request, exception: request.exception])
       }
       log.info "Notification email sent to developers!"
     }*/
@@ -559,11 +559,11 @@ class AppController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'creatorresults', model: [results: results, changed: params.id])
+      render template: 'creatorresults', model: [results: results, changed: params.id]
     }
   }
 
@@ -592,7 +592,7 @@ class AppController {
       def startUrl = grailsApplication.config.secmgr.starturl ?: "/start"
       log.debug ("redirecting to 'starturl': $startUrl")
 
-      redirect (uri: startUrl, args:[entity: currentEntity])
+      redirect (uri: startUrl, args: [entity: currentEntity])
     }
 
 }

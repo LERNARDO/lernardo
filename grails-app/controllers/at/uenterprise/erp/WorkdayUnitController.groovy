@@ -31,7 +31,7 @@ class WorkdayUnitController {
       List workdaycategories = WorkdayCategory.list()
       Date date1 = params.date('date1', 'dd. MM. yy')
       Date date2 = params.date('date2', 'dd. MM. yy')
-      render template: 'results', model:[entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2]
+      render template: 'results', model: [entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2]
     }
 
     def createpdf = {
@@ -56,7 +56,7 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits,
+      render template: 'workdayunits', model: [workdayunits: workdayunits,
                                               date: params.date,
                                               workdaycategories: workdaycategories,
                                               datesOrdered: true,
@@ -172,7 +172,7 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits,
+      render template: 'workdayunits', model: [workdayunits: workdayunits,
                                               date: params.date,
                                               workdaycategories: workdaycategories,
                                               intersection: intersection,
@@ -194,7 +194,7 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits,
+      render template: 'workdayunits', model: [workdayunits: workdayunits,
                                               date: params.date,
                                               workdaycategories: workdaycategories,
                                               datesOrdered: true,
@@ -215,7 +215,7 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits,
+      render template: 'workdayunits', model: [workdayunits: workdayunits,
                                               date: params.date,
                                               workdaycategories: workdaycategories,
                                               datesOrdered: true,
@@ -247,7 +247,7 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'evaluate', model:[persons: persons,
+      render template: 'evaluate', model: [persons: persons,
                                           workdaycategories: workdaycategories,
                                           date1: params.date1,
                                           date2: params.date2]
@@ -292,49 +292,49 @@ class WorkdayUnitController {
 
     def changeWorkHours = {
       Entity person = Entity.get(params.id)
-      render template: 'editworkhours', model:[person: person, i: params.i]
+      render template: 'editworkhours', model: [person: person, i: params.i]
     }
 
     def updateWorkHours = {
       Entity person = Entity.get(params.id)
       person.profile.properties = params
       person.profile.save()
-      render template: 'showworkhours', model:[person: person, i: params.i]
+      render template: 'showworkhours', model: [person: person, i: params.i]
     }
 
     def changeWorkDays = {
       Entity person = Entity.get(params.id)
-      render template: 'editworkdays', model:[person: person, i: params.i]
+      render template: 'editworkdays', model: [person: person, i: params.i]
     }
 
     def updateWorkDays = {
       Entity person = Entity.get(params.id)
       person.profile.workDays = params.int('workDays')
       person.profile.save()
-      render template: 'showworkdays', model:[person: person, i: params.i]
+      render template: 'showworkdays', model: [person: person, i: params.i]
     }
 
     def changeHourlyWage = {
       Entity person = Entity.get(params.id)
-      render template: 'edithourlywage', model:[person: person, i: params.i]
+      render template: 'edithourlywage', model: [person: person, i: params.i]
     }
 
     def updateHourlyWage = {
       Entity person = Entity.get(params.id)
       person.profile.hourlyWage = params.int('hourlyWage')
       person.profile.save()
-      render template: 'showhourlywage', model:[person: person, i: params.i]
+      render template: 'showhourlywage', model: [person: person, i: params.i]
     }
 
     def changeOvertimePay = {
       Entity person = Entity.get(params.id)
-      render template: 'editovertimepay', model:[person: person, i: params.i]
+      render template: 'editovertimepay', model: [person: person, i: params.i]
     }
 
     def updateOvertimePay = {
       Entity person = Entity.get(params.id)
       person.profile.overtimePay = params.int('overtimePay')
       person.profile.save()
-      render template: 'showovertimepay', model:[person: person, i: params.i]
+      render template: 'showovertimepay', model: [person: person, i: params.i]
     }
 }

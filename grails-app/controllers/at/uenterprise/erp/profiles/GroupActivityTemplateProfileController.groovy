@@ -239,7 +239,7 @@ class GroupActivityTemplateProfileController {
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">'
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">'
               + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="'
               + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
 
@@ -248,7 +248,7 @@ class GroupActivityTemplateProfileController {
       flash.message = message(code: "object.created", args: [message(code: "groupActivityTemplate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      render(view: "create", model: [group: ee.entity])
+      render view: "create", model: [group: ee.entity]
     }
 
   }
@@ -257,7 +257,7 @@ class GroupActivityTemplateProfileController {
     Entity groupActivityTemplate = Entity.get(params.id)
 
     if (!params.templates)
-      render '<p class="italic red">'+message(code: "groupActivityTemplate.select.least")+'</p>'
+      render '<p class="italic red">'+message(code: "groupActivityTemplate.select.least")+ '</p>'
     else {
       def bla = params.list('templates')
 
@@ -267,7 +267,7 @@ class GroupActivityTemplateProfileController {
         if (!linking.duplicate)
           groupActivityTemplate.profile.addToTemplates(it)
         if (linking.duplicate)
-          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
       }
     }
 
@@ -469,7 +469,7 @@ class GroupActivityTemplateProfileController {
     }
 
     finalList.sort {it.profile.fullName}
-    render(template: 'searchresults', model: [allTemplates: finalList])
+    render template: 'searchresults', model: [allTemplates: finalList]
   }
 
   def listMethods = {
@@ -481,7 +481,7 @@ class GroupActivityTemplateProfileController {
 
     Method method = Method.get(params.id)
 
-    render(template: 'methods', model: [method: method, dropdown: params.dropdown])
+    render template: 'methods', model: [method: method, dropdown: params.dropdown]
   }
 
   def secondselect = {
@@ -496,7 +496,7 @@ class GroupActivityTemplateProfileController {
 
       if (currentvalue <= value)
        currentvalue = value + 1
-      render template: 'secondselect', model:[value: value + 1, currentvalue: currentvalue]
+      render template: 'secondselect', model: [value: value + 1, currentvalue: currentvalue]
     }
   }
 
@@ -634,13 +634,13 @@ class GroupActivityTemplateProfileController {
     else
       thirdPass = secondPass
 
-    render(template: 'searchresults2', model: [allTemplates: thirdPass,
+    render template: 'searchresults2', model: [allTemplates: thirdPass,
                                               totalTemplates: thirdPass.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
                                               paginate: false,
                                               name: params.name,
                                               duration1: params.duration1,
-                                              duration2: params.duration2])
+                                              duration2: params.duration2]
   }
 
 }

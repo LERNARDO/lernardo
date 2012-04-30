@@ -64,7 +64,7 @@
             </erp:isSystemAdmin>
             <td>
               <span class="bold"><g:message code="email"/>: </span>
-              ${fieldValue(bean: user, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+              ${fieldValue(bean: user, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
             </td>
             <erp:accessCheck types="['Betreiber']" me="${user}">
               <td>

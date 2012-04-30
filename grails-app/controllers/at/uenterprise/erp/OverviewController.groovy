@@ -126,7 +126,7 @@ class OverviewController {
       users = users.subList(params.offset, upperBound)
     }
 
-    render(template: 'allusers', model: [entities: users, numEntities: numUsers, glossary: params.glossary])
+    render template: 'allusers', model: [entities: users, numEntities: numUsers, glossary: params.glossary]
   }
   
   def searchMe = {

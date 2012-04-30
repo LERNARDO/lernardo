@@ -23,7 +23,7 @@
       <g:message code="privat.workday.chooseDay"/>
     </div>
 
-    <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'showunits', id: entity.id]" update="workdayunits" before="showspinner('#workdayunits')">
+    <g:formRemote name="formRemote" url="[controller: 'workdayUnit', action: 'showunits', id: entity.id]" update="workdayunits" before="showspinner('#workdayunits')">
       <g:textField name="date" size="30" value="${new Date().format('dd. MM. yyyy')}" class="datepicker-birthday"/>
       <g:submitButton name="submitButton" value="OK"/>
     </g:formRemote>

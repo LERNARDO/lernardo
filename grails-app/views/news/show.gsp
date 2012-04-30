@@ -22,7 +22,7 @@
         <div class="info">
           <g:message code="from"/>
           <span class="bold">
-            <g:link controller="${news.author.type.supertype.name +'Profile'}" action="show" id="${news.author.id}">${news.author.profile.fullName}</g:link>
+            <g:link controller="${news.author.type.supertype.name + 'Profile'}" action="show" id="${news.author.id}">${news.author.profile.fullName}</g:link>
           </span>
           <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${news.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
           <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${news.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>

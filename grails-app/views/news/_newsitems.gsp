@@ -10,7 +10,7 @@
       <div class="info">
         <g:message code="from"/>
         <erp:isEnabled entity="${newsitem.author}">
-          <g:link controller="${newsitem.author.type.supertype.name +'Profile'}" action="show" id="${newsitem.author.id}">${newsitem.author.profile.fullName}</g:link>
+          <g:link controller="${newsitem.author.type.supertype.name + 'Profile'}" action="show" id="${newsitem.author.id}">${newsitem.author.profile.fullName}</g:link>
         </erp:isEnabled>
         <erp:notEnabled entity="${newsitem.author}">
           <span class="notEnabled">${newsitem.author.profile.fullName}</span>

@@ -11,7 +11,7 @@
 
 <g:each var="pub" in="${publist}" status="i">
   <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-    <td class="title"><a target="_blank" href="${createLink(action:'showasset', params:'[name:pub.entity.name]', id:pub.id)}">${pub.name}</a></td>
+    <td class="title"><a target="_blank" href="${createLink(action: 'showasset', params: '[name: pub.entity.name]', id: pub.id)}">${pub.name}</a></td>
     %{-- TODO: uncomment when implemented --}%
     %{--<ub:meOrAdmin entityName="${entity}"><td><erp:showAccessLevel accesslevel="${pub.accesslevel}"/></td></ub:meOrAdmin>--}%
     %{--<td><erp:getFileType type="${pub.asset.storage.contentType}"/></td>--}%

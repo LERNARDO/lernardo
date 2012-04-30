@@ -85,10 +85,10 @@
     allDaySlot:true,
     allDayText:'',
     weekends: true,
-    %{--events: '${createLink (controller:"calendar", action:"events", params:[visibleEducators: visibleEducators])}',--}%
+    %{--events: '${createLink (controller: "calendar", action: "events", params: [visibleEducators: visibleEducators])}',--}%
 
     eventClick: function (calEvent, jsEvent, view) {
-      top.location.href = "${createLink (controller:"calendar", action:"destination")}"+"/"+calEvent.id
+      top.location.href = "${createLink (controller: "calendar", action: "destination")}"+"/"+calEvent.id
     },
 
     eventMouseover: function(e,m) {
@@ -97,8 +97,8 @@
       var tPosY = m.pageY + 20 ;
       $('#caltip').css({top: tPosY, left: tPosX, display: 'block'});
       var tt = '';
-      tt += e.title+'<br /><br />';
-      tt += e.description+'<br />';
+      tt += e.title+ '<br /><br />';
+      tt += e.description+ '<br />';
       $('#caltip').html(tt);
     },
     eventMouseout: function() {

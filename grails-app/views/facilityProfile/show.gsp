@@ -32,7 +32,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="description"/>:</td>
-          <td class="two">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+          <td class="two">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+ '</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -49,27 +49,27 @@
 
         <tr class="prop">
           <td class="one"><g:message code="phone"/>:</td>
-          <td class="two">${fieldValue(bean: facility, field: 'profile.phone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
+          <td class="two">${fieldValue(bean: facility, field: 'profile.phone') ?: '<div class="italic">'+message(code:'noData')+ '</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="street"/>:</td>
-          <td class="two">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+          <td class="two">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">'+message(code:'empty')+ '</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="zip"/>:</td>
-          <td class="two">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+          <td class="two">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+ '</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="city"/>:</td>
-          <td class="two">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+          <td class="two">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">'+message(code:'empty')+ '</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="country"/>:</td>
-          <td class="two">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+          <td class="two">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">'+message(code:'empty')+ '</div>'}</td>
         </tr>
 
         </tbody>
@@ -125,7 +125,7 @@
         <h5><g:message code="contacts"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="contacts" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
+          <g:formRemote name="formRemote" url="[controller: 'facilityProfile', action: 'addContact', id: facility.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
 
             <table>
               <tr>
@@ -180,7 +180,7 @@
         <h5><g:message code="resource.profile"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="resources" style="display:none">
-          <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
+          <g:formRemote name="formRemote2" url="[controller: 'facilityProfile', action: 'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
             <table>
               <tr>
                 <td><g:message code="name"/>:</td>

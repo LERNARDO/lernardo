@@ -161,7 +161,7 @@ class FacilityProfileController {
       flash.message = message(code: "object.created", args: [message(code: "facility"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [facility: ee.entity, allColonies: Entity.findAllByType(metaDataService.etGroupColony)])
+      render view: "create", model: [facility: ee.entity, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
     }
 
   }
@@ -205,7 +205,7 @@ class FacilityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'educators', model: [educators: linking.sources, facility: linking.target]
   }
 
@@ -217,7 +217,7 @@ class FacilityProfileController {
   def addLeadEducator = {
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'leadeducators', model: [leadeducators: linking.sources, facility: linking.target]
   }
 
@@ -280,7 +280,7 @@ class FacilityProfileController {
   def addContact = {ContactCommand cc ->
     Entity facility = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "facility.profile.name.insert")+'</p>'
+      render '<p class="italic red">'+message(code: "facility.profile.name.insert")+ '</p>'
       render template: 'contacts', model: [facility: facility]
       return
     }
@@ -339,11 +339,11 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'educatorresults', model: [results: results, facility: params.id])
+      render template: 'educatorresults', model: [results: results, facility: params.id]
     }
   }
 
@@ -375,11 +375,11 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'leadeducatorresults', model: [results: results, facility: params.id])
+      render template: 'leadeducatorresults', model: [results: results, facility: params.id]
     }
   }
 
@@ -411,11 +411,11 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: results, facility: params.id])
+      render template: 'clientresults', model: [results: results, facility: params.id]
     }
   }
 }

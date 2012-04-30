@@ -49,7 +49,7 @@
 
       </table>
       
-      <span class="ga_tab" style="border-right: none;"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params:[type: 'single']]" update="ga_content" before="showspinner('#ga_content')">Einmalig</g:remoteLink></span><span class="ga_tab"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params:[type: 'multiple']]" update="ga_content" before="showspinner('#ga_content')">Zeitraum</g:remoteLink></span>
+      <span class="ga_tab" style="border-right: none;"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params: [type: 'single']]" update="ga_content" before="showspinner('#ga_content')">Einmalig</g:remoteLink></span><span class="ga_tab"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params: [type: 'multiple']]" update="ga_content" before="showspinner('#ga_content')">Zeitraum</g:remoteLink></span>
       <div id="ga_content" class="ga_content">
         <g:render template="single" />
       </div>

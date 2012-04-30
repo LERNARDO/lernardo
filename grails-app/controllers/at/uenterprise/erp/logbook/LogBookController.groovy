@@ -308,7 +308,7 @@ class LogBookController {
       redirect action: "processes"
     }
     else {
-      render view:"create", model:[process: process]
+      render view: "create", model: [process: process]
     }
   }
 

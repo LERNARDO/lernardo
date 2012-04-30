@@ -28,7 +28,7 @@
 
       <div class="buttons">
         <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}"><g:message code="cancel"/></g:link></div>
+        <div class="button"><g:link class="buttonGray" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
 

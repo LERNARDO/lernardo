@@ -237,11 +237,11 @@ class GroupActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'templateresults', model: [results: results])
+      render template: 'templateresults', model: [results: results]
     }
   }
 
@@ -276,7 +276,7 @@ class GroupActivityProfileController {
     Entity groupActivityTemplate = Entity.get(params.template)
 
     if (ac.hasErrors()) {
-      render view: 'create', model:['ac':ac, template: groupActivityTemplate]
+      render view: 'create', model: ['ac':ac, template: groupActivityTemplate]
       return
     }
 
@@ -326,7 +326,7 @@ class GroupActivityProfileController {
           entity.profile.addToLabels(label)
         }
 
-        new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
+        new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
         flash.message = message(code: "object.created", args: [message(code: "groupActivity"), entity.profile.fullName])
         redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
@@ -339,7 +339,7 @@ class GroupActivityProfileController {
           calculatedDuration += it.profile.duration
         }
 
-        render(view: "create", model: [group: ee.entity, workAroundName: ee.entity.profile.fullName, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
+        render view: "create", model: [group: ee.entity, workAroundName: ee.entity.profile.fullName, template: groupActivityTemplate, calculatedDuration: calculatedDuration]
       }
     }
     // multiple days
@@ -433,7 +433,7 @@ class GroupActivityProfileController {
             entity.profile.addToLabels(label)
           }
 
-          new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
+          new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
         }
 
         currentDate += 1
@@ -446,7 +446,7 @@ class GroupActivityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'educators', model: [educators: linking.sources, group: linking.target]
   }
 
@@ -458,7 +458,7 @@ class GroupActivityProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltGroupMemberSubstitute)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'substitutes', model: [substitutes: linking.sources, group: linking.target]
   }
 
@@ -470,7 +470,7 @@ class GroupActivityProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'parents', model: [parents: linking.sources, group: linking.target]
   }
 
@@ -482,7 +482,7 @@ class GroupActivityProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 
@@ -500,12 +500,12 @@ class GroupActivityProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+        render '<span class="red italic">"' + linking.target.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
       render template: 'facilities', model: [facilities: linking.targets, group: linking.source]
     }
     else {
       List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility)
-      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
+      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+ '</span>'
       render template: 'facilities', model: [facilities: facilities, group: group]
     }
 
@@ -536,7 +536,7 @@ class GroupActivityProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.target.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'themes', model: [themes: linking.targets, group: linking.source]
   }
 
@@ -573,11 +573,11 @@ class GroupActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: results, group: params.id])
+      render template: 'clientresults', model: [results: results, group: params.id]
     }
   }
 
@@ -683,7 +683,7 @@ class GroupActivityProfileController {
         return
       }
       else {
-        render(template: 'searchresults', model: [groups: groupActivities])
+        render template: 'searchresults', model: [groups: groupActivities]
       }
     }
     else
@@ -712,7 +712,7 @@ class GroupActivityProfileController {
       return
     }
     else {
-      render(template: 'searchresults', model: [groups: users])
+      render template: 'searchresults', model: [groups: users]
     }
   }
 
@@ -734,7 +734,7 @@ class GroupActivityProfileController {
       return
     }
     else {
-        render(template: 'searchresults', model: [groups: result])
+        render template: 'searchresults', model: [groups: result]
     }
   }
 
@@ -867,7 +867,7 @@ class GroupActivityProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, group: params.id])
+      render template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, group: params.id]
       return
     }
 
@@ -886,7 +886,7 @@ class GroupActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
@@ -896,7 +896,7 @@ class GroupActivityProfileController {
         if (results.contains(ae))
           finalResult.add(ae)
       }
-      render(template: 'educatorresults', model: [results: finalResult, group: params.id])
+      render template: 'educatorresults', model: [results: finalResult, group: params.id]
     }
   }
 
@@ -909,7 +909,7 @@ class GroupActivityProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, group: params.id])
+      render template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, group: params.id]
       return
     }
 
@@ -928,11 +928,11 @@ class GroupActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'substituteresults', model: [results: results, group: params.id])
+      render template: 'substituteresults', model: [results: results, group: params.id]
     }
   }
 
@@ -1030,13 +1030,13 @@ class GroupActivityProfileController {
     else
       fourthPass = thirdPass
 
-    render(template: 'searchresults', model: [groups: fourthPass,
+    render template: 'searchresults', model: [groups: fourthPass,
         totalGroups: fourthPass.size(),
         numberOfAllProjects: numberOfAllGroupActivities,
         paginate: false,
         name: params.name,
         ageFrom: params.ageFrom,
-        ageTo: params.ageTo])
+        ageTo: params.ageTo]
   }
 
 

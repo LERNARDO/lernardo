@@ -13,7 +13,7 @@
 
     <div class="adminbox">
       <div class="bold">Show links "from" and "to" an entity:</div>
-      <g:select from="${entities}" name="entity" optionKey="id" optionValue="profile" noSelection="[null:message(code:'non')]" onchange="${remoteFunction(controller:'admin', action:'linksresults', update:'results', params:'\'id=\' + this.value')}"/>
+      <g:select from="${entities}" name="entity" optionKey="id" optionValue="profile" noSelection="[null:message(code:'non')]" onchange="${remoteFunction(controller: 'admin', action: 'linksresults', update: 'results', params:'\'id=\' + this.value')}"/>
       <div class="result" id="results"></div>
     </div>
 

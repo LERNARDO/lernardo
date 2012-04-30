@@ -26,7 +26,7 @@
 <g:if test="${results}">
   <div class="remoteresults">
     <g:each in="${results}" var="entity">
-      <g:remoteLink url="[controller:'evaluation', action:'addResult', id: entity.id]" update="selected" before="checkIt('${entity.id}','${entity.profile.fullName}');">
+      <g:remoteLink url="[controller: 'evaluation', action: 'addResult', id: entity.id]" update="selected" before="checkIt('${entity.id}','${entity.profile.fullName}');">
       <div class="remoteresult">
         <table>
           <tr>

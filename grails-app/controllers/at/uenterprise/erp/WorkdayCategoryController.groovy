@@ -3,11 +3,11 @@ package at.uenterprise.erp
 class WorkdayCategoryController {
     
     def index = {
-        redirect action:"list", params:params 
+        redirect action: "list", params: params
     }
 
     // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+    static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
     def list = {
         params.max = Math.min(params.int('max') ?: 10, 100)
@@ -32,17 +32,17 @@ class WorkdayCategoryController {
         if(workdayCategoryInstance) {
             try {
                 workdayCategoryInstance.delete(flush:true)
-                flash.message = message(code: "object.deleted", args:[message(code: "workdayCategory"), workdayCategoryInstance.name])
-                redirect action:"list"
+                flash.message = message(code: "object.deleted", args: [message(code: "workdayCategory"), workdayCategoryInstance.name])
+                redirect action: "list"
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code: "object.notDeleted", args:[message(code: "workdayCategory"), workdayCategoryInstance.name])
-                redirect action:"show", id:params.id
+                flash.message = message(code: "object.notDeleted", args: [message(code: "workdayCategory"), workdayCategoryInstance.name])
+                redirect action: "show", id: params.id
             }
         }
         else {
             flash.message = message(code: "object.notFound", args: [message(code: "workdayCategory")])
-            redirect action:"list"
+            redirect action: "list"
         }
     }
 
@@ -54,7 +54,7 @@ class WorkdayCategoryController {
       }
       else {
         flash.message = message(code: "object.notFound", args: [message(code: "workdayCategory")])
-        redirect action:'list'
+        redirect action: 'list'
       }
 
     }
@@ -68,39 +68,39 @@ class WorkdayCategoryController {
                     
                     workdayCategoryInstance.errors.rejectValue("version", "workdayCategory.optimistic.locking.failure", "Another user has updated this WorkdayCategory while you were editing.")
 
-                    render view:'edit', model:[workdayCategoryInstance:workdayCategoryInstance]
+                    render view: 'edit', model: [workdayCategoryInstance:workdayCategoryInstance]
                     return
                 }
             }
             workdayCategoryInstance.properties = params
             if(workdayCategoryInstance.save()) {
-                flash.message = message(code: "object.updated", args:[message(code: "workdayCategory"), workdayCategoryInstance.name])
-                redirect action:'show', id:workdayCategoryInstance.id
+                flash.message = message(code: "object.updated", args: [message(code: "workdayCategory"), workdayCategoryInstance.name])
+                redirect action: 'show', id: workdayCategoryInstance.id
             }
             else {
-                render view:'edit', model:[workdayCategoryInstance:workdayCategoryInstance]
+                render view: 'edit', model: [workdayCategoryInstance:workdayCategoryInstance]
             }
         }
         else {
             flash.message = message(code: "object.notFound", args: [message(code: "workdayCategory")])
-            redirect action:'list'
+            redirect action: 'list'
         }
     }
 
     def create = {
         def workdayCategoryInstance = new WorkdayCategory()
         workdayCategoryInstance.properties = params
-        return ['workdayCategoryInstance':workdayCategoryInstance]
+        return ['workdayCategoryInstance': workdayCategoryInstance]
     }
 
     def save = {
         def workdayCategoryInstance = new WorkdayCategory(params)
         if(workdayCategoryInstance.save(flush:true)) {
-            flash.message = message(code: "object.created", args:[message(code: "workdayCategory"), workdayCategoryInstance.name])
-            redirect action:"show", id:workdayCategoryInstance.id
+            flash.message = message(code: "object.created", args: [message(code: "workdayCategory"), workdayCategoryInstance.name])
+            redirect action: "show", id: workdayCategoryInstance.id
         }
         else {
-            render view:'create', model:[workdayCategoryInstance:workdayCategoryInstance]
+            render view: 'create', model: [workdayCategoryInstance: workdayCategoryInstance]
         }
     }
 }

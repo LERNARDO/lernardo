@@ -26,7 +26,7 @@
           <td><g:link action="show" id="${resource.id}">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td>
             <erp:resourceCreatedIn resource="${resource}">
-              <g:link controller="${source.type.supertype.name +'Profile'}" action="show" id="${source.id}">${source.profile.fullName}</g:link>
+              <g:link controller="${source.type.supertype.name + 'Profile'}" action="show" id="${source.id}">${source.profile.fullName}</g:link>
             </erp:resourceCreatedIn>
           </td>
         </tr>

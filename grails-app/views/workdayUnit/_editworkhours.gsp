@@ -1,4 +1,4 @@
-<g:formRemote name="editWorkHours" update="${i}a" url="[action:'updateWorkHours', id: person.id, params:[i: i]]">
+<g:formRemote name="editWorkHours" update="${i}a" url="[action: 'updateWorkHours', id: person.id, params: [i: i]]">
   <table>
     <tr>
         <td><span class="bold"><g:message code="monday.short"/></span></td>

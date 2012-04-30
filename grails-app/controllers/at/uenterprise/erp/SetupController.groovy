@@ -76,7 +76,7 @@ class SetupController {
   }
 
   def updateElement = {
-    log.info 'params for update:'+params
+    log.info 'params for update: '+params
     def setupInstance = Setup.get(params.id)
 
     params.elementOld = params.elementOld.decodeHTML()

@@ -120,7 +120,7 @@ class UserProfileController {
       flash.message = message(code: "object.created", args: [message(code: "user"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [user: ee.entity])
+      render view: "create", model: [user: ee.entity]
     }
 
   }

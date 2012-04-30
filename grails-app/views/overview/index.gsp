@@ -4,11 +4,11 @@
 
   <script type="text/javascript">
     $(function() {
-      ${remoteFunction(controller:"overview", action: "admin", update: "admin", before: "showspinner('#admin')")}
-      ${remoteFunction(controller:"overview", action: "persons", update: "persons", before: "showspinner('#persons')")}
-      ${remoteFunction(controller:"overview", action: "other", update: "others", before: "showspinner('#others')")}
-      ${remoteFunction(controller:"overview", action: "groups", update: "groups", before: "showspinner('#groups')")}
-      ${remoteFunction(controller:"overview", action: "planning", update: "planning", before: "showspinner('#planning')")}
+      ${remoteFunction(controller: "overview", action: "admin", update: "admin", before: "showspinner('#admin')")}
+      ${remoteFunction(controller: "overview", action: "persons", update: "persons", before: "showspinner('#persons')")}
+      ${remoteFunction(controller: "overview", action: "other", update: "others", before: "showspinner('#others')")}
+      ${remoteFunction(controller: "overview", action: "groups", update: "groups", before: "showspinner('#groups')")}
+      ${remoteFunction(controller: "overview", action: "planning", update: "planning", before: "showspinner('#planning')")}
     });
   </script>
 

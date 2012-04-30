@@ -122,7 +122,7 @@ class GroupPartnerProfileController {
       flash.message = message(code: "object.created", args: [message(code: "groupPartner"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [group: ee.entity])
+      render view: "create", model: [group: ee.entity]
     }
 
   }
@@ -130,7 +130,7 @@ class GroupPartnerProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 

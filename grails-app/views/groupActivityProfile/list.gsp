@@ -28,7 +28,7 @@
 
     <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
 
-      <g:formRemote name="formRemote0" url="[controller:'groupActivityProfile', action:'updateselect']" update="searchresults" before="showspinner('#searchresults')">
+      <g:formRemote name="formRemote0" url="[controller: 'groupActivityProfile', action: 'updateselect']" update="searchresults" before="showspinner('#searchresults')">
 
         <div style="margin-bottom: 10px;">
           <span class="gray"><g:message code="creator"/>:</span><br/>
@@ -60,7 +60,7 @@
           %{--<tr class="prop">
             <td valign="top" class="name"><g:message code="name"/></td>
             <td valign="top" class="value">
-              <g:remoteField size="30" name="instantSearch" update="searchresults" paramName="name" url="[action:'searchbyname']" before="showspinner('#searchresults')" />
+              <g:remoteField size="30" name="instantSearch" update="searchresults" paramName="name" url="[action: 'searchbyname']" before="showspinner('#searchresults')" />
             </td>
           </tr>--}%
 

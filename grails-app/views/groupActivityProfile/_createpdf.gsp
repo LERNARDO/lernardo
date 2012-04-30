@@ -74,7 +74,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="groupActivity.profile.educationalObjectiveText"/>:</td>
-        <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
       </tr>
 
       <tr class="prop">
@@ -91,7 +91,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="description"/>:</td>
-        <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
       </tr>
 
     </table>
@@ -279,7 +279,7 @@
 
           <tr class="prop">
             <td class="one"><g:message code="activityTemplate.chosenMaterials"/>:</td>
-            <td class="two">${activity.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${activity.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
           </tr>
 
           <tr class="prop">
@@ -304,7 +304,7 @@
 
           <tr class="prop">
             <td class="one"><g:message code="description"/>:</td>
-            <td class="two">${fieldValue(bean: activity, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${fieldValue(bean: activity, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
           </tr>
 
           <tr class="prop">

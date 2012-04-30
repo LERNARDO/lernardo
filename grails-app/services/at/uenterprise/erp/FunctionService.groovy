@@ -511,7 +511,7 @@ class FunctionService {
     // see if we have it already stored somehow ...
     def store = assetService.findStorage(sid)
     if (!store) {
-      store = new AssetStorage (storageId:sid, contentType:contentType)
+      store = new AssetStorage (storageId: sid, contentType: contentType)
       assetService.assetStore.put (sid, content)
       store = store.save()
     }

@@ -11,7 +11,7 @@
     <p class="italic green"><g:message code="workdayUnit.dayNotConfirmed"/></p>
     <g:set var="confirmed" value="false"/>
     <g:if test="${currentEntity.id == entity.id}">
-      <g:formRemote name="confirmForm" url="[controller:'workdayUnit', action:'confirmDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.confirmation')}')) return false">
+      <g:formRemote name="confirmForm" url="[controller: 'workdayUnit', action: 'confirmDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.confirmation')}')) return false">
 
           <span style="display: none">
             <g:datePicker name="date" value="${date}"/>
@@ -30,7 +30,7 @@
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
 
       <p class="italic red"><g:message code="workdayUnit.dayConfirmed"/></p>
-      <g:formRemote name="cancelForm" url="[controller:'workdayUnit', action:'cancelDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.cancellation')}')) return false">
+      <g:formRemote name="cancelForm" url="[controller: 'workdayUnit', action: 'cancelDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.cancellation')}')) return false">
 
         <span style="display: none">
           <g:datePicker name="date" value="${date}"/>
@@ -52,7 +52,7 @@
     <g:if test="${workdaycategories}">
       <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
         <p><span class="bold"><g:message code="workdayUnit.createEntry"/></span></p>
-        <g:formRemote name="addForm" url="[controller:'workdayUnit', action:'addWorkdayUnit', id: entity.id]" update="workdayunits" before="showspinner('#workdayunits')">
+        <g:formRemote name="addForm" url="[controller: 'workdayUnit', action: 'addWorkdayUnit', id: entity.id]" update="workdayunits" before="showspinner('#workdayunits')">
 
           <span style="display: none">
             <g:datePicker name="date" value="${date}"/>

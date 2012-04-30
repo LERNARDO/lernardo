@@ -234,7 +234,7 @@ class ProjectTemplateProfileController {
       File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(EVENT_TYPE.PROJECT_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
@@ -243,14 +243,14 @@ class ProjectTemplateProfileController {
       flash.message = message(code: "object.created", args: [message(code: "projectTemplate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [projectTemplate: ee.entity])
+      render view: "create", model: [projectTemplate: ee.entity]
     }
 
   }
 
   def editProjectUnitTemplate = {
     Entity projectUnitTemplate = Entity.get(params.projectUnitTemplate)
-    render template: "editProjectUnitTemplate", model:[projectUnitTemplate: projectUnitTemplate, i: params.i]
+    render template: "editProjectUnitTemplate", model: [projectUnitTemplate: projectUnitTemplate, i: params.i]
   }
 
   def updateProjectUnitTemplate = {
@@ -302,7 +302,7 @@ class ProjectTemplateProfileController {
                                                        allLabels: Label.findAllByType('template', params)]
     } catch (at.openfactory.ep.EntityException ee) {
       //render '<span class="red">Projekteinheitvorlage konnte nicht gespeichert werden!</span><br/>'
-      render '<span class="red">'+message(code: "projectUnitTemplates.notSaved")+'</span><br/>'
+      render '<span class="red">'+message(code: "projectUnitTemplates.notSaved")+ '</span><br/>'
 
       // find all projectUnitTemplates of this projectTemplate
       //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
@@ -433,7 +433,7 @@ class ProjectTemplateProfileController {
     // calculate realDuration
     int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
-    render template:'updateduration', model:[calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]   
+    render template: 'updateduration', model: [calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]
   }
 
   /*
@@ -451,7 +451,7 @@ class ProjectTemplateProfileController {
           eq("status", "done")
         }
       }
-      render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+      render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
       return
     }
 
@@ -470,11 +470,11 @@ class ProjectTemplateProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+      render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
     }
   }
 
@@ -658,11 +658,11 @@ def updateselect = {
     else
       thirdPass = secondPass
 
-    render(template: 'searchresults', model: [allTemplates: thirdPass,
+    render template: 'searchresults', model: [allTemplates: thirdPass,
                                               totalTemplates: thirdPass.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
                                               paginate: false,
-                                              name: params.name])
+                                              name: params.name]
   }
 
    def remoteGroupActivityTemplateByLabel = {
@@ -685,11 +685,11 @@ def updateselect = {
      }
      
      if (results.size() == 0) {
-       render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+       render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
        return
      }
      else {
-       render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+       render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
      }
    }
 

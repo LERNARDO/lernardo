@@ -187,7 +187,7 @@ class ParentProfileController {
           order(params.sort, params.order)
         }
       }
-      render(view: "create", model: [parent: ee.entity, allColonies: allColonies])
+      render view: "create", model: [parent: ee.entity, allColonies: allColonies]
     }
 
   }

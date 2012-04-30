@@ -37,27 +37,27 @@
 
         <tr class="prop">
           <td class="one"><g:message code="zip"/>:</td>
-          <td class="two">${fieldValue(bean: operator, field: 'profile.zip') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: operator, field: 'profile.zip') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="city"/>:</td>
-          <td class="two">${fieldValue(bean: operator, field: 'profile.city') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: operator, field: 'profile.city') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="street"/>:</td>
-          <td class="two">${fieldValue(bean: operator, field: 'profile.street') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: operator, field: 'profile.street') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="description"/>:</td>
-          <td class="two">${fieldValue(bean: operator, field: 'profile.description') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: operator, field: 'profile.description') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="phone"/>:</td>
-          <td class="two">${fieldValue(bean: operator, field: 'profile.phone') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: operator, field: 'profile.phone') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         </tbody>
@@ -74,7 +74,7 @@
             </erp:accessCheck>
             <td>
               <span class="bold"><g:message code="email"/>: </span>
-              ${fieldValue(bean: operator, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+              ${fieldValue(bean: operator, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
             </td>
             <erp:accessCheck types="['Betreiber']" me="${operator}">
               <td>
@@ -93,7 +93,7 @@
     <div class="zusatz">
       <h5><g:message code="facilities"/> <erp:accessCheck me="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'operatorProfile', action:'addFacility', id: operator.id]" update="facilities2" before="showspinner('#facilities2')">
+        <g:formRemote name="formRemote" url="[controller: 'operatorProfile', action: 'addFacility', id: operator.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <g:submitButton name="button" value="${message(code:'add')}"/>
         </g:formRemote>

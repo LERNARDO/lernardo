@@ -6,7 +6,7 @@
   });
 </script>
 
-<g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'updateUnit', id: workdayUnit.id, params: [i: i, entity: entity.id]]" update="unit-${i}" before="showspinner('#unit-${i}')">
+<g:formRemote name="formRemote" url="[controller: 'workdayUnit', action: 'updateUnit', id: workdayUnit.id, params: [i: i, entity: entity.id]]" update="unit-${i}" before="showspinner('#unit-${i}')">
 
   <div class="gray" style="width: 200px; float: left;">
     <g:message code="from"/>: <g:textField name="from" class="timepicker" size="4" value="${formatDate(date: workdayUnit.date1, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="to"/>: <g:textField name="to" class="timepicker" size="4" value="${formatDate(date: workdayUnit.date2, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>

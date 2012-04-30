@@ -28,7 +28,7 @@ class LabelController {
       redirect action: "show", id: labelInstance.id
     }
     else {
-      render(view: "create", model: [labelInstance: labelInstance])
+      render view: "create", model: [labelInstance: labelInstance]
     }
   }
 
@@ -74,7 +74,7 @@ class LabelController {
         redirect action: "show", id: labelInstance.id
       }
       else {
-        render(view: "edit", model: [labelInstance: labelInstance])
+        render view: "edit", model: [labelInstance: labelInstance]
       }
     }
     else {

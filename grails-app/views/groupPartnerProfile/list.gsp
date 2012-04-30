@@ -24,7 +24,7 @@
 
     <g:if test="${groups}">
 
-      <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[groupPartner: 'yes']]" before="showspinner('#membersearch-results')" />
+      <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller: 'overview', action: 'searchMe', params: [groupPartner: 'yes']]" before="showspinner('#membersearch-results')" />
       <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
 
       <table class="default-table">

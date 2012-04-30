@@ -1,4 +1,4 @@
-<g:formRemote name="formRemote" url="[controller:'resourceProfile', action:'updateResource', id: template.id, params: [resourceInstance: resourceInstance.id, i: i]]" update="resource${i}" before="showspinner('#resource${i}');">
+<g:formRemote name="formRemote" url="[controller: 'resourceProfile', action: 'updateResource', id: template.id, params: [resourceInstance: resourceInstance.id, i: i]]" update="resource${i}" before="showspinner('#resource${i}');">
   <table>
     <tr>
       <td><g:message code="name"/>:</td>

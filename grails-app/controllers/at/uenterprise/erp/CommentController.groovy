@@ -17,7 +17,7 @@ class CommentController {
     entity.profile.removeFromComments(comment)
     comment.delete()
 
-    render template:'comments', model:[commented: entity]
+    render template: 'comments', model: [commented: entity]
   }
 
   def create = {
@@ -33,13 +33,13 @@ class CommentController {
 
     functionService.createEvent(EVENT_TYPE.COMMENT_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
-    render template:'comments', model:[commented: entity]
+    render template: 'comments', model: [commented: entity]
   }
 
   def edit = {
     Entity entity = Entity.get(params.id)
     Comment comment = Comment.get(params.comment)
-    render template:'updatecomment', model:[commented: entity, comment: comment, i: params.i]
+    render template: 'updatecomment', model: [commented: entity, comment: comment, i: params.i]
   }
 
   def update = {

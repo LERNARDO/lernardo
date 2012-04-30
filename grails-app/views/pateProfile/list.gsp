@@ -22,7 +22,7 @@
       </div>
     </erp:accessCheck>
 
-    <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[pate: 'yes']]" before="showspinner('#membersearch-results')" />
+    <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller: 'overview', action: 'searchMe', params: [pate: 'yes']]" before="showspinner('#membersearch-results')" />
     <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
 
     <table class="default-table">
@@ -40,7 +40,7 @@
             <erp:profileImage entity="${pate}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
             <g:link action="show" id="${pate.id}">${fieldValue(bean: pate, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
-          <td>${fieldValue(bean: pate, field: 'profile.country') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td>${fieldValue(bean: pate, field: 'profile.country') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
           <td>
             <erp:getPateClients entity="${pate}">
               <ul style="margin: 0; padding: 0;">

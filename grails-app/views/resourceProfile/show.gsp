@@ -16,7 +16,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="location"/>:</td>
-        <td class="two"><g:link controller="${location.type.supertype.name +'Profile'}" action="show" id="${location.id}">${fieldValue(bean: location, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        <td class="two"><g:link controller="${location.type.supertype.name + 'Profile'}" action="show" id="${location.id}">${fieldValue(bean: location, field: 'profile.fullName').decodeHTML()}</g:link></td>
       </tr>
 
       <tr class="prop">
@@ -26,7 +26,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="description"/>:</td>
-        <td class="two">${fieldValue(bean: resourceInstance, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td class="two">${fieldValue(bean: resourceInstance, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
       </tr>
 
       <tr class="prop">

@@ -4,7 +4,7 @@
   });
 </script>
 
-<g:formRemote name="updateAttendance" update="attendance${i}" url="[action:'updateAttendance', id: attendance.id, params: [i: i]]">
+<g:formRemote name="updateAttendance" update="attendance${i}" url="[action: 'updateAttendance', id: attendance.id, params: [i: i]]">
   <table class="default-table">
       <tr>
         <td valign="top" width="250px">${attendance.client.profile.fullName}</td>

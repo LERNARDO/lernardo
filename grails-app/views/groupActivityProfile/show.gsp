@@ -76,12 +76,12 @@
 
         <tr class="prop">
           <td class="one"><g:message code="groupActivity.profile.educationalObjectiveText"/>:</td>
-          <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="description"/>:</td>
-          <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         </tbody>
@@ -125,7 +125,7 @@
         <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkoperator="true"><a onclick="toggle('#labels');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="labels" style="display:none">
-          <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addLabel', id:group.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
+          <g:formRemote name="formRemote2" url="[controller: 'groupActivityProfile', action: 'addLabel', id: group.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
             %{--<div class="clear"></div>--}%
             <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -142,7 +142,7 @@
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Zu Thema zuordnen"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="themes" style="display:none">
           <g:if test="${allThemes}">
-            <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addTheme', id: group.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
+            <g:formRemote name="formRemote" url="[controller: 'groupActivityProfile', action: 'addTheme', id: group.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
               <g:select name="theme" from="${allThemes}" optionKey="id" optionValue="profile"/>
               <g:submitButton name="button" value="${message(code:'add')}"/>
             </g:formRemote>
@@ -160,7 +160,7 @@
         <h5><g:message code="facility"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#facilities');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="facilities" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="${remoteFunction(action: 'refreshplannableresources', update: 'plannableresources', id: group.id)}">
+          <g:formRemote name="formRemote" url="[controller: 'groupActivityProfile', action: 'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="${remoteFunction(action: 'refreshplannableresources', update: 'plannableresources', id: group.id)}">
             <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
             <g:submitButton name="button" value="${message(code:'add')}"/>
           </g:formRemote>
@@ -215,7 +215,7 @@
         <h5><g:message code="parents"/> (${parents.size()}) <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#parents');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="parents" style="display:none">
-          <g:formRemote name="formRemote4" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="showspinner('#parents2');" after="toggle('#parents');">
+          <g:formRemote name="formRemote4" url="[controller: 'groupActivityProfile', action: 'addParent', id: group.id]" update="parents2" before="showspinner('#parents2');" after="toggle('#parents');">
             <div id="parentselect">
               <g:render template="parentselect" model="[allParents: allParents, group: group]"/>
             </div>
@@ -233,7 +233,7 @@
         <h5><g:message code="partners"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#partners');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="partners" style="display:none">
-          <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">
+          <g:formRemote name="formRemote5" url="[controller: 'groupActivityProfile', action: 'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">
             <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>

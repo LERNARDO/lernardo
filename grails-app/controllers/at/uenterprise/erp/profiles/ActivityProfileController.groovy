@@ -186,7 +186,7 @@ class ActivityProfileController {
   def save = {ActivityCommand ac ->
 
     if (ac.hasErrors()) {
-      render view: 'create', model:['ac':ac]
+      render view: 'create', model: ['ac':ac]
       return
     }
 
@@ -376,11 +376,11 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'templateresults', model: [results: results])
+      render template: 'templateresults', model: [results: results]
     }
   }
 
@@ -425,11 +425,11 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'facilityresults', model: [results: results])
+      render template: 'facilityresults', model: [results: results]
     }
   }
 
@@ -461,11 +461,11 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'educatorresults', model: [results: results, activity: params.id])
+      render template: 'educatorresults', model: [results: results, activity: params.id]
     }
   }
 
@@ -497,11 +497,11 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: results, activity: params.id])
+      render template: 'clientresults', model: [results: results, activity: params.id]
     }
   }
 
@@ -515,7 +515,7 @@ class ActivityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltActEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'educators', model: [educators: linking.sources, activity: linking.target]
   }
 
@@ -570,7 +570,7 @@ class ActivityProfileController {
         distinct('source')
       }
     }
-    render template: 'educatorsFound', model:[educators: educators, currentEntity: entityHelperService.loggedIn]
+    render template: 'educatorsFound', model: [educators: educators, currentEntity: entityHelperService.loggedIn]
   }
 
   def updateClients = {
@@ -584,7 +584,7 @@ class ActivityProfileController {
         distinct('source')
       }
     }
-    render template: 'clientsFound', model:[clients: clients, currentEntity: entityHelperService.loggedIn]
+    render template: 'clientsFound', model: [clients: clients, currentEntity: entityHelperService.loggedIn]
   }
 
   def addFacility = {
@@ -596,12 +596,12 @@ class ActivityProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltActFacility)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+        render '<span class="red italic">"' + linking.target.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
       render template: 'facilities', model: [facilities: linking.targets, activity: linking.source]
     }
     else {
       List facilities = functionService.findAllByLink(group, null, metaDataService.ltActFacility)
-      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
+      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+ '</span>'
       render template: 'facilities', model: [facilities: facilities, activity: group]
     }
 

@@ -18,7 +18,7 @@
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td><img src="${resource(dir: 'images/icons', file: 'icon_mail.png')}" alt="mail" style="top: 1px; position: relative"/> ${fieldValue(bean: entity, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td><img src="${resource(dir: 'images/icons', file: 'icon_mail.png')}" alt="mail" style="top: 1px; position: relative"/> ${fieldValue(bean: entity, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
           </tr>

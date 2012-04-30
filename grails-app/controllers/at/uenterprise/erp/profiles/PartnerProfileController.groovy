@@ -174,7 +174,7 @@ class PartnerProfileController {
           order(params.sort, params.order)
         }
       }
-      render(view: "create", model: [partner: ee.entity, allColonies: allColonies])
+      render view: "create", model: [partner: ee.entity, allColonies: allColonies]
     }
 
   }
@@ -195,7 +195,7 @@ class PartnerProfileController {
   def addContact = {ContactCommand cc ->
     Entity partner = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "object.notCreated", args: [message(code: "partner.profile.contact")])+'</p>'
+      render '<p class="italic red">'+message(code: "object.notCreated", args: [message(code: "partner.profile.contact")])+ '</p>'
       render template: 'contacts', model: [partner: partner]
       return
     }

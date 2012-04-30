@@ -129,21 +129,21 @@ class GroupClientProfileController {
       flash.message = message(code: "object.created", args: [message(code: "groupClient"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      render(view: "create", model: [group: ee.entity])
+      render view: "create", model: [group: ee.entity]
     }
 
   }
 
   def addClient = {
     if (!params.members)
-      render '<p class="italic red">'+message(code: "groupClient.clients.select.least")+'</p>'
+      render '<p class="italic red">'+message(code: "groupClient.clients.select.least")+ '</p>'
     else {
       def bla = params.list('members')
   
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
       }
     }
 
@@ -233,7 +233,7 @@ class GroupClientProfileController {
     else
       finalClients2 = finalClients
 
-    render(template: 'searchresults', model: [allClients: finalClients2])
+    render template: 'searchresults', model: [allClients: finalClients2]
   }
 
   def createpdf = {

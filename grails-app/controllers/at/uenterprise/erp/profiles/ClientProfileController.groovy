@@ -259,7 +259,7 @@ class ClientProfileController {
         }
       }
 
-      render(view: "create", model: [client: ee.entity, allColonies: allColonies, allFacilities: allFacilities])
+      render view: "create", model: [client: ee.entity, allColonies: allColonies, allFacilities: allFacilities]
     }
   }
 
@@ -347,7 +347,7 @@ class ClientProfileController {
   def addContact = {ContactCommand cc ->
     Entity client = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "client.profile.name.insert")+'</p>'
+      render '<p class="italic red">'+message(code: "client.profile.name.insert")+ '</p>'
       render template: 'contacts', model: [client: client]
       return
     }
@@ -417,11 +417,11 @@ class ClientProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'facilityresults', model: [results: results, client: params.id])
+      render template: 'facilityresults', model: [results: results, client: params.id]
     }
   }
 
@@ -431,7 +431,7 @@ class ClientProfileController {
 
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberClient)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     else
       new Attendance(client: client, facility: facility).save(failOnError: true)
 
