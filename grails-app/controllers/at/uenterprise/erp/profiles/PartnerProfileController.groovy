@@ -117,7 +117,7 @@ class PartnerProfileController {
 
     if (partner.profile.save() && partner.user.save() && partner.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "partner"), partner.profile.fullName])
-      redirect action: 'show', id: partner.id, params: [entity: partner.id]
+      redirect action: 'show', id: partner.id
     }
     else {
       params.sort = params.sort ?: "fullName"
@@ -163,7 +163,7 @@ class PartnerProfileController {
       new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
 
       flash.message = message(code: "object.created", args: [message(code: "partner"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"

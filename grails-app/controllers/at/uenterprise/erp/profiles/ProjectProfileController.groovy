@@ -436,7 +436,7 @@ class ProjectProfileController {
 
     if (project.profile.save() && project.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile.fullName])
-      redirect action: 'show', id: project.id, params: [entity: project.id]
+      redirect action: 'show', id: project.id
     }
     else {
       render view: 'edit', model: [project: project]
@@ -604,7 +604,7 @@ class ProjectProfileController {
       }
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
 
     } catch (EntityException ee) {
       render(view: "create", model: [project: ee.entity])

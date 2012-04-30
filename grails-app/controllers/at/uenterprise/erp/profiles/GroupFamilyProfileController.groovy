@@ -117,7 +117,7 @@ class GroupFamilyProfileController {
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "groupFamily"), group.profile.fullName])
-      redirect action: 'show', id: group.id, params: [entity: group.id]
+      redirect action: 'show', id: group.id
     }
     else {
       render view: 'edit', model: [group: group]
@@ -138,7 +138,7 @@ class GroupFamilyProfileController {
       }
 
       flash.message = message(code: "object.created", args: [message(code: "groupFamily"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       render(view: "create", model: [group: ee.entity])
     }

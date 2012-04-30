@@ -204,7 +204,7 @@ class GroupActivityProfileController {
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "groupActivity"), group.profile.fullName])
-      redirect action: 'show', id: group.id, params: [entity: group.id]
+      redirect action: 'show', id: group.id
     }
     else {
       render view: 'edit', model: [group: group]
@@ -328,7 +328,7 @@ class GroupActivityProfileController {
 
         new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
         flash.message = message(code: "object.created", args: [message(code: "groupActivity"), entity.profile.fullName])
-        redirect action: 'show', id: entity.id, params: [entity: entity.id]
+        redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
 
         // find all templates linked to the groupActivityTemplate

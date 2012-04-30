@@ -99,7 +99,7 @@ class PateProfileController {
     if (pate.profile.save() && pate.user.save() && pate.save()) {
 
       flash.message = message(code: "object.updated", args: [message(code: "pate"), pate.profile.fullName])
-      redirect action: 'show', id: pate.id, params: [entity: pate.id]
+      redirect action: 'show', id: pate.id
     }
     else {
       render view: 'edit', model: [pate: pate]
@@ -123,7 +123,7 @@ class PateProfileController {
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}])
     }

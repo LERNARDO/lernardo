@@ -172,7 +172,7 @@ class ClientProfileController {
 
     if (client.profile.save() && client.user.save() && client.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "client"), client.profile.fullName])
-      redirect action: 'show', id: client.id, params: [entity: client.id]
+      redirect action: 'show', id: client.id
     }
     else {
       params.sort = params.sort ?: "fullName"
@@ -240,7 +240,7 @@ class ClientProfileController {
       //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
       flash.message = message(code: "object.created", args: [message(code: "client"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"

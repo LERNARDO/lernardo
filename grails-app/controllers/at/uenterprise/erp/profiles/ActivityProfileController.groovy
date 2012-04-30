@@ -307,7 +307,7 @@ class ActivityProfileController {
 
     if (activity.profile.save() && activity.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "activity"), activity.profile.fullName])
-      redirect action: 'show', id: activity.id, params: [entity: activity.id]
+      redirect action: 'show', id: activity.id
     }
     else {
       render view: 'edit', model: ['activity': activity]

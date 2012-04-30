@@ -170,7 +170,7 @@ class AppointmentProfileController {
         new Link(source: entity, target: owner, type: metaDataService.ltAppointment).save(failOnError: true)
 
         flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile.fullName])
-        redirect action: 'show', id: entity.id, params: [entity: entity]
+        redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
         render(view: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner])
       }

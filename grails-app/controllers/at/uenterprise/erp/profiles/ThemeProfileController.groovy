@@ -265,7 +265,7 @@ class ThemeProfileController {
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "object.created", args: [message(code: "theme"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(metaDataService.etFacility)])
     }

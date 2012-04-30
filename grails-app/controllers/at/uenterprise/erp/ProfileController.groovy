@@ -282,7 +282,7 @@ class ProfileController {
       else {
         flash.message = message(code: "profile.picture.select.ok")
         functionService.storeAsset(entity, params.type, asset)
-        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
+        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id
       }
     }
   }

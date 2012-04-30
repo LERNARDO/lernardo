@@ -501,7 +501,7 @@ class AppController {
     asset.delete()
 
     flash.message = message(code: 'profile.picture.deleted')
-    redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
+    redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id
   }
 
   def changeCreator = {

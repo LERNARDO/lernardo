@@ -134,7 +134,7 @@ class GroupActivityTemplateProfileController {
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "groupActivityTemplate"), group.profile.fullName])
-      redirect action: 'show', id: group.id, params: [entity: group.id]
+      redirect action: 'show', id: group.id
     }
     else {
       render view: 'edit', model: [group: group, entity: group]
@@ -208,7 +208,7 @@ class GroupActivityTemplateProfileController {
       new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
     flash.message = message(code: "group.copied", args: [entity.profile.fullName])
-    redirect action: 'show', id: entity.id, params: [entity: entity.id]
+    redirect action: 'show', id: entity.id
 
   }
 
@@ -246,7 +246,7 @@ class GroupActivityTemplateProfileController {
       functionService.createEvent(EVENT_TYPE.GROUP_ACTIVITY_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       flash.message = message(code: "object.created", args: [message(code: "groupActivityTemplate"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       render(view: "create", model: [group: ee.entity])
     }

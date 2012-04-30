@@ -249,10 +249,10 @@ class PublicationController {
     //log.debug "attempt to save publication: $params"
     if(pub.save(flush:true)) {
       flash.message = message(code: "object.created", args:[message(code: "publication"), pub.name])
-      redirect (controller: pub.entity.type.supertype.name + "Profile", action: "show", id: pub.entity.id, params: [entity: pub.entity.id])
+      redirect controller: pub.entity.type.supertype.name + "Profile", action: "show", id: pub.entity.id
     }
     else {
-       render view:'create', model:[entity: entity, publication:pub]
+       render view: 'create', model: [entity: entity, publication: pub]
       }
   }
 

@@ -99,7 +99,7 @@ class GroupPartnerProfileController {
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "groupPartner"), group.profile.fullName])
-      redirect action: 'show', id: group.id, params: [entity: group.id]
+      redirect action: 'show', id: group.id
     }
     else {
       render view: 'edit', model: [group: group]
@@ -120,7 +120,7 @@ class GroupPartnerProfileController {
       }
 
       flash.message = message(code: "object.created", args: [message(code: "groupPartner"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [group: ee.entity])
     }
