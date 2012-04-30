@@ -225,8 +225,7 @@ class GroupActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etGroupActivityTemplate)
       //or {
       //ilike('name', "%" + params.value + "%")
@@ -494,8 +493,7 @@ class GroupActivityProfileController {
 
   def addFacility = {
     Entity group = Entity.get(params.id)
-    def c = Link.createCriteria()
-    def result = c.get {
+    def result = Link.createCriteria().get {
       eq('source', Entity.get(params.id))
       eq('type', metaDataService.ltGroupMemberFacility)
     }
@@ -560,8 +558,7 @@ class GroupActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)
@@ -699,8 +696,7 @@ class GroupActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def users = c.list {
+    def users = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupActivity)
       or {
         ilike('name', "%" + params.name + "%")
@@ -875,8 +871,7 @@ class GroupActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -918,8 +913,7 @@ class GroupActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)

@@ -243,8 +243,7 @@ class MsgController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       user {
         eq("enabled", true)
       }

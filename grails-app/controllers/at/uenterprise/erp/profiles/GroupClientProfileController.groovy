@@ -166,8 +166,7 @@ class GroupClientProfileController {
     //def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
 
-    def c = Entity.createCriteria()
-    def allClients = c.list {
+    def allClients = Entity.createCriteria().list {
       if (params.type != "all")
         eq('type', params.type)
       if (params.name)
@@ -202,8 +201,7 @@ class GroupClientProfileController {
     if (params.colony != "all") {
       allClients.each { Entity client ->
 
-        def d = Link.createCriteria()
-        def result = d.get {
+        def result = Link.createCriteria().get {
           eq("source", Entity.get(params.colony))
           eq("target", client)
           eq("type", metaDataService.ltColonia)
@@ -222,8 +220,7 @@ class GroupClientProfileController {
     if (params.facility != "all") {
       finalClients.each { Entity client ->
 
-        def d = Link.createCriteria()
-        def result = d.get {
+        def result = Link.createCriteria().get {
           eq("source", client)
           eq("target", Entity.get(params.facility))
           eq("type", metaDataService.ltGroupMemberClient)

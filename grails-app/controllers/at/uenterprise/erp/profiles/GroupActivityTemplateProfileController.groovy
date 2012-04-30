@@ -50,8 +50,7 @@ class GroupActivityTemplateProfileController {
     }
 
     // get all activity templates that are set to completed
-    def c = Entity.createCriteria()
-    def allTemplates = c.list {
+    def allTemplates = Entity.createCriteria().list {
       eq("type", metaDataService.etTemplate)
       profile {
         eq("status", "done")

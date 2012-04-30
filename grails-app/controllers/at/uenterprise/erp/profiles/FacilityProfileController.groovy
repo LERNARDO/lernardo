@@ -186,8 +186,7 @@ class FacilityProfileController {
   def removeResource = {
     Entity facility = Entity.get(params.id)
 
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', Entity.get(params.resource))
       eq('target', facility)
       eq('type', metaDataService.ltResource)
@@ -263,8 +262,7 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
     Entity client = Entity.get(params.client)
 
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', client)
       eq('target', facility)
       eq('type', metaDataService.ltGroupMemberClient)
@@ -326,8 +324,7 @@ class FacilityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -363,8 +360,7 @@ class FacilityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -400,8 +396,7 @@ class FacilityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)

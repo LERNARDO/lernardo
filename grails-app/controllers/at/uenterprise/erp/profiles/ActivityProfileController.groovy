@@ -364,8 +364,7 @@ class ActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etTemplate)
       //or {
         //ilike('name', "%" + params.value + "%")
@@ -413,8 +412,7 @@ class ActivityProfileController {
       results = results.findAll {it.profile.fullName.contains(params.value)}
     }
     else {
-      def c = Entity.createCriteria()
-      results = c.list {
+      results = Entity.createCriteria().list {
         eq('type', metaDataService.etFacility)
         or {
           ilike('name', "%" + params.value + "%")
@@ -448,8 +446,7 @@ class ActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -485,8 +482,7 @@ class ActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)
@@ -564,8 +560,7 @@ class ActivityProfileController {
     Entity facility = Entity.get(params.id)
 
     // find all educators linked to this facility
-    def c = Link.createCriteria()
-    List educators = c.list {
+    List educators = Link.createCriteria().list {
       eq('target', facility)
       or {
         eq('type', metaDataService.ltWorking)
@@ -582,8 +577,7 @@ class ActivityProfileController {
     Entity facility = Entity.get(params.id)
 
     // find all clients linked to this facility
-    def c = Link.createCriteria()
-    List clients = c.list {
+    List clients = Link.createCriteria().list {
       eq('target', facility)
       eq('type', metaDataService.ltGroupMemberClient)
       projections {
@@ -595,8 +589,7 @@ class ActivityProfileController {
 
   def addFacility = {
     Entity group = Entity.get(params.id)
-    def c = Link.createCriteria()
-    def result = c.get {
+    def result = Link.createCriteria().get {
       eq('source', Entity.get(params.id))
       eq('type', metaDataService.ltActFacility)
     }

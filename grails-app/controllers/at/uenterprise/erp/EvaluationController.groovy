@@ -66,8 +66,7 @@ class EvaluationController {
       clients = Entity.findAllByType(metaDataService.etClient)
     }
     else {
-      def c = Entity.createCriteria()
-      clients = c.list {
+      clients = Entity.createCriteria().list {
         eq('type', metaDataService.etClient)
         or {
           ilike('name', "%" + params.value + "%")
@@ -110,8 +109,7 @@ class EvaluationController {
     }
 
     // find matching clients
-    def c = Entity.createCriteria()
-    def clients = c.list {
+    def clients = Entity.createCriteria().list {
       eq('type', metaDataService.etClient)
       or {
         ilike('name', "%" + params.value + "%")
@@ -153,8 +151,7 @@ class EvaluationController {
     }
 
     // find matching educators
-    def c = Entity.createCriteria()
-    def educators = c.list {
+    def educators = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -349,8 +346,7 @@ class EvaluationController {
     Date searchDate = params.date('myDate', 'dd. MM. yyyy')
 
     if (searchDate) {
-      def c = Entity.createCriteria()
-      List entities = c.list {
+      List entities = Entity.createCriteria().list {
         or {
             eq("type", metaDataService.etGroupActivity)
             eq("type", metaDataService.etProjectUnit)

@@ -34,8 +34,7 @@ class ProfileController {
       return
     }
     
-    def c = Entity.createCriteria()
-    def userList = c.list {
+    def userList = Entity.createCriteria().list {
       user {
         eq("enabled", true)
       }
@@ -224,8 +223,7 @@ class ProfileController {
     List entities
     int count
     if (params.entityType == 'all') {
-      def c = Entity.createCriteria()
-      entities = c.list {
+      entities = Entity.createCriteria().list {
         and {
           ne("type", metaDataService.etActivity)
           ne("type", metaDataService.etTemplate)
@@ -355,8 +353,7 @@ class ProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       user {
         eq("enabled", true)
       }

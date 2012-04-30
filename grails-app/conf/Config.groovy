@@ -167,7 +167,7 @@ log4j = {
     info  'grails.app.dataSource'
     info  'grails.app.controller'
     info  'grails.app.service'
-    debug 'org.hibernate.SQL'
+    //debug 'org.hibernate.SQL'
 
 }
 

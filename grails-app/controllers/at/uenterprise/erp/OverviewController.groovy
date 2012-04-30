@@ -11,8 +11,7 @@ class OverviewController {
   def index = {}
 
   def planning = {
-    def c = Entity.createCriteria()
-    def count = c.list {
+    def count = Entity.createCriteria().list {
       eq("type", metaDataService.etActivity)
       profile {
         eq("type", "Themenraum")
@@ -78,8 +77,7 @@ class OverviewController {
     def numUsers
 
     if (params.glossary == "Alle") {
-      def c = Entity.createCriteria()
-      users = c.list {
+      users = Entity.createCriteria().list {
         user {
           eq("enabled", true)
         }
@@ -103,8 +101,7 @@ class OverviewController {
     }
     else {
       //log.debug("start glossary for " + params.glossary)
-      def c = Entity.createCriteria()
-      users = c.list {
+      users = Entity.createCriteria().list {
         user {
           eq("enabled", true)
         }
@@ -145,8 +142,7 @@ class OverviewController {
 
     List searchStrings = params.name.toString().split(" ")
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       if (params.enabled) {
         user {
           eq("enabled", params.enabled == "true")

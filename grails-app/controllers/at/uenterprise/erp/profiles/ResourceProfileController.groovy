@@ -141,8 +141,7 @@ class ResourceProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etOperator)
         eq('type', metaDataService.etUser)
@@ -208,8 +207,7 @@ class ResourceProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etOperator)
         eq('type', metaDataService.etUser)

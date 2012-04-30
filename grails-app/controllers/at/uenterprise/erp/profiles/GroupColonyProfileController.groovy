@@ -175,8 +175,7 @@ class GroupColonyProfileController {
   def removeResource = {
     Entity group = Entity.get(params.id)
 
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', Entity.get(params.resource))
       eq('target', group)
       eq('type', metaDataService.ltResource)

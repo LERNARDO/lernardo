@@ -136,8 +136,7 @@ class ParentProfileController {
       params.order = params.order ?: "asc"
       Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
@@ -151,8 +150,7 @@ class ParentProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
@@ -183,8 +181,7 @@ class ParentProfileController {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)

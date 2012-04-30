@@ -155,8 +155,7 @@ class PateProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etClient)
       user {
         eq("enabled", true)

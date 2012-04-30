@@ -52,15 +52,13 @@ class HelperTagLib {
 
     Entity currentEntity = entityHelperService.loggedIn
 
-    def a = Link.createCriteria()
-    def owner = a.get {
+    def owner = Link.createCriteria().get {
       eq('source', currentEntity)
       eq('target', attrs.entity)
       eq('type', metaDataService.ltOwner)
     }
 
-    def b = Link.createCriteria()
-    def responsible = b.get {
+    def responsible = Link.createCriteria().get {
       eq('source', currentEntity)
       eq('target', attrs.entity)
       eq('type', metaDataService.ltResponsible)
@@ -1137,8 +1135,7 @@ class HelperTagLib {
 
     List tags = []
 
-    def a = Link.createCriteria()
-    def resulta = a.get {
+    def resulta = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltAbsent)
@@ -1148,8 +1145,7 @@ class HelperTagLib {
     else
       tags.add(false)
 
-    def b = Link.createCriteria()
-    def resultb = b.get {
+    def resultb = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltIll)
@@ -1310,16 +1306,14 @@ class HelperTagLib {
     def result = null
     if (creatorof instanceof Entity) {
       if (creatorof.type.id == metaDataService.etAppointment.id) {
-        def c = Link.createCriteria()
-        result = c.get {
+        result = Link.createCriteria().get {
           eq('source', creatorof)
           eq('target', entity)
           eq('type', metaDataService.ltAppointment)
         }
       }
       else {
-        def c = Link.createCriteria()
-        result = c.get {
+        result = Link.createCriteria().get {
           eq('source', entity)
           eq('target', creatorof)
           eq('type', metaDataService.ltCreator)
@@ -1846,8 +1840,7 @@ class HelperTagLib {
    * @attr entity REQUIRED The entity
    */
   def getNewInboxMessages = {attrs, body ->
-    def c = Msg.createCriteria()
-    def result = c.list {
+    def result = Msg.createCriteria().list {
       eq('entity', attrs.entity)
       ne('sender', attrs.entity)
       eq('read', false)
@@ -1866,8 +1859,7 @@ class HelperTagLib {
 
     Date lastWeek = new Date() - 7
 
-    def c = News.createCriteria()
-    def result = c.list {
+    def result = News.createCriteria().list {
       ge('dateCreated', lastWeek)
     }
 
@@ -2114,8 +2106,7 @@ class HelperTagLib {
     if (!e)
       return false
 
-    def c = Link.createCriteria
-    def result = c.get {
+    def result = Link.createCriteria().get {
       eq("source", currentEntity)
       eq("target", e)
       eq("type", metaDataService.ltFriendship)

@@ -329,8 +329,7 @@ class ProjectTemplateProfileController {
     Entity projectUnitTemplate = Entity.get(params.projectUnitTemplate)
 
     // delete link
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', projectUnitTemplate)
       eq('target', projectTemplate)
       eq('type', metaDataService.ltProjectUnitTemplate)
@@ -372,8 +371,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.projectTemplate)
 
     // check if the groupActivityTemplate isn't already linked to the projectUnitTemplate
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnitTemplate)
       eq('type', metaDataService.ltProjectUnitMember)
@@ -405,8 +403,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.projectTemplate)
 
     // delete link
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnitTemplate)
       eq('type', metaDataService.ltProjectUnitMember)
@@ -448,8 +445,7 @@ class ProjectTemplateProfileController {
       return
     }
     else if (params.value == "*") {
-      def c = Entity.createCriteria()
-      def results = c.list {
+      def results = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupActivityTemplate)
         profile {
           eq("status", "done")
@@ -459,8 +455,7 @@ class ProjectTemplateProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etGroupActivityTemplate)
       profile {
         eq('status', "done")
@@ -534,8 +529,7 @@ class ProjectTemplateProfileController {
       templates.add(Entity.get(it.toInteger()))
     }
     // get all groupactivitytemplates that are set to completed
-    def c = Entity.createCriteria()
-    def allGroupActivityTemplates = c.list {
+    def allGroupActivityTemplates = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupActivityTemplate)
       profile {
         eq("status", "done")
@@ -555,8 +549,7 @@ class ProjectTemplateProfileController {
       templates.add(Entity.get(it.toInteger()))
     }
     // get all groupactivitytemplates that are set to completed
-    def c = Entity.createCriteria()
-    def allGroupActivityTemplates = c.list {
+    def allGroupActivityTemplates = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupActivityTemplate)
       profile {
         eq("status", "done")

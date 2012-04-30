@@ -397,8 +397,7 @@ class AppController {
 
     List tags = []
 
-    def a = Link.createCriteria()
-    def resulta = a.get {
+    def resulta = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltAbsent)
@@ -408,8 +407,7 @@ class AppController {
     else
       tags.add(false)
 
-    def b = Link.createCriteria()
-    def resultb = b.get {
+    def resultb = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltIll)
@@ -469,8 +467,7 @@ class AppController {
 
     List tags = []
 
-    def a = Link.createCriteria()
-    def resulta = a.get {
+    def resulta = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltAbsent)
@@ -480,8 +477,7 @@ class AppController {
     else
       tags.add(false)
 
-    def b = Link.createCriteria()
-    def resultb = b.get {
+    def resultb = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltIll)
@@ -544,8 +540,7 @@ class AppController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       user {
         eq("enabled", true)
       }

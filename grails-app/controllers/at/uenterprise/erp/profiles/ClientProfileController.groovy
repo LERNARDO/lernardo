@@ -131,16 +131,14 @@ class ClientProfileController {
 
     Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
       }
     }
 
-    def d = Entity.createCriteria()
-    def allFacilities = d.list {
+    def allFacilities = Entity.createCriteria().list {
       eq("type", metaDataService.etFacility)
       profile {
         order(params.sort, params.order)
@@ -182,16 +180,14 @@ class ClientProfileController {
       Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
       //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
         }
       }
 
-      def d = Entity.createCriteria()
-      def allFacilities = d.list {
+      def allFacilities = Entity.createCriteria().list {
         eq("type", metaDataService.etFacility)
         profile {
           order(params.sort, params.order)
@@ -205,16 +201,14 @@ class ClientProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
       }
     }
 
-    def d = Entity.createCriteria()
-    def allFacilities = d.list {
+    def allFacilities = Entity.createCriteria().list {
       eq("type", metaDataService.etFacility)
       profile {
         order(params.sort, params.order)
@@ -251,16 +245,14 @@ class ClientProfileController {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
         }
       }
 
-      def d = Entity.createCriteria()
-      def allFacilities = d.list {
+      def allFacilities = Entity.createCriteria().list {
         eq("type", metaDataService.etFacility)
         profile {
           order(params.sort, params.order)
@@ -413,8 +405,7 @@ class ClientProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etFacility)
       or {
         ilike('name', "%" + params.value + "%")
@@ -453,8 +444,7 @@ class ClientProfileController {
     Entity facility = Entity.get(params.facility)
     Entity client = Entity.get(params.id)
 
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', client)
       eq('target', facility)
       eq('type', metaDataService.ltGroupMemberClient)

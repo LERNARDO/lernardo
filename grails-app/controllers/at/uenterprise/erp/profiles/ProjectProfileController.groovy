@@ -693,8 +693,7 @@ class ProjectProfileController {
     Entity projectUnit = Entity.get(params.unit)
 
     // delete link
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', projectUnit)
       eq('target', projectDay)
       eq('type', metaDataService.ltProjectDayUnit)
@@ -726,8 +725,7 @@ class ProjectProfileController {
     Entity project = Entity.get(params.id)
 
     // check if the groupActivityTemplate isn't already linked to the projectUnit
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnit)
       eq('type', metaDataService.ltProjectUnitMember)
@@ -752,8 +750,7 @@ class ProjectProfileController {
     Entity project = Entity.get(params.id)
 
     // delete link
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnit)
       eq('type', metaDataService.ltProjectUnitMember)
@@ -974,8 +971,7 @@ class ProjectProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -1011,8 +1007,7 @@ class ProjectProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -1044,8 +1039,7 @@ class ProjectProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)
@@ -1275,8 +1269,7 @@ class ProjectProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def users = c.list {
+    def users = Entity.createCriteria().list {
       eq("type", metaDataService.etProject)
       or {
         ilike('name', "%" + params.name + "%")

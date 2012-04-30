@@ -225,8 +225,7 @@ class GroupFamilyProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etParent)
       or {
         ilike('name', "%" + params.value + "%")
@@ -259,8 +258,7 @@ class GroupFamilyProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etClient)
       or {
         ilike('name', "%" + params.value + "%")
@@ -293,8 +291,7 @@ class GroupFamilyProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etChild)
       or {
         ilike('name', "%" + params.value + "%")
@@ -317,8 +314,7 @@ class GroupFamilyProfileController {
   def updateFamilyCount = {
     def group = Entity.get(params.id)
 
-    def c = Link.createCriteria()
-    def results = c.list {
+    def results = Link.createCriteria().list {
       eq("target", group)
       or {
         eq("type", metaDataService.ltGroupMemberParent)
