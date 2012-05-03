@@ -9,8 +9,8 @@
             <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span><br/><br/>
             <g:if test="${entity.type.supertype.name == 'groupClient'}"><g:message code="facility.client.quantity"/>: <erp:getGroupClientsCount entity="${entity}"/></g:if></td>
             %{--${entity.profile.currentZip ?: '<div class="italic">'+message(code:'empty')+ '</div>'} ${entity.profile.currentCity ?: '<div class="italic">'+message(code:'empty')+ '</div>'}<br/>
-            ${entity.profile.currentStreet ?: '<div class="italic">'+message(code:'empty')+ '</div>'}
             ${entity.profile.currentCountry}</td>--}%
+            ${entity.profile.currentStreet ?: '<div class="italic">'+message(code:'empty')+ '</div>'}
           </tr>
         </table>
       </div>
