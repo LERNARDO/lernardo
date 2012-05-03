@@ -231,13 +231,15 @@ class WorkdayUnitController {
       Map educators = [:]
 
       employments?.eachWithIndex { emp, i ->
-        educators.putAt(i.toString(), Entity.createCriteria().list {
+        List eds =  Entity.createCriteria().list {
           eq("type", metaDataService.etEducator)
           profile {
             eq('employment', emp)
             order('firstName','asc')
           }
-        })
+        }
+        if (eds.size() > 0)
+          educators.putAt(i.toString(), eds)
       }
       List users = Entity.createCriteria().list {
         eq("type", metaDataService.etUser)
@@ -264,13 +266,15 @@ class WorkdayUnitController {
       Map educators = [:]
 
       employments?.eachWithIndex { emp, i ->
-        educators.putAt(i.toString(), Entity.createCriteria().list {
+        List eds =  Entity.createCriteria().list {
           eq("type", metaDataService.etEducator)
           profile {
             eq('employment', emp)
             order('firstName','asc')
           }
-        })
+        }
+        if (eds.size() > 0)
+          educators.putAt(i.toString(), eds)
       }
       List users = Entity.createCriteria().list {
         eq("type", metaDataService.etUser)
