@@ -4,7 +4,7 @@
   });
 </script>
 
-<g:formRemote name="formRemote" url="[controller:'dayroutine', action:'updateroutine', id:routine.id, params:[i: i]]" update="routinebox${i}">
+<g:formRemote name="formRemote" url="[controller: 'dayroutine', action: 'updateroutine', id: routine.id, params: [i: i]]" update="routinebox${i}">
   <table>
     <tr>
       <td class="bold"><g:message code="period"/>:</td>

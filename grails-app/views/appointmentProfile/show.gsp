@@ -5,12 +5,10 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="appointment"/> - ${appointment.profile.fullName}</h1>
-    %{--<div class="icons" style="text-align: right;">
-      <g:link action="edit" id="${appointment.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:link>
-    </div>--}%
-  </div>
+  <h1><g:message code="appointment"/> - ${appointment.profile.fullName}</h1>
+  %{--<div class="icons" style="text-align: right;">
+    <g:link action="edit" id="${appointment.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:link>
+  </div>--}%
 </div>
 <div class="boxGray" style="clear: both;">
   <div class="second">
@@ -20,7 +18,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="owner"/></td>
-          <td class="two"><g:link controller="${belongsTo.type.supertype.name +'Profile'}" action="show" id="${belongsTo.id}" params="[entity: belongsTo.id]">${fieldValue(bean: belongsTo, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td class="two"><g:link controller="${belongsTo.type.supertype.name + 'Profile'}" action="show" id="${belongsTo.id}" params="[entity: belongsTo.id]">${fieldValue(bean: belongsTo, field: 'profile.fullName').decodeHTML()}</g:link></td>
         </tr>
 
         <tr class="prop">
@@ -30,7 +28,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="description"/></td>
-          <td class="two">${fieldValue(bean: appointment, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: appointment, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">

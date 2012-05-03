@@ -436,7 +436,7 @@ class ProjectProfileController {
 
     if (project.profile.save() && project.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile.fullName])
-      redirect action: 'show', id: project.id, params: [entity: project.id]
+      redirect action: 'show', id: project.id
     }
     else {
       render view: 'edit', model: [project: project]
@@ -454,7 +454,7 @@ class ProjectProfileController {
     Entity projectTemplate = Entity.get(params.id)
 
     if (pc.hasErrors()) {
-      render view:'create', model:[pc: pc, template: projectTemplate]
+      render view: 'create', model: [pc: pc, template: projectTemplate]
       return
     }
 
@@ -490,7 +490,7 @@ class ProjectProfileController {
     }
     if (checkdays == 0) {
       flash.message = message(code: "project.noDays")
-      render(view: "create", model: [template: Entity.get(params.id)])
+      render view: "create", model: [template: Entity.get(params.id)]
       return
     }
 
@@ -603,11 +603,11 @@ class ProjectProfileController {
         calendarStart.add(Calendar.DATE, 1)
       }
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
+      redirect action: 'show', id: entity.id
 
     } catch (EntityException ee) {
-      render(view: "create", model: [project: ee.entity])
+      render view: "create", model: [project: ee.entity]
     }
 
   }
@@ -693,8 +693,7 @@ class ProjectProfileController {
     Entity projectUnit = Entity.get(params.unit)
 
     // delete link
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', projectUnit)
       eq('target', projectDay)
       eq('type', metaDataService.ltProjectDayUnit)
@@ -726,8 +725,7 @@ class ProjectProfileController {
     Entity project = Entity.get(params.id)
 
     // check if the groupActivityTemplate isn't already linked to the projectUnit
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnit)
       eq('type', metaDataService.ltProjectUnitMember)
@@ -752,8 +750,7 @@ class ProjectProfileController {
     Entity project = Entity.get(params.id)
 
     // delete link
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnit)
       eq('type', metaDataService.ltProjectUnitMember)
@@ -777,7 +774,7 @@ class ProjectProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.target.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.target.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     render template: 'facilities', model: [facilities: linking.targets, project: linking.source]
   }
 
@@ -806,7 +803,7 @@ class ProjectProfileController {
   def addResource = {
     def linking = functionService.linkEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     render template: 'resources', model: [resources: linking.sources, projectDay: linking.target]
   }
 
@@ -818,7 +815,7 @@ class ProjectProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'educators', model: [educators: linking.sources, project: project, projectDay: linking.target]
   }
@@ -832,7 +829,7 @@ class ProjectProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'substitutes', model: [substitutes: linking.sources, project: project, projectDay: linking.target]
   }
@@ -846,7 +843,7 @@ class ProjectProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'parents', model: [parents: linking.sources, project: project, unit: linking.target, i: params.i]
@@ -862,7 +859,7 @@ class ProjectProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'partners', model: [partners: linking.sources, project: project, unit: linking.target, i: params.i]
@@ -878,7 +875,7 @@ class ProjectProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     render template: 'themes', model: [themes: linking.targets, project: linking.source]
   }
 
@@ -949,16 +946,16 @@ class ProjectProfileController {
 
     List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
 
-    render template:'projectdaynav', model:[day: projectDay,
-                                         resources: resources,
-                                         allEducators: allEducators,
-                                         allParents: allParents,
-                                         units: units,
-                                         projectDays: projectDays,
-                                         active: projectDay.id,
-                                         project: project,
-                                         plannableResources: plannableResources,
-                                         requiredResources: requiredResources]
+    render template: 'projectdaynav', model: [day: projectDay,
+                                              resources: resources,
+                                              allEducators: allEducators,
+                                              allParents: allParents,
+                                              units: units,
+                                              projectDays: projectDays,
+                                              active: projectDay.id,
+                                              project: project,
+                                              plannableResources: plannableResources,
+                                              requiredResources: requiredResources]
   }
 
   /*
@@ -970,12 +967,11 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id])
+      render template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id]
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -990,11 +986,11 @@ class ProjectProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'educatorresults', model: [results: results, projectDay: params.id])
+      render template: 'educatorresults', model: [results: results, projectDay: params.id]
     }
   }
 
@@ -1007,12 +1003,11 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id])
+      render template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id]
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -1027,11 +1022,11 @@ class ProjectProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'substituteresults', model: [results: results, projectDay: params.id])
+      render template: 'substituteresults', model: [results: results, projectDay: params.id]
     }
   }
 
@@ -1044,8 +1039,7 @@ class ProjectProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)
@@ -1083,11 +1077,11 @@ class ProjectProfileController {
       finalResults = results
 
     if (finalResults.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: finalResults, group: params.id])
+      render template: 'clientresults', model: [results: finalResults, group: params.id]
     }
   }
 
@@ -1099,7 +1093,7 @@ class ProjectProfileController {
     if (entity.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-        render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+        render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
       render template: 'clients', model: [clients: linking.sources, project: linking.target]
     }
     // if the entity is a client group get all clients and add them
@@ -1110,7 +1104,7 @@ class ProjectProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<div class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</div>'
+          render '<div class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</div>'
       }
 
       Entity project = Entity.get(params.id)
@@ -1264,7 +1258,7 @@ class ProjectProfileController {
         return
       }
       else {
-        render(template: 'searchresults', model: [projects: projects])
+        render template: 'searchresults', model: [projects: projects]
       }
     }
   }
@@ -1275,8 +1269,7 @@ class ProjectProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def users = c.list {
+    def users = Entity.createCriteria().list {
       eq("type", metaDataService.etProject)
       or {
         ilike('name', "%" + params.name + "%")
@@ -1292,7 +1285,7 @@ class ProjectProfileController {
       return
     }
     else {
-      render(template: 'searchresults', model: [projects: users])
+      render template: 'searchresults', model: [projects: users]
     }
   }
 
@@ -1307,7 +1300,7 @@ class ProjectProfileController {
         return
       }
       else {
-        render(template: 'searchresults', model: [projects: projects])
+        render template: 'searchresults', model: [projects: projects]
       }
     }
     else
@@ -1332,7 +1325,7 @@ class ProjectProfileController {
       return
     }
     else {
-        render(template: 'searchresults', model: [projects: result])
+        render template: 'searchresults', model: [projects: result]
     }
   }
 
@@ -1590,7 +1583,7 @@ class ProjectProfileController {
 
     List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
     
-    render template:'projectdaynav', model:[day: projectDay,
+    render template: 'projectdaynav', model: [day: projectDay,
                                              resources: resources,
                                              allEducators: allEducators,
                                              allParents: allParents,
@@ -1729,13 +1722,13 @@ class ProjectProfileController {
     else
       fourthPass = thirdPass
 
-    render(template: 'searchresults', model: [projects: fourthPass,
+    render template: 'searchresults', model: [projects: fourthPass,
         totalProjects: fourthPass.size(),
         numberOfAllProjects: numberOfAllProjects,
         paginate: false,
         name: params.name,
         ageFrom: params.ageFrom,
-        ageTo: params.ageTo])
+        ageTo: params.ageTo]
   }
 
 }

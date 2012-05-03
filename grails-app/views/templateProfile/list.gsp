@@ -7,9 +7,7 @@
 <body>
 
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="activityTemplates"/></h1>
-  </div>
+  <h1><g:message code="activityTemplates"/></h1>
 </div>
 
 <div class="clear"></div>
@@ -31,7 +29,7 @@
     </div>
 
     <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
-      <g:formRemote name="formRemote0" url="[controller:'templateProfile', action:'updateselect']" update="searchresults" before="showspinner('#searchresults')">
+      <g:formRemote name="formRemote0" url="[controller: 'templateProfile', action: 'updateselect']" update="searchresults" before="showspinner('#searchresults')">
 
         <div style="margin-bottom: 10px;">
           <span class="gray"><g:message code="creator"/>:</span><br/>
@@ -63,7 +61,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="duration"/></td>
             <td valign="top" class="value">
-              <g:select from="${1..239}" name="duration1" noSelection="['all':message(code:'any')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
+              <g:select from="${1..239}" name="duration1" noSelection="['all':message(code:'any')]" onchange="${remoteFunction(controller: 'groupActivityTemplateProfile', action: 'secondselect', update: 'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
               <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)
             </td>
           </tr>
@@ -85,7 +83,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="vMethod"/> 1</td>
             <td valign="top" class="value">
-              <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
+              <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller: 'groupActivityTemplateProfile', action: 'listMethods', update: 'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
               <div id="elements1"></div>
             </td>
           </tr>
@@ -93,7 +91,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="vMethod"/> 2</td>
             <td valign="top" class="value">
-              <g:select name="method2" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements2', params:'\'id=\' + this.value+\'&dropdown=\'+2')}"/>
+              <g:select name="method2" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller: 'groupActivityTemplateProfile', action: 'listMethods', update: 'elements2', params:'\'id=\' + this.value+\'&dropdown=\'+2')}"/>
               <div id="elements2"></div>
             </td>
           </tr>
@@ -101,7 +99,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="vMethod"/> 3</td>
             <td valign="top" class="value">
-              <g:select name="method3" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements3', params:'\'id=\' + this.value+\'&dropdown=\'+3')}"/>
+              <g:select name="method3" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller: 'groupActivityTemplateProfile', action: 'listMethods', update: 'elements3', params:'\'id=\' + this.value+\'&dropdown=\'+3')}"/>
               <div id="elements3"></div>
             </td>
           </tr>

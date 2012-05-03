@@ -22,9 +22,7 @@
 <body>
 
 <div class="boxHeader">
-  <div class="second">
-    <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></h1>
-  </div>
+  <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -33,7 +31,7 @@
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code:'dayroutine.create')}"/></a></p>
     <div id="newroutine" style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
 
-      <g:formRemote name="formRemote" url="[controller:'dayroutine', action:'save', id:entity.id]" update="dayroutine" before="showspinner('#dayroutine')">
+      <g:formRemote name="formRemote" url="[controller: 'dayroutine', action: 'save', id: entity.id]" update="dayroutine" before="showspinner('#dayroutine')">
 
         <table>
 
@@ -171,10 +169,10 @@
        allDaySlot:true,
        allDayText:'',
        weekends: true,
-      %{--events: '${createLink (controller:"calendar", action:"events", params:[visibleEducators: visibleEducators])}',--}%
+      %{--events: '${createLink (controller: "calendar", action: "events", params: [visibleEducators: visibleEducators])}',--}%
 
         eventClick: function (calEvent, jsEvent, view) {
-      top.location.href = "${createLink (controller:"calendar", action:"destination")}"+"/"+calEvent.id
+      top.location.href = "${createLink (controller: "calendar", action: "destination")}"+"/"+calEvent.id
     },
 
     eventMouseover: function(e,m) {
@@ -183,8 +181,8 @@
       var tPosY = m.pageY + 20 ;
       $('#caltip').css({top: tPosY, left: tPosX, display: 'block'});
       var tt = '';
-      tt += e.title+'<br /><br />';
-      tt += e.description+'<br />';
+      tt += e.title+ '<br /><br />';
+      tt += e.description+ '<br />';
       $('#caltip').html(tt);
     },
     eventMouseout: function() {

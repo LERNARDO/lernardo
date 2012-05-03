@@ -31,7 +31,7 @@ class AdminController {
           List targets = Link.findAllBySource(entity)
           List sources = Link.findAllByTarget(entity)
 
-          render template: 'linksresults', model:[entity: entity, targets: targets, sources: sources]
+          render template: 'linksresults', model: [entity: entity, targets: targets, sources: sources]
       }
       else
         render ""

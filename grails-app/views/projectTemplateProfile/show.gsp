@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="projectTemplate"/> - ${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</h1>
-  </div>
+  <h1><g:message code="projectTemplate"/> - ${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -48,22 +46,22 @@
 
         <tr class="prop">
           <td class="one"><g:message code="description"/>:</td>
-          <td class="two">${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="projectTemplate.profile.educationalObjectiveText"/>:</td>
-          <td class="two">${fieldValue(bean: projectTemplate, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: projectTemplate, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="activityTemplate.ageFrom"/></td>
-          <td class="two">${projectTemplate?.profile?.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${projectTemplate?.profile?.ageFrom ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="activityTemplate.ageTo"/></td>
-          <td class="two">${projectTemplate?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${projectTemplate?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         </tbody>
@@ -78,7 +76,7 @@
         <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><a onclick="toggle('#labels');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="labels" style="display:none">
-          <g:formRemote name="formRemote2" url="[controller:'projectTemplateProfile', action:'addLabel', id:projectTemplate.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
+          <g:formRemote name="formRemote2" url="[controller: 'projectTemplateProfile', action: 'addLabel', id: projectTemplate.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -101,7 +99,7 @@
         <h5><g:message code="resources.required"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="resources" style="display:none">
 
-          <g:formRemote name="formRemote" url="[controller:'resourceProfile', action:'addResource', id: projectTemplate.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
+          <g:formRemote name="formRemote" url="[controller: 'resourceProfile', action: 'addResource', id: projectTemplate.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
             <table>
               <tr>
                 <td><g:message code="name"/>:</td>

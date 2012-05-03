@@ -78,7 +78,7 @@ class GroupClientProfileController {
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupClient"), group.profile.fullName])
-        redirect(action: "show", id: params.id)
+        redirect(action: "show", id: params.id, params: [exception: e])
       }
     }
     else {
@@ -106,7 +106,7 @@ class GroupClientProfileController {
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "groupClient"), group.profile.fullName])
-      redirect action: 'show', id: group.id, params: [entity: group.id]
+      redirect action: 'show', id: group.id
     }
     else {
       render view: 'edit', model: [group: group]
@@ -127,23 +127,23 @@ class GroupClientProfileController {
       }
 
       flash.message = message(code: "object.created", args: [message(code: "groupClient"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      render(view: "create", model: [group: ee.entity])
+      render view: "create", model: [group: ee.entity]
     }
 
   }
 
   def addClient = {
     if (!params.members)
-      render '<p class="italic red">'+message(code: "groupClient.clients.select.least")+'</p>'
+      render '<p class="italic red">'+message(code: "groupClient.clients.select.least")+ '</p>'
     else {
       def bla = params.list('members')
   
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
       }
     }
 
@@ -166,8 +166,7 @@ class GroupClientProfileController {
     //def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
 
-    def c = Entity.createCriteria()
-    def allClients = c.list {
+    def allClients = Entity.createCriteria().list {
       if (params.type != "all")
         eq('type', params.type)
       if (params.name)
@@ -202,8 +201,7 @@ class GroupClientProfileController {
     if (params.colony != "all") {
       allClients.each { Entity client ->
 
-        def d = Link.createCriteria()
-        def result = d.get {
+        def result = Link.createCriteria().get {
           eq("source", Entity.get(params.colony))
           eq("target", client)
           eq("type", metaDataService.ltColonia)
@@ -222,8 +220,7 @@ class GroupClientProfileController {
     if (params.facility != "all") {
       finalClients.each { Entity client ->
 
-        def d = Link.createCriteria()
-        def result = d.get {
+        def result = Link.createCriteria().get {
           eq("source", client)
           eq("target", Entity.get(params.facility))
           eq("type", metaDataService.ltGroupMemberClient)
@@ -236,7 +233,7 @@ class GroupClientProfileController {
     else
       finalClients2 = finalClients
 
-    render(template: 'searchresults', model: [allClients: finalClients2])
+    render template: 'searchresults', model: [allClients: finalClients2]
   }
 
   def createpdf = {

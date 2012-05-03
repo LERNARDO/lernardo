@@ -65,7 +65,7 @@ class NewsController {
       redirect controller: "event", action: "index"
     }
     else {
-      render view:"create", model:[news: news]
+      render view: "create", model: [news: news]
     }
   }
 

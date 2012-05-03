@@ -91,8 +91,7 @@ class PartnerProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
@@ -118,15 +117,14 @@ class PartnerProfileController {
 
     if (partner.profile.save() && partner.user.save() && partner.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "partner"), partner.profile.fullName])
-      redirect action: 'show', id: partner.id, params: [entity: partner.id]
+      redirect action: 'show', id: partner.id
     }
     else {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
       Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
@@ -140,8 +138,7 @@ class PartnerProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
@@ -166,19 +163,18 @@ class PartnerProfileController {
       new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
 
       flash.message = message(code: "object.created", args: [message(code: "partner"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
         }
       }
-      render(view: "create", model: [partner: ee.entity, allColonies: allColonies])
+      render view: "create", model: [partner: ee.entity, allColonies: allColonies]
     }
 
   }
@@ -199,7 +195,7 @@ class PartnerProfileController {
   def addContact = {ContactCommand cc ->
     Entity partner = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "object.notCreated", args: [message(code: "partner.profile.contact")])+'</p>'
+      render '<p class="italic red">'+message(code: "object.notCreated", args: [message(code: "partner.profile.contact")])+ '</p>'
       render template: 'contacts', model: [partner: partner]
       return
     }

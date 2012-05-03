@@ -5,9 +5,7 @@
 
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</h1>
-  </div>
+  <h1><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -59,7 +57,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="description"/></td>
-          <td class="two">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
@@ -76,7 +74,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="project.profile.educationalObjectiveText"/></td>
-          <td class="two">${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         </tbody>
@@ -87,7 +85,7 @@
         <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${project}" checkoperator="true"><a onclick="toggle('#labels');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="labels" style="display:none">
-          <g:formRemote name="formRemote2" url="[controller:'projectProfile', action:'addLabel', id:project.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
+          <g:formRemote name="formRemote2" url="[controller: 'projectProfile', action: 'addLabel', id: project.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -104,7 +102,7 @@
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Zu Thema zuordnen"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="themes" style="display:none">
           <g:if test="${allThemes}">
-            <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addTheme', id: project.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
+            <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'addTheme', id: project.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
               <g:select name="theme" from="${allThemes}" optionKey="id" optionValue="profile"/>
               <div class="clear"></div>
               <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -123,7 +121,7 @@
       <div class="zusatz">
         <h5><g:message code="facility"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><span id="facilitybutton"><g:render template="facilitybutton" model="[facilities: facilities]"/></span></erp:accessCheck></h5>
         <div class="zusatz-add" id="facilities" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addFacility', id: project.id]" update="facilities2" before="showspinner('#facilities2'); toggle('#facilities');" after="${remoteFunction(action:'updateFacilityButton',update:'facilitybutton',id:project.id)}">
+          <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'addFacility', id: project.id]" update="facilities2" before="showspinner('#facilities2'); toggle('#facilities');" after="${remoteFunction(action: 'updateFacilityButton', update: 'facilitybutton', id: project.id)}">
             <table>
               <tr>
                 <td style="padding: 5px 10px 0 0;"><g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/></td>

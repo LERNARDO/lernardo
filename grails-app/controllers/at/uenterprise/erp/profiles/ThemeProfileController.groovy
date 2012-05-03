@@ -265,9 +265,9 @@ class ThemeProfileController {
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "object.created", args: [message(code: "theme"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(metaDataService.etFacility)])
+      render view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
     }
 
   }
@@ -275,7 +275,7 @@ class ThemeProfileController {
   def addProject = {
     def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     render template: 'projects', model: [projects: linking.sources, theme: linking.target]
   }
 
@@ -287,7 +287,7 @@ class ThemeProfileController {
   def addActivityGroup = {
     def linking = functionService.linkEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     render template: 'activitygroups', model: [activitygroups: linking.sources, theme: linking.target]
   }
 

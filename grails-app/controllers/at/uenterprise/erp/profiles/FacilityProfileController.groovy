@@ -132,7 +132,7 @@ class FacilityProfileController {
       new Link(source: facility, target: Entity.get(params.colony), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "object.updated", args: [message(code: "facility"), facility.profile.fullName])
-      redirect action: 'show', id: facility.id, params: [entity: facility.id]
+      redirect action: 'show', id: facility.id
     }
     else {
       // find colony of this facility
@@ -159,9 +159,9 @@ class FacilityProfileController {
       new Link(source: entity, target: Entity.get(params.colony), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "object.created", args: [message(code: "facility"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [facility: ee.entity, allColonies: Entity.findAllByType(metaDataService.etGroupColony)])
+      render view: "create", model: [facility: ee.entity, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
     }
 
   }
@@ -186,8 +186,7 @@ class FacilityProfileController {
   def removeResource = {
     Entity facility = Entity.get(params.id)
 
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', Entity.get(params.resource))
       eq('target', facility)
       eq('type', metaDataService.ltResource)
@@ -206,7 +205,7 @@ class FacilityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'educators', model: [educators: linking.sources, facility: linking.target]
   }
 
@@ -218,7 +217,7 @@ class FacilityProfileController {
   def addLeadEducator = {
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'leadeducators', model: [leadeducators: linking.sources, facility: linking.target]
   }
 
@@ -263,8 +262,7 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
     Entity client = Entity.get(params.client)
 
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', client)
       eq('target', facility)
       eq('type', metaDataService.ltGroupMemberClient)
@@ -282,7 +280,7 @@ class FacilityProfileController {
   def addContact = {ContactCommand cc ->
     Entity facility = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "facility.profile.name.insert")+'</p>'
+      render '<p class="italic red">'+message(code: "facility.profile.name.insert")+ '</p>'
       render template: 'contacts', model: [facility: facility]
       return
     }
@@ -326,8 +324,7 @@ class FacilityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -342,11 +339,11 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'educatorresults', model: [results: results, facility: params.id])
+      render template: 'educatorresults', model: [results: results, facility: params.id]
     }
   }
 
@@ -363,8 +360,7 @@ class FacilityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -379,11 +375,11 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'leadeducatorresults', model: [results: results, facility: params.id])
+      render template: 'leadeducatorresults', model: [results: results, facility: params.id]
     }
   }
 
@@ -400,8 +396,7 @@ class FacilityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)
@@ -416,11 +411,11 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: results, facility: params.id])
+      render template: 'clientresults', model: [results: results, facility: params.id]
     }
   }
 }

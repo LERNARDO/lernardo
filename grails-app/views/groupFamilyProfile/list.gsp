@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="groupFamilies"/></h1>
-  </div>
+  <h1><g:message code="groupFamilies"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -24,7 +22,7 @@
       </div>
     </erp:accessCheck>
 
-    <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[family: 'yes']]" before="showspinner('#membersearch-results')" />
+    <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller: 'overview', action: 'searchMe', params: [family: 'yes']]" before="showspinner('#membersearch-results')" />
     <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
 
     <table class="default-table">
@@ -38,7 +36,7 @@
       <g:each in="${groups}" status="i" var="group">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${group.id}">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td>${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td>${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
       </g:each>
       </tbody>

@@ -5,9 +5,7 @@
 
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="process"/> - ${process.name}</h1>
-  </div>
+  <h1><g:message code="process"/> - ${process.name}</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -68,7 +66,7 @@
           <g:if test="${process.entities}">
             <ul>
               <g:each in="${process.entities}" var="entity">
-                <li><erp:getEntity entity="${entity}"><g:link controller="${result.type.supertype.name +'Profile'}" action="show" id="${result.id}">${result.profile.fullName.decodeHTML()}</g:link></erp:getEntity></li>
+                <li><erp:getEntity entity="${entity}"><g:link controller="${result.type.supertype.name + 'Profile'}" action="show" id="${result.id}">${result.profile.fullName.decodeHTML()}</g:link></erp:getEntity></li>
               </g:each>
             </ul>
           </g:if>

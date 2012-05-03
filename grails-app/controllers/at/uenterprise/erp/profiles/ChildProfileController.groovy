@@ -98,7 +98,7 @@ class ChildProfileController {
 
     if (child.profile.save() && child.user.save() && child.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "child"), child.profile.fullName])
-      redirect action: 'show', id: child.id, params: [entity: child.id]
+      redirect action: 'show', id: child.id
     }
     else {
       render view: 'edit', model: [child: child]
@@ -121,9 +121,9 @@ class ChildProfileController {
       }
 
       flash.message = message(code: "object.created", args: [message(code: "child"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [child: ee.entity])
+      render view: "create", model: [child: ee.entity]
     }
 
   }

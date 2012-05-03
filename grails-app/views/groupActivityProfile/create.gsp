@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="object.create" args="[message(code: 'groupActivity')]"/></h1>
-  </div>
+  <h1><g:message code="object.create" args="[message(code: 'groupActivity')]"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -49,16 +47,9 @@
           </td>
         </tr>
 
-        %{--<tr class="prop">
-          <td valign="top" class="name"><g:message code="date"/></td>
-          <td valign="top" class="value">
-            <g:textField name="date" class="datetimepicker" value="${new Date().format('dd. MM. yyyy HH:mm')}"/>
-          </td>
-        </tr>--}%
-
       </table>
       
-      <span class="ga_tab" style="border-right: none;"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params:[type: 'single']]" update="ga_content" before="showspinner('#ga_content')">Einmalig</g:remoteLink></span><span class="ga_tab"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params:[type: 'multiple']]" update="ga_content" before="showspinner('#ga_content')">Zeitraum</g:remoteLink></span>
+      <span class="ga_tab" style="border-right: none;"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params: [type: 'single']]" update="ga_content" before="showspinner('#ga_content')">Einmalig</g:remoteLink></span><span class="ga_tab"><g:remoteLink url="[controller: 'groupActivityProfile', action: 'updatecontent', params: [type: 'multiple']]" update="ga_content" before="showspinner('#ga_content')">Zeitraum</g:remoteLink></span>
       <div id="ga_content" class="ga_content">
         <g:render template="single" />
       </div>

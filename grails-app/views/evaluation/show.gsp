@@ -5,9 +5,7 @@
 <body>
 
   <div class="boxHeader">
-    <div class="second">
-      <h1><g:message code="evaluation"/></h1>
-    </div>
+    <h1><g:message code="evaluation"/></h1>
   </div>
 
   <table>

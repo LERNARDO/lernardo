@@ -15,32 +15,6 @@
       $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
     }
 
-    // toggle element
-    function toggle(id) {
-      $(id).toggle(400);
-    }
-
-    // clears the value of multiple elements
-    function clearElements(elements) {
-      for (x = 0; x <= elements.length; x++)
-        $(elements[x]).val('');
-    }
-
-    // toggles the disabled attribute of an element
-    function toggleDisabled(id) {
-      var status = $(id).attr('disabled');
-      if (!status) {
-        $(id).attr('disabled', 'disabled');
-        $(id).val('');
-      }
-      else
-        $(id).removeAttr('disabled');
-    }
-
-    function showBigSpinner() {
-      $('#loading').css('visibility', 'visible');
-    }
-
     $(document).ready(function() {
 
       $('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
@@ -129,6 +103,8 @@
       });
 
       $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
+
+      $('[data-counter]').jqEasyCounter();
 
       $('.countable50').jqEasyCounter({
         'maxChars': 50,

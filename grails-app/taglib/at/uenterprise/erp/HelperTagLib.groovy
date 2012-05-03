@@ -29,7 +29,19 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
-  //
+  /**
+   * Get the range maximum of the size constraint of an attribute of a domain class
+   *
+   * @author Alexander Zeillinger
+   * @author David Zeillinger
+   * @attr domainClass REQUIRED The domain class
+   * @attr constraint REQUIRED The constraint
+   */
+  def getConstraintSizeMax = {attrs, body ->
+    String domainClass = "at.uenterprise.erp.profiles.${attrs.domainClass}"
+    out << grailsApplication.getClassForName(domainClass).constraints[attrs.constraint].size.getToInt()
+  }
+
   /**
    * Check if a resource can be accessed by an entity
    *
@@ -40,15 +52,13 @@ class HelperTagLib {
 
     Entity currentEntity = entityHelperService.loggedIn
 
-    def a = Link.createCriteria()
-    def owner = a.get {
+    def owner = Link.createCriteria().get {
       eq('source', currentEntity)
       eq('target', attrs.entity)
       eq('type', metaDataService.ltOwner)
     }
 
-    def b = Link.createCriteria()
-    def responsible = b.get {
+    def responsible = Link.createCriteria().get {
       eq('source', currentEntity)
       eq('target', attrs.entity)
       eq('type', metaDataService.ltResponsible)
@@ -642,11 +652,11 @@ class HelperTagLib {
     if (!what) {
      what = Helper.get(attrs.event.what)
      if (who && what)
-       out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id, params:[entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
+       out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
     }
     else
       if (who && what)
-        out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id, params:[entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: what.type.supertype.name +'Profile', action: 'show', id: what.id, params:[entity: what.id]) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
+        out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: what.type.supertype.name + 'Profile', action: 'show', id: what.id, params: [entity: what.id]) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
   }
 
   /**
@@ -659,7 +669,7 @@ class HelperTagLib {
     def imgattrs = [:]
     AssetStorage store = assetService.findStorage(attrs.entity, 'profile', 'latest' )
     if (store)
-      imgattrs['src'] = g.createLink (controller:'app', action:'getImage', params:[type:'profile', entity:attrs.entity.id, store: store.id])
+      imgattrs['src'] = g.createLink (controller: 'app', action: 'getImage', params: [type: 'profile', entity: attrs.entity.id, store: store.id])
     else
       imgattrs['src'] = g.resource(dir: 'images', file: 'default_asset.jpg')
     attrs.name = attrs.entity.name
@@ -1125,8 +1135,7 @@ class HelperTagLib {
 
     List tags = []
 
-    def a = Link.createCriteria()
-    def resulta = a.get {
+    def resulta = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltAbsent)
@@ -1136,8 +1145,7 @@ class HelperTagLib {
     else
       tags.add(false)
 
-    def b = Link.createCriteria()
-    def resultb = b.get {
+    def resultb = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltIll)
@@ -1298,16 +1306,14 @@ class HelperTagLib {
     def result = null
     if (creatorof instanceof Entity) {
       if (creatorof.type.id == metaDataService.etAppointment.id) {
-        def c = Link.createCriteria()
-        result = c.get {
+        result = Link.createCriteria().get {
           eq('source', creatorof)
           eq('target', entity)
           eq('type', metaDataService.ltAppointment)
         }
       }
       else {
-        def c = Link.createCriteria()
-        result = c.get {
+        result = Link.createCriteria().get {
           eq('source', entity)
           eq('target', creatorof)
           eq('type', metaDataService.ltCreator)
@@ -1834,8 +1840,7 @@ class HelperTagLib {
    * @attr entity REQUIRED The entity
    */
   def getNewInboxMessages = {attrs, body ->
-    def c = Msg.createCriteria()
-    def result = c.list {
+    def result = Msg.createCriteria().list {
       eq('entity', attrs.entity)
       ne('sender', attrs.entity)
       eq('read', false)
@@ -1854,8 +1859,7 @@ class HelperTagLib {
 
     Date lastWeek = new Date() - 7
 
-    def c = News.createCriteria()
-    def result = c.list {
+    def result = News.createCriteria().list {
       ge('dateCreated', lastWeek)
     }
 
@@ -2102,8 +2106,7 @@ class HelperTagLib {
     if (!e)
       return false
 
-    def c = Link.createCriteria
-    def result = c.get {
+    def result = Link.createCriteria().get {
       eq("source", currentEntity)
       eq("target", e)
       eq("type", metaDataService.ltFriendship)

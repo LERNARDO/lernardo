@@ -99,7 +99,7 @@ class PateProfileController {
     if (pate.profile.save() && pate.user.save() && pate.save()) {
 
       flash.message = message(code: "object.updated", args: [message(code: "pate"), pate.profile.fullName])
-      redirect action: 'show', id: pate.id, params: [entity: pate.id]
+      redirect action: 'show', id: pate.id
     }
     else {
       render view: 'edit', model: [pate: pate]
@@ -123,9 +123,9 @@ class PateProfileController {
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}])
+      render view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}]
     }
 
   }
@@ -133,7 +133,7 @@ class PateProfileController {
   def addGodchildren = {
     def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltPate)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     render template:'godchildren', model: [godchildren: linking.sources, pate: linking.target]
   }
 
@@ -155,8 +155,7 @@ class PateProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etClient)
       user {
         eq("enabled", true)
@@ -171,11 +170,11 @@ class PateProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: results, pate: params.id])
+      render template: 'clientresults', model: [results: results, pate: params.id]
     }
   }
 }

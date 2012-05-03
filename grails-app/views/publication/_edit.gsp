@@ -16,7 +16,7 @@
         </div>
       </g:hasErrors>
 
-    <g:formRemote name="formRemote" url="[controller:'publication', action:'update', id: publication.id]" update="content" before="showspinner('#content');">
+    <g:formRemote name="formRemote" url="[controller: 'publication', action: 'update', id: publication.id]" update="content" before="showspinner('#content');">
 
         <table>
 

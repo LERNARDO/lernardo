@@ -121,9 +121,9 @@ class ResourceProfileController {
       }
 
       flash.message = message(code: "object.created", args: [message(code: "resource"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [resourceInstance: ee.entity])
+      render view: "create", model: [resourceInstance: ee.entity]
     }
 
   }
@@ -141,8 +141,7 @@ class ResourceProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etOperator)
         eq('type', metaDataService.etUser)
@@ -163,11 +162,11 @@ class ResourceProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'ownerresults', model: [results: results, resourceInstance: params.id])
+      render template: 'ownerresults', model: [results: results, resourceInstance: params.id]
     }
   }
 
@@ -208,8 +207,7 @@ class ResourceProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etOperator)
         eq('type', metaDataService.etUser)
@@ -228,11 +226,11 @@ class ResourceProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'responsibleresults', model: [results: results, resourceInstance: params.id])
+      render template: 'responsibleresults', model: [results: results, resourceInstance: params.id]
     }
   }
 

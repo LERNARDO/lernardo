@@ -66,8 +66,7 @@ class EvaluationController {
       clients = Entity.findAllByType(metaDataService.etClient)
     }
     else {
-      def c = Entity.createCriteria()
-      clients = c.list {
+      clients = Entity.createCriteria().list {
         eq('type', metaDataService.etClient)
         or {
           ilike('name', "%" + params.value + "%")
@@ -86,7 +85,7 @@ class EvaluationController {
         def upperBound = params.offset + params.max < totalEvaluations ? params.offset + params.max : totalEvaluations
         evaluations = evaluations.subList(params.offset, upperBound)
 
-        render template: "evaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, paginate: 'own', totalEvaluations: totalEvaluations]
+        render template: "evaluations", model: [evaluationInstanceList: evaluations, entity: entity, value: params.value, paginate: 'own', totalEvaluations: totalEvaluations]
       }
       else
         render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
@@ -110,8 +109,7 @@ class EvaluationController {
     }
 
     // find matching clients
-    def c = Entity.createCriteria()
-    def clients = c.list {
+    def clients = Entity.createCriteria().list {
       eq('type', metaDataService.etClient)
       or {
         ilike('name', "%" + params.value + "%")
@@ -128,7 +126,7 @@ class EvaluationController {
       def upperBound = params.offset + params.max < totalEvaluations ? params.offset + params.max : totalEvaluations
       evaluations = evaluations.subList(params.offset, upperBound)
 
-      render template: "evaluations", model:[evaluationInstanceList: evaluations,
+      render template: "evaluations", model: [evaluationInstanceList: evaluations,
                                              totalEvaluations: totalEvaluations,
                                              entity: entity,
                                              value: params.value,
@@ -153,8 +151,7 @@ class EvaluationController {
     }
 
     // find matching educators
-    def c = Entity.createCriteria()
-    def educators = c.list {
+    def educators = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -174,7 +171,7 @@ class EvaluationController {
       def upperBound = params.offset + params.max < totalEvaluations ? params.offset + params.max : totalEvaluations
       evaluations = evaluations.subList(params.offset, upperBound)
 
-      render template: "evaluations", model:[evaluationInstanceList: evaluations,
+      render template: "evaluations", model: [evaluationInstanceList: evaluations,
                                              totalEvaluations: totalEvaluations,
                                              entity: entity,
                                              value: params.value,
@@ -349,8 +346,7 @@ class EvaluationController {
     Date searchDate = params.date('myDate', 'dd. MM. yyyy')
 
     if (searchDate) {
-      def c = Entity.createCriteria()
-      List entities = c.list {
+      List entities = Entity.createCriteria().list {
         or {
             eq("type", metaDataService.etGroupActivity)
             eq("type", metaDataService.etProjectUnit)
@@ -369,7 +365,7 @@ class EvaluationController {
         return
       }
       else {
-        render(template: 'searchresults', model: [results: results])
+        render template: 'searchresults', model: [results: results]
       }
     }
     else {
@@ -381,13 +377,13 @@ class EvaluationController {
     Entity entity = Entity.get(params.id)
 
     def msg = message(code: "selection")
-    render ('<b>' + msg + '</b> <a href="' + createLink(controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + entity.profile.fullName + '</a>')
+    render ('<b>' + msg + '</b> <a href="' + createLink(controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a>')
   }
 
   def removeLinkedTo = {
     Evaluation evaluation = Evaluation.get(params.id)
     evaluation.linkedTo = null
     evaluation.save()
-    render '<span class="italic">'+message(code: "links.notLinked")+'</span>'
+    render '<span class="italic">'+message(code: "links.notLinked")+ '</span>'
   }
 }

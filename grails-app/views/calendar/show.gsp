@@ -118,7 +118,7 @@
 
       <div style="font-size: 12px; margin: 0 0 5px 10px;"><g:message code="educators"/></div>--}%
 
-      <g:remoteField style="margin: 10px 0 0 8px; font-size: 12px;" placeholder="Person hinzufügen" size="30" name="instantSearch" update="calender-results" paramName="name" url="[controller:'calendar', action:'search', params:[child: 'yes', client: 'yes', educator: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes', user: 'yes']]" before="showspinner('#calender-results')" />
+      <g:remoteField style="margin: 10px 0 0 8px; font-size: 12px;" placeholder="Person hinzufügen" size="30" name="instantSearch" update="calender-results" paramName="name" url="[controller: 'calendar', action: 'search', params: [child: 'yes', client: 'yes', educator: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes', user: 'yes']]" before="showspinner('#calender-results')" />
       <div style="margin: 10px 0 0 8px; font-size: 12px;" class="membersearch-results" id="calender-results"></div>
 
       %{--<div style="margin: 10px 0 0 8px; font-size: 12px;">

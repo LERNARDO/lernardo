@@ -134,7 +134,7 @@ class ProjectTemplateProfileController {
 
     if (projectTemplate.profile.save() && projectTemplate.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
-      redirect action: 'show', id: projectTemplate.id, params: [entity: projectTemplate.id]
+      redirect action: 'show', id: projectTemplate.id
     }
     else {
       render view: 'edit', model: [projectTemplate: projectTemplate]
@@ -208,7 +208,7 @@ class ProjectTemplateProfileController {
       new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
     flash.message = message(code: "projectTemplate.copied", args: [entity.profile.fullName])
-    redirect action: 'show', id: entity.id, params: [entity: entity.id]
+    redirect action: 'show', id: entity.id
   }
 
   def create = {
@@ -234,23 +234,23 @@ class ProjectTemplateProfileController {
       File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(EVENT_TYPE.PROJECT_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "object.created", args: [message(code: "projectTemplate"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [projectTemplate: ee.entity])
+      render view: "create", model: [projectTemplate: ee.entity]
     }
 
   }
 
   def editProjectUnitTemplate = {
     Entity projectUnitTemplate = Entity.get(params.projectUnitTemplate)
-    render template: "editProjectUnitTemplate", model:[projectUnitTemplate: projectUnitTemplate, i: params.i]
+    render template: "editProjectUnitTemplate", model: [projectUnitTemplate: projectUnitTemplate, i: params.i]
   }
 
   def updateProjectUnitTemplate = {
@@ -302,7 +302,7 @@ class ProjectTemplateProfileController {
                                                        allLabels: Label.findAllByType('template', params)]
     } catch (at.openfactory.ep.EntityException ee) {
       //render '<span class="red">Projekteinheitvorlage konnte nicht gespeichert werden!</span><br/>'
-      render '<span class="red">'+message(code: "projectUnitTemplates.notSaved")+'</span><br/>'
+      render '<span class="red">'+message(code: "projectUnitTemplates.notSaved")+ '</span><br/>'
 
       // find all projectUnitTemplates of this projectTemplate
       //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
@@ -329,8 +329,7 @@ class ProjectTemplateProfileController {
     Entity projectUnitTemplate = Entity.get(params.projectUnitTemplate)
 
     // delete link
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', projectUnitTemplate)
       eq('target', projectTemplate)
       eq('type', metaDataService.ltProjectUnitTemplate)
@@ -372,8 +371,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.projectTemplate)
 
     // check if the groupActivityTemplate isn't already linked to the projectUnitTemplate
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnitTemplate)
       eq('type', metaDataService.ltProjectUnitMember)
@@ -405,8 +403,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.projectTemplate)
 
     // delete link
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnitTemplate)
       eq('type', metaDataService.ltProjectUnitMember)
@@ -436,7 +433,7 @@ class ProjectTemplateProfileController {
     // calculate realDuration
     int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
-    render template:'updateduration', model:[calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]   
+    render template: 'updateduration', model: [calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]
   }
 
   /*
@@ -448,19 +445,17 @@ class ProjectTemplateProfileController {
       return
     }
     else if (params.value == "*") {
-      def c = Entity.createCriteria()
-      def results = c.list {
+      def results = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupActivityTemplate)
         profile {
           eq("status", "done")
         }
       }
-      render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+      render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etGroupActivityTemplate)
       profile {
         eq('status', "done")
@@ -475,11 +470,11 @@ class ProjectTemplateProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+      render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
     }
   }
 
@@ -534,8 +529,7 @@ class ProjectTemplateProfileController {
       templates.add(Entity.get(it.toInteger()))
     }
     // get all groupactivitytemplates that are set to completed
-    def c = Entity.createCriteria()
-    def allGroupActivityTemplates = c.list {
+    def allGroupActivityTemplates = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupActivityTemplate)
       profile {
         eq("status", "done")
@@ -555,8 +549,7 @@ class ProjectTemplateProfileController {
       templates.add(Entity.get(it.toInteger()))
     }
     // get all groupactivitytemplates that are set to completed
-    def c = Entity.createCriteria()
-    def allGroupActivityTemplates = c.list {
+    def allGroupActivityTemplates = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupActivityTemplate)
       profile {
         eq("status", "done")
@@ -665,11 +658,11 @@ def updateselect = {
     else
       thirdPass = secondPass
 
-    render(template: 'searchresults', model: [allTemplates: thirdPass,
+    render template: 'searchresults', model: [allTemplates: thirdPass,
                                               totalTemplates: thirdPass.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
                                               paginate: false,
-                                              name: params.name])
+                                              name: params.name]
   }
 
    def remoteGroupActivityTemplateByLabel = {
@@ -692,11 +685,11 @@ def updateselect = {
      }
      
      if (results.size() == 0) {
-       render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+       render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
        return
      }
      else {
-       render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+       render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
      }
    }
 

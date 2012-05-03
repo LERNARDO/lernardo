@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="child"/> - ${child.profile.fullName}</h1>
-  </div>
+  <h1><g:message code="child"/> - ${child.profile.fullName}</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -93,7 +91,7 @@
               </erp:accessCheck>
               <td>
                 <span class="bold"><g:message code="email"/>: </span>
-                ${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+                ${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
               </td>
               <erp:accessCheck types="['Betreiber']" me="${child}">
                 <td>

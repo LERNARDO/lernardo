@@ -11,7 +11,7 @@
 
     <erp:accessCheck types="['Betreiber']" me="${entity}" creatorof="${entity}">
       <div class="buttons">
-      <g:formRemote name="formRemote" url="[controller:'publication', action:'create', id: entity.id]" update="content" before="showspinner('#content');">
+      <g:formRemote name="formRemote" url="[controller: 'publication', action: 'create', id: entity.id]" update="content" before="showspinner('#content');">
           <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code: 'publication.upload')}"/></div>
           <div class="clear"></div>
         </g:formRemote>

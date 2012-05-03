@@ -48,7 +48,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="description"/>:</td>
-        <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
       </tr>
 
     </table>
@@ -69,8 +69,8 @@
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td valign="top">${fieldValue(bean: client, field: 'profile.fullName').decodeHTML()}</td>
             <td valign="top"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
-            <td valign="top">${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-            <td valign="top"><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</erp:getColony></td>
+            <td valign="top">${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+            <td valign="top"><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</erp:getColony></td>
             <td valign="top">
               <erp:getParentsOfClient client="${client}">
                 <g:each in="${parents}" var="parent">

@@ -30,12 +30,11 @@ class ProfileController {
   def saveNotification = {NotificationCommand nc->
 
     if (nc.hasErrors()) {
-      render view:'createNotification', model:[nc: nc]
+      render view: 'createNotification', model: [nc: nc]
       return
     }
     
-    def c = Entity.createCriteria()
-    def userList = c.list {
+    def userList = Entity.createCriteria().list {
       user {
         eq("enabled", true)
       }
@@ -76,7 +75,7 @@ class ProfileController {
     entity?.user?.addToAuthorities(metaDataService.adminRole)
     Entity currentEntity = entityHelperService.loggedIn
     functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators gegeben.").save()
-    render template:'listentity', model:[entity: entity, i: params.i]
+    render template: 'listentity', model: [entity: entity, i: params.i]
   }
 
   /*
@@ -88,7 +87,7 @@ class ProfileController {
     entity.user.removeFromAuthorities(role)
     Entity currentEntity = entityHelperService.loggedIn
     functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators genommen.").save()
-    render template:'listentity', model:[entity: entity, i: params.i]
+    render template: 'listentity', model: [entity: entity, i: params.i]
   }
 
   /*
@@ -104,7 +103,7 @@ class ProfileController {
 
     entity.user.enabled = false
 
-    render template:'listentity', model:[entity: entity, i: params.i]
+    render template: 'listentity', model: [entity: entity, i: params.i]
   }
 
   /*
@@ -120,7 +119,7 @@ class ProfileController {
 
     entity.user.enabled = true
 
-    render template:'listentity', model:[entity: entity, i: params.i]
+    render template: 'listentity', model: [entity: entity, i: params.i]
   }
 
   /*
@@ -136,7 +135,7 @@ class ProfileController {
    */
   def checkPassword = {
     if (!params.password || !params.password2) {
-      render view: 'changePassword', model:[ entity: Entity.get(params.id), error: 'true']
+      render view: 'changePassword', model: [entity: Entity.get(params.id), error: 'true']
       return
     }
     if (params.password == params.password2) {
@@ -224,8 +223,7 @@ class ProfileController {
     List entities
     int count
     if (params.entityType == 'all') {
-      def c = Entity.createCriteria()
-      entities = c.list {
+      entities = Entity.createCriteria().list {
         and {
           ne("type", metaDataService.etActivity)
           ne("type", metaDataService.etTemplate)
@@ -284,13 +282,13 @@ class ProfileController {
       else {
         flash.message = message(code: "profile.picture.select.ok")
         functionService.storeAsset(entity, params.type, asset)
-        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
+        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id
       }
     }
   }
 
   def saveProfilePic = {
-    forward(action:"savePic", params:[type:"profile"])
+    forward action: "savePic", params: [type: "profile"]
   }
   
   def addFavorite = {
@@ -355,8 +353,7 @@ class ProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       user {
         eq("enabled", true)
       }
@@ -375,11 +372,11 @@ class ProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'creatorresults', model: [results: results])
+      render template: 'creatorresults', model: [results: results]
     }
   }
 

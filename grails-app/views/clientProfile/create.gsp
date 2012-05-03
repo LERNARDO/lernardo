@@ -5,9 +5,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="object.create" args="[message(code: 'client')]"/></h1>
-  </div>
+  <h1><g:message code="object.create" args="[message(code: 'client')]"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -29,7 +27,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="firstName"/></td>
             <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="40" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
+              <g:textField data-counter="${erp.getConstraintSizeMax(domainClass: 'ClientProfile', constraint: 'firstName')}" class="${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="40" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -149,7 +147,7 @@
             </td>
           </tr>
 
-          <tr class="prop">
+          %{--<tr class="prop">
             <td valign="top" class="name"><g:message code="client.profile.schoolDropout"/></td>
             <td valign="top" class="value">
               <g:checkBox name="schoolDropout" value="${client?.profile?.schoolDropout}"/>
@@ -189,7 +187,7 @@
             <td valign="top" class="value">
               <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="60" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>
             </td>
-          </tr>
+          </tr>--}%
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="client.profile.job"/></td>

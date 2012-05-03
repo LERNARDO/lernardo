@@ -118,8 +118,7 @@ class EducatorProfileController {
 
     Entity colony = functionService.findByLink(null, educator, metaDataService.ltColonia)
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
@@ -160,14 +159,13 @@ class EducatorProfileController {
       }
 
       flash.message = message(code: "object.updated", args: [message(code: "educator"), educator.profile.fullName])
-      redirect action: 'show', id: educator.id, params: [entity: educator.id]
+      redirect action: 'show', id: educator.id
     }
     else {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
@@ -181,8 +179,7 @@ class EducatorProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
@@ -218,19 +215,18 @@ class EducatorProfileController {
       new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
 
       flash.message = message(code: "object.created", args: [message(code: "educator"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
         }
       }
-      render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonies: allColonies])
+      render view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonies: allColonies]
     }
 
   }

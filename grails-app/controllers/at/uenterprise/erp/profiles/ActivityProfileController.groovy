@@ -186,7 +186,7 @@ class ActivityProfileController {
   def save = {ActivityCommand ac ->
 
     if (ac.hasErrors()) {
-      render view: 'create', model:['ac':ac]
+      render view: 'create', model: ['ac':ac]
       return
     }
 
@@ -307,7 +307,7 @@ class ActivityProfileController {
 
     if (activity.profile.save() && activity.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "activity"), activity.profile.fullName])
-      redirect action: 'show', id: activity.id, params: [entity: activity.id]
+      redirect action: 'show', id: activity.id
     }
     else {
       render view: 'edit', model: ['activity': activity]
@@ -364,8 +364,7 @@ class ActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etTemplate)
       //or {
         //ilike('name', "%" + params.value + "%")
@@ -377,11 +376,11 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'templateresults', model: [results: results])
+      render template: 'templateresults', model: [results: results]
     }
   }
 
@@ -413,8 +412,7 @@ class ActivityProfileController {
       results = results.findAll {it.profile.fullName.contains(params.value)}
     }
     else {
-      def c = Entity.createCriteria()
-      results = c.list {
+      results = Entity.createCriteria().list {
         eq('type', metaDataService.etFacility)
         or {
           ilike('name', "%" + params.value + "%")
@@ -427,11 +425,11 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'facilityresults', model: [results: results])
+      render template: 'facilityresults', model: [results: results]
     }
   }
 
@@ -448,8 +446,7 @@ class ActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
@@ -464,11 +461,11 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'educatorresults', model: [results: results, activity: params.id])
+      render template: 'educatorresults', model: [results: results, activity: params.id]
     }
   }
 
@@ -485,8 +482,7 @@ class ActivityProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)
@@ -501,11 +497,11 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'clientresults', model: [results: results, activity: params.id])
+      render template: 'clientresults', model: [results: results, activity: params.id]
     }
   }
 
@@ -519,7 +515,7 @@ class ActivityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltActEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
     render template: 'educators', model: [educators: linking.sources, activity: linking.target]
   }
 
@@ -564,8 +560,7 @@ class ActivityProfileController {
     Entity facility = Entity.get(params.id)
 
     // find all educators linked to this facility
-    def c = Link.createCriteria()
-    List educators = c.list {
+    List educators = Link.createCriteria().list {
       eq('target', facility)
       or {
         eq('type', metaDataService.ltWorking)
@@ -575,40 +570,38 @@ class ActivityProfileController {
         distinct('source')
       }
     }
-    render template: 'educatorsFound', model:[educators: educators, currentEntity: entityHelperService.loggedIn]
+    render template: 'educatorsFound', model: [educators: educators, currentEntity: entityHelperService.loggedIn]
   }
 
   def updateClients = {
     Entity facility = Entity.get(params.id)
 
     // find all clients linked to this facility
-    def c = Link.createCriteria()
-    List clients = c.list {
+    List clients = Link.createCriteria().list {
       eq('target', facility)
       eq('type', metaDataService.ltGroupMemberClient)
       projections {
         distinct('source')
       }
     }
-    render template: 'clientsFound', model:[clients: clients, currentEntity: entityHelperService.loggedIn]
+    render template: 'clientsFound', model: [clients: clients, currentEntity: entityHelperService.loggedIn]
   }
 
   def addFacility = {
     Entity group = Entity.get(params.id)
-    def c = Link.createCriteria()
-    def result = c.get {
+    def result = Link.createCriteria().get {
       eq('source', Entity.get(params.id))
       eq('type', metaDataService.ltActFacility)
     }
     if (!result) {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltActFacility)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+        render '<span class="red italic">"' + linking.target.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
       render template: 'facilities', model: [facilities: linking.targets, activity: linking.source]
     }
     else {
       List facilities = functionService.findAllByLink(group, null, metaDataService.ltActFacility)
-      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
+      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+ '</span>'
       render template: 'facilities', model: [facilities: facilities, activity: group]
     }
 

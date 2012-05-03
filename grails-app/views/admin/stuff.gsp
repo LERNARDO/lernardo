@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1>Admin Stuff</h1>
-  </div>
+  <h1>Admin Stuff</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -15,7 +13,7 @@
 
     <div class="adminbox">
       <div class="bold">Show links "from" and "to" an entity:</div>
-      <g:select from="${entities}" name="entity" optionKey="id" optionValue="profile" noSelection="[null:message(code:'non')]" onchange="${remoteFunction(controller:'admin', action:'linksresults', update:'results', params:'\'id=\' + this.value')}"/>
+      <g:select from="${entities}" name="entity" optionKey="id" optionValue="profile" noSelection="[null:message(code:'non')]" onchange="${remoteFunction(controller: 'admin', action: 'linksresults', update: 'results', params:'\'id=\' + this.value')}"/>
       <div class="result" id="results"></div>
     </div>
 

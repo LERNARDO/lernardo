@@ -74,7 +74,7 @@ class TemplateProfileController {
 
     if (template.profile.save() && template.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "template"), template.profile.fullName])
-      redirect action: 'show', id: template.id, params: [entity: template.id]
+      redirect action: 'show', id: template.id
     }
     else {
       render view: 'edit', model: [template: template]
@@ -164,7 +164,7 @@ class TemplateProfileController {
       new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
     flash.message = message(code: "template.copied", args: [entity.profile.fullName])
-    redirect action: 'show', id: entity.id, params: [entity: entity.id]
+    redirect action: 'show', id: entity.id
   }
 
   def save = {
@@ -186,14 +186,14 @@ class TemplateProfileController {
       File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(EVENT_TYPE.ACTIVITY_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "object.created", args: [message(code: "template"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
 
     } catch (at.openfactory.ep.EntityException ee) {
       render view: "create", model: [template: ee.entity, resources: Entity.findAllByType(metaDataService.etResource)]
@@ -476,7 +476,7 @@ class TemplateProfileController {
     else
       fourthPass = thirdPass
 
-    render(template: 'searchresults', model: [allTemplates: fourthPass,
+    render template: 'searchresults', model: [allTemplates: fourthPass,
                                               totalTemplates: fourthPass.size(),
                                               numberOfAllTemplates: numberOfAllTemplates,
                                               paginate: false,
@@ -493,7 +493,7 @@ class TemplateProfileController {
                                               duration1: params.duration1,
                                               duration2: params.duration2,
                                               ageFrom: params.ageFrom,
-                                              ageTo: params.ageTo])
+                                              ageTo: params.ageTo]
   }
 
    /*

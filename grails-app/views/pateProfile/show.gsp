@@ -5,9 +5,7 @@
 
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="pate"/> - ${pate.profile.fullName}</h1>
-  </div>
+  <h1><g:message code="pate"/> - ${pate.profile.fullName}</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -31,12 +29,12 @@
 
           <tr class="prop">
             <td class="one"><g:message code="firstName"/>:</td>
-            <td class="two">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
           </tr>
 
           <tr class="prop">
             <td class="one"><g:message code="lastName"/>:</td>
-            <td class="two">${fieldValue(bean: pate, field: 'profile.lastName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${fieldValue(bean: pate, field: 'profile.lastName') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
           </tr>
 
           <tr class="prop">
@@ -62,22 +60,22 @@
 
           <tr class="prop">
             <td class="one"><g:message code="zip"/>:</td>
-            <td class="two">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+            <td class="two">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+ '</div>'}</td>
           </tr>
 
           <tr class="prop">
             <td class="one"><g:message code="city"/>:</td>
-            <td class="two">${fieldValue(bean: pate, field: 'profile.city') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${fieldValue(bean: pate, field: 'profile.city') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
           </tr>
 
           <tr class="prop">
             <td class="one"><g:message code="street"/>:</td>
-            <td class="two">${fieldValue(bean: pate, field: 'profile.street') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${fieldValue(bean: pate, field: 'profile.street') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
           </tr>
 
           <tr class="prop">
             <td class="one"><g:message code="country"/>:</td>
-            <td class="two">${fieldValue(bean: pate, field: 'profile.country') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${fieldValue(bean: pate, field: 'profile.country') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
           </tr>
 
           %{-- AAZ (01.09.2010): disabled until this feature is implemented --}%
@@ -100,7 +98,7 @@
               </erp:accessCheck>
               <td>
                 <span class="bold"><g:message code="email"/>: </span>
-                ${fieldValue(bean: pate, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+                ${fieldValue(bean: pate, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
               </td>
               <erp:accessCheck types="['Betreiber']" me="${pate}">
                 <td>

@@ -5,9 +5,7 @@
 
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="news"/></h1>
-  </div>
+  <h1><g:message code="news"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -24,7 +22,7 @@
         <div class="info">
           <g:message code="from"/>
           <span class="bold">
-            <g:link controller="${news.author.type.supertype.name +'Profile'}" action="show" id="${news.author.id}">${news.author.profile.fullName}</g:link>
+            <g:link controller="${news.author.type.supertype.name + 'Profile'}" action="show" id="${news.author.id}">${news.author.profile.fullName}</g:link>
           </span>
           <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${news.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
           <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${news.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>

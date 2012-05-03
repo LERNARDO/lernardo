@@ -5,9 +5,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="evaluation.edit"/></h1>
-  </div>
+  <h1><g:message code="evaluation.edit"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -21,7 +19,7 @@
     <div style="background: #fefefe; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
       <div id="select-box">
         <p><g:message code="evaluation.linkToActivity"/></p>
-        <g:formRemote name="formRemote" update="results" url="[controller:'evaluation', action:'searchMe']" before="showspinner('#results')">
+        <g:formRemote name="formRemote" update="results" url="[controller: 'evaluation', action: 'searchMe']" before="showspinner('#results')">
           <g:textField class="datepicker-birthday" name="myDate" value="${formatDate(date: new Date(), format: 'dd. MM. yyyy')}"/>
           <g:submitButton name="submit" value="OK"/>
         </g:formRemote>

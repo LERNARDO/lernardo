@@ -22,7 +22,7 @@
   </p>
 
   Diesen Projekttag verschieben (Datum und/oder Uhrzeit):
-  <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'moveProjectDay', id: projectDay.id]" update="projectDay" before="showspinner('#projectDay')">
+  <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'moveProjectDay', id: projectDay.id]" update="projectDay" before="showspinner('#projectDay')">
     <table>
       <tr>
         <td style="padding: 5px 10px 0 0;"><g:textField name="date" class="datetimepicker" value="${formatDate(date: projectDay.profile.date, format: 'dd. MM. yyyy HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/></td>
@@ -39,7 +39,7 @@
 
   <h5><g:message code="projectUnits"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
   <div id="units" style="display:none;">
-    <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addUnit', id:projectDay.id]" update="units2" before="showspinner('#units2')">
+    <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'addUnit', id: projectDay.id]" update="units2" before="showspinner('#units2')">
       <table>
         <tr>
           <td style="padding: 5px 10px 0 0;"><g:select name="unit" from="${units}" optionKey="id" optionValue="profile"/></td>

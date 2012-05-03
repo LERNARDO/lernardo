@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="privat.msgCreate"/></h1>
-  </div>
+  <h1><g:message code="privat.msgCreate"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -60,7 +58,7 @@
 
       <div class="buttons">
         <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code: 'send')}"/></div>
-        <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="cancel"/></g:link>
+        <g:link class="buttonGray" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="cancel"/></g:link>
         <div class="clear"></div>
       </div>
 

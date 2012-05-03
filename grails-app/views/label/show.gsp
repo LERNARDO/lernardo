@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="label"/> - ${labelInstance.name}</h1>
-  </div>
+  <h1><g:message code="label"/> - ${labelInstance.name}</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -20,7 +18,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="description"/>:</td>
-        <td class="two">${fieldValue(bean: labelInstance, field: 'description').decodeHTML() ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
+        <td class="two">${fieldValue(bean: labelInstance, field: 'description').decodeHTML() ?: '<div class="italic">'+message(code:'noData')+ '</div>'}</td>
       </tr>
 
     </table>

@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="resources"/></h1>
-  </div>
+  <h1><g:message code="resources"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -28,7 +26,7 @@
           <td><g:link action="show" id="${resource.id}">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td>
             <erp:resourceCreatedIn resource="${resource}">
-              <g:link controller="${source.type.supertype.name +'Profile'}" action="show" id="${source.id}">${source.profile.fullName}</g:link>
+              <g:link controller="${source.type.supertype.name + 'Profile'}" action="show" id="${source.id}">${source.profile.fullName}</g:link>
             </erp:resourceCreatedIn>
           </td>
         </tr>

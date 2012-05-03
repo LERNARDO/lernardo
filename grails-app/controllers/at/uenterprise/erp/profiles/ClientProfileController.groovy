@@ -131,16 +131,14 @@ class ClientProfileController {
 
     Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
       }
     }
 
-    def d = Entity.createCriteria()
-    def allFacilities = d.list {
+    def allFacilities = Entity.createCriteria().list {
       eq("type", metaDataService.etFacility)
       profile {
         order(params.sort, params.order)
@@ -155,8 +153,8 @@ class ClientProfileController {
 
   def update = {
     params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
-    params.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
-    params.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
+    //params.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
+    //params.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
 
     Entity client = Entity.get(params.id)
 
@@ -174,7 +172,7 @@ class ClientProfileController {
 
     if (client.profile.save() && client.user.save() && client.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "client"), client.profile.fullName])
-      redirect action: 'show', id: client.id, params: [entity: client.id]
+      redirect action: 'show', id: client.id
     }
     else {
       params.sort = params.sort ?: "fullName"
@@ -182,16 +180,14 @@ class ClientProfileController {
       Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
       //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
         }
       }
 
-      def d = Entity.createCriteria()
-      def allFacilities = d.list {
+      def allFacilities = Entity.createCriteria().list {
         eq("type", metaDataService.etFacility)
         profile {
           order(params.sort, params.order)
@@ -205,16 +201,14 @@ class ClientProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def allColonies = c.list {
+    def allColonies = Entity.createCriteria().list {
       eq("type", metaDataService.etGroupColony)
       profile {
         order(params.sort, params.order)
       }
     }
 
-    def d = Entity.createCriteria()
-    def allFacilities = d.list {
+    def allFacilities = Entity.createCriteria().list {
       eq("type", metaDataService.etFacility)
       profile {
         order(params.sort, params.order)
@@ -233,8 +227,8 @@ class ClientProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.profile.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
-        ent.profile.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
-        ent.profile.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
+        //ent.profile.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
+        //ent.profile.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.save()
       }
@@ -246,28 +240,26 @@ class ClientProfileController {
       //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
       flash.message = message(code: "object.created", args: [message(code: "client"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
 
-      def c = Entity.createCriteria()
-      def allColonies = c.list {
+      def allColonies = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupColony)
         profile {
           order(params.sort, params.order)
         }
       }
 
-      def d = Entity.createCriteria()
-      def allFacilities = d.list {
+      def allFacilities = Entity.createCriteria().list {
         eq("type", metaDataService.etFacility)
         profile {
           order(params.sort, params.order)
         }
       }
 
-      render(view: "create", model: [client: ee.entity, allColonies: allColonies, allFacilities: allFacilities])
+      render view: "create", model: [client: ee.entity, allColonies: allColonies, allFacilities: allFacilities]
     }
   }
 
@@ -355,7 +347,7 @@ class ClientProfileController {
   def addContact = {ContactCommand cc ->
     Entity client = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "client.profile.name.insert")+'</p>'
+      render '<p class="italic red">'+message(code: "client.profile.name.insert")+ '</p>'
       render template: 'contacts', model: [client: client]
       return
     }
@@ -413,8 +405,7 @@ class ClientProfileController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       eq('type', metaDataService.etFacility)
       or {
         ilike('name', "%" + params.value + "%")
@@ -426,11 +417,11 @@ class ClientProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'facilityresults', model: [results: results, client: params.id])
+      render template: 'facilityresults', model: [results: results, client: params.id]
     }
   }
 
@@ -440,7 +431,7 @@ class ClientProfileController {
 
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberClient)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     else
       new Attendance(client: client, facility: facility).save(failOnError: true)
 
@@ -453,8 +444,7 @@ class ClientProfileController {
     Entity facility = Entity.get(params.facility)
     Entity client = Entity.get(params.id)
 
-    def c = Link.createCriteria()
-    def link = c.get {
+    def link = Link.createCriteria().get {
       eq('source', client)
       eq('target', facility)
       eq('type', metaDataService.ltGroupMemberClient)

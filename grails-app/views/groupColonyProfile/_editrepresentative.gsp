@@ -1,4 +1,4 @@
-<g:formRemote name="myForm" url="[action:'updateRepresentative', id:group.id, params:[representative: representative.id]]" update="representatives2">
+<g:formRemote name="myForm" url="[action: 'updateRepresentative', id: group.id, params: [representative: representative.id]]" update="representatives2">
   <div><g:textField size="30" name="firstName" value="${representative.firstName}" placeholder="${message(code: 'firstName')}"/></div>
   <div><g:textField size="30" name="lastName" value="${representative.lastName}" placeholder="${message(code: 'lastName')}"/></div>
   <div><g:textField size="5" name="zip" value="${representative.zip}" placeholder="${message(code: 'zip')}"/></div>

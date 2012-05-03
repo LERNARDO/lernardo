@@ -24,11 +24,11 @@ class AppointmentProfileController {
     ]
 
     def index = {
-        redirect action:"list", params:params 
+        redirect action: "list", params: params
     }
 
     // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+    static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
     def list = {
       params.offset = params.int('offset') ?: 0
@@ -102,16 +102,16 @@ class AppointmentProfileController {
         try {
           flash.message = message(code: "object.deleted", args: [message(code: "appointment"), appointment.profile.fullName])
           appointment.delete(flush:true)
-          redirect(action:"list")
+          redirect(action: "list")
         }
         catch(org.springframework.dao.DataIntegrityViolationException e) {
           flash.message = message(code: "object.notDeleted", args: [message(code: "appointment"), appointment.profile.fullName])
-          redirect(action:"show",id:params.id)
+          redirect(action: "show", id: params.id)
         }
       }
       else {
         flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
-        redirect(action:"list")
+        redirect(action: "list")
       }
     }
 
@@ -136,7 +136,7 @@ class AppointmentProfileController {
       appointment.profile.endDate = functionService.convertToUTC(appointment.profile.endDate)
 
       if (appointment.profile.beginDate > appointment.profile.endDate) {
-        render (view: "edit", model: [appointmentProfileInstance: appointment])
+        render view: "edit", model: [appointmentProfileInstance: appointment]
         return
       }
 
@@ -170,9 +170,9 @@ class AppointmentProfileController {
         new Link(source: entity, target: owner, type: metaDataService.ltAppointment).save(failOnError: true)
 
         flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile.fullName])
-        redirect action: 'show', id: entity.id, params: [entity: entity]
+        redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
-        render(view: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner])
+        render view: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner]
       }
 
     }

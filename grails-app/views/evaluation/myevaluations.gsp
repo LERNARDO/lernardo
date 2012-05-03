@@ -4,7 +4,7 @@
 
   <script type="text/javascript">
       $(function() {
-        ${remoteFunction(controller:"evaluation", action: "showMine", update: "remoteEvaluations", id: entity.id, params: [value: ""], before: "showspinner('#remoteEvaluations')")}
+        ${remoteFunction(controller: "evaluation", action: "showMine", update: "remoteEvaluations", id: entity.id, params: [value: ""], before: "showspinner('#remoteEvaluations')")}
       });
     </script>
 

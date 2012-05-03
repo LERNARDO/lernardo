@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="msg"/></h1>
-  </div>
+  <h1><g:message code="msg"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -21,7 +19,7 @@
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="value msg-name"><g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}">${msgInstance.sender.profile.fullName.decodeHTML()}</g:link> <g:message code="for"/> <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.fullName.decodeHTML()}</g:link> <span style="float: right"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></span></td>
+        <td valign="top" class="value msg-name"><g:link controller="${msgInstance.sender.type.supertype.name + 'Profile'}" action="show" id="${msgInstance.sender.id}">${msgInstance.sender.profile.fullName.decodeHTML()}</g:link> <g:message code="for"/> <g:link controller="${msgInstance.receiver.type.supertype.name + 'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.fullName.decodeHTML()}</g:link> <span style="float: right"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></span></td>
       </tr>
 
       <tr class="prop">

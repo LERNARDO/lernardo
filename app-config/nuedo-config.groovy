@@ -46,7 +46,7 @@ if (customer == "sueninos") {
         dataSource {
               dbCreate = "create-drop" // one of 'create', 'create-drop','update'
               url = "jdbc:postgresql://localhost:5432/nuedo"
-              loggingSql = false
+              logSql = false
               hibernate.default_schema = 'dev'
               grails.serverURL = "http://localhost:8080/nuedo"
         }
@@ -55,7 +55,7 @@ if (customer == "sueninos") {
         dataSource {
               dbCreate = "update"
               url = "jdbc:postgresql://localhost:5432/nuedo"
-              loggingSql = false
+              logSql = false
               hibernate.default_schema = 'test'
               grails.serverURL = "http://nuedo.customer.uenterprise.de/test"
         }
@@ -64,7 +64,7 @@ if (customer == "sueninos") {
         dataSource {
               dbCreate = "update"
               url = "jdbc:postgresql://localhost:5432/nuedo"
-              loggingSql = false
+              logSql = false
               hibernate.default_schema = 'prod'
               grails.serverURL = "http://sueninos.nuedo.net"
         }

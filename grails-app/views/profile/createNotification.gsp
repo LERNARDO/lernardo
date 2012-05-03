@@ -6,9 +6,7 @@
   </head>
   <body>
     <div class="boxHeader">
-      <div class="second">
-        <h1><g:message code="notification.create"/></h1>
-      </div>
+      <h1><g:message code="notification.create"/></h1>
     </div>
     <div class="boxGray">
       <div class="second">
@@ -64,7 +62,7 @@
 
           <div class="buttons">
             <div class="button"><g:actionSubmit class="buttonGreen" action="saveNotification" value="${message(code: 'notification.send')}" /></div>
-            <div class="button"><g:actionSubmit class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" value="${message(code: 'cancel')}" /></div>
+            <div class="button"><g:actionSubmit class="buttonGray" controller="${currentEntity.type.supertype.name + 'Profile'}" action="show" value="${message(code: 'cancel')}" /></div>
             <div class="clear"></div>
           </div>
         </g:form>

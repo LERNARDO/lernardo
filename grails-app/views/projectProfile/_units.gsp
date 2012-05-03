@@ -51,7 +51,7 @@
 
       <h5 style="margin-bottom: 5px;"><g:message code="parents"/> <erp:getProjectUnitParentsCount projectUnit="${unit}"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#parents${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></h5>
       <div id="parents${i}" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addParent', id:unit.id, params:[i: i]]" update="parents2${i}" before="showspinner('#parents2${i}')">
+        <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'addParent', id: unit.id, params: [i: i]]" update="parents2${i}" before="showspinner('#parents2${i}')">
           <table>
             <tr>
               <td style="padding: 5px 10px 0 0;"><g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/></td>
@@ -69,7 +69,7 @@
 
       <h5 style="margin-bottom: 5px;"><g:message code="partners"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#partners${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></h5>
       <div id="partners${i}" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addPartner', id:unit.id, params:[i: i]]" update="partners2${i}" before="showspinner('#partners2${i}')">
+        <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'addPartner', id: unit.id, params: [i: i]]" update="partners2${i}" before="showspinner('#partners2${i}')">
           <table>
             <tr>
               <td style="padding: 5px 10px 0 0;"><g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/></td>

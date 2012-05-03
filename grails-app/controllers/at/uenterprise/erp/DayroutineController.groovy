@@ -72,7 +72,7 @@ class DayroutineController {
   def editroutine = {
     Dayroutine routine = Dayroutine.get(params.id)
 
-    render template: "editroutine", model:[routine: routine, i: params.i]
+    render template: "editroutine", model: [routine: routine, i: params.i]
   }
 
   def updateroutine = {
@@ -86,7 +86,7 @@ class DayroutineController {
     routine.dateTo = functionService.convertToUTC(routine.dateTo)
 
     routine.save(flush:true)
-    render template: "routine", model:[routine: routine, i: params.i]
+    render template: "routine", model: [routine: routine, i: params.i]
   }
 
   def deleteroutine = {

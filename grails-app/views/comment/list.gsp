@@ -4,15 +4,13 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="comments"/></h1>
-  </div>
+  <h1><g:message code="comments"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
 
     <div style="margin: 0 0 10px 0;">
-      <g:formRemote name="formRemote" url="[controller:'comment', action:'updatelist']" update="results" before="showspinner('#results')">
+      <g:formRemote name="formRemote" url="[controller: 'comment', action: 'updatelist']" update="results" before="showspinner('#results')">
         <table>
           <tr>
             <td class="gray" valign="top" style="width: 100px;"><g:message code="period"/>:</td>

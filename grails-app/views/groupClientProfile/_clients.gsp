@@ -3,7 +3,7 @@
   <ul>
   <g:each in="${clients}" var="client">
     <li>
-      <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>
+      <g:link controller="${client.type.supertype.name + 'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>
        &nbsp;
       <erp:accessCheck types="['Betreiber']"><g:remoteLink controller="groupClientProfile" action="removeClient" update="clients2" id="${group.id}" params="[client: client.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck>
     </li>

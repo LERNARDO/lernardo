@@ -4,9 +4,7 @@
 </head>
 <body>
   <div class="boxHeader">
-    <div class="second">
-      <h1><g:message code="profile.picture.change"/></h1>
-    </div>
+    <h1><g:message code="profile.picture.change"/></h1>
   </div>
   <div class="boxGray">
     <div class="second">
@@ -32,7 +30,7 @@
           <g:if test="${entity.assets}">
             <g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}"><g:message code="delete"/></g:link>
           </g:if>
-          <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}"><g:message code="cancel"/></g:link>
+          <g:link class="buttonGray" controller="${currentEntity.type.supertype.name + 'Profile'}" action="show" id="${currentEntity.id}"><g:message code="cancel"/></g:link>
           <div class="clear"></div>
         </div>
         

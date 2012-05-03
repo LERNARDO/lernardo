@@ -2,7 +2,6 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Account
-import at.openfactory.ep.SecHelperService
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.Tag
 import at.openfactory.ep.TagLinkType
@@ -18,7 +17,6 @@ import at.openfactory.ep.security.SecurityManagerException
 //import grails.util.GrailsUtil
 
 class AppController {
-  SecHelperService secHelperService
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
@@ -70,7 +68,7 @@ class AppController {
     TimeZone timeZone = TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())
 
     List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
-    render template: 'livetickersmall', model:[events: events, timeZone: timeZone]
+    render template: 'livetickersmall', model: [events: events, timeZone: timeZone]
   }
 
   def showticker = {
@@ -85,7 +83,7 @@ class AppController {
     List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
     events.sort() {it.dateCreated}
     events = events.reverse()
-    render template: 'liveticker', model:[events: events]
+    render template: 'liveticker', model: [events: events]
   }
 
   def liveticker = {
@@ -284,7 +282,7 @@ class AppController {
       sendMail {
         to      "error@uenterprise.de"
         subject grailsApplication.config.application.name + " - Error 500"
-        html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
+        html    g.render(template: '/errortemplate', model: [request:request, exception: request.exception])
       }
       log.info "Notification email sent to developers!"
     }*/
@@ -399,8 +397,7 @@ class AppController {
 
     List tags = []
 
-    def a = Link.createCriteria()
-    def resulta = a.get {
+    def resulta = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltAbsent)
@@ -410,8 +407,7 @@ class AppController {
     else
       tags.add(false)
 
-    def b = Link.createCriteria()
-    def resultb = b.get {
+    def resultb = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltIll)
@@ -471,8 +467,7 @@ class AppController {
 
     List tags = []
 
-    def a = Link.createCriteria()
-    def resulta = a.get {
+    def resulta = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltAbsent)
@@ -482,8 +477,7 @@ class AppController {
     else
       tags.add(false)
 
-    def b = Link.createCriteria()
-    def resultb = b.get {
+    def resultb = Link.createCriteria().get {
       eq('source', entity)
       eq('target', target)
       eq('type', metaDataService.ltIll)
@@ -507,7 +501,7 @@ class AppController {
     asset.delete()
 
     flash.message = message(code: 'profile.picture.deleted')
-    redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
+    redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id
   }
 
   def changeCreator = {
@@ -546,8 +540,7 @@ class AppController {
       return
     }
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       user {
         eq("enabled", true)
       }
@@ -566,11 +559,11 @@ class AppController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
       return
     }
     else {
-      render(template: 'creatorresults', model: [results: results, changed: params.id])
+      render template: 'creatorresults', model: [results: results, changed: params.id]
     }
   }
 
@@ -599,7 +592,7 @@ class AppController {
       def startUrl = grailsApplication.config.secmgr.starturl ?: "/start"
       log.debug ("redirecting to 'starturl': $startUrl")
 
-      redirect (uri: startUrl, args:[entity: currentEntity])
+      redirect (uri: startUrl, args: [entity: currentEntity])
     }
 
 }

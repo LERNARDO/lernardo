@@ -5,9 +5,7 @@
 
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="partner"/> - ${partner.profile.fullName}</h1>
-  </div>
+  <h1><g:message code="partner"/> - ${partner.profile.fullName}</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -31,7 +29,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two">${fieldValue(bean: partner, field: 'profile.fullName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: partner, field: 'profile.fullName') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
@@ -105,7 +103,7 @@
             </erp:accessCheck>
             <td>
               <span class="bold"><g:message code="email"/>: </span>
-              ${fieldValue(bean: partner, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+              ${fieldValue(bean: partner, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
             </td>
             <erp:accessCheck types="['Betreiber']" me="${partner}">
               <td>
@@ -125,7 +123,7 @@
         <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="contacts" style="display:none">
-          <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
+          <g:formRemote name="formRemote2" url="[controller: 'partnerProfile', action: 'addContact', id: partner.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
 
             <table>
               <tr>

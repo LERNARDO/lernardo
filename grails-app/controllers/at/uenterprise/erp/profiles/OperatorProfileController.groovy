@@ -100,7 +100,7 @@ class OperatorProfileController {
 
     if (operator.profile.save() && operator.user.save() && operator.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "operator"), operator.profile.fullName])
-      redirect action: 'show', id: operator.id, params: [entity: operator.id]
+      redirect action: 'show', id: operator.id
     }
     else {
       render view: 'edit', model: [operator: operator]
@@ -122,9 +122,9 @@ class OperatorProfileController {
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "object.created", args: [message(code: "operator"), entity.profile.fullName])
-      redirect action: 'show', id: entity.id, params: [entity: entity.id]
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [operator: ee.entity])
+      render view: "create", model: [operator: ee.entity]
     }
 
   }
@@ -132,7 +132,7 @@ class OperatorProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltOperation)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
     render template: 'facilities', model: [facilities: linking.sources, operator: linking.target]
   }
 

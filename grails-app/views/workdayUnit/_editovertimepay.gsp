@@ -1,3 +1,3 @@
-<g:formRemote name="editOvertimePay" update="${i}d" url="[action:'updateOvertimePay', id: person.id, params:[i: i]]">
+<g:formRemote name="editOvertimePay" update="${i}d" url="[action: 'updateOvertimePay', id: person.id, params: [i: i]]">
   <g:textField size="4" name="overtimePay" value="${fieldValue(bean: person, field: 'profile.overtimePay')}"/> <g:actionSubmitImage value="confirm" src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="${message(code: 'confirm')}" align="top" style="border: 0"/>
 </g:formRemote>

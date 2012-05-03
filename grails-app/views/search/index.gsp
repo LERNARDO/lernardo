@@ -4,9 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="searchResults"/></h1>
-  </div>
+  <h1><g:message code="searchResults"/></h1>
 </div>
 
 <g:if test="${results}">
@@ -15,13 +13,13 @@
     <div class="member">
 
       <div class="member-pic">
-        <g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}">
+        <g:link controller="${searchInstance.type.supertype.name + 'Profile'}" action="show" id="${searchInstance.id}">
           <erp:profileImage entity="${searchInstance}" width="50" height="50" align="left"/>
         </g:link>
       </div>
 
       <div class="member-info">
-        <div class="member-name"><g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName.decodeHTML()}</g:link></div>
+        <div class="member-name"><g:link controller="${searchInstance.type.supertype.name + 'Profile'}" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName.decodeHTML()}</g:link></div>
         <div class="member-uni"><g:message code="${searchInstance.type.supertype.name}"/></div>
       </div>
 

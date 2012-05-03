@@ -13,9 +13,7 @@
   </div>
 </g:if>--}%
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="newsp"/></h1>
-  </div>
+  <h1><g:message code="newsp"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">

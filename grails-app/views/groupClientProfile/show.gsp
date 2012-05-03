@@ -5,9 +5,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="groupClient"/> - ${group.profile.fullName}</h1>
-  </div>
+  <h1><g:message code="groupClient"/> - ${group.profile.fullName}</h1>
 </div>
 <div class="boxGray">
   <div class="second">
@@ -34,7 +32,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="description"/>:</td>
-          <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         </tbody>
@@ -46,7 +44,7 @@
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="clients" style="display:none;">
           <p class="gray"><g:message code="groupClient.clients.info"/></p>
-          <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect" before="showspinner('#clientselect')">
+          <g:formRemote name="formRemote0" url="[controller: 'groupClientProfile', action: 'updateselect']" update="clientselect" before="showspinner('#clientselect')">
 
             <table>
               <tr>
@@ -89,7 +87,7 @@
             <div class="clear"></div>
           </g:formRemote>
 
-          <g:formRemote name="formRemote" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2" before="showspinner('#clients2')">
+          <g:formRemote name="formRemote" url="[controller: 'groupClientProfile', action: 'addClient', id: group.id]" update="clients2" before="showspinner('#clients2')">
             <div id="clientselect">
               <g:render template="searchresults" model="[allClients: allClients]"/>
             </div>

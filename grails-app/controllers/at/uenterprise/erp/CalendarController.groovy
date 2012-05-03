@@ -27,19 +27,18 @@ class CalendarController {
         Entity currentEntity = entityHelperService.loggedIn
 
         // check if the appointment belongs to the current entity, if yes show it else do nothing
-        def c = Link.createCriteria()
-        def result = c.get {
+        def result = Link.createCriteria().get {
           eq("source", entity)
           eq("target", currentEntity)
           eq("type", metaDataService.ltAppointment)
         }
         if (result)
-          redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id, params: [entity: params.id]
+          redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
         else
           redirect action: 'show'
       }
       else
-        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id, params: [entity: params.id]
+        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
     }
     else if (entity.type.supertype.name == 'projectUnit') {
         // find projectDay of projectUnit
@@ -51,7 +50,7 @@ class CalendarController {
         redirect controller: 'projectProfile', action: 'show', id: project.id, params: [entity: params.id, one: projectDay.id]
     }
     else
-      redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id, params: [entity: params.id]
+      redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
   }
 
   /*
@@ -327,8 +326,7 @@ class CalendarController {
 
     List searchStrings = params.name.toString().split(" ")
 
-    def c = Entity.createCriteria()
-    def all_results = c.listDistinct {
+    def all_results = Entity.createCriteria().listDistinct {
       user {
         eq("enabled", true)
       }

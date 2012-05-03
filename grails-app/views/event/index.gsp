@@ -4,8 +4,8 @@
 
   <script type="text/javascript">
     $(function() {
-      ${remoteFunction(controller:"event", action: "remoteEvents", update: "events", before: "showspinner('#events')")}
-      ${remoteFunction(controller:"event", action: "remoteNews", update: "news", before: "showspinner('#news')")}
+      ${remoteFunction(controller: "event", action: "remoteEvents", update: "events", before: "showspinner('#events')")}
+      ${remoteFunction(controller: "event", action: "remoteNews", update: "news", before: "showspinner('#news')")}
     });
   </script>
 
@@ -58,9 +58,7 @@
 
   <div class="yui3-u-1-2">
     <div class="boxHeader" style="padding-right: 20px;">
-      <div class="second">
-        <h1><g:message code="events"/></h1>
-      </div>
+      <h1><g:message code="events"/></h1>
     </div>
 
     <div class="boxGray" style="padding-right: 20px;">
@@ -72,9 +70,7 @@
 
   <div class="yui3-u-1-2">
     <div class="boxHeader">
-      <div class="second">
-        <h1><g:message code="newsp"/></h1>
-      </div>
+      <h1><g:message code="newsp"/></h1>
     </div>
 
     <div class="boxGray">

@@ -7,8 +7,7 @@ class SearchController {
 
   def index = {
 
-    def c = Entity.createCriteria()
-    def results = c.list {
+    def results = Entity.createCriteria().list {
       or {
         if (params.child)
           eq("type", metaDataService.etChild)
