@@ -226,15 +226,18 @@ class WorkdayUnitController {
     def evaluation = {}
 
     def evaluate = {
-      List persons = []
-      List educators = Entity.createCriteria().list {
-        eq("type", metaDataService.etEducator)
-        profile {
-          and {
-            order('employment','asc')
+      List employments = Setup.list()[0]?.employmentStatus
+
+      Map educators = [:]
+
+      employments?.eachWithIndex { emp, i ->
+        educators.putAt(i.toString(), Entity.createCriteria().list {
+          eq("type", metaDataService.etEducator)
+          profile {
+            eq('employment', emp)
             order('firstName','asc')
           }
-        }
+        })
       }
       List users = Entity.createCriteria().list {
         eq("type", metaDataService.etUser)
@@ -242,12 +245,11 @@ class WorkdayUnitController {
           order('firstName','asc')
         }
       }
-      persons.addAll(educators)
-      persons.addAll(users)
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'evaluate', model: [persons: persons,
+      render template: 'evaluate', model: [educators: educators,
+                                           users: users,
                                           workdaycategories: workdaycategories,
                                           date1: params.date1,
                                           date2: params.date2]
@@ -257,15 +259,18 @@ class WorkdayUnitController {
       Date date1 = params.date('date1', 'dd. MM. yy')
       Date date2 = params.date('date2', 'dd. MM. yy')
 
-      List persons = []
-      List educators = Entity.createCriteria().list {
-        eq("type", metaDataService.etEducator)
-        profile {
-          and {
-            order('employment','asc')
+      List employments = Setup.list()[0]?.employmentStatus
+
+      Map educators = [:]
+
+      employments?.eachWithIndex { emp, i ->
+        educators.putAt(i.toString(), Entity.createCriteria().list {
+          eq("type", metaDataService.etEducator)
+          profile {
+            eq('employment', emp)
             order('firstName','asc')
           }
-        }
+        })
       }
       List users = Entity.createCriteria().list {
         eq("type", metaDataService.etUser)
@@ -273,12 +278,11 @@ class WorkdayUnitController {
           order('firstName','asc')
         }
       }
-      persons.addAll(educators)
-      persons.addAll(users)
 
       List workdaycategories = WorkdayCategory.list()
       Entity currentEntity = entityHelperService.loggedIn
-      renderPdf template: 'evaluatePDF', model: [persons: persons,
+      renderPdf template: 'evaluatePDF', model: [educators: educators,
+                                                 users: users,
                                                  workdaycategories: workdaycategories,
                                                  entity: currentEntity,
                                                  date1: params.date1, date2: params.date2],
