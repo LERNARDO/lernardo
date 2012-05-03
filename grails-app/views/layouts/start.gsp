@@ -8,7 +8,7 @@
   <r:require modules="start"/>
 
   <r:script disposition="defer">
-    <g:render template="/templates/shortcuts"/>
+    %{--<g:render template="/templates/shortcuts"/>--}%
 
     // shows the spinner
     function showspinner(id) {
@@ -44,7 +44,7 @@
   <r:layoutResources/>
 
   <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
-  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.hotkeys-0.7.9.min.js')}"></script>
+  %{--<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.hotkeys-0.7.9.min.js')}"></script>--}%
 
   <g:layoutHead />
   <ckeditor:resources />
