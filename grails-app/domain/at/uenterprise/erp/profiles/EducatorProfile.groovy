@@ -78,7 +78,7 @@ class EducatorProfile extends Profile {
 
     originCountry   nullable: true, size: 1..50
     originZip       nullable: true, size: 4..10
-    originCity      nullable: true, size: 2..50, maxSize: 50, minSize: 10
+    originCity      nullable: true, size: 2..50, maxSize: 50
     originStreet    nullable: true, size: 2..50, maxSize: 50
 
     contactName     nullable: true, size: 2..50, maxSize: 50
