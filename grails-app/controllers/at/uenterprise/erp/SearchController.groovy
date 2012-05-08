@@ -44,6 +44,7 @@ class SearchController {
         ilike('name', "%" + params.search + "%")
         profile {
           ilike('fullName', "%" + params.search + "%")
+          order('fullName','asc')
         }
       }
       maxResults(30)

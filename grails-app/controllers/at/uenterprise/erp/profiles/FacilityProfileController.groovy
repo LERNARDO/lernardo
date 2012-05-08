@@ -333,6 +333,7 @@ class FacilityProfileController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
       maxResults(15)
@@ -369,6 +370,7 @@ class FacilityProfileController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
       maxResults(15)
@@ -405,6 +407,7 @@ class FacilityProfileController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
       maxResults(15)

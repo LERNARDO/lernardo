@@ -231,6 +231,7 @@ class GroupActivityProfileController {
       //ilike('name', "%" + params.value + "%")
       profile {
         ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
       //}
       maxResults(15)
@@ -567,6 +568,7 @@ class GroupActivityProfileController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
       maxResults(15)
@@ -702,6 +704,7 @@ class GroupActivityProfileController {
         ilike('name', "%" + params.name + "%")
         profile {
           ilike('fullName', "%" + params.name + "%")
+          order('fullName','asc')
         }
       }
       maxResults(30)
@@ -880,6 +883,7 @@ class GroupActivityProfileController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
       maxResults(15)
@@ -922,6 +926,7 @@ class GroupActivityProfileController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
       maxResults(15)

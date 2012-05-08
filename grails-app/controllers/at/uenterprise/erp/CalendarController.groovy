@@ -373,6 +373,7 @@ class CalendarController {
               ilike('fullName', "%" + s + "%")
             }
           }
+          order('fullName','asc')
         }
       }
       // maxResults(5)

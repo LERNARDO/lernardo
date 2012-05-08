@@ -72,6 +72,7 @@ class EvaluationController {
           ilike('name', "%" + params.value + "%")
           profile {
             ilike('fullName', "%" + params.value + "%")
+            order('fullName','asc')
           }
         }
       }
@@ -115,6 +116,7 @@ class EvaluationController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
     }
@@ -160,6 +162,7 @@ class EvaluationController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
     }
