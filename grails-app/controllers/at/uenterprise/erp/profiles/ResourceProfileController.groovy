@@ -29,14 +29,11 @@ class ResourceProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    // only list those resources that are linked to a colony or facility but NOT to an activity template
+    // only find those resources that are linked to a colony or facility but NOT to an activity template
     List temp = Entity.findAllByType(metaDataService.etResource)
-
-    List resources = []
-    temp.each { resource ->
-      def result = functionService.findByLink(resource, null, metaDataService.ltResource)
-      if (result?.type?.id != metaDataService.etTemplate.id)
-        resources << resource
+    List resources = temp.inject([]) {result, resource ->
+      def res = functionService.findByLink(resource, null, metaDataService.ltResource)
+      res?.type?.id != metaDataService.etTemplate.id ? result + resource : result
     }
 
     // do pagination stuff

@@ -48,10 +48,7 @@ class ProjectTemplateProfileController {
     else {
       // find all projectUnitTemplates linked to this projectTemplate
       //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
-      List projectUnitTemplates = []
-      projectTemplate.profile.templates.each {
-        projectUnitTemplates.add(Entity.get(it.toInteger()))
-      }
+      List projectUnitTemplates = projectTemplate.profile.templates.inject([]) {result, template -> result + Entity.get(template.toInteger())}
 
       // calculate realDuration
       int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)

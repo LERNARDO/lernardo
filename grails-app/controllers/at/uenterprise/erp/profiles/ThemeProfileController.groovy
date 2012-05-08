@@ -41,17 +41,13 @@ class ThemeProfileController {
     List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
 
     List allThemes = Entity.findAllByType(metaDataService.etTheme)
-    List themes = []
-
-    allThemes.each { theme ->
-      // search for parent
-      def result = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
-      if (!result)
-        themes << theme
+    // find only themes without a parent
+    List themes = allThemes.inject([]) { result, theme ->
+      def subthemes = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
+      subthemes ? result : result + theme
     }
 
     return [themes: themes,
-            themeTotal: themes.size(),
             facilities: facilities,
             allThemes: allThemes.size()]
   }
