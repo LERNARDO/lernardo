@@ -390,6 +390,8 @@ class HelperTagLib {
 
         List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
 
+        int costs = 0
+
         entries.each { LogEntry entry ->
           Attendee attendee = entry.attendees.find {it.client == client.client}
           attendee?.processes?.each { aproc ->
@@ -403,6 +405,24 @@ class HelperTagLib {
                   (attendance?.saturday && df.format(entry.date) == 'Saturday') ||
                   (attendance?.sunday && df.format(entry.date) == 'Sunday')) {
                 total++
+                if (proc.process.unit == "perHour") {
+                  def duration = 0
+                  if (attendance?.monday)
+                    duration = (attendance?.mondayTo?.getTime() - attendance?.mondayFrom?.getTime()) / 1000 / 3600
+                  if (attendance?.tuesday)
+                    duration = (attendance?.tuesdayTo?.getTime() - attendance?.tuesdayFrom?.getTime()) / 1000 / 3600
+                  if (attendance?.wednesday)
+                    duration = (attendance?.wednesdayTo?.getTime() - attendance?.wednesdayFrom?.getTime()) / 1000 / 3600
+                  if (attendance?.thursday)
+                    duration = (attendance?.thursdayTo?.getTime() - attendance?.thursdayFrom?.getTime()) / 1000 / 3600
+                  if (attendance?.friday)
+                    duration = (attendance?.fridayTo?.getTime() - attendance?.fridayFrom?.getTime()) / 1000 / 3600
+                  if (attendance?.saturday)
+                    duration = (attendance?.saturdayTo?.getTime() - attendance?.saturdayFrom?.getTime()) / 1000 / 3600
+                  if (attendance?.sunday)
+                    duration = (attendance?.sundayTo?.getTime() - attendance?.sundayFrom?.getTime()) / 1000 / 3600
+                  costs += proc.process.costs * duration
+                }
               }
               if (aproc.hasParticipated) {
                 participated++
@@ -411,10 +431,9 @@ class HelperTagLib {
           }
         }
 
-        int costs
         if (proc.process.unit == "perDay")
           costs = proc.process.costs * participated
-        else
+        else if (proc.process.unit == "perMonth")
           costs = proc.process.costs * (participated > 0 ? 1 : 0)
 
         totalCosts += costs

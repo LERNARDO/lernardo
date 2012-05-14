@@ -37,7 +37,7 @@
       <tr class="prop">
         <td valign="top" class="name"><g:message code="unit"/></td>
         <td valign="top" class="value">
-          <g:select name="unit" from="['perDay','perMonth']" value="${process.unit}" valueMessagePrefix="logunit"/>
+          <g:select name="unit" from="['perHour','perDay','perMonth']" value="${process.unit}" valueMessagePrefix="logunit"/>
         </td>
       </tr>
 

@@ -18,6 +18,6 @@ class Process {
   BigDecimal costs = 0
 
   static constraints = {
-    unit  inList: ['perDay','perMonth']
+    unit  inList: ['perHour','perDay','perMonth']
   }
 }
