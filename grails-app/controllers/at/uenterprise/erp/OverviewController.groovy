@@ -189,6 +189,7 @@ class OverviewController {
               ilike('fullName', "%" + s + "%")
             }
           }
+          order('fullName','asc')
         }
       }
       maxResults(30)

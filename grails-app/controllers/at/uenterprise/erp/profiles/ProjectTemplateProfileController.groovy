@@ -461,6 +461,7 @@ class ProjectTemplateProfileController {
         ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
       maxResults(15)
