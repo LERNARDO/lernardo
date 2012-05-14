@@ -184,7 +184,7 @@ class MsgController {
     params.receivers = params.list('receivers')
 
     def failed = false
-    def msg
+    def msg = null
     params.receivers.each { id ->
       Entity entity = Entity.get(id)
 
