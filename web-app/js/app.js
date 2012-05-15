@@ -10,7 +10,7 @@ function toggle(id) {
 
 // clears the value of multiple elements
 function clearElements(elements) {
-    for (x = 0; x <= elements.length; x++)
+    for (var x = 0; x <= elements.length; x++)
         $(elements[x]).val('');
 }
 
