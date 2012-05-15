@@ -11,6 +11,7 @@ class Evaluation {
 
   static belongsTo = [owner: Entity]
 
+  String  title
   String  description
   String  method
   Entity  writer
@@ -19,6 +20,7 @@ class Evaluation {
   Date    lastUpdated
 
   static constraints = {
+    title      nullable: true, blank: false, maxSize: 100
     description blank: false, maxSize: 2000
     method      blank: true, maxSize: 2000
     linkedTo    nullable: true

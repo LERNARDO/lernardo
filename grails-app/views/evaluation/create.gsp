@@ -41,6 +41,13 @@
         </g:else>
       </p>
 
+      <p class="prop">
+        <span class="name"><g:message code="title"/>: </span>
+        <span class="value">
+          <g:textField class="${hasErrors(bean: evaluationInstance, field: 'title', 'errors')}" size="60" name="title" value="${fieldValue(bean: evaluationInstance, field: 'title').decodeHTML()}"/>
+        </span>
+      </p>
+
       <p class="gray"><g:message code="description"/><br/>
         <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
           <ckeditor:editor name="description" height="200px" toolbar="Basic">

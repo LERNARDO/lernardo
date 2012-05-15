@@ -37,6 +37,13 @@
 
       <p><g:message code="linkedTo"/>: <g:if test="${evaluationInstance.linkedTo}"><erp:createLinkFromEvaluation evaluation="${evaluationInstance}"/></g:if><g:else><span class="italic"><g:message code="links.notLinked"/></span></g:else></p>
 
+      <p class="prop">
+        <span class="name"><g:message code="title"/>: </span>
+        <span class="value">
+          <g:textField class="${hasErrors(bean: evaluationInstance, field: 'title', 'errors')}" size="60" name="title" value="${fieldValue(bean: evaluationInstance, field: 'title').decodeHTML()}"/>
+        </span>
+      </p>
+
       <p class="strong"><g:message code="description"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
         <ckeditor:editor name="description" height="200px" toolbar="Basic">

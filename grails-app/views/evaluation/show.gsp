@@ -26,6 +26,11 @@
     </tr>
 
     <tr class="prop">
+      <td class="one"><g:message code="title"/>:</td>
+      <td class="two">${evaluation.title.decodeHTML()}</td>
+    </tr>
+
+    <tr class="prop">
       <td class="one"><g:message code="description"/>:</td>
       <td class="two">${evaluation.description.decodeHTML()}</td>
     </tr>
