@@ -7,10 +7,10 @@ package at.uenterprise.erp
  */
 class Collector {
 
-  String text // TODO: rename this property to "name" which makes more sense
+  String name
 
   static constraints = {
-    text maxSize: 50
+    name maxSize: 50
   }
 
 }
