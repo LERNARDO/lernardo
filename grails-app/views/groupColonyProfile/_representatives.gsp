@@ -14,7 +14,7 @@
         <td valign="top" class="italic" width="60"><g:message code="email"/>:</td><td class="value" width="160">${representative.email ?: '<span class="italic">'+message(code:'none')+ '</span>'}</td>
         <td valign="top" class="italic" width="100"><g:message code="representatives.function"/>:</td><td class="value">${representative.function ?: '<span class="italic">'+message(code:'none')+ '</span>'}</td>
       </tr>
-      <tr><td colspan="8" style="border-width:1px; border-color:transparent transparent lightgray; border-style:solid; padding:3px;"></td></tr>
+      <tr><td colspan="8" style="border: 1px solid; border-color:transparent transparent lightgray; padding:3px;"></td></tr>
     </g:each>
   </table>
 </g:if>

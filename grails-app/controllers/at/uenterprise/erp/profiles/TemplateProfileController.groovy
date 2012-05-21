@@ -210,7 +210,7 @@ class TemplateProfileController {
         template.delete(flush: true)
         redirect action: "list"
       }
-      catch (org.springframework.dao.DataIntegrityViolationException ex) {
+      catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "activityTemplate"), template.profile.fullName])
         redirect action: "show", id: params.id
       }

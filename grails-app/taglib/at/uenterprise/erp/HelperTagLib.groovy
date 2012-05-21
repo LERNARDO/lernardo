@@ -30,6 +30,23 @@ class HelperTagLib {
   static namespace = "erp"
 
   /**
+   * Set the page format for PDFs
+   *
+   * @author Alexander Zeillinger
+   * @attrs pageformat REQUIRED the format code
+   */
+  def setPageFormat = {attrs ->
+    if (attrs.pageformat == "1")
+      out << "size: 210mm 297mm;"
+    else if (attrs.pageformat == "2")
+      out << "size: 297mm 210mm;"
+    else if (attrs.pageformat == "3")
+      out << "size: 216mm 279mm;"
+    else if (attrs.pageformat == "4")
+      out << "size: 279mm 216mm;"
+  }
+
+  /**
    * Get the range maximum of the size constraint of an attribute of a domain class
    *
    * @author Alexander Zeillinger

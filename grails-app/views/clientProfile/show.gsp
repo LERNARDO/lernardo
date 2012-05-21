@@ -404,7 +404,7 @@
 
     <div class="zusatz-add" id="collectors" style="display:none">
       <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addCollector', id: client.id]" update="collectors2" before="showspinner('#collectors2');" after="toggle('#collectors');">
-        <g:message code="name"/>: <g:textField size="30" name="text" value=""/> <g:submitButton name="button" value="${message(code: 'add')}"/>
+        <g:message code="name"/>: <g:textField size="30" name="name" value=""/> <g:submitButton name="button" value="${message(code: 'add')}"/>
       </g:formRemote>
     </div>
 

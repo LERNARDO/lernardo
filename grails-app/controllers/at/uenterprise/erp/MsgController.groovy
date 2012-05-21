@@ -103,7 +103,7 @@ class MsgController {
         redirect action: params.box, id: params.entity
         //render ""
       }
-      catch(org.springframework.dao.DataIntegrityViolationException ex) {
+      catch(org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = g.message(code: "object.notDeleted", args: [g.message(code: "msg"), message.subject])
         redirect action: "show", id: params.id
       }
@@ -184,7 +184,7 @@ class MsgController {
     params.receivers = params.list('receivers')
 
     def failed = false
-    def msg
+    def msg = null
     params.receivers.each { id ->
       Entity entity = Entity.get(id)
 
