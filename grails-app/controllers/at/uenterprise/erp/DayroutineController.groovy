@@ -42,7 +42,7 @@ class DayroutineController {
     if (params.monday) createRoutine(entity, "monday", params.title, params.description, params.dateFrom, params.dateTo)
     if (params.tuesday) createRoutine(entity, "tuesday", params.title, params.description, params.dateFrom, params.dateTo)
     if (params.wednesday) createRoutine(entity, "wednesday", params.title, params.description, params.dateFrom, params.dateTo)
-    if (params.thursday) createRoutine(entity, "thursday", params.title, params.description, params.dateFrom, params.dateToo)
+    if (params.thursday) createRoutine(entity, "thursday", params.title, params.description, params.dateFrom, params.dateTo)
     if (params.friday) createRoutine(entity, "friday", params.title, params.description, params.dateFrom, params.dateTo)
     if (params.saturday) createRoutine(entity, "saturday", params.title, params.description, params.dateFrom, params.dateTo)
     if (params.sunday) createRoutine(entity, "sunday", params.title, params.description, params.dateFrom, params.dateTo)
