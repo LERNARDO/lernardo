@@ -7,20 +7,7 @@
           <g:if test="${reservedIn}">
             <g:message code="alreadyPlannedIn"/>:<br/>
             <g:each in="${reservedIn}" var="searchInstance">
-              <div class="member">
-
-                <div class="member-pic">
-                  <g:link controller="${searchInstance.type.supertype.name + 'Profile'}" action="show" id="${searchInstance.id}">
-                    <erp:profileImage entity="${searchInstance}" width="50" height="50" align="left"/>
-                  </g:link>
-                </div>
-
-                <div class="member-info">
-                  <div class="member-name"><g:link controller="${searchInstance.type.supertype.name + 'Profile'}" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName.decodeHTML()}</g:link></div>
-                  <div class="member-uni"><g:message code="${searchInstance.type.supertype.name}"/></div>
-                </div>
-
-              </div>
+              <g:render template="/templates/member" model="[entity: searchInstance]"/>
             </g:each>
             <div class="clear"></div>
           </g:if>

@@ -7,49 +7,62 @@ class SearchController {
 
   def index = {
 
-    def results = Entity.createCriteria().list {
-      or {
-        if (params.child)
-          eq("type", metaDataService.etChild)
-        if (params.client)
-          eq("type", metaDataService.etClient)
-        if (params.educator)
-          eq("type", metaDataService.etEducator)
-        if (params.facility)
-          eq("type", metaDataService.etFacility)
-        if (params.operator)
-          eq("type", metaDataService.etOperator)
-        if (params.parent)
-          eq("type", metaDataService.etParent)
-        if (params.partner)
-          eq("type", metaDataService.etPartner)
-        if (params.pate)
-          eq("type", metaDataService.etPate)
-        if (params.family)
-          eq("type", metaDataService.etGroupFamily)
-        if (params.colony)
-          eq("type", metaDataService.etGroupColony)
-        if (params.groupClient)
-          eq("type", metaDataService.etGroupClient)
-        if (params.groupPartner)
-          eq("type", metaDataService.etGroupPartner)
-        if (params.projectTemplate)
-          eq("type", metaDataService.etProjectTemplate)
-        if (params.project)
-          eq("type", metaDataService.etProject)
-        if (params.groupActivity)
-          eq("type", metaDataService.etGroupActivity)
+    params.search = params.search ? params.search.trim() : null
+
+    def results = []
+    if (params.search) {
+      results = Entity.createCriteria().list {
+        or {
+          if (params.child)
+            eq("type", metaDataService.etChild)
+          if (params.client)
+            eq("type", metaDataService.etClient)
+          if (params.educator)
+            eq("type", metaDataService.etEducator)
+          if (params.facility)
+            eq("type", metaDataService.etFacility)
+          if (params.operator)
+            eq("type", metaDataService.etOperator)
+          if (params.parent)
+            eq("type", metaDataService.etParent)
+          if (params.partner)
+            eq("type", metaDataService.etPartner)
+          if (params.pate)
+            eq("type", metaDataService.etPate)
+          if (params.family)
+            eq("type", metaDataService.etGroupFamily)
+          if (params.colony)
+            eq("type", metaDataService.etGroupColony)
+          if (params.groupClient)
+            eq("type", metaDataService.etGroupClient)
+          if (params.groupPartner)
+            eq("type", metaDataService.etGroupPartner)
+          if (params.projectTemplate)
+            eq("type", metaDataService.etProjectTemplate)
+          if (params.project)
+            eq("type", metaDataService.etProject)
+          if (params.groupActivity)
+            eq("type", metaDataService.etGroupActivity)
+          if (params.groupActivityTemplate)
+            eq("type", metaDataService.etGroupActivityTemplate)
+          if (params.resource)
+            eq("type", metaDataService.etResource)
+          if (params.template)
+            eq("type", metaDataService.etTemplate)
+          if (params.theme)
+            eq("type", metaDataService.etTheme)
+          }
+        or {
+          ilike('name', "%" + params.search + "%")
+          profile {
+            ilike('fullName', "%" + params.search + "%")
+            order('fullName', 'asc')
+          }
         }
-      or {
-        ilike('name', "%" + params.search + "%")
-        profile {
-          ilike('fullName', "%" + params.search + "%")
-          order('fullName','asc')
-        }
+        maxResults(30)
       }
-      maxResults(30)
     }
     
-    return [results: results]
+    return [results: results, search: params.search]
   }
 }

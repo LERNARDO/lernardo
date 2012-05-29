@@ -1,6 +1,6 @@
 <g:link controller="app" action="start"><div id="logo">${grailsApplication.config.application.name}</div><img src="${resource(dir: '/images/' + grailsApplication.config.customer, file:  'logo.png')}" height="50px" alt="${grailsApplication.config.customer}" style="position: relative; top: 10px;"/></g:link>
 <div id="info">
-  <g:form name="searchForm" controller="search" params="[child: 'yes', client: 'yes', educator: 'yes', facility: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes']">
+  <g:form name="searchForm" controller="search" params="[child: 'yes', client: 'yes', educator: 'yes', facility: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes', groupActivity: 'yes', groupActivityTemplate: 'yes', groupClient: 'yes', colony: 'yes', family: 'yes', groupPartner: 'yes', project: 'yes', projectTemplate: 'yes', resource: 'yes', theme: 'yes', template: 'yes']">
 
     <span id="notifications">
       <erp:getNewInboxMessages entity="${currentEntity}">

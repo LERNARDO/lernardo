@@ -1,5 +1,5 @@
-<head>
-  <meta name="layout" content="database"/>
+<head xmlns="http://www.w3.org/1999/html">
+  <meta name="layout" content="start"/>
   <title><g:message code="searchResults"/></title>
 </head>
 <body>
@@ -7,23 +7,12 @@
   <h1><g:message code="searchResults"/></h1>
 </div>
 
+<p><span class="gray"><g:message code="searchWord"/>:</span> "${search}"</p>
+
 <g:if test="${results}">
   <p class="gray"><g:message code="maxResultsShown" args="[30]"/></p>
   <g:each in="${results}" var="searchInstance">
-    <div class="member">
-
-      <div class="member-pic">
-        <g:link controller="${searchInstance.type.supertype.name + 'Profile'}" action="show" id="${searchInstance.id}">
-          <erp:profileImage entity="${searchInstance}" width="50" height="50" align="left"/>
-        </g:link>
-      </div>
-
-      <div class="member-info">
-        <div class="member-name"><g:link controller="${searchInstance.type.supertype.name + 'Profile'}" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName.decodeHTML()}</g:link></div>
-        <div class="member-uni"><g:message code="${searchInstance.type.supertype.name}"/></div>
-      </div>
-
-    </div>
+    <g:render template="/templates/member" model="[entity: searchInstance]"/>
   </g:each>
   <div class="clear"></div>
 </g:if>
