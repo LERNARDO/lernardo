@@ -45,7 +45,7 @@ grails.resources.modules = {
     dependsOn 'jquery'
     resource url: 'css/cssreset-min.css'
     resource url: 'css/cssfonts-min.css'
-    resource url: 'less/public.less', attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_common'
+    resource url: 'less/public.less', attrs: [rel: 'stylesheet/less', type: 'css']//, bundle: 'bundle_common'
   }
 
   start {
@@ -55,8 +55,8 @@ grails.resources.modules = {
     resource url: 'css/grids-min.css'
     resource url: 'css/jquery.qtip.min.css'
     resource url: 'css/kolorpicker.css'
-    resource url: 'less/common.less', attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_start'
-    resource url: "less/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_start'
+    resource url: 'less/common.less', attrs: [rel: 'stylesheet/less', type: 'css']//, bundle: 'bundle_start'
+    resource url: "less/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css']//, bundle: 'bundle_start'
 
     resource url: "js/jquery/jquery.qtip.min.js"
   }
@@ -69,8 +69,8 @@ grails.resources.modules = {
     resource url: 'css/jquery.qtip.min.css'
     resource url: 'css/kolorpicker.css'
     resource url: 'css/basic.css' // modal
-    resource url: 'less/common.less', attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_other'
-    resource url: "less/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css'], bundle: 'bundle_other'
+    resource url: 'less/common.less', attrs: [rel: 'stylesheet/less', type: 'css']//, bundle: 'bundle_other'
+    resource url: "less/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css']//, bundle: 'bundle_other'
 
     resource url: "js/jquery/jquery.qtip.min.js"
     // TODO: below scripts are broken when implemented this way, find out why
