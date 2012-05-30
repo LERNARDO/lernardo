@@ -168,6 +168,7 @@
         <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
         <li style="border-right: none;"><g:link class="activeyellow" controller="setup" action="show" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
       </ul>
+      <g:render template="/templates/search"/>
       <div class="clear"></div>
     </div>
 

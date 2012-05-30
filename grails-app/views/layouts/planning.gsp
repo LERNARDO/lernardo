@@ -170,6 +170,7 @@
           <li style="border-right: none;"><g:link controller="setup" action="show" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
         </erp:accessCheck>
       </ul>
+      <g:render template="/templates/search"/>
       <div class="clear"></div>
     </div>
 

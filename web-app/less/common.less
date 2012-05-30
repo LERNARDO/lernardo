@@ -136,24 +136,26 @@ a {
 
 #subheader {
     background: #444;
-    padding: 4px 0 6px 0;
+    padding: 4px 0 4px 0;
     font-size: 13px;
     ul {
         padding: 0;
-        width: 100%;
+        float: left;
+        //width: 100%;
         li {
             margin: 0 0 0 -5px;
-            padding: 4px 0 7px 0;
+            //padding: 4px 0 7px 0;
             display: inline;
             list-style-type: none;
+            line-height: 30px;
             a {
-                padding: 4px 20px 7px 20px;
+                padding: 10px 20px 10px 20px;
                 color: #eee;
-                                    .transition(all, 0.3s, ease-in-out);
+                .transition(all, 0.3s, ease-in-out);
+                text-transform: uppercase;
                 &:hover {
                     color: #fff;
                     background: #666;
-
                 }
                 &.activegray {
                     background: @gray;
