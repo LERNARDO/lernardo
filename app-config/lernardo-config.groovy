@@ -27,8 +27,8 @@ if (customer == "sueninos") {
       pooled = true
       driverClassName = "org.postgresql.Driver"
       dialect = org.hibernate.dialect.PostgreSQLDialect
-      username = "sa_nuedo"
-      password = "pw_nuedo"
+      username = "sa_lernardo"
+      password = "pw_lernardo"
       properties {
         maxActive = 15
         maxIdle = 5
@@ -45,28 +45,28 @@ if (customer == "sueninos") {
       development {
         dataSource {
               dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-              url = "jdbc:postgresql://localhost:5432/nuedo"
+              url = "jdbc:postgresql://localhost:5432/lernardo"
               logSql = false
               hibernate.default_schema = 'dev'
-              grails.serverURL = "http://localhost:8080/nuedo"
+              grails.serverURL = "http://localhost:8080/lernardo"
         }
       }
       test {
         dataSource {
               dbCreate = "update"
-              url = "jdbc:postgresql://localhost:5432/nuedo"
+              url = "jdbc:postgresql://localhost:5432/lernardo"
               logSql = false
               hibernate.default_schema = 'test'
-              grails.serverURL = "http://nuedo.customer.uenterprise.de/test"
+              grails.serverURL = "http://lernardo.customer.uenterprise.de/test"
         }
       }
       production {
         dataSource {
               dbCreate = "update"
-              url = "jdbc:postgresql://localhost:5432/nuedo"
+              url = "jdbc:postgresql://localhost:5432/lernardo"
               logSql = false
               hibernate.default_schema = 'prod'
-              grails.serverURL = "http://sueninos.nuedo.net"
+              grails.serverURL = "http://sueninos.lernardo.net"
         }
       }
     }
@@ -102,8 +102,8 @@ if (customer == "noe") {
       pooled = true
       driverClassName = "org.postgresql.Driver"
       dialect = org.hibernate.dialect.PostgreSQLDialect
-      username = "sa_nuedo"
-      password = "pw_nuedo"
+      username = "sa_lernardo"
+      password = "pw_lernardo"
       properties {
         maxActive = 15
         maxIdle = 5
@@ -120,28 +120,28 @@ if (customer == "noe") {
       development {
         dataSource {
               dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-              url = "jdbc:postgresql://localhost:5432/nuedo"
+              url = "jdbc:postgresql://localhost:5432/lernardo"
               loggingSql = false
               hibernate.default_schema = 'dev'
-              grails.serverURL = "http://localhost:8080/nuedo"
+              grails.serverURL = "http://localhost:8080/lernardo"
         }
       }
       test {
         dataSource {
               dbCreate = "update"
-              url = "jdbc:postgresql://localhost:5432/nuedo"
+              url = "jdbc:postgresql://localhost:5432/lernardo"
               loggingSql = false
               hibernate.default_schema = 'test'
-              grails.serverURL = "http://nuedo.customer.uenterprise.de/test"
+              grails.serverURL = "http://lernardo.customer.uenterprise.de/test"
         }
       }
       production {
         dataSource {
               dbCreate = "update"
-              url = "jdbc:postgresql://localhost:5432/nuedo"
+              url = "jdbc:postgresql://localhost:5432/lernardo"
               loggingSql = false
               hibernate.default_schema = 'prod'
-              grails.serverURL = "http://noe.nuedo.net"
+              grails.serverURL = "http://noe.lernardo.net"
         }
       }
     }

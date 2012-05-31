@@ -9,7 +9,7 @@ import grails.util.Environment
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
 def myenv = Environment.current;
-def configFile = "file:${System.properties.'catalina.base' ?: System.properties.'base.dir'}/app-config/nuedo-config.groovy"
+def configFile = "file:${System.properties.'catalina.base' ?: System.properties.'base.dir'}/app-config/lernardo-config.groovy"
 println "[$myenv] reading configuration from $configFile"
 grails.config.locations = [ configFile ]
 
