@@ -59,7 +59,7 @@ class SearchController {
             order('fullName', 'asc')
           }
         }
-        maxResults(30)
+        maxResults(100)
       }
     }
     
