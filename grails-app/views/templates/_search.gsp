@@ -1,4 +1,4 @@
-<g:form style="float: right; margin-right: 5px;" name="searchForm" controller="search" params="[child: 'yes', client: 'yes', educator: 'yes', facility: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes', groupActivity: 'yes', groupActivityTemplate: 'yes', groupClient: 'yes', colony: 'yes', family: 'yes', groupPartner: 'yes', project: 'yes', projectTemplate: 'yes', resource: 'yes', theme: 'yes', template: 'yes']">
+<g:form style="float: right; margin-right: 5px;" name="searchForm" controller="search">
   <g:textField class="search" name="search" size="30" placeholder="${message(code: 'searchWord')}"/>
   <span class="searchButton"><g:submitButton name="searchButton" class="buttonBlue" value="${message(code: 'search')}"/></span>
 </g:form>

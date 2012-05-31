@@ -10,7 +10,7 @@
 <p><span class="gray"><g:message code="searchWord"/>:</span> "${search}"</p>
 
 <g:if test="${results}">
-  <p class="gray"><g:message code="maxResultsShown" args="[30]"/></p>
+  <p class="gray"><g:message code="maxResultsShown" args="[100]"/></p>
   <g:each in="${results}" var="searchInstance">
     <g:render template="/templates/member" model="[entity: searchInstance]"/>
   </g:each>

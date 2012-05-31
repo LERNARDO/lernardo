@@ -13,56 +13,46 @@ class SearchController {
     if (params.search) {
       results = Entity.createCriteria().list {
         or {
-          if (params.child)
-            eq("type", metaDataService.etChild)
-          if (params.client)
-            eq("type", metaDataService.etClient)
-          if (params.educator)
-            eq("type", metaDataService.etEducator)
-          if (params.facility)
-            eq("type", metaDataService.etFacility)
-          if (params.operator)
-            eq("type", metaDataService.etOperator)
-          if (params.parent)
-            eq("type", metaDataService.etParent)
-          if (params.partner)
-            eq("type", metaDataService.etPartner)
-          if (params.pate)
-            eq("type", metaDataService.etPate)
-          if (params.family)
-            eq("type", metaDataService.etGroupFamily)
-          if (params.colony)
-            eq("type", metaDataService.etGroupColony)
-          if (params.groupClient)
-            eq("type", metaDataService.etGroupClient)
-          if (params.groupPartner)
-            eq("type", metaDataService.etGroupPartner)
-          if (params.projectTemplate)
-            eq("type", metaDataService.etProjectTemplate)
-          if (params.project)
-            eq("type", metaDataService.etProject)
-          if (params.groupActivity)
-            eq("type", metaDataService.etGroupActivity)
-          if (params.groupActivityTemplate)
-            eq("type", metaDataService.etGroupActivityTemplate)
-          if (params.resource)
-            eq("type", metaDataService.etResource)
-          if (params.template)
-            eq("type", metaDataService.etTemplate)
-          if (params.theme)
-            eq("type", metaDataService.etTheme)
-          }
-        or {
-          ilike('name', "%" + params.search + "%")
-          profile {
+          eq("type", metaDataService.etChild)
+          eq("type", metaDataService.etClient)
+          eq("type", metaDataService.etEducator)
+          eq("type", metaDataService.etFacility)
+          eq("type", metaDataService.etOperator)
+          eq("type", metaDataService.etParent)
+          eq("type", metaDataService.etPartner)
+          eq("type", metaDataService.etPate)
+          eq("type", metaDataService.etGroupFamily)
+          eq("type", metaDataService.etGroupColony)
+          eq("type", metaDataService.etGroupClient)
+          eq("type", metaDataService.etGroupPartner)
+          eq("type", metaDataService.etProjectTemplate)
+          eq("type", metaDataService.etProject)
+          eq("type", metaDataService.etGroupActivity)
+          eq("type", metaDataService.etGroupActivityTemplate)
+          eq("type", metaDataService.etResource)
+          eq("type", metaDataService.etTemplate)
+          eq("type", metaDataService.etTheme)
+        }
+        profile {
+          or {
             ilike('fullName', "%" + params.search + "%")
-            order('fullName', 'asc')
+            ilike('interests', "%" + params.search + "%") // client, educator
+            ilike('supportDescription', "%" + params.search + "%") // client
+            ilike('comment', "%" + params.search + "%") // parents
+            ilike('livingConditions', "%" + params.search + "%") // family
+            ilike('socioeconomicData', "%" + params.search + "%") // family
+            ilike('otherInfo', "%" + params.search + "%") // family
+            ilike('description', "%" + params.search + "%") // colony, facility, clientgroup, partnergroup, partner, template, groupactivitytemplate , groupactivity, projecttemplate, project, theme
+            ilike('chosenMaterials', "%" + params.search + "%") // template
+            ilike('goal', "%" + params.search + "%") // template
+            ilike('educationalObjectiveText', "%" + params.search + "%") // groupactivitytemplate, groupactivity, projecttemplate, project
           }
+          order('fullName', 'asc')
         }
         maxResults(100)
       }
     }
-    
+
     return [results: results, search: params.search]
   }
 }
