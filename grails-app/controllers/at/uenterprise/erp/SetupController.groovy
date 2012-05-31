@@ -6,9 +6,8 @@ class SetupController {
     def setupInstance = Setup.list()[0]
     if (!setupInstance)
       setupInstance = new Setup().save()
-    else {
-      [setupInstance: setupInstance]
-    }
+
+    [setupInstance: setupInstance]
   }
 
   def addElement = {
