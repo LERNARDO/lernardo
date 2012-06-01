@@ -149,7 +149,6 @@ class DefaultObjectService {
 
     // create some actual entities
     entityHelperService.createEntityWithUserAndProfile ("franz", etKrocher, "franz@bbb.com", "Franz Franz and the Melody Boys") {Entity it->
-      it.profile.tagline = "to be on top is our job"
       it.profile.gender = 1
     }
 

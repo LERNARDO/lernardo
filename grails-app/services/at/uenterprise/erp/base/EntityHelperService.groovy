@@ -56,7 +56,6 @@ Entity createEntity (String name, EntityType type, Closure c=null) {
     createEntityWithUser (name, type, emailAddr) {Entity ent->
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = fullName
-      ent.profile.tagline  = "describe yourself in 25 words or less!"
       if (c) c.call (ent)
     }
   }
