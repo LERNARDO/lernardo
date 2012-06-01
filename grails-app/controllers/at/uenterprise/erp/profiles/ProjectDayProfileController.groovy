@@ -1,6 +1,6 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Entity
+import at.uenterprise.erp.base.Entity
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 

@@ -1,9 +1,9 @@
 package at.uenterprise.erp.logbook
 
-import at.openfactory.ep.Entity
+import at.uenterprise.erp.base.Entity
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
-import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.base.EntityHelperService
 
 class LogBookController {
   MetaDataService metaDataService

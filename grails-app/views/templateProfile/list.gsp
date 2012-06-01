@@ -1,4 +1,4 @@
-<%@ page import="at.openfactory.ep.Entity" %>
+<%@ page import="at.uenterprise.erp.base.Entity" %>
 <head>
   <meta name="layout" content="planning"/>
   <title><g:message code="activityTemplates"/></title>

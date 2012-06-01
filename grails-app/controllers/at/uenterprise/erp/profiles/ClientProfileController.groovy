@@ -1,16 +1,16 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.Link
-import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.Materials
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.CDate
 import at.uenterprise.erp.Performances
 import at.uenterprise.erp.Healths
-import at.openfactory.ep.EntityException
+import at.uenterprise.erp.base.EntityException
 import at.uenterprise.erp.Collector
 import at.uenterprise.erp.Contact
 import at.uenterprise.erp.SDate

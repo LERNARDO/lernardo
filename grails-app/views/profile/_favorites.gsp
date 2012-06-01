@@ -1,4 +1,4 @@
-<%@ page import="at.openfactory.ep.Entity" %>
+<%@ page import="at.uenterprise.erp.base.Entity" %>
 <g:if test="${entity.profile.favorites}">
   <ul>
     <g:each in="${entity.profile.favorites}" var="fav">

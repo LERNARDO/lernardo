@@ -1,14 +1,14 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.Link
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.ProfileHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.ProfileHelperService
 import at.uenterprise.erp.Contact
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
-import at.openfactory.ep.Profile
+import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.logbook.Attendance
 
 class FacilityProfileController {
@@ -160,7 +160,7 @@ class FacilityProfileController {
 
       flash.message = message(code: "object.created", args: [message(code: "facility"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
-    } catch (at.openfactory.ep.EntityException ee) {
+    } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [facility: ee.entity, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
     }
 

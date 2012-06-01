@@ -1,40 +1,31 @@
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityHelperService
 
 class AppFilters {
   EntityHelperService entityHelperService
+  def securityManager
 
   static filters = {
 
-    // adds the currently logged in user to the model passed to a GSP after an action has been executed
-    // doesn't work when rendering templates because a template is rendered directly to the response
-    currentEntity(controller: "*", action: "*") {
-      // IE caching stuff: http://www.dashbay.com/2011/05/internet-explorer-caches-ajax/
-      /*before = {
-        if (request.getHeader('X-Requested-With')?.equals('XMLHttpRequest')) {
-          response.setHeader('Expires', '-1')
+    currentEntityFilter(controller:'*', action:'*') {
+      before = {
+        Entity e = securityManager.getLoggedIn(request) ;
+        if (e) {
+          e = Entity.get(e.id)
+          log.info "controller: $controllerName, action: $actionName ($e.name)"
         }
-      }*/
-      after = {model ->
-        if (model) {
+        return true
+      }
+
+      // inject currentEntity into model for backward compatibility -> use the tag instead
+      after = {model->
+        if (model)  {
           Entity e = entityHelperService.getLoggedIn()
           if (e) {
             model['currentEntity'] = e
             e.user.lastAction = new Date()
             e.user.save()
           }
-        }
-      }
-    }
-
-    // checks if a user is logged in before executing an action
-    loginCheck(controller: "(app|security|public)", invert: true) {
-      before = {
-        Entity e = entityHelperService.getLoggedIn()
-        if (e)
-          log.info "controller: $controllerName, action: $actionName ($e.name)"
-        if (!e) {
-          redirect controller: 'public', action: 'start', params: [loggedOut: "true"]
         }
       }
     }

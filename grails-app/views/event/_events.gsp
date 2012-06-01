@@ -1,4 +1,4 @@
-<%@ page import="at.openfactory.ep.Entity" %>
+<%@ page import="at.uenterprise.erp.base.Entity" %>
 <g:if test="${events}">
   <table class="default-table">
     <tbody>

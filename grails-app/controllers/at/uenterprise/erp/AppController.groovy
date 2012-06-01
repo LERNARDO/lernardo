@@ -1,19 +1,19 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.Account
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.Tag
-import at.openfactory.ep.TagLinkType
-import at.openfactory.ep.EntityTagLink
-import at.openfactory.ep.Asset
-import at.openfactory.ep.Link
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.Account
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.Tag
+import at.uenterprise.erp.base.TagLinkType
+import at.uenterprise.erp.base.EntityTagLink
+import at.uenterprise.erp.base.Asset
+import at.uenterprise.erp.base.Link
 
 import org.springframework.web.servlet.support.RequestContextUtils
 
 import javax.servlet.http.Cookie
-import at.openfactory.ep.AssetStorage
-import at.openfactory.ep.security.SecurityManagerException
+import at.uenterprise.erp.base.AssetStorage
+import at.uenterprise.erp.base.security.SecurityManagerException
 //import grails.util.GrailsUtil
 
 class AppController {
@@ -295,6 +295,7 @@ class AppController {
    */
   def start = {
     Entity currentEntity = entityHelperService.loggedIn
+    log.info "current entity: " + currentEntity
     if (currentEntity) {
       Locale locale = currentEntity.user?.locale ?: new Locale("de", "DE");
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
@@ -568,6 +569,12 @@ class AppController {
     }
   }
 
+  def logout = {
+    Entity e = securityManager.getLoggedIn(request)
+    securityManager.logout(request)
+    redirect controller: "public", action: "start"
+  }
+
   def do_login = {
       if (!params.userid) {
         flash.message = message(code: "security.login.emptyuid")
@@ -583,6 +590,7 @@ class AppController {
       Entity currentEntity = null
       try {
         currentEntity = securityManager.login (request, params.userid, params.password)
+        log.info "entity after login: " + currentEntity
       } catch (SecurityManagerException sme) {
         flash.message = message(code: sme.code)
         redirect (controller: "public", action: "start")
@@ -590,10 +598,10 @@ class AppController {
       }
 
       log.info "login successful for $params.userid (${currentEntity?.name})"
-      def startUrl = grailsApplication.config.secmgr.starturl ?: "/start"
-      log.debug ("redirecting to 'starturl': $startUrl")
+      def startUrl = "/start" // grailsApplication.config.secmgr.starturl ?: "/start"
+      log.info ("redirecting to 'starturl': $startUrl")
 
-      redirect (uri: startUrl, args: [entity: currentEntity])
+      redirect action: "start" //(uri: startUrl, args: [entity: currentEntity])
     }
 
 }

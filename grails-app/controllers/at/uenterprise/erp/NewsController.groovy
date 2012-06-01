@@ -1,7 +1,7 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.Entity
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.Entity
 
 class NewsController {
   EntityHelperService entityHelperService

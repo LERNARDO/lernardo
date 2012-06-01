@@ -1,6 +1,6 @@
 package at.uenterprise.erp.logbook
 
-import at.openfactory.ep.Entity
+import at.uenterprise.erp.base.Entity
 
 /**
  * This class represents a log entry for a single day of a facility

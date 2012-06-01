@@ -1,20 +1,20 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.ProfileHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.ProfileHelperService
 import at.uenterprise.erp.MetaDataService
-import at.openfactory.ep.Profile
-import at.openfactory.ep.Link
+import at.uenterprise.erp.base.Profile
+import at.uenterprise.erp.base.Link
 import at.uenterprise.erp.FunctionService
 
 import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
-import at.openfactory.ep.AssetService
+import at.uenterprise.erp.base.AssetService
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.Publication
-import at.openfactory.ep.Asset
+import at.uenterprise.erp.base.Asset
 import at.uenterprise.erp.Resource
 import at.uenterprise.erp.EVENT_TYPE
 
@@ -239,7 +239,7 @@ class ProjectTemplateProfileController {
 
       flash.message = message(code: "object.created", args: [message(code: "projectTemplate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
-    } catch (at.openfactory.ep.EntityException ee) {
+    } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [projectTemplate: ee.entity]
     }
 
@@ -297,7 +297,7 @@ class ProjectTemplateProfileController {
                                                        projectTemplate: projectTemplate,
                                                        calculatedDuration: calculatedDuration,
                                                        allLabels: Label.findAllByType('template', params)]
-    } catch (at.openfactory.ep.EntityException ee) {
+    } catch (at.uenterprise.erp.base.EntityException ee) {
       //render '<span class="red">Projekteinheitvorlage konnte nicht gespeichert werden!</span><br/>'
       render '<span class="red">'+message(code: "projectUnitTemplates.notSaved")+ '</span><br/>'
 

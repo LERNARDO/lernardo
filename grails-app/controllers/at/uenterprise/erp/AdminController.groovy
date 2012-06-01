@@ -1,9 +1,9 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.Link
-import at.openfactory.ep.AssetStorage
-import at.openfactory.ep.Asset
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.base.AssetStorage
+import at.uenterprise.erp.base.Asset
 import at.uenterprise.erp.logbook.Attendance
 
 /**

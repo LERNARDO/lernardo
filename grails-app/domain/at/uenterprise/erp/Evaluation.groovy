@@ -1,6 +1,6 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
+import at.uenterprise.erp.base.Entity
 
 /**
  * This class represents the evaluations that can be created for clients

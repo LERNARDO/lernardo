@@ -193,6 +193,13 @@ ckeditor {
   config = "/js/ckconfig.gsp"
 }
 
+secmgr {
+  starturl     = "/"
+  publicurl    = "/public"
+  loggedinurl  = "/welcome"
+  loggedouturl = "/by"
+}
+
 // PDFs
 // Betreutengruppe List View
 // Zeitaufzeichnung Bericht

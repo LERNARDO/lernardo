@@ -3,10 +3,10 @@ package at.uenterprise.erp
 import org.joda.time.DateTime
 import grails.converters.JSON
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.Link
-import at.openfactory.ep.EntityType
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.base.EntityType
 
 class CalendarController {
   EntityHelperService entityHelperService

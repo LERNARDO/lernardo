@@ -1,4 +1,4 @@
-<%@ page import="at.uenterprise.erp.Setup; at.openfactory.ep.Entity" %>
+<%@ page import="at.uenterprise.erp.Setup; at.uenterprise.erp.base.Entity" %>
 <head>
   <meta name="layout" content="database"/>
   <title><g:message code="object.create" args="[message(code: 'client')]"/></title>

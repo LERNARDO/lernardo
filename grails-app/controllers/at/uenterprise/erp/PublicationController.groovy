@@ -1,9 +1,9 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
+import at.uenterprise.erp.base.Entity
 import org.springframework.web.multipart.MultipartFile
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.AssetService
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.AssetService
 
 class PublicationController {
   MetaDataService metaDataService

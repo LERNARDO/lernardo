@@ -1,16 +1,16 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
+import at.uenterprise.erp.base.Entity
 
-import at.openfactory.ep.Link
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.LinkType
+import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.LinkType
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.springframework.web.multipart.MultipartFile
-import at.openfactory.ep.util.HashTools
-import at.openfactory.ep.AssetStorage
-import at.openfactory.ep.Asset
-import at.openfactory.ep.AssetService
+import at.uenterprise.erp.base.util.HashTools
+import at.uenterprise.erp.base.AssetStorage
+import at.uenterprise.erp.base.Asset
+import at.uenterprise.erp.base.AssetService
 
 /**
  * This class contains all used service methods

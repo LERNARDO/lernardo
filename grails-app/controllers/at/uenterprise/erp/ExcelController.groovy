@@ -2,8 +2,8 @@ package at.uenterprise.erp
 
 import jxl.*
 import jxl.write.*
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityHelperService
 import java.text.SimpleDateFormat
 
 class ExcelController {

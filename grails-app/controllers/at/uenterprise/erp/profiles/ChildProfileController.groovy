@@ -1,8 +1,8 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 
@@ -122,7 +122,7 @@ class ChildProfileController {
 
       flash.message = message(code: "object.created", args: [message(code: "child"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
-    } catch (at.openfactory.ep.EntityException ee) {
+    } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [child: ee.entity]
     }
 

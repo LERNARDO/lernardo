@@ -1,6 +1,6 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Profile
+import at.uenterprise.erp.base.Profile
 
 /**
  * This class represents a group of partners

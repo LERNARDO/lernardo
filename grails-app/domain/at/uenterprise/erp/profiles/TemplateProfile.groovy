@@ -1,6 +1,6 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Profile
+import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Label

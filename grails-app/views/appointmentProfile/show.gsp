@@ -1,4 +1,4 @@
-<%@ page import="at.openfactory.ep.Entity" %>
+<%@ page import="at.uenterprise.erp.base.Entity" %>
 <head>
   <meta name="layout" content="database"/>
   <title><g:message code="appointment"/> - ${appointment.profile.fullName}</title>

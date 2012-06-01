@@ -1,23 +1,23 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.Link
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.ProfileHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.ProfileHelperService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 
 import at.uenterprise.erp.Element
-import at.openfactory.ep.Profile
+import at.uenterprise.erp.base.Profile
 
-import at.openfactory.ep.AssetService
+import at.uenterprise.erp.base.AssetService
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.uenterprise.erp.Label
-import at.openfactory.ep.Asset
+import at.uenterprise.erp.base.Asset
 import at.uenterprise.erp.EVENT_TYPE
 
 class TemplateProfileController {
@@ -195,7 +195,7 @@ class TemplateProfileController {
       flash.message = message(code: "object.created", args: [message(code: "template"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
 
-    } catch (at.openfactory.ep.EntityException ee) {
+    } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [template: ee.entity, resources: Entity.findAllByType(metaDataService.etResource)]
     }
 

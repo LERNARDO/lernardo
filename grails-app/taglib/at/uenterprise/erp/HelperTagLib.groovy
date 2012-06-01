@@ -1,10 +1,10 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.Link
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.Link
 import java.text.SimpleDateFormat
 import org.springframework.web.servlet.support.RequestContextUtils
-import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.base.EntityHelperService
 import org.springframework.beans.SimpleTypeConverter
 import org.springframework.context.MessageSourceResolvable
 import org.codehaus.groovy.grails.web.util.StreamCharBuffer
@@ -18,8 +18,8 @@ import at.uenterprise.erp.logbook.LogEntry
 import at.uenterprise.erp.logbook.LogClient
 import at.uenterprise.erp.logbook.ProcessPaid
 import at.uenterprise.erp.logbook.ProcessAttended
-import at.openfactory.ep.AssetStorage
-import at.openfactory.ep.AssetService
+import at.uenterprise.erp.base.AssetStorage
+import at.uenterprise.erp.base.AssetService
 
 class HelperTagLib {
   EntityHelperService entityHelperService
@@ -28,6 +28,15 @@ class HelperTagLib {
   AssetService assetService
   def securityManager
   static namespace = "erp"
+
+  def ifGrailsEnv = {attrs, body->
+    def env = grails.util.GrailsUtil.environment
+
+    if (attrs.env && attrs.env instanceof List && attrs.env.contains (env))
+      out << body()
+    else if (attrs.env == env)
+      out << body()
+  }
 
   /**
    * Set the page format for PDFs

@@ -1,8 +1,8 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.ProfileHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.ProfileHelperService
 
 class CommentController {
   EntityHelperService entityHelperService

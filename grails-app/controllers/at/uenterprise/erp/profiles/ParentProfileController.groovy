@@ -1,11 +1,11 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
-import at.openfactory.ep.Link
+import at.uenterprise.erp.base.Link
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -177,7 +177,7 @@ class ParentProfileController {
       
       flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
-    } catch (at.openfactory.ep.EntityException ee) {
+    } catch (at.uenterprise.erp.base.EntityException ee) {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
 

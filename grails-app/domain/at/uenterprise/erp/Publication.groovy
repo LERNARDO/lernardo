@@ -1,7 +1,7 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
-import at.openfactory.ep.Asset
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.Asset
 
 /**
  * This class represents publications (documents) of entities

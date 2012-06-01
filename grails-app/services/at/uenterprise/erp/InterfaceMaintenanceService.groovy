@@ -1,8 +1,8 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.Entity
-import at.openfactory.ep.Account
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.Account
 import at.uenterprise.erp.profiles.ChildProfile
 import java.text.SimpleDateFormat
 

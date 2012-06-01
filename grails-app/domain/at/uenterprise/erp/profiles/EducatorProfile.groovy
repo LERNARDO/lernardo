@@ -1,6 +1,6 @@
 package at.uenterprise.erp.profiles
 
-import at.openfactory.ep.Profile
+import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.CDate
 import at.uenterprise.erp.WorkdayUnit
 import at.uenterprise.erp.ECalendar

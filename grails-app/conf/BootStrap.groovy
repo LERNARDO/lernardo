@@ -1,13 +1,13 @@
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.Entity
-import at.openfactory.ep.Link
-import at.openfactory.ep.LinkHelperService
-import at.openfactory.ep.Tag
-import at.openfactory.ep.Profile
-import at.openfactory.ep.DefaultObjectService
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.ProfileHelperService
-import at.openfactory.ep.AssetService
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.Entity
+import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.base.LinkHelperService
+import at.uenterprise.erp.base.Tag
+import at.uenterprise.erp.base.Profile
+import at.uenterprise.erp.base.DefaultObjectService
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.ProfileHelperService
+import at.uenterprise.erp.base.AssetService
 
 import at.uenterprise.erp.profiles.ClientProfile
 import at.uenterprise.erp.profiles.FacilityProfile

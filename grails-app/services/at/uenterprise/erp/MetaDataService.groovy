@@ -1,10 +1,10 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.EntitySuperType
-import at.openfactory.ep.EntityType
-import at.openfactory.ep.LinkSuperType
-import at.openfactory.ep.LinkType
-import at.openfactory.ep.Role
+import at.uenterprise.erp.base.EntitySuperType
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.LinkSuperType
+import at.uenterprise.erp.base.LinkType
+import at.uenterprise.erp.base.Role
 
 class MetaDataService {
 
