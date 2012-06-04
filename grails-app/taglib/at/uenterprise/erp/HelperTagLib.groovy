@@ -29,7 +29,77 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
-  def ifGrailsEnv = {attrs, body->
+  List outputFolder(Folder f) {
+
+    List folders = []
+    List favorites = []
+
+    if (f) {
+      println "have folder"
+      folders = Folder.findAllByFolder(f)
+      favorites = Favorite.findAllByFolder(f)
+    }
+    else {
+      println "root"
+      folders = Folder.findAllByFolderIsNull()
+      favorites = Favorite.findAllByFolderIsNull()
+    }
+
+    println folders
+    println favorites
+
+    out << '<ul>'
+    folders?.each { Folder folder ->
+      out << '<li style="line-height: 22px;">' + folder.name + ' <span class="gray">' + folder.description + '</span></li>'
+      outputFolder(folder)
+    }
+    favorites?.each { Favorite favorite ->
+      out << '<li style="line-height: 22px;">' + favorite.entity.profile.fullName + ' <span class="gray">' + favorite.description + '</span></li>'
+    }
+    out << '</ul>'
+
+
+  }
+
+  def showFolders2 = {attrs, body ->
+    outputFolder(null)
+
+  }
+  /**
+   * Set the page format for PDFs
+   *
+   * @author Alexander Zeillinger
+   */
+  def showFolders = {attrs, body ->
+    def folder = attrs.folder ?: null
+    println "folder: " + folder
+
+    List subfolders = []
+    List subfavorites = []
+
+    if (folder) {
+      subfolders = Folder.findAllByFolder(folder)
+      subfavorites = Favorite.findAllByFolder(folder)
+    }
+    else {
+      subfolders = Folder.findAllByFolderIsNull()
+      subfavorites = Favorite.findAllByFolderIsNull()
+    }
+
+    println "subfolder: " + subfolders
+    println "subfavorites: " + subfavorites
+    println "---"
+
+    out << body(subfolders: subfolders, subfavorites: subfavorites)
+  }
+
+  /**
+   * Display the current Grails Environment
+   *
+   * @author Mike Kuhl
+   * @attrs env
+   */
+  def ifGrailsEnv = {attrs, body ->
     def env = grails.util.GrailsUtil.environment
 
     if (attrs.env && attrs.env instanceof List && attrs.env.contains (env))

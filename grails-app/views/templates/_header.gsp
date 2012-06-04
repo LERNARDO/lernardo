@@ -37,11 +37,17 @@
       </span>
     </g:link>
 
-    <a class="tooltip" data-tooltip="${message(code: 'favorites')}" href="#" onclick="togglefavs()">
+    %{--<a class="tooltip" data-tooltip="${message(code: 'favorites')}" href="#" onclick="togglefavs()">
       <span id="favtooltip" class="notificationbox inactive" style="border-right: none;">
         <img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="Favorites" style="position: relative; top: 3px;"/>
       </span>
-    </a>
+    </a>--}%
+
+    <g:link class="tooltip" data-tooltip="${message(code: 'favorites')}" controller="favorite" action="list">
+      <span id="favtooltip" class="notificationbox inactive" style="border-right: none;">
+        <img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="Favorites" style="position: relative; top: 3px;"/>
+      </span>
+    </g:link>
 
     <script type="text/javascript">
       function togglefavs() {
