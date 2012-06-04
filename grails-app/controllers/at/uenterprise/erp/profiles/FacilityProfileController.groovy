@@ -55,7 +55,11 @@ class FacilityProfileController {
     }
 
     // find all resources of this facility
-    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
+    //List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
+    List resources = []
+    facility.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
 
     def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll {it.user.enabled}
     // find all educators of this facility
@@ -177,8 +181,14 @@ class FacilityProfileController {
     }
     new Link(source: entity, target: facility, type: metaDataService.ltResource).save()
 
+    facility.profile.addToResources(entity.id.toString())
+
     // find all resources of this facility
-    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
+    //List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
+    List resources = []
+    facility.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
 
     render template: 'resources', model: [resources: resources, facility: facility]
   }
@@ -196,8 +206,14 @@ class FacilityProfileController {
     // delete resource as well
     Entity.get(params.resource).delete()
 
+    facility.profile.removeFromResources(params.resource)
+
     // find all resources of this facility
-    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
+    //List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
+    List resources = []
+    facility.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
 
     render template: 'resources', model: [resources: resources, facility: facility]
   }
@@ -420,5 +436,34 @@ class FacilityProfileController {
     else {
       render template: 'clientresults', model: [results: results, facility: params.id]
     }
+  }
+
+  def moveUp = {
+    Entity facility = Entity.get(params.facility)
+    if (facility.profile.resources.indexOf(params.id) > 0) {
+      int i = facility.profile.resources.indexOf(params.id)
+      use(Collections){ facility.profile.resources.swap(i, i - 1) }
+    }
+
+    List resources = []
+    facility.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
+
+    render template: 'resources', model: [resources: resources, facility: facility]
+  }
+
+  def moveDown = {
+    Entity facility = Entity.get(params.facility)
+    if (facility.profile.resources.indexOf(params.id) < facility.profile.resources.size() - 1) {
+      int i = facility.profile.resources.indexOf(params.id)
+      use(Collections){ facility.profile.resources.swap(i, i + 1) }
+    }
+    List resources = []
+    facility.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
+
+    render template: 'resources', model: [resources: resources, facility: facility]
   }
 }

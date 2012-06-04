@@ -53,12 +53,27 @@ class AdminController {
   }
 
   /*
-   * populates tables for sorting links
+   * populates helper tables for sorting links
+   * check if a linked entity is in the according helper table, if not add it
    */
   def createtables = {
+    // facilities and colonies
+    List entities = Entity.findAllByTypeOrType(metaDataService.etFacility, metaDataService.etGroupColony)
+    int number = 0
+    entities.each { entity ->
+      List resources = functionService.findAllByLink(null, entity, metaDataService.ltResource)
+      resources.each { resource ->
+        if (!entity.profile.resources.contains(resource.id.toString())) {
+          entity.profile.addToResources(resource.id.toString())
+          number++
+        }
+      }
+    }
+    render "Created ${number} table entries in ${entities.size()} facilities and colonies<br/>"
+
     // group activity templates
     List groups = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
-    int number = 0
+    number = 0
     groups.each { group ->
       List activityTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
       activityTemplates.each { activityTemplate ->

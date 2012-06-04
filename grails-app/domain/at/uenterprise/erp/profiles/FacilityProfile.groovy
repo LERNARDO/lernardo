@@ -10,7 +10,9 @@ import at.uenterprise.erp.Contact
  */
 class FacilityProfile extends Profile {
 
-  static hasMany = [contacts: Contact]
+  List resources
+  static hasMany = [contacts: Contact,
+                    resources: String]
 
   String  description
   String  country

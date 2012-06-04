@@ -74,7 +74,11 @@ class GroupColonyProfileController {
     List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator)
 
     // find all resources linked to this group
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    //List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = []
+    group.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
 
     return [group: group,
             facilities: facilities,
@@ -166,8 +170,14 @@ class GroupColonyProfileController {
     }
     new Link(source: entity, target: group, type: metaDataService.ltResource).save()
 
+    group.profile.addToResources(entity.id.toString())
+
     // find all resources linked to this group
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    //List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = []
+    group.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
 
     render template: 'resources', model: [resources: resources, group: group]
   }
@@ -185,8 +195,14 @@ class GroupColonyProfileController {
     // delete resource as well
     Entity.get(params.resource).delete()
 
+    group.profile.removeFromResources(params.resource)
+
     // find all resources linked to this group
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    //List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = []
+    group.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
 
     render template: 'resources', model: [resources: resources, group: group]
   }
@@ -271,6 +287,35 @@ class GroupColonyProfileController {
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     render template: 'educators', model: [educators: breaking.sources, group: breaking.target]
+  }
+
+  def moveUp = {
+    Entity colony = Entity.get(params.colony)
+    if (colony.profile.resources.indexOf(params.id) > 0) {
+      int i = colony.profile.resources.indexOf(params.id)
+      use(Collections){ colony.profile.resources.swap(i, i - 1) }
+    }
+
+    List resources = []
+    colony.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
+
+    render template: 'resources', model: [resources: resources, group: colony]
+  }
+
+  def moveDown = {
+    Entity colony = Entity.get(params.colony)
+    if (colony.profile.resources.indexOf(params.id) < colony.profile.resources.size() - 1) {
+      int i = colony.profile.resources.indexOf(params.id)
+      use(Collections){ colony.profile.resources.swap(i, i + 1) }
+    }
+    List resources = []
+    colony.profile.resources.each {
+      resources.add(Entity.get(it.toInteger()))
+    }
+
+    render template: 'resources', model: [resources: resources, group: colony]
   }
 
 }

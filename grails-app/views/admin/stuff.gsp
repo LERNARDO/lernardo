@@ -24,13 +24,13 @@
     </div>
 
     <div class="adminbox">
-      <div class="bold">Create "sorting" tables for group activity templates, project templates and project days:</div>
+      <div class="bold">Create helper tables for sorting links:</div>
       <g:remoteLink update="tables" action="createtables" before="showspinner('#tables');">Create</g:remoteLink>
       <div class="result" id="tables"></div>
     </div>
 
     <div class="adminbox">
-      <div class="bold">Check "sorting" tables of group activity templates, project templates and project days:</div>
+      <div class="bold">Check helper tables for sorting links:</div>
       <g:remoteLink update="checktables" action="checktables" before="showspinner('#checktables');">Check</g:remoteLink>
       <div class="result" id="checktables"></div>
     </div>

@@ -11,8 +11,10 @@ import at.uenterprise.erp.Building
  */
 class GroupColonyProfile extends Profile{
 
+  List resources
   static hasMany = [representatives: Contact,
-                    buildings: Building]
+                    buildings: Building,
+                    resources: String]
 
   String description
   String zip
