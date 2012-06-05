@@ -2,6 +2,7 @@ package at.uenterprise.erp.profiles
 
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Folder
 
 /**
  * This class represents the profile of parents
@@ -15,6 +16,7 @@ class ParentProfile extends Profile {
                     jobtypes: String,
                     favorites: String]
 
+  Folder    favoritesFolder
   ECalendar calendar
   String    firstName
   String    lastName
@@ -53,6 +55,7 @@ class ParentProfile extends Profile {
     citizenship           nullable: true
     birthDate             nullable: true
     calendar              nullable: true
+    favoritesFolder nullable: true
   }
 
   String toString() {

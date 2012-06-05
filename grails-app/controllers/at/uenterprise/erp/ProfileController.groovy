@@ -292,25 +292,31 @@ class ProfileController {
   }
   
   def addFavorite = {
-    String favorite = params.id.toString()
+    //String favorite = params.id.toString()
 
     Entity currentEntity = entityHelperService.loggedIn
 
-    if (!currentEntity.profile.favorites.contains(favorite)) {
+    /*if (!currentEntity.profile.favorites.contains(favorite)) {
       currentEntity.profile.addToFavorites(favorite)
-    }
-    render template: 'favbuttons', model: [type: 'remove', favorite: favorite]
+    }*/
+    Favorite favorite = new Favorite(entity: Entity.get(params.id), description: " ", folder: currentEntity.profile.favoritesFolder).save(failOnError: true)
+    currentEntity.profile.favoritesFolder.addToFavorites(favorite)
+
+    render template: 'favbuttons', model: [type: 'remove', favorite: params.id]
   }
   
   def removeFavorite = {
-    String favorite = params.id.toString()
+    //String favorite = params.id.toString()
 
     Entity currentEntity = entityHelperService.loggedIn
 
-    if (currentEntity.profile.favorites.contains(favorite)) {
+    /*if (currentEntity.profile.favorites.contains(favorite)) {
       currentEntity.profile.removeFromFavorites(favorite)
-    }
-    render template: 'favbuttons', model: [type: 'add', favorite: favorite]
+    }*/
+    if (currentEntity.profile.favoritesFolder.contains(Entity.get(params.id)))
+      currentEntity.profile.favoritesFolder.removeFromFavorites(Entity.get(params.id))
+
+    render template: 'favbuttons', model: [type: 'add', favorite: params.id]
   }
 
   def updateFavorites = {

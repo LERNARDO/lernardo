@@ -3,6 +3,7 @@ package at.uenterprise.erp.profiles
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.WorkdayUnit
+import at.uenterprise.erp.Folder
 
 /**
  * This class represents the profile of users
@@ -16,6 +17,7 @@ class UserProfile extends Profile {
   static hasMany = [favorites: String,
                     workdayunits: WorkdayUnit]
 
+  Folder    favoritesFolder
   ECalendar calendar
   String    firstName
   String    lastName
@@ -39,6 +41,7 @@ class UserProfile extends Profile {
     calendar  nullable: true
     hourlyWage      nullable: true
     overtimePay     nullable: true
+    favoritesFolder nullable: true
   }
 
   String toString() {

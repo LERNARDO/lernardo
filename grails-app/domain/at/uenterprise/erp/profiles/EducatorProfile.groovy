@@ -4,6 +4,7 @@ import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.CDate
 import at.uenterprise.erp.WorkdayUnit
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Folder
 
 /**
  * This class represents the profile of educators
@@ -20,6 +21,7 @@ class EducatorProfile extends Profile {
                     workdayunits: WorkdayUnit,
                     favorites: String]
 
+  Folder    favoritesFolder
   ECalendar calendar
   String    title
   String    firstName
@@ -99,6 +101,7 @@ class EducatorProfile extends Profile {
     bloodType       nullable: true
 
     calendar        nullable: true
+    favoritesFolder nullable: true
   }
 
   String toString() {

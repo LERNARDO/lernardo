@@ -3,6 +3,7 @@ package at.uenterprise.erp.profiles
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.Contact
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Folder
 
 /**
  * This class represents the profile of partners
@@ -16,6 +17,7 @@ class PartnerProfile extends Profile {
                     services: String,
                     favorites: String]
 
+  Folder    favoritesFolder
   ECalendar calendar
   String    description
   //String    country
@@ -35,6 +37,7 @@ class PartnerProfile extends Profile {
     phone       size: 2..20
     website     blank: true, size: 2..50
     calendar    nullable: true
+    favoritesFolder nullable: true
   }
 
   String toString() {

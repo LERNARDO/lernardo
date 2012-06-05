@@ -2,6 +2,7 @@ package at.uenterprise.erp.profiles
 
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Folder
 
 /**
  * This class represents the profile of children
@@ -14,6 +15,7 @@ class ChildProfile extends Profile {
   static hasMany = [jobtypes: String,
                     favorites: String]
 
+  Folder    favoritesFolder
   ECalendar calendar
   String    firstName
   String    lastName
@@ -31,6 +33,7 @@ class ChildProfile extends Profile {
     jobIncome     nullable: true
     jobFrequency  nullable: true, blank: true, maxSize: 50
     calendar      nullable: true
+    favoritesFolder nullable: true
   }
 
   String toString() {

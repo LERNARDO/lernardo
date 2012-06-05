@@ -11,6 +11,7 @@ import at.uenterprise.erp.Materials
 import at.uenterprise.erp.Performances
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.SDate
+import at.uenterprise.erp.Folder
 
 /**
  * This class represents the profile of clients (children part of the educational program)
@@ -32,6 +33,7 @@ class ClientProfile extends Profile {
                     contacts: Contact,
                     favorites: String]
 
+  Folder    favoritesFolder
   ECalendar calendar
   String    firstName
   String    lastName
@@ -92,6 +94,7 @@ class ClientProfile extends Profile {
     job                   nullable: true
     school                nullable: true
     calendar              nullable: true
+    favoritesFolder nullable: true
   }
 
   String toString() {

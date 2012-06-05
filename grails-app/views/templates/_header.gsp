@@ -49,7 +49,7 @@
       </span>
     </g:link>
 
-    <script type="text/javascript">
+    %{--<script type="text/javascript">
       function togglefavs() {
         var status = $('#favorites').css('display');
         if (status == 'none') {
@@ -60,7 +60,7 @@
     </script>
 
     <div id="favorites" style="display: none; background: #ddd; border: 1px solid #bbb; position: absolute; top: 52px; text-align: left;">
-    </div>
+    </div>--}%
 
   </span>
 

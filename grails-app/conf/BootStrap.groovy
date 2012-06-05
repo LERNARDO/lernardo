@@ -1051,11 +1051,19 @@ class BootStrap {
   void createDefaultFolders() {
     log.info ("creating folders")
 
+    Entity admin = Entity.findByName('admin')
     FolderType favFolderType = new FolderType(name: "favorite").save(failOnError: true)
-    Folder someFolder = new Folder(name: "some", description: "some folder", type: favFolderType).save(failOnError: true)
+    admin.profile.favoritesFolder = new Folder(name: "root", description: "root of all favorites", type: favFolderType).save(failOnError: true)
+    admin.profile.save()
 
-    new Favorite(entity: Entity.findByName('danielszabo'), description: "Kollege").save(failOnError: true)
-    new Favorite(entity: Entity.findByName('patriziarosenkranz'), description: "Kollegin", folder: someFolder).save(failOnError: true)
+    Folder someFolder = new Folder(name: "some", description: "some folder", type: favFolderType, folder: admin.profile.favoritesFolder).save(failOnError: true)
+    admin.profile.favoritesFolder.addToFolders(someFolder)
+
+    Favorite daniel = new Favorite(entity: Entity.findByName('danielszabo'), description: "Kollege", folder: admin.profile.favoritesFolder).save(failOnError: true)
+    admin.profile.favoritesFolder.addToFavorites(daniel)
+
+    Favorite patrizia = new Favorite(entity: Entity.findByName('patriziarosenkranz'), description: "Kollegin", folder: someFolder).save(failOnError: true)
+    someFolder.addToFavorites(patrizia)
   }
 
 }

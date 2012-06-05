@@ -2,6 +2,7 @@ package at.uenterprise.erp.profiles
 
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Folder
 
 /**
  * This class represents the profile of godfathers
@@ -14,6 +15,7 @@ class PateProfile extends Profile {
   static hasMany = [languages: String,
                     favorites: String]
 
+  Folder    favoritesFolder
   ECalendar calendar
   String    firstName
   String    lastName
@@ -33,6 +35,7 @@ class PateProfile extends Profile {
     city      size: 2..50, maxSize: 50
     street    size: 2..50, maxSize: 50
     calendar  nullable: true
+    favoritesFolder nullable: true
   }
 
   String toString() {

@@ -29,68 +29,29 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
-  List outputFolder(Folder f) {
-
-    List folders = []
-    List favorites = []
-
-    if (f) {
-      println "have folder"
-      folders = Folder.findAllByFolder(f)
-      favorites = Favorite.findAllByFolder(f)
-    }
-    else {
-      println "root"
-      folders = Folder.findAllByFolderIsNull()
-      favorites = Favorite.findAllByFolderIsNull()
-    }
-
-    println folders
-    println favorites
-
+  def outputFolder(Folder f) {
     out << '<ul>'
-    folders?.each { Folder folder ->
-      out << '<li style="line-height: 22px;">' + folder.name + ' <span class="gray">' + folder.description + '</span></li>'
+    f.folders?.each { Folder folder ->
+      out << '<li class="folder fader">' + folder.name + ' <span class="gray">' + folder.description + '</span> <span style="visibility: hidden">' +
+          remoteLink(action: "moveFolderUp", update: "favoriteslist", id: folder.id) {'<img src="' + resource(dir: 'images/icons', file: 'arrow_up.png') + '" align="top">'} + " " +
+          remoteLink(action: "moveFolderDown", update: "favoriteslist", id: folder.id) {'<img src="' + resource(dir: 'images/icons', file: 'arrow_down.png') + '" align="top">'} + " " +
+          remoteLink(action: "editFolder", update: "faveditbox", id: folder.id) {'<img src="' + resource(dir: 'images/icons', file: 'icon_edit.png') + '" align="top">'} + " " +
+          remoteLink(action: "removeFolder", update: "favoriteslist", id: folder.id) {'<img src="' + resource(dir: 'images/icons', file: 'icon_remove.png') + '" align="top">'} + '</span></li>'
       outputFolder(folder)
     }
-    favorites?.each { Favorite favorite ->
-      out << '<li style="line-height: 22px;">' + favorite.entity.profile.fullName + ' <span class="gray">' + favorite.description + '</span></li>'
+    f.favorites?.each { Favorite favorite ->
+      out << '<li class="item fader">' + favorite.entity.profile.fullName + ' <span class="gray">' + favorite.description + '</span> <span style="visibility: hidden">' +
+          remoteLink(action: "moveFavoriteUp", update: "favoriteslist", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'arrow_up.png') + '" align="top">'} + " " +
+          remoteLink(action: "moveFavoriteDown", update: "favoriteslist", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'arrow_down.png') + '" align="top">'} + " " +
+          remoteLink(action: "editFavorite", update: "faveditbox", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'icon_edit.png') + '" align="top">'} + " " +
+          remoteLink(action: "removeFavorite", update: "favoriteslist", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'icon_remove.png') + '" align="top">'} + '</span></li>'
     }
     out << '</ul>'
-
-
   }
 
-  def showFolders2 = {attrs, body ->
-    outputFolder(null)
-
-  }
-  /**
-   * Set the page format for PDFs
-   *
-   * @author Alexander Zeillinger
-   */
   def showFolders = {attrs, body ->
-    def folder = attrs.folder ?: null
-    println "folder: " + folder
-
-    List subfolders = []
-    List subfavorites = []
-
-    if (folder) {
-      subfolders = Folder.findAllByFolder(folder)
-      subfavorites = Favorite.findAllByFolder(folder)
-    }
-    else {
-      subfolders = Folder.findAllByFolderIsNull()
-      subfavorites = Favorite.findAllByFolderIsNull()
-    }
-
-    println "subfolder: " + subfolders
-    println "subfavorites: " + subfavorites
-    println "---"
-
-    out << body(subfolders: subfolders, subfavorites: subfavorites)
+    Entity currentEntity = entityHelperService.loggedIn
+    outputFolder(currentEntity.profile.favoritesFolder)
   }
 
   /**
@@ -179,11 +140,38 @@ class HelperTagLib {
    */
   def getFavorite = {attrs ->
     out << '<span id="favbutton">'
-    if (entityHelperService.loggedIn.profile.favorites.contains(attrs.entity.id.toString()))
+    if (findFavorite(attrs.entity) /*entityHelperService.loggedIn.profile.favorites.contains(attrs.entity.id.toString())*/)
       out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'removeFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'- ' + message(code: 'favorite')}
     else
       out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'+ ' + message(code: 'favorite')}
     out << '</span>'
+  }
+
+  def findFavorite(Entity entity) {
+    Entity currentEntity = entityHelperService.loggedIn
+    def a = findNow(currentEntity.profile.favoritesFolder, entity)
+    println a
+    return a //findNow(currentEntity.profile.favoritesFolder, entity)
+  }
+
+  def findNow(Folder folder, Entity entity) {
+    println "folder: " + folder.name
+    folder.favorites.each {println it.entity.profile.fullName}
+    println "entity: " + entity.profile.fullName
+    println "---"
+    if (folder.favorites.find {it.entity.id == entity.id}) {
+      println "yay"
+      return true
+    }
+    else {
+      folder.folders.each { Folder f ->
+        if (findNow(f, entity)) {
+          println "found something"
+          return true
+        }
+      }
+    }
+    return false
   }
 
   /**

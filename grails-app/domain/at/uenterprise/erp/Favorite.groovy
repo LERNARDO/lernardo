@@ -4,9 +4,10 @@ import at.uenterprise.erp.base.Entity
 
 class Favorite {
 
+  static belongsTo = [folder: Folder]
+
   Entity  entity
   String  description
-  Folder  folder
 
   static constraints = {
     folder nullable: true
