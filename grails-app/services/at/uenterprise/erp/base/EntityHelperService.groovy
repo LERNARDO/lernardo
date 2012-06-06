@@ -21,8 +21,7 @@ public class EntityHelperService {
 */
 Entity createEntity (String name, EntityType type, Closure c=null) {
   def ent = new Entity(name:name, type:type)
-  if (c)
-    c.call (ent)
+  if (c) c.call (ent)
 
   if (ent.save())
     return ent
@@ -46,6 +45,7 @@ Entity createEntity (String name, EntityType type, Closure c=null) {
       ent.user = new Account (email:emailAddr, password:securityManager.encodePassword("pass"), enabled:true)
       ent.user.addToAuthorities (role)
       if (c) c.call (ent)
+      ent.user.save()
     }
   }
 
@@ -57,6 +57,7 @@ Entity createEntity (String name, EntityType type, Closure c=null) {
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = fullName
       if (c) c.call (ent)
+      ent.profile.save()
     }
   }
 

@@ -169,7 +169,6 @@ class ParentProfileController {
         ent.user.properties = params
         ent.profile.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        ent.profile.save()
       }
 
       // create link to colony
