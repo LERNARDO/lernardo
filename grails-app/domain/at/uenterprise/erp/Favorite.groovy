@@ -10,6 +10,7 @@ class Favorite {
   String  description
 
   static constraints = {
-    folder nullable: true
+    folder        nullable: true
+    description   nullable: true
   }
 }

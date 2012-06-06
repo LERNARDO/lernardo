@@ -12,7 +12,8 @@ class Folder {
   FolderType  type
 
   static constraints = {
-    folder nullable: true
+    folder        nullable: true
+    description   nullable: true
   }
 
   String toString() {

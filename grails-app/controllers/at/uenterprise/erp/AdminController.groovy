@@ -310,4 +310,35 @@ class AdminController {
     }
     render "-Done-"
   }
+
+  def favorites = {
+
+    List entities = Entity.createCriteria().list {
+      or {
+        eq("type", metaDataService.etUser)
+        eq("type", metaDataService.etPate)
+        eq("type", metaDataService.etPartner)
+        eq("type", metaDataService.etParent)
+        eq("type", metaDataService.etOperator)
+        eq("type", metaDataService.etEducator)
+        eq("type", metaDataService.etClient)
+        eq("type", metaDataService.etChild)
+      }
+    }
+
+    entities?.each { Entity entity ->
+      if (!entity.profile.favoritesFolder)
+        entity.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
+      if (entity.profile.favorites) {
+        entity.favorites.each { String favid ->
+          Entity fav = Entity.get(favid.toInteger())
+          Favorite newFav = new Favorite(entity: fav, folder: Folder.findByName("root")).save(failOnError: true)
+          entity.profile.favoritesFolder.addToFavorites(newFav)
+        }
+      }
+      entity.profile.favorites.clear()
+    }
+    render "-Done-"
+  }
+
 }

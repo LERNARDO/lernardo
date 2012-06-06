@@ -149,29 +149,29 @@ class HelperTagLib {
 
   def findFavorite(Entity entity) {
     Entity currentEntity = entityHelperService.loggedIn
-    def a = findNow(currentEntity.profile.favoritesFolder, entity)
-    println a
-    return a //findNow(currentEntity.profile.favoritesFolder, entity)
+    return findNow(currentEntity.profile.favoritesFolder, entity)
   }
 
-  def findNow(Folder folder, Entity entity) {
-    println "folder: " + folder.name
-    folder.favorites.each {println it.entity.profile.fullName}
-    println "entity: " + entity.profile.fullName
-    println "---"
+  Boolean findNow(Folder folder, Entity entity) {
+    //println "---"
+    //println "folder: " + folder.name
+    //folder.favorites.each {println it.entity.profile.fullName}
+    //println "entity: " + entity.profile.fullName
+    def found = false
     if (folder.favorites.find {it.entity.id == entity.id}) {
-      println "yay"
+      //println "found favorite in folder"
       return true
     }
     else {
+      //println "didn't find favorite in folder, searching subfolders"
       folder.folders.each { Folder f ->
         if (findNow(f, entity)) {
-          println "found something"
-          return true
+          //println "found favorite in subfolder"
+          found = true
         }
       }
     }
-    return false
+    return found
   }
 
   /**

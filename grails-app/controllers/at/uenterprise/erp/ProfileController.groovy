@@ -310,13 +310,43 @@ class ProfileController {
 
     Entity currentEntity = entityHelperService.loggedIn
 
+    Entity ent = Entity.get(params.id)
+
     /*if (currentEntity.profile.favorites.contains(favorite)) {
       currentEntity.profile.removeFromFavorites(favorite)
     }*/
-    if (currentEntity.profile.favoritesFolder.contains(Entity.get(params.id)))
-      currentEntity.profile.favoritesFolder.removeFromFavorites(Entity.get(params.id))
+    //if (currentEntity.profile.favoritesFolder.contains(Entity.get(params.id)))
+    //  currentEntity.profile.favoritesFolder.removeFromFavorites(Entity.get(params.id))
+    deleteFavorite(currentEntity.profile.favoritesFolder, ent)
 
     render template: 'favbuttons', model: [type: 'add', favorite: params.id]
+  }
+
+  Boolean deleteFavorite(Folder folder, Entity entity) {
+    //println "---"
+    //println "folder: " + folder.name
+    //folder.favorites.each {println it.entity.profile.fullName}
+    //println "entity: " + entity.profile.fullName
+    def fav = folder.favorites.find {it.entity.id == entity.id}
+
+    def found = false
+    if (fav) {
+      //println "found favorite in folder"
+      //println fav.entity.profile.fullName
+      fav.folder.removeFromFavorites(fav)
+      fav.delete(flush: true)
+      return true
+    }
+    else {
+      //println "didn't find favorite in folder, searching subfolders"
+      folder.folders.each { Folder f ->
+        if (deleteFavorite(f, entity)) {
+          //println "found favorite in subfolder"
+          found = true
+        }
+      }
+    }
+    return found
   }
 
   def updateFavorites = {

@@ -59,6 +59,12 @@
       <div class="result" id="labels"></div>
     </div>
 
+    <div class="adminbox">
+      <div class="bold">Favorites</div>
+      <g:remoteLink update="favorites" action="favorites" before="showspinner('#favorites');">Update</g:remoteLink>
+      <div class="result" id="favorites"></div>
+    </div>
+
   </div>
 </div>
 </body>
