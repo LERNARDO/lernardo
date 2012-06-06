@@ -333,7 +333,7 @@ class AdminController {
       if (!entity.profile.favoritesFolder)
         entity.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
       if (entity.profile.favorites) {
-        entity.favorites.each { String favid ->
+        entity.profile.favorites.each { String favid ->
           Entity fav = Entity.get(favid.toInteger())
           Favorite newFav = new Favorite(entity: fav, folder: Folder.findByName("root")).save(failOnError: true)
           entity.profile.favoritesFolder.addToFavorites(newFav)
