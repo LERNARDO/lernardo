@@ -5,6 +5,8 @@ import at.uenterprise.erp.base.EntityType
 import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
+import at.uenterprise.erp.Folder
+import at.uenterprise.erp.FolderType
 
 class OperatorProfileController {
   MetaDataService metaDataService
@@ -117,6 +119,7 @@ class OperatorProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
+        ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

@@ -15,6 +15,8 @@ import at.uenterprise.erp.Collector
 import at.uenterprise.erp.Contact
 import at.uenterprise.erp.SDate
 import at.uenterprise.erp.logbook.Attendance
+import at.uenterprise.erp.Folder
+import at.uenterprise.erp.FolderType
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -230,6 +232,7 @@ class ClientProfileController {
         //ent.profile.schoolDropoutDate = params.date('schoolDropoutDate', 'dd. MM. yy') ?: params.date('schoolDropoutDate', 'dd.MM.yy')
         //ent.profile.schoolRestartDate = params.date('schoolRestartDate', 'dd. MM. yy') ?: params.date('schoolRestartDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
+        ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
       // create link to colony

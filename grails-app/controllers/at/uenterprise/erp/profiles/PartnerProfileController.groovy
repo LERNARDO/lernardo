@@ -7,6 +7,8 @@ import at.uenterprise.erp.base.Entity
 import at.uenterprise.erp.base.EntityType
 import at.uenterprise.erp.Contact
 import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.Folder
+import at.uenterprise.erp.FolderType
 
 class PartnerProfileController {
 
@@ -156,6 +158,7 @@ class PartnerProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
+        ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
       // create link to colony

@@ -5,6 +5,8 @@ import at.uenterprise.erp.base.EntityType
 import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
+import at.uenterprise.erp.Folder
+import at.uenterprise.erp.FolderType
 
 class ChildProfileController {
   MetaDataService metaDataService
@@ -117,6 +119,7 @@ class ChildProfileController {
         ent.profile.birthDate = params.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
+        ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
       flash.message = message(code: "object.created", args: [message(code: "child"), entity.profile.fullName])

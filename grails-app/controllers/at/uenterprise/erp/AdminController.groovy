@@ -313,6 +313,9 @@ class AdminController {
 
   def favorites = {
 
+    if (!FolderType.findByName("favorite"))
+      new FolderType(name: "favorite").save()
+
     List entities = Entity.createCriteria().list {
       or {
         eq("type", metaDataService.etUser)

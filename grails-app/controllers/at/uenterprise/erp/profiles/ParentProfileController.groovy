@@ -6,6 +6,8 @@ import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.Folder
+import at.uenterprise.erp.FolderType
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -169,6 +171,7 @@ class ParentProfileController {
         ent.user.properties = params
         ent.profile.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
+        ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
       // create link to colony

@@ -7,6 +7,8 @@ import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.CDate
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
+import at.uenterprise.erp.Folder
+import at.uenterprise.erp.FolderType
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -196,10 +198,12 @@ class EducatorProfileController {
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etEducator, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
-        ent.user.properties = params
         ent.profile.birthDate = params.date('birthDate', 'dd. MM. yy') ?: params.date('birthDate', 'dd.MM.yy')
+        ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
+        ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
+
 
       // create link to partner
       Link.findAllBySourceAndType(entity, metaDataService.ltEnlisted).each {it.delete()}
