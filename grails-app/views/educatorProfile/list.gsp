@@ -50,7 +50,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td>
             <erp:profileImage entity="${educator}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-            <g:link action="show" id="${educator.id}">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link>
+            <g:link class="largetooltip" data-idd="${educator.id}" action="show" id="${educator.id}">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
           <td>
             ${educator.profile.education.decodeHTML() ?: '<span class="italic">' + message(code: 'noData') + '<span>'}

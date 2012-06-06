@@ -55,7 +55,7 @@ class BootStrap {
   AssetService assetService
   def GrailsApplication
 
-  final int dummies = 2 // amount of bootstrapped dummy entities
+  final int dummies = 4 // amount of bootstrapped dummy entities
 
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {

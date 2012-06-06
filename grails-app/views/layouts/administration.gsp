@@ -37,6 +37,22 @@
         });
       });
 
+      $('.largetooltip').each(function() {
+        $(this).qtip({
+          content: {
+            text: 'Loading...',
+            ajax: {
+              url: '${grailsApplication.config.grails.serverURL}/profile/getTooltip',
+              type: 'GET',
+              data: {id : $(this).attr('data-idd')}
+            }
+          },
+          show: {
+            delay: 1000
+          }
+        });
+      });
+
       $('.timepicker').timepicker();
 
       $(".datepicker-birthday").datepicker({

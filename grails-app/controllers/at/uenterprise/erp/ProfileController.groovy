@@ -19,6 +19,11 @@ class ProfileController {
 
   def index = { }
 
+  def getTooltip() {
+    Entity entity = Entity.get(params.id)
+    render template: "tooltip" + entity.type.supertype.name, model: [entity: entity]
+  }
+
   /*
    * create an admin notification (private message)
    */

@@ -35,6 +35,22 @@
         });
       });
 
+      $('.largetooltip').each(function() {
+        $(this).qtip({
+          content: {
+            text: 'Loading...',
+            ajax: {
+              url: '${grailsApplication.config.grails.serverURL}/profile/getTooltip',
+              type: 'GET',
+              data: {id : $(this).attr('data-idd')}
+            }
+          },
+          show: {
+            delay: 1000
+          }
+        });
+      });
+
       $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 
     });

@@ -98,6 +98,9 @@
                   type: 'GET',
                   data: {id : $(this).attr('data-idd')}
                 }
+              },
+              show: {
+                delay: 1000
               }
             });
           });
