@@ -46,7 +46,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="activityTemplate.amountEducators"/></td>
           <td valign="top" class="value">
-            <g:select name="amountEducators" from="${1..5}" value="${template?.profile?.amountEducators}"/> <span class="gray">(Vorschlag)</span>
+            <g:select name="amountEducators" from="${1..5}" value="${template?.profile?.amountEducators}"/> <span class="gray">(<g:message code="suggestion"/>)</span>
           </td>
         </tr>
 

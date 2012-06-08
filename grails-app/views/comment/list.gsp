@@ -23,11 +23,11 @@
                 <tr>
                   <td style="padding: 0 10px; line-height: 20px;">
                     <g:checkBox name="activitytemplates"/> <g:message code="activityTemplates"/><br/>
-                    <g:checkBox name="activities"/> <g:message code="activities"/><br/>
-                    <g:checkBox name="groupactivitytemplates"/> <g:message code="groupActivityTemplates"/>
+                    %{--<g:checkBox name="activities"/> <g:message code="activities"/><br/>--}%
+                    <g:checkBox name="groupactivitytemplates"/> <g:message code="groupActivityTemplates"/><br/>
+                    <g:checkBox name="groupactivities"/> <g:message code="groupActivities"/>
                   </td>
-                  <td style="padding: 0 10px; line-height: 20px;">
-                    <g:checkBox name="groupactivities"/> <g:message code="groupActivities"/><br/>
+                  <td style="padding: 0 10px; line-height: 20px; vertical-align: top;">
                     <g:checkBox name="projecttemplates"/> <g:message code="projectTemplates"/><br/>
                     <g:checkBox name="projects"/> <g:message code="projects"/>
                   </td>

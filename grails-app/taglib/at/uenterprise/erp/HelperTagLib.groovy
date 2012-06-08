@@ -638,18 +638,18 @@ class HelperTagLib {
           total += hours
           sums[i] += hours
         }
-        out << "<td>" + hours + "</td>"
+        out << "<td>" + Math.round(hours * 2) / 2 + "</td>"
       }
-      out << "<td>" + total + "</td>"
+      out << "<td>" + Math.round(total * 2) / 2 + "</td>"
       out << "</tr>"
       calendarStart.add(Calendar.DATE, 1)
     }
     out << "<tr style='background: #bdf;'>"
     out << "<td class='bold'>" + message(code: "total") + "</td>"
     sums.each {
-      out << "<td class='bold'>" + it + "</td>"
+      out << "<td class='bold'>" + Math.round(it * 2) / 2 + "</td>"
     }
-    out << "<td class='bold'>" + sums.sum() + "</td>"
+    out << "<td class='bold'>" + Math.round(sums.sum() * 2) / 2 + "</td>"
     out << "</tr>"
   }
 

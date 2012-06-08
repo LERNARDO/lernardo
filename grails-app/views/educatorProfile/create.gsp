@@ -75,7 +75,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="educator.profile.enlisted"/></td>
           <td valign="top" class="value">
-            <g:select name="enlisted" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
+            <g:select name="enlisted" from="${partner}" value="" noSelection="['': message(code: 'no')]" optionKey="id" optionValue="profile"/>
           </td>
         </tr>
 

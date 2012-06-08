@@ -53,7 +53,13 @@
         });
       });
 
-      $('.timepicker').timepicker();
+      $('.timepick').timepicker({
+        timeText: '${message(code: "time")}',
+        hourText: '${message(code: "hour")}',
+        minuteText: '${message(code: "minute")}',
+        timeOnlyTitle: '${message(code: "chooseTime")}',
+        stepMinute: 5
+      });
 
       $(".datepicker-birthday").datepicker({
         monthNamesShort: ['${message(code: "january.short")}', '${message(code: "february.short")}', '${message(code: "march.short")}',

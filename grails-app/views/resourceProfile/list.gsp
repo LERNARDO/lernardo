@@ -10,14 +10,15 @@
   <div class="second">
 
     <div class="info-msg">
-      ${resourceTotal} Ressource(n) insgesamt vorhanden
+      <g:message code="object.total" args="[resourceTotal, message(code: 'resources')]"/>
     </div>
 
     <table class="default-table">
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
-        <th>Erstellt in</th>
+        <th><g:message code="createdIn"/></th>
+        <th><g:message code="resource.profile.amount"/></th>
       </tr>
       </thead>
       <tbody>
@@ -29,6 +30,7 @@
               <g:link controller="${source.type.supertype.name + 'Profile'}" action="show" id="${source.id}">${source.profile.fullName}</g:link>
             </erp:resourceCreatedIn>
           </td>
+          <td>${fieldValue(bean: resource, field: 'profile.amount').decodeHTML()}</td>
         </tr>
       </g:each>
       </tbody>

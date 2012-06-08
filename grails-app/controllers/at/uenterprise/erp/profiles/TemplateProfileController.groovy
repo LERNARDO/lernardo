@@ -242,7 +242,7 @@ class TemplateProfileController {
         method.type = "instance"
 
         methodTemplate.elements.each {
-          method.addToElements(new Element(name: it.name))
+          method.addToElements(new Element(name: it.name).save())
         }
 
         template.profile.addToMethods(method)

@@ -1,6 +1,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.timepicker').timepicker();
+    $('.timepick').timepicker({
+      timeText: '${message(code: "time")}',
+      hourText: '${message(code: "hour")}',
+      minuteText: '${message(code: "minute")}',
+      timeOnlyTitle: '${message(code: "chooseTime")}',
+      stepMinute: 5
+    });
   });
 </script>
 
@@ -32,23 +38,23 @@
             </tr>
             <tr>
                 <td><g:message code="from"/></td>
-                <td><g:textField name="mondayFrom" class="timepicker" size="4" value="${formatDate(date: attendance.mondayFrom, format: 'HH:mm')}"/></td>
-                <td><g:textField name="tuesdayFrom" class="timepicker" size="4" value="${formatDate(date: attendance.tuesdayFrom, format: 'HH:mm')}"/></td>
-                <td><g:textField name="wednesdayFrom" class="timepicker" size="4" value="${formatDate(date: attendance.wednesdayFrom, format: 'HH:mm')}"/></td>
-                <td><g:textField name="thursdayFrom" class="timepicker" size="4" value="${formatDate(date: attendance.thursdayFrom, format: 'HH:mm')}"/></td>
-                <td><g:textField name="fridayFrom" class="timepicker" size="4" value="${formatDate(date: attendance.fridayFrom, format: 'HH:mm')}"/></td>
-                <td><g:textField name="saturdayFrom" class="timepicker" size="4" value="${formatDate(date: attendance.saturdayFrom, format: 'HH:mm')}"/></td>
-                <td><g:textField name="sundayFrom" class="timepicker" size="4" value="${formatDate(date: attendance.sundayFrom, format: 'HH:mm')}"/></td>
+                <td><g:textField name="mondayFrom" class="timepick" size="4" value="${formatDate(date: attendance.mondayFrom, format: 'HH:mm')}"/></td>
+                <td><g:textField name="tuesdayFrom" class="timepick" size="4" value="${formatDate(date: attendance.tuesdayFrom, format: 'HH:mm')}"/></td>
+                <td><g:textField name="wednesdayFrom" class="timepick" size="4" value="${formatDate(date: attendance.wednesdayFrom, format: 'HH:mm')}"/></td>
+                <td><g:textField name="thursdayFrom" class="timepick" size="4" value="${formatDate(date: attendance.thursdayFrom, format: 'HH:mm')}"/></td>
+                <td><g:textField name="fridayFrom" class="timepick" size="4" value="${formatDate(date: attendance.fridayFrom, format: 'HH:mm')}"/></td>
+                <td><g:textField name="saturdayFrom" class="timepick" size="4" value="${formatDate(date: attendance.saturdayFrom, format: 'HH:mm')}"/></td>
+                <td><g:textField name="sundayFrom" class="timepick" size="4" value="${formatDate(date: attendance.sundayFrom, format: 'HH:mm')}"/></td>
             </tr>
             <tr>
                 <td><g:message code="to"/></td>
-                <td><g:textField name="mondayTo" class="timepicker" size="4" value="${formatDate(date: attendance.mondayTo, format: 'HH:mm')}"/></td>
-                <td><g:textField name="tuesdayTo" class="timepicker" size="4" value="${formatDate(date: attendance.tuesdayTo, format: 'HH:mm')}"/></td>
-                <td><g:textField name="wednesdayTo" class="timepicker" size="4" value="${formatDate(date: attendance.wednesdayTo, format: 'HH:mm')}"/></td>
-                <td><g:textField name="thursdayTo" class="timepicker" size="4" value="${formatDate(date: attendance.thursdayTo, format: 'HH:mm')}"/></td>
-                <td><g:textField name="fridayTo" class="timepicker" size="4" value="${formatDate(date: attendance.fridayTo, format: 'HH:mm')}"/></td>
-                <td><g:textField name="saturdayTo" class="timepicker" size="4" value="${formatDate(date: attendance.saturdayTo, format: 'HH:mm')}"/></td>
-                <td><g:textField name="sundayTo" class="timepicker" size="4" value="${formatDate(date: attendance.sundayTo, format: 'HH:mm')}"/></td>
+                <td><g:textField name="mondayTo" class="timepick" size="4" value="${formatDate(date: attendance.mondayTo, format: 'HH:mm')}"/></td>
+                <td><g:textField name="tuesdayTo" class="timepick" size="4" value="${formatDate(date: attendance.tuesdayTo, format: 'HH:mm')}"/></td>
+                <td><g:textField name="wednesdayTo" class="timepick" size="4" value="${formatDate(date: attendance.wednesdayTo, format: 'HH:mm')}"/></td>
+                <td><g:textField name="thursdayTo" class="timepick" size="4" value="${formatDate(date: attendance.thursdayTo, format: 'HH:mm')}"/></td>
+                <td><g:textField name="fridayTo" class="timepick" size="4" value="${formatDate(date: attendance.fridayTo, format: 'HH:mm')}"/></td>
+                <td><g:textField name="saturdayTo" class="timepick" size="4" value="${formatDate(date: attendance.saturdayTo, format: 'HH:mm')}"/></td>
+                <td><g:textField name="sundayTo" class="timepick" size="4" value="${formatDate(date: attendance.sundayTo, format: 'HH:mm')}"/></td>
             </tr>
         </table>
         <div style="text-align: right; margin-top: 5px;">

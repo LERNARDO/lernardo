@@ -1,6 +1,7 @@
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import at.uenterprise.erp.base.asset.FileSystemByteStore
 import at.uenterprise.erp.base.security.DefaultSecurityManager
+import at.uenterprise.erp.base.attr.DynAttrSet
 
 // Place your Spring DSL code here
 beans = {
@@ -17,6 +18,15 @@ beans = {
   // initialize security Manager
   securityManager (DefaultSecurityManager) {bean->
     salt = 0x010222562L ;
+  }
+
+  application.domainClasses.each {domainClass ->
+    def metaProperty = domainClass.metaClass.getMetaProperty("dynattrs")
+    if (metaProperty)
+      log.info "==> amend dynattr access for: $domainClass"
+    domainClass.metaClass.getDas = {
+      new DynAttrSet(metaProperty.getProperty(delegate))
+    }
   }
     
 }

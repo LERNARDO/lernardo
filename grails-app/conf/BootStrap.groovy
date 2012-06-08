@@ -64,6 +64,9 @@ class BootStrap {
       log.info "====="
       Date begin = new Date()
 
+      if (!FolderType.findByName("favorite"))
+        new FolderType(name: "favorite").save()
+
       createDefaultUsers()
 
       if (GrailsUtil.environment == "development") {
@@ -243,6 +246,7 @@ class BootStrap {
         UserProfile prf = (UserProfile)ent.profile
         prf.firstName = "System"
         prf.lastName = "Admin"
+        prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
       }
     }
 
@@ -254,6 +258,7 @@ class BootStrap {
         UserProfile prf = (UserProfile)ent.profile
         prf.firstName = "Patrizia"
         prf.lastName = "Rosenkranz"
+        prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
       }
     }
 
@@ -264,6 +269,7 @@ class BootStrap {
         UserProfile prf = (UserProfile)ent.profile
         prf.firstName = "Daniel"
         prf.lastName = "Szabo"
+        prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
       }
     }
 
@@ -309,6 +315,7 @@ class BootStrap {
           prf.workHoursFriday = 6.5
           prf.hourlyWage = 10
           prf.overtimePay = 15
+          prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
         }
         new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltWorking).save(failOnError: true)
       }
@@ -344,6 +351,7 @@ class BootStrap {
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "dummyFrequency"
           }
+          prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
         }
       }
     }
@@ -383,6 +391,7 @@ class BootStrap {
           prf.support = generator.nextBoolean()
           if (prf.support)
             prf.supportDescription = "dummyDescription"
+          prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
         }
         new Link(source: entity, target: Entity.findByName("facility1"), type: metaDataService.ltGroupMemberClient).save(failOnError: true)
       }
@@ -411,6 +420,7 @@ class BootStrap {
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "dummyFrequency"
           }
+          prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
         }
       }
     }
@@ -430,6 +440,7 @@ class BootStrap {
         prf.street = "dummyStreet"
         prf.phone = "dummyPhone"
         prf.description = "dummyDescription"
+        prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
       }
     }
 
@@ -451,6 +462,7 @@ class BootStrap {
           prf.description = "dummyDescription"
           //prf.country = "dummyCountry"
           prf.website = "http://www.dummySite.com"
+          prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
         }
       }
     }
@@ -473,6 +485,7 @@ class BootStrap {
           prf.street = "dummyStreet"
           prf.country = "dummyCountry"
           prf.motherTongue = "dummyMotherTongue"
+          prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
         }
       }
     }

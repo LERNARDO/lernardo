@@ -1,6 +1,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.timepicker').timepicker();
+    $('.timepick').timepicker({
+      timeText: '${message(code: "time")}',
+      hourText: '${message(code: "hour")}',
+      minuteText: '${message(code: "minute")}',
+      timeOnlyTitle: '${message(code: "chooseTime")}',
+      stepMinute: 5
+    });
   });
 </script>
 
@@ -8,7 +14,7 @@
   <table>
     <tr>
       <td class="bold"><g:message code="period"/>:</td>
-      <td><g:textField name="dateFrom" class="timepicker" size="4" value="${formatDate(date: routine.dateFrom, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="to"/> <g:textField name="dateTo" class="timepicker" size="4" value="${formatDate(date: routine.dateTo, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="clock"/></td>
+      <td><g:textField name="dateFrom" class="timepick" size="4" value="${formatDate(date: routine.dateFrom, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="to"/> <g:textField name="dateTo" class="timepick" size="4" value="${formatDate(date: routine.dateTo, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="clock"/></td>
     </tr>
     <tr>
       <td class="bold" style="width: 150px;"><g:message code="work"/>:</td>

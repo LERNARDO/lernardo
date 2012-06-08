@@ -19,7 +19,7 @@
 
       <div class="property">
         <g:message code="workdayCategory.count"/> <br/>
-        <g:checkBox name="count" value="${fieldValue(bean:workdayCategoryInstance,field:'count')}"/>
+        <g:checkBox name="counts" value="${fieldValue(bean:workdayCategoryInstance,field:'counts')}"/>
       </div>
 
       <div class="clear"></div>

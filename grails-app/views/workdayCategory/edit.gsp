@@ -36,7 +36,7 @@
 
           <tr class="prop">
             <td width="440" valign="top" class="value">
-              <g:checkBox name="count" value="${fieldValue(bean:workdayCategoryInstance,field:'count')}"/>
+              <g:checkBox name="counts" value="${fieldValue(bean:workdayCategoryInstance,field:'counts')}"/>
             </td>
           </tr>
 

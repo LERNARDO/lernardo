@@ -38,7 +38,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="period"/></td>
             <td class="value">
-              <g:textField name="dateFrom" class="timepicker" size="4"/> <g:message code="to"/> <g:textField name="dateTo" class="timepicker" size="4"/> <g:message code="clock"/>
+              <g:textField name="dateFrom" class="timepick" size="4"/> <g:message code="to"/> <g:textField name="dateTo" class="timepick" size="4"/> <g:message code="clock"/>
             </td>
           </tr>
 

@@ -21,7 +21,7 @@
      <span class="gray"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
   </p>
 
-  Diesen Projekttag verschieben (Datum und/oder Uhrzeit):
+  <g:message code="projectDayMove"/>:
   <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'moveProjectDay', id: projectDay.id]" update="projectDay" before="showspinner('#projectDay')">
     <table>
       <tr>

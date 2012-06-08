@@ -8,7 +8,7 @@ package at.uenterprise.erp
 class WorkdayCategory {
 
   String  name
-  Boolean count = true
+  Boolean counts = true
 
   static constraints = {
     name blank: false

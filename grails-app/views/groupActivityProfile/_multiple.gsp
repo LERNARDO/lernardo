@@ -1,6 +1,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.timepicker').timepicker();
+    $('.timepick').timepicker({
+      timeText: '${message(code: "time")}',
+      hourText: '${message(code: "hour")}',
+      minuteText: '${message(code: "minute")}',
+      timeOnlyTitle: '${message(code: "chooseTime")}',
+      stepMinute: 5
+    });
 
     $(".datepicker").datepicker({
       monthNamesShort: ['${message(code: "january.short")}', '${message(code: "february.short")}', '${message(code: "march.short")}',
@@ -30,31 +36,31 @@
   <tr>
     <td style="padding: 6px;">
       <div style="margin-bottom: 3px;"><g:checkBox name="monday" value="${ac?.monday}"/> <g:message code="monday"/></div>
-      <g:textField name="mondayStart" class="timepicker ${hasErrors(bean: ac, field: 'mondayStart', 'errors')}" size="4" value="${formatDate(date: ac?.mondayStart, format: 'HH:mm')}"/>
+      <g:textField name="mondayStart" class="timepick ${hasErrors(bean: ac, field: 'mondayStart', 'errors')}" size="4" value="${formatDate(date: ac?.mondayStart, format: 'HH:mm')}"/>
     </td>
     <td style="padding: 6px;">
       <div style="margin-bottom: 3px;"><g:checkBox name="tuesday" value="${ac?.tuesday}"/> <g:message code="tuesday"/></div>
-      <g:textField name="tuesdayStart" class="timepicker ${hasErrors(bean: ac, field: 'tuesdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.tuesdayStart, format: 'HH:mm')}"/>
+      <g:textField name="tuesdayStart" class="timepick ${hasErrors(bean: ac, field: 'tuesdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.tuesdayStart, format: 'HH:mm')}"/>
     </td>
     <td style="padding: 6px;">
       <div style="margin-bottom: 3px;"><g:checkBox name="wednesday" value="${ac?.wednesday}"/> <g:message code="wednesday"/></div>
-      <g:textField name="wednesdayStart" class="timepicker ${hasErrors(bean: ac, field: 'wednesdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.wednesdayStart, format: 'HH:mm')}"/>
+      <g:textField name="wednesdayStart" class="timepick ${hasErrors(bean: ac, field: 'wednesdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.wednesdayStart, format: 'HH:mm')}"/>
     </td>
     <td style="padding: 6px;">
       <div style="margin-bottom: 3px;"><g:checkBox name="thursday" value="${ac?.thursday}"/> <g:message code="thursday"/></div>
-      <g:textField name="thursdayStart" class="timepicker ${hasErrors(bean: ac, field: 'thursdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.thursdayStart, format: 'HH:mm')}"/>
+      <g:textField name="thursdayStart" class="timepick ${hasErrors(bean: ac, field: 'thursdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.thursdayStart, format: 'HH:mm')}"/>
     </td>
     <td style="padding: 6px;">
       <div style="margin-bottom: 3px;"><g:checkBox name="friday" value="${ac?.friday}"/> <g:message code="friday"/></div>
-      <g:textField name="fridayStart" class="timepicker ${hasErrors(bean: ac, field: 'fridayStart', 'errors')}" size="4" value="${formatDate(date: ac?.fridayStart, format: 'HH:mm')}"/>
+      <g:textField name="fridayStart" class="timepick ${hasErrors(bean: ac, field: 'fridayStart', 'errors')}" size="4" value="${formatDate(date: ac?.fridayStart, format: 'HH:mm')}"/>
     </td>
     <td style="padding: 6px;">
       <div style="margin-bottom: 3px;"><g:checkBox name="saturday" value="${ac?.saturday}"/> <g:message code="saturday"/></div>
-      <g:textField name="saturdayStart" class="timepicker ${hasErrors(bean: ac, field: 'saturdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.saturdayStart, format: 'HH:mm')}"/>
+      <g:textField name="saturdayStart" class="timepick ${hasErrors(bean: ac, field: 'saturdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.saturdayStart, format: 'HH:mm')}"/>
     </td>
     <td style="padding: 6px;">
       <div style="margin-bottom: 3px;"><g:checkBox name="sunday" value="${ac?.sunday}"/> <g:message code="sunday"/></div>
-      <g:textField name="sundayStart" class="timepicker ${hasErrors(bean: ac, field: 'sundayStart', 'errors')}" size="4" value="${formatDate(date: ac?.sundayStart, format: 'HH:mm')}"/>
+      <g:textField name="sundayStart" class="timepick ${hasErrors(bean: ac, field: 'sundayStart', 'errors')}" size="4" value="${formatDate(date: ac?.sundayStart, format: 'HH:mm')}"/>
     </td>
   </tr>
 </table>

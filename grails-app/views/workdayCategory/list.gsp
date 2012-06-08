@@ -51,7 +51,7 @@
       <g:each in="${workdayCategoryInstanceList}" status="i" var="workdayCategoryInstance">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${workdayCategoryInstance.id}">${fieldValue(bean: workdayCategoryInstance, field: 'name')}</g:link></td>
-          <td><g:formatBoolean boolean="${workdayCategoryInstance.count}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+          <td><g:formatBoolean boolean="${workdayCategoryInstance.counts}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
         </tr>
       </g:each>
       </tbody>

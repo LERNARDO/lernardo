@@ -1,6 +1,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.timepicker').timepicker();
+    $('.timepick').timepicker({
+      timeText: '${message(code: "time")}',
+      hourText: '${message(code: "hour")}',
+      minuteText: '${message(code: "minute")}',
+      timeOnlyTitle: '${message(code: "chooseTime")}',
+      stepMinute: 5
+    });
   });
 </script>
 
@@ -61,11 +67,11 @@
           <table>
             <tr>
               <td><g:message code="from"/>:</td>
-              <td><g:textField name="from" class="timepicker" size="4"/></td>
+              <td><g:textField name="from" class="timepick" size="4"/></td>
             </tr>
             <tr>
               <td><g:message code="to"/>:</td>
-              <td><g:textField name="to" class="timepicker" size="4"/></td>
+              <td><g:textField name="to" class="timepick" size="4"/></td>
             </tr>
             <tr>
               <td><g:message code="workdayCategory"/>:</td>
