@@ -106,7 +106,8 @@
                      '${message(code: "april")}', '${message(code: "may")}', '${message(code: "june")}',
                      '${message(code: "july")}', '${message(code: "august")}', '${message(code: "september")}',
                      '${message(code: "october")}', '${message(code: "november")}', '${message(code: "december")}'],
-        dateFormat: 'dd. mm. yy'
+        dateFormat: 'dd. mm. yy',
+        stepMinute: 5
       });
 
       $('.datetimepicker2').datetimepicker({
@@ -121,7 +122,8 @@
                      '${message(code: "july")}', '${message(code: "august")}', '${message(code: "september")}',
                      '${message(code: "october")}', '${message(code: "november")}', '${message(code: "december")}'],
         dateFormat: 'dd. mm. yy,',
-        timeFormat: 'hh:mm'
+        timeFormat: 'hh:mm',
+        stepMinute: 5
       });
 
       $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
