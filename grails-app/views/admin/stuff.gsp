@@ -11,11 +11,11 @@
 
     <h1 style="color: #f00; border: 0;">This is only for site admins, do not click anything here if you don't know what you are doing!</h1>
 
-    <div class="adminbox">
+    %{--<div class="adminbox">
       <div class="bold">Show links "from" and "to" an entity:</div>
       <g:select from="${entities}" name="entity" optionKey="id" optionValue="profile" noSelection="[null:message(code:'non')]" onchange="${remoteFunction(controller: 'admin', action: 'linksresults', update: 'results', params:'\'id=\' + this.value')}"/>
       <div class="result" id="results"></div>
-    </div>
+    </div>--}%
 
     <div class="adminbox">
       <div class="bold">Remove all comments without link:</div>

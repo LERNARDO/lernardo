@@ -20,8 +20,8 @@ class AdminController {
   }
 
   def stuff = {
-      List entities = Entity.list()
-      return [entities: entities]
+      //List entities = Entity.list()
+      //return [entities: entities]
   }
 
   def linksresults = {
