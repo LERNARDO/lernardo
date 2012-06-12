@@ -47,8 +47,9 @@ class WorkdayUnitController {
 
       List workdayunits = []
       if (entity.type.id == metaDataService.etEducator.id || entity.type.id == metaDataService.etUser.id) {
-        entity.profile.workdayunits.each { workday ->
-          if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+        entity.profile.workdayunits.each { WorkdayUnit workday ->
+          Date tempDate = functionService.convertFromUTC(workday.date1)
+          if (tempDate.getYear() == params.date.getYear() && tempDate.getMonth() == params.date.getMonth() && tempDate.getDate() == params.date.getDate()) {
             workdayunits << workday
           }
         }
@@ -111,7 +112,6 @@ class WorkdayUnitController {
     }
 
     def addWorkdayUnit = {
-      println params
       Entity entity = Entity.get(params.id)
 
       // FIXME: workaround for IE not sending any formular data
