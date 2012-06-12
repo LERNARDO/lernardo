@@ -10,5 +10,5 @@
 </g:else>
 
 <script type="text/javascript">
-  ${remoteFunction(update: "projectDay", action: "updateprojectday", params: [project: project.id])}
+  ${remoteFunction(update: "projectDay", action: "setprojectday", params: [project: project.id])}
 </script>

@@ -17,7 +17,7 @@
         <li><g:link controller="projectProfile" action="show" id="${project.id}"><g:message code="profile"/></g:link></li>
         <li><g:remoteLink update="content" controller="publication" action="list" id="${project.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${project}"/></g:remoteLink></li>
         <erp:accessCheck types="['Pädagoge','Betreiber']">
-          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${project.id}"><g:message code="comments"/> (${project.profile.comments.size()}) </g:remoteLink></li>
+          <li><g:remoteLink update="content" controller="comment" action="show" id="${project.id}"><g:message code="comments"/> (${project.profile.comments.size()})</g:remoteLink></li>
           <li><g:link style="border-right: none" controller="projectProfile" action="listevaluations" id="${project.id}" params="[entity:project.id]"><g:message code="privat.evaluation"/></g:link></li>
         </erp:accessCheck>
       </ul>

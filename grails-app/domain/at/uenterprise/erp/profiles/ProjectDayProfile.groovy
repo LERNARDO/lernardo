@@ -11,6 +11,7 @@ class ProjectDayProfile extends Profile {
 
   List units
   static hasMany = [units: String]
+  Boolean complete = false
 
   Date date
 

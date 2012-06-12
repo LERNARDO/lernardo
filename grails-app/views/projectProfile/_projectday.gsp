@@ -17,8 +17,21 @@
 </script>
 
 <div class="element-box">
+
+  <erp:accessCheck types="['Betreiber']" creatorof="${project}">
+    <g:if test="${projectDays.size() > 1}">
+      <div class="buttons">
+        <g:link class="buttonRed" controller="projectProfile" action="deleteProjectDay" id="${day.id}" params="[project: project.id]" onclick="return confirm('${message(code: 'sure')}');"><g:message code="projectDayDelete"/></g:link>
+        <div class="clear"></div>
+      </div>
+    </g:if>
+  </erp:accessCheck>
+
   <p>
-     <span class="gray"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
+    <span class="gray"><g:message code="projectDayComplete"/>:</span> <g:checkBox name="checkbox" value="${projectDay.profile.complete}" onclick="${remoteFunction(update: 'projectDay', controller: 'projectDayProfile', action: 'completeDay', id: projectDay.id, params: [project: project.id])}"/>
+  </p>
+  <p>
+    <span class="gray"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
   </p>
 
   <g:message code="projectDayMove"/>:

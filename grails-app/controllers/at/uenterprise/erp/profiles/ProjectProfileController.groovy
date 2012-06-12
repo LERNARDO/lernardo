@@ -884,7 +884,7 @@ class ProjectProfileController {
     render template: 'themes', model: [themes: breaking.targets, project: breaking.source]
   }
 
-  def updateprojectday = {
+  def setprojectday = {
     Entity project = Entity.get(params.project)
 
     // find all project days linked to this project
