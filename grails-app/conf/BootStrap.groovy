@@ -239,7 +239,7 @@ class BootStrap {
 
     // system admin users
     if (!Entity.findByName('admin')) {
-      entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@uenterprise.de", "Admin") {Entity ent ->
+      entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@lernardo.net", "Admin") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.systemAdminRole)
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
@@ -252,7 +252,7 @@ class BootStrap {
 
     // admin users
     if (!Entity.findByName('patriziarosenkranz')) {
-      entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@uenterprise.de", "Patrizia Rosenkranz") {Entity ent ->
+      entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.net", "Patrizia Rosenkranz") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
         UserProfile prf = (UserProfile)ent.profile
@@ -263,7 +263,7 @@ class BootStrap {
     }
 
     if (!Entity.findByName('danielszabo')) {
-      entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@uenterprise.de", "Daniel Szabo") {Entity ent ->
+      entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lernardo.net", "Daniel Szabo") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
         UserProfile prf = (UserProfile)ent.profile

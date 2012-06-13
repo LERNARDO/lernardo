@@ -280,7 +280,7 @@ class AppController {
     /*
     if (GrailsUtil.environment != "development") {
       sendMail {
-        to      "error@uenterprise.de"
+        to      "error@lernardo.net"
         subject grailsApplication.config.application.name + " - Error 500"
         html    g.render(template: '/errortemplate', model: [request:request, exception: request.exception])
       }
