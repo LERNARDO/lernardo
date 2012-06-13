@@ -45,6 +45,8 @@
       <tr>
         <g:sortableColumn property="name" title="${message(code:'workdayCategory.name')}"/>
         <g:sortableColumn property="count" title="${message(code:'workdayCategory.count')}"/>
+        <g:sortableColumn property="beginDate" title="${message(code:'begin')}"/>
+        <g:sortableColumn property="endDate" title="${message(code:'end')}"/>
       </tr>
       </thead>
       <tbody>
@@ -52,6 +54,8 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${workdayCategoryInstance.id}">${fieldValue(bean: workdayCategoryInstance, field: 'name')}</g:link></td>
           <td><g:formatBoolean boolean="${workdayCategoryInstance.counts}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+          <td><g:formatDate date="${workdayCategoryInstance.beginDate}" format="dd. MM. yyyy" /></td>
+          <td><g:formatDate date="${workdayCategoryInstance.endDate}" format="dd. MM. yyyy" /></td>
         </tr>
       </g:each>
       </tbody>

@@ -924,7 +924,7 @@ class BootStrap {
 
     for ( i in 1..3 ) {
       if (!WorkdayCategory.findByName('workdayCategory' + i)) {
-        new WorkdayCategory(name: 'workdayCategory' + i).save(failOnError: true, flush: true)
+        new WorkdayCategory(name: 'workdayCategory' + i, beginDate: new Date(112, 0, 1, 0, 0), endDate: new Date(113, 0, 1, 0, 0)).save(failOnError: true, flush: true)
       }
     }
 

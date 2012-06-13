@@ -9,6 +9,8 @@ class WorkdayCategory {
 
   String  name
   Boolean counts = true
+  Date    beginDate
+  Date    endDate
 
   static constraints = {
     name blank: false

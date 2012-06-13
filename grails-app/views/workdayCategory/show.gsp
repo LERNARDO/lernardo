@@ -22,6 +22,16 @@
         <td class="two"><g:formatBoolean boolean="${workdayCategoryInstance.counts}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
       </tr>
 
+      <tr class="prop">
+        <td class="one"><g:message code="begin"/>:</td>
+        <td class="two"><g:formatDate date="${workdayCategoryInstance.beginDate}" format="dd. MM. yyyy" /></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="end"/>:</td>
+        <td class="two"><g:formatDate date="${workdayCategoryInstance.endDate}" format="dd. MM. yyyy" /></td>
+      </tr>
+
       </tbody>
     </table>
 

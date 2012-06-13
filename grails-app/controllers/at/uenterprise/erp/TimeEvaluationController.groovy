@@ -36,7 +36,11 @@ class TimeEvaluationController {
       }
     }
 
-    List workdaycategories = WorkdayCategory.list()
+    Date rangeBegin = params.date('date1', 'dd. MM. yy')
+    Date rangeEnd = params.date('date2', 'dd. MM. yy')
+    params.sort = params.sort ?: "name"
+    params.order = params.order ?: "asc"
+    List workdaycategories = WorkdayCategory.list(params).findAll {!(it.beginDate >= rangeEnd || it.endDate <= rangeBegin)}
 
     render template: 'showevaluation', model: [educators: educators,
         users: users,
@@ -71,7 +75,9 @@ class TimeEvaluationController {
       }
     }
 
-    List workdaycategories = WorkdayCategory.list()
+    params.sort = params.sort ?: "name"
+    params.order = params.order ?: "asc"
+    List workdaycategories = WorkdayCategory.list(params).findAll {!(it.beginDate >= date2 || it.endDate <= date1)}
     Entity currentEntity = entityHelperService.loggedIn
 
     renderPdf template: 'pdf', model: [educators: educators,

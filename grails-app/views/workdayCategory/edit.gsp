@@ -16,33 +16,37 @@
 
     <g:form id="${workdayCategoryInstance.id}">
 
-      <div>
-        <table>
-          <tbody>
+      <table>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="workdayCategory.name"/></td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="workdayCategory.name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean:workdayCategoryInstance,field:'name','errors')}" size="50" name="name" value="${fieldValue(bean:workdayCategoryInstance,field:'name').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td width="440" valign="top" class="value">
-              <g:textField class="${hasErrors(bean:workdayCategoryInstance,field:'name','errors')}" size="50" name="name" value="${fieldValue(bean:workdayCategoryInstance,field:'name').decodeHTML()}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="workdayCategory.count"/></td>
+          <td valign="top" class="value">
+            <g:checkBox name="counts" value="${fieldValue(bean:workdayCategoryInstance,field:'counts')}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="workdayCategory.count"/></td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="begin"/></td>
+          <td valign="top" class="value">
+            <g:textField name="beginDate" class="datepicker ${hasErrors(bean: workdayCategoryInstance, field: 'beginDate', 'errors')}" value="${formatDate(date: workdayCategoryInstance.beginDate, format: 'dd. MM. yyyy')}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td width="440" valign="top" class="value">
-              <g:checkBox name="counts" value="${fieldValue(bean:workdayCategoryInstance,field:'counts')}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="end"/></td>
+          <td valign="top" class="value">
+            <g:textField name="endDate" class="datepicker ${hasErrors(bean: workdayCategoryInstance, field: 'endDate', 'errors')}" value="${formatDate(date: workdayCategoryInstance.endDate, format: 'dd. MM. yyyy')}"/>
+          </td>
+        </tr>
 
-          </tbody>
-        </table>
-      </div>
+      </table>
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
