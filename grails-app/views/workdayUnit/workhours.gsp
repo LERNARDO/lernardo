@@ -25,34 +25,14 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
-    <table class="default-table">
-      <thead>
-      <tr>
-        <th><g:message code="name"/></th>
-        <th><g:message code="hours"/></th>
-        %{--<th>Arbeitstage pro Woche</th>--}%
-        <th><g:message code="educator.profile.hourlyWage"/> (${grailsApplication.config.currency})</th>
-        <th><g:message code="educator.profile.overtimePay"/> (${grailsApplication.config.currency})</th>
-      </tr>
-      </thead>
-      <tbody>
-      <g:each in="${persons}" status="i" var="person">
-        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td>
-            <erp:profileImage entity="${person}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-            <g:link action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile.fullName').decodeHTML()}</g:link>
-          </td>
-          <td id="${i}a"><g:render template="showworkhours" model="[person: person, i: i]"/></td>
-          %{--<td id="${i}b"><g:render template="showworkdays" model="[educator: educator, i: i]"/></td>--}%
-          <td id="${i}c"><g:render template="showhourlywage" model="[person: person, i: i]"/></td>
-          <td id="${i}d"><g:render template="showovertimepay" model="[person: person, i: i]"/></td>
-        </tr>
-      </g:each>
-      </tbody>
-    </table>
+  <g:formRemote name="formRemote" url="[controller: 'workdayUnit', action: 'showPersons']" update="result" before="showspinner('#result')">
+    <g:select name="type" from="[message(code: 'users'), message(code: 'educators')]"/>
+    <g:submitButton name="submitButton" value="OK"/>
+  </g:formRemote>
 
+  <div id="result" style="margin-top: 10px;">
   </div>
+
 </div>
 </body>

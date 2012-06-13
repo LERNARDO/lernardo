@@ -8,10 +8,7 @@ class WorkdayUnitController {
     EntityHelperService entityHelperService
     MetaDataService metaDataService
 
-    def workhours = {
-      List persons = Entity.findAllByTypeOrType(metaDataService.etEducator, metaDataService.etUser)
-      return [persons: persons]
-    }
+    def workhours = {}
 
     def changeWorkHours = {
       Entity person = Entity.get(params.id)
@@ -59,5 +56,10 @@ class WorkdayUnitController {
       person.profile.overtimePay = params.int('overtimePay')
       person.profile.save()
       render template: 'showovertimepay', model: [person: person, i: params.i]
+    }
+
+    def showPersons = {
+      List persons = Entity.findAllByType(params.type == "User" ? metaDataService.etUser: metaDataService.etEducator).findAll {it.user.enabled}
+      render template: "showpersons", model: [persons: persons]
     }
 }
