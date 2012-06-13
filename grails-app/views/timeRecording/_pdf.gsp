@@ -56,7 +56,7 @@
       </tr>
       </thead>
       <tbody>
-        <erp:getEvaluation entity="${entity}" date1="${date1}" date2="${date2}"/>
+        <erp:timeRecordingReport entity="${entity}" date1="${date1}" date2="${date2}"/>
       </tbody>
     </table>
 

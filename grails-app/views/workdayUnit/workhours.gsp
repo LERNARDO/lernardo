@@ -6,7 +6,7 @@
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="workdayUnit" action="evaluation"><g:message code="timeEvaluation"/></g:link></h1>
+    <h1><g:link controller="timeEvaluation"><g:message code="timeEvaluation"/></g:link></h1>
   </div>
 </div>
 

@@ -11,7 +11,7 @@
 </div>
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="workdayUnit" action="report" id="${entity.id}"><g:message code="report"/></g:link></h1>
+    <h1><g:link controller="timeRecording" action="report" id="${entity.id}"><g:message code="report"/></g:link></h1>
   </div>
 </div>
 <div class="clear"></div>
@@ -23,12 +23,12 @@
       <g:message code="privat.workday.chooseDay"/>
     </div>
 
-    <g:formRemote name="formRemote" url="[controller: 'workdayUnit', action: 'showunits', id: entity.id]" update="workdayunits" before="showspinner('#workdayunits')">
+    <g:formRemote name="formRemote" url="[controller: 'timeRecording', action: 'showRecords', id: entity.id]" update="records" before="showspinner('#records')">
       <g:textField name="date" size="30" value="${new Date().format('dd. MM. yyyy')}" class="datepicker-birthday"/>
       <g:submitButton name="submitButton" value="OK"/>
     </g:formRemote>
 
-    <div id="workdayunits"></div>
+    <div id="records" style="margin-top: 10px;"></div>
 
   </div>
 </div>

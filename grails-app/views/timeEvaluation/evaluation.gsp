@@ -29,7 +29,7 @@
 
     <div class="info-msg"><g:message code="timeEvaluation.chooseRange"/></div>
 
-    <g:formRemote name="formRemote" url="[controller: 'workdayUnit', action: 'evaluate']" update="evaluate" before="showspinner('#evaluate')">
+    <g:formRemote name="formRemote" url="[controller: 'timeEvaluation', action: 'showEvaluation']" update="evaluate" before="showspinner('#evaluate')">
       <g:textField name="date1" size="30" class="datepicker-birthday"/>
       <g:textField name="date2" size="30" class="datepicker-birthday"/>
       <g:submitButton name="submitButton" value="OK"/>

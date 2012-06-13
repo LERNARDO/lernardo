@@ -17,7 +17,7 @@
         <li><g:remoteLink update="content" controller="publication" action="list" id="${user.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${user}"/></g:remoteLink></li>
         <li><g:link controller="msg" action="inbox" id="${user.id}"><g:message code="privat.posts"/></g:link></li>
         <li><g:link controller="appointmentProfile" action="index" id="${user.id}"><g:message code="appointments"/></g:link></li>
-        <li><g:link style="border-right: none" controller="workdayUnit" action="index" id="${user.id}"><g:message code="privat.workday"/></g:link></li>
+        <li><g:link style="border-right: none" controller="timeRecording" id="${user.id}"><g:message code="privat.workday"/></g:link></li>
       </ul>
     </div>
 

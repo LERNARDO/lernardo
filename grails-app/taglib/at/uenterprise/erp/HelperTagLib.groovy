@@ -589,15 +589,16 @@ class HelperTagLib {
 
     //render (template: "buttons", model: [logMonth: logMonth])
   }
+
   /**
-   * Returns the time evaluations for a given entity
+   * Creates the time recording report for a given entity
    *
    * @author Alexander Zeillinger
-   * @attr entity REQUIRED The group activity or project to check
+   * @attr entity REQUIRED An educator or user
    * @attr date1 REQUIRED The beginning of the date range
    * @attr date2 REQUIRED The end of the date range
    */
-  def getEvaluation = {attrs, body ->
+  def timeRecordingReport = {attrs, body ->
     Entity entity = attrs.entity
 
     Date date1 = attrs.date1
@@ -651,6 +652,16 @@ class HelperTagLib {
     }
     out << "<td class='bold'>" + Math.round(sums.sum() * 2) / 2 + "</td>"
     out << "</tr>"
+  }
+
+  /**
+   * Creates the time evaluation
+   *
+   * @author Alexander Zeillinger
+   * @attr entities REQUIRED The entities
+   */
+  def timeEvaluation = {attrs, body ->
+
   }
 
   /**

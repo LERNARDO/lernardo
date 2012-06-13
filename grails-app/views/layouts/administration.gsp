@@ -209,7 +209,7 @@
               <ul>
                   <li class="icon-setup"><g:link controller="setup" action="show"><g:message code="setup"/></g:link></li>
                   <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
-                  <li class="icon-time"><g:link controller="workdayUnit" action="evaluation"><g:message code="timeEvaluation"/></g:link></li>
+                  <li class="icon-time"><g:link controller="timeEvaluation"><g:message code="timeEvaluation"/></g:link></li>
                   <li class="icon-evaluation"><g:link controller="evaluation" action="allevaluations"><g:message code="evaluation.allevalentries"/></g:link></li>
                   <li class="profile-netzwerk"><g:link controller="comment" action="list"><g:message code="allComments"/></g:link></li>
                   <li class="icon-all"><g:link controller="profile" action="list"><g:message code="profile.all"/></g:link></li>
