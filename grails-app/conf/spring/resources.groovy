@@ -7,7 +7,7 @@ import at.uenterprise.erp.base.attr.DynAttrSet
 beans = {
   // initialize asset store
   def storeDir = ((GrailsApplication)application).config.at.uenterprise.erp.base.assetStore
-  storeDir = storeDir ?: "${System.properties.'user.home'}/.${application.metadata.'app.name'}/assets"
+  storeDir = storeDir ?: "${System.properties.'user.home'}/.${application.metadata.'app.name'}/.${application.config.customer}/assets"
   println ("STORE-ROOT: $storeDir")
   log.info ("installing FileSystemByteStore as default assetStore with storeRoot: $storeDir")
 
