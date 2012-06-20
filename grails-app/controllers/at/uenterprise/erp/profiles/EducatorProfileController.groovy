@@ -238,6 +238,8 @@ class EducatorProfileController {
   def define = {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
 
     // 1. pass - filter by object properties
     def results = Entity.createCriteria().list  {
@@ -245,12 +247,9 @@ class EducatorProfileController {
       user {
         eq('enabled', params.boolean('active'))
       }
-      if (params.name)
-        profile {
-          ilike('fullName', "%" + params.name + "%")
-        }
       profile {
-        order(params.sort, params.order)
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
         if (params.gender != "0")
           eq('gender', params.int('gender'))
         if (params.originCountry)
@@ -269,6 +268,7 @@ class EducatorProfileController {
             }
           }
         }
+        order(params.sort, params.order)
       }
     }
 
@@ -289,7 +289,11 @@ class EducatorProfileController {
       }
     }
 
-    render template: '/templates/searchresults', model: [results: results, type: 'educators']
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'educator', params: params]
   }
 
 }

@@ -29,7 +29,7 @@
 
     <p><g:message code="dayroutine.create"/> <a onclick="toggle('#newroutine');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code:'dayroutine.create')}"/></a></p>
-    <div id="newroutine" style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
+    <div id="newroutine" class="graypanel">
 
       <g:formRemote name="formRemote" url="[controller: 'dayroutine', action: 'save', id: entity.id]" update="dayroutine" before="showspinner('#dayroutine')">
 

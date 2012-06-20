@@ -23,7 +23,7 @@
     </div>
   </erp:accessCheck>
 
-  <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
+  <div class="graypanel">
 
     <g:formRemote name="formRemote" url="[controller: 'educatorProfile', action: 'define']" update="searchresults" before="showspinner('#searchresults')">
 

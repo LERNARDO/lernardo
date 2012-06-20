@@ -7,6 +7,7 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
+import at.uenterprise.erp.base.Link
 
 class OperatorProfileController {
   MetaDataService metaDataService
@@ -22,23 +23,9 @@ class OperatorProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalOperators = Entity.countByType(metaDataService.etOperator)
 
-    EntityType etOperator = metaDataService.etOperator
-    def operators = Entity.createCriteria().list {
-      eq("type", etOperator)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalOperators = Entity.countByType(etOperator)
-
-    return [operators: operators, totalOperators: totalOperators]
+    return [totalOperators: totalOperators]
   }
 
   def show = {
@@ -141,5 +128,31 @@ class OperatorProfileController {
   def removeFacility = {
     def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltOperation)
     render template: 'facilities', model: [facilities: breaking.sources, operator: breaking.target]
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etOperator)
+      user {
+        eq('enabled', params.boolean('active'))
+      }
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        order(params.sort, params.order)
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'operator', params: params]
   }
 }

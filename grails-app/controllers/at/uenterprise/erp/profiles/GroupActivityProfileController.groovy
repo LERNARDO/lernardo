@@ -930,9 +930,11 @@ class GroupActivityProfileController {
     render template: params.type
   }
 
-  def updateselect = {
+  def define = {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
 
     // swap age values if necessary
     if (params.int('ageTo') < params.int('ageFrom')) {
@@ -944,10 +946,8 @@ class GroupActivityProfileController {
     Date beginDate = params.date('beginDate', 'dd. MM. yy')
     Date endDate = params.date('endDate', 'dd. MM. yy')
 
-    def numberOfAllGroupActivities = Entity.countByType(metaDataService.etGroupActivity)
-
     // 1. pass - filter by object properties
-    def firstPass = Entity.createCriteria().list  {
+    def results = Entity.createCriteria().list  {
       eq('type', metaDataService.etGroupActivity)
       profile {
         if (params.name)
@@ -965,29 +965,22 @@ class GroupActivityProfileController {
     }
 
     // 2. pass - filter by creator
-    List secondPass = []
-
     if (params.creator != "") {
-      firstPass.each { Entity template ->
-        def creator = Link.createCriteria().get {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
           eq('source', Entity.get(params.int('creator')))
-          eq('target', template)
+          eq('target', entity)
           eq('type', metaDataService.ltCreator)
-        }
-        if (creator) {
-          secondPass.add(template)
         }
       }
     }
-    else
-      secondPass = firstPass
 
     // 3. filter by labels
     List thirdPass = []
 
     if (params.labels) {
       List labels = params.list('labels')
-      secondPass.each { Entity template ->
+      results.each { Entity template ->
         template.profile.labels.each { Label label ->
           if (labels.contains(label.name)) {
             if (!thirdPass.contains(template))
@@ -997,7 +990,7 @@ class GroupActivityProfileController {
       }
     }
     else
-      thirdPass = secondPass
+      thirdPass = results
 
     // 4. filter by theme
     List fourthPass = []
@@ -1014,13 +1007,13 @@ class GroupActivityProfileController {
     else
       fourthPass = thirdPass
 
-    render template: 'searchresults', model: [groups: fourthPass,
-        totalGroups: fourthPass.size(),
-        numberOfAllProjects: numberOfAllGroupActivities,
-        paginate: false,
-        name: params.name,
-        ageFrom: params.ageFrom,
-        ageTo: params.ageTo]
+    results = fourthPass
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'groupActivity', params: params]
   }
 
 

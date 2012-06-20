@@ -10,7 +10,7 @@ import grails.util.Environment
 
 def myenv = Environment.current;
 def configFile = "file:${System.properties.'catalina.base' ?: System.properties.'base.dir'}/app-config/lernardo-config.groovy"
-println "[$myenv] reading configuration from $configFile"
+//println "[$myenv] reading configuration from $configFile"
 grails.config.locations = [ configFile ]
 
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format

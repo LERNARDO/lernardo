@@ -273,7 +273,12 @@ class TemplateProfileController {
     render erp.starBox(element: element.id)
   }
 
-  def updateselect = {
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
     def method1lower = params.list('method1lower')
     def method1upper = params.list('method1upper')
 
@@ -283,9 +288,6 @@ class TemplateProfileController {
     def method3lower = params.list('method3lower')
     def method3upper = params.list('method3upper')
 
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
     // swap age values if necessary
     if (params.int('ageTo') < params.int('ageFrom')) {
       def temp = params.ageTo
@@ -293,10 +295,8 @@ class TemplateProfileController {
       params.ageFrom = temp
     }
 
-    def numberOfAllTemplates = Entity.countByType(metaDataService.etTemplate)
-
     // 1. pass - filter by object properties
-    def firstPass = Entity.createCriteria().list  {
+    def results = Entity.createCriteria().list  {
       eq('type', metaDataService.etTemplate)
       profile {
         if (params.name)
@@ -312,29 +312,22 @@ class TemplateProfileController {
     }
 
     // 2. pass - filter by creator
-    List secondPass = []
-
     if (params.creator != "") {
-      firstPass.each { Entity template ->
-        def creator = Link.createCriteria().get {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
           eq('source', Entity.get(params.int('creator')))
-          eq('target', template)
+          eq('target', entity)
           eq('type', metaDataService.ltCreator)
-        }
-        if (creator) {
-          secondPass.add(template)
         }
       }
     }
-    else
-      secondPass = firstPass
 
     // 3. filter by labels
     List thirdPass = []
 
     if (params.labels) {
       List labels = params.list('labels')
-      secondPass.each { Entity template ->
+      results.each { Entity template ->
         template.profile.labels.each { Label label ->
           if (labels.contains(label.name)) {
             if (!thirdPass.contains(template))
@@ -344,7 +337,7 @@ class TemplateProfileController {
       }
     }
     else
-      thirdPass = secondPass
+      thirdPass = results
 
     // 4. filter by methods
     List fourthPass = []
@@ -469,24 +462,13 @@ class TemplateProfileController {
     else
       fourthPass = thirdPass
 
-    render template: 'searchresults', model: [allTemplates: fourthPass,
-                                              totalTemplates: fourthPass.size(),
-                                              numberOfAllTemplates: numberOfAllTemplates,
-                                              paginate: false,
-                                              method1: params.method1,
-                                              method2: params.method2,
-                                              method3: params.method3,
-                                              method1lower: params.method1lower,
-                                              method1upper: params.method1upper,
-                                              method2lower: params.method2lower,
-                                              method2upper: params.method2upper,
-                                              method3lower: params.method3lower,
-                                              method3upper: params.method3upper,
-                                              name: params.name,
-                                              duration1: params.duration1,
-                                              duration2: params.duration2,
-                                              ageFrom: params.ageFrom,
-                                              ageTo: params.ageTo]
+    results = fourthPass
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'template', params: params]
   }
 
    /*

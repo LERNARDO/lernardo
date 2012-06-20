@@ -563,9 +563,11 @@ class GroupActivityTemplateProfileController {
     render template: 'templates2', model: [group: group, templates: templates]
   }
 
-  def updateselect2 = {
+  def define = {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
 
     // swap age values if necessary
     if (params.int('ageTo') < params.int('ageFrom')) {
@@ -574,12 +576,9 @@ class GroupActivityTemplateProfileController {
       params.ageFrom = temp
     }
 
-    def numberOfAllTemplates = Entity.countByType(metaDataService.etGroupActivityTemplate)
-
     // 1. pass - filter by object properties
-    def firstPass = Entity.createCriteria().list  {
+    def results = Entity.createCriteria().list  {
       eq('type', metaDataService.etGroupActivityTemplate)
-
       profile {
         if (params.name)
           ilike('fullName', "%" + params.name + "%")
@@ -594,29 +593,22 @@ class GroupActivityTemplateProfileController {
     }
 
     // 2. pass - filter by creator
-    List secondPass = []
-
     if (params.creator != "") {
-      firstPass.each { Entity template ->
-        def creator = Link.createCriteria().get {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
           eq('source', Entity.get(params.int('creator')))
-          eq('target', template)
+          eq('target', entity)
           eq('type', metaDataService.ltCreator)
-        }
-        if (creator) {
-          secondPass.add(template)
         }
       }
     }
-    else
-      secondPass = firstPass
 
     // 3. filter by labels
     List thirdPass = []
 
     if (params.labels) {
       List labels = params.list('labels')
-      firstPass.each { Entity template ->
+      results.each { Entity template ->
         template.profile.labels.each { Label label ->
           if (labels.contains(label.name)) {
             if (!thirdPass.contains(template))
@@ -626,15 +618,15 @@ class GroupActivityTemplateProfileController {
       }
     }
     else
-      thirdPass = secondPass
+      thirdPass = results
 
-    render template: 'searchresults2', model: [allTemplates: thirdPass,
-                                              totalTemplates: thirdPass.size(),
-                                              numberOfAllTemplates: numberOfAllTemplates,
-                                              paginate: false,
-                                              name: params.name,
-                                              duration1: params.duration1,
-                                              duration2: params.duration2]
+    results = thirdPass
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'groupActivityTemplate', params: params]
   }
 
 }

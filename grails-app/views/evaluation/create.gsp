@@ -16,7 +16,7 @@
       </div>
     </g:hasErrors>
 
-    <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
+    <div class="graypanel">
       <div id="select-box">
         <p><g:message code="evaluation.linkToActivity"/></p>
         <g:formRemote name="formRemote" update="results" url="[controller: 'evaluation', action: 'searchMe']" before="showspinner('#results')">

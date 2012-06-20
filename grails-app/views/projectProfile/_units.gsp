@@ -1,6 +1,6 @@
 <g:if test="${units}">
   <g:each in="${units}" var="unit" status="i">
-    <div style="background: #eee; padding: 10px; margin: 5px 0 5px 0;">
+    <div class="graypanel" style="margin: 5px 0 5px 0;">
       <table>
             <tbody>
 

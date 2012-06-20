@@ -36,7 +36,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
+    <div class="graypanel">
       <g:formRemote name="formRemote" url="[controller: 'logBook', action: 'showEntry']" update="entry" before="showspinner('#entry');">
         <span class="gray"><g:message code="facility"/>:</span> <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
         <span class="gray" style="margin-left: 10px;"><g:message code="date"/>:</span> <g:textField name="date" size="10" class="datepicker" value="${formatDate(date: new Date(), format: 'dd. MM. yyyy')}"/>

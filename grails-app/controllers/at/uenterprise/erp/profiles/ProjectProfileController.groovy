@@ -1624,9 +1624,11 @@ class ProjectProfileController {
     render template: 'resources', model: [resources: resources, projectDay: group]
   }
 
-  def updateselect = {
+  def define = {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
 
     // swap age values if necessary
     if (params.int('ageTo') < params.int('ageFrom')) {
@@ -1638,10 +1640,8 @@ class ProjectProfileController {
     Date beginDate = params.date('beginDate', 'dd. MM. yy')
     Date endDate = params.date('endDate', 'dd. MM. yy')
 
-    def numberOfAllProjects = Entity.countByType(metaDataService.etProject)
-
     // 1. pass - filter by object properties
-    def firstPass = Entity.createCriteria().list  {
+    def results = Entity.createCriteria().list  {
       eq('type', metaDataService.etProject)
       profile {
         if (params.name)
@@ -1659,29 +1659,22 @@ class ProjectProfileController {
     }
 
     // 2. pass - filter by creator
-    List secondPass = []
-
     if (params.creator != "") {
-      firstPass.each { Entity template ->
-        def creator = Link.createCriteria().get {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
           eq('source', Entity.get(params.int('creator')))
-          eq('target', template)
+          eq('target', entity)
           eq('type', metaDataService.ltCreator)
-        }
-        if (creator) {
-          secondPass.add(template)
         }
       }
     }
-    else
-      secondPass = firstPass
 
     // 3. filter by labels
     List thirdPass = []
 
     if (params.labels) {
       List labels = params.list('labels')
-      secondPass.each { Entity template ->
+      results.each { Entity template ->
         template.profile.labels.each { Label label ->
           if (labels.contains(label.name)) {
             if (!thirdPass.contains(template))
@@ -1691,7 +1684,7 @@ class ProjectProfileController {
       }
     }
     else
-      thirdPass = secondPass
+      thirdPass = results
 
     // 4. filter by theme
     List fourthPass = []
@@ -1708,13 +1701,13 @@ class ProjectProfileController {
     else
       fourthPass = thirdPass
 
-    render template: 'searchresults', model: [projects: fourthPass,
-        totalProjects: fourthPass.size(),
-        numberOfAllProjects: numberOfAllProjects,
-        paginate: false,
-        name: params.name,
-        ageFrom: params.ageFrom,
-        ageTo: params.ageTo]
+    results = fourthPass
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'project', params: params]
   }
 
 }

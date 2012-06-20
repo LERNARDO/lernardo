@@ -22,7 +22,35 @@
       </div>
     </erp:accessCheck>
 
-    <table class="default-table">
+    <div class="graypanel">
+      <g:formRemote name="formRemote" url="[controller: 'operatorProfile', action: 'define']" update="searchresults" before="showspinner('#searchresults')">
+
+        <table>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="active"/></td>
+            <td valign="top" class="value">
+              <g:checkBox name="active" value="true"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="name"/></td>
+            <td valign="top" class="value">
+              <g:textField name="name" size="30"/>
+            </td>
+          </tr>
+
+        </table>
+
+        <g:submitButton name="button" value="${message(code:'define')}"/>
+        <div class="clear"></div>
+      </g:formRemote>
+    </div>
+
+    <div id="searchresults"></div>
+
+    %{--<table class="default-table">
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
@@ -42,7 +70,7 @@
 
     <div class="paginateButtons">
       <g:paginate total="${totalOperators}"/>
-    </div>
+    </div>--}%
 
   </div>
 </div>

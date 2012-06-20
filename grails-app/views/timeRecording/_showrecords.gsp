@@ -56,7 +56,7 @@
 <g:if test="${currentEntity.id == entity.id}">
   <g:if test="${confirmed == 'false'}">
     <g:if test="${workdaycategories}">
-      <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
+      <div class="graypanel">
         <p><span class="bold"><g:message code="workdayUnit.createEntry"/></span></p>
         <g:formRemote name="addForm" url="[controller: 'timeRecording', action: 'addRecord', id: entity.id]" update="records" before="showspinner('#records')">
 

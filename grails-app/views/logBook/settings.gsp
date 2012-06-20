@@ -36,7 +36,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
+    <div class="graypanel">
       <g:formRemote name="formRemote" url="[controller: 'logBook', action: 'showAttendances']" update="attendances" before="showspinner('#attendances');">
         <span class="gray"><g:message code="facility"/>:</span> <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
         <g:submitButton name="button" value="OK"/>

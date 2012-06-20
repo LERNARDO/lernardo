@@ -29,7 +29,7 @@ class DefaultObjectService {
 
   def onEmptyDatabase (Closure c) {
     if (!EpSystem.count()) {
-      log.warn ("empty database. will install demo data set")
+      //log.warn ("empty database. will install demo data set")
       new EpSystem(sysKey:"SCHEMA_VERSION", sysVal:"0").save()
       if (c) c.call()
       sessionFactory.currentSession.flush()

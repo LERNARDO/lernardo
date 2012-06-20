@@ -26,8 +26,8 @@
       </g:form>
     </div>
 
-    <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
-      <g:formRemote name="formRemote0" url="[controller: 'projectTemplateProfile', action: 'updateselect']" update="searchresults" before="showspinner('#searchresults')">
+    <div class="graypanel">
+      <g:formRemote name="formRemote" url="[controller: 'projectTemplateProfile', action: 'define']" update="searchresults" before="showspinner('#searchresults')">
 
         <div style="margin-bottom: 10px;">
           <span class="gray"><g:message code="creator"/>:</span><br/>
