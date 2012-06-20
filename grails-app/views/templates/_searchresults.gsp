@@ -1,5 +1,5 @@
 <div class="info-msg">
-  <g:message code="object.found" args="[results.size(), message(code: 'educators')]"/>
+  <g:message code="object.found" args="[results.size(), message(code: type)]"/>
 </div>
 
 <g:each in="${results}" var="result">

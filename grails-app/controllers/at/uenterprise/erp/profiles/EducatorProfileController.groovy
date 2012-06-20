@@ -289,7 +289,7 @@ class EducatorProfileController {
       }
     }
 
-    render template: 'searchresults', model: [results: results]
+    render template: '/templates/searchresults', model: [results: results, type: 'educators']
   }
 
 }

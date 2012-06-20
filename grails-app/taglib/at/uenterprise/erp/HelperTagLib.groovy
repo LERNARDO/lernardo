@@ -793,7 +793,7 @@ class HelperTagLib {
     //def mkp = new groovy.xml.MarkupBuilder(out)
     //log.info mkp { img (imgattrs) }
     //mkp { img (imgattrs) }
-    out << '<img src="' + imgattrs['src'] + '" width="' + imgattrs['width'] + '" style="' + imgattrs['style'] + '" />'
+    out << '<img src="' + imgattrs['src'] + '" width="' + imgattrs['width'] + '" height="' + imgattrs['height'] + '" style="' + imgattrs['style'] + '" />'
   }
 
   /**
