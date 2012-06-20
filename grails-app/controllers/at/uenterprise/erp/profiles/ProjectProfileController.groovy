@@ -976,12 +976,9 @@ class ProjectProfileController {
       user {
         eq("enabled", true)
       }
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
       maxResults(15)
     }
@@ -1013,12 +1010,9 @@ class ProjectProfileController {
       user {
         eq("enabled", true)
       }
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
       maxResults(15)
     }
@@ -1046,12 +1040,9 @@ class ProjectProfileController {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)
       }
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
       maxResults(15)
     }
@@ -1274,12 +1265,9 @@ class ProjectProfileController {
 
     def users = Entity.createCriteria().list {
       eq("type", metaDataService.etProject)
-      or {
-        ilike('name', "%" + params.name + "%")
-        profile {
-          ilike('fullName', "%" + params.name + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.name + "%")
+        order('fullName','asc')
       }
       maxResults(30)
     }
@@ -1655,14 +1643,9 @@ class ProjectProfileController {
     // 1. pass - filter by object properties
     def firstPass = Entity.createCriteria().list  {
       eq('type', metaDataService.etProject)
-      if (params.name)
-        or {
-          ilike('name', "%" + params.name + "%")
-          profile {
-            ilike('fullName', "%" + params.name + "%")
-          }
-        }
       profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
         if (beginDate)
           ge("startDate", beginDate)
         if (endDate)
@@ -1671,8 +1654,7 @@ class ProjectProfileController {
           le('ageFrom', params.ageFrom.toInteger())
         if (params.ageTo)
           ge('ageTo', params.ageTo.toInteger())
-        if (params.sort)
-          order(params.sort, params.order)
+        order(params.sort, params.order)
       }
     }
 

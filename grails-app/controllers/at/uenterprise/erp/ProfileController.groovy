@@ -406,13 +406,10 @@ class ProfileController {
         eq('type', metaDataService.etEducator)
         eq('type', metaDataService.etOperator)
       }
-      //or {
-      //ilike('name', "%" + params.value + "%")
       profile {
         ilike('fullName', "%" + params.value + "%")
         order('fullName','asc')
       }
-      //}
       maxResults(15)
     }
 

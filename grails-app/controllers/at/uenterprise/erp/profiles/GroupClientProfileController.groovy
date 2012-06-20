@@ -170,11 +170,8 @@ class GroupClientProfileController {
       if (params.type != "all")
         eq('type', params.type)
       if (params.name)
-        or {
-          ilike('name', "%" + params.name + "%")
-          profile {
-            ilike('fullName', "%" + params.name + "%")
-          }
+        profile {
+          ilike('fullName', "%" + params.name + "%")
         }
       profile {
         if (params.gender != "0")

@@ -364,17 +364,13 @@ class CalendarController {
         if (params.user)
           eq("type", metaDataService.etUser)
       }
-      or {
-        ilike('name', "%" + params.name + "%")
-        profile {
-          //ilike('fullName', "%" + params.name + "%")
-          and {
-            searchStrings.each {String s ->
-              ilike('fullName', "%" + s + "%")
-            }
+      profile {
+        and {
+          searchStrings.each {String s ->
+            ilike('fullName', "%" + s + "%")
           }
-          order('fullName','asc')
         }
+        order('fullName','asc')
       }
       // maxResults(5)
     }

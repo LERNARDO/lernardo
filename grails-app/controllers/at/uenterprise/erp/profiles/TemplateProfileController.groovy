@@ -298,23 +298,16 @@ class TemplateProfileController {
     // 1. pass - filter by object properties
     def firstPass = Entity.createCriteria().list  {
       eq('type', metaDataService.etTemplate)
-      if (params.name)
-        or {
-          ilike('name', "%" + params.name + "%")
-          profile {
-            ilike('fullName', "%" + params.name + "%")
-          }
-        }
       profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
         if (params.duration1 != 'all')
           between('duration', params.duration1.toInteger(), params.duration2.toInteger())
-        if (params.ageFrom) {
+        if (params.ageFrom)
           le('ageFrom', params.ageFrom.toInteger())
-        }
         if (params.ageTo)
-            ge('ageTo', params.ageTo.toInteger())
-        if (params.sort)
-          order(params.sort, params.order)
+          ge('ageTo', params.ageTo.toInteger())
+        order(params.sort, params.order)
       }
     }
 

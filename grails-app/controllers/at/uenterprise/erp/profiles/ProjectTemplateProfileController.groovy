@@ -457,12 +457,9 @@ class ProjectTemplateProfileController {
       profile {
         eq('status', "done")
       }
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
       maxResults(15)
     }
@@ -589,7 +586,9 @@ class ProjectTemplateProfileController {
     render template: 'templateresources', model: [templateResources: templateResources, groupActivityTemplateResources: groupActivityTemplateResources, projectTemplate: projectTemplate]
   }
 
-def updateselect = {
+  def updateselect = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
 
     // swap age values if necessary
     if (params.int('ageTo') < params.int('ageFrom')) {
@@ -603,21 +602,14 @@ def updateselect = {
     // 1. pass - filter by object properties
     def firstPass = Entity.createCriteria().list  {
       eq('type', metaDataService.etProjectTemplate)
-      if (params.name)
-        or {
-          ilike('name', "%" + params.name + "%")
-          profile {
-            ilike('fullName', "%" + params.name + "%")
-          }
-        }
       profile {
-        if (params.sort)
-          order(params.sort, params.order)
-        if (params.ageFrom) {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        if (params.ageFrom)
           le('ageFrom', params.ageFrom.toInteger())
-        }
         if (params.ageTo)
           ge('ageTo', params.ageTo.toInteger())
+        order(params.sort, params.order)
       }
     }
 

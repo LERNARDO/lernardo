@@ -179,18 +179,14 @@ class OverviewController {
           eq("type", metaDataService.etProject)
         if (params.groupActivity)
           eq("type", metaDataService.etGroupActivity)
-        }
-      or {
-        ilike('name', "%" + params.name + "%")
-        profile {
-          //ilike('fullName', "%" + params.name + "%")
-          and {
-            searchStrings.each {String s ->
-              ilike('fullName', "%" + s + "%")
-            }
+      }
+      profile {
+        and {
+          searchStrings.each {String s ->
+            ilike('fullName', "%" + s + "%")
           }
-          order('fullName','asc')
         }
+        order('fullName','asc')
       }
       maxResults(30)
     }

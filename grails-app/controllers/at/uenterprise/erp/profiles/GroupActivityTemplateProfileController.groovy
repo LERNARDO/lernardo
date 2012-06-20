@@ -317,11 +317,8 @@ class GroupActivityTemplateProfileController {
     def allTemplates = Entity.createCriteria().list {
       eq('type', metaDataService.etTemplate)
       if (params.name)
-        or {
-          ilike('name', "%" + params.name + "%")
-          profile {
-            ilike('fullName', "%" + params.name + "%")
-          }
+        profile {
+          ilike('fullName', "%" + params.name + "%")
         }
       profile {
         eq('status',"done")
@@ -567,6 +564,8 @@ class GroupActivityTemplateProfileController {
   }
 
   def updateselect2 = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
 
     // swap age values if necessary
     if (params.int('ageTo') < params.int('ageFrom')) {
@@ -580,22 +579,17 @@ class GroupActivityTemplateProfileController {
     // 1. pass - filter by object properties
     def firstPass = Entity.createCriteria().list  {
       eq('type', metaDataService.etGroupActivityTemplate)
-      if (params.name)
-        or {
-          ilike('name', "%" + params.name + "%")
-          profile {
-            ilike('fullName', "%" + params.name + "%")
-          }
-        }
+
       profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
         if (params.duration1 != 'all')
           between('realDuration', params.duration1.toInteger(), params.duration2.toInteger())
-        if (params.sort)
-          order(params.sort, params.order)
         if (params.ageFrom)
           le('ageFrom', params.ageFrom.toInteger())
         if (params.ageTo)
           ge('ageTo', params.ageTo.toInteger())
+        order(params.sort, params.order)
       }
     }
 

@@ -345,12 +345,9 @@ class FacilityProfileController {
       user {
         eq("enabled", true)
       }
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
       maxResults(15)
     }
@@ -382,12 +379,9 @@ class FacilityProfileController {
       user {
         eq("enabled", true)
       }
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
       maxResults(15)
     }
@@ -419,12 +413,9 @@ class FacilityProfileController {
         eq('type', metaDataService.etClient)
         eq('type', metaDataService.etGroupClient)
       }
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
       maxResults(15)
     }

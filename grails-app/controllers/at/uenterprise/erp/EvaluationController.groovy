@@ -68,12 +68,9 @@ class EvaluationController {
     else {
       clients = Entity.createCriteria().list {
         eq('type', metaDataService.etClient)
-        or {
-          ilike('name', "%" + params.value + "%")
-          profile {
-            ilike('fullName', "%" + params.value + "%")
-            order('fullName','asc')
-          }
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+          order('fullName','asc')
         }
       }
     }
@@ -112,12 +109,9 @@ class EvaluationController {
     // find matching clients
     def clients = Entity.createCriteria().list {
       eq('type', metaDataService.etClient)
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
     }
 
@@ -158,12 +152,9 @@ class EvaluationController {
       user {
         eq("enabled", true)
       }
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
-          order('fullName','asc')
-        }
+      profile {
+        ilike('fullName', "%" + params.value + "%")
+        order('fullName','asc')
       }
     }
 
