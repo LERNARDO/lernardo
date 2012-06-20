@@ -100,7 +100,7 @@
             <td width="320" valign="top" class="value">
               <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
             </td>
-            %{--<td width="130" valign="top" class="name"><g:message code="languageSelection"/></td>
+            %{--<td valign="top" class="name"><g:message code="languageSelection"/></td>
             <td valign="top" class="value">
               <erp:localeSelect name="locale" value="${partner?.user?.locale}"/>
             </td>--}%
