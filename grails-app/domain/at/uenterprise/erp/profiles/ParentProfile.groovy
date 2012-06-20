@@ -21,7 +21,7 @@ class ParentProfile extends Profile {
   String    firstName
   String    lastName
   Date      birthDate
-  Byte      gender
+  Integer   gender
 
   String comment
 

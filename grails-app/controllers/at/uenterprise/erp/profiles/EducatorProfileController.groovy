@@ -9,6 +9,8 @@ import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
+import at.uenterprise.erp.Label
+import at.uenterprise.erp.Setup
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -24,49 +26,19 @@ class EducatorProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalEducators = Entity.countByType(metaDataService.etEducator)
+    List educations = Setup.list()[0].educations
+    List employments = Setup.list()[0].employmentStatus
+    List languages = Setup.list()[0].languages
+    List nationalities = Setup.list()[0]?.nationalities
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
 
-    EntityType etEducator = metaDataService.etEducator
-    def educators = Entity.createCriteria().list {
-      eq("type", etEducator)
-      user {
-        eq('enabled', true)
-      }
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalEducators = Entity.findAllByType(etEducator).findAll{it.user.enabled}.size()
-
-    return [educators: educators, totalEducators: totalEducators]
-  }
-
-  def listInactive = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    EntityType etEducator = metaDataService.etEducator
-    def educators = Entity.createCriteria().list {
-      eq("type", etEducator)
-      user {
-        eq('enabled', false)
-      }
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalEducators = Entity.findAllByType(etEducator).findAll{!it.user.enabled}.size()
-
-    return [educators: educators, totalEducators: totalEducators]
+    return [totalEducators: totalEducators,
+        educations: educations,
+        employments: employments,
+        languages: languages,
+        nationalities: nationalities,
+        facilities: facilities]
   }
 
   def show = {
@@ -262,4 +234,62 @@ class EducatorProfileController {
 
     render template: 'dates', model: [educator: educator]
   }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etEducator)
+      user {
+        eq('enabled', params.boolean('active'))
+      }
+      if (params.name)
+        profile {
+          ilike('fullName', "%" + params.name + "%")
+        }
+      profile {
+        order(params.sort, params.order)
+        if (params.gender != "0")
+          eq('gender', params.int('gender'))
+        if (params.originCountry)
+          eq('originCountry', params.originCountry)
+        if (params.education) {
+          or {
+            params.list('education').each {
+              eq('education', it)
+            }
+          }
+        }
+        if (params.employment) {
+          or {
+            params.list('employment').each {
+              eq('employment', it)
+            }
+          }
+        }
+      }
+    }
+
+    // 2. pass - filter by languages
+    if (params.languages) {
+      List languages = params.list('languages')
+      results = results.findAll {it.profile.languages.intersect(languages)}
+    }
+
+    // 3. pass - filter by facility
+    if (params.facility != "") {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
+          eq('source', entity)
+          eq('target', Entity.get(params.facility))
+          eq('type', metaDataService.ltWorking)
+        }
+      }
+    }
+
+    render template: 'searchresults', model: [results: results]
+  }
+
 }

@@ -22,7 +22,7 @@ class ChildProfile extends Profile {
   String    jobFrequency
   Date      birthDate
   Integer   jobIncome
-  Byte      gender
+  Integer   gender
   Boolean   job
   Boolean   showTips = true
 

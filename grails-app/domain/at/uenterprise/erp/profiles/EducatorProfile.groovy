@@ -27,7 +27,7 @@ class EducatorProfile extends Profile {
   String    firstName
   String    lastName
   Date      birthDate
-  Byte      gender
+  Integer   gender
 
   String currentStreet
 
