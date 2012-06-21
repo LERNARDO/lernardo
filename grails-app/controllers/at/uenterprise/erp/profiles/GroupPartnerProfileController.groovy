@@ -22,23 +22,9 @@ class GroupPartnerProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalGroupPartners = Entity.countByType(metaDataService.etGroupPartner)
 
-    EntityType etGroupPartner = metaDataService.etGroupPartner
-    def groupPartners = Entity.createCriteria().list {
-      eq("type", etGroupPartner)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalGroupPartners = Entity.countByType(etGroupPartner)
-
-    return [groups: groupPartners, totalGroupPartners: totalGroupPartners]
+    return [totalGroupPartners: totalGroupPartners]
   }
 
   def show = {
@@ -137,6 +123,29 @@ class GroupPartnerProfileController {
   def removePartner = {
     def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMember)
     render template: 'partners', model: [partners: breaking.sources, group: breaking.target]
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etGroupPartner)
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        order(params.sort, params.order)
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'groupPartner', params: params]
   }
 
 }

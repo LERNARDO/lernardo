@@ -9,6 +9,7 @@ import at.uenterprise.erp.Contact
 import at.uenterprise.erp.base.Link
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
+import at.uenterprise.erp.Setup
 
 class PartnerProfileController {
 
@@ -25,23 +26,10 @@ class PartnerProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalPartners = Entity.countByType(metaDataService.etPartner)
+    List partnerServices = Setup.list()[0]?.partnerServices
 
-    EntityType etPartner = metaDataService.etPartner
-    def partners = Entity.createCriteria().list {
-      eq("type", etPartner)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalPartners = Entity.countByType(etPartner)
-
-    return [partners: partners, totalPartners: totalPartners]
+    return [totalPartners: totalPartners, partnerServices: partnerServices]
   }
 
   def show = {
@@ -224,6 +212,38 @@ class PartnerProfileController {
     Contact contact = Contact.get(params.representative)
     contact.properties = params
     render template: 'contacts', model: [partner: partner]
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etPartner)
+      user {
+        eq('enabled', params.boolean('active'))
+      }
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        order(params.sort, params.order)
+      }
+    }
+
+// 2. pass - filter by services
+    if (params.services) {
+      List services = params.list('services')
+      results = results.findAll {it.profile.services.intersect(services)}
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'parent', params: params]
   }
 }
 

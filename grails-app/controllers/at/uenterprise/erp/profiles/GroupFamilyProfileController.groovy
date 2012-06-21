@@ -24,23 +24,9 @@ class GroupFamilyProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalGroupFamilies = Entity.countByType(metaDataService.etGroupFamily)
 
-    EntityType etGroupFamily = metaDataService.etGroupFamily
-    def groupFamilies = Entity.createCriteria().list {
-      eq("type", etGroupFamily)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalGroupFamilies = Entity.countByType(etGroupFamily)
-
-    return [groups: groupFamilies, totalGroupFamilies: totalGroupFamilies]
+    return [totalGroupFamilies: totalGroupFamilies]
   }
 
   def show = {
@@ -320,6 +306,37 @@ class GroupFamilyProfileController {
     int totalLinks = results.size()
 
     render template: 'familycount', model: [totalLinks: totalLinks]
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etGroupFamily)
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        if (params.familyIncomeFrom)
+          ge("familyIncome", params.int('familyIncomeFrom'))
+        if (params.familyIncomeTo)
+          le("familyIncome", params.int('familyIncomeTo'))
+        if (params.amountHouseholdFrom)
+          ge("amountHousehold", params.int('amountHouseholdFrom'))
+        if (params.amountHouseholdTo)
+          le("amountHousehold", params.int('amountHouseholdTo'))
+        order(params.sort, params.order)
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'groupFamily', params: params]
   }
 
 }

@@ -7,41 +7,40 @@
   <h1><g:message code="users"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
-    <div class="info-msg">
-      <g:message code="object.total" args="[totalUsers, message(code: 'users')]"/>
-    </div>
+  <div class="info-msg">
+    <g:message code="object.total" args="[totalUsers, message(code: 'users')]"/>
+  </div>
 
-    <div class="buttons">
-      <g:form>
-        <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'user')])}"/></div>
-        <div class="clear"></div>
-      </g:form>
-    </div>
+  <div class="buttons">
+    <g:form>
+      <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'user')])}"/></div>
+      <div class="clear"></div>
+    </g:form>
+  </div>
 
-    <table class="default-table">
-      <thead>
-      <tr>
-        <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
-      </tr>
-      </thead>
-      <tbody>
-      <g:each in="${users}" status="i" var="user">
-        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td>
-            <erp:profileImage entity="${user}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-            <g:link action="show" id="${user.id}">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()} ${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</g:link>
+  <div class="graypanel">
+
+    <g:formRemote name="formRemote" url="[controller: 'userProfile', action: 'define']" update="searchresults" before="showspinner('#searchresults')">
+
+      <table>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField name="name" size="30"/>
           </td>
         </tr>
-      </g:each>
-      </tbody>
-    </table>
 
-    <div class="paginateButtons">
-      <g:paginate total="${totalUsers}"/>
-    </div>
+      </table>
+
+      <g:submitButton name="button" value="${message(code:'define')}"/>
+      <div class="clear"></div>
+    </g:formRemote>
 
   </div>
+
+  <div id="searchresults"></div>
+
 </div>
 </body>

@@ -7,6 +7,8 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
+import at.uenterprise.erp.Setup
+import at.uenterprise.erp.base.Link
 
 class PateProfileController {
   MetaDataService metaDataService
@@ -22,23 +24,10 @@ class PateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalPates = Entity.countByType(metaDataService.etPate)
+    List nationalities = Setup.list()[0]?.nationalities
 
-    EntityType etPate = metaDataService.etPate
-    def pates = Entity.createCriteria().list {
-      eq("type", etPate)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalPates = Entity.countByType(etPate)
-
-    return [pates: pates, totalPates: totalPates]
+    return [totalPates: totalPates, nationalities: nationalities]
   }
 
   def show = {
@@ -176,5 +165,33 @@ class PateProfileController {
     else {
       render template: 'clientresults', model: [results: results, pate: params.id]
     }
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etPate)
+      user {
+        eq('enabled', params.boolean('active'))
+      }
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        if (params.country)
+          eq('country', params.country)
+        order(params.sort, params.order)
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'pate', params: params]
   }
 }

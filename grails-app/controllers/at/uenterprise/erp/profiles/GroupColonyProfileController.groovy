@@ -26,23 +26,9 @@ class GroupColonyProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalGroupColonies = Entity.countByType(metaDataService.etGroupColony)
 
-    EntityType etGroupColony = metaDataService.etGroupColony
-    def groupColonies = Entity.createCriteria().list {
-      eq("type", etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalGroupColonies = Entity.countByType(etGroupColony)
-
-    return [groups: groupColonies, totalGroupColonies: totalGroupColonies]
+    return [totalGroupColonies: totalGroupColonies]
   }
 
   def show = {
@@ -316,6 +302,29 @@ class GroupColonyProfileController {
     }
 
     render template: 'resources', model: [resources: resources, group: colony]
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etGroupColony)
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        order(params.sort, params.order)
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'groupColony', params: params]
   }
 
 }

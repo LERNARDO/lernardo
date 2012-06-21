@@ -24,23 +24,9 @@ class GroupClientProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalGroupClients = Entity.countByType(metaDataService.etGroupClient)
 
-    EntityType etGroupClient = metaDataService.etGroupClient
-    def groupClients = Entity.createCriteria().list {
-      eq("type", etGroupClient)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalGroupClients = Entity.countByType(etGroupClient)
-
-    return [groups: groupClients, totalGroupClients: totalGroupClients]
+    return [totalGroupClients: totalGroupClients]
   }
 
   def show = {
@@ -242,6 +228,29 @@ class GroupClientProfileController {
         group: group,
         clients: clients],
         filename: message(code: 'groupClient') + '_' + group.profile.fullName + '.pdf'
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etGroupClient)
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        order(params.sort, params.order)
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'groupClient', params: params]
   }
 
 }

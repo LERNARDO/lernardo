@@ -26,23 +26,9 @@ class FacilityProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalFacilities = Entity.countByType(metaDataService.etFacility)
 
-    EntityType etFacility = metaDataService.etFacility
-    def facilities = Entity.createCriteria().list {
-      eq("type", etFacility)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalFacilities = Entity.countByType(etFacility)
-
-    return [facilities: facilities, totalFacilities: totalFacilities]
+    return [totalFacilities: totalFacilities]
   }
 
   def show = {
@@ -456,5 +442,28 @@ class FacilityProfileController {
     }
 
     render template: 'resources', model: [resources: resources, facility: facility]
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etFacility)
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        order(params.sort, params.order)
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'facility', params: params]
   }
 }

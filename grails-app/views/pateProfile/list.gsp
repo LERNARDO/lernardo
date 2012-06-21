@@ -7,58 +7,56 @@
   <h1><g:message code="paten"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
-    <div class="info-msg">
-      <g:message code="object.total" args="[totalPates, message(code: 'paten')]"/>
+  <div class="info-msg">
+    <g:message code="object.total" args="[totalPates, message(code: 'paten')]"/>
+  </div>
+
+  <erp:accessCheck types="['Betreiber']">
+    <div class="buttons">
+      <g:form>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'pate')])}"/></div>
+        <div class="clear"></div>
+      </g:form>
     </div>
+  </erp:accessCheck>
 
-    <erp:accessCheck types="['Betreiber']">
-      <div class="buttons">
-        <g:form>
-          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'pate')])}"/></div>
-          <div class="clear"></div>
-        </g:form>
-      </div>
-    </erp:accessCheck>
+  <div class="graypanel">
 
-    <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller: 'overview', action: 'searchMe', params: [pate: 'yes']]" before="showspinner('#membersearch-results')" />
-    <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
+    <g:formRemote name="formRemote" url="[controller: 'pateProfile', action: 'define']" update="searchresults" before="showspinner('#searchresults')">
 
-    <table class="default-table">
-      <thead>
-      <tr>
-        <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
-        <g:sortableColumn property="country" title="${message(code:'country')}"/>
-        <th><g:message code="pate.profile.gcs"/></th>
-      </tr>
-      </thead>
-      <tbody>
-      <g:each in="${pates}" status="i" var="pate">
-        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td>
-            <erp:profileImage entity="${pate}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-            <g:link action="show" id="${pate.id}">${fieldValue(bean: pate, field: 'profile.fullName').decodeHTML()}</g:link>
-          </td>
-          <td>${fieldValue(bean: pate, field: 'profile.country') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-          <td>
-            <erp:getPateClients entity="${pate}">
-              <ul style="margin: 0; padding: 0;">
-                <g:each in="${clients}" var="client">
-                  <li style="line-height: 17px;">${client.profile.fullName}</li>
-                </g:each>
-              </ul>
-            </erp:getPateClients>
+      <table>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="active"/></td>
+          <td valign="top" class="value">
+            <g:checkBox name="active" value="true"/>
           </td>
         </tr>
-      </g:each>
-      </tbody>
-    </table>
 
-    <div class="paginateButtons">
-      <g:paginate total="${totalPates}"/>
-    </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField name="name" size="30"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="country"/></td>
+          <td valign="top" class="value">
+            <g:select name="country" from="${nationalities}" noSelection="['': message(code: 'all')]"/>
+          </td>
+        </tr>
+
+      </table>
+
+      <g:submitButton name="button" value="${message(code:'define')}"/>
+      <div class="clear"></div>
+    </g:formRemote>
 
   </div>
+
+  <div id="searchresults"></div>
+
 </div>
 </body>
