@@ -8,6 +8,7 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.base.Link
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
+import at.uenterprise.erp.Setup
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -23,23 +24,13 @@ class ParentProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalParents = Entity.countByType(metaDataService.etParent)
+    List colonies = Entity.findAllByType(metaDataService.etGroupColony)
+    List maritalStatus = Setup.list()[0]?.maritalStatus
+    List languages = Setup.list()[0]?.languages
+    List schoolLevels = Setup.list()[0]?.schoolLevels
 
-    EntityType etParent = metaDataService.etParent
-    def parents = Entity.createCriteria().list {
-      eq("type", etParent)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalParents = Entity.countByType(etParent)
-
-    return [parents: parents, totalParents: totalParents]
+    return [totalParents: totalParents, colonies: colonies, maritalStatus: maritalStatus, languages: languages, schoolLevels: schoolLevels]
   }
 
   def show = {
@@ -192,5 +183,54 @@ class ParentProfileController {
       render view: "create", model: [parent: ee.entity, allColonies: allColonies]
     }
 
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etParent)
+      user {
+        eq('enabled', params.boolean('active'))
+      }
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        if (params.gender != "0")
+          eq('gender', params.int('gender'))
+        if (params.maritalStatus)
+          eq('maritalStatus', params.maritalStatus)
+        if (params.education)
+          eq('education', params.education)
+        order(params.sort, params.order)
+      }
+    }
+
+    // 2. pass - filter by languages
+    if (params.languages) {
+      List languages = params.list('languages')
+      results = results.findAll {it.profile.languages.intersect(languages)}
+    }
+
+    // 3. pass - filter by colony
+    if (params.colony != "") {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
+          eq('source', Entity.get(params.colony))
+          eq('target', entity)
+          eq('type', metaDataService.ltColonia)
+        }
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'parent', params: params]
   }
 }
