@@ -1863,6 +1863,20 @@ class HelperTagLib {
   }
 
   /**
+   * Returns the facilities linked to an entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity
+   */
+  def getFacilitiesOfEducator = {attrs, body ->
+    List facilities = functionService.findAllByLink(attrs.entity, null, metaDataService.ltWorking)
+    if (facilities)
+      out << body(facilities: facilities)
+    else
+      out << '<span class="italic">' + message(code:'noData') + '</span>'
+  }
+
+  /**
    * Returns the facility linked to a given project
    *
    * @author Alexander Zeillinger

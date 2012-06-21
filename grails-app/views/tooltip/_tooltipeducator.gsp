@@ -8,8 +8,20 @@
     <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
   </tr>
   <tr class="prop">
-    <td class="one"><g:message code="educator.profile.education"/>:</td>
-    <td class="two">${entity.profile.education.decodeHTML() ?: '<div class="italic">' + message(code: "noData") + '</div>'}</td>
+    <td class="one"><g:message code="birthDate"/>:</td>
+    <td class="two"><g:formatDate date="${entity.profile.birthDate}" format="dd. MM. yyyy"/></td>
+  </tr>
+  <tr class="prop">
+    <td class="one"><g:message code="facilities"/>:</td>
+    <td class="two">
+      <erp:getFacilitiesOfEducator entity="${entity}">
+        <ul>
+          <g:each in="${facilities}" var="facility">
+            <li>${facility.profile.fullName.decodeHTML()}</li>
+          </g:each>
+        </ul>
+      </erp:getFacilitiesOfEducator>
+    </td>
   </tr>
   <tr class="prop">
     <td class="one"><g:message code="educator.profile.employment"/>:</td>

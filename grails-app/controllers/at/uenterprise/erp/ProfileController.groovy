@@ -22,7 +22,7 @@ class ProfileController {
   def getTooltip() {
     Entity entity = Entity.get(params.id)
     if (entity)
-      render template: "tooltip" + entity.type.supertype.name, model: [entity: entity]
+      render template: "/tooltip/tooltip" + entity.type.supertype.name, model: [entity: entity]
     else
       render ""
   }
