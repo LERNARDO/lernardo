@@ -17,6 +17,7 @@ import at.uenterprise.erp.SDate
 import at.uenterprise.erp.logbook.Attendance
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
+import at.uenterprise.erp.Setup
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -32,53 +33,12 @@ class ClientProfileController {
   }
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    EntityType etClient = metaDataService.etClient
-    def clients = Entity.createCriteria().list {
-      eq("type", etClient)
-      user {
-        eq('enabled', true)
-      }
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalClients = Entity.findAllByType(etClient).findAll{it.user.enabled}.size()
-
+    int totalClients = Entity.countByType(metaDataService.etClient)
+    List colonies = Entity.findAllByType(metaDataService.etGroupColony)
     List facilities = Entity.findAllByType(metaDataService.etFacility)
+    List schoolLevels = Setup.list()[0]?.schoolLevels
 
-    return [clients: clients, totalClients: totalClients, facilities: facilities]
-  }
-
-  def listInactive = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    EntityType etClient = metaDataService.etClient
-    def clients = Entity.createCriteria().list {
-      eq("type", etClient)
-      user {
-        eq('enabled', false)
-      }
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalClients = Entity.findAllByType(etClient).findAll{!it.user.enabled}.size()
-
-    List facilities = Entity.findAllByType(metaDataService.etFacility)
-
-    return [clients: clients, totalClients: totalClients, facilities: facilities]
+    return [totalClients: totalClients, colonies: colonies, facilities: facilities, schoolLevels: schoolLevels]
   }
 
   def show = {
@@ -457,6 +417,67 @@ class ClientProfileController {
     List facilities = functionService.findAllByLink(client, null, metaDataService.ltGroupMemberClient).findAll {it.type == metaDataService.etFacility}
 
     render template: 'facilities', model: [facilities: facilities, client: client]
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    Date birthDateFrom = params.date('birthDateFrom', 'dd. MM. yy')
+    Date birthDateTo = params.date('birthDateTo', 'dd. MM. yy')
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etClient)
+      user {
+        eq('enabled', params.boolean('active'))
+      }
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        if (params.gender != "0")
+          eq('gender', params.int('gender'))
+        if (birthDateFrom)
+          ge("birthDate", birthDateFrom)
+        if (birthDateTo)
+          le("birthDate", birthDateTo)
+        if (params.school)
+          ilike('school', "%" + params.school + "%")
+        if (params.schoolLevel)
+          eq('schoolLevel', params.schoolLevel)
+        order(params.sort, params.order)
+      }
+    }
+
+    // 2. pass - filter by colony
+    if (params.colony != "") {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
+          eq('source', Entity.get(params.colony))
+          eq('target', entity)
+          eq('type', metaDataService.ltColonia)
+        }
+      }
+    }
+
+    // 3. pass - filter by facility
+    if (params.facility != "") {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
+          eq('source', entity)
+          eq('target', Entity.get(params.facility))
+          eq('type', metaDataService.ltGroupMemberClient)
+        }
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'client', params: params]
   }
 
 }
