@@ -7,6 +7,7 @@ import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
+import at.uenterprise.erp.base.Link
 
 class ChildProfileController {
   MetaDataService metaDataService
@@ -22,23 +23,10 @@ class ChildProfileController {
   }
 
   def list = {
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    int totalChildren = Entity.countByType(metaDataService.etChild)
+    List families = Entity.findAllByType(metaDataService.etGroupFamily)
 
-    EntityType etChild = metaDataService.etChild
-    def children = Entity.createCriteria().list {
-      eq("type", etChild)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalChildren = Entity.countByType(etChild)
-
-    return [children: children, totalChildren: totalChildren]
+    return [totalChildren: totalChildren, families: families]
   }
 
   def show = {
@@ -128,6 +116,43 @@ class ChildProfileController {
       render view: "create", model: [child: ee.entity]
     }
 
+  }
+
+  def define = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 20, 40)
+
+    // 1. pass - filter by object properties
+    def results = Entity.createCriteria().list  {
+      eq('type', metaDataService.etChild)
+      user {
+        eq('enabled', params.boolean('active'))
+      }
+      profile {
+        if (params.name)
+          ilike('fullName', "%" + params.name + "%")
+        order(params.sort, params.order)
+      }
+    }
+
+    // 2. pass - filter by family
+    if (params.family != "") {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
+          eq('source', entity)
+          eq('target', Entity.get(params.family))
+          eq('type', metaDataService.ltGroupMemberChild)
+        }
+      }
+    }
+
+    int totalResults = results.size()
+    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+    results = results.subList(params.offset, upperBound)
+
+    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'child', params: params]
   }
 
 }
