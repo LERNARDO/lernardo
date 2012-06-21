@@ -122,6 +122,9 @@ class UserProfileController {
     // 1. pass - filter by object properties
     def results = Entity.createCriteria().list  {
       eq('type', metaDataService.etUser)
+      user {
+        eq('enabled', params.active ? true : false)
+      }
       profile {
         if (params.name)
           ilike('fullName', "%" + params.name + "%")

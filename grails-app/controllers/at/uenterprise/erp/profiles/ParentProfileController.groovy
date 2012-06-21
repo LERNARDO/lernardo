@@ -195,7 +195,7 @@ class ParentProfileController {
     def results = Entity.createCriteria().list  {
       eq('type', metaDataService.etParent)
       user {
-        eq('enabled', params.boolean('active'))
+        eq('enabled', params.active ? true : false)
       }
       profile {
         if (params.name)
