@@ -30,7 +30,7 @@
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
         <th><g:message code="representatives"/></th>
-        <th><g:message code="buildings"/></th>
+        %{--<th><g:message code="buildings"/></th>--}%
         <th><g:message code="facilities"/></th>
         <th><g:message code="resources"/></th>
       </tr>
@@ -40,7 +40,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${group.id}">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td>${group.profile.representatives.size()}</td>
-          <td>${group.profile.buildings.size()}</td>
+          %{--<td>${group.profile.buildings.size()}</td>--}%
           <td><erp:getGroupFacilities entity="${group}"/></td>
           <td><erp:getGroupResources entity="${group}"/></td>
         </tr>

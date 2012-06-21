@@ -40,7 +40,7 @@ class HelperTagLib {
       outputFolder(folder)
     }
     f.favorites?.each { Favorite favorite ->
-      out << '<li class="item fader">' + favorite.entity.profile.fullName + ' <span class="gray">' + favorite.description + '</span> <span style="visibility: hidden">' +
+      out << '<li class="item fader">' + link(controller: favorite.entity.type.supertype.name + "Profile", action: "show", id: favorite.entity.id) {favorite.entity.profile.fullName} + ' <span class="gray">' + '(' + message(code: "profiletype." + favorite.entity.type.supertype.name) + ') ' + favorite.description + '</span> <span style="visibility: hidden">' +
           remoteLink(action: "moveFavoriteUp", update: "favoriteslist", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'arrow_up.png') + '" align="top">'} + " " +
           remoteLink(action: "moveFavoriteDown", update: "favoriteslist", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'arrow_down.png') + '" align="top">'} + " " +
           remoteLink(action: "editFavorite", update: "faveditbox", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'icon_edit.png') + '" align="top">'} + " " +

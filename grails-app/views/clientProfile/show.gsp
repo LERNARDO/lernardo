@@ -382,7 +382,7 @@
   </div>
 
   <div class="zusatz">
-    <h5>Schuleintritt und -austritt <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#schooldates');
+    <h5><g:message code="schoolEntryExit"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#schooldates');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="schooldates" style="display:none">
