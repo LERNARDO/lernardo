@@ -7,5 +7,19 @@
     <td class="one"><g:message code="name"/>:</td>
     <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
   </tr>
+
+  %{--vorlage--}%
+
+  <tr class="prop">
+    <td class="one"><g:message code="date"/>:</td>
+    <td class="two"><g:formatDate date="${group?.profile?.date}" format="dd. MMMM yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+  </tr>
+
+  %{--einrichtung--}%
+
+  %{--pädagoginnen--}%
+
+  %{--betreute (anzahl)--}%
+
 </table>
 

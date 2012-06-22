@@ -7,5 +7,19 @@
     <td class="one"><g:message code="name"/>:</td>
     <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
   </tr>
+  <tr class="prop">
+    <td class="one"><g:message code="birthDate"/>:</td>
+    <td class="two"><g:formatDate date="${entity.profile.birthDate}" format="dd. MM. yyyy"/></td>
+  </tr>
+
+  %{--gemeinde--}%
+
+  <tr class="prop">
+    <td class="one"><g:message code="client.profile.school"/>:</td>
+    <td class="two">${fieldValue(bean: entity, field: 'profile.school').decodeHTML() ?: '<span class="italic">' + message(code: 'client.noSchoolEntered') + '</span>'}</td>
+  </tr>
+
+  %{--einrichtung--}%
+
 </table>
 

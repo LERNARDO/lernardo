@@ -7,5 +7,16 @@
     <td class="one"><g:message code="name"/>:</td>
     <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
   </tr>
+  <tr class="prop">
+    <td class="one"><g:message code="activityTemplate.ageFrom"/></td>
+    <td class="two">${entity?.profile?.ageFrom ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+  </tr>
+  <tr class="prop">
+    <td class="one"><g:message code="activityTemplate.ageTo"/></td>
+    <td class="two">${entity?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+  </tr>
+
+  %{--labels--}%
+
 </table>
 

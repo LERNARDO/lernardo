@@ -7,5 +7,12 @@
     <td class="one"><g:message code="name"/>:</td>
     <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
   </tr>
+
+  %{--patenkinder--}%
+
+  <tr class="prop">
+    <td class="one"><g:message code="country"/>:</td>
+    <td class="two">${fieldValue(bean: entity, field: 'profile.country') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+  </tr>
 </table>
 

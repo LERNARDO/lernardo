@@ -7,5 +7,12 @@
     <td class="one"><g:message code="name"/>:</td>
     <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
   </tr>
+
+  %{--anzahl betreute--}%
+
+  <tr class="prop">
+    <td class="one"><g:message code="description"/>:</td>
+    <td class="two">${fieldValue(bean: entity, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+  </tr>
 </table>
 

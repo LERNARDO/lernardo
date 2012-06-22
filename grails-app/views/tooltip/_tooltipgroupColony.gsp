@@ -7,5 +7,12 @@
     <td class="one"><g:message code="name"/>:</td>
     <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
   </tr>
+
+  %{--repräsentanten--}%
+
+  %{--einrichtungen--}%
+
+  %{--ressourcen--}%
+
 </table>
 
