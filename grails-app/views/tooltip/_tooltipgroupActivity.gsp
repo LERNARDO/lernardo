@@ -12,7 +12,7 @@
 
   <tr class="prop">
     <td class="one"><g:message code="date"/>:</td>
-    <td class="two"><g:formatDate date="${group?.profile?.date}" format="dd. MMMM yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+    <td class="two"><g:formatDate date="${entity?.profile?.date}" format="dd. MMMM yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
   </tr>
 
   %{--einrichtung--}%

@@ -1,3 +1,23 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.largetooltip').each(function() {
+      $(this).qtip({
+        content: {
+          text: 'Loading...',
+          ajax: {
+            url: '${grailsApplication.config.grails.serverURL}/profile/getTooltip',
+            type: 'GET',
+            data: {id : $(this).attr('data-idd')}
+          }
+        },
+        show: {
+          delay: 1000
+        }
+      });
+    });
+  });
+</script>
+
 <%@ page import="at.uenterprise.erp.base.Entity" %>
 <g:if test="${events}">
   <table class="default-table">
@@ -10,7 +30,7 @@
               <erp:profileImage entity="${entity}" width="30" style="vertical-align: middle;"/>
             </td>
             <td class="gray">
-              <g:link controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}"><span class="bold">${entity.profile.fullName.decodeHTML()}</span></g:link> hat heute Geburtstag! <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/>
+              <g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}"><span class="bold">${entity.profile.fullName.decodeHTML()}</span></g:link> hat heute Geburtstag! <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/>
             </td>
           </tr>
         </g:each>

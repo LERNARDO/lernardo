@@ -9,12 +9,12 @@
   </tr>
   <tr class="prop">
     <td class="one"><g:message code="begin"/></td>
-    <td class="two"><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" /></td>
+    <td class="two"><g:formatDate date="${entity.profile.startDate}" format="dd. MM. yyyy" /></td>
   </tr>
 
   <tr class="prop">
     <td class="one"><g:message code="end"/></td>
-    <td class="two"><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" /></td>
+    <td class="two"><g:formatDate date="${entity.profile.endDate}" format="dd. MM. yyyy" /></td>
   </tr>
 
   %{--einrichtung--}%

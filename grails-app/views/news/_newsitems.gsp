@@ -1,3 +1,23 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.largetooltip').each(function() {
+      $(this).qtip({
+        content: {
+          text: 'Loading...',
+          ajax: {
+            url: '${grailsApplication.config.grails.serverURL}/profile/getTooltip',
+            type: 'GET',
+            data: {id : $(this).attr('data-idd')}
+          }
+        },
+        show: {
+          delay: 1000
+        }
+      });
+    });
+  });
+</script>
+
 <g:each in="${news}" var="newsitem">
   <div class="item">
     <div class="header">
@@ -10,7 +30,7 @@
       <div class="info">
         <g:message code="from"/>
         <erp:isEnabled entity="${newsitem.author}">
-          <g:link controller="${newsitem.author.type.supertype.name + 'Profile'}" action="show" id="${newsitem.author.id}">${newsitem.author.profile.fullName}</g:link>
+          <g:link class="largetooltip" data-idd="${newsitem.author.id}" controller="${newsitem.author.type.supertype.name + 'Profile'}" action="show" id="${newsitem.author.id}">${newsitem.author.profile.fullName}</g:link>
         </erp:isEnabled>
         <erp:notEnabled entity="${newsitem.author}">
           <span class="notEnabled">${newsitem.author.profile.fullName}</span>
