@@ -27,7 +27,7 @@
 <div class="boxGray">
 
   <g:formRemote name="formRemote" url="[controller: 'workdayUnit', action: 'showPersons']" update="result" before="showspinner('#result')">
-    <g:select name="type" from="[message(code: 'users'), message(code: 'educators')]"/>
+    <g:select name="type" from="['user','educator']" valueMessagePrefix="profiletype"/>
     <g:submitButton name="submitButton" value="OK"/>
   </g:formRemote>
 

@@ -59,7 +59,7 @@ class WorkdayUnitController {
     }
 
     def showPersons = {
-      List persons = Entity.findAllByType(params.type == "User" ? metaDataService.etUser: metaDataService.etEducator).findAll {it.user.enabled}
+      List persons = Entity.findAllByType(params.type == "user" ? metaDataService.etUser: metaDataService.etEducator).findAll {it.user.enabled}
       render template: "showpersons", model: [persons: persons]
     }
 }
