@@ -73,8 +73,16 @@ class MethodController {
           return
         }
       }
+
+      // find all methods with the same name and rename them
+      Method.findAllByName(methodInstance.name).each {
+        it.name = params.name
+        it.save()
+      }
+
       methodInstance.properties = params
       if (methodInstance.save()) {
+
         flash.message = message(code: "object.updated", args: [message(code: "method"), methodInstance.name])
         redirect action: 'show', id: methodInstance.id
       }
