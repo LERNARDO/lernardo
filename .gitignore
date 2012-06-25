@@ -8,8 +8,6 @@ target/*
 *.launch
 *.tmproj
 *.launch
-.classpath
-.project
 .settings/
 .idea/
 
