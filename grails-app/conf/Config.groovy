@@ -59,6 +59,7 @@ grails.resources.modules = {
     resource url: "less/${customer}.less", attrs: [rel: 'stylesheet/less', type: 'css']//, bundle: 'bundle_start'
 
     resource url: "js/jquery/jquery.qtip.min.js"
+    resource url: "js/app.js"
   }
 
   other {
@@ -75,6 +76,7 @@ grails.resources.modules = {
 
     resource url: "js/jquery/jquery.qtip.min.js"
     // TODO: below scripts are broken when implemented this way, find out why
+    //resource url: "js/jquery/spin.min.js"
     //resource url: "js/jquery/jquery.jqEasyCharCounter.min.js"
     //resource url: "js/jquery/jquery-ui-timepicker-addon.js"
     //resource url: "js/jquery/jquery.kolorpicker.js"

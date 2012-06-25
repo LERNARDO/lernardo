@@ -10,11 +10,6 @@
   <r:script disposition="defer">
     %{--<g:render template="/templates/shortcuts"/>--}%
 
-    // shows the spinner
-    function showspinner(id) {
-      $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
-    }
-
     $(document).ready(function() {
 
       $('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
@@ -175,8 +170,6 @@
 </head>
 
 <body>
-  <div id="loading" style="position: absolute; left: 50%; text-align: center; top: 50%; visibility: hidden; z-index: 1000;">
-  <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
 
   <div id="private">
 
@@ -186,11 +179,11 @@
 
     <div id="subheader">
       <ul>
-        <li><g:link controller="event" action="index" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
-        <li><g:link controller="educatorProfile" action="index" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
-        <li><g:link controller="logBook" action="entries" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
-        <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
-        <li style="border-right: none;"><g:link class="activeyellow" controller="setup" action="show" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
+        <li><g:link controller="event" action="index"><g:message code="start"/></g:link></li>
+        <li><g:link controller="educatorProfile" action="index"><g:message code="database"/></g:link></li>
+        <li><g:link controller="logBook" action="entries"><g:message code="organisation"/></g:link></li>
+        <li><g:link controller="templateProfile" action="index"><g:message code="planning"/></g:link></li>
+        <li style="border-right: none;"><g:link class="activeyellow" controller="setup" action="show"><g:message code="administration"/></g:link></li>
       </ul>
       <g:render template="/templates/search"/>
       <div class="clear"></div>

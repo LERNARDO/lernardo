@@ -1,7 +1,6 @@
 %{--  Home with own Profile; Userdaten erforderlich  --}%
 %{--
 $(document).bind('keydown', 'alt+h', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "userProfile", action: "show")}", function(data) {
         $('body').html(data);
     });
@@ -12,7 +11,6 @@ $(document).bind('keydown', 'alt+h', function(){
 %{-- Documents; Userdaten erforderlich--}%
 %{--
 $(document).bind('keydown', 'alt+d', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "publication")}", function(data) {
         $('body').html(data);
     });
@@ -23,7 +21,6 @@ $(document).bind('keydown', 'alt+d', function(){
 %{-- Create Message; Userdaten erforderlich  --}%
 %{--
 $(document).bind('keydown', 'alt+m', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "msg", action: "createMany")}", function(data) {
         $('body').html(data);
     });
@@ -33,7 +30,6 @@ $(document).bind('keydown', 'alt+m', function(){
 
 %{-- Aktivitätsvorlagen Liste --}%
 $(document).bind('keydown', 'alt+a', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "templateProfile")}", function(data) {
         $('body').html(data);
     });
@@ -43,7 +39,6 @@ $(document).bind('keydown', 'alt+a', function(){
 %{-- Akltivitätsvorlagen Create; durch Ajax Fehler bei Msg-Box; alt+ctrl+a nicht !!!???? --}%
 %{--
 $(document).bind('keydown', 'alt+ctrl+a', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "templateProfile", action: "create")}", function(data) {
         $('body').html(data);
     });
@@ -53,7 +48,6 @@ $(document).bind('keydown', 'alt+ctrl+a', function(){
 
 %{-- Aktivitätsblockvorlagen Liste --}%
 $(document).bind('keydown', 'alt+b', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "groupActivityTemplateProfile")}", function(data) {
         $('body').html(data);
     });
@@ -63,7 +57,6 @@ $(document).bind('keydown', 'alt+b', function(){
 %{-- Aktivitätsblockvorlagen Create; ; durch Ajax Fehler bei Beschreibung...; --}%
 %{--
 $(document).bind('keydown', 'alt+ctrl+b', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "groupActivityTemplateProfile", action: "create")}", function(data) {
         $('body').html(data);
     });
@@ -74,7 +67,6 @@ $(document).bind('keydown', 'alt+ctrl+b', function(){
 %{-- Aktivitätsblock Liste; durch Ajax Fehler bei Datum; --}%
 %{--
 $(document).bind('keydown', 'alt+shift+b', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "groupActivityProfile")}", function(data) {
         $('body').html(data);
     });
@@ -84,7 +76,6 @@ $(document).bind('keydown', 'alt+shift+b', function(){
 
 %{-- Projektvorlage Liste --}%
 $(document).bind('keydown', 'alt+p', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "projectTemplateProfile")}", function(data) {
         $('body').html(data);
     });
@@ -94,7 +85,6 @@ $(document).bind('keydown', 'alt+p', function(){
 %{-- Projektvorlage Create; durch Ajax Fehler bei Beschreibung...; --}%
 %{--
 $(document).bind('keydown', 'alt+ctrl+p', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "projectTemplateProfile", action: "create")}", function(data) {
         $('body').html(data);
     });
@@ -105,7 +95,6 @@ $(document).bind('keydown', 'alt+ctrl+p', function(){
 %{-- Projekte Liste; durch Ajax Fehler bei Datum; --}%
 %{--
 $(document).bind('keydown', 'alt+shift+p', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "projectProfile")}", function(data) {
         $('body').html(data);
     });
@@ -115,7 +104,6 @@ $(document).bind('keydown', 'alt+shift+p', function(){
 
 %{-- Thema Liste; --}%
 $(document).bind('keydown', 'alt+t', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "themeProfile")}", function(data) {
         $('body').html(data);
     });
@@ -125,7 +113,6 @@ $(document).bind('keydown', 'alt+t', function(){
 %{-- Thema Create; durch Ajax Fehler bei Datum und Textfelder; --}%
 %{--
 $(document).bind('keydown', 'alt+ctrl+t', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "themeProfile", action: "create" )}", function(data) {
         $('body').html(data);
     });
@@ -136,7 +123,6 @@ $(document).bind('keydown', 'alt+ctrl+t', function(){
 %{-- Zeitaufzeichnung; Userdaten erforderlich  --}%
 %{--
 $(document).bind('keydown', 'alt+r', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "workdayUnit")}", function(data) {
         $('body').html(data);
     });
@@ -147,7 +133,6 @@ $(document).bind('keydown', 'alt+r', function(){
 %{-- Zeitauswertung; durch Ajax Fehler bei Datum;--}%
 %{--
 $(document).bind('keydown', 'alt+shift+r', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "workdayUnit", action: "evaluation")}", function(data) {
         $('body').html(data);
     });
@@ -158,7 +143,6 @@ $(document).bind('keydown', 'alt+shift+r', function(){
 %{-- Benachrichtigung; durch Ajax Fehler bei Multiline-Felder  --}%
 %{--
 $(document).bind('keydown', 'alt+n', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "profile", action: "createNotification")}", function(data) {
         $('body').html(data);
     });
@@ -169,7 +153,6 @@ $(document).bind('keydown', 'alt+n', function(){
 %{-- Setup; durch Ajax Fehler mit Werkzeugen bei Einträgen  --}%
 %{--
 $(document).bind('keydown', 'alt+s', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "setup", action: "show")}", function(data) {
         $('body').html(data);
     });
@@ -180,7 +163,6 @@ $(document).bind('keydown', 'alt+s', function(){
 %{-- Logbuch; durch Ajax Fehler bei Datum;--}%
 %{--
 $(document).bind('keydown', 'alt+l', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "logBook", action: "entries")}", function(data) {
         $('body').html(data);
     });
@@ -190,7 +172,6 @@ $(document).bind('keydown', 'alt+l', function(){
 
 %{-- Logbuch Auswertung;--}%
 $(document).bind('keydown', 'alt+shift+l', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "logBook", action: "evaluation")}", function(data) {
         $('body').html(data);
     });
@@ -199,7 +180,6 @@ $(document).bind('keydown', 'alt+shift+l', function(){
 
 %{-- Educator List  --}%
 $(document).bind('keydown', 'alt+e', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "educatorProfile")}", function(data) {
         $('body').html(data);
     });
@@ -209,7 +189,6 @@ $(document).bind('keydown', 'alt+e', function(){
 %{-- Educator Create; durch Ajax Fehler bei Datum; --}%
 %{--
 $(document).bind('keydown', 'alt+ctrl+e', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "educatorProfile", action: "create")}", function(data) {
         $('body').html(data);
     });
@@ -219,7 +198,6 @@ $(document).bind('keydown', 'alt+ctrl+e', function(){
 
 %{-- Client List  --}%
 $(document).bind('keydown', 'alt+c', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "clientProfile")}", function(data) {
         $('body').html(data);
     });
@@ -229,7 +207,6 @@ $(document).bind('keydown', 'alt+c', function(){
 %{-- Client create; durch Ajax Fehler bei Datum;  --}%
 %{--
 $(document).bind('keydown', 'alt+ctrl+c', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "clientProfile", action: "create")}", function(data) {
         $('body').html(data);
     });
@@ -239,7 +216,6 @@ $(document).bind('keydown', 'alt+ctrl+c', function(){
 
 %{-- Erziehungsberechtigter List  --}%
 $(document).bind('keydown', 'alt+g', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "parentProfile")}", function(data) {
         $('body').html(data);
     });
@@ -249,7 +225,6 @@ $(document).bind('keydown', 'alt+g', function(){
 %{-- Erziehungsberechtigter Create; durch Ajax Fehler bei Datum und multiline;  --}%
 %{--
 $(document).bind('keydown', 'alt+ctrl+g', function(){
-    showBigSpinner();
     $.get("${createLink(controller: "parentProfile", action: "create")}", function(data) {
         $('body').html(data);
     });

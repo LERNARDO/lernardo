@@ -1,7 +1,12 @@
-// shows the spinner
-/*function showspinner(id) {
-    $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
-}*/
+// spinner credits: http://fgnass.github.com/spin.js/ and https://gist.github.com/1290439
+
+function showspinner(id) {
+    $(id).html("").spin({lines: 9, length: 4, width: 3, radius: 5, top: 0, left: 0});
+}
+
+function hidespinner(id) {
+    $(id).spin(false);
+}
 
 // toggle element
 function toggle(id) {
@@ -25,13 +30,43 @@ function toggleDisabled(id) {
         $(id).removeAttr('disabled');
 }
 
-function showBigSpinner() {
-    $('#loading').css('visibility', 'visible');
-}
+$(document).ready(function() {
 
-/*$(document).ready(function() {
+    $.fn.spin = function(opts, color) {
+        var presets = {
+            "tiny": { lines: 8, length: 2, width: 2, radius: 3 },
+            "small": { lines: 8, length: 4, width: 3, radius: 5 },
+            "large": { lines: 10, length: 8, width: 4, radius: 8 }
+        };
+        if (Spinner) {
+            return this.each(function() {
+                var $this = $(this),
+                    data = $this.data();
 
-    $('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
+                if (data.spinner) {
+                    data.spinner.stop();
+                    delete data.spinner;
+                }
+                if (opts !== false) {
+                    if (typeof opts === "string") {
+                        if (opts in presets) {
+                            opts = presets[opts];
+                        } else {
+                            opts = {};
+                        }
+                        if (color) {
+                            opts.color = color;
+                        }
+                    }
+                    data.spinner = new Spinner($.extend({color: $this.css('color')}, opts)).spin(this);
+                }
+            });
+        } else {
+            throw "Spinner class not available.";
+        }
+    };
+
+    /*$('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
 
     $('.tooltip').each(function() {
         $(this).qtip({
@@ -122,6 +157,6 @@ function showBigSpinner() {
         timeFormat: 'hh:mm'
     });
 
-    $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
+    $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);*/
 
-});*/
+});

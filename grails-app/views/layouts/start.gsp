@@ -10,11 +10,6 @@
   <r:script disposition="defer">
     %{--<g:render template="/templates/shortcuts"/>--}%
 
-    // shows the spinner
-    function showspinner(id) {
-      $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
-    }
-
     $(document).ready(function() {
 
       $('.tooltip').each(function() {
@@ -60,6 +55,7 @@
   <r:layoutResources/>
 
   <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'spin.min.js')}"></script>
   %{--<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.hotkeys-0.7.9.min.js')}"></script>--}%
 
   <g:layoutHead />
@@ -68,8 +64,6 @@
 </head>
 
 <body>
-  <div id="loading" style="position: absolute; left: 50%; text-align: center; top: 50%; visibility: hidden; z-index: 1000;">
-  <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
 
   <div id="private">
 
@@ -79,12 +73,12 @@
 
     <div id="subheader">
       <ul>
-        <li><g:link class="activegray" controller="event" action="index" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
-        <li><g:link controller="educatorProfile" action="index" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
-        <li><g:link controller="logBook" action="entries" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
-        <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
+        <li><g:link class="activegray" controller="event" action="index"><g:message code="start"/></g:link></li>
+        <li><g:link controller="educatorProfile" action="index"><g:message code="database"/></g:link></li>
+        <li><g:link controller="logBook" action="entries"><g:message code="organisation"/></g:link></li>
+        <li><g:link controller="templateProfile" action="index"><g:message code="planning"/></g:link></li>
         <erp:accessCheck types="['Betreiber']">
-          <li style="border-right: none;"><g:link controller="setup" action="show" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
+          <li style="border-right: none;"><g:link controller="setup" action="show"><g:message code="administration"/></g:link></li>
         </erp:accessCheck>
       </ul>
       <g:render template="/templates/search"/>

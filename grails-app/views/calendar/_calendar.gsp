@@ -1,7 +1,5 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
-<div id="loadings" style="position: absolute; left: 50%; text-align: center; top: 50%; display: none;">
-  <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0>
-</div>
+<div id="loadings" style="position: absolute; left: 50%; text-align: center; top: 50%;"></div>
 <jq:jquery>
   $('#calendar').fullCalendar({
     header: {
@@ -11,9 +9,9 @@
     },
     loading: function(bool, view) {
       if (bool)
-        $('#loadings').show();
+        showspinner('#loadings');
       else
-        $('#loadings').hide();
+        hidespinner('#loadings');
     },
     monthNames: ['${message(code: "january")}',
                  '${message(code: "february")}',

@@ -10,11 +10,6 @@
   <r:script disposition='defer'>
     %{--<g:render template="/templates/shortcuts"/>--}%
 
-    // shows the spinner
-    function showspinner(id) {
-      $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
-    }
-
     $(document).ready(function() {
 
       $('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
@@ -168,6 +163,7 @@
   <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon.js')}"></script>
   <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
   <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.simplemodal.js')}"></script>
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'spin.min.js')}"></script>
   %{--<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.hotkeys-0.7.9.min.js')}"></script>--}%
 
   <g:layoutHead />
@@ -177,8 +173,6 @@
 </head>
 
 <body>
-  <div id="loading" style="position: absolute; left: 50%; text-align: center; top: 50%; visibility: hidden; z-index: 1000;">
-  <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
 
   <div id="private">
 
@@ -188,12 +182,12 @@
 
     <div id="subheader">
       <ul>
-        <li><g:link controller="event" action="index" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
-        <li><g:link class="activered" controller="educatorProfile" action="index" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
-        <li><g:link controller="logBook" action="entries" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
-        <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
+        <li><g:link controller="event" action="index"><g:message code="start"/></g:link></li>
+        <li><g:link class="activered" controller="educatorProfile" action="index"><g:message code="database"/></g:link></li>
+        <li><g:link controller="logBook" action="entries"><g:message code="organisation"/></g:link></li>
+        <li><g:link controller="templateProfile" action="index"><g:message code="planning"/></g:link></li>
         <erp:accessCheck types="['Betreiber']">
-          <li style="border-right: none;"><g:link controller="setup" action="show" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
+          <li style="border-right: none;"><g:link controller="setup" action="show"><g:message code="administration"/></g:link></li>
         </erp:accessCheck>
       </ul>
       <g:render template="/templates/search"/>
@@ -213,17 +207,17 @@
               <erp:accessCheck roles="['ROLE_ADMIN']">
                 <li class="icon-operator"><g:link controller="operatorProfile" action="list"><g:message code="operator"/></g:link></li>
               </erp:accessCheck>
-              <li class="icon-educators"><g:link controller="educatorProfile" action="list" onclick="showBigSpinner()"><g:message code="educators"/></g:link></li>
-              <li class="icon-person"><g:link controller="clientProfile" action="list" onclick="showBigSpinner()"><g:message code="clients"/></g:link></li>
-              <li class="icon-child"><g:link controller="childProfile" action="list" onclick="showBigSpinner()"><g:message code="children"/></g:link></li>
-              <li class="icon-parents"><g:link controller="parentProfile" action="list" onclick="showBigSpinner()"><g:message code="parents"/></g:link></li>
-              <li class="icon-pate"><g:link controller="pateProfile" action="list" onclick="showBigSpinner()"><g:message code="paten"/></g:link></li>
-              <li class="icon-partner"><g:link controller="partnerProfile" action="list" onclick="showBigSpinner()"><g:message code="partners"/></g:link></li>
-              <li class="icon-group"><g:link controller="groupFamilyProfile" action="list" onclick="showBigSpinner()"><g:message code="groupFamilies"/></g:link></li>
-              <li class="icon-colony"><g:link controller="groupColonyProfile" action="list" onclick="showBigSpinner()"><g:message code="groupColonies"/></g:link></li>
-              <li class="icon-facility"><g:link controller="facilityProfile" action="list" onclick="showBigSpinner()"><g:message code="facilities"/></g:link></li>
-              <li class="icon-group"><g:link controller="groupClientProfile" action="list" onclick="showBigSpinner()"><g:message code="groupClients"/></g:link></li>
-              <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="list" onclick="showBigSpinner()"><g:message code="groupPartners"/></g:link></li>
+              <li class="icon-educators"><g:link controller="educatorProfile" action="list"><g:message code="educators"/></g:link></li>
+              <li class="icon-person"><g:link controller="clientProfile" action="list"><g:message code="clients"/></g:link></li>
+              <li class="icon-child"><g:link controller="childProfile" action="list"><g:message code="children"/></g:link></li>
+              <li class="icon-parents"><g:link controller="parentProfile" action="list"><g:message code="parents"/></g:link></li>
+              <li class="icon-pate"><g:link controller="pateProfile" action="list"><g:message code="paten"/></g:link></li>
+              <li class="icon-partner"><g:link controller="partnerProfile" action="list"><g:message code="partners"/></g:link></li>
+              <li class="icon-group"><g:link controller="groupFamilyProfile" action="list"><g:message code="groupFamilies"/></g:link></li>
+              <li class="icon-colony"><g:link controller="groupColonyProfile" action="list"><g:message code="groupColonies"/></g:link></li>
+              <li class="icon-facility"><g:link controller="facilityProfile" action="list"><g:message code="facilities"/></g:link></li>
+              <li class="icon-group"><g:link controller="groupClientProfile" action="list"><g:message code="groupClients"/></g:link></li>
+              <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="list"><g:message code="groupPartners"/></g:link></li>
               <erp:accessCheck roles="['ROLE_ADMIN']">
                 <li class="icon-admin"><g:link controller="userProfile" action="list"><g:message code="user"/></g:link></li>
               </erp:accessCheck>
