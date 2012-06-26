@@ -654,14 +654,52 @@ class HelperTagLib {
     out << "</tr>"
   }
 
-  /**
+  /** WIP
    * Creates the time evaluation
    *
    * @author Alexander Zeillinger
    * @attr entities REQUIRED The entities
    */
   def timeEvaluation = {attrs, body ->
+    Date date1 = null
+    Date date2 = null
 
+    if (attrs.date1 != null && attrs.date2 != null) {
+      date1 = Date.parse("dd. MM. yy", attrs.date1)
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
+    }
+
+    BigDecimal total = 0
+
+    attrs.entities.each { person ->
+      if (calculateExpectedHours(person, date1, date2) > 0) {
+        out << '<tr>'
+        out << '<td>' + link(controller: person.type.supertype.name + "Profile", action: "show", id: person.id, params: [entity: person.id]) {fieldValue(bean: person, field: 'profile.firstName').decodeHTML() + " " + fieldValue(bean: person, field: 'profile.lastName').decodeHTML()} + "</td>"
+        attrs.workdaycategories.each { category ->
+          '<td>' + functionService.getHoursForCategory(category: category, educator: person, date1: date1 ?: null, date2: date2 ?: null) + '</td>'
+        }
+        out << '<td></td>'
+        out << '<td></td>'
+        out << '<td></td>'
+        out << '<td></td>'
+        out << '</tr>'
+      }
+    }
+
+    /*<g:each in="${subeducators.value}" status="i" var="person">
+    <erp:showHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}">
+    <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+    <td><g:link controller="${person.type.supertype.name + 'Profile'}" action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile.firstName').decodeHTML()} ${fieldValue(bean: person, field: 'profile.lastName').decodeHTML()}</g:link></td>
+    <g:each in="${workdaycategories}" var="category">
+    <td><erp:getHoursForCategory category="${category}" educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+            </g:each>
+    <td><erp:getTotalHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+            <td><erp:getExpectedHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+            <td><erp:getHoursConfirmed educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+            <td><erp:getSalary educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+          </tr>
+    </erp:showHours>
+      </g:each>*/
   }
 
   /**

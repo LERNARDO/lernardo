@@ -14,6 +14,8 @@
     </tr>
     </thead>
     <tbody>
+      %{--<erp:timeEvaluation entities="${subeducators.value}" date1="${date1 ?: null}" date2="${date2 ?: null}" workdaycategories="${workdaycategories}"/>--}%
+
       <g:each in="${subeducators.value}" status="i" var="person">
         <erp:showHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">

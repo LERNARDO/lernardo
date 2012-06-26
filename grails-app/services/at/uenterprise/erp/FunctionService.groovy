@@ -11,6 +11,8 @@ import at.uenterprise.erp.base.util.HashTools
 import at.uenterprise.erp.base.AssetStorage
 import at.uenterprise.erp.base.Asset
 import at.uenterprise.erp.base.AssetService
+import java.text.NumberFormat
+import java.text.DecimalFormat
 
 /**
  * This class contains all used service methods
@@ -557,6 +559,45 @@ class FunctionService {
 
     log.debug ("asset for $ent.name of type $type is stored as $sid")
     return asset
+  }
+
+  /** WIP
+   * Calculates the number of hours an educator has worked in a given category
+   *
+   * @author Alexander Zeillinger
+   * @attr educator REQUIRED The educator to find the workdayunits of
+   * @attr date1 REQUIRED The begin of the date range to check
+   * @attr date2 REQUIRED The end of the date range to check
+   * @attr category REQUIRED The category to check
+   */
+  def getHoursForCategory(category, educator, date1, date2) {
+    /*Date date1
+    Date date2
+    if (attrs.date1 != "" && attrs.date2 != "") {
+      date1 = Date.parse("dd. MM. yy", attrs.date1)
+      date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
+    }
+
+    Entity educator = attrs.educator
+    WorkdayCategory workdayCategory = attrs.category*/
+
+    BigDecimal hours = 0
+    educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+      if (workdayUnit.category == category.name) {
+
+        // check if the date of the workdayunit is between date1 and date2
+        if (date1 != "" && date2 != "") {
+          if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+            hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+          }
+        }
+        else
+          hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+      }
+    }
+
+    NumberFormat df = new DecimalFormat("##0.00")
+    return df.format(hours)
   }
 
 }
