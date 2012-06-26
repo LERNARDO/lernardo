@@ -59,7 +59,28 @@ class WorkdayUnitController {
     }
 
     def showPersons = {
-      List persons = Entity.findAllByType(params.type == "user" ? metaDataService.etUser: metaDataService.etEducator).findAll {it.user.enabled}
-      render template: "showpersons", model: [persons: persons]
+      params.sort = params.sort ?: "fullName"
+      params.order = params.order ?: "asc"
+      params.offset = params.int('offset') ?: 0
+      params.max = Math.min(params.int('max') ?: 20, 40)
+
+      // 1. pass - filter by object properties
+      def results = Entity.createCriteria().listDistinct  {
+        eq('type', params.type == "user" ? metaDataService.etUser : metaDataService.etEducator)
+        user {
+          eq('enabled', params.active ? true : false)
+        }
+        profile {
+          if (params.employment)
+            eq('employment', params.employment)
+          order(params.sort, params.order)
+        }
+      }
+
+      int totalResults = results.size()
+      int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+      results = results.subList(params.offset, upperBound)
+
+      render template: 'showpersons', model: [persons: results, totalResults: totalResults, params: params]
     }
 }
