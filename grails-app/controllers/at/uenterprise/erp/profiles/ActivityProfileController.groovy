@@ -442,7 +442,7 @@ class ActivityProfileController {
       return
     }
 
-    def results = Entity.createCriteria().list {
+    def results = Entity.createCriteria().listDistinct {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)

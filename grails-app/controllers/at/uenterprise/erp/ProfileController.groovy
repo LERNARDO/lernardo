@@ -42,7 +42,7 @@ class ProfileController {
       return
     }
     
-    def userList = Entity.createCriteria().list {
+    def userList = Entity.createCriteria().listDistinct {
       user {
         eq("enabled", true)
       }
@@ -397,7 +397,7 @@ class ProfileController {
       return
     }
 
-    def results = Entity.createCriteria().list {
+    def results = Entity.createCriteria().listDistinct {
       user {
         eq("enabled", true)
       }

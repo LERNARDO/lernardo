@@ -125,7 +125,7 @@ class ChildProfileController {
     params.max = Math.min(params.int('max') ?: 20, 40)
 
     // 1. pass - filter by object properties
-    def results = Entity.createCriteria().list  {
+    def results = Entity.createCriteria().listDistinct  {
       eq('type', metaDataService.etChild)
       user {
         eq('enabled', params.active ? true : false)

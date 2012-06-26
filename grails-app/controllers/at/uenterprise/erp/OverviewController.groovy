@@ -77,7 +77,7 @@ class OverviewController {
     def numUsers
 
     if (params.glossary == "Alle") {
-      users = Entity.createCriteria().list {
+      users = Entity.createCriteria().listDistinct {
         user {
           eq("enabled", true)
         }
@@ -101,7 +101,7 @@ class OverviewController {
     }
     else {
       //log.debug("start glossary for " + params.glossary)
-      users = Entity.createCriteria().list {
+      users = Entity.createCriteria().listDistinct {
         user {
           eq("enabled", true)
         }
@@ -142,7 +142,7 @@ class OverviewController {
 
     List searchStrings = params.name.toString().split(" ")
 
-    def results = Entity.createCriteria().list {
+    def results = Entity.createCriteria().listDistinct {
       if (params.enabled) {
         user {
           eq("enabled", params.enabled == "true")

@@ -429,7 +429,7 @@ class ClientProfileController {
     Date birthDateTo = params.date('birthDateTo', 'dd. MM. yy')
 
     // 1. pass - filter by object properties
-    def results = Entity.createCriteria().list  {
+    def results = Entity.createCriteria().listDistinct  {
       eq('type', metaDataService.etClient)
       user {
         eq('enabled', params.active ? true : false)

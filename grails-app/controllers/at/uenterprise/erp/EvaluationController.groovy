@@ -147,7 +147,7 @@ class EvaluationController {
     }
 
     // find matching educators
-    def educators = Entity.createCriteria().list {
+    def educators = Entity.createCriteria().listDistinct {
       eq('type', metaDataService.etEducator)
       user {
         eq("enabled", true)
