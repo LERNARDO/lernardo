@@ -187,7 +187,7 @@
         <li><g:link controller="logBook" action="entries"><g:message code="organisation"/></g:link></li>
         <li><g:link controller="templateProfile" action="index"><g:message code="planning"/></g:link></li>
         <erp:accessCheck types="['Betreiber']">
-          <li style="border-right: none;"><g:link controller="setup" action="show"><g:message code="administration"/></g:link></li>
+          <li><g:link controller="setup" action="show"><g:message code="administration"/></g:link></li>
         </erp:accessCheck>
       </ul>
       <g:render template="/templates/search"/>
@@ -243,7 +243,7 @@
             <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
           </div>
         </g:if>
-        <div style="padding: 0 15px;">
+        <div id="bd">
           <g:layoutBody/>
         </div>
       </div>

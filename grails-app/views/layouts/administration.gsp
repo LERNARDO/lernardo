@@ -184,7 +184,7 @@
         <li><g:link controller="educatorProfile" action="index"><g:message code="database"/></g:link></li>
         <li><g:link controller="logBook" action="entries"><g:message code="organisation"/></g:link></li>
         <li><g:link controller="templateProfile" action="index"><g:message code="planning"/></g:link></li>
-        <li style="border-right: none;"><g:link class="activeyellow" controller="setup" action="show"><g:message code="administration"/></g:link></li>
+        <li><g:link class="activeyellow" controller="setup" action="show"><g:message code="administration"/></g:link></li>
       </ul>
       <g:render template="/templates/search"/>
       <div class="clear"></div>
@@ -231,7 +231,7 @@
             <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
           </div>
         </g:if>
-        <div style="padding: 0 15px;">
+        <div id="bd">
           <g:layoutBody/>
         </div>
       </div>

@@ -2016,23 +2016,6 @@ class HelperTagLib {
   }
 
   /**
-   * Returns the number of new news (last 7 days)
-   *
-   * @author Alexander Zeillinger
-   * @attr entity REQUIRED The activity
-   */
-  def getNewNews = {attrs, body ->
-
-    Date lastWeek = new Date() - 7
-
-    def result = News.createCriteria().list {
-      ge('dateCreated', lastWeek)
-    }
-
-    out << body(result: result.size())
-  }
-
-  /**
    * Returns the number of current appointments
    *
    * @author Alexander Zeillinger
