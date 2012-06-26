@@ -101,15 +101,8 @@ grails {
 // this will be used if no "from" is supplied in a mail
 grails.mail.default.from = "lernardomailer@gmail.com"
 
-grails.profiler.disable = true
-
-secmgr {
-  starturl     = "/start"
-  publicurl    = "/"
-}
-
 // this controls the usage of the profiler plugin
-//grails.profiler.disable = true
+grails.profiler.disable = true
 
 // log4j configuration
 log4j = {
@@ -194,13 +187,6 @@ application.name  = "Lernardo.net"
 
 ckeditor {
   config = "/js/ckconfig.gsp"
-}
-
-secmgr {
-  starturl     = "/"
-  publicurl    = "/public"
-  loggedinurl  = "/welcome"
-  loggedouturl = "/by"
 }
 
 // PDFs

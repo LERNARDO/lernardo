@@ -50,14 +50,6 @@ class ClientProfile extends Profile {
   String school
   String schoolLevel
 
-  //Boolean schoolDropout = false
-  //Date    schoolDropoutDate
-  //String  schoolDropoutReason
-
-  //Boolean schoolRestart = false
-  //Date    schoolRestartDate
-  //String  schoolRestartReason
-
   Boolean job
   Integer jobIncome
   String  jobFrequency
@@ -83,10 +75,6 @@ class ClientProfile extends Profile {
     interests             blank: true, maxSize: 2000
     jobIncome             nullable: true
     jobFrequency          nullable: true, blank: true, maxSize: 50
-    //schoolDropoutDate     nullable: true
-    //schoolDropoutReason   nullable: true, blank: false, maxSize: 500
-    //schoolRestartDate     nullable: true
-    //schoolRestartReason   nullable: true, blank: false, maxSize: 500
     supportDescription    nullable: true, blank: true, maxSize: 500
     citizenship           nullable: true
     socialSecurityNumber  nullable: true, size: 10..10

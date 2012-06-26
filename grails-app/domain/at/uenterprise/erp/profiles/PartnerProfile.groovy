@@ -20,9 +20,6 @@ class PartnerProfile extends Profile {
   Folder    favoritesFolder
   ECalendar calendar
   String    description
-  //String    country
-  //String    zip
-  //String    city
   String    street
   String    phone
   String    website
@@ -31,8 +28,6 @@ class PartnerProfile extends Profile {
   static constraints = {
     fullName    blank: false, size: 1..100, maxSize: 100
     description blank: true, maxSize: 20000
-    //zip         size: 4..10
-    //city        size: 2..50, maxSize: 50
     street      size: 2..50, maxSize: 50
     phone       size: 2..20
     website     blank: true, size: 2..50
