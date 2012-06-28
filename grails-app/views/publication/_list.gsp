@@ -9,7 +9,7 @@
       </div>
     </g:if>
 
-    <erp:accessCheck types="['Betreiber']" me="${entity}" creatorof="${entity}">
+    <erp:accessCheck types="['Pädagoge']" me="${entity}" creatorof="${entity}">
       <div class="buttons">
       <g:formRemote name="formRemote" url="[controller: 'publication', action: 'create', id: entity.id]" update="content" before="showspinner('#content');">
           <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code: 'publication.upload')}"/></div>
