@@ -104,6 +104,7 @@ class GroupClientProfileController {
   }
 
   def save = {
+    Entity currentEntity = entityHelperService.loggedIn
     EntityType etGroupClient = metaDataService.etGroupClient
 
     try {
@@ -111,6 +112,9 @@ class GroupClientProfileController {
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
       }
+
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "object.created", args: [message(code: "groupClient"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
@@ -243,6 +247,17 @@ class GroupClientProfileController {
         if (params.name)
           ilike('fullName', "%" + params.name + "%")
         order(params.sort, params.order)
+      }
+    }
+
+    // 2. pass - filter by creator
+    if (params.creator != "") {
+      results = results.findAll { Entity entity ->
+        Link.createCriteria().get {
+          eq('source', Entity.get(params.int('creator')))
+          eq('target', entity)
+          eq('type', metaDataService.ltCreator)
+        }
       }
     }
 
