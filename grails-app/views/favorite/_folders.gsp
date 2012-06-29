@@ -2,10 +2,10 @@
   $(document).ready(function() {
     $(".fader").hover(
         function () {
-          $(this).find("span").css("visibility", "visible");
+          $(this).find("span").eq(1).css("visibility", "visible");
         },
         function () {
-          $(this).find("span").css("visibility", "hidden");
+          $(this).find("span").eq(1).css("visibility", "hidden");
         }
     );
   });
