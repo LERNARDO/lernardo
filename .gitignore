@@ -8,7 +8,6 @@ target/*
 *.launch
 *.tmproj
 *.launch
-.settings/
 .idea/
 
 !buildFiles/*
