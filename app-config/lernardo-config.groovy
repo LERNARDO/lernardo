@@ -58,6 +58,11 @@ if (customer == "sueninos") {
               logSql = false
               hibernate.default_schema = 'test'
               grails.serverURL = "http://lernardo.customer.uenterprise.de/test"
+
+            // use these when running tests
+            //driverClassName = "org.h2.Driver"
+            //dialect = "org.hibernate.dialect.H2Dialect"
+            //url = "jdbc:h2:mem:testDb;MVCC=TRUE"
         }
       }
       production {
