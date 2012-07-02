@@ -318,7 +318,7 @@ class ProjectProfileController {
     //project.profile.description = params.description
 
     // update project days based on the new begin and end date
-    def currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    /*def currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
     //log.info "current project days: " + currentPDs.size()
 
     Date tperiodStart = params.startDate
@@ -427,7 +427,7 @@ class ProjectProfileController {
 
       // increment calendar
       tcalendarStart.add(Calendar.DATE, 1)
-    }
+    }*/
 
     //currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
     //log.info "current project days: " + currentPDs.size()
@@ -441,6 +441,47 @@ class ProjectProfileController {
     else {
       render view: 'edit', model: [project: project]
     }
+  }
+
+  def shift = {
+    Entity project = Entity.get(params.id)
+
+    if (!project) {
+      flash.message = message(code: "object.notFound", args: [message(code: "project")])
+      redirect action: 'list'
+    }
+    else {
+      [project: project]
+    }
+  }
+
+  def shiftNow = {
+    Entity project = Entity.get(params.id)
+
+    Calendar calendar = new GregorianCalendar()
+
+    calendar.setTime(project.profile.startDate)
+    calendar.add(Calendar.DATE, params.int('weeks') * 7)
+    project.profile.startDate = calendar.getTime()
+
+    calendar.setTime(project.profile.endDate)
+    calendar.add(Calendar.DATE, params.int('weeks') * 7)
+    project.profile.endDate = calendar.getTime()
+
+    project.save()
+
+    // get project days
+    def projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+    projectDays?.each { Entity projectDay ->
+      calendar.setTime(projectDay.profile.date)
+      calendar.add(Calendar.DATE, params.int('weeks') * 7)
+      projectDay.profile.date = calendar.getTime()
+      projectDay.save()
+    }
+
+    flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile.fullName])
+    redirect action: 'show', id: project.id
   }
 
   def create = {
