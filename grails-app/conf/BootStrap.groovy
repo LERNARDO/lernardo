@@ -64,9 +64,7 @@ class BootStrap {
       log.info "====="
       Date begin = new Date()
 
-      if (!FolderType.findByName("favorite"))
-        new FolderType(name: "favorite").save()
-
+      createDefaultFolderTypes()
       createDefaultUsers()
 
       if (GrailsUtil.environment == "development") {
@@ -231,6 +229,13 @@ class BootStrap {
       setup.addToSchoolLevels("dummySchoolLevel")
       setup.addToWorkDescriptions("dummyWorkDescription")
     }
+  }
+
+  void createDefaultFolderTypes() {
+    if (!FolderType.findByName("favorite"))
+      new FolderType(name: "favorite").save()
+    if (!FolderType.findByName("publication"))
+      new FolderType(name: "publication").save()
   }
 
   void createDefaultUsers() {
