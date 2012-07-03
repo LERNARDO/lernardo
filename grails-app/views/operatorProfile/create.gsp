@@ -63,13 +63,6 @@
           </td>
         </tr>
 
-        %{--<tr class="prop">
-          <td valign="top" class="name"><g:message code="languageSelection"/></td>
-          <td valign="top" class="value">
-            <erp:localeSelect name="locale" value="${operator?.user?.locale}"/>
-          </td>
-        </tr>--}%
-
         <tr class="prop">
           <td valign="top" class="name"><g:message code="showTips"/></td>
           <td valign="top" class="value">

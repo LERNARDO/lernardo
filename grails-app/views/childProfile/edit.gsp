@@ -88,10 +88,6 @@
               <g:message code="email"/>:
               <g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
             </td>
-            %{--<td>
-              <g:message code="languageSelection"/>:
-              <erp:localeSelect name="locale" value="${client?.user?.locale}"/>
-            </td>--}%
           </tr>
         </table>
       </div>
