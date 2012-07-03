@@ -16,3 +16,7 @@
 <g:else>
   <span class="italic red"><g:message code="clients.choose"/></span>
 </g:else>
+
+<script type="text/javascript">
+  <g:remoteFunction action="updateClientsSize" update="clientsSize" id="${project.id}"/>
+</script>

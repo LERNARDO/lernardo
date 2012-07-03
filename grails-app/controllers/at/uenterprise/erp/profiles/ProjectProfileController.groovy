@@ -1751,6 +1751,12 @@ class ProjectProfileController {
     render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'project', params: params]
   }
 
+  def updateClientsSize = {
+    Entity project = Entity.get(params.id)
+    List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+    render "(${clients.size()})"
+  }
+
 }
 
 class ProjectCommand {
