@@ -81,6 +81,20 @@
       </table>
 
       <h4><g:message code="management"/></h4>
+        <div class="zusatz">
+            <h5><g:message code="responsible"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#responsible'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+            <div class="zusatz-add" id="responsible" style="display:none">
+
+                <g:message code="search"/>:<br/>
+                <g:remoteField size="40" name="remoteField" update="remoteResponsible" action="remoteResponsible" id="${project.id}" before="showspinner('#remoteResponsible');"/>
+                <div id="remoteResponsible"></div>
+
+            </div>
+            <div class="zusatz-show" id="responsible2">
+                <g:render template="responsible" model="[responsibles: responsibles, project: project]"/>
+            </div>
+        </div>
+
       <div class="zusatz">
         <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${project}" checkoperator="true"><a onclick="toggle('#labels');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>

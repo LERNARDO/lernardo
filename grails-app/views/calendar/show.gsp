@@ -63,7 +63,7 @@
 
 <div id="caltip"></div>
 
-<table width="100%">
+<table width="100%" style="margin-top: 15px;">
   <tr>
     <td style="padding-right: 15px; vertical-align: top; width: 250px;">
 

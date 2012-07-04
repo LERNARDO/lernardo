@@ -231,6 +231,8 @@ class ProjectProfileController {
 
       List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
 
+        List responsibles = functionService.findAllByLink(null, project, metaDataService.ltResponsible)
+
       [project: project,
               projectUnits: projectUnits,
               allGroupActivityTemplates: allGroupActivityTemplates,
@@ -252,7 +254,8 @@ class ProjectProfileController {
               resources: resources,
               plannableResources: plannableResources,
               requiredResources: requiredResources,
-              allLabels: functionService.getLabels()]
+              allLabels: functionService.getLabels(),
+            responsibles: responsibles]
     }
   }
 
@@ -1750,6 +1753,53 @@ class ProjectProfileController {
 
     render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'project', params: params]
   }
+
+    /*
+    * retrieves all entities matching the search parameter
+    */
+    def remoteResponsible = {
+        if (!params.value) {
+            render ""
+            return
+        }
+        else if (params.value.size() < 2) {
+            render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+            return
+        }
+
+        def results = Entity.createCriteria().list {
+            user {
+                eq('enabled', true)
+            }
+            eq('type', metaDataService.etEducator)
+            profile {
+                ilike('fullName', "%" + params.value + "%")
+                order('fullName','asc')
+            }
+            maxResults(15)
+        }
+
+        if (results.size() == 0) {
+            render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+            return
+        }
+        else {
+            render template: 'responsibleresults', model: [results: results, projectID: params.id]
+        }
+    }
+
+    def addResponsible = {
+        def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
+        if (linking.duplicate)
+            render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+        render template: 'responsible', model: [responsibles: linking.sources, project: linking.target]
+
+    }
+
+    def removeResponsible = {
+        def breaking = functionService.breakEntities(params.responsible, params.id, metaDataService.ltResponsible)
+        render template: 'responsible', model: [responsibles: breaking.sources, project: breaking.target]
+    }
 
 }
 

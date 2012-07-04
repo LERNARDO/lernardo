@@ -55,8 +55,9 @@ class EntityTests extends GroovyTestCase {
 
         sql = new Sql(sessionFactory.currentSession.connection())
         sql.metaClass.getNumberOfSelects = {->
-            delegate.
-            return delegate.rows('select CURRENT_VALUE from information_schema.sequences'/*'SHOW STATUS LIKE "Com_select"'*/)/*[0].Value*/ as Long
+            // MySQL
+            return delegate.rows('SHOW STATUS LIKE "Com_select"')[0].Value as Long
+            // H2 and PostgreSQL unknown
         }
     }
 
