@@ -27,6 +27,16 @@ class FunctionService {
 
   boolean transactional = true
 
+    List getFolders(Folder f) {
+        List folders = []
+        f.folders.each {
+            List temp = getFolders(it)
+            folders.addAll(temp)
+            folders.add(it)
+        }
+        return folders
+    }
+
   /**
    * Calculates the duration of a list of project units based on each units group activity templates durations
    *

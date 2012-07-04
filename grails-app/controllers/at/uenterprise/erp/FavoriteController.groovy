@@ -5,6 +5,7 @@ import at.uenterprise.erp.base.EntityHelperService
 
 class FavoriteController {
   EntityHelperService entityHelperService
+  FunctionService functionService
 
   def list() {
     return [type: "favorite"]
@@ -13,7 +14,7 @@ class FavoriteController {
   def editFavorite() {
     Favorite favorite = Favorite.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
-    List folders = getFolders(currentEntity.profile.favoritesFolder)
+    List folders = functionService.getFolders(currentEntity.profile.favoritesFolder)
     render template: "editFavorite", model: [favorite: favorite, folders: folders]
   }
 
@@ -41,16 +42,6 @@ class FavoriteController {
     Entity currentEntity = entityHelperService.loggedIn
     List folders = getFolders(currentEntity.profile.favoritesFolder)
     render template: "createFolder", model: [folders: folders]
-  }
-
-  List getFolders(Folder f) {
-    List folders = []
-    f.folders.each {
-      List temp = getFolders(it)
-      folders.addAll(temp)
-      folders.add(it)
-    }
-    return folders
   }
 
   def saveFolder() {
@@ -83,7 +74,7 @@ class FavoriteController {
   def editFolder() {
     Folder folder = Folder.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
-    List folders = getFolders(currentEntity.profile.favoritesFolder)
+    List folders = functionService.getFolders(currentEntity.profile.favoritesFolder)
     render template: "editFolder", model:[folder: folder, folders: folders]
   }
 
