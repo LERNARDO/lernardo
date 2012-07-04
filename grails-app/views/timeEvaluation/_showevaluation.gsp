@@ -5,7 +5,9 @@
     <tr>
       <th><g:message code="name"/></th>
       <g:each in="${workdaycategories}" var="category">
-        <th>${category.name} (h)</th>
+          <g:if test="${category.counts}">
+            <th>${category.name} (h)</th>
+          </g:if>
       </g:each>
       <th><g:message code="credit.hours"/></th>
       <th><g:message code="debit.hours"/></th>
@@ -21,7 +23,9 @@
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td><g:link controller="${person.type.supertype.name + 'Profile'}" action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile.firstName').decodeHTML()} ${fieldValue(bean: person, field: 'profile.lastName').decodeHTML()}</g:link></td>
             <g:each in="${workdaycategories}" var="category">
-              <td><erp:getHoursForCategory category="${category}" educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+                <g:if test="${category.counts}">
+                    <td><erp:getHoursForCategory category="${category}" educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+                </g:if>
             </g:each>
             <td><erp:getTotalHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
             <td><erp:getExpectedHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>

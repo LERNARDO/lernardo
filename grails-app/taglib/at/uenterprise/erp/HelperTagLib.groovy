@@ -635,7 +635,7 @@ class HelperTagLib {
             }
           }
         }
-        if (wdcat?.count) {
+        if (wdcat?.counts) {
           total += hours
           sums[i] += hours
         }
@@ -1076,7 +1076,7 @@ class HelperTagLib {
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the workdayunit should be counted
       WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
-      if (category?.count) {
+      if (category?.counts) {
         // check if the date of the workdayunit is between date1 and date2
         if (attrs.date1 != null && attrs.date2 != null) {
           if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
@@ -1201,7 +1201,7 @@ class HelperTagLib {
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the workdayunit should be counted
       WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
-      if (category?.count) {
+      if (category?.counts) {
         // check if the date of the workdayunit the chosen date range
         if (date1 != null && date2 != null) {
           if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2 + 1) {
