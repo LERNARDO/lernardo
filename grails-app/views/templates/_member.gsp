@@ -26,5 +26,16 @@
 
   <div><g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName.decodeHTML()}</g:link></div>
   <div class="member-type"><g:message code="${entity.type.supertype.name}"/></div>
+  <g:if test="${entity.type.name == 'Betreutengruppe'}">
+    <a href="#" onclick="jQuery('#modal${i}').modal(); return false"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" style="position: relative; top: 4px;"/></a> <g:link controller="excel" action="report" id="${entity.id}" params="[type: 'clientgroup']"><img src="${g.resource(dir:'images/icons', file:'icon_xls.png')}" alt="XLS" style="position: relative; top: 4px;"/></g:link>
+    <div id="modal${i}" style="display: none;">
+        <g:form action="createpdf" id="${entity.id}">
+            <g:radioGroup name="pageformat" labels="['DIN A4 Hoch (210mm × 297mm)','DIN A4 Quer (297mm × 210mm)','Letter Hoch (216mm × 279mm)','Letter Quer (279mm × 216mm)']" values="[1,2,3,4]" value="1">
+                <p>${it.radio} ${it.label}</p>
+            </g:radioGroup>
+            <g:submitButton name="pdfbutton" value="${message(code: 'notification.send')}"/>
+        </g:form>
+    </div>
+  </g:if>
 
 </div>

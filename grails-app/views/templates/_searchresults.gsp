@@ -2,8 +2,8 @@
   <g:message code="object.found" args="[totalResults, message(code: 'searchResults')]"/>
 </div>
 
-<g:each in="${results}" var="result">
-  <g:render template="/templates/member" model="[entity: result]"/>
+<g:each in="${results}" var="result" status="i">
+  <g:render template="/templates/member" model="[entity: result, i: i]"/>
 </g:each>
 <div class="clear"></div>
 
