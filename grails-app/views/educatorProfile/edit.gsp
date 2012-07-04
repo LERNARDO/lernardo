@@ -242,10 +242,6 @@
               <g:message code="email"/>:
               <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
             </td>
-            %{--<td>
-              <g:message code="languageSelection"/>:
-              <erp:localeSelect name="locale" value="${educator?.user?.locale}"/>
-            </td>--}%
             <td>
               <g:message code="showTips"/>
               <g:checkBox name="showTips" value="${educator?.profile?.showTips}" style="vertical-align: bottom"/>
