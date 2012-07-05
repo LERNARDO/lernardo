@@ -1,3 +1,23 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.largetooltip').each(function() {
+            $(this).qtip({
+                content: {
+                    text: 'Loading...',
+                    ajax: {
+                        url: '${grailsApplication.config.grails.serverURL}/profile/getTooltip',
+                        type: 'GET',
+                        data: {id : $(this).attr('data-idd')}
+                    }
+                },
+                show: {
+                    delay: 1000
+                }
+            });
+        });
+    });
+</script>
+
 <g:if test="${persons}">
   <table class="default-table">
     <thead>
@@ -14,7 +34,7 @@
       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
         <td>
           <erp:profileImage entity="${person}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-          <g:link controller="${person.type.supertype.name + 'Profile'}" action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile.fullName').decodeHTML()}</g:link>
+          <g:link class="largetooltip" data-idd="${person.id}" controller="${person.type.supertype.name + 'Profile'}" action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile.fullName').decodeHTML()}</g:link>
         </td>
         <td id="${i}a"><g:render template="showworkhours" model="[person: person, i: i]"/></td>
         %{--<td id="${i}b"><g:render template="showworkdays" model="[educator: educator, i: i]"/></td>--}%

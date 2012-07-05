@@ -6,7 +6,7 @@
     <span class="notEnabled">${entity.profile.fullName}</span>
   </erp:notEnabled>--}%
   <erp:profileImage entity="${entity}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-  <g:link controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName.decodeHTML()}</g:link>
+  <g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName.decodeHTML()}</g:link>
 </td>
 %{--<td class="col">${entity.type.name}</td>  --}%
 <td><g:message code="${entity.type.supertype.name}"/></td>
