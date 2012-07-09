@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="administration"/>
-  <title><g:message code="user"/> - ${workdayCategoryInstance.name}</title>
+  <title><g:message code="workdayCategory"/> - ${workdayCategoryInstance.name}</title>
 </head>
 <body>
 <div class="boxHeader">
