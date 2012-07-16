@@ -1020,7 +1020,7 @@ class HelperTagLib {
         if (allConfirmed)
             out << "${message(code: 'yes')}"
         else
-            out << "${message(code: 'no')}"
+            out << "${message(code: 'no')}" + link(controller: 'msg', action: 'create', id: educator.id, params: [subject: 'Erinnerung Zeitaufzeichnung', content: attrs.date1 + ' - ' + attrs.date2]) {' (Erinnern)'}
     }
 
     /**
