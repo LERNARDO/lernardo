@@ -37,5 +37,10 @@
         </g:form>
     </div>
   </g:if>
+  <g:if test="${entity.type.name == 'Projekt'}">
+      <g:if test="${entity.profile.completed}">
+          <div class="member-type"><span class="green"><g:message code="project.completed"/></span></div>
+      </g:if>
+  </g:if>
 
 </div>

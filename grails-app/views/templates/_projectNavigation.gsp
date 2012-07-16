@@ -14,6 +14,9 @@
           <erp:accessCheck types="['Betreiber']" facilities="${facilities}" creatorof="${entity}">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
             <div class="button"><g:actionSubmit class="buttonGreen" action="shift" value="${message(code: 'shift')}" /></div>
+              <g:if test="${!entity.profile.completed}">
+                <div class="button"><g:actionSubmit class="buttonGreen" action="complete" value="${message(code: 'project.complete')}" /></div>
+              </g:if>
             <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>

@@ -1807,6 +1807,21 @@ class ProjectProfileController {
         render "(${clients.size()})"
     }
 
+    def complete = {
+        Entity project = Entity.get(params.id)
+        [project: project]
+    }
+
+    def completeNow = {
+        Entity project = Entity.get(params.id)
+        project.profile.completed = true
+        project.profile.properties = params
+
+        project.save()
+
+        redirect action: "show", id: project.id
+    }
+
 }
 
 class ProjectCommand {
