@@ -25,6 +25,13 @@
 
       <table>
 
+          <tr class="prop">
+              <td valign="top" class="name"><g:message code="active"/></td>
+              <td valign="top" class="value">
+                  <g:checkBox name="active" value="true"/>
+              </td>
+          </tr>
+
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/></td>
           <td valign="top" class="value">

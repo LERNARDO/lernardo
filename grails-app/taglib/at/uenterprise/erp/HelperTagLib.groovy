@@ -24,6 +24,12 @@ class HelperTagLib {
     def securityManager
     static namespace = "erp"
 
+    def getFolders = {attrs, body ->
+        Entity currentEntity = entityHelperService.loggedIn
+        List folders = functionService.getFolders(currentEntity.profile.favoritesFolder)
+        out << body(folders: folders)
+    }
+
     def outputFolder(Folder f) {
         out << '<ul>'
         f.folders?.each { Folder folder ->
@@ -138,7 +144,8 @@ class HelperTagLib {
         if (findFavorite(attrs.entity) /*entityHelperService.loggedIn.profile.favorites.contains(attrs.entity.id.toString())*/)
             out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'removeFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'- ' + message(code: 'favorite')}
         else
-            out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'+ ' + message(code: 'favorite')}
+            out << '''<a class="buttonGreen" href="#" onclick="jQuery('#favmodal').modal(); return false"> + ''' + message(code: 'favorite') + '''</a>'''
+            //out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'+ ' + message(code: 'favorite')}
         out << '</span>'
     }
 

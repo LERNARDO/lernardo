@@ -14,6 +14,9 @@
           <erp:accessCheck types="['Betreiber']" facilities="${facilities}" creatorof="${entity}">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
             <div class="button"><g:actionSubmit class="buttonGreen" action="shift" value="${message(code: 'shift')}" /></div>
+              <g:if test="${!entity.profile.completed}">
+                <div class="button"><g:actionSubmit class="buttonGreen" action="complete" value="${message(code: 'project.complete')}" /></div>
+              </g:if>
             <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
@@ -21,6 +24,16 @@
         </g:form>
         <div class="clear"></div>
       </div>
+        <div id="favmodal" style="display: none;">
+            <p><g:message code="favorite.selectFolder"/></p>
+            <g:formRemote name="formRemote" url="[controller: 'profile', action: 'addFavorite', id: entity.id.toString()]" update="favbutton" before="jQuery('#favmodalinfo').show();">
+                <erp:getFolders>
+                    <g:select name="folder" from="${folders}" optionKey="id" optionValue="name"/>
+                    <g:submitButton name="button" value="${message(code: 'favorite.add')}"/>
+                </erp:getFolders>
+            </g:formRemote>
+            <div id="favmodalinfo" style="display: none;"><p class="green"><g:message code="favorite.created"/></p></div>
+        </div>
     </td>
   </tr>
 </table>
