@@ -18,10 +18,10 @@
         <table>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="name"/></td>
+                <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
                 <td valign="top" class="value">
                     <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}"
-                                 size="30" name="fullName"
+                                 required="" size="30" name="fullName"
                                  value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
                 </td>
             </tr>
@@ -86,7 +86,7 @@
         <div class="buttons">
             <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}"/></div>
 
-            <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}"/></div>
+            <div class="button"><g:link class="buttonGray" action="show" id="${group.id}"><g:message code="cancel"/></g:link></div>
 
             <div class="clear"></div>
         </div>

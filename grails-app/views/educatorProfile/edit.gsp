@@ -31,23 +31,23 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="firstName"/></td>
+          <td valign="top" class="name"><g:message code="firstName"/><span class="required-indicator">*</span> </td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" required="" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="lastName"/></td>
+          <td valign="top" class="name"><g:message code="lastName"/><span class="required-indicator">*</span> </td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="25" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" required="" size="25" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="birthDate"/></td>
+          <td valign="top" class="name"><g:message code="birthDate"/><span class="required-indicator">*</span> </td>
           <td valign="top" class="value">
-            <g:textField name="birthDate" class="datepicker-birthday ${hasErrors(bean: educator, field: 'profile.birthDate', 'errors')}" value="${formatDate(date: educator?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
+            <g:textField name="birthDate" class="datepicker-birthday ${hasErrors(bean: educator, field: 'profile.birthDate', 'errors')}" required="" value="${formatDate(date: educator?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
 
@@ -239,8 +239,8 @@
              </td>
             </erp:accessCheck>
             <td>
-              <g:message code="email"/>:
-              <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
+              <g:message code="email"/> <span class="required-indicator">*</span>
+              <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" required="" size="30" type="text" maxlength="80" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
             </td>
             <td>
               <g:message code="showTips"/>
@@ -252,7 +252,7 @@
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
+        <div class="button"><g:link class="buttonGray" action="show" id="${educator.id}"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
 
