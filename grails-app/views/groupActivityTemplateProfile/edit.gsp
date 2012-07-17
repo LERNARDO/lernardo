@@ -16,8 +16,8 @@
         <table width="100%">
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
-            <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.realDuration"/> (min)</td>
+            <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
+            <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.realDuration"/> (min) <span class="required-indicator">*</span></td>
             <erp:accessCheck types="['Betreiber']" creatorof="${template}">
               <td valign="top" class="name"><g:message code="status"/></td>
             </erp:accessCheck>
@@ -25,10 +25,10 @@
 
           <tr>
             <td valign="top" class="value">
-              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="50" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" required="" size="50" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" required="" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/>
             </td>
             <erp:accessCheck types="['Betreiber']" creatorof="${group}">
               <td valign="top" class="value">
@@ -79,7 +79,7 @@
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
+        <div class="button"><g:link class="buttonGray" action="show" id="${group.id}"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
       

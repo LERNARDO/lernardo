@@ -16,23 +16,23 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="begin"/></td>
+          <td valign="top" class="name"><g:message code="begin"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField name="startDate" class="datepicker ${hasErrors(bean: theme, field: 'profile.startDate', 'errors')}" value="${formatDate(date: theme?.profile?.startDate, format: 'dd. MM. yyyy')}"/>
+            <g:textField name="startDate" required="" class="datepicker ${hasErrors(bean: theme, field: 'profile.startDate', 'errors')}" value="${formatDate(date: theme?.profile?.startDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="end"/></td>
+          <td valign="top" class="name"><g:message code="end"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField name="endDate" class="datepicker ${hasErrors(bean: theme, field: 'profile.endDate', 'errors')}" value="${formatDate(date: theme?.profile?.endDate, format: 'dd. MM. yyyy')}"/>
+            <g:textField name="endDate" required="" class="datepicker ${hasErrors(bean: theme, field: 'profile.endDate', 'errors')}" value="${formatDate(date: theme?.profile?.endDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
 
@@ -61,7 +61,7 @@
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}" /></div>
+        <div class="button"><g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
       
