@@ -20,7 +20,7 @@
             <tr class="prop">
                 <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
                 <td valign="top" class="value">
-                    <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}"
+                    <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}"
                                  required="" size="30" name="fullName"
                                  value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
                 </td>
@@ -46,8 +46,8 @@
             <tr class="prop">
                 <td valign="top" class="name"><g:message code="groupFamily.profile.livingConditions"/></td>
                 <td valign="top" class="value">
-                    <g:textArea
-                            class="countable500 ${hasErrors(bean: group, field: 'profile.livingConditions', 'errors')}"
+                    <g:textArea data-counter="500"
+                                class="${hasErrors(bean: group, field: 'profile.livingConditions', 'errors')}"
                             rows="5" cols="36" name="livingConditions"
                             value="${fieldValue(bean: group, field: 'profile.livingConditions')}"/>
                 </td>
@@ -56,8 +56,8 @@
             <tr class="prop">
                 <td valign="top" class="name"><g:message code="groupFamily.profile.socioeconomicData"/></td>
                 <td valign="top" class="value">
-                    <g:textArea
-                            class="countable500 ${hasErrors(bean: group, field: 'profile.socioeconomicData', 'errors')}"
+                    <g:textArea data-counter="500"
+                                class="${hasErrors(bean: group, field: 'profile.socioeconomicData', 'errors')}"
                             rows="5" cols="36" name="socioeconomicData"
                             value="${fieldValue(bean: group, field: 'profile.socioeconomicData')}"/>
                 </td>
@@ -66,7 +66,7 @@
             <tr class="prop">
                 <td valign="top" class="name"><g:message code="groupFamily.profile.otherInfo"/></td>
                 <td valign="top" class="value">
-                    <g:textArea class="countable500 ${hasErrors(bean: group, field: 'profile.otherInfo', 'errors')}"
+                    <g:textArea data-counter="500" class="${hasErrors(bean: group, field: 'profile.otherInfo', 'errors')}"
                                 rows="5" cols="36" name="otherInfo"
                                 value="${fieldValue(bean: group, field: 'profile.otherInfo')}"/>
                 </td>

@@ -18,7 +18,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.fullName', 'errors')}" required="" size="41" maxlength="80" name="fullName" value="${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: facility, field: 'profile.fullName', 'errors')}" required="" size="41" maxlength="80" name="fullName" value="${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -48,7 +48,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="street"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.street', 'errors')}" size="40" name="street" value="${fieldValue(bean: facility, field: 'profile.street').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: facility, field: 'profile.street', 'errors')}" size="40" name="street" value="${fieldValue(bean: facility, field: 'profile.street').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -62,7 +62,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="city"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.city', 'errors')}" size="30" name="city" value="${fieldValue(bean: facility, field: 'profile.city').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: facility, field: 'profile.city', 'errors')}" size="30" name="city" value="${fieldValue(bean: facility, field: 'profile.city').decodeHTML()}"/>
           </td>
         </tr>
 

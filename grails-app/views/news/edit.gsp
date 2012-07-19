@@ -23,14 +23,14 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="title"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable${news.constraints.title.maxSize} ${hasErrors(bean: news, field: 'title', 'errors')}" name="title" size="50" value="${fieldValue(bean:news,field:'title').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: news, field: 'title', 'errors')}" name="title" size="50" value="${fieldValue(bean:news,field:'title').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="teaser"/></td>
           <td valign="top" class="value">
-            <g:textArea class="countable${news.constraints.teaser.maxSize} ${hasErrors(bean: news, field: 'teaser', 'errors')}" name="teaser" rows="3" cols="50" value="${fieldValue(bean:news,field:'teaser').decodeHTML()}"/>
+            <g:textArea data-counter="500" class="${hasErrors(bean: news, field: 'teaser', 'errors')}" name="teaser" rows="3" cols="50" value="${fieldValue(bean:news,field:'teaser').decodeHTML()}"/>
             <span class="gray">(<g:message code="teaser.info"/>)</span><br/><br/>
           </td>
         </tr>

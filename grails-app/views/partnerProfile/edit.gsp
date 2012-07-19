@@ -19,14 +19,14 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" required="" size="42" maxlength="80" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" required="" size="42" maxlength="80" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="description"/></td>
           <td valign="top" class="value">
-            <g:textArea class="countable2000 ${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="5" cols="50" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
+            <g:textArea data-counter="2000" class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="5" cols="50" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -54,7 +54,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="street"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: partner, field: 'profile.street', 'errors')}" size="42" name="street" value="${fieldValue(bean: partner, field: 'profile.street').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: partner, field: 'profile.street', 'errors')}" size="42" name="street" value="${fieldValue(bean: partner, field: 'profile.street').decodeHTML()}"/>
           </td>
         </tr>
 

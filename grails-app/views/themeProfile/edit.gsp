@@ -18,7 +18,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -53,7 +53,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="description"/></td>
           <td valign="top" class="value">
-            <g:textArea class="countable2000 ${hasErrors(bean: theme, field: 'profile.description', 'errors')}" rows="4" cols="50" name="description" value="${fieldValue(bean: theme, field: 'profile.description').decodeHTML()}"/>
+            <g:textArea data-counter="2000" class="${hasErrors(bean: theme, field: 'profile.description', 'errors')}" rows="4" cols="50" name="description" value="${fieldValue(bean: theme, field: 'profile.description').decodeHTML()}"/>
           </td>
         </tr>
 

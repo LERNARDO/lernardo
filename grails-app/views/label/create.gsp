@@ -18,14 +18,14 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/></td>
           <td valign="top" class="value">
-            <g:textField size="40" class="countable50 ${hasErrors(bean: labelInstance, field: 'name', 'errors')}" name="name" value="${fieldValue(bean: labelInstance, field: 'name').decodeHTML()}"/>
+            <g:textField size="40" data-counter="50" class="${hasErrors(bean: labelInstance, field: 'name', 'errors')}" name="name" value="${fieldValue(bean: labelInstance, field: 'name').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="description"/></td>
           <td valign="top" class="value">
-            <g:textArea rows="4" cols="50" class="countable5000 ${hasErrors(bean: labelInstance, field: 'description', 'errors')}" name="description" value="${fieldValue(bean: labelInstance, field: 'description').decodeHTML()}"/>
+            <g:textArea rows="4" cols="50" data-counter="5000" class="${hasErrors(bean: labelInstance, field: 'description', 'errors')}" name="description" value="${fieldValue(bean: labelInstance, field: 'description').decodeHTML()}"/>
           </td>
         </tr>
 

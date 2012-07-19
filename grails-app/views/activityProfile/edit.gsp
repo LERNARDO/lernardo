@@ -28,7 +28,7 @@
 
         <tr>
           <td width="220" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.fullName', 'errors')}">
-            <g:textField class="countable${activity.profile.constraints.fullName.maxSize}" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName').decodeHTML()}"/>
           </td>
           <td width="350" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.date', 'errors')}">
             <g:textField class="datetimepicker2" name="date" value="${formatDate(date: activity?.profile?.date, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>

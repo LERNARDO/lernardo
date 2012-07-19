@@ -27,14 +27,14 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="firstName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: child, field: 'profile.firstName', 'errors')}" required="" size="25" name="firstName" value="${fieldValue(bean: child, field: 'profile.firstName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: child, field: 'profile.firstName', 'errors')}" required="" size="25" name="firstName" value="${fieldValue(bean: child, field: 'profile.firstName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}" required="" size="35" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: child, field: 'profile.lastName', 'errors')}" required="" size="35" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -69,7 +69,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="child.profile.jobFrequency"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50" size="30" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
+            <g:textField data-counter="50" size="30" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
           </td>
         </tr>
 

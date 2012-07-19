@@ -17,7 +17,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="workdayCategory.name"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean:workdayCategoryInstance,field:'name','errors')}" size="50" name="name" value="${fieldValue(bean:workdayCategoryInstance,field:'name').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean:workdayCategoryInstance,field:'name','errors')}" size="50" name="name" value="${fieldValue(bean:workdayCategoryInstance,field:'name').decodeHTML()}"/>
           </td>
         </tr>
 

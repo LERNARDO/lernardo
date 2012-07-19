@@ -26,14 +26,14 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="firstName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: parent, field: 'profile.firstName', 'errors')}" required="" size="25" name="firstName" value="${fieldValue(bean: parent, field: 'profile.firstName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: parent, field: 'profile.firstName', 'errors')}" required="" size="25" name="firstName" value="${fieldValue(bean: parent, field: 'profile.firstName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" required="" size="25" maxlength="30" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" required="" size="25" maxlength="30" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -61,7 +61,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="parent.profile.description"/></td>
           <td valign="top" class="value">
-            <g:textArea class="countable2000" name="comment" rows="5" cols="50" value="${fieldValue(bean: parent, field: 'profile.comment').decodeHTML()}"/>
+            <g:textArea data-counter="2000" name="comment" rows="5" cols="50" value="${fieldValue(bean: parent, field: 'profile.comment').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -110,7 +110,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="street"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
           </td>
         </tr>
 

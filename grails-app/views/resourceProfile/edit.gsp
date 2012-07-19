@@ -22,7 +22,7 @@
 
           <tr class="prop">
             <td width="540" valign="top" class="value">
-              <g:textField class="countable${resourceInstance.profile.constraints.fullName.maxSize} ${hasErrors(bean: resourceInstance, field: 'profile.fullName', 'errors')}" size="80" maxlength="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField data-counter="50" class="${hasErrors(bean: resourceInstance, field: 'profile.fullName', 'errors')}" size="80" maxlength="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -31,7 +31,7 @@
           </tr>
           <tr>
             <td valign="top" class="value">
-              <g:textArea class="countable${resourceInstance.profile.constraints.description.maxSize} ${hasErrors(bean: resourceInstance, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resourceInstance, field: 'profile.description').decodeHTML()}"/>
+              <g:textArea data-counter="2000" class="${hasErrors(bean: resourceInstance, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resourceInstance, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 

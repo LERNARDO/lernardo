@@ -18,7 +18,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: pc, field: 'fullName', 'errors')}" required="" size="50" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: pc, field: 'fullName', 'errors')}" required="" size="50" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
           </td>
         </tr>
 

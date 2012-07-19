@@ -23,7 +23,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="title"/></td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: publication, field: 'name', 'errors')} countable50" id="name" name="name" size="50" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/>
+              <g:textField data-counter="50" class="${hasErrors(bean: publication, field: 'name', 'errors')}" id="name" name="name" size="50" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/>
             </td>
           </tr>
 

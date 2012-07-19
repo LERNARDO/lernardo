@@ -18,14 +18,14 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="firstName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" required="" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean:user,field:'profile.firstName','errors')}" required="" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" required="" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean:user,field:'profile.lastName','errors')}" required="" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
           </td>
         </tr>
 

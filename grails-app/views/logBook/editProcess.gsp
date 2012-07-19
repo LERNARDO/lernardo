@@ -19,14 +19,14 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: process, field: 'name', 'errors')}" name="name" size="50" value="${fieldValue(bean:process,field:'name').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: process, field: 'name', 'errors')}" name="name" size="50" value="${fieldValue(bean:process,field:'name').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="costs"/> (${grailsApplication.config.currency})</td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: process, field: 'costs', 'errors')}" name="costs" size="10" value="${fieldValue(bean:process,field:'costs').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: process, field: 'costs', 'errors')}" name="costs" size="10" value="${fieldValue(bean:process,field:'costs').decodeHTML()}"/>
           </td>
         </tr>
 

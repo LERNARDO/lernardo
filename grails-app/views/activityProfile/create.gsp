@@ -23,7 +23,7 @@
 
         <tr>
           <td width="380" valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: ac, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: ac, field: 'fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: ac, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: ac, field: 'fullName').decodeHTML()}"/>
           </td>
           <td width="200" valign="top" class="value">
             <g:textField name="periodStart" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodStart', 'errors')}" value="${formatDate(date: ac?.periodStart, format: 'dd. MM. yyyy')}"/>

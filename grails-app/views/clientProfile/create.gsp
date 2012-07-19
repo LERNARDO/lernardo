@@ -34,7 +34,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
             <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" required="" size="40" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}"/>
+              <g:textField data-counter="50" class="${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" required="" size="40" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -48,7 +48,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="client.profile.interests"/></td>
             <td valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: client, field: 'profile.interests', 'errors')}" rows="4" cols="50" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
+              <g:textArea data-counter="2000" class="${hasErrors(bean: client, field: 'profile.interests', 'errors')}" rows="4" cols="50" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -61,7 +61,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="street"/></td>
             <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="40" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
+              <g:textField data-counter="50" class="${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="40" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -88,14 +88,14 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="city"/></td>
             <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
+              <g:textField data-counter="50" class="${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="country"/></td>
             <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
+              <g:textField data-counter="50" class="${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -171,7 +171,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="client.profile.supportDescription"/></td>
             <td valign="top" class="value">
-              <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" name="supportDescription" value="${client?.profile?.supportDescription}"/>
+              <g:textField data-counter="500" class="${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" name="supportDescription" value="${client?.profile?.supportDescription}"/>
             </td>
           </tr>
 

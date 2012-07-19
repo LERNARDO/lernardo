@@ -26,21 +26,21 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="title"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.title', 'errors')}" size="15" name="title" value="${fieldValue(bean: educator, field: 'profile.title').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.title', 'errors')}" size="15" name="title" value="${fieldValue(bean: educator, field: 'profile.title').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="firstName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" required="" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" required="" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" required="" size="25" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" required="" size="25" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -82,7 +82,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="educator.profile.interests"/></td>
           <td valign="top" class="value">
-            <g:textArea rows="3" cols="50" class="countable2000 ${hasErrors(bean: educator, field: 'profile.interests', 'errors')}" name="interests" value="${fieldValue(bean: educator, field: 'profile.interests').decodeHTML()}"/>
+            <g:textArea rows="3" cols="50" data-counter="2000" class="${hasErrors(bean: educator, field: 'profile.interests', 'errors')}" name="interests" value="${fieldValue(bean: educator, field: 'profile.interests').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -129,30 +129,9 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="street"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="50" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="50" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
           </td>
         </tr>
-
-        %{--<tr class="prop">
-          <td valign="top" class="name"><g:message code="zip"/></td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="10" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name"><g:message code="city"/></td>
-          <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCity', 'errors')}" size="30" name="currentCity" value="${fieldValue(bean: educator, field: 'profile.currentCity').decodeHTML()}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name"><g:message code="country"/></td>
-          <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
-          </td>
-        </tr>--}%
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="groupColony"/></td>
@@ -169,7 +148,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="street"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="50" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="50" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -183,7 +162,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="city"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -202,14 +181,14 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactName', 'errors')}" size="50" name="contactName" value="${fieldValue(bean: educator, field: 'profile.contactName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.contactName', 'errors')}" size="50" name="contactName" value="${fieldValue(bean: educator, field: 'profile.contactName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="street"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="50" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="50" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -223,28 +202,28 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="city"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="50" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="50" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="country"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="50" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="50" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="phone"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="50" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="50" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="email"/></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="50" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="50" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
           </td>
         </tr>
 

@@ -123,33 +123,7 @@
 
       $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 
-      $('.countable50').jqEasyCounter({
-        'maxChars': 50,
-        'maxCharsWarning': 50,
-        'msgFontColor': '#777',
-        'msgTextAlign': 'left'
-      });
-
-      $('.countable500').jqEasyCounter({
-        'maxChars': 500,
-        'maxCharsWarning': 500,
-        'msgFontColor': '#777',
-        'msgTextAlign': 'left'
-      });
-
-      $('.countable2000').jqEasyCounter({
-        'maxChars': 2000,
-        'maxCharsWarning': 2000,
-        'msgFontColor': '#777',
-        'msgTextAlign': 'left'
-      });
-
-      $('.countable5000').jqEasyCounter({
-        'maxChars': 5000,
-        'maxCharsWarning': 5000,
-        'msgFontColor': '#777',
-        'msgTextAlign': 'left'
-      });
+      $('[data-counter]').jqEasyCounter();
 
     });
 
