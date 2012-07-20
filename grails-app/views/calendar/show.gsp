@@ -65,7 +65,7 @@
 
 <table width="100%" style="margin-top: 15px;">
   <tr>
-    <td style="padding-right: 15px; vertical-align: top; width: 250px;">
+    <td style="padding-right: 15px; vertical-align: top; width: 220px;">
 
       <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; text-align: center; color: #36808E; font-size: 16px; margin-bottom: 6px;"><g:message code="imgmenu.calendar.name"/></div>
 

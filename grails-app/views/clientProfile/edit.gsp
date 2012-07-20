@@ -25,23 +25,23 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="firstName"/></td>
+            <td valign="top" class="name"><g:message code="firstName"/> <span class="required-indicator">*</span></td>
             <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="40" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" required="" size="40" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="lastName"/></td>
+            <td valign="top" class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
             <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="40" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" required="" size="40" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="birthDate"/></td>
+            <td valign="top" class="name"><g:message code="birthDate"/> <span class="required-indicator">*</span></td>
             <td valign="top" class="value">
-              <g:textField name="birthDate" class="datepicker-birthday ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" value="${formatDate(date: client?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
+              <g:textField name="birthDate" class="datepicker-birthday ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" required="" value="${formatDate(date: client?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
             </td>
           </tr>
 
@@ -65,26 +65,12 @@
             </td>
           </tr>
 
-          %{--<tr class="prop">
-            <td valign="top" class="name"><g:message code="zip"/></td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="10" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
-            </td>
-          </tr>--}%
-
           <tr class="prop">
             <td valign="top" class="name"><g:message code="groupColony"/></td>
             <td valign="top" class="value">
               <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile" value="${colony?.id}"/>
             </td>
           </tr>
-
-          %{--<tr class="prop">
-            <td valign="top" class="name"><g:message code="country"/></td>
-            <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
-            </td>
-          </tr>--}%
 
         </table>
 
@@ -146,48 +132,6 @@
               <g:select name="schoolLevel" from="${Setup.list()[0]?.schoolLevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
             </td>
           </tr>
-
-          %{--<tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.schoolDropout"/></td>
-            <td valign="top" class="value">
-              <g:checkBox name="schoolDropout" value="${client?.profile?.schoolDropout}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.schoolDropoutDate"/></td>
-            <td valign="top" class="value">
-              <g:textField name="schoolDropoutDate" size="30" class="datepicker-birthday" value="${formatDate(date: client?.profile?.schoolDropoutDate, format: 'dd. MM. yyyy')}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.schoolDropoutReason"/></td>
-            <td valign="top" class="value">
-              <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="60" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.schoolRestart"/></td>
-            <td valign="top" class="value">
-              <g:checkBox name="schoolRestart" value="${client?.profile?.schoolRestart}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.schoolRestartDate"/></td>
-            <td valign="top" class="value">
-              <g:textField name="schoolRestartDate" size="30" class="datepicker-birthday" value="${formatDate(date: client?.profile?.schoolRestartDate, format: 'dd. MM. yyyy')}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.schoolRestartReason"/></td>
-            <td valign="top" class="value">
-              <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="60" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>
-            </td>
-          </tr>--}%
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="client.profile.job"/></td>
@@ -257,8 +201,8 @@
                 </td>
               </erp:accessCheck>
               <td>
-                <g:message code="email"/>:
-                <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>
+                <g:message code="email"/> <span class="required-indicator">*</span>
+                <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" required="" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>
               </td>
             </tr>
           </table>
@@ -268,7 +212,7 @@
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
+        <div class="button"><g:link class="buttonGray" action="show" id="${client.id}"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
       

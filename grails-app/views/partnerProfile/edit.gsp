@@ -17,9 +17,9 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" size="42" maxlength="80" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" required="" size="42" maxlength="80" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -58,27 +58,6 @@
           </td>
         </tr>
 
-        %{--<tr class="prop">
-          <td valign="top" class="name"><g:message code="zip"/></td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: partner, field: 'profile.zip', 'errors')}" size="12" name="zip" value="${fieldValue(bean: partner, field: 'profile.zip').decodeHTML()}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name"><g:message code="city"/></td>
-          <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" name="city" value="${fieldValue(bean: partner, field: 'profile.city').decodeHTML()}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name"><g:message code="country"/></td>
-          <td valign="top" class="value">
-            <g:select name="country" from="${Setup.list()[0]?.nationalities}" value="${partner?.profile?.country}" noSelection="['': message(code: 'unknown')]"/>
-          </td>
-        </tr>--}%
-
         <tr class="prop">
           <td valign="top" class="name"><g:message code="groupColony"/></td>
           <td valign="top" class="value">
@@ -98,8 +77,8 @@
               </td>
             </erp:accessCheck>
             <td>
-              <g:message code="email"/>:
-              <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
+              <g:message code="email"/> <span class="required-indicator">*</span>
+              <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" required="" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
             </td>
           </tr>
         </table>
@@ -107,7 +86,7 @@
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
+        <div class="button"><g:link class="buttonGray" action="show" id="${partner.id}"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
 

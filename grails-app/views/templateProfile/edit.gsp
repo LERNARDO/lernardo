@@ -16,16 +16,16 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean:template,field:'profile.fullName','errors')}" size="50" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean:template,field:'profile.fullName','errors')}" required="" size="50" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="duration"/></td>
+          <td valign="top" class="name"><g:message code="duration"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" size="10" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> <span class="gray">(min)</span>
+            <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" required="" size="10" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> <span class="gray">(min)</span>
           </td>
         </tr>
 
@@ -95,7 +95,7 @@
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
+        <div class="button"><g:link class="buttonGray" action="show" id="${template.id}"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
 

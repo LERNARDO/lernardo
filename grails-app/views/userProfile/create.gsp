@@ -16,16 +16,16 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="firstName"/></td>
+          <td valign="top" class="name"><g:message code="firstName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <span class="required-indicator">*</span> <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" required="" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" required="" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="lastName"/></td>
+          <td valign="top" class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <span class="required-indicator">*</span> <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" required="" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" required="" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -50,7 +50,7 @@
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>%{--<g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}" />--}%</div>
+        <div class="button"><g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
 

@@ -843,7 +843,7 @@ class HelperTagLib {
      * @attr string REQUIRED The string to truncate
      */
     def truncate = {attrs ->
-        out << (attrs.string.size() > 20 ? attrs.string.substring(0, 20) + "..." : attrs.string)
+        out << (attrs.string.size() > 18 ? attrs.string.substring(0, 18) + "..." : attrs.string)
     }
 
     /**

@@ -17,9 +17,9 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -41,7 +41,7 @@
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}" /></div>
+        <div class="button"><g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link></div>
         <div class="clear"></div>
       </div>
 
