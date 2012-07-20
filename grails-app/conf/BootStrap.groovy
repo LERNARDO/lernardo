@@ -43,6 +43,9 @@ import at.uenterprise.erp.Label
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.Favorite
+import at.uenterprise.erp.base.Asset
+import java.text.SimpleDateFormat
+import at.uenterprise.erp.Live
 
 class BootStrap {
     DefaultObjectService defaultObjectService
@@ -94,6 +97,7 @@ class BootStrap {
                 createDefaultThemes()
                 createDefaultComments()
                 createDefaultProjectTemplates()
+                createDefaultProjects()
                 //createDefaultHelpers()
                 createDefaultWorkdayCategories()
                 createDefaultWorkdayUnits()
@@ -904,6 +908,84 @@ class BootStrap {
 
     }
 
+    void createDefaultProjects() {
+        log.info("creating " + dummies + " projects")
+        EntityType etProject = metaDataService.etProject
+
+        Entity projectTemplate = Entity.findByName("projectTemplate1")
+
+        Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
+            ent.profile = profileHelperService.createProfileFor(ent) as Profile
+            ent.profile.fullName = "project"
+            ent.profile.startDate = new Date()
+            ent.profile.endDate = new Date() + 10
+            ent.profile.description = "dummyDescription"
+        }
+        // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
+        projectTemplate.assets.each { Asset asset ->
+            if (asset.type == "profile") {
+                new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+            }
+        }
+
+        // copy labels from template
+        projectTemplate.profile.labels.each { Label templateLabel ->
+            Label label = new Label()
+
+            label.name = templateLabel.name
+            label.description = templateLabel.description
+            label.type = "instance"
+
+            entity.profile.addToLabels(label)
+        }
+
+        // save creator
+        new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+
+        // create link to template
+        new Link(source: projectTemplate, target: entity, type: metaDataService.ltProjectTemplate).save()
+
+        // create project days
+        Date periodStart = entity.profile.startDate
+        Date periodEnd = entity.profile.endDate
+
+        periodEnd.setHours(23)
+        periodEnd.setMinutes(59)
+
+        Calendar calendarStart = new GregorianCalendar()
+        calendarStart.setTime(periodStart)
+
+        Calendar calendarEnd = new GregorianCalendar()
+        calendarEnd.setTime(periodEnd)
+
+        SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
+
+        // loop through the date range and compare the dates day with the params
+        while (calendarStart <= calendarEnd) {
+            Date currentDate = calendarStart.getTime()
+
+            if (df.format(currentDate) == 'Monday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, 10)
+                calendarStart.set(Calendar.MINUTE, 0)
+            }
+
+            // create project day
+            EntityType etProjectDay = metaDataService.etProjectDay
+            Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
+                ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                ent.profile.fullName = entity.profile.fullName
+                ent.profile.date = functionService.convertToUTC(calendarStart.getTime())
+            }
+
+            // link project day to project
+            new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
+
+            // increment calendar
+            calendarStart.add(Calendar.DATE, 1)
+        }
+
+    }
+
     void createDefaultTags() {
         log.info("creating tags")
 
@@ -939,12 +1021,12 @@ class BootStrap {
     }
 
     void createDefaultAppointments() {
-        log.info("creating " + (dummies * 5) + " appointments")
+        log.info("creating " + dummies + " appointments")
         EntityType etAppointment = metaDataService.etAppointment
 
         Random generator = new Random()
 
-        for (i in 1..(dummies * 5)) {
+        for (i in 1..dummies) {
             Entity entity = entityHelperService.createEntity("appointment" + i, etAppointment) {Entity ent ->
                 ent.profile = profileHelperService.createProfileFor(ent) as Profile
                 ent.profile.fullName = "appointment " + i
@@ -966,12 +1048,12 @@ class BootStrap {
     }
 
     void createDefaultGroupActivities() {
-        log.info("creating " + (dummies * 5) + " group activities")
+        log.info("creating " + dummies + " group activities")
         EntityType etGroupActivity = metaDataService.etGroupActivity
 
         Random generator = new Random()
 
-        for (i in 1..(dummies * 5)) {
+        for (i in 1..dummies) {
             Entity groupActivityTemplate = Entity.findByName("groupActivityTemplate${generator.nextInt(dummies) + 1}")
             Entity entity = entityHelperService.createEntity("groupActivity", etGroupActivity) {Entity ent ->
                 ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -1008,12 +1090,12 @@ class BootStrap {
     }
 
     void createDefaultMessages() {
-        log.info("creating " + (dummies * 5) + " messages")
+        log.info("creating " + dummies + " messages")
 
         Entity first = Entity.findByName("admin")
         Entity second = Entity.findByName("educator1")
 
-        for (i in 1..(dummies * 5)) {
+        for (i in 1..dummies) {
             functionService.createMessage(first, second, first, "subject${i}", "content", true).save()
             functionService.createMessage(first, second, second, "subject${i}", "content").save()
         }
