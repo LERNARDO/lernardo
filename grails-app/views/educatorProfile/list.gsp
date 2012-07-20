@@ -87,7 +87,7 @@
 
       </table>
 
-      <g:submitButton name="button" value="${message(code:'define')}"/>
+      <g:submitButton name="button" value="${message(code:'define')}"/> <img class="tooltiphelp" data-tooltip="${message(code: 'tooltiphelper.example')}" src="${g.resource(dir:'images/icons', file:'icon_help.png')}" alt="Help" style="position: relative; top: 3px;"/>
       <div class="clear"></div>
     </g:formRemote>
 
