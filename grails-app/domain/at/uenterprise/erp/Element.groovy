@@ -5,17 +5,13 @@ package at.uenterprise.erp
  *
  * @author  Alexander Zeillinger
  */
-class Element implements Comparable {
+class Element {
 
   String  name
   Integer voting = 0
 
   static constraints = {
 
-  }
-
-  int compareTo (obj) {
-    name <=> obj.name
   }
 
 }

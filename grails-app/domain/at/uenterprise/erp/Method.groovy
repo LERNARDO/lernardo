@@ -7,7 +7,7 @@ package at.uenterprise.erp
  */
 class Method {
 
-  SortedSet elements
+  List elements
   static hasMany = [elements: Element]
 
   String name

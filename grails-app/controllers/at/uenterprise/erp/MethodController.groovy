@@ -171,4 +171,26 @@ class MethodController {
     element.save(flush: true)
     render template: 'element', model: [methodInstance: method, element: element, i: params.i]
   }
+
+    def moveUp = {
+        Method method = Method.get(params.id)
+        Element element = Element.get(params.element)
+
+        if (method.elements.indexOf(element) > 0) {
+            int i = method.elements.indexOf(element)
+            use(Collections){ method.elements.swap(i, i - 1) }
+        }
+        render template: 'elements', model: [methodInstance: method]
+    }
+
+    def moveDown = {
+        Method method = Method.get(params.id)
+        Element element = Element.get(params.element)
+
+        if (method.elements.indexOf(element) < (method.elements.size() - 1)) {
+            int i = method.elements.indexOf(element)
+            use(Collections){ method.elements.swap(i, i + 1) }
+        }
+        render template: 'elements', model: [methodInstance: method]
+    }
 }

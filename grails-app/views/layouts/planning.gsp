@@ -32,6 +32,24 @@
         });
       });
 
+      $('.tooltiphelp').each(function() {
+        $(this).qtip({
+          content: {
+            text: function(api) {
+               return $(this).attr('data-tooltip');
+            }
+          },
+          position: {
+            my: 'top left',  // Position my top left...
+            at: 'right bottom', // at the bottom right of...
+            target: $(this) // my target
+          },
+          style: {
+            classes: 'ui-tooltip-green'
+          }
+        });
+      });
+
       $('.largetooltip').each(function() {
         $(this).qtip({
           content: {
