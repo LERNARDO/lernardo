@@ -777,20 +777,8 @@ class BootStrap {
                 }
 
                 // create some links to that group
-                def links = dummies // amount of clients to add
-                List clients = []
-                for (j in 1..links) {
-                    def done = false
-                    while (!done) {
-                        def client = j //generator.nextInt(5) + 1
-                        if (!clients.contains(client)) {
-                            clients << client
-                            done = true
-                        }
-                    }
-                }
-                clients.each {
-                    new Link(source: Entity.findByName("client" + it), target: entity, type: metaDataService.ltGroupMemberClient).save(failOnError: true)
+                for (j in 1..2) {
+                    new Link(source: Entity.findByName("client" + j), target: entity, type: metaDataService.ltGroupMemberClient).save(failOnError: true)
                 }
             }
         }
@@ -821,21 +809,9 @@ class BootStrap {
                 }
 
                 // create some links to that group
-                def links = generator.nextInt(dummies) + 1 // amount of activity templates to add
-                List activitytemplates = []
-                for (j in 1..links) {
-                    def done = false
-                    while (!done) {
-                        def activitytemplate = generator.nextInt(dummies) + 1
-                        if (!activitytemplates.contains(activitytemplate)) {
-                            activitytemplates << activitytemplate
-                            done = true
-                        }
-                    }
-                }
-                activitytemplates.each {
-                    new Link(source: Entity.findByName("template" + it), target: entity, type: metaDataService.ltGroupMember).save(failOnError: true)
-                    entity.profile.addToTemplates(Entity.findByName("template" + it).id.toString())
+                for (j in 1..2) {
+                    new Link(source: Entity.findByName("template" + j), target: entity, type: metaDataService.ltGroupMember).save(failOnError: true)
+                    entity.profile.addToTemplates(Entity.findByName("template" + j).id.toString())
                 }
 
                 // add default profile image
