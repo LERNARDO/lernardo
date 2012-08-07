@@ -24,8 +24,9 @@
     </div>
 
     <div id="content">
-      <h4><g:message code="profile"/></h4>
+      <h4><g:message code="profile"/> <a onclick="toggle('#profile'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h4>
 
+        <div id="profile" style="display: none;">
       <g:if test="${template}">
         <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
       </g:if>
@@ -40,77 +41,80 @@
       <table>
         <tbody>
 
-        <tr class="prop">
-          <td class="one"><g:message code="name"/></td>
-          <td class="two">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</td>
-        </tr>
+            <tr class="prop">
+              <td class="one"><g:message code="name"/></td>
+              <td class="two">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</td>
+            </tr>
 
-        <tr class="prop">
-          <td class="one"><g:message code="begin"/></td>
-          <td class="two"><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" /></td>
-        </tr>
+            <tr class="prop">
+              <td class="one"><g:message code="begin"/></td>
+              <td class="two"><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" /></td>
+            </tr>
 
-        <tr class="prop">
-          <td class="one"><g:message code="end"/></td>
-          <td class="two"><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" /></td>
-        </tr>
+            <tr class="prop">
+              <td class="one"><g:message code="end"/></td>
+              <td class="two"><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" /></td>
+            </tr>
 
-        <tr class="prop">
-          <td class="one"><g:message code="description"/></td>
-          <td class="two">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-        </tr>
+            <tr class="prop">
+              <td class="one"><g:message code="description"/></td>
+              <td class="two">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+            </tr>
 
-        <tr class="prop">
-          <td class="one"><g:message code="project.profile.educationalObjective"/></td>
-          <td class="two">
-            <g:if test="${project.profile.educationalObjective}">
-              <g:message code="goal.${project.profile.educationalObjective}"/>
+            <tr class="prop">
+              <td class="one"><g:message code="project.profile.educationalObjective"/></td>
+              <td class="two">
+                <g:if test="${project.profile.educationalObjective}">
+                  <g:message code="goal.${project.profile.educationalObjective}"/>
+                </g:if>
+                <g:else>
+                  <span class="italic"><g:message code="none"/></span>
+                </g:else>
+              </td>
+            </tr>
+
+            <tr class="prop">
+              <td class="one"><g:message code="project.profile.educationalObjectiveText"/></td>
+              <td class="two">${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+            </tr>
+
+            <g:if test="${project.profile.completed}">
+                <tr class="prop">
+                    <td class="one"><g:message code="project.objectiveReached"/></td>
+                    <td class="two"><g:formatBoolean boolean="${project.profile.objectiveReached}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+                </tr>
+
+                <tr class="prop">
+                    <td class="one"><g:message code="project.objectiveComment"/></td>
+                    <td class="two">${fieldValue(bean: project, field: 'profile.objectiveComment').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+                </tr>
+
+                <tr class="prop">
+                    <td class="one"><g:message code="project.goodFactors"/></td>
+                    <td class="two">${fieldValue(bean: project, field: 'profile.goodFactors').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+                </tr>
+
+                <tr class="prop">
+                    <td class="one"><g:message code="project.badFactors"/></td>
+                    <td class="two">${fieldValue(bean: project, field: 'profile.badFactors').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+                </tr>
+
+                <tr class="prop">
+                    <td class="one"><g:message code="project.wouldRepeatIt"/></td>
+                    <td class="two"><g:formatBoolean boolean="${project.profile.wouldRepeatIt}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+                </tr>
+
+                <tr class="prop">
+                    <td class="one"><g:message code="project.repeatReason"/></td>
+                    <td class="two">${fieldValue(bean: project, field: 'profile.repeatReason').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+                </tr>
             </g:if>
-            <g:else>
-              <span class="italic"><g:message code="none"/></span>
-            </g:else>
-          </td>
-        </tr>
 
-        <tr class="prop">
-          <td class="one"><g:message code="project.profile.educationalObjectiveText"/></td>
-          <td class="two">${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-        </tr>
-
-        <g:if test="${project.profile.completed}">
-            <tr class="prop">
-                <td class="one"><g:message code="project.objectiveReached"/></td>
-                <td class="two"><g:formatBoolean boolean="${project.profile.objectiveReached}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
-            </tr>
-
-            <tr class="prop">
-                <td class="one"><g:message code="project.objectiveComment"/></td>
-                <td class="two">${fieldValue(bean: project, field: 'profile.objectiveComment').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-            </tr>
-
-            <tr class="prop">
-                <td class="one"><g:message code="project.goodFactors"/></td>
-                <td class="two">${fieldValue(bean: project, field: 'profile.goodFactors').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-            </tr>
-
-            <tr class="prop">
-                <td class="one"><g:message code="project.badFactors"/></td>
-                <td class="two">${fieldValue(bean: project, field: 'profile.badFactors').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-            </tr>
-
-            <tr class="prop">
-                <td class="one"><g:message code="project.wouldRepeatIt"/></td>
-                <td class="two"><g:formatBoolean boolean="${project.profile.wouldRepeatIt}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
-            </tr>
-
-            <tr class="prop">
-                <td class="one"><g:message code="project.repeatReason"/></td>
-                <td class="two">${fieldValue(bean: project, field: 'profile.repeatReason').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-            </tr>
-        </g:if>
 
         </tbody>
       </table>
+
+
 
     <g:if test="${!project.profile.completed}">
         <p class="italic"><g:message code="project.notCompleted"/></p>
@@ -198,6 +202,8 @@
           <g:render template="clients" model="[clients: clients]"/>
         </div>
       </div>
+
+        </div>
 
       <div class="zusatz">
         <h5><g:message code="projectDays"/> (${projectDays.size()})</h5>
