@@ -2,60 +2,60 @@
 
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>${grailsApplication.config.application.name} ${grailsApplication.config.customerName} - <g:layoutTitle/></title>
-  <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
-  <r:require modules="other"/>
+    <meta charset="utf-8"/>
+    <title>${grailsApplication.config.application.name} ${grailsApplication.config.customerName} - <g:layoutTitle/></title>
+    <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
+    <r:require modules="other"/>
 
-  <r:script disposition="defer">
+    <r:script disposition='defer'>
     %{--<g:render template="/templates/shortcuts"/>--}%
 
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-      $('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
+$('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
 
-      $('.tooltip').each(function() {
-        $(this).qtip({
-          content: {
-            text: function(api) {
-               return $(this).attr('data-tooltip');
-            }
-          },
-          position: {
-            my: 'top left',  // Position my top left...
-            at: 'right bottom', // at the bottom right of...
-            target: $(this) // my target
-          },
-          style: {
-            classes: 'ui-tooltip-blue'
-          }
-        });
-      });
+$('.tooltip').each(function() {
+ $(this).qtip({
+   content: {
+     text: function(api) {
+        return $(this).attr('data-tooltip');
+     }
+   },
+   position: {
+     my: 'top left',  // Position my top left...
+     at: 'right bottom', // at the bottom right of...
+     target: $(this) // my target
+   },
+   style: {
+     classes: 'ui-tooltip-blue'
+   }
+ });
+});
 
-      $('.tooltiphelp').each(function() {
-        $(this).qtip({
-          content: {
-            text: function(api) {
-               return $(this).attr('data-tooltip');
-            }
-          },
-          position: {
-            my: 'top left',  // Position my top left...
-            at: 'right bottom', // at the bottom right of...
-            target: $(this) // my target
-          },
-          style: {
-            classes: 'ui-tooltip-green'
-          }
-        });
-      });
+$('.tooltiphelp').each(function() {
+ $(this).qtip({
+   content: {
+     text: function(api) {
+        return $(this).attr('data-tooltip');
+     }
+   },
+   position: {
+     my: 'top left',  // Position my top left...
+     at: 'right bottom', // at the bottom right of...
+     target: $(this) // my target
+   },
+   style: {
+     classes: 'ui-tooltip-green'
+   }
+ });
+});
 
-      $('.largetooltip').each(function() {
-        $(this).qtip({
-          content: {
-            text: 'Loading...',
-            ajax: {
-              url: '${grailsApplication.config.grails.serverURL}/profile/getTooltip',
+$('.largetooltip').each(function() {
+ $(this).qtip({
+   content: {
+     text: 'Loading...',
+     ajax: {
+       url: '${grailsApplication.config.grails.serverURL}/profile/getTooltip',
               type: 'GET',
               data: {id : $(this).attr('data-idd')}
             }
@@ -145,93 +145,56 @@
 
     });
 
-  </r:script>
+    </r:script>
 
-  <r:layoutResources/>
+    <r:layoutResources/>
 
-  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}"></script>
-  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon.js')}"></script>
-  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
-  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.simplemodal.js')}"></script>
-  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'spin.min.js')}"></script>
-  %{--<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.hotkeys-0.7.9.min.js')}"></script>--}%
+    <script type="text/javascript"
+            src="${resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.simplemodal.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'spin.min.js')}"></script>
+    %{--<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.hotkeys-0.7.9.min.js')}"></script>--}%
 
-  <g:layoutHead />
-  <ckeditor:resources />
-  <ga:trackPageview />
+    <g:layoutHead/>
+    <ckeditor:resources/>
+    <ga:trackPageview/>
+
 </head>
 
 <body>
 
-  <div id="private">
+<div id="private">
 
     <div id="hd">
-      <g:render template="/templates/header"/>
+        <g:render template="/templates/header"/>
     </div>
 
-      <g:render template="/templates/subheader"/>
-    %{--<div id="subheader">
-      <ul>
-        <li><g:link controller="event" action="index"><g:message code="start"/></g:link></li>
-        <li><g:link controller="educatorProfile" action="index"><g:message code="database"/></g:link></li>
-        <li><g:link class="activegreen" controller="logBook" action="entries"><g:message code="organisation"/></g:link></li>
-        <li><g:link controller="templateProfile" action="index"><g:message code="planning"/></g:link></li>
-        <erp:accessCheck types="['Betreiber']">
-          <li><g:link controller="setup" action="show"><g:message code="administration"/></g:link></li>
-        </erp:accessCheck>
-      </ul>
-      <g:render template="/templates/search"/>
-      <div class="clear"></div>
-    </div>--}%
+    <g:render template="subheader"/>
 
     <div class="yui3-g" id="grid">
 
-      <div class="yui3-u" id="left">
-
-        <div class="profile-box">
-          <div class="second">
-
-            <div class="header"><g:message code="organisation"/></div>
-
-            <ul>
-              <erp:accessCheck types="['Betreiber','Pädagoge']">
-                <li class="icon-operator"><g:link controller="logBook" action="entries"><g:message code="logBook"/></g:link></li>
-              </erp:accessCheck>
-            </ul>
-
-          </div>
+        <div class="yui3-u-1" id="main">
+            <g:if test="${flash.message}">
+                <div id="flash-msg">
+                    <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success"
+                         style="top: 3px; position: relative"/> ${flash.message}
+                </div>
+            </g:if>
+            <div id="bd">
+                <g:layoutBody/>
+            </div>
         </div>
-
-        <div class="profile-box">
-          <div class="second">
-            <div class="header"><g:message code="privat.head.online"/></div>
-            <ul id="onlineusers">
-              <g:render template="/templates/onlineUsers"/>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="yui3-u" id="main">
-        <g:if test="${flash.message}">
-          <div id="flash-msg">
-            <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
-          </div>
-        </g:if>
-        <div id="bd">
-          <g:layoutBody/>
-        </div>
-      </div>
 
     </div>
 
     <div id="ft">
-      <g:render template="/templates/footer"/>
+        <g:render template="/templates/footer"/>
     </div>
 
-  </div>
+</div>
 
-  <r:layoutResources/>
+<r:layoutResources/>
 </body>
 </html>

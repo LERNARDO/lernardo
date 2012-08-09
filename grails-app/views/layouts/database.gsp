@@ -170,7 +170,8 @@
       <g:render template="/templates/header"/>
     </div>
 
-    <div id="subheader">
+      <g:render template="/templates/subheader"/>
+    %{--<div id="subheader">
       <ul>
         <li><g:link controller="event" action="index"><g:message code="start"/></g:link></li>
         <li><g:link class="activered" controller="educatorProfile" action="index"><g:message code="database"/></g:link></li>
@@ -182,7 +183,7 @@
       </ul>
       <g:render template="/templates/search"/>
       <div class="clear"></div>
-    </div>
+    </div>--}%
 
     <div class="yui3-g" id="grid">
 
