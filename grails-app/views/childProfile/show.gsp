@@ -82,32 +82,6 @@
 
         </table>
 
-        <div class="email">
-          <table width="100%">
-            <tr>
-              <erp:accessCheck types="['Betreiber']">
-                <td>
-                  <span class="bold"><g:message code="active"/> </span>
-                  <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
-                </td>
-              </erp:accessCheck>
-              <td>
-                <span class="bold"><g:message code="email"/>: </span>
-                ${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
-              </td>
-              <erp:accessCheck types="['Betreiber']" me="${child}">
-                <td>
-                  <g:form controller="profile" action="changePassword" id="${child.id}">
-                    <span class="bold"><g:message code="password"/>: </span>
-                    <g:submitButton name="submit" value="${message(code: 'change')}"/>
-                    <div class="clear"></div>
-                  </g:form>
-                </td>
-              </erp:accessCheck>
-            </tr>
-          </table>
-        </div>
-
       <g:render template="/templates/links" model="[entity: child]"/>
 
     </div>

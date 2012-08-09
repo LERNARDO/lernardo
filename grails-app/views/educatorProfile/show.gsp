@@ -125,21 +125,6 @@
         <td class="two">${fieldValue(bean: educator, field: 'profile.currentStreet') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
       </tr>
 
-      %{--<tr class="prop">
-        <td class="one"><g:message code="zip"/>:</td>
-        <td class="two">${fieldValue(bean: educator, field: 'profile.currentZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-      </tr>
-
-      <tr class="prop">
-        <td class="one"><g:message code="city"/>:</td>
-        <td class="two">${fieldValue(bean: educator, field: 'profile.currentCity') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-      </tr>
-
-      <tr class="prop">
-        <td class="one"><g:message code="country"/>:</td>
-        <td class="two">${fieldValue(bean: educator, field: 'profile.currentCountry') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-      </tr>--}%
-
       <tr class="prop">
         <td class="one"><g:message code="groupColony"/>:</td>
         <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
@@ -237,39 +222,6 @@
   </td>
   </tr>
   </table>
-
-  <div class="email">
-    <table style="width: 100%">
-
-      <tr>
-        <erp:accessCheck types="['Betreiber']">
-          <td>
-            <span class="bold"><g:message code="active"/></span>
-            <g:formatBoolean boolean="${educator.user.enabled}" true="${message(code: 'yes')}"
-                             false="${message(code: 'no')}"/>
-          </td>
-        </erp:accessCheck>
-        <td>
-          <span class="bold"><g:message code="email"/>:</span>
-          ${fieldValue(bean: educator, field: 'user.email') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}
-        </td>
-        %{--<td>
-          <span class="bold"><g:message code="languageSelection"/>:</span>
-          ${educator?.user?.locale?.getDisplayLanguage()}
-        </td>--}%
-        <erp:accessCheck types="['Betreiber']" me="${educator}">
-          <td>
-            <g:form controller="profile" action="changePassword" id="${educator.id}">
-              <span class="bold"><g:message code="password"/>:</span>
-              <g:submitButton name="submit" value="${message(code: 'change')}"/>
-              <div class="clear"></div>
-            </g:form>
-          </td>
-        </erp:accessCheck>
-      </tr>
-
-    </table>
-  </div>
 
   <h4><g:message code="management"/></h4>
   <div class="zusatz">

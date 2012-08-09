@@ -58,25 +58,10 @@
             <h4><g:message code="educator.profile.curAddress"/></h4>
             <table>
 
-              %{--<tr class="prop">
-                <td class="one"><g:message code="country"/>:</td>
-                <td class="two">${fieldValue(bean: parent, field: 'profile.currentCountry') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-              </tr>
-
-              <tr class="prop">
-                <td class="one"><g:message code="city"/>:</td>
-                <td class="two">${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-              </tr>--}%
-
               <tr class="prop">
                 <td class="one"><g:message code="street"/>:</td>
                 <td class="two">${fieldValue(bean: parent, field: 'profile.currentStreet') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
               </tr>
-
-              %{--<tr class="prop">
-                <td class="one"><g:message code="zip"/>:</td>
-                <td class="two">${fieldValue(bean: parent, field: 'profile.currentZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-              </tr>--}%
 
               <tr class="prop">
                 <td class="one"><g:message code="groupColony"/>:</td>
@@ -180,32 +165,6 @@
           </td>
         </tr>
       </table>
-
-      <div class="email">
-        <table width="100%">
-          <tr>
-            <erp:accessCheck types="['Betreiber']">
-              <td>
-                <span class="bold"><g:message code="active"/></span>
-                <g:formatBoolean boolean="${parent.user.enabled}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/>
-              </td>
-            </erp:accessCheck>
-            <td>
-              <span class="bold"><g:message code="email"/>:</span>
-              ${fieldValue(bean: parent, field: 'user.email') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}
-            </td>
-            <erp:accessCheck types="['Betreiber']" me="${parent}">
-              <td>
-                <g:form controller="profile" action="changePassword" id="${parent.id}">
-                  <span class="bold"><g:message code="password"/>:</span>
-                  <g:submitButton name="submit" value="${message(code: 'change')}"/>
-                  <div class="clear"></div>
-                </g:form>
-              </td>
-            </erp:accessCheck>
-          </tr>
-        </table>
-      </div>
 
       <g:render template="/templates/links" model="[entity: parent]"/>
 

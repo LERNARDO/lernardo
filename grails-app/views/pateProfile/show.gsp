@@ -89,32 +89,6 @@
           </tbody>
         </table>
 
-        <div class="email">
-          <table width="100%">
-            <tr>
-              <erp:accessCheck types="['Betreiber']">
-                <td>
-                  <span class="bold"><g:message code="active"/> </span>
-                  <g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
-                </td>
-              </erp:accessCheck>
-              <td>
-                <span class="bold"><g:message code="email"/>: </span>
-                ${fieldValue(bean: pate, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
-              </td>
-              <erp:accessCheck types="['Betreiber']" me="${pate}">
-                <td>
-                  <g:form controller="profile" action="changePassword" id="${pate.id}">
-                    <span class="bold"><g:message code="password"/>: </span>
-                    <g:submitButton name="submit" value="${message(code: 'change')}"/>
-                    <div class="clear"></div>
-                  </g:form>
-                </td>
-              </erp:accessCheck>
-            </tr>
-          </table>
-        </div>
-
         <h4><g:message code="management"/></h4>
         <div class="zusatz">
           <h5><g:message code="pate.profile.gcs"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#godchildren');
