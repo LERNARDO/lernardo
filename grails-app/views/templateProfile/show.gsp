@@ -5,7 +5,7 @@
 
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${template}"/> <g:message code="activityTemplate"/> - ${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}</h1>
+  <h1><erp:getFavorite entity="${template}"/> ${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()} <span style="font-size: 12px;">(<g:message code="activityTemplate"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: template]"/>
 

@@ -5,7 +5,7 @@
 
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${parent}"/> <g:message code="parent"/> - ${parent.profile.fullName}</h1>
+  <h1><erp:getFavorite entity="${parent}"/> ${parent.profile.fullName} <span style="font-size: 12px;">(<g:message code="parent"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: parent]"/>
 

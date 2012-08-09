@@ -4,7 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${operator}"/> <g:message code="profile"/> - ${operator.profile.fullName}</h1>
+  <h1><erp:getFavorite entity="${operator}"/> ${operator.profile.fullName} <span style="font-size: 12px;">(<g:message code="operator"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: operator]"/>
 

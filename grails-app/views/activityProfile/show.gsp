@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title><g:message code="activity"/> - ${fieldValue(bean: activity, field: 'profile.fullName').decodeHTML()}</title>
+  <title>${fieldValue(bean: activity, field: 'profile.fullName').decodeHTML()} <span style="font-size: 12px;">(<g:message code="activity"/>)</span></title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="planning"/>
 </head>

@@ -1,5 +1,11 @@
 // This is a .LESS file - see http://lesscss.org/ for more information
 
+// not used atm
+/*@font-face {
+    font-family: open-sans;
+    src: url('../OpenSans-Regular.ttf');
+}*/
+
 // variables
 
 @green: #41A241;
@@ -540,7 +546,7 @@ ol li {
     padding-bottom: 3px; }
 
 h1 {
-    color: darken(@cyan, 10%);
+    color: #000; //darken(@cyan, 10%);
     margin: 0 0 10px 0;
     padding: 0 0 5px 0;
     font-weight: normal;
@@ -1011,6 +1017,11 @@ a {
         left: -19px;
     }
     .member-type {
+        position: relative;
+        left: -19px;
+        font-size: 11px;
+    }
+    .member-other {
         position: relative;
         left: -19px;
         font-size: 11px;
