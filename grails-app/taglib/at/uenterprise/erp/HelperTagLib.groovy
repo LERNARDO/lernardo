@@ -141,12 +141,18 @@ class HelperTagLib {
      */
     def getFavorite = {attrs ->
         out << '<span id="favbutton">'
-        if (findFavorite(attrs.entity) /*entityHelperService.loggedIn.profile.favorites.contains(attrs.entity.id.toString())*/)
-            out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'removeFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'- ' + message(code: 'favorite')}
+        if (findFavorite(attrs.entity))
+            out << remoteLink(controller: 'profile', action: 'removeFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'<img class="tooltiphelp" data-tooltip="' + message(code: "favorite.remove") + '" src="' + g.resource(dir: 'images/icons', file: 'icon_star.png') + '" alt="toolTip" />'}
         else
-            out << '''<a class="buttonGreen" href="#" onclick="jQuery('#favmodal').modal(); return false"> + ''' + message(code: 'favorite') + '''</a>'''
-            //out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'+ ' + message(code: 'favorite')}
+            out << '''<a href="#" onclick="jQuery('#favmodal').modal(); return false">''' + '<img class="tooltiphelp" data-tooltip="' + message(code: "favorite.add") + '" src="' + g.resource(dir: 'images/icons', file: 'icon_star_empty.png') + '" alt="toolTip" />' + '''</a>'''
         out << '</span>'
+    }
+
+    def getSimpleFavorite = {attrs ->
+        if (findFavorite(attrs.entity))
+            out << '<img src="' + g.resource(dir: "images/icons", file: "icon_star.png") + '" alt="favorite" />'
+        else
+            out << '<img src="' + g.resource(dir: "images/icons", file: "transparent.png") + '" alt="favorite" />'
     }
 
     def findFavorite(Entity entity) {

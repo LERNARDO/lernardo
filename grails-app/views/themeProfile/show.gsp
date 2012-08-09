@@ -4,8 +4,10 @@
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="theme"/> - ${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</h1>
+  <h1><erp:getFavorite entity="${theme}"/> <g:message code="theme"/> - ${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</h1>
 </div>
+<g:render template="/templates/favmodal" model="[entity: theme]"/>
+
 <div class="boxGray">
   <div class="second">
 

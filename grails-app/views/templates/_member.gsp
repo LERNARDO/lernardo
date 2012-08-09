@@ -20,11 +20,16 @@
 
 <div class="member">
 
-  <g:link controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">
-    <erp:profileImage entity="${entity}" width="50" height="50" align="left"/>
-  </g:link>
+  <div>
+      <div class="member-favpreview"><erp:getSimpleFavorite entity="${entity}"/></div>
+      <div class="member-image">
+      <g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">
+        <erp:profileImage entity="${entity}" width="50" height="50" align="left"/>
+          </div>
+      </g:link>
+  </div>
 
-  <div><g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName.decodeHTML()}</g:link></div>
+  <div class="member-name"><g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName.decodeHTML()}</g:link></div>
   <div class="member-type"><g:message code="${entity.type.supertype.name}"/></div>
   <g:if test="${entity.type.name == 'Betreutengruppe'}">
     <a href="#" onclick="jQuery('#modal${i}').modal(); return false"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" style="position: relative; top: 4px;"/></a> <g:link controller="excel" action="report" id="${entity.id}" params="[type: 'clientgroup']"><img src="${g.resource(dir:'images/icons', file:'icon_xls.png')}" alt="XLS" style="position: relative; top: 4px;"/></g:link>

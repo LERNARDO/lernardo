@@ -4,8 +4,10 @@
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="groupActivityTemplate"/> - ${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</h1>
+  <h1><erp:getFavorite entity="${group}"/> <g:message code="groupActivityTemplate"/> - ${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</h1>
 </div>
+<g:render template="/templates/favmodal" model="[entity: group]"/>
+
 <div class="boxGray">
   <div class="second">
 

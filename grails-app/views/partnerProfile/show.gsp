@@ -5,8 +5,10 @@
 
 <body>
 <div class="boxHeader">
-  <h1><g:message code="partner"/> - ${partner.profile.fullName}</h1>
+  <h1><erp:getFavorite entity="${partner}"/> <g:message code="partner"/> - ${partner.profile.fullName}</h1>
 </div>
+<g:render template="/templates/favmodal" model="[entity: partner]"/>
+
 <div class="boxGray">
   <div class="second">
 

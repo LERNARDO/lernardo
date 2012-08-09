@@ -5,8 +5,10 @@
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="groupClient"/> - ${group.profile.fullName}</h1>
+  <h1><erp:getFavorite entity="${group}"/> <g:message code="groupClient"/> - ${group.profile.fullName}</h1>
 </div>
+<g:render template="/templates/favmodal" model="[entity: group]"/>
+
 <div class="boxGray">
   <div class="second">
 

@@ -990,13 +990,29 @@ a {
     height: 50px;
     float: left;
     img {
-        margin-right: 10px;
+      margin-right: 10px;
       float: left;
     }
     &:hover {
         background: #eee;
     }
+    .member-favpreview {
+        position: relative;
+        top: -9px;
+        z-index: 1;
+    }
+    .member-image {
+        position: relative;
+        left: -19px;
+        z-index: 0;
+    }
+    .member-name {
+        position: relative;
+        left: -19px;
+    }
     .member-type {
+        position: relative;
+        left: -19px;
         font-size: 11px;
     }
 }

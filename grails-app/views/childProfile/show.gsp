@@ -4,8 +4,10 @@
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="child"/> - ${child.profile.fullName}</h1>
+  <h1><erp:getFavorite entity="${child}"/> <g:message code="child"/> - ${child.profile.fullName}</h1>
 </div>
+<g:render template="/templates/favmodal" model="[entity: child]"/>
+
 <div class="boxGray">
   <div class="second">
 
