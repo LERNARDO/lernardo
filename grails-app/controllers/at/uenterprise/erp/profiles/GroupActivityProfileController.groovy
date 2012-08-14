@@ -83,85 +83,93 @@ class GroupActivityProfileController {
       return
     }
 
-    Entity currentEntity = entityHelperService.loggedIn
+      Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
 
-    List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
-    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
-
-    // find all facilities the current entity is linked to
-    List allFacilities
-    if (currentEntity.type.id == metaDataService.etEducator.id) {
-      log.info "current entity is educator"
-      allFacilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
-      log.info allFacilities
-      allFacilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator))
-    }
-    else
-      allFacilities = Entity.findAllByType(metaDataService.etFacility)
-
-    List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
-
-    List allPartners = Entity.findAllByType(metaDataService.etPartner)
-    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
-
-    def allParents = functionService.findParents(group)
-    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent) // find all parents linked to this group
-
-    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
-
-    List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
-
-    Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
-
-    List templatesOfGroup = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all templates linked to this group
-
-    List templates = []
-    template?.profile?.templates?.each {
-      Entity temp = Entity.get(it.toInteger())
-      if (templatesOfGroup.contains(temp))
-        templates.add(temp)
-    }
-
-    def calculatedDuration = 0
-    templates.each {
-      calculatedDuration += it.profile.duration
-    }
-
-    // find all themes which are at the project time
-    List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= group.profile.date && it.profile.endDate >= group.profile.date}
-
-    List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup)
-
-    List requiredResources = []
-    if (template?.profile?.resources)
-      requiredResources.addAll(template?.profile?.resources)
-    templates.each {
-      requiredResources.addAll(it.profile.resources)
-    }
-
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
-
-    return [group: group,
-            templates: templates,
-            calculatedDuration: calculatedDuration,
-            educators: educators,
-            substitutes: substitutes,
-            allParents: allParents,
-            parents: parents,
-            allPartners: allPartners,
-            partners: partners,
-            allFacilities: allFacilities,
-            facilities: facilities,
-            allClientGroups: allClientgroups,
-            clients: clients,
-            template: template,
-            allThemes: allThemes,
-            themes: themes,
-            requiredResources: requiredResources,
-            resources: resources,
-            allLabels: functionService.getLabels()]
-
+    return [group: group, template: template]
   }
+
+    def management = {
+        Entity group = Entity.get(params.id)
+
+        Entity currentEntity = entityHelperService.loggedIn
+
+        List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
+        List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
+
+        // find all facilities the current entity is linked to
+        List allFacilities
+        if (currentEntity.type.id == metaDataService.etEducator.id) {
+            log.info "current entity is educator"
+            allFacilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+            log.info allFacilities
+            allFacilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator))
+        }
+        else
+            allFacilities = Entity.findAllByType(metaDataService.etFacility)
+
+        List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
+
+        List allPartners = Entity.findAllByType(metaDataService.etPartner)
+        List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
+
+        def allParents = functionService.findParents(group)
+        List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent) // find all parents linked to this group
+
+        List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
+
+        List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
+
+        Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
+
+        List templatesOfGroup = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all templates linked to this group
+
+        List templates = []
+        template?.profile?.templates?.each {
+            Entity temp = Entity.get(it.toInteger())
+            if (templatesOfGroup.contains(temp))
+                templates.add(temp)
+        }
+
+        def calculatedDuration = 0
+        templates.each {
+            calculatedDuration += it.profile.duration
+        }
+
+        // find all themes which are at the project time
+        List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= group.profile.date && it.profile.endDate >= group.profile.date}
+
+        List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup)
+
+        List requiredResources = []
+        if (template?.profile?.resources)
+            requiredResources.addAll(template?.profile?.resources)
+        templates.each {
+            requiredResources.addAll(it.profile.resources)
+        }
+
+        List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
+
+        render template: "management", model: [group: group,
+                templates: templates,
+                calculatedDuration: calculatedDuration,
+                educators: educators,
+                substitutes: substitutes,
+                allParents: allParents,
+                parents: parents,
+                allPartners: allPartners,
+                partners: partners,
+                allFacilities: allFacilities,
+                facilities: facilities,
+                allClientGroups: allClientgroups,
+                clients: clients,
+                template: template,
+                allThemes: allThemes,
+                themes: themes,
+                requiredResources: requiredResources,
+                resources: resources,
+                allLabels: functionService.getLabels()]
+
+    }
 
   def delete = {
     Entity group = Entity.get(params.id)

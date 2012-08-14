@@ -52,12 +52,19 @@ class ClientProfileController {
 
     Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
     Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
-    List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
-    List facilities = functionService.findAllByLink(client, null, metaDataService.ltGroupMemberClient).findAll {it.type == metaDataService.etFacility}
 
-    return [client: client, colony: colony, family: family, pates: pates, facilities: facilities]
+    return [client: client, colony: colony, family: family]
 
   }
+
+    def management = {
+        Entity client = Entity.get(params.id)
+
+        List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
+        List facilities = functionService.findAllByLink(client, null, metaDataService.ltGroupMemberClient).findAll {it.type == metaDataService.etFacility}
+
+        render template: "management", model: [client: client, pates: pates, facilities: facilities]
+    }
 
   def delete = {
     Entity client = Entity.get(params.id)

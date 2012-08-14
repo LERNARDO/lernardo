@@ -40,42 +40,40 @@ class GroupColonyProfileController {
       return
     }
 
-    // only show those facilities that aren't already linked to a colony
-    def tempFacilities = Entity.findAllByType(metaDataService.etFacility)
-    def allFacilities = []
-    tempFacilities.each { Entity tf ->
-      if (!Link.findBySourceAndType(tf, metaDataService.ltGroupMemberFacility))
-        allFacilities << tf
-    }
-
-    // find all facilities linked to this group
-    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
-
-    def allPartners = Entity.findAllByType(metaDataService.etPartner)
-    // find all partners linked to this group
-    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner)
-
-    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
-    // find all educators linked to this group
-    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator)
-
-    // find all resources linked to this group
-    //List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
-    List resources = []
-    group.profile.resources.each {
-      resources.add(Entity.get(it.toInteger()))
-    }
-
-    return [group: group,
-            facilities: facilities,
-            allFacilities: allFacilities,
-            resources: resources,
-            partners: partners,
-            allPartners: allPartners,
-            educators: educators,
-            allEducators: allEducators]
-
+    return [group: group]
   }
+
+    def management = {
+        def group = Entity.get(params.id)
+
+        // only show those facilities that aren't already linked to a colony
+        def tempFacilities = Entity.findAllByType(metaDataService.etFacility)
+        def allFacilities = []
+        tempFacilities.each { Entity tf ->
+            if (!Link.findBySourceAndType(tf, metaDataService.ltGroupMemberFacility))
+                allFacilities << tf
+        }
+
+        // find all facilities linked to this group
+        List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
+
+        def allPartners = Entity.findAllByType(metaDataService.etPartner)
+        // find all partners linked to this group
+        List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner)
+
+        // find all resources linked to this group
+        //List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+        List resources = []
+        group.profile.resources.each {
+            resources.add(Entity.get(it.toInteger()))
+        }
+
+        render template: "management", model: [group: group, facilities: facilities,
+                allFacilities: allFacilities,
+                resources: resources,
+                partners: partners,
+                allPartners: allPartners]
+    }
 
   def delete = {
     Entity group = Entity.get(params.id)

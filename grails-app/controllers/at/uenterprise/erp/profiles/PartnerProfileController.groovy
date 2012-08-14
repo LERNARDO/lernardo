@@ -47,6 +47,13 @@ class PartnerProfileController {
 
   }
 
+    def management = {
+        Entity partner = Entity.get(params.id)
+
+        render template: "management", model: [partner: partner]
+
+    }
+
   def delete = {
     Entity partner = Entity.get(params.id)
     if (partner) {

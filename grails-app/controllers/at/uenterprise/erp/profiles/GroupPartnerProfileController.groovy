@@ -36,15 +36,20 @@ class GroupPartnerProfileController {
       return
     }
 
-    def allPartners = Entity.findAllByType(metaDataService.etPartner)
-    // find all partners linked to this group
-    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
-
-    return [group: group,
-            partners: partners,
-            allPartners: allPartners]
-
+    return [group: group]
   }
+
+    def management = {
+        def group = Entity.get(params.id)
+
+        def allPartners = Entity.findAllByType(metaDataService.etPartner)
+        // find all partners linked to this group
+        List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+
+        render template: "management", model: [group: group,
+                partners: partners,
+                allPartners: allPartners]
+    }
 
   def delete = {
     Entity group = Entity.get(params.id)

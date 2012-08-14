@@ -40,37 +40,37 @@ class FacilityProfileController {
       return
     }
 
-    // find all resources of this facility
-    //List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
-    List resources = []
-    facility.profile.resources.each {
-      resources.add(Entity.get(it.toInteger()))
-    }
+      // find colony of this facility
+      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
-    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll {it.user.enabled}
-    // find all educators of this facility
-    List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
-
-    // find lead educators
-    List leadEducators = functionService.findAllByLink(null, facility, metaDataService.ltLeadEducator)
-
-    def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
-    // find all clients linked to the facility
-    List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
-
-    // find colony of this facility
-    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-
-    return [facility: facility,
-            allEducators: allEducators,
-            educators: educators,
-            allClientGroups: allClientGroups,
-            clients: clients,
-            resources: resources,
-            colony: colony,
-            leadeducators: leadEducators]
-
+    return [facility: facility, colony: colony]
   }
+
+    def management = {
+        Entity facility = Entity.get(params.id)
+
+        // find all resources of this facility
+        //List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
+        List resources = []
+        facility.profile.resources.each {
+            resources.add(Entity.get(it.toInteger()))
+        }
+
+        // find all educators of this facility
+        List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
+
+        // find lead educators
+        List leadEducators = functionService.findAllByLink(null, facility, metaDataService.ltLeadEducator)
+
+        // find all clients linked to the facility
+        List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
+
+        render template: "management", model: [facility: facility,
+                educators: educators,
+                clients: clients,
+                resources: resources,
+                leadeducators: leadEducators]
+    }
 
   def delete = {
     Entity facility = Entity.get(params.id)

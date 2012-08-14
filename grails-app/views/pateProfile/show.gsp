@@ -17,6 +17,7 @@
       <div class="tabnav">
         <ul>
           <li><g:link controller="pateProfile" action="show" id="${pate.id}"><g:message code="profile"/></g:link></li>
+            <li><g:remoteLink update="content" controller="pateProfile" action="management" id="${pate.id}"><g:message code="management"/></g:remoteLink></li>
           <li><g:remoteLink update="content" controller="publication" action="list" id="${pate.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${pate}"/></g:remoteLink></li>
           <li><g:link controller="msg" action="inbox" id="${pate.id}"><g:message code="privat.posts"/></g:link></li>
           <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${pate.id}"><g:message code="appointments"/></g:link></li>
@@ -88,22 +89,6 @@
 
           </tbody>
         </table>
-
-        <h4><g:message code="management"/></h4>
-        <div class="zusatz">
-          <h5><g:message code="pate.profile.gcs"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#godchildren');
-          return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-          <div class="zusatz-add" id="godchildren" style="display:none">
-
-          <g:message code="search"/>:<br/>
-          <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${pate.id}" before="showspinner('#remoteClients')"/>
-          <div id="remoteClients"></div>
-
-          </div>
-          <div class="zusatz-show" id="godchildren2">
-            <g:render template="godchildren" model="[godchildren: godchildren, pate: pate]"/>
-          </div>
-        </div>
 
       </div>
 

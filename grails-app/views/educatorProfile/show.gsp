@@ -17,6 +17,7 @@
 <div class="tabnav">
   <ul>
     <li><g:link controller="educatorProfile" action="show" id="${educator.id}"><g:message code="profile"/></g:link></li>
+    <li><g:remoteLink update="content" controller="educatorProfile" action="management" id="${educator.id}"><g:message code="management"/></g:remoteLink></li>
     <li><g:remoteLink update="content" controller="publication" action="list" id="${educator.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${educator}"/></g:remoteLink></li>
     <li><g:link controller="msg" action="inbox" id="${educator.id}"><g:message code="privat.posts"/></g:link></li>
     <li><g:link controller="appointmentProfile" action="index" id="${educator.id}"><g:message code="appointments"/></g:link></li>
@@ -222,23 +223,6 @@
   </td>
   </tr>
   </table>
-
-  <h4><g:message code="management"/></h4>
-  <div class="zusatz">
-    <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#dates');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-
-    <div class="zusatz-add" id="dates" style="display:none">
-      <g:formRemote name="formRemote" url="[controller: 'educatorProfile', action: 'addDate', id: educator.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
-        <g:textField name="date" size="12" class="datepicker" value=""/>
-        <g:submitButton name="button" value="${message(code: 'add')}"/>
-      </g:formRemote>
-    </div>
-
-    <div class="zusatz-show" id="dates2">
-      <g:render template="dates" model="[educator: educator]"/>
-    </div>
-  </div>
 
   %{--<g:render template="/templates/links" model="[entity: educator]"/>--}%
 

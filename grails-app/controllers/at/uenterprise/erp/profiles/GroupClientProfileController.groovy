@@ -38,20 +38,25 @@ class GroupClientProfileController {
       return
     }
 
-    def allClients = Entity.findAllByType(metaDataService.etClient)
-    // find all clients linked to this group
-    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
-
-    List allColonies = Entity.findAllByType(metaDataService.etGroupColony)
-    List allFacilities = Entity.findAllByType(metaDataService.etFacility)
-
-    return [group: group,
-            clients: clients,
-            allClients: allClients,
-            allColonies: allColonies,
-            allFacilities: allFacilities]
-
+    return [group: group]
   }
+
+    def management = {
+        Entity group = Entity.get(params.id)
+
+        def allClients = Entity.findAllByType(metaDataService.etClient)
+        // find all clients linked to this group
+        List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
+
+        List allColonies = Entity.findAllByType(metaDataService.etGroupColony)
+        List allFacilities = Entity.findAllByType(metaDataService.etFacility)
+
+        render template: "management", model: [group: group,
+                clients: clients,
+                allClients: allClients,
+                allColonies: allColonies,
+                allFacilities: allFacilities]
+    }
 
   def delete = {
     Entity group = Entity.get(params.id)

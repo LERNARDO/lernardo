@@ -49,46 +49,52 @@ class GroupActivityTemplateProfileController {
       return
     }
 
-    // get all activity templates that are set to completed
-    def allTemplates = Entity.createCriteria().list {
-      eq("type", metaDataService.etTemplate)
-      profile {
-        eq("status", "done")
-      }
-    }
-    allTemplates.sort {it.profile.fullName}
-
-    // find all activity templates linked to this group
-    //List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
-    List templates = []
-    group.profile.templates.each {
-      templates.add(Entity.get(it))
-    }
-
-    def calculatedDuration = 0
-    templates.each {
-      calculatedDuration += it.profile.duration
-    }
-
-    // find all instances of this template
-    List instances = functionService.findAllByLink(group, null, metaDataService.ltTemplate)
-
-    // get all resources of all templates
-    List templateResources = []
-    templates.each {
-      templateResources.addAll(it.profile.resources)
-    }
-
-    return [group: group,
-            allTemplates: allTemplates,
-            templates: templates,
-            calculatedDuration: calculatedDuration,
-            methods: Method.findAllByType('template'),
-            allLabels: functionService.getLabels(),
-            instances: instances,
-            templateResources: templateResources]
-
+    return [group: group]
   }
+
+    def management = {
+        def group = Entity.get(params.id)
+
+        // get all activity templates that are set to completed
+        def allTemplates = Entity.createCriteria().list {
+            eq("type", metaDataService.etTemplate)
+            profile {
+                eq("status", "done")
+            }
+        }
+        allTemplates.sort {it.profile.fullName}
+
+        // find all activity templates linked to this group
+        //List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+        List templates = []
+        group.profile.templates.each {
+            templates.add(Entity.get(it))
+        }
+
+        def calculatedDuration = 0
+        templates.each {
+            calculatedDuration += it.profile.duration
+        }
+
+        // find all instances of this template
+        List instances = functionService.findAllByLink(group, null, metaDataService.ltTemplate)
+
+        // get all resources of all templates
+        List templateResources = []
+        templates.each {
+            templateResources.addAll(it.profile.resources)
+        }
+
+
+        render template: "management", model: [group: group,
+                allTemplates: allTemplates,
+                templates: templates,
+                calculatedDuration: calculatedDuration,
+                methods: Method.findAllByType('template'),
+                allLabels: functionService.getLabels(),
+                instances: instances,
+                templateResources: templateResources]
+    }
 
   def delete = {
     Entity group = Entity.get(params.id)

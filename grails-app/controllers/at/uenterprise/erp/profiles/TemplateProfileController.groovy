@@ -84,15 +84,20 @@ class TemplateProfileController {
 
   def show = {
     Entity template = Entity.get(params.id)
-
-    params.sort = "name"
-    params.order  = "asc"
-    List allMethods = Method.findAllByType('template', params)
-
-    return [template: template,
-            allMethods: allMethods,
-            allLabels: functionService.getLabels()]
+    return [template: template]
   }
+
+    def management = {
+        Entity template = Entity.get(params.id)
+
+        params.sort = "name"
+        params.order  = "asc"
+        List allMethods = Method.findAllByType('template', params)
+
+        render template: "management", model: [template: template,
+                allMethods: allMethods,
+                allLabels: functionService.getLabels()]
+    }
 
   def create = {}
 

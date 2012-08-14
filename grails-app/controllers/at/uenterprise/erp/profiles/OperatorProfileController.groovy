@@ -37,12 +37,18 @@ class OperatorProfileController {
       return
     }
 
-    def allFacilities = Entity.findAllByType(metaDataService.etFacility)
-    // find all facilities of this operator
-    List facilities = functionService.findAllByLink(null, operator, metaDataService.ltOperation)
+    return [operator: operator]
 
-    return [operator: operator, facilities: facilities, allFacilities: allFacilities]
+  }
 
+  def management = {
+      Entity operator = Entity.get(params.id)
+
+      def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+      // find all facilities of this operator
+      List facilities = functionService.findAllByLink(null, operator, metaDataService.ltOperation)
+
+      render template: "management", model: [operator: operator, facilities: facilities, allFacilities: allFacilities]
   }
 
   def delete = {

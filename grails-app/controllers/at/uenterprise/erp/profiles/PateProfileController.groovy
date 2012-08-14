@@ -39,11 +39,16 @@ class PateProfileController {
       return
     }
 
-    List godchildren = functionService.findAllByLink(null, pate, metaDataService.ltPate)
-
-    return [pate: pate, allChildren: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}, godchildren: godchildren]
-
+    return [pate: pate]
   }
+
+    def management = {
+        Entity pate = Entity.get(params.id)
+
+        List godchildren = functionService.findAllByLink(null, pate, metaDataService.ltPate)
+
+        render template: "management", model: [pate: pate, godchildren: godchildren]
+    }
 
   def delete = {
     Entity pate = Entity.get(params.id)

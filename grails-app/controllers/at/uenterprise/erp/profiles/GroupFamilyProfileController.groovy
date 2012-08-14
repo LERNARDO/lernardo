@@ -38,30 +38,32 @@ class GroupFamilyProfileController {
       return
     }
 
-    int totalLinks = 0
+    return [group: group]
 
-    // find all parents linked to this group
-    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent)
-    totalLinks += parents.size()
+  }
 
-    def allClients = Entity.findAllByType(metaDataService.etClient)
-    // find all clients linked to this group
-    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupFamily)
-    totalLinks += clients.size()
+  def management = {
+      def group = Entity.get(params.id)
 
-    def allChilds = Entity.findAllByType(metaDataService.etChild)
-    // find all childs linked to this group
-    List childs = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberChild)
-    totalLinks += childs.size()
+      int totalLinks = 0
 
-    return [group: group,
-            parents: parents,
-            clients: clients,
-            allClients: allClients,
-            childs: childs,
-            allChilds: allChilds,
-            totalLinks: totalLinks]
+      // find all parents linked to this group
+      List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent)
+      totalLinks += parents.size()
 
+      // find all clients linked to this group
+      List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupFamily)
+      totalLinks += clients.size()
+
+      // find all childs linked to this group
+      List childs = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberChild)
+      totalLinks += childs.size()
+
+      render template: "management", model: [group: group,
+              parents: parents,
+              clients: clients,
+              childs: childs,
+              totalLinks: totalLinks]
   }
 
   def delete = {

@@ -57,6 +57,12 @@ class EducatorProfileController {
     return [educator: educator, enlistedBy: enlistedBy, colony: colony]
   }
 
+    def management = {
+        Entity educator = Entity.get(params.id)
+
+        render template: "management", model: [educator: educator]
+    }
+
   def delete = {
     Entity educator = Entity.get(params.id)
     if (educator) {
