@@ -166,7 +166,7 @@
         </tr>
       </table>
 
-      <g:render template="/templates/links" model="[entity: parent]"/>
+      %{--<g:render template="/templates/links" model="[entity: parent]"/>--}%
 
     </div>
 

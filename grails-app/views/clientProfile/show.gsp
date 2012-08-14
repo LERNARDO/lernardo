@@ -67,21 +67,11 @@
         <td class="two">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
       </tr>
 
-      %{--<tr class="prop">
-        <td class="one"><g:message code="zip"/>:</td>
-        <td class="two">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-      </tr>--}%
-
       <tr class="prop">
         <td class="one"><g:message code="groupColony"/>:</td>
         <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
             code="noData"/></div></g:else></td>
       </tr>
-
-      %{--<tr class="prop">
-        <td class="one"><g:message code="country"/>:</td>
-        <td class="two">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-      </tr>--}%
 
     </table>
 
@@ -148,36 +138,6 @@
           </g:else>
         </td>
       </tr>
-
-      %{--<tr class="prop">
-        <td class="one"><g:message code="client.profile.schoolDropout"/>:</td>
-        <td class="two"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
-      </tr>
-
-      <tr class="prop">
-        <td class="one"><g:message code="client.profile.schoolDropoutDate"/>:</td>
-        <td class="two"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
-      </tr>
-
-      <tr class="prop">
-        <td class="one"><g:message code="client.profile.schoolDropoutReason"/>:</td>
-        <td class="two">${fieldValue(bean: client, field: 'profile.schoolDropoutReason') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-      </tr>
-
-      <tr class="prop">
-        <td class="one"><g:message code="client.profile.schoolRestart"/>:</td>
-        <td class="two"><g:formatBoolean boolean="${client.profile.schoolRestart}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
-      </tr>
-
-      <tr class="prop">
-        <td class="one"><g:message code="client.profile.schoolRestartDate"/>:</td>
-        <td class="two"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
-      </tr>
-
-      <tr class="prop">
-        <td class="one"><g:message code="client.profile.schoolRestartReason"/>:</td>
-        <td class="two">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-      </tr>--}%
 
       <g:if test="${client.profile.job}">
         <tr class="prop">
@@ -462,7 +422,7 @@
     </div>
   </div>
 
-  <g:render template="/templates/links" model="[entity: client]"/>
+  %{--<g:render template="/templates/links" model="[entity: client]"/>--}%
 
 </div>
 </div>
