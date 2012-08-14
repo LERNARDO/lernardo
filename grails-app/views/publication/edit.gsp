@@ -9,9 +9,6 @@
 </div>
 <div class="boxGray">
   <div class="second">
-      <g:if test="${flash.message}">
-        <div class="message">${flash.message}</div>
-      </g:if>
 
       <g:hasErrors bean="${publication}">
         <div id="flash-msg">

@@ -755,7 +755,6 @@ h4 {
 	font-size: 14px;
 	font-weight: bold;
 	margin: 10px 0 6px 0;
-    //border-bottom: 1px solid #ccc;
     padding: 0 0 5px 0; }
 
 h5 {
@@ -799,36 +798,6 @@ ul {
     height: 115px;
     padding-bottom: 10px; }
 
-#profile-pic {
-    text-align: center;
-    margin-bottom: 15px;
-    #picture {
-        border-top: none;
-        border-bottom: none;
-        width: 180px;
-        margin: 0 auto;
-        margin-top: 3px;
-    }
-    .name {
-        .gradient(top, #789fe8, #567ec6);
-        color: #fff;
-        width: 180px;
-        margin: 0 auto;
-        .second {
-            padding: 3px 4px;
-        }
-    }
-    .type {
-        .gradient(top, #789fe8, #567ec6);
-        color: #fff;
-        width: 180px;
-        margin: 0 auto;
-        .second {
-            padding: 3px 4px;
-        }
-    }
-}
-
 .headerBlue {
     .gradient(top, #789fe8, #567ec6);
     h1 {
@@ -843,9 +812,6 @@ ul {
         padding: 4px 5px;
     }
 }
-
-#newHelper {
-    float: right; }
 
 .helperButton {
     border: 1px solid #f33;
@@ -900,33 +866,6 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
 }
 
 /* ----- TABLES ----- */
-
-.row-educator {
-    background-color: #C6DAFF; }
-
-.row-client {
-    background-color: #FFE0E0; }
-
-.row-facility {
-    background-color: #c3ffc3; }
-
-.row-operator {
-    background-color: #ffffc3; }
-
-.row-user {
-    background-color: #ffecc1; }
-
-.row-parent {
-    background-color: #EAD3EA; }
-
-.row-pate {
-    background-color: #FFD696; }
-
-.row-partner {
-    background-color: #E1FFE0; }
-
-.row-child {
-    background-color: #E5FFFD; }
 
 .default-table {
     border-collapse: separate;
@@ -1158,20 +1097,19 @@ a {
 .label {
     width: 125px; }
 
-.show-msg td.msg-title {
-  font-weight: bold;
-  font-size: 16px;
-  padding-top: 5px; }
-
-.show-msg td.msg-name {
-  padding: 5px 0; }
-
-.show-msg td.msg-content {
-  border-top: 1px solid #999999;
-  margin-top: 10px;
-  padding-top: 10px; }
-
-/* ----- MEMBERS ----- */
+.private-msg {
+    td.title {
+        font-weight: bold;
+        font-size: 16px;
+        padding-top: 5px; }
+    td.name {
+        font-size: 11px;
+        padding: 5px 0; }
+    td.content {
+        border-top: 1px solid #999999;
+        margin-top: 10px;
+        padding-top: 10px; }
+}
 
 .member {
     padding: 5px;
@@ -1234,10 +1172,6 @@ a {
     clear: both;
     margin: 0;
     padding: 0; }
-
-.cleartop {
-    margin: 2px 0 10px 0;
-    border-top: 1px solid #ccc; }
 
 .comment {
     border-bottom: 1px solid #ccc;
@@ -1323,9 +1257,6 @@ a {
     border-radius: 3px; }
 
 .prop {
-    //&:hover {
-    //  background: #f4f4f4;
-    //}
     .name {
         padding: 7px 4px 0 4px;
         color: #777;
@@ -1494,12 +1425,6 @@ a {
         background: #585;
     }
 }
-
-#execute-result {
-    margin: 10px 0 0 0;
-    padding: 5px;
-    background: #fff;
-    border: 1px solid #ccc; }
 
 .linkstabs {
     margin: 5px 0 3px 0;

@@ -4,17 +4,7 @@
 
     <h4><g:message code="object.edit" args="[message(code: 'publication')]"/></h4>
 
-      <g:if test="${flash.message}">
-        <div class="message">${flash.message}</div>
-      </g:if>
-
-      <g:hasErrors bean="${publication}">
-        <div id="flash-msg">
-          <div class="errors">
-            <g:renderErrors bean="${publication}" as="list"/>
-          </div>
-        </div>
-      </g:hasErrors>
+      <g:render template="/templates/errors" model="[bean: publication]"/>
 
     <g:formRemote name="formRemote" url="[controller: 'publication', action: 'update', id: publication.id]" update="content" before="showspinner('#content');">
 
