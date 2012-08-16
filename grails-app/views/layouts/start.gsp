@@ -74,6 +74,7 @@
 
   <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}"></script>
   <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'spin.min.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.simplemodal.js')}"></script>
   %{--<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.hotkeys-0.7.9.min.js')}"></script>--}%
 
   <g:layoutHead />

@@ -69,6 +69,16 @@
 
       <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; text-align: center; color: #36808E; font-size: 16px; margin-bottom: 6px;"><g:message code="imgmenu.calendar.name"/></div>
 
+        <div style="margin: 0 auto; width: 110px;">
+            <div class="buttons">
+                <g:form controller="appointmentProfile" id="${currentEntity.id}">
+                    <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'appointment')])}"/></div>
+                    <div class="clear"></div>
+                </g:form>
+            </div>
+        </div>
+
+
       <div class="calenderperson">
         <table style="width: 100%;">
           <tr>

@@ -192,16 +192,7 @@
         element.find(".fc-event-time").prepend("<img src='${resource(dir: 'images/icons', file: 'bullet_error.png')}' height='16' width='16'/>");
     },
 
-    dayClick: function (dayDate, allDay, jsEvent, view) {
-      %{--elem = jQuery(view.element).parent().parent();--}%
-        elem = jQuery('#profile-content') ;
-           if (view.name == 'month')
-             elem.fullCalendar('gotoDate', dayDate).fullCalendar('changeView', 'agendaWeek')  ;
-           else if (view.name == 'agendaWeek')
-             elem.fullCalendar('gotoDate', dayDate).fullCalendar('changeView', 'agendaDay')  ;
-          }
-
-        })
+    })
       </jq:jquery>
     </div>
 
