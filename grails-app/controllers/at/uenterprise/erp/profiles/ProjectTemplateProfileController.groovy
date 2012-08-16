@@ -46,46 +46,51 @@ class ProjectTemplateProfileController {
       redirect(action: list)
     }
     else {
-      // find all projectUnitTemplates linked to this projectTemplate
-      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
-      List projectUnitTemplates = projectTemplate.profile.templates.inject([]) {result, template -> result + Entity.get(template.toInteger())}
-
-      // calculate realDuration
-      int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
-
-      // find all instances of this template
-      List instances = functionService.findAllByLink(projectTemplate, null, metaDataService.ltProjectTemplate)
-
-      // get all resources of all templates
-      // get all groupActivityTemplates of all projectUnitTemplates
-      List groupActivityTemplates = []
-      projectUnitTemplates.each { put ->
-        List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
-        tempTemplates.each { tt ->
-          if (!groupActivityTemplates.contains(tt))
-            groupActivityTemplates.add(tt)
-        }
-      }
-      List groupActivityTemplateResources = []
-      List templateResources = []
-      groupActivityTemplates.each { Entity groupActivityTemplate ->
-        groupActivityTemplateResources.addAll(groupActivityTemplate.profile.resources)
-        // get all templates linked to the groupActivityTemplate
-        List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
-        templates.each {
-          templateResources.addAll(it.profile.resources)
-        }
-      }
-
-      [projectTemplate: projectTemplate,
-              projectUnitTemplates: projectUnitTemplates,
-              calculatedDuration: calculatedDuration,
-              instances: instances,
-              allLabels: functionService.getLabels(),
-              groupActivityTemplateResources: groupActivityTemplateResources,
-              templateResources: templateResources]
+      [projectTemplate: projectTemplate]
     }
   }
+
+    def management = {
+        Entity projectTemplate = Entity.get(params.id)
+
+        // find all projectUnitTemplates linked to this projectTemplate
+        //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+        List projectUnitTemplates = projectTemplate.profile.templates.inject([]) {result, template -> result + Entity.get(template.toInteger())}
+
+        // calculate realDuration
+        int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
+
+        // find all instances of this template
+        List instances = functionService.findAllByLink(projectTemplate, null, metaDataService.ltProjectTemplate)
+
+        // get all resources of all templates
+        // get all groupActivityTemplates of all projectUnitTemplates
+        List groupActivityTemplates = []
+        projectUnitTemplates.each { put ->
+            List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+            tempTemplates.each { tt ->
+                if (!groupActivityTemplates.contains(tt))
+                    groupActivityTemplates.add(tt)
+            }
+        }
+        List groupActivityTemplateResources = []
+        List templateResources = []
+        groupActivityTemplates.each { Entity groupActivityTemplate ->
+            groupActivityTemplateResources.addAll(groupActivityTemplate.profile.resources)
+            // get all templates linked to the groupActivityTemplate
+            List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+            templates.each {
+                templateResources.addAll(it.profile.resources)
+            }
+        }
+
+        render template: "management", model: [projectTemplate: projectTemplate, projectUnitTemplates: projectUnitTemplates,
+                calculatedDuration: calculatedDuration,
+                instances: instances,
+                allLabels: functionService.getLabels(),
+                groupActivityTemplateResources: groupActivityTemplateResources,
+                templateResources: templateResources]
+    }
 
   def delete = {
     Entity projectTemplate = Entity.get(params.id)

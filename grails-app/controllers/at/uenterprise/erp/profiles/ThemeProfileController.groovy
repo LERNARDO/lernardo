@@ -60,18 +60,6 @@ class ThemeProfileController {
       redirect(action: list)
     }
     else {
-      // find all projects which are within the theme duration
-      List allProjects = Entity.findAllByType(metaDataService.etProject).findAll {it.profile.startDate >= theme.profile.startDate && it.profile.endDate <= theme.profile.endDate}
-
-      // find all projects currently linked to this theme
-      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
-
-      // find all activity groups which are within the theme duration
-      List allActivityGroups = Entity.findAllByType(metaDataService.etGroupActivity).findAll {it.profile.date >= theme.profile.startDate && it.profile.date <= theme.profile.endDate}
-
-      // find all activity groups currently linked to this theme
-      List activitygroups = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
-
       // find the facility linked to this theme
       Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
 
@@ -79,15 +67,34 @@ class ThemeProfileController {
       Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
 
       [theme: theme,
-       allProjects: allProjects,
-       projects: projects,
-       allActivityGroups: allActivityGroups,
-       activitygroups: activitygroups,
        facility: facility,
        parenttheme: parenttheme,
        allLabels: functionService.getLabels()]
     }
   }
+
+    def management = {
+        Entity theme = Entity.get(params.id)
+
+        // find all projects which are within the theme duration
+        List allProjects = Entity.findAllByType(metaDataService.etProject).findAll {it.profile.startDate >= theme.profile.startDate && it.profile.endDate <= theme.profile.endDate}
+
+        // find all projects currently linked to this theme
+        List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
+
+        // find all activity groups which are within the theme duration
+        List allActivityGroups = Entity.findAllByType(metaDataService.etGroupActivity).findAll {it.profile.date >= theme.profile.startDate && it.profile.date <= theme.profile.endDate}
+
+        // find all activity groups currently linked to this theme
+        List activitygroups = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
+
+        render template: "management", model: [theme: theme,
+                allProjects: allProjects,
+                projects: projects,
+                allActivityGroups: allActivityGroups,
+                activitygroups: activitygroups,
+                allLabels: functionService.getLabels()]
+    }
 
   def delete = {
     Entity theme = Entity.get(params.id)

@@ -101,163 +101,159 @@ class ProjectProfileController {
       // find projectTemplate of this project
       Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
-      // find all units linked to the template
-      //List units = []
-      //if (template)
-        //units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
+      [project: project, template: template]
+    }
+  }
 
-      List units = []
-      template?.profile?.templates?.each {
-        units.add(Entity.get(it.toInteger()))
-      }
-
-      def allFacilities = Entity.findAllByType(metaDataService.etFacility)
-      // find all facilities linked to this project
-      List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
-
-      List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
-      // find all clients linked to this project
-      List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
-
-      // get all educators
-      def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
-
-      // get all parents
-      def families = []
-      clients.each { Entity client ->
-        // get all families
-        families.addAll(functionService.findAllByLink(client, null, metaDataService.ltGroupFamily))
-      }
-      def allParents = []
-      families.each { Entity family ->
-        // get all parents
-        def temp = functionService.findAllByLink(null, family, metaDataService.ltGroupMemberParent)
-        temp.each {
-          if (!allParents.contains(it))
-            allParents << it
-        }
-      }
-
-      // get all partners
-      def allPartners = Entity.findAllByType(metaDataService.etPartner)
-
-      // find all project days linked to this project
-      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
-      projectDays.sort {it.profile.date}
-
-      // find all projectUnits linked to this project
-      List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
-
-      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
-
-      // calculate realDuration
-      int calculatedDuration = functionService.calculateDurationPU(projectUnits)
-
-      // find all themes which are at the project time
-      List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= project.profile.startDate && it.profile.endDate >= project.profile.endDate}
-
-      List themes = functionService.findAllByLink(project, null, metaDataService.ltGroupMember)
-
-      Entity projectDay = params.one ? projectDays.find {it.id == params.int('one')} : (projectDays[0] ?: null)
-
-      List requiredResources = []
-      if (template)
-        requiredResources.addAll(template?.profile?.resources)
-      // find all project units linked to the project day
-      List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
-
-      // find all groups linked to all units
-      List groups = []
-      pUnits.each { Entity pUnit ->
-        groups.addAll(functionService.findAllByLink(null, pUnit, metaDataService.ltProjectUnit))
-      }
-
-      // for every group activity template add its resources
-      groups.each {
-        requiredResources.addAll(it.profile.resources)
-      }
-      // for every group activity template find its activity templates and add resources as well
-      groups.each { Entity group ->
-        List temps = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
-        temps.each { temp ->
-          temp.profile.resources.each {
-            if (!requiredResources.contains(it))
-              requiredResources.add(it)
-          }
-        }
-      }
-
-      List plannableResources = []
-      facilities.each { Entity facility ->
-        // add resources linked to the facility to plannable resources
-        plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
-
-        // find colony the facility is linked to and add its resources as well
-        Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-        plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
-
-        // find all other facilities linked to the colony and add their resources if marked as available in colony
-        List colonyResources = []
-        List otherFacilities = functionService.findAllByLink(null, colony, metaDataService.ltGroupMemberFacility)
-        otherFacilities.each { Entity of ->
-          List tempResources = functionService.findAllByLink(null, of, metaDataService.ltResource)
-          tempResources.each { Entity tr ->
-            if (tr.profile.classification == "colony") {
-              if (!colonyResources.contains(tr)) {
-                colonyResources.add(tr)
-              }
-            }
-          }
-        }
-        colonyResources.each {
-          if (!plannableResources.contains(it))
-            plannableResources.add(it)
-        }
-        //plannableResources.addAll(colonyResources)
-      }
-
-      // add all resources that are available everywhere
-      List everywhereResources = Entity.createCriteria().list {
-        eq("type", metaDataService.etResource)
-        profile {
-          eq("classification", "everywhere")
-        }
-      }
-      everywhereResources.each {
-        if (!plannableResources.contains(it))
-          plannableResources.add(it)
-      }
-      //plannableResources.addAll(everywhereResources)
-
-      List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
+    def management = {
+        Entity project = Entity.get(params.id)
 
         List responsibles = functionService.findAllByLink(null, project, metaDataService.ltResponsible)
 
-      [project: project,
-              projectUnits: projectUnits,
-              allGroupActivityTemplates: allGroupActivityTemplates,
-              calculatedDuration: calculatedDuration,
-              clients: clients,
-              allClientGroups: allClientgroups,
-              projectDays: projectDays,
-              template: template,
-              allFacilities: allFacilities,
-              facilities: facilities,
-              allEducators: allEducators,
-              units: units,
-              allParents: allParents,
-              allPartners: allPartners,
-              active: params.one ?: projectDays[0]?.id,
-              day: projectDay,
-              allThemes: allThemes,
-              themes: themes,
-              resources: resources,
-              plannableResources: plannableResources,
-              requiredResources: requiredResources,
-              allLabels: functionService.getLabels(),
-            responsibles: responsibles]
+        // find all themes which are at the project time
+        List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= project.profile.startDate && it.profile.endDate >= project.profile.endDate}
+
+        List themes = functionService.findAllByLink(project, null, metaDataService.ltGroupMember)
+
+        def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+        // find all facilities linked to this project
+        List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
+
+        // find all clients linked to this project
+        List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+
+        render template: "management", model: [project: project, responsibles: responsibles,
+                allLabels: functionService.getLabels(),
+                allThemes: allThemes,
+                themes: themes,
+                allFacilities: allFacilities,
+                facilities: facilities,
+                clients: clients]
     }
-  }
+
+    def projectdays = {
+        Entity project = Entity.get(params.id)
+
+        // find projectTemplate of this project
+        Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
+
+        // get all educators
+        def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
+
+        // find all facilities linked to this project
+        List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
+
+        List units = []
+        template?.profile?.templates?.each {
+            units.add(Entity.get(it.toInteger()))
+        }
+
+        // find all project days linked to this project
+        List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+        projectDays.sort {it.profile.date}
+
+        Entity projectDay = params.one ? projectDays.find {it.id == params.int('one')} : (projectDays[0] ?: null)
+
+        // find all clients linked to this project
+        List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+
+        // get all parents
+        def families = []
+        clients.each { Entity client ->
+            // get all families
+            families.addAll(functionService.findAllByLink(client, null, metaDataService.ltGroupFamily))
+        }
+        def allParents = []
+        families.each { Entity family ->
+            // get all parents
+            def temp = functionService.findAllByLink(null, family, metaDataService.ltGroupMemberParent)
+            temp.each {
+                if (!allParents.contains(it))
+                    allParents << it
+            }
+        }
+
+        List plannableResources = []
+        facilities.each { Entity facility ->
+            // add resources linked to the facility to plannable resources
+            plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+
+            // find colony the facility is linked to and add its resources as well
+            Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+            plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+
+            // find all other facilities linked to the colony and add their resources if marked as available in colony
+            List colonyResources = []
+            List otherFacilities = functionService.findAllByLink(null, colony, metaDataService.ltGroupMemberFacility)
+            otherFacilities.each { Entity of ->
+                List tempResources = functionService.findAllByLink(null, of, metaDataService.ltResource)
+                tempResources.each { Entity tr ->
+                    if (tr.profile.classification == "colony") {
+                        if (!colonyResources.contains(tr)) {
+                            colonyResources.add(tr)
+                        }
+                    }
+                }
+            }
+            colonyResources.each {
+                if (!plannableResources.contains(it))
+                    plannableResources.add(it)
+            }
+            //plannableResources.addAll(colonyResources)
+        }
+
+        // add all resources that are available everywhere
+        List everywhereResources = Entity.createCriteria().list {
+            eq("type", metaDataService.etResource)
+            profile {
+                eq("classification", "everywhere")
+            }
+        }
+        everywhereResources.each {
+            if (!plannableResources.contains(it))
+                plannableResources.add(it)
+        }
+        //plannableResources.addAll(everywhereResources)
+
+        List requiredResources = []
+        if (template)
+            requiredResources.addAll(template?.profile?.resources)
+        // find all project units linked to the project day
+        List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+
+        // find all groups linked to all units
+        List groups = []
+        pUnits.each { Entity pUnit ->
+            groups.addAll(functionService.findAllByLink(null, pUnit, metaDataService.ltProjectUnit))
+        }
+
+        // for every group activity template add its resources
+        groups.each {
+            requiredResources.addAll(it.profile.resources)
+        }
+        // for every group activity template find its activity templates and add resources as well
+        groups.each { Entity group ->
+            List temps = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+            temps.each { temp ->
+                temp.profile.resources.each {
+                    if (!requiredResources.contains(it))
+                        requiredResources.add(it)
+                }
+            }
+        }
+
+        List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
+
+        render template: "projectdays", model: [project: project, allEducators: allEducators,
+                resources: resources,
+                plannableResources: plannableResources,
+                requiredResources: requiredResources,
+                units: units,
+                allParents: allParents,
+                projectDays: projectDays,
+                active: params.one ?: projectDays[0]?.id,
+                day: projectDay]
+    }
 
   def delete = {
     Entity project = Entity.get(params.id)
