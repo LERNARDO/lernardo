@@ -21,7 +21,7 @@
 
 <div class="zusatz">
     <h5><g:message code="facilities"/> <erp:accessCheck types="['Betreiber','Pädagoge']"><a onclick="toggle('#facilities');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="facilities" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -36,7 +36,7 @@
 
 <div class="zusatz">
     <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#performances');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="performances" style="display:none">
         <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addPerformance', id: client.id]" update="performances2" before="showspinner('#performances2');" after="toggle('#performances'); clearElements(['#performancetext']);">
@@ -64,7 +64,7 @@
 
 <div class="zusatz">
     <h5><g:message code="client.profile.healthNotes"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#healths');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="healths" style="display:none">
         <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addHealth', id: client.id]" update="healths2" before="showspinner('#healths2');" after="toggle('#healths'); clearElements(['#healthstext']);">
@@ -92,7 +92,7 @@
 
 <div class="zusatz">
     <h5><g:message code="client.profile.materials"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#materials');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="materials" style="display:none">
         <g:formRemote name="formRemote3" url="[controller: 'clientProfile', action: 'addMaterial', id: client.id]" update="materials2" before="showspinner('#materials2');" after="toggle('#materials'); clearElements(['#materialstext']);">
@@ -120,7 +120,7 @@
 
 <div class="zusatz">
     <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#dates');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller: 'clientProfile', action: 'addDate', id: client.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
@@ -136,7 +136,7 @@
 
 <div class="zusatz">
     <h5><g:message code="schoolEntryExit"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#schooldates');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="schooldates" style="display:none">
         <g:formRemote name="formRemote5" url="[controller: 'clientProfile', action: 'addSchoolDate', id: client.id]" update="schooldates2" before="showspinner('#schooldates2');" after="toggle('#schooldates');">
@@ -153,7 +153,7 @@
 
 <div class="zusatz">
     <h5><g:message code="client.profile.collectors"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#collectors');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="collectors" style="display:none">
         <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addCollector', id: client.id]" update="collectors2" before="showspinner('#collectors2');" after="toggle('#collectors');">
@@ -168,7 +168,7 @@
 
 <div class="zusatz">
     <h5><g:message code="educator.profile.emContact"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#contacts');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addContact', id: client.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">

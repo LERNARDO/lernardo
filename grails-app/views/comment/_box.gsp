@@ -4,7 +4,7 @@
     <h4><g:message code="comments"/></h4>
 
     <div class="add-comment">
-      <a onclick="clearElements(['#commenttext']); toggle('#comment-div'); return false" href="#"><g:message code="comment.add"/> <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a>
+      <a onclick="clearElements(['#commenttext']); toggle('#comment-div'); return false" href="#"><g:message code="comment.add"/> <img src="${g.resource(dir:'images/icons', file:'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}" /></a>
     </div>
     <div id="comment-div" style="display:none; margin-bottom: 10px">
       <g:formRemote name="formRemote" url="[controller: 'comment', action: 'save', id: commented.id]" update="comments" before="toggle('#comment-div');">

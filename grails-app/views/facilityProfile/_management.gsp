@@ -2,7 +2,7 @@
 
 <div class="zusatz">
     <h5><g:message code="leadEducators"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#leadeducators');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="leadeducators" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -17,7 +17,7 @@
 
 <div class="zusatz">
     <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#educators');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="educators" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -32,7 +32,7 @@
 
 <div class="zusatz">
     <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#clients');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="clients" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -47,7 +47,7 @@
 
 <div class="zusatz">
     <h5><g:message code="contacts"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller: 'facilityProfile', action: 'addContact', id: facility.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
 
@@ -102,7 +102,7 @@
 
 <div class="zusatz">
     <h5><g:message code="resource.profile"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote2" url="[controller: 'facilityProfile', action: 'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
             <table>

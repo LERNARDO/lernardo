@@ -108,4 +108,9 @@ class SetupController {
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
+    def showSection = {
+        def setupInstance = Setup.get(params.id)
+        render template: params.type, model: [setupInstance: setupInstance]
+    }
+
 }

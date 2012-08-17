@@ -98,10 +98,10 @@
         <li class="icon-evaluation"><g:link controller="evaluation" action="allevaluations"><g:message
                 code="evaluation.allevalentries"/></g:link></li>
         <li class="icon-network"><g:link controller="comment" action="list"><g:message
-                code="allComments"/></g:link></li>
-        <li class="icon-all"><g:link controller="profile" action="list"><g:message
-                code="profile.all"/></g:link></li>
+                code="comment.management"/></g:link></li>
+        <li class="icon-group"><g:link controller="profile" action="list"><g:message
+                code="profile.list"/></g:link></li>
         <li class="icon-resource"><g:link controller="resourceProfile" action="list"><g:message
-                code="allResources"/></g:link></li>
+                code="resource.management"/></g:link></li>
     </ul>
 </div>

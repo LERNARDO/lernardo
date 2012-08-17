@@ -2,7 +2,7 @@
 
 <div class="zusatz">
     <h5><g:message code="pate.profile.gcs"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#godchildren');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="godchildren" style="display:none">
 
         <g:message code="search"/>:<br/>

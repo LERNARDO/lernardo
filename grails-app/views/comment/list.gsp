@@ -1,10 +1,10 @@
 <head>
   <meta name="layout" content="administration"/>
-  <title><g:message code="comments"/></title>
+  <title><g:message code="comment.management"/></title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="comments"/></h1>
+  <h1><g:message code="comment.management"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">

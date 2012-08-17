@@ -1,10 +1,10 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="resources"/></title>
+  <title><g:message code="resource.management"/></title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="resources"/></h1>
+  <h1><g:message code="resource.management"/></h1>
 </div>
 <div class="boxGray">
   <div class="second">
