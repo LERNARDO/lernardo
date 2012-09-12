@@ -23,16 +23,16 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="begin"/></td>
+          <td valign="top" class="name"><g:message code="begin"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${formatDate(date: pc?.startDate, format: 'dd. MM. yyyy')}"/>
+            <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" required="" value="${formatDate(date: pc?.startDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="end"/></td>
+          <td valign="top" class="name"><g:message code="end"/> <span class="required-indicator">*</span></td>
           <td valign="top" class="value">
-            <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy')}"/>
+            <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" required="" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
 

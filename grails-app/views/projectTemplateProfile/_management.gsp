@@ -17,7 +17,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="projectUnitTemplates"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle-plus.png')}" alt="${message(code: 'add')}"/></g:remoteLink></erp:accessCheck></h5>
+    <h5><g:message code="projectUnitTemplates"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add_old.png')}" alt="${message(code: 'add')}"/></g:remoteLink></erp:accessCheck></h5>
     <div class="zusatz-show" id="projectunittemplates2">
         <g:render template="projectUnitTemplates" model="[projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, allLabels: allLabels]"/>
     </div>

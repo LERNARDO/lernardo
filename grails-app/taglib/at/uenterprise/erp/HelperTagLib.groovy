@@ -1595,6 +1595,21 @@ class HelperTagLib {
     }
 
     /**
+     * Finds all templates linked to a group activity template
+     *
+     * @author Alexander Zeillinger
+     * @attr groupActivityTemplate REQUIRED The group activity template
+     */
+    def getTemplatesOfGroupActivityTemplate = {attrs, body ->
+        List templates = functionService.findAllByLink(null, attrs.groupActivityTemplate, metaDataService.ltGroupMember)
+
+        if (templates)
+            out << body(templates: templates)
+        else
+            out << body(templates: null)
+    }
+
+    /**
      * Finds all project units linked to a project day
      *
      * @author Alexander Zeillinger
