@@ -20,6 +20,7 @@
             }
           },
           position: {
+            viewport: $(window),
             my: 'top left',  // Position my top left...
             at: 'right bottom', // at the bottom right of...
             target: $(this) // my target

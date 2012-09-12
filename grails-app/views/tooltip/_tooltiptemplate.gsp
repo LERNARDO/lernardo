@@ -42,4 +42,8 @@
             </g:else>
         </td>
     </tr>
+    <tr class="prop">
+        <td class="one"><g:message code="status"/></td>
+        <td class="two"><g:message code="status.${entity.profile.status}"/></td>
+    </tr>
 </table>
