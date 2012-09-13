@@ -32,7 +32,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="activityTemplate.socialForm"/></td>
           <td valign="top" class="value">
-            <g:select name="socialForm" from="['open','single','partner','smallgroup1','smallgroup2','smallgroup3','largegroup1','largegroup2']" value="${template?.profile?.socialForm}" valueMessagePrefix="socialForm"/>
+            <g:select name="socialForm" from="${grailsApplication.config.socialForms}" value="${template?.profile?.socialForm}" valueMessagePrefix="socialForm"/>
           </td>
         </tr>
 

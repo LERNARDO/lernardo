@@ -176,6 +176,7 @@ resourceclasses = ['facility', 'colony', 'everywhere']
 profiletypes = ['all', 'operator', 'educator', 'client', 'user', 'partner', 'pate', 'parent', 'child']
 helpertypes = ['operator', 'educator', 'client', 'partner', 'pate', 'parent']
 costsUnit = ['perDay', 'perHour']
+socialForms = ['single', 'partner', 'smallgroup1', 'smallgroup2', 'smallgroup3', 'largegroup1', 'largegroup2', 'open']
 
 // these are the currently used locales in the application
 locales = [new Locale("de", "DE"), new Locale("es", "ES"), new Locale("en", "GB")]
