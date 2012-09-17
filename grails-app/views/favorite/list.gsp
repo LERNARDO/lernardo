@@ -7,7 +7,7 @@
   <h1><g:message code="favorites"/></h1>
 </div>
 <div class="boxGray">
-  <g:remoteLink class="buttonGreen" action="createFolder" update="faveditbox">Ordner erstellen</g:remoteLink>
+  <g:remoteLink class="buttonGreen" action="createFolder" update="faveditbox"><g:message code="favorite.addFolder"/></g:remoteLink>
   <div class="clear" style="padding-bottom: 5px;"></div>
   <div id="faveditbox"></div>
   <div id="favoriteslist">

@@ -40,7 +40,7 @@ class FavoriteController {
 
   def createFolder() {
     Entity currentEntity = entityHelperService.loggedIn
-    List folders = getFolders(currentEntity.profile.favoritesFolder)
+    List folders = functionService.getFolders(currentEntity.profile.favoritesFolder)
     render template: "createFolder", model: [folders: folders]
   }
 
@@ -57,6 +57,21 @@ class FavoriteController {
     folder.folder.addToFolders(folder)
     render template: "folders"
   }
+
+    def saveFolderModal() {
+        Folder folder = new Folder()
+        folder.name = params.name
+        folder.description = params.description
+        if (params.folder != 'none')
+            folder.folder = Folder.get(params.folder)
+        else
+            folder.folder =  entityHelperService.loggedIn.profile.favoritesFolder
+        folder.type = FolderType.findByName("favorite")
+        folder.save(failOnError: true, flush: true)
+        folder.folder.addToFolders(folder)
+
+        render template: "/templates/favmodalfolders", model: [entity: Entity.get(params.id)]
+    }
 
   def updateFolder() {
     Folder folder = Folder.get(params.id)

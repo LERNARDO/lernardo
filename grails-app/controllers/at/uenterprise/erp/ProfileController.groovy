@@ -300,14 +300,12 @@ class ProfileController {
   }
   
   def addFavorite = {
-    Folder folder = Folder.get(params.folder)
+    Entity currentEntity = entityHelperService.loggedIn
+    Folder folder = params.folder == 'null' ? currentEntity.profile.favoritesFolder : Folder.get(params.folder)
     Entity entity = Entity.get(params.id)
 
-    // check if the favorite already exists
-    if (!Favorite.findByEntity(entity)) {
-        Favorite favorite = new Favorite(entity: entity, description: " ", folder: folder).save(failOnError: true)
-        folder.addToFavorites(favorite)
-    }
+    Favorite favorite = new Favorite(entity: entity, description: " ", folder: folder).save(failOnError: true)
+    folder.addToFavorites(favorite)
 
     render template: 'favbuttons', model: [entity: entity]
   }
