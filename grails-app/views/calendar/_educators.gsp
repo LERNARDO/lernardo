@@ -5,8 +5,8 @@
         <td>
           <a style="display: block; text-decoration: none;" href="#" onclick="togglePerson('person','${calEntity.entity.id}','${i}'); return false;">
             <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${calEntity.entity.id}','${i}','${calEntity.visible}');"/>
-            <div id="personcolor${i}" style="display: ${calEntity.visible ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${calEntity.color ?: '#ccc'}; background-color: ${calEntity.color ?: '#ccc'};"></div> <erp:truncate string="${calEntity.entity.profile.fullName}"/></div>
-            <div id="personcolor${i}-2" style="display: ${calEntity.visible ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${calEntity.entity.profile.fullName}"/></div>
+            <div id="personcolor${i}" style="display: ${calEntity.visible ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${calEntity.color ?: '#ccc'}; background-color: ${calEntity.color ?: '#ccc'};"></div> <erp:truncate length="18" string="${calEntity.entity.profile.fullName}"/></div>
+            <div id="personcolor${i}-2" style="display: ${calEntity.visible ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate length="18" string="${calEntity.entity.profile.fullName}"/></div>
           </a>
         </td>
         <td width="35">

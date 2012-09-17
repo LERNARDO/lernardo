@@ -39,7 +39,7 @@
 
           <tr class="prop">
             <td class="one"><g:message code="lastName"/>:</td>
-            <td class="two">${fieldValue(bean: child, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'} <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
+            <td class="two">${fieldValue(bean: child, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'} <g:if test="${family}">(<g:link class="largetooltip" data-idd="${family.id}" controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
           </tr>
 
           <tr class="prop">

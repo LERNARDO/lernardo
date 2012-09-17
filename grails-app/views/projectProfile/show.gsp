@@ -31,7 +31,7 @@
         <h4><g:message code="profile"/></h4>
 
       <g:if test="${template}">
-        <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
+        <p><g:message code="projectTemplate"/>: <g:link class="largetooltip" data-idd="${template.id}" controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
       </g:if>
 
       <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: project]"/></span> <erp:accessCheck roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>

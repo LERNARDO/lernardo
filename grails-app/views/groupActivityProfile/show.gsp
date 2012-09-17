@@ -42,7 +42,7 @@
           <td class="one"><g:message code="groupActivityTemplate"/>:</td>
           <td class="two">
             <g:if test="${template}">
-              <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
+              <g:link class="largetooltip" data-idd="${template.id}" controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic"><g:message code="template.notAvailable"/></span>

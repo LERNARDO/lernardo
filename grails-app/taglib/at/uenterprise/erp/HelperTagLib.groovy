@@ -847,9 +847,10 @@ class HelperTagLib {
      *
      * @author Alexander Zeillinger
      * @attr string REQUIRED The string to truncate
+     * @attr length REQUIRED The length to truncate the string to
      */
     def truncate = {attrs ->
-        out << (attrs.string.size() > 18 ? attrs.string.substring(0, 18) + "..." : attrs.string)
+        out << (attrs.string.size() > attrs.int('length') ? attrs.string.substring(0, attrs.int('length')) + "..." : attrs.string)
     }
 
     /**
