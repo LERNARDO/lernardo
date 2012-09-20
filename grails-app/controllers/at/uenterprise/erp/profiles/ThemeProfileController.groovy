@@ -92,8 +92,7 @@ class ThemeProfileController {
                 allProjects: allProjects,
                 projects: projects,
                 allActivityGroups: allActivityGroups,
-                activitygroups: activitygroups,
-                allLabels: functionService.getLabels()]
+                activitygroups: activitygroups]
     }
 
   def delete = {

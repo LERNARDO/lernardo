@@ -101,7 +101,7 @@ class ProjectProfileController {
       // find projectTemplate of this project
       Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
-      [project: project, template: template]
+      [project: project, template: template, allLabels: functionService.getLabels()]
     }
   }
 
@@ -123,7 +123,6 @@ class ProjectProfileController {
         List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
 
         render template: "management", model: [project: project, responsibles: responsibles,
-                allLabels: functionService.getLabels(),
                 allThemes: allThemes,
                 themes: themes,
                 allFacilities: allFacilities,

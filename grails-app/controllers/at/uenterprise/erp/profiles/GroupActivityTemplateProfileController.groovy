@@ -49,7 +49,7 @@ class GroupActivityTemplateProfileController {
       return
     }
 
-    return [group: group]
+    return [group: group, allLabels: functionService.getLabels()]
   }
 
     def management = {
@@ -91,7 +91,6 @@ class GroupActivityTemplateProfileController {
                 templates: templates,
                 calculatedDuration: calculatedDuration,
                 methods: Method.findAllByType('template'),
-                allLabels: functionService.getLabels(),
                 instances: instances,
                 templateResources: templateResources]
     }

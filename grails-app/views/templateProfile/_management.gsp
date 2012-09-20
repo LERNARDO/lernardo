@@ -1,22 +1,6 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><a onclick="toggle('#labels');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-    <div class="zusatz-add" id="labels" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller: 'templateProfile', action: 'addLabel', id: template.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
-            <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
-            <div class="clear"></div>
-            <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
-        </g:formRemote>
-    </div>
-    <div class="zusatz-show" id="labels2">
-        <g:render template="labels" model="[template: template]"/>
-    </div>
-</div>
-
-<div class="zusatz">
     <h5><g:message code="resources.required"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="resources" style="display:none">
 

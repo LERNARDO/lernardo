@@ -84,7 +84,7 @@ class TemplateProfileController {
 
   def show = {
     Entity template = Entity.get(params.id)
-    return [template: template]
+    return [template: template, allLabels: functionService.getLabels()]
   }
 
     def management = {
@@ -95,8 +95,7 @@ class TemplateProfileController {
         List allMethods = Method.findAllByType('template', params)
 
         render template: "management", model: [template: template,
-                allMethods: allMethods,
-                allLabels: functionService.getLabels()]
+                allMethods: allMethods]
     }
 
   def create = {}

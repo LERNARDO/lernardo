@@ -14,6 +14,19 @@
 
     <g:render template="/templates/groupActivityNavigation" model="[entity: group]"/>
 
+      <div style="margin-top: 10px; height: 30px;">
+          <span class="zusatz-show" id="labels2">
+              <g:render template="labels" model="[group: group]"/>
+          </span>
+          <span class="zusatz-add hidden" id="labels">
+              <g:formRemote name="formRemote2" url="[controller: 'groupActivityProfile', action: 'addLabel', id: group.id]" update="labels2" before="showspinner('#labels2');" after="jQuery('#labels').toggleClass('hidden').toggleClass('visible');">
+                  <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
+                  <g:submitButton name="button" value="${message(code:'add')}"/>
+              </g:formRemote>
+          </span>
+          <div class="clear"></div>
+      </div>
+
     <div class="tabnav">
       <ul>
         <li><g:link controller="groupActivityProfile" action="show" id="${group.id}"><g:message code="profile"/></g:link></li>

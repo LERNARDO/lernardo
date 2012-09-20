@@ -85,7 +85,7 @@ class GroupActivityProfileController {
 
       Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
 
-    return [group: group, template: template]
+    return [group: group, template: template, allLabels: functionService.getLabels()]
   }
 
     def management = {
@@ -166,8 +166,7 @@ class GroupActivityProfileController {
                 allThemes: allThemes,
                 themes: themes,
                 requiredResources: requiredResources,
-                resources: resources,
-                allLabels: functionService.getLabels()]
+                resources: resources]
 
     }
 

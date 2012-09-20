@@ -1,22 +1,6 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${theme}" checkoperator="true"><a onclick="toggle('#labels');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-    <div class="zusatz-add" id="labels" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller: 'themeProfile', action: 'addLabel', id: theme.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
-            <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
-            <div class="clear"></div>
-            <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
-        </g:formRemote>
-    </div>
-    <div class="zusatz-show" id="labels2">
-        <g:render template="labels" model="[theme: theme]"/>
-    </div>
-</div>
-
-<div class="zusatz">
     <h5><g:message code="projects"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#projects');
     return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Projekte zuordnen"/></a></erp:accessCheck></h5>
     <div class="zusatz-add" id="projects" style="display:none">

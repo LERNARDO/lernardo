@@ -14,6 +14,19 @@
 
     <g:render template="/templates/templateNavigation" model="[entity: template]"/>
 
+      <div style="margin-top: 10px; height: 30px;">
+      <span class="zusatz-show" id="labels2">
+          <g:render template="labels" model="[template: template]"/>
+      </span>
+      <span class="zusatz-add hidden" id="labels">
+          <g:formRemote name="formRemote2" url="[controller: 'templateProfile', action: 'addLabel', id: template.id]" update="labels2" before="showspinner('#labels2');" after="jQuery('#labels').toggleClass('hidden').toggleClass('visible');">
+              <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
+              <g:submitButton name="button" value="${message(code:'add')}"/>
+          </g:formRemote>
+      </span>
+      <div class="clear"></div>
+  </div>
+
     <div class="tabnav">
       <ul>
         <li><g:link controller="templateProfile" action="show" id="${template.id}"><g:message code="profile"/></g:link></li>

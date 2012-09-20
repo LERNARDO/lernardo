@@ -46,7 +46,7 @@ class ProjectTemplateProfileController {
       redirect(action: list)
     }
     else {
-      [projectTemplate: projectTemplate]
+      [projectTemplate: projectTemplate, allLabels: functionService.getLabels()]
     }
   }
 
@@ -87,7 +87,6 @@ class ProjectTemplateProfileController {
         render template: "management", model: [projectTemplate: projectTemplate, projectUnitTemplates: projectUnitTemplates,
                 calculatedDuration: calculatedDuration,
                 instances: instances,
-                allLabels: functionService.getLabels(),
                 groupActivityTemplateResources: groupActivityTemplateResources,
                 templateResources: templateResources]
     }
