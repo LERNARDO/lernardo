@@ -1,8 +1,7 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><a onclick="toggle('#labels');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><img onclick="toggle('#labels');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="labels" style="display:none">
         <g:formRemote name="formRemote2" url="[controller: 'projectTemplateProfile', action: 'addLabel', id: projectTemplate.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
@@ -57,7 +56,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="template.plannedProjects"/> (${instances.size}) <a onclick="toggle('#instances'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Instanzen"/></a></h5>
+    <h5><g:message code="template.plannedProjects"/> (${instances.size}) <img onclick="toggle('#instances');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Instanzen"/></h5>
     <div class="zusatz-add" id="instances" style="display:none">
         <g:if test="${instances.size() > 0}">
             <ul>

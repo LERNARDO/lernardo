@@ -50,7 +50,7 @@
     <span class="italic red">An diesem Datum gibt es bereits einen anderen Projekttag!</span>
   </g:if>
 
-  <h5><g:message code="projectUnits"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+  <h5><g:message code="projectUnits"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#units');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
   <div id="units" style="display:none;">
     <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'addUnit', id: projectDay.id]" update="units2" before="showspinner('#units2')">
       <table>
@@ -69,7 +69,7 @@
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#educators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div id="educators" style="display:none">
 
       <g:message code="search"/>:<br/>
@@ -86,7 +86,7 @@
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="substitutes"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="substitutes"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#substitutes');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div id="substitutes" style="display:none">
 
       <g:message code="search"/>:<br/>
@@ -103,7 +103,7 @@
   </div>
 
   <div class="zusatz">
-    <h5><g:message code="resources.planned"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="resources.planned"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#resources');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="resources" style="display:none">
       <span class="bold"><g:message code="resources.required"/></span>

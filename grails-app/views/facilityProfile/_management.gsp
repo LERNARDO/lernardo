@@ -1,8 +1,7 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="leadEducators"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#leadeducators');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="leadEducators"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#leadeducators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="leadeducators" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -16,8 +15,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#educators');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><img onclick="toggle('#educators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="educators" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -31,8 +29,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#clients');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']" facilities="[facility]"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="clients" style="display:none">
 
         <g:message code="search"/>:<br/>

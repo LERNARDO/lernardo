@@ -27,8 +27,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <p><g:message code="dayroutine.create"/> <a onclick="toggle('#newroutine');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code:'dayroutine.create')}"/></a></p>
+    <p><g:message code="dayroutine.create"/> <img onclick="toggle('#newroutine');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code:'dayroutine.create')}"/></p>
     <div id="newroutine" class="graypanel">
 
       <g:formRemote name="formRemote" url="[controller: 'dayroutine', action: 'save', id: entity.id]" update="dayroutine" before="showspinner('#dayroutine')">

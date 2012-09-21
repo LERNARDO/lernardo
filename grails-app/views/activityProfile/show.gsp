@@ -63,8 +63,7 @@
 
       <h4><g:message code="management"/></h4>
       <div class="zusatz">
-        <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#educators');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+        <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#educators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
         <div class="zusatz-add" id="educators" style="display:none">
 
           <g:message code="search"/>:<br/>
@@ -78,8 +77,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#clients');
-        return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+        <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
         <div class="zusatz-add" id="clients" style="display:none">
 
           <g:message code="search"/>:<br/>
@@ -93,8 +91,7 @@
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="facility"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#facilities');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+        <h5><g:message code="facility"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#facilities');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
         <div class="zusatz-add" id="facilities" style="display:none">
           <g:formRemote name="formRemote" url="[controller: 'activityProfile', action: 'addFacility', id: activity.id]" update="facilities2" before="showspinner('#facilities2');">
             <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
@@ -111,8 +108,7 @@
       --}%%{--clients and their status may only be added after the activity has started--}%%{--
         <g:if test="${new Date() > activity.profile.date}">
           <div>
-            <h1><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#clients');
-            return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h1>
+            <h1><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h1>
             <div id="clients" style="display:none">
               <g:formRemote name="formRemote" url="[controller: 'activityProfile', action: 'addClient', id: activity.id]" update="clients2" before="showspinner('#clients2')">
                 <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>

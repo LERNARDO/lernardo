@@ -1,8 +1,7 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${theme}" checkoperator="true"><a onclick="toggle('#labels');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="labels"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']" creatorof="${theme}" checkoperator="true"><img onclick="toggle('#labels');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="labels" style="display:none">
         <g:formRemote name="formRemote2" url="[controller: 'themeProfile', action: 'addLabel', id: theme.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
@@ -17,8 +16,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="projects"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#projects');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Projekte zuordnen"/></a></erp:accessCheck></h5>
+    <h5><g:message code="projects"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#projects');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Projekte zuordnen"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="projects" style="display:none">
         <g:if test="${allProjects}">
             <g:formRemote name="formRemote" url="[controller: 'themeProfile', action: 'addProject', id: theme.id]" update="projects2" before="showspinner('#projects2');"  after="toggle('#projects');">
@@ -38,8 +36,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="groupActivities"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#activitygroups');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Aktivitätsblöcke zuordnen"/></a></erp:accessCheck></h5>
+    <h5><g:message code="groupActivities"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#activitygroups');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Aktivitätsblöcke zuordnen"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="activitygroups" style="display:none">
         <g:if test="${allActivityGroups}">
             <g:formRemote name="formRemote" url="[controller: 'themeProfile', action: 'addActivityGroup', id: theme.id]" update="activitygroups2" before="showspinner('#activitygroups2');" after="toggle('#activitygroups');">
