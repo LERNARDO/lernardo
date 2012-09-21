@@ -169,9 +169,8 @@
 
         </table>
 
-        <div class="buttons">
+        <div class="buttons cleared">
             <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'save')}" /></div>
-            <div class="clear"></div>
         </div>
 
     </g:form>

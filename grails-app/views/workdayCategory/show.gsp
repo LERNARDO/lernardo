@@ -36,7 +36,7 @@
     </table>
 
     <erp:accessCheck types="['Betreiber']">
-      <div class="buttons">
+      <div class="buttons cleared">
         <g:form id="${workdayCategoryInstance?.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           <erp:accessCheck>
@@ -44,7 +44,6 @@
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
         </g:form>
-        <div class="clear"></div>
       </div>
     </erp:accessCheck>
 

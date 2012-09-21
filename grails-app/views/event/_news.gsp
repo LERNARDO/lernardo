@@ -1,8 +1,7 @@
 <erp:accessCheck types="['Betreiber','Pädagoge']">
-  <div class="buttons">
+  <div class="buttons cleared">
     <g:form controller="news" action="create">
       <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'object.create', args: [message(code: 'news')])}"/></div>
-      <div class="clear"></div>
     </g:form>
   </div>
 </erp:accessCheck>

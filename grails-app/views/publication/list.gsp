@@ -16,10 +16,9 @@
     </g:if>
 
     <erp:accessCheck types="['Betreiber']" me="${entity}" creatorof="${entity}">
-      <div class="buttons">
+      <div class="buttons cleared">
         <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'publication.upload')}"/></div>
-          <div class="clear"></div>
         </g:form>
       </div>
     </erp:accessCheck>

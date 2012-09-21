@@ -41,10 +41,9 @@
         </table>
       </div>
 
-      <div class="buttons">
+      <div class="buttons cleared">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
-        <div class="clear"></div>
       </div>
       
     </g:form>

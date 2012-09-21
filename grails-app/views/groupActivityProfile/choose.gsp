@@ -30,10 +30,9 @@
         </div>
       </div>
 
-      <div class="buttons">
+      <div class="buttons cleared">
         <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'groupActivity.plan')}"/></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}"/></div>
-        <div class="clear"></div>
       </div>
 
     </g:form>

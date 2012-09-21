@@ -79,7 +79,7 @@
       </tbody>
     </table>
 
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:form id="${process.id}">
         <erp:accessCheck types="['Betreiber']" facilities="${facilities}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="editProcess" value="${message(code: 'edit')}" /></div>
@@ -87,7 +87,6 @@
         </erp:accessCheck>
         <div class="button"><g:actionSubmit class="buttonGray" action="processes" value="${message(code: 'back')}" /></div>
       </g:form>
-      <div class="clear"></div>
     </div>
 
   </div>

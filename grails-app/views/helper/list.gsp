@@ -19,10 +19,9 @@
     </div>
 
     <erp:accessCheck roles="['ROLE_ADMIN']">
-      <div class="buttons">
+      <div class="buttons cleared">
         <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'helper')])}"/></div>
-          <div class="clear"></div>
         </g:form>
       </div>
     </erp:accessCheck>

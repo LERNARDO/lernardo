@@ -58,10 +58,9 @@
         </ckeditor:editor>
       </span>
 
-      <div class="buttons">
+      <div class="buttons cleared">
         <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="Speichern"/></div>
         <g:link class="buttonGray" action="show" id="${evaluationInstance.id}" params="[entity: entity.id]"><g:message code="cancel"/></g:link>
-        <div class="clear"></div>
       </div>
 
     </g:form>

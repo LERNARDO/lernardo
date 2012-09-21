@@ -54,7 +54,7 @@
       </tbody>
     </table>
 
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:form id="${appointment.id}">
         <erp:accessCheck types="['Betreiber']" me="${belongsTo}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
@@ -62,7 +62,6 @@
         </erp:accessCheck>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       </g:form>
-      <div class="clear"></div>
     </div>
 
   </div>

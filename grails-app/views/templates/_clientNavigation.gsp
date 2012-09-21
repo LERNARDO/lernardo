@@ -28,7 +28,7 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
-      <div class="buttons" style="margin-bottom: 0;">
+      <div class="buttons cleared" style="margin-bottom: 0;">
         <g:form id="${entity?.id}">
           <erp:accessCheck types="['Betreiber']" me="${entity}" facilities="${facilities}">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
@@ -47,7 +47,6 @@
                   <g:submitButton class="buttonGreen" name="submit" value="${message(code: 'change.pwd')}"/>
               </g:form>
           </erp:accessCheck>
-        <div class="clear"></div>
       </div>
     </td>
   </tr>

@@ -17,11 +17,10 @@
       <g:message code="object.total" args="[totalGroupActivities, message(code: 'groupActivities')]"/>
     </div>
 
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:form>
         <erp:accessCheck types="['Pädagoge','Betreiber']">
           <div class="button"><g:actionSubmit class="buttonGreen" action="choose" value="${message(code: 'groupActivity.plan')}"/></div>
-          <div class="clear"></div>
         </erp:accessCheck>
       </g:form>
     </div>

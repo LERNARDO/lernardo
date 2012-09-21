@@ -23,13 +23,12 @@
 
     </table>
 
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:form id="${labelInstance.id}">
         <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
         <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" /></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
       </g:form>
-      <div class="clear"></div>
     </div>
 
   </div>

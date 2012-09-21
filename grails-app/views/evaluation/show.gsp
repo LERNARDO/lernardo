@@ -48,11 +48,10 @@
   </table>
 
   <erp:accessCheck types="['Betreiber']" me="${evaluation.writer}">
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:form id="${evaluation?.id}" params="[entity: entity.id]">
         <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
         %{--<div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="return confirm('${message(code:'delete.warn')}');"/></div>--}%
-        <div class="clear"></div>
       </g:form>
     </div>
   </erp:accessCheck>

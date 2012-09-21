@@ -35,19 +35,17 @@
       <g:message code="found"/>
     </div>
 
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:link class="buttonGreen" controller="activityProfile" action="create"><g:message code="themeRoom.create"/></g:link>
-      <div class="clear"></div>
     </div>
 
     <div id="select-box">
       <g:message code="filterBy"/>:
       <g:form>
         <g:textField class="datepicker" name="myDate" value="${formatDate(date: dateSelected, format: 'dd. MM. yyyy' )}"/>
-        <div class="buttons">
+        <div class="buttons cleared">
           <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="OK"/></div>
           <div class="button"><g:link class="buttonGreen" action="list" params="[myDate: 'all']"><g:message code="all"/></g:link></div>
-          <div class="clear"></div>
         </div>
       </g:form>
     </div>

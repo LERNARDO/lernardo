@@ -13,9 +13,8 @@
       Es gibt insgesamt ${evaluations.size()} Tagebucheinträge verknüpft mit ${entity.profile.fullName}
     </div>
 
-%{--    <div class="buttons">
+%{--    <div class="buttons cleared">
       <g:link class="buttonGreen" action="create" id="${entity.id}"><g:message code="evaluation.create"/></g:link>
-      <div class="clear"></div>
     </div>--}%
 
     <ul>
