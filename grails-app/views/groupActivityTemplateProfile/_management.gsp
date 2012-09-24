@@ -7,7 +7,6 @@
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
         </g:formRemote>
     </div>
     <div class="zusatz-show" id="labels2">
@@ -63,7 +62,6 @@
             </table>
 
             <g:submitButton name="button" value="${message(code:'define')}"/>
-            <div class="clear"></div>
         </g:formRemote>
 
         <g:formRemote name="formRemote" url="[controller: 'groupActivityTemplateProfile', action: 'addTemplate', id: group.id]" update="templates2" before="showspinner('#templates2');" after="toggle('#templates');">
@@ -99,7 +97,6 @@
             </table>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
         </g:formRemote>
 
     </div>

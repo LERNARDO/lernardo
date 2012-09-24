@@ -47,7 +47,6 @@
 
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
         </g:formRemote>
     </div>
     <div class="zusatz-show" id="contacts2">

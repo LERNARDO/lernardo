@@ -7,7 +7,6 @@
             <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
         </g:formRemote>
     </div>
     <div class="zusatz-show" id="labels2">
@@ -23,7 +22,6 @@
                 <g:select name="project" from="${allProjects}" optionKey="id" optionValue="profile"/>
                 <div class="clear"></div>
                 <g:submitButton name="button" value="${message(code:'add')}"/>
-                <div class="clear"></div>
             </g:formRemote>
         </g:if>
         <g:else>
@@ -43,7 +41,6 @@
                 <g:select name="activitygroup" from="${allActivityGroups}" optionKey="id" optionValue="profile"/>
                 <div class="clear"></div>
                 <g:submitButton name="button" value="${message(code:'add')}"/>
-                <div class="clear"></div>
             </g:formRemote>
         </g:if>
         <g:else>

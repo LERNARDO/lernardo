@@ -115,7 +115,6 @@
                 <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
                 <div class="clear"></div>
                 <g:submitButton name="button" value="${message(code:'add')}"/>
-                <div class="clear"></div>
               </g:formRemote>
             </div>
             <div id="clients2">

@@ -36,7 +36,6 @@
       </table>
 
       <g:submitButton name="button" value="${message(code:'define')}"/>
-      <div class="clear"></div>
     </g:formRemote>
 
   </div>
