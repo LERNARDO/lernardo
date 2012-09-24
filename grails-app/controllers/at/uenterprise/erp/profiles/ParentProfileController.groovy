@@ -9,12 +9,14 @@ import at.uenterprise.erp.base.Link
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
+import at.uenterprise.erp.EntityDataService
 
 class ParentProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
+  EntityDataService entityDataService
 
   def index = {
     redirect action: "list", params: params
@@ -71,9 +73,6 @@ class ParentProfileController {
   }
 
   def edit = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
     Entity parent = Entity.get(params.id)
 
     if (!parent) {
@@ -84,15 +83,9 @@ class ParentProfileController {
 
     Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
 
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     return [parent: parent, colony: colony, allColonies: allColonies]
-
   }
 
   def update = {
@@ -125,30 +118,14 @@ class ParentProfileController {
       redirect action: 'show', id: parent.id
     }
     else {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
       Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: 'edit', model: [parent: parent, colony: colony, allColonies: allColonies]
     }
   }
 
   def create = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     return [allColonies: allColonies]
   }
@@ -171,15 +148,7 @@ class ParentProfileController {
       flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: "create", model: [parent: ee.entity, allColonies: allColonies]
     }
 

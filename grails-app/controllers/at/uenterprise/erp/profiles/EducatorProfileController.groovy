@@ -9,14 +9,16 @@ import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
-import at.uenterprise.erp.Label
+
 import at.uenterprise.erp.Setup
+import at.uenterprise.erp.EntityDataService
 
 class EducatorProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
+  EntityDataService entityDataService
 
   def index = {
     redirect action: "list", params: params
@@ -98,12 +100,7 @@ class EducatorProfileController {
 
     Entity colony = functionService.findByLink(null, educator, metaDataService.ltColonia)
 
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
@@ -142,29 +139,13 @@ class EducatorProfileController {
       redirect action: 'show', id: educator.id
     }
     else {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: 'edit', model: [educator: educator, entity: educator, allColonies: allColonies]
     }
   }
 
   def create = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     return [partner: Entity.findAllByType(metaDataService.etPartner),
             allColonies: allColonies]
@@ -198,15 +179,7 @@ class EducatorProfileController {
       flash.message = message(code: "object.created", args: [message(code: "educator"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonies: allColonies]
     }
 

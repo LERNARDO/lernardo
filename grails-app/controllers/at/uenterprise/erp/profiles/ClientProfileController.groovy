@@ -18,12 +18,14 @@ import at.uenterprise.erp.logbook.Attendance
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
+import at.uenterprise.erp.EntityDataService
 
 class ClientProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
+  EntityDataService entityDataService
 
   // the delete, save and update actions only accept POST requests
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
@@ -87,9 +89,6 @@ class ClientProfileController {
   }
 
   def edit = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
     Entity client = Entity.get(params.id)
 
     if (!client) {
@@ -100,19 +99,8 @@ class ClientProfileController {
 
     Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
 
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
-
-    def allFacilities = Entity.createCriteria().list {
-      eq("type", metaDataService.etFacility)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
+    def allFacilities = entityDataService.getAllFacilities()
 
     return [client: client,
             colony: colony,
@@ -144,45 +132,18 @@ class ClientProfileController {
       redirect action: 'show', id: client.id
     }
     else {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
       Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
-      //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
+      def allFacilities = entityDataService.getAllFacilities()
 
-      def allFacilities = Entity.createCriteria().list {
-        eq("type", metaDataService.etFacility)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
       render view: 'edit', model: [client: client, colony: colony, allColonies: allColonies, allFacilities: allFacilities]
     }
   }
 
   def create = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
-
-    def allFacilities = Entity.createCriteria().list {
-      eq("type", metaDataService.etFacility)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
+    def allFacilities = entityDataService.getAllFacilities()
 
     return [allColonies: allColonies,
             allFacilities: allFacilities]
@@ -211,22 +172,8 @@ class ClientProfileController {
       flash.message = message(code: "object.created", args: [message(code: "client"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
-
-      def allFacilities = Entity.createCriteria().list {
-        eq("type", metaDataService.etFacility)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
+      def allFacilities = entityDataService.getAllFacilities()
 
       render view: "create", model: [client: ee.entity, allColonies: allColonies, allFacilities: allFacilities]
     }
