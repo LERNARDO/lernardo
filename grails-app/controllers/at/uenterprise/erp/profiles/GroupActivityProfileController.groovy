@@ -456,7 +456,7 @@ class GroupActivityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'educators', model: [educators: linking.sources, group: linking.target]
   }
 
@@ -468,7 +468,7 @@ class GroupActivityProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltGroupMemberSubstitute)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'substitutes', model: [substitutes: linking.sources, group: linking.target]
   }
 
@@ -480,7 +480,7 @@ class GroupActivityProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'parents', model: [parents: linking.sources, group: linking.target]
   }
 
@@ -492,7 +492,7 @@ class GroupActivityProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 
@@ -510,7 +510,7 @@ class GroupActivityProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.target.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
       render template: 'facilities', model: [facilities: linking.targets, group: linking.source]
     }
     else {
@@ -546,7 +546,7 @@ class GroupActivityProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.target.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
     render template: 'themes', model: [themes: linking.targets, group: linking.source]
   }
 
@@ -597,7 +597,7 @@ class GroupActivityProfileController {
     if (entity.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       render template: 'clients', model: [clients: linking.sources, group: linking.target]
     }
     // if the entity is a client group get all clients and add them
@@ -608,7 +608,7 @@ class GroupActivityProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<div class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</div>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       }
 
       Entity activitygroup = Entity.get(params.id)

@@ -208,7 +208,7 @@ class FacilityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'educators', model: [educators: linking.sources, facility: linking.target]
   }
 
@@ -220,7 +220,7 @@ class FacilityProfileController {
   def addLeadEducator = {
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'leadeducators', model: [leadeducators: linking.sources, facility: linking.target]
   }
 
@@ -237,7 +237,7 @@ class FacilityProfileController {
     if (clientgroup.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.clientgroup, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       else
         new Attendance(client: clientgroup, facility: facility).save(failOnError: true)
       render template: 'clients', model: [clients: linking.sources, facility: linking.target]
@@ -250,7 +250,7 @@ class FacilityProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<div class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</div>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
         else
           new Attendance(client: client, facility: facility).save(failOnError: true)
       }

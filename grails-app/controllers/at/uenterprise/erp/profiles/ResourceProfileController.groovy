@@ -174,7 +174,7 @@ class ResourceProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltOwner)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       render template: 'owner', model: [resowner: linking.sources, resourceInstance: linking.target]
     }
     else {
@@ -231,7 +231,7 @@ class ResourceProfileController {
   def addResponsible = {
     def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'responsible', model: [resresponsible: linking.sources, resourceInstance: linking.target]
 
   }

@@ -507,7 +507,7 @@ class ActivityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltActEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+      render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'educators', model: [educators: linking.sources, activity: linking.target]
   }
 
@@ -524,7 +524,7 @@ class ActivityProfileController {
     if (clientgroup.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       render template: 'clients', model: [clients: linking.sources, activity: linking.target]
     }
     // if the entity is a client group get all clients and add them
@@ -535,7 +535,7 @@ class ActivityProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltActClient)
         if (linking.duplicate)
-          render '<div class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</div>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       }
 
       List clients2 = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
@@ -588,7 +588,7 @@ class ActivityProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltActFacility)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.target.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
       render template: 'facilities', model: [facilities: linking.targets, activity: linking.source]
     }
     else {

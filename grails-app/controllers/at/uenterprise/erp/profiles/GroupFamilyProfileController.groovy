@@ -139,7 +139,7 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
 
       render template: 'parents', model: [parents: linking.sources, group: linking.target]
       }
@@ -162,7 +162,7 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupFamily)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
 
       render template: 'clients', model: [clients: linking.sources, group: linking.target]
     }
@@ -184,7 +184,7 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
 
       render template: 'childs', model: [childs: linking.sources, group: linking.target]
     }

@@ -347,7 +347,7 @@ class ClientProfileController {
 
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberClient)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+      render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     else
       new Attendance(client: client, facility: facility).save(failOnError: true)
 

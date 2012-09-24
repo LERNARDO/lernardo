@@ -240,7 +240,7 @@ class GroupColonyProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'facilities', model: [facilities: linking.sources, group: linking.target]
   }
 
@@ -252,7 +252,7 @@ class GroupColonyProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 
@@ -264,7 +264,7 @@ class GroupColonyProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'educators', model: [educators: linking.sources, group: linking.target]
   }
 

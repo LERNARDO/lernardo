@@ -818,7 +818,7 @@ class ProjectProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.target.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
     render template: 'facilities', model: [facilities: linking.targets, project: linking.source]
   }
 
@@ -847,7 +847,7 @@ class ProjectProfileController {
   def addResource = {
     def linking = functionService.linkEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'resources', model: [resources: linking.sources, projectDay: linking.target]
   }
 
@@ -859,7 +859,7 @@ class ProjectProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'educators', model: [educators: linking.sources, project: project, projectDay: linking.target]
   }
@@ -873,7 +873,7 @@ class ProjectProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'substitutes', model: [substitutes: linking.sources, project: project, projectDay: linking.target]
   }
@@ -887,7 +887,7 @@ class ProjectProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'parents', model: [parents: linking.sources, project: project, unit: linking.target, i: params.i]
@@ -903,7 +903,7 @@ class ProjectProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'partners', model: [partners: linking.sources, project: project, unit: linking.target, i: params.i]
@@ -919,7 +919,7 @@ class ProjectProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'themes', model: [themes: linking.targets, project: linking.source]
   }
 
@@ -1131,7 +1131,7 @@ class ProjectProfileController {
     if (entity.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-        render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       render template: 'clients', model: [clients: linking.sources, project: linking.target]
     }
     // if the entity is a client group get all clients and add them
@@ -1142,7 +1142,7 @@ class ProjectProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<div class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</div>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       }
 
       Entity project = Entity.get(params.id)
@@ -1791,7 +1791,7 @@ class ProjectProfileController {
     def addResponsible = {
         def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
         if (linking.duplicate)
-            render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
         render template: 'responsible', model: [responsibles: linking.sources, project: linking.target]
 
     }

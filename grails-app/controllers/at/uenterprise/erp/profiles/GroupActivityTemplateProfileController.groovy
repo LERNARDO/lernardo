@@ -273,7 +273,7 @@ class GroupActivityTemplateProfileController {
         if (!linking.duplicate)
           groupActivityTemplate.profile.addToTemplates(it)
         if (linking.duplicate)
-          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       }
     }
 

@@ -129,7 +129,7 @@ class PateProfileController {
   def addGodchildren = {
     def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltPate)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template:'godchildren', model: [godchildren: linking.sources, pate: linking.target]
   }
 
