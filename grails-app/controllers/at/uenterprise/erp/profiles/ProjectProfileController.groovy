@@ -18,6 +18,7 @@ import at.uenterprise.erp.base.LinkHelperService
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.EVENT_TYPE
 import at.uenterprise.erp.LinkDataService
+import at.uenterprise.erp.EntityDataService
 
 class ProjectProfileController {
 
@@ -27,6 +28,7 @@ class ProjectProfileController {
   FunctionService functionService
   LinkHelperService linkHelperService
   LinkDataService linkDataService
+  EntityDataService entityDataService
 
   def beforeInterceptor = [
           action:{
@@ -117,7 +119,7 @@ class ProjectProfileController {
 
         List themes = functionService.findAllByLink(project, null, metaDataService.ltGroupMember)
 
-        def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+        def allFacilities = entityDataService.getAllFacilities()
         // find all facilities linked to this project
         List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
@@ -140,7 +142,7 @@ class ProjectProfileController {
         Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
         // get all educators
-        def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
+        def allEducators = entityDataService.getAllEducators()
 
         // find all facilities linked to this project
         List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
@@ -945,7 +947,7 @@ class ProjectProfileController {
     def allParents = Entity.findAllByType(metaDataService.etParent)
 
     // get all educators
-    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
+    def allEducators = entityDataService.getAllEducators()
 
     // get all plannable resources
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
@@ -1009,7 +1011,7 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id]
+      render template: 'educatorresults', model: [results: entityDataService.getAllEducators(), projectDay: params.id]
       return
     }
 
@@ -1043,7 +1045,7 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id]
+      render template: 'substituteresults', model: [results: entityDataService.getAllEducators(), projectDay: params.id]
       return
     }
 
@@ -1577,7 +1579,7 @@ class ProjectProfileController {
     List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
     
     def allParents = Entity.findAllByType(metaDataService.etParent)
-    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
+    def allEducators = entityDataService.getAllEducators()
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
     List requiredResources = []

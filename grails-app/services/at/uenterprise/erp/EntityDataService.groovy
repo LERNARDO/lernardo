@@ -36,4 +36,23 @@ class EntityDataService {
         }
         return allFacilities
     }
+
+    /**
+     * Returns all educators
+     *
+     * @author Alexander Zeillinger
+     * @return A list of entities of type educator
+     */
+    def getAllEducators() {
+        def allEducators = Entity.createCriteria().listDistinct {
+            eq("type", metaDataService.etEducator)
+            profile {
+                order("fullName", "asc")
+            }
+            user {
+                eq("enabled", true)
+            }
+        }
+        return allEducators
+    }
 }

@@ -17,6 +17,7 @@ import at.uenterprise.erp.base.LinkHelperService
 import at.uenterprise.erp.Label
 import java.text.SimpleDateFormat
 import at.uenterprise.erp.LinkDataService
+import at.uenterprise.erp.EntityDataService
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -25,6 +26,7 @@ class GroupActivityProfileController {
   FunctionService functionService
   LinkHelperService linkHelperService
   LinkDataService linkDataService
+  EntityDataService entityDataService
 
   def beforeInterceptor = [
           action:{
@@ -871,7 +873,7 @@ class GroupActivityProfileController {
       return
     }
     else if (params.value == "*") {
-      render template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, group: params.id]
+      render template: 'educatorresults', model: [results: entityDataService.getAllEducators(), group: params.id]
       return
     }
 
@@ -911,7 +913,7 @@ class GroupActivityProfileController {
       return
     }
     else if (params.value == "*") {
-      render template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, group: params.id]
+      render template: 'substituteresults', model: [results: entityDataService.getAllEducators(), group: params.id]
       return
     }
 
