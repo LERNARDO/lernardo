@@ -17,6 +17,7 @@ import at.uenterprise.erp.Evaluation
 import at.uenterprise.erp.base.LinkHelperService
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.EVENT_TYPE
+import at.uenterprise.erp.LinkDataService
 
 class ProjectProfileController {
 
@@ -25,6 +26,7 @@ class ProjectProfileController {
   ProfileHelperService profileHelperService
   FunctionService functionService
   LinkHelperService linkHelperService
+  LinkDataService linkDataService
 
   def beforeInterceptor = [
           action:{
@@ -179,7 +181,7 @@ class ProjectProfileController {
             plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
 
             // find colony the facility is linked to and add its resources as well
-            Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+            Entity colony = linkDataService.getColony(facility)
             plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
 
             // find all other facilities linked to the colony and add their resources if marked as available in colony
@@ -980,7 +982,7 @@ class ProjectProfileController {
       // add resources linked to the facility to plannable resources
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony = linkDataService.getColony(facility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
     }
 
@@ -1435,7 +1437,7 @@ class ProjectProfileController {
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
 
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony = linkDataService.getColony(facility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
 
       // find all other facilities linked to the colony and add their resources if marked as available in colony
@@ -1609,7 +1611,7 @@ class ProjectProfileController {
       // add resources linked to the facility to plannable resources
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony = linkDataService.getColony(facility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
     }
 

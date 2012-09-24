@@ -12,6 +12,7 @@ import at.uenterprise.erp.FolderType
 
 import at.uenterprise.erp.Setup
 import at.uenterprise.erp.EntityDataService
+import at.uenterprise.erp.LinkDataService
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -19,6 +20,7 @@ class EducatorProfileController {
   def securityManager
   FunctionService functionService
   EntityDataService entityDataService
+  LinkDataService linkDataService
 
   def index = {
     redirect action: "list", params: params
@@ -52,7 +54,7 @@ class EducatorProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, educator, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(educator)
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
@@ -98,7 +100,7 @@ class EducatorProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, educator, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(educator)
 
     def allColonies = entityDataService.getAllColonies()
 

@@ -10,6 +10,8 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.logbook.Attendance
+import at.uenterprise.erp.LinkDataService
+import at.uenterprise.erp.EntityDataService
 
 class FacilityProfileController {
   MetaDataService metaDataService
@@ -17,6 +19,8 @@ class FacilityProfileController {
   FunctionService functionService
   def securityManager
   ProfileHelperService profileHelperService
+  LinkDataService linkDataService
+  EntityDataService entityDataService
 
   def index = {
     redirect action: "list", params: params
@@ -40,10 +44,8 @@ class FacilityProfileController {
       return
     }
 
-      // find colony of this facility
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-
-    return [facility: facility, colony: colony]
+    return [facility: facility,
+            colony: linkDataService.getColony(facility)]
   }
 
     def management = {
@@ -101,10 +103,9 @@ class FacilityProfileController {
       return
     }
 
-    // find colony of this facility
-    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-
-    return [facility: facility, colony: colony, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [facility: facility,
+            colony: linkDataService.getColony(facility),
+            allColonies: entityDataService.getAllColonies()]
     
   }
 
@@ -125,15 +126,15 @@ class FacilityProfileController {
       redirect action: 'show', id: facility.id
     }
     else {
-      // find colony of this facility
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-
-      render view: 'edit', model: [facility: facility, colony: colony, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
+      render view: 'edit',
+              model: [facility: facility,
+                      colony: linkDataService.getColony(facility),
+                      allColonies: entityDataService.getAllColonies()]
     }
   }
 
   def create = {
-    return [allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [allColonies: entityDataService.getAllColonies()]
   }
 
   def save = {

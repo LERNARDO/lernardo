@@ -10,6 +10,7 @@ import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
 import at.uenterprise.erp.EntityDataService
+import at.uenterprise.erp.LinkDataService
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -17,6 +18,7 @@ class ParentProfileController {
   def securityManager
   FunctionService functionService
   EntityDataService entityDataService
+  LinkDataService linkDataService
 
   def index = {
     redirect action: "list", params: params
@@ -44,9 +46,8 @@ class ParentProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
-    // find family of the parent if there is one
-    Entity family = functionService.findByLink(parent, null, metaDataService.ltGroupMemberParent)
+    Entity colony = linkDataService.getColony(parent)
+    Entity family = linkDataService.getFamily(parent)
 
     return [parent: parent, family: family, colony: colony]
 
@@ -81,7 +82,7 @@ class ParentProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(parent)
 
     def allColonies = entityDataService.getAllColonies()
 
@@ -118,7 +119,7 @@ class ParentProfileController {
       redirect action: 'show', id: parent.id
     }
     else {
-      Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
+      Entity colony = linkDataService.getColony(parent)
       def allColonies = entityDataService.getAllColonies()
       render view: 'edit', model: [parent: parent, colony: colony, allColonies: allColonies]
     }

@@ -16,6 +16,7 @@ import at.uenterprise.erp.Evaluation
 import at.uenterprise.erp.base.LinkHelperService
 import at.uenterprise.erp.Label
 import java.text.SimpleDateFormat
+import at.uenterprise.erp.LinkDataService
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -23,6 +24,7 @@ class GroupActivityProfileController {
   ProfileHelperService profileHelperService
   FunctionService functionService
   LinkHelperService linkHelperService
+  LinkDataService linkDataService
 
   def beforeInterceptor = [
           action:{
@@ -798,7 +800,7 @@ class GroupActivityProfileController {
       // add resources linked to the facility to plannable resources
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony = linkDataService.getColony(facility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
     }
 

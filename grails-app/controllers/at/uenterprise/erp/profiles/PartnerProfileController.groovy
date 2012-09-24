@@ -11,6 +11,7 @@ import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
 import at.uenterprise.erp.EntityDataService
+import at.uenterprise.erp.LinkDataService
 
 class PartnerProfileController {
 
@@ -19,6 +20,7 @@ class PartnerProfileController {
   def securityManager
   FunctionService functionService
   EntityDataService entityDataService
+  LinkDataService linkDataService
 
   def index = {
     redirect action: "list", params: params
@@ -43,7 +45,7 @@ class PartnerProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(partner)
 
     return [partner: partner, colony: colony]
 
@@ -85,7 +87,7 @@ class PartnerProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(partner)
 
     def allColonies = entityDataService.getAllColonies()
 
@@ -111,7 +113,7 @@ class PartnerProfileController {
       redirect action: 'show', id: partner.id
     }
     else {
-      Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+      Entity colony = linkDataService.getColony(partner)
 
       def allColonies = entityDataService.getAllColonies()
       render view: 'edit', model: [partner: partner, colony: colony, allColonies: allColonies]

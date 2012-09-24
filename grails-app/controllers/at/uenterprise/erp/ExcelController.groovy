@@ -10,6 +10,7 @@ class ExcelController {
   FunctionService functionService
   MetaDataService metaDataService
   EntityHelperService entityHelperService
+  LinkDataService linkDataService
 
   def report = {
     Entity entity = Entity.get(params.id)
@@ -109,7 +110,7 @@ class ExcelController {
         sheet.addCell(new jxl.write.Label(3, row, client.profile.gender == 1 ? message(code: 'male') : message(code: 'female'), format))
         sheet.addCell(new jxl.write.Label(4, row, client.profile.interests, format))
         sheet.addCell(new jxl.write.Label(5, row, client.profile.currentStreet, format))
-        Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
+        Entity colony = linkDataService.getColony(client)
         sheet.addCell(new jxl.write.Label(6, row, fieldValue(bean: colony, field: 'profile.zip').decodeHTML() ?: message(code:'noData'), format))
         sheet.addCell(new jxl.write.Label(7, row, fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: message(code:'noData'), format))
         sheet.addCell(new jxl.write.Label(8, row, fieldValue(bean: colony, field: 'profile.country').decodeHTML() ?: message(code:'noData'), format))
@@ -160,7 +161,7 @@ class ExcelController {
 
 
         // find family
-        Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+        Entity family = linkDataService.getFamily(client)
 
         // if there is a family, find parents
         List parents = functionService.findAllByLink(null, family, metaDataService.ltGroupMemberParent)

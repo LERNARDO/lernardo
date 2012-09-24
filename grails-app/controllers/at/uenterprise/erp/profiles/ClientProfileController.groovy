@@ -19,6 +19,7 @@ import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
 import at.uenterprise.erp.EntityDataService
+import at.uenterprise.erp.LinkDataService
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -26,6 +27,7 @@ class ClientProfileController {
   def securityManager
   FunctionService functionService
   EntityDataService entityDataService
+  LinkDataService linkDataService
 
   // the delete, save and update actions only accept POST requests
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
@@ -52,8 +54,8 @@ class ClientProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
-    Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+    Entity colony = linkDataService.getColony(client)
+    Entity family = linkDataService.getFamily(client)
 
     return [client: client, colony: colony, family: family]
 
@@ -97,7 +99,7 @@ class ClientProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(client)
 
     def allColonies = entityDataService.getAllColonies()
     def allFacilities = entityDataService.getAllFacilities()
@@ -132,7 +134,7 @@ class ClientProfileController {
       redirect action: 'show', id: client.id
     }
     else {
-      Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
+      Entity colony = linkDataService.getColony(client)
 
       def allColonies = entityDataService.getAllColonies()
       def allFacilities = entityDataService.getAllFacilities()

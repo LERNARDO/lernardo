@@ -22,6 +22,7 @@ class HelperTagLib {
     FunctionService functionService
     AssetService assetService
     def securityManager
+    LinkDataService linkDataService
     static namespace = "erp"
 
     def getFolders = {attrs, body ->
@@ -1545,10 +1546,7 @@ class HelperTagLib {
      * @attr client REQUIRED The client to find the parents of
      */
     def getParentsOfClient = {attrs, body ->
-        def client = attrs.client
-
-        // find family
-        Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+        Entity family = linkDataService.getFamily(attrs.client)
 
         // if there is a family, find parents
         List parents = functionService.findAllByLink(null, family, metaDataService.ltGroupMemberParent)
