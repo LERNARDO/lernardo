@@ -103,7 +103,7 @@ class MsgController {
         redirect action: params.box, id: params.entity
         //render ""
       }
-      catch(org.springframework.dao.DataIntegrityViolationException e) {
+      catch(org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = g.message(code: "object.notDeleted", args: [g.message(code: "msg"), message.subject])
         redirect action: "show", id: params.id
       }

@@ -66,7 +66,7 @@ class GroupActivityProfileController {
 
       // find all themes that are linked to those facilities
 
-      facilities.each { facility ->
+      facilities.each { Entity facility ->
         themes.addAll(functionService.findAllByLink(null, facility, metaDataService.ltThemeOfFacility))
       }
     }
@@ -184,7 +184,7 @@ class GroupActivityProfileController {
         group.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupActivity"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }

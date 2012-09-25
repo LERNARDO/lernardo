@@ -59,7 +59,7 @@ class PateProfileController {
         pate.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "pate"), pate.profile.fullName])
         redirect(action: "show", id: params.id)
       }

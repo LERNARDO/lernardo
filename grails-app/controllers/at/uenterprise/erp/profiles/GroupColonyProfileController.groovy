@@ -84,7 +84,7 @@ class GroupColonyProfileController {
         group.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupColony"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }

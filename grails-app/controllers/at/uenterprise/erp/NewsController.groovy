@@ -43,7 +43,7 @@ class NewsController {
         news.delete(flush: true)
         redirect controller: "event", action: "index"
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "news"), news.title])
         redirect controller: "event", action: "index"
       }

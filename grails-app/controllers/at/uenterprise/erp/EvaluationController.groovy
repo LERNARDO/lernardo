@@ -252,7 +252,7 @@ class EvaluationController {
         flash.message = message(code: "evaluation.deleted")
         render ""
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = "Evaluation ${params.id} could not be deleted"
       }
     }

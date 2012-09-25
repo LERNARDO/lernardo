@@ -92,7 +92,7 @@ class LabelController {
         flash.message = message(code: "object.deleted", args: [message(code: "label"), labelInstance.name])
         redirect action: "list"
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "label"), labelInstance.name])
         redirect action: "show", id: params.id
       }
