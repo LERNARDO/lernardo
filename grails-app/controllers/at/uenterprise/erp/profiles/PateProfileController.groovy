@@ -89,8 +89,6 @@ class PateProfileController {
     pate.profile.properties = params
     pate.profile.fullName = params.lastName + " " + params.firstName
     pate.user.properties = params
-    //if (pate.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
 
     if (pate.profile.save() && pate.user.save() && pate.save()) {
 
@@ -116,7 +114,6 @@ class PateProfileController {
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id

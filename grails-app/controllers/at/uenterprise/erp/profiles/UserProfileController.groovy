@@ -70,7 +70,6 @@ class UserProfileController {
     }
 
     return [user: user, entity: entity]
-
   }
 
   def update = {
@@ -79,8 +78,6 @@ class UserProfileController {
     user.profile.properties = params
     user.profile.fullName = params.lastName + " " + params.firstName
     user.user.properties = params
-    //if (user.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, user.user.locale)
 
     if (user.profile.save() && user.user.save() && user.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "user"), user.profile.fullName])
@@ -103,7 +100,6 @@ class UserProfileController {
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "object.created", args: [message(code: "user"), entity.profile.fullName])
       redirect action: 'show', id: entity.id

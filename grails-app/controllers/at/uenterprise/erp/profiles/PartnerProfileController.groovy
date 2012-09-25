@@ -105,9 +105,6 @@ class PartnerProfileController {
     Link.findByTargetAndType(partner, metaDataService.ltColonia)?.delete()
     new Link(source: Entity.get(params.currentColony), target: partner, type: metaDataService.ltColonia).save()
 
-    //if (partner.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
-
     if (partner.profile.save() && partner.user.save() && partner.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "partner"), partner.profile.fullName])
       redirect action: 'show', id: partner.id
