@@ -161,7 +161,7 @@ class TimeRecordingController {
           currentEntity: entityHelperService.loggedIn]
     }
     else
-      render '<p class="red">' + message(code:"iebuggy") + '</p>'
+      render {p(class: 'red', message(code: 'iebuggy'))}
   }
 
   def confirmDay = {

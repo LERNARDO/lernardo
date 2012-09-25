@@ -194,7 +194,7 @@ class GroupColonyProfileController {
   def addRepresentative = {ContactCommand cc ->
     Entity group = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "groupColony.profile.name.insert")+ '</p>'
+      render {p(class: 'italic red', message(code: 'groupColony.profile.name.insert'))}
       render template: 'representatives', model: [group: group]
       return
     }

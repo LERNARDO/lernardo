@@ -360,7 +360,7 @@ class ActivityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+        render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -374,7 +374,7 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -398,7 +398,7 @@ class ActivityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
     
@@ -421,7 +421,7 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -438,7 +438,7 @@ class ActivityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -455,7 +455,7 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -472,7 +472,7 @@ class ActivityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -489,7 +489,7 @@ class ActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -593,7 +593,7 @@ class ActivityProfileController {
     }
     else {
       List facilities = functionService.findAllByLink(group, null, metaDataService.ltActFacility)
-      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+ '</span>'
+      render {span(class: 'red italic', message(code: 'alreadyAssignedToFacility'))}
       render template: 'facilities', model: [facilities: facilities, activity: group]
     }
 

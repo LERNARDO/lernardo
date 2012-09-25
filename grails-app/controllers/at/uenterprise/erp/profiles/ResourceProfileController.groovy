@@ -134,7 +134,7 @@ class ResourceProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -157,7 +157,7 @@ class ResourceProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -178,7 +178,7 @@ class ResourceProfileController {
       render template: 'owner', model: [resowner: linking.sources, resourceInstance: linking.target]
     }
     else {
-      render '<span class="red italic">' + message(code: 'alreadyAssignedToOwner') + '</span>'
+      render {span(class: 'italic red', message(code: 'alreadyAssignedToOwner'))}
       render template: 'owner', model: [resowner: functionService.findByLink(null, resource, metaDataService.ltOwner), resourceInstance: resource]
     }
 
@@ -198,7 +198,7 @@ class ResourceProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -219,7 +219,7 @@ class ResourceProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {

@@ -165,7 +165,7 @@ class PartnerProfileController {
   def addContact = {ContactCommand cc ->
     Entity partner = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "object.notCreated", args: [message(code: "partner.profile.contact")])+ '</p>'
+      render {p(class: 'red italic', message(code: 'object.notCreated', args: [message(code: "partner.profile.contact")]))}
       render template: 'contacts', model: [partner: partner]
       return
     }

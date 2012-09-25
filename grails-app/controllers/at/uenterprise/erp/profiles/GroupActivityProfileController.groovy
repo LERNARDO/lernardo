@@ -233,7 +233,7 @@ class GroupActivityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -247,7 +247,7 @@ class GroupActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -515,7 +515,7 @@ class GroupActivityProfileController {
     }
     else {
       List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility)
-      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+ '</span>'
+      render {span(class: 'italic red', message(code: 'alreadyAssignedToFacility'))}
       render template: 'facilities', model: [facilities: facilities, group: group]
     }
 
@@ -564,7 +564,7 @@ class GroupActivityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -581,7 +581,7 @@ class GroupActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -659,7 +659,7 @@ class GroupActivityProfileController {
     Date endDate = params.date('endDate', 'dd. MM. yy')
 
     if (!beginDate || !endDate)
-      render '<span class="red italic">' + message(code: "date.insert.fromto") +  '</span>'
+      render {span(class: 'italic red', message(code: 'date.insert.fromto'))}
     else {
       List groupActivities = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupActivity)
@@ -671,7 +671,7 @@ class GroupActivityProfileController {
       }
 
       if (groupActivities.size() == 0) {
-        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        render {span(class: 'italic', message(code: 'searchMe.empty'))}
         return
       }
       else {
@@ -687,7 +687,7 @@ class GroupActivityProfileController {
       // find all group activities that are linked to this theme
       List groupActivities = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
       if (groupActivities.size() == 0) {
-        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        render {span(class: 'italic', message(code: 'searchMe.empty'))}
         return
       }
       else {
@@ -695,12 +695,12 @@ class GroupActivityProfileController {
       }
     }
     else
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
   }
 
   def searchbyname = {
     if (!params.name) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
 
@@ -714,7 +714,7 @@ class GroupActivityProfileController {
     }
 
     if (users.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
     else {
@@ -736,7 +736,7 @@ class GroupActivityProfileController {
     }
 
     if (result.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
     else {
@@ -890,7 +890,7 @@ class GroupActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -930,7 +930,7 @@ class GroupActivityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {

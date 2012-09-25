@@ -1028,7 +1028,7 @@ class ProjectProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -1062,7 +1062,7 @@ class ProjectProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -1115,7 +1115,7 @@ class ProjectProfileController {
       finalResults = results
 
     if (finalResults.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -1280,7 +1280,7 @@ class ProjectProfileController {
     Date endDate = params.date('endDate', 'dd. MM. yy')
     
     if (!beginDate || !endDate)
-      render '<span class="red italic">' + message(code: "date.insert.fromto") +  '</span>'
+      render {span(class: 'red italic', message(code: 'date.insert.fromto'))}
     else {
       List projects = Entity.createCriteria().list {
         eq("type", metaDataService.etProject)
@@ -1292,7 +1292,7 @@ class ProjectProfileController {
       }
 
       if (projects.size() == 0) {
-        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        render {span(class: 'italic', message(code: 'searchMe.empty'))}
         return
       }
       else {
@@ -1303,7 +1303,7 @@ class ProjectProfileController {
 
   def searchbyname = {
     if (!params.name) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
 
@@ -1317,7 +1317,7 @@ class ProjectProfileController {
     }
 
     if (users.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
     else {
@@ -1332,7 +1332,7 @@ class ProjectProfileController {
       // find all projects that are linked to this theme
       List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
       if (projects.size() == 0) {
-        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        render {span(class: 'italic', message(code: 'searchMe.empty'))}
         return
       }
       else {
@@ -1340,7 +1340,7 @@ class ProjectProfileController {
       }
     }
     else
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
   }
 
   def searchbylabel = {
@@ -1357,7 +1357,7 @@ class ProjectProfileController {
     }
 
     if (result.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
     else {
@@ -1763,7 +1763,7 @@ class ProjectProfileController {
             return
         }
         else if (params.value.size() < 2) {
-            render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+            render {span(class: 'gray', message(code: 'minChars'))}
             return
         }
 
@@ -1780,7 +1780,7 @@ class ProjectProfileController {
         }
 
         if (results.size() == 0) {
-            render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
             return
         }
         else {

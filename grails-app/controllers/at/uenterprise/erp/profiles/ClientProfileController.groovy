@@ -265,7 +265,7 @@ class ClientProfileController {
   def addContact = {ContactCommand cc ->
     Entity client = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "client.profile.name.insert")+ '</p>'
+      render {p(class: 'italic red', message(code: 'client.profile.name.insert'))}
       render template: 'contacts', model: [client: client]
       return
     }
@@ -319,7 +319,7 @@ class ClientProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -333,7 +333,7 @@ class ClientProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {

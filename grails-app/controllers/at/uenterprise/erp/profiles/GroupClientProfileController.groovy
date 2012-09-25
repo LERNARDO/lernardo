@@ -44,10 +44,10 @@ class GroupClientProfileController {
     def management = {
         Entity group = Entity.get(params.id)
 
-        def allClients = Entity.findAllByType(metaDataService.etClient)
         // find all clients linked to this group
         List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
 
+        List allClients = Entity.findAllByType(metaDataService.etClient)
         List allColonies = Entity.findAllByType(metaDataService.etGroupColony)
         List allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
@@ -131,7 +131,7 @@ class GroupClientProfileController {
 
   def addClient = {
     if (!params.members)
-      render '<p class="italic red">'+message(code: "groupClient.clients.select.least")+ '</p>'
+      render {p(class: 'italic red', message(code: "groupClient.clients.select.least"))}
     else {
       def bla = params.list('members')
   

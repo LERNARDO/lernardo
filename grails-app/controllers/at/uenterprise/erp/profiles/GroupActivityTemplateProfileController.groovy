@@ -263,7 +263,7 @@ class GroupActivityTemplateProfileController {
     Entity groupActivityTemplate = Entity.get(params.id)
 
     if (!params.templates)
-      render '<p class="italic red">'+message(code: "groupActivityTemplate.select.least")+ '</p>'
+      render {p(class: 'italic red', message(code: 'groupActivityTemplate.select.least'))}
     else {
       def bla = params.list('templates')
 

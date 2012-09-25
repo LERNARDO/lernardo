@@ -86,10 +86,10 @@ class EvaluationController {
         render template: "evaluations", model: [evaluationInstanceList: evaluations, entity: entity, value: params.value, paginate: 'own', totalEvaluations: totalEvaluations]
       }
       else
-        render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
+        render {span(class: 'italic', message(code: 'searchMe.empty'))}
     }
     else
-      render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
   }
 
   def showByClient = {
@@ -102,7 +102,7 @@ class EvaluationController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+        render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -129,7 +129,7 @@ class EvaluationController {
                                              paginate: 'allClient']
     }
     else
-      render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
   }
 
   def showByEducator = {
@@ -142,7 +142,7 @@ class EvaluationController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+        render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -172,7 +172,7 @@ class EvaluationController {
                                              paginate: 'allEducator']
     }
     else
-      render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
   }
   
   // show all evaluations of clients and parents linked to a given educator
@@ -355,7 +355,7 @@ class EvaluationController {
       })
 
       if (results.size() == 0) {
-        render '<span class="italic">' + message(code: "searchMe.empty") + '</span>'
+        render {span(class: 'italic', message(code: 'searchMe.empty'))}
         return
       }
       else {
@@ -363,7 +363,7 @@ class EvaluationController {
       }
     }
     else {
-        render '<span class="italic">' + message(code: "date.notValid") + '</span>'
+        render {span(class: 'italic', message(code: 'date.notValid'))}
     }
   }
 
@@ -378,6 +378,6 @@ class EvaluationController {
     Evaluation evaluation = Evaluation.get(params.id)
     evaluation.linkedTo = null
     evaluation.save()
-    render '<span class="italic">'+message(code: "links.notLinked")+ '</span>'
+    render {span(class: 'italic', message(code: 'links.notLinked'))}
   }
 }
