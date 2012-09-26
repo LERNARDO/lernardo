@@ -1,7 +1,7 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="activityTemplates"/> <erp:accessCheck types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="activityTemplates"/> <erp:accessCheck types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><img onclick="toggle('#templates');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="templates" style="display:none">
         <p><g:message code="activityTemplate.list.hint2"/></p>
         <g:formRemote name="formRemote0" url="[controller: 'groupActivityTemplateProfile', action: 'updateselect']" update="templateselect" before="showspinner('#templateselect');">
@@ -48,7 +48,6 @@
             </table>
 
             <g:submitButton name="button" value="${message(code:'define')}"/>
-            <div class="clear"></div>
         </g:formRemote>
 
         <g:formRemote name="formRemote" url="[controller: 'groupActivityTemplateProfile', action: 'addTemplate', id: group.id]" update="templates2" before="showspinner('#templates2');" after="toggle('#templates');">
@@ -84,7 +83,6 @@
             </table>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
         </g:formRemote>
 
     </div>
@@ -108,7 +106,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="template.plannedBlocks"/> (${instances.size}) <a onclick="toggle('#instances'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Instanzen"/></a></h5>
+    <h5><g:message code="template.plannedBlocks"/> (${instances.size}) <img onclick="toggle('#instances');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Instanzen"/></h5>
     <div class="zusatz-add" id="instances" style="display:none">
         <g:if test="${instances.size() > 0}">
             <ul>

@@ -9,12 +9,16 @@ import at.uenterprise.erp.base.Link
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
+import at.uenterprise.erp.EntityDataService
+import at.uenterprise.erp.LinkDataService
 
 class ParentProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
+  EntityDataService entityDataService
+  LinkDataService linkDataService
 
   def index = {
     redirect action: "list", params: params
@@ -42,9 +46,8 @@ class ParentProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
-    // find family of the parent if there is one
-    Entity family = functionService.findByLink(parent, null, metaDataService.ltGroupMemberParent)
+    Entity colony = linkDataService.getColony(parent)
+    Entity family = linkDataService.getFamily(parent)
 
     return [parent: parent, family: family, colony: colony]
 
@@ -59,7 +62,7 @@ class ParentProfileController {
         parent.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "parent"), parent.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -71,9 +74,6 @@ class ParentProfileController {
   }
 
   def edit = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
     Entity parent = Entity.get(params.id)
 
     if (!parent) {
@@ -82,17 +82,11 @@ class ParentProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(parent)
 
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     return [parent: parent, colony: colony, allColonies: allColonies]
-
   }
 
   def update = {
@@ -125,30 +119,14 @@ class ParentProfileController {
       redirect action: 'show', id: parent.id
     }
     else {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-      Entity colony = functionService.findByLink(null, parent, metaDataService.ltColonia)
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      Entity colony = linkDataService.getColony(parent)
+      def allColonies = entityDataService.getAllColonies()
       render view: 'edit', model: [parent: parent, colony: colony, allColonies: allColonies]
     }
   }
 
   def create = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     return [allColonies: allColonies]
   }
@@ -171,15 +149,7 @@ class ParentProfileController {
       flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: "create", model: [parent: ee.entity, allColonies: allColonies]
     }
 

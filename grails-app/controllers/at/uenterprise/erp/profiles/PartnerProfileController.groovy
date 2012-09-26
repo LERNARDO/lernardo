@@ -10,6 +10,8 @@ import at.uenterprise.erp.base.Link
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
+import at.uenterprise.erp.EntityDataService
+import at.uenterprise.erp.LinkDataService
 
 class PartnerProfileController {
 
@@ -17,6 +19,8 @@ class PartnerProfileController {
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
+  EntityDataService entityDataService
+  LinkDataService linkDataService
 
   def index = {
     redirect action: "list", params: params
@@ -41,7 +45,7 @@ class PartnerProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(partner)
 
     return [partner: partner, colony: colony]
 
@@ -63,7 +67,7 @@ class PartnerProfileController {
         partner.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "partner"), partner.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -83,17 +87,9 @@ class PartnerProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(partner)
 
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     return [partner: partner, colony: colony, allColonies: allColonies]
 
@@ -109,38 +105,20 @@ class PartnerProfileController {
     Link.findByTargetAndType(partner, metaDataService.ltColonia)?.delete()
     new Link(source: Entity.get(params.currentColony), target: partner, type: metaDataService.ltColonia).save()
 
-    //if (partner.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
-
     if (partner.profile.save() && partner.user.save() && partner.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "partner"), partner.profile.fullName])
       redirect action: 'show', id: partner.id
     }
     else {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-      Entity colony = functionService.findByLink(null, partner, metaDataService.ltColonia)
+      Entity colony = linkDataService.getColony(partner)
 
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: 'edit', model: [partner: partner, colony: colony, allColonies: allColonies]
     }
   }
 
   def create = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     [allColonies: allColonies]
   }
@@ -162,15 +140,7 @@ class PartnerProfileController {
       flash.message = message(code: "object.created", args: [message(code: "partner"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: "create", model: [partner: ee.entity, allColonies: allColonies]
     }
 
@@ -192,7 +162,7 @@ class PartnerProfileController {
   def addContact = {ContactCommand cc ->
     Entity partner = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "object.notCreated", args: [message(code: "partner.profile.contact")])+ '</p>'
+      render {p(class: 'red italic', message(code: 'object.notCreated', args: [message(code: "partner.profile.contact")]))}
       render template: 'contacts', model: [partner: partner]
       return
     }

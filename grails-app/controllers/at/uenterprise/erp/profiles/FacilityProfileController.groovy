@@ -10,6 +10,8 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.logbook.Attendance
+import at.uenterprise.erp.LinkDataService
+import at.uenterprise.erp.EntityDataService
 
 class FacilityProfileController {
   MetaDataService metaDataService
@@ -17,6 +19,8 @@ class FacilityProfileController {
   FunctionService functionService
   def securityManager
   ProfileHelperService profileHelperService
+  LinkDataService linkDataService
+  EntityDataService entityDataService
 
   def index = {
     redirect action: "list", params: params
@@ -40,10 +44,8 @@ class FacilityProfileController {
       return
     }
 
-      // find colony of this facility
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-
-    return [facility: facility, colony: colony]
+    return [facility: facility,
+            colony: linkDataService.getColony(facility)]
   }
 
     def management = {
@@ -81,7 +83,7 @@ class FacilityProfileController {
         facility.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "facility"), facility.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -101,10 +103,9 @@ class FacilityProfileController {
       return
     }
 
-    // find colony of this facility
-    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-
-    return [facility: facility, colony: colony, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [facility: facility,
+            colony: linkDataService.getColony(facility),
+            allColonies: entityDataService.getAllColonies()]
     
   }
 
@@ -125,15 +126,15 @@ class FacilityProfileController {
       redirect action: 'show', id: facility.id
     }
     else {
-      // find colony of this facility
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-
-      render view: 'edit', model: [facility: facility, colony: colony, allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
+      render view: 'edit',
+              model: [facility: facility,
+                      colony: linkDataService.getColony(facility),
+                      allColonies: entityDataService.getAllColonies()]
     }
   }
 
   def create = {
-    return [allColonies: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [allColonies: entityDataService.getAllColonies()]
   }
 
   def save = {
@@ -207,7 +208,7 @@ class FacilityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'educators', model: [educators: linking.sources, facility: linking.target]
   }
 
@@ -219,7 +220,7 @@ class FacilityProfileController {
   def addLeadEducator = {
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'leadeducators', model: [leadeducators: linking.sources, facility: linking.target]
   }
 
@@ -236,7 +237,7 @@ class FacilityProfileController {
     if (clientgroup.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.clientgroup, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       else
         new Attendance(client: clientgroup, facility: facility).save(failOnError: true)
       render template: 'clients', model: [clients: linking.sources, facility: linking.target]
@@ -249,7 +250,7 @@ class FacilityProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<div class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</div>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
         else
           new Attendance(client: client, facility: facility).save(failOnError: true)
       }
@@ -282,7 +283,7 @@ class FacilityProfileController {
   def addContact = {ContactCommand cc ->
     Entity facility = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "facility.profile.name.insert")+ '</p>'
+      render {p(class: 'italic red', message(code: 'facility.profile.name.insert'))}
       render template: 'contacts', model: [facility: facility]
       return
     }
@@ -322,7 +323,7 @@ class FacilityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -339,7 +340,7 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -356,7 +357,7 @@ class FacilityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -373,7 +374,7 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -390,7 +391,7 @@ class FacilityProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -407,7 +408,7 @@ class FacilityProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {

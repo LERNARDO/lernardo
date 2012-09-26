@@ -59,7 +59,7 @@ class PateProfileController {
         pate.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "pate"), pate.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -89,8 +89,6 @@ class PateProfileController {
     pate.profile.properties = params
     pate.profile.fullName = params.lastName + " " + params.firstName
     pate.user.properties = params
-    //if (pate.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
 
     if (pate.profile.save() && pate.user.save() && pate.save()) {
 
@@ -116,7 +114,6 @@ class PateProfileController {
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
@@ -129,7 +126,7 @@ class PateProfileController {
   def addGodchildren = {
     def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltPate)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template:'godchildren', model: [godchildren: linking.sources, pate: linking.target]
   }
 
@@ -147,7 +144,7 @@ class PateProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -164,7 +161,7 @@ class PateProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {

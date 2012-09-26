@@ -16,7 +16,7 @@
 <body>
 
 <div class="boxHeader">
-  <h1><g:message code="profile.overview.glossary"/> <a onclick="toggle('#glossar-toggled'); return false" href="index.gsp#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'bullet_arrow_toggle.png')}></a></h1>
+  <h1><g:message code="profile.overview.glossary"/> <img onclick="toggle('#glossar-toggled');" alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'bullet_arrow_toggle.png')}></h1>
 </div>
 <div class="boxGray" id="glossar-toggled">
   <div class="second" id="userlist-results">

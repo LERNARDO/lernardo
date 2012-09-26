@@ -13,10 +13,9 @@
   </div>
 
   <erp:accessCheck types="['Betreiber', 'Pädagoge']">
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:form>
         <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'groupClient')])}"/></div>
-        <div class="clear"></div>
       </g:form>
     </div>
   </erp:accessCheck>
@@ -55,7 +54,6 @@
       </table>
 
       <g:submitButton name="button" value="${message(code:'define')}"/>
-      <div class="clear"></div>
     </g:formRemote>
 
   </div>

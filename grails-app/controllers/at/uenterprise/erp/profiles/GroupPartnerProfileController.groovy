@@ -60,7 +60,7 @@ class GroupPartnerProfileController {
         group.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupPartner"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -121,7 +121,7 @@ class GroupPartnerProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 

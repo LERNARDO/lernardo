@@ -6,10 +6,11 @@ import at.uenterprise.erp.base.Link
 class TooltipTagLib {
     FunctionService functionService
     MetaDataService metaDataService
+    LinkDataService linkDataService
     static namespace = "erp"
 
     def getColonyOfEntity = {attrs, body ->
-        Entity colony = functionService.findByLink(null, attrs.entity, metaDataService.ltColonia)
+        Entity colony = linkDataService.getColony(attrs.entity)
         if (colony)
             out << body(colony: colony)
         else
@@ -22,11 +23,7 @@ class TooltipTagLib {
     }
 
     def getFamilyOfEntity = {attrs, body ->
-        Entity family = functionService.findByLink(attrs.entity, null, metaDataService.ltGroupMemberChild) // child
-        if (!family)
-            family = functionService.findByLink(attrs.entity, null, metaDataService.ltGroupFamily) // client
-        if (!family)
-            family = functionService.findByLink(attrs.entity, null, metaDataService.ltGroupMemberParent) // parent
+        Entity family = linkDataService.getFamily(attrs.entity)
         if (family)
             out << body(family: family)
         else

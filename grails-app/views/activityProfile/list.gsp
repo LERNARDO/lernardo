@@ -9,7 +9,7 @@
   <div class="toolTip" id="tooltip">
     <div class="second">
       <img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><span class="strong"><g:message code="hint"/></span> <g:message code="tooltip.activities"/>
-      <span style="float: right"><a onclick="toggle('#tooltip'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></a></span>
+      <span style="float: right"><img onclick="toggle('#tooltip');" src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></span>
     </div>
   </div>
 </g:if>--}%
@@ -35,19 +35,17 @@
       <g:message code="found"/>
     </div>
 
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:link class="buttonGreen" controller="activityProfile" action="create"><g:message code="themeRoom.create"/></g:link>
-      <div class="clear"></div>
     </div>
 
     <div id="select-box">
       <g:message code="filterBy"/>:
       <g:form>
         <g:textField class="datepicker" name="myDate" value="${formatDate(date: dateSelected, format: 'dd. MM. yyyy' )}"/>
-        <div class="buttons">
+        <div class="buttons cleared">
           <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="OK"/></div>
           <div class="button"><g:link class="buttonGreen" action="list" params="[myDate: 'all']"><g:message code="all"/></g:link></div>
-          <div class="clear"></div>
         </div>
       </g:form>
     </div>

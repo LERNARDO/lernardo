@@ -1302,6 +1302,11 @@ a {
 }
 
 .zusatz {
+    h5 {
+        img {
+            cursor: pointer;
+        }
+    }
     li {
         list-style: none;
     }
@@ -2032,10 +2037,9 @@ table.info {
     }
 }
 
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: inline-block;
+// thx to: http://css-tricks.com/snippets/css/clear-fix/
+.cleared:after {
+    content: "";
+    display: table;
+    clear: both;
 }

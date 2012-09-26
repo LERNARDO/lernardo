@@ -12,7 +12,7 @@
         <g:remoteLink action="moveDown" update="projectunittemplates2" id="${projectUnitTemplate.id}" params="[projectTemplate: projectTemplate.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_down.png')}" alt="${message(code:'down')}" align="top"/></g:remoteLink>
       </erp:accessCheck>
 
-      <p class="bold" style="margin-left: 15px"><g:message code="groupActivityTemplates"/> <erp:accessCheck types="['Betreiber']" creatorof="${projectTemplate}"><a onclick="toggle('#groups${i}'); return false;" href="#"><img src="${g.resource(dir:'images/icons', file:'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></p>
+      <p class="bold" style="margin-left: 15px"><g:message code="groupActivityTemplates"/> <erp:accessCheck types="['Betreiber']" creatorof="${projectTemplate}"><img onclick="toggle('#groups${i}');" src="${g.resource(dir:'images/icons', file:'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></p>
       <div id="groups${i}" style="display:none; margin: 0 0 5px 15px;">
 
         <g:message code="search"/>:<br/>

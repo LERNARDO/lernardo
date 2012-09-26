@@ -104,7 +104,7 @@ class GroupActivityTemplateProfileController {
         group.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupActivityTemplate"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -262,7 +262,7 @@ class GroupActivityTemplateProfileController {
     Entity groupActivityTemplate = Entity.get(params.id)
 
     if (!params.templates)
-      render '<p class="italic red">'+message(code: "groupActivityTemplate.select.least")+ '</p>'
+      render {p(class: 'italic red', message(code: 'groupActivityTemplate.select.least'))}
     else {
       def bla = params.list('templates')
 
@@ -272,7 +272,7 @@ class GroupActivityTemplateProfileController {
         if (!linking.duplicate)
           groupActivityTemplate.profile.addToTemplates(it)
         if (linking.duplicate)
-          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       }
     }
 

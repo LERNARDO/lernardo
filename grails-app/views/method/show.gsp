@@ -23,22 +23,20 @@
 
     </table>
 
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:form id="${methodInstance.id}">
         <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
         <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" /></div>
       </g:form>
-      <div class="clear"></div>
     </div>
 
     <div class="zusatz">
-      <h5>Elemente <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#elements'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></h5>
+      <h5>Elemente <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#elements');" src="${g.resource(dir:'images/icons', file:'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}" /></erp:accessCheck></h5>
       <div class="zusatz-add" id="elements" style="display:none">
         <g:formRemote name="formRemote" url="[controller: 'method', action: 'addElement', id: methodInstance.id]" update="elements2" before="showspinner('#elements2')" after="clearElements(['#hide'])">
           Bezeichnung: <g:textField id="hide" name="name" size="40"/>
           <div class="clear"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="clear"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="elements2">

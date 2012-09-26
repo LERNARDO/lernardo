@@ -17,13 +17,12 @@
       <g:message code="object.total" args="[totalProjectTemplates, message(code: 'projectTemplates')]"/>
     </div>
 
-    <div class="buttons">
-      <g:form>
+    <div class="buttons cleared">
         <erp:accessCheck types="['Pädagoge','Betreiber']">
+            <g:form>
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'projectTemplate')])}"/></div>
-          <div class="clear"></div>
+            </g:form>
         </erp:accessCheck>
-      </g:form>
     </div>
 
     <div class="graypanel">

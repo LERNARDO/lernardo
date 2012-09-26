@@ -136,7 +136,7 @@ class OverviewController {
       return
     }
     else if (params.name.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+        render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 

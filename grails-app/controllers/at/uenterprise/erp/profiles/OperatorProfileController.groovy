@@ -60,7 +60,7 @@ class OperatorProfileController {
         operator.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "operator"), operator.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -90,9 +90,6 @@ class OperatorProfileController {
     operator.profile.properties = params
     operator.user.properties = params
 
-    //if (operator.id == entityHelperService.loggedIn.id)
-    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
-
     if (operator.profile.save() && operator.user.save() && operator.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "operator"), operator.profile.fullName])
       redirect action: 'show', id: operator.id
@@ -114,7 +111,6 @@ class OperatorProfileController {
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "object.created", args: [message(code: "operator"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
@@ -127,7 +123,7 @@ class OperatorProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltOperation)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'facilities', model: [facilities: linking.sources, operator: linking.target]
   }
 

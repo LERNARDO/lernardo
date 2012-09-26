@@ -9,7 +9,7 @@
       </div>
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
-      <div class="buttons" style="margin-bottom: 0;">
+      <div class="buttons cleared" style="margin-bottom: 0;">
         <g:form id="${entity.id}" style="margin-bottom: 0;">
           <erp:accessCheck types="['Betreiber']" facilities="[entity]">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
@@ -19,7 +19,6 @@
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
         </g:form>
-        <div class="clear"></div>
       </div>
     </td>
   </tr>

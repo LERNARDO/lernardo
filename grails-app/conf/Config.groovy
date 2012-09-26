@@ -102,6 +102,9 @@ grails {
 // this will be used if no "from" is supplied in a mail
 grails.mail.default.from = "lernardomailer@gmail.com"
 
+// set default package
+grails.project.groupId = "at.uenterprise.erp"
+
 // this controls the usage of the profiler plugin
 grails.profiler.disable = true
 

@@ -104,7 +104,7 @@ class ThemeProfileController {
         theme.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "theme"), theme.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -277,7 +277,7 @@ class ThemeProfileController {
   def addProject = {
     def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'projects', model: [projects: linking.sources, theme: linking.target]
   }
 
@@ -289,7 +289,7 @@ class ThemeProfileController {
   def addActivityGroup = {
     def linking = functionService.linkEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'activitygroups', model: [activitygroups: linking.sources, theme: linking.target]
   }
 

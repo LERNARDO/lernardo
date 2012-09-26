@@ -84,7 +84,7 @@ class GroupColonyProfileController {
         group.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupColony"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -194,7 +194,7 @@ class GroupColonyProfileController {
   def addRepresentative = {ContactCommand cc ->
     Entity group = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "groupColony.profile.name.insert")+ '</p>'
+      render {p(class: 'italic red', message(code: 'groupColony.profile.name.insert'))}
       render template: 'representatives', model: [group: group]
       return
     }
@@ -240,7 +240,7 @@ class GroupColonyProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'facilities', model: [facilities: linking.sources, group: linking.target]
   }
 
@@ -252,7 +252,7 @@ class GroupColonyProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 
@@ -264,7 +264,7 @@ class GroupColonyProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'educators', model: [educators: linking.sources, group: linking.target]
   }
 

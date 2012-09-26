@@ -9,7 +9,7 @@
       </div>
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
-      <div class="buttons" style="margin-bottom: 0;">
+      <div class="buttons cleared" style="margin-bottom: 0;">
         <g:form id="${entity.id}">
           <erp:checkResourceAccess entity="${entity}">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
@@ -18,7 +18,6 @@
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
           <erp:getFavorite entity="${entity}"/>
         </g:form>
-        <div class="clear"></div>
       </div>
         <div id="favmodal" style="display: none;">
             <p><g:message code="favorite.selectFolder"/></p>

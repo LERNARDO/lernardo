@@ -37,8 +37,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="themes"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#themes');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Zu Thema zuordnen"/></a></erp:accessCheck></h5>
+    <h5><g:message code="themes"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#themes');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Zu Thema zuordnen"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="themes" style="display:none">
         <g:if test="${allThemes}">
             <g:formRemote name="formRemote" url="[controller: 'groupActivityProfile', action: 'addTheme', id: group.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
@@ -56,8 +55,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="facility"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#facilities');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="facility"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#facilities');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller: 'groupActivityProfile', action: 'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="${remoteFunction(action: 'refreshplannableresources', update: 'plannableresources', id: group.id)}">
             <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
@@ -70,8 +68,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#educators');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#educators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="educators" style="display:none">
         <g:message code="search"/>:<br/>
         <g:remoteField name="remoteField" size="40" update="educatorresults" action="remoteEducators" id="${group.id}" before="showspinner('#educatorresults')"/>
@@ -83,8 +80,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="substitute"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#substitutes');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="substitute"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#substitutes');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="substitutes" style="display:none">
         <g:message code="search"/>:<br/>
         <g:remoteField name="remoteField" size="40" update="substituteresults" action="remoteSubstitutes" id="${group.id}" before="showspinner('#substituteresults')"/>
@@ -96,8 +92,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="clients"/> (${clients.size()}) <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#clients');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="clients"/> (${clients.size()}) <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="clients" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -111,8 +106,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="parents"/> (${parents.size()}) <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#parents');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="parents"/> (${parents.size()}) <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#parents');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="parents" style="display:none">
         <g:formRemote name="formRemote4" url="[controller: 'groupActivityProfile', action: 'addParent', id: group.id]" update="parents2" before="showspinner('#parents2');" after="toggle('#parents');">
             <div id="parentselect">
@@ -120,7 +114,6 @@
             </div>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
         </g:formRemote>
     </div>
     <div class="zusatz-show" id="parents2">
@@ -129,14 +122,12 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="partners"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#partners');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="partners"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#partners');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller: 'groupActivityProfile', action: 'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">
             <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
         </g:formRemote>
     </div>
     <div class="zusatz-show" id="partners2">
@@ -145,8 +136,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="resources.planned"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#resources');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="resources.planned"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#resources');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="resources" style="display:none">
         <span class="bold"><g:message code="resources.required"/></span>

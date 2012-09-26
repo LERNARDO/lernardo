@@ -103,7 +103,7 @@ class MsgController {
         redirect action: params.box, id: params.entity
         //render ""
       }
-      catch(org.springframework.dao.DataIntegrityViolationException e) {
+      catch(org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = g.message(code: "object.notDeleted", args: [g.message(code: "msg"), message.subject])
         redirect action: "show", id: params.id
       }
@@ -241,7 +241,7 @@ class MsgController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+        render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -267,7 +267,7 @@ class MsgController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {

@@ -8,11 +8,13 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.LinkDataService
 
 class ChildProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   FunctionService functionService
+  LinkDataService linkDataService
   def securityManager
 
   // the delete, save and update actions only accept POST requests
@@ -38,8 +40,7 @@ class ChildProfileController {
       return
     }
 
-    // check if the child belongs to a family
-    Entity family = functionService.findByLink(child, null, metaDataService.ltGroupMemberChild)
+    Entity family = linkDataService.getFamily(child)
 
     return [child: child, family: family]
   }
@@ -54,7 +55,7 @@ class ChildProfileController {
         child.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "child"), child.profile.fullName])
         redirect(action: "show", id: params.id)
       }

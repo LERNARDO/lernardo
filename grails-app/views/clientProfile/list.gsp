@@ -15,11 +15,10 @@
   </div>
 
   <erp:accessCheck types="['Betreiber']" facilities="${facilities}">
-    <div class="buttons">
+    <div class="buttons cleared">
       <g:form>
         <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'client')])}" /></div>
       </g:form>
-      <div class="clear"></div>
     </div>
   </erp:accessCheck>
 
@@ -88,7 +87,6 @@
       </table>
 
       <g:submitButton name="button" value="${message(code:'define')}"/>
-      <div class="clear"></div>
     </g:formRemote>
 
   </div>

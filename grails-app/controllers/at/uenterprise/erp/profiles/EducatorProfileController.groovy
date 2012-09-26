@@ -9,14 +9,18 @@ import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
-import at.uenterprise.erp.Label
+
 import at.uenterprise.erp.Setup
+import at.uenterprise.erp.EntityDataService
+import at.uenterprise.erp.LinkDataService
 
 class EducatorProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
+  EntityDataService entityDataService
+  LinkDataService linkDataService
 
   def index = {
     redirect action: "list", params: params
@@ -50,7 +54,7 @@ class EducatorProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, educator, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(educator)
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
@@ -72,7 +76,7 @@ class EducatorProfileController {
         educator.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "educator"), educator.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -96,14 +100,9 @@ class EducatorProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, educator, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(educator)
 
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
@@ -142,29 +141,13 @@ class EducatorProfileController {
       redirect action: 'show', id: educator.id
     }
     else {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: 'edit', model: [educator: educator, entity: educator, allColonies: allColonies]
     }
   }
 
   def create = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
 
     return [partner: Entity.findAllByType(metaDataService.etPartner),
             allColonies: allColonies]
@@ -198,15 +181,7 @@ class EducatorProfileController {
       flash.message = message(code: "object.created", args: [message(code: "educator"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
       render view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonies: allColonies]
     }
 

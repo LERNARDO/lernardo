@@ -92,12 +92,11 @@
         </table>
       </div>
 
-      <div class="buttons">
+      <div class="buttons cleared">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
         <div class="button"><g:link class="buttonGray" action="show" id="${child.id}"><g:message code="cancel"/></g:link></div>
-        <div class="clear"></div>
       </div>
-      
+
     </g:form>
   </div>
 </div>

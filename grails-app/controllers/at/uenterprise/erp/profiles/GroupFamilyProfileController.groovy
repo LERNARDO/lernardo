@@ -75,7 +75,7 @@ class GroupFamilyProfileController {
         group.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupFamily"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -139,12 +139,12 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
 
       render template: 'parents', model: [parents: linking.sources, group: linking.target]
       }
     else {
-      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+ '</span>'
+      render {span(class: 'red italic', message(code: 'alreadyAssignedToFamily', args: [Entity.get(params.parent).profile.fullName]))}
       List parents = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberParent)
       render template: 'parents', model: [parents: parents, group: Entity.get(params.id)]
     }
@@ -162,12 +162,12 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupFamily)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
 
       render template: 'clients', model: [clients: linking.sources, group: linking.target]
     }
     else {
-      render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+ '</span>'
+      render {span(class: 'red italic', message(code: 'alreadyAssignedToFamily', args: [Entity.get(params.client).profile.fullName]))}
       List clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupFamily)
       render template: 'clients', model: [clients: clients, group: Entity.get(params.id)]
     }
@@ -184,12 +184,12 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
 
       render template: 'childs', model: [childs: linking.sources, group: linking.target]
     }
     else {
-      render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+ '</span>'
+      render {span(class: 'red italic', message(code: 'alreadyAssignedToFamily', args: [Entity.get(params.child).profile.fullName]))}
       List childs = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberChild)
       render template: 'childs', model: [childs: childs, group: Entity.get(params.id)]
     }
@@ -209,7 +209,7 @@ class GroupFamilyProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -223,7 +223,7 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -240,7 +240,7 @@ class GroupFamilyProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -254,7 +254,7 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -271,7 +271,7 @@ class GroupFamilyProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -285,7 +285,7 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {

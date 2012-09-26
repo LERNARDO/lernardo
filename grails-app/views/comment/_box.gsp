@@ -15,9 +15,8 @@
           </div>
 
         </div>
-        <div class="buttons">
+        <div class="buttons cleared">
           <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'add')}"/></div>
-          <div class="clear"></div>
         </div>
       </g:formRemote>
     </div>

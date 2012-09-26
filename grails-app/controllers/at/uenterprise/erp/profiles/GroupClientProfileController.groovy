@@ -44,10 +44,10 @@ class GroupClientProfileController {
     def management = {
         Entity group = Entity.get(params.id)
 
-        def allClients = Entity.findAllByType(metaDataService.etClient)
         // find all clients linked to this group
         List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
 
+        List allClients = Entity.findAllByType(metaDataService.etClient)
         List allColonies = Entity.findAllByType(metaDataService.etGroupColony)
         List allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
@@ -67,7 +67,7 @@ class GroupClientProfileController {
         group.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "groupClient"), group.profile.fullName])
         redirect(action: "show", id: params.id, params: [exception: e])
       }
@@ -131,14 +131,14 @@ class GroupClientProfileController {
 
   def addClient = {
     if (!params.members)
-      render '<p class="italic red">'+message(code: "groupClient.clients.select.least")+ '</p>'
+      render {p(class: 'italic red', message(code: "groupClient.clients.select.least"))}
     else {
       def bla = params.list('members')
   
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       }
     }
 

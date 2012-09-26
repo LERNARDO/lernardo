@@ -3,8 +3,7 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#clients');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="clients" style="display:none;">
         <p class="gray"><g:message code="groupClient.clients.info"/></p>
         <g:formRemote name="formRemote0" url="[controller: 'groupClientProfile', action: 'updateselect']" update="clientselect" before="showspinner('#clientselect')">
@@ -47,7 +46,6 @@
             </table>
 
             <g:submitButton name="button" value="${message(code:'groupClient.clients.define')}"/>
-            <div class="clear"></div>
         </g:formRemote>
 
         <g:formRemote name="formRemote" url="[controller: 'groupClientProfile', action: 'addClient', id: group.id]" update="clients2" before="showspinner('#clients2')">

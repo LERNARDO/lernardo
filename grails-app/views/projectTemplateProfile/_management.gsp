@@ -28,7 +28,6 @@
             </table>
             <div class="clear"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="clear"></div>
         </g:formRemote>
 
     </div>
@@ -41,7 +40,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="template.plannedProjects"/> (${instances.size}) <a onclick="toggle('#instances'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Instanzen"/></a></h5>
+    <h5><g:message code="template.plannedProjects"/> (${instances.size}) <img onclick="toggle('#instances');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Instanzen"/></h5>
     <div class="zusatz-add" id="instances" style="display:none">
         <g:if test="${instances.size() > 0}">
             <ul>

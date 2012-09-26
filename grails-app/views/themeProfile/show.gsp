@@ -38,7 +38,7 @@
 
       <h4><g:message code="profile"/></h4>
 
-      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: theme]"/></span> <erp:accessCheck types="['Betreiber']" creatorof="${theme}"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
+      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: theme]"/></span> <erp:accessCheck types="['Betreiber']" creatorof="${theme}"><img onclick="toggle('#setcreator');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Ersteller ändern"/></erp:accessCheck></p>
       <div class="zusatz-add" id="setcreator" style="display:none">
         <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${theme.id}" before="showspinner('#remoteCreators');"/>

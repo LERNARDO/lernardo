@@ -9,7 +9,7 @@
       </div>
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
-      <div class="buttons" style="margin-bottom: 0;">
+      <div class="buttons cleared" style="margin-bottom: 0;">
         <g:form id="${entity.id}">
           <erp:accessCheck types="['Betreiber']" creatorof="${entity}">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
@@ -20,7 +20,6 @@
             <a class="buttonGreen" href="#" onclick="jQuery('#modal').modal(); return false"><g:message code="createPDF"/></a>
           </div>
         </g:form>
-        <div class="clear"></div>
       </div>
     </td>
   </tr>

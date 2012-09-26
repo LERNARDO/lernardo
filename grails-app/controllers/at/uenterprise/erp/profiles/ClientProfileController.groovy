@@ -18,12 +18,16 @@ import at.uenterprise.erp.logbook.Attendance
 import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
+import at.uenterprise.erp.EntityDataService
+import at.uenterprise.erp.LinkDataService
 
 class ClientProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   def securityManager
   FunctionService functionService
+  EntityDataService entityDataService
+  LinkDataService linkDataService
 
   // the delete, save and update actions only accept POST requests
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
@@ -50,8 +54,8 @@ class ClientProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
-    Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+    Entity colony = linkDataService.getColony(client)
+    Entity family = linkDataService.getFamily(client)
 
     return [client: client, colony: colony, family: family]
 
@@ -75,7 +79,7 @@ class ClientProfileController {
         client.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "client"), client.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -87,9 +91,6 @@ class ClientProfileController {
   }
 
   def edit = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
     Entity client = Entity.get(params.id)
 
     if (!client) {
@@ -98,21 +99,10 @@ class ClientProfileController {
       return
     }
 
-    Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
+    Entity colony = linkDataService.getColony(client)
 
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
-
-    def allFacilities = Entity.createCriteria().list {
-      eq("type", metaDataService.etFacility)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
+    def allFacilities = entityDataService.getAllFacilities()
 
     return [client: client,
             colony: colony,
@@ -144,45 +134,18 @@ class ClientProfileController {
       redirect action: 'show', id: client.id
     }
     else {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-      Entity colony = functionService.findByLink(null, client, metaDataService.ltColonia)
-      //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
+      Entity colony = linkDataService.getColony(client)
 
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
+      def allFacilities = entityDataService.getAllFacilities()
 
-      def allFacilities = Entity.createCriteria().list {
-        eq("type", metaDataService.etFacility)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
       render view: 'edit', model: [client: client, colony: colony, allColonies: allColonies, allFacilities: allFacilities]
     }
   }
 
   def create = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    def allColonies = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupColony)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
-
-    def allFacilities = Entity.createCriteria().list {
-      eq("type", metaDataService.etFacility)
-      profile {
-        order(params.sort, params.order)
-      }
-    }
+    def allColonies = entityDataService.getAllColonies()
+    def allFacilities = entityDataService.getAllFacilities()
 
     return [allColonies: allColonies,
             allFacilities: allFacilities]
@@ -211,22 +174,8 @@ class ClientProfileController {
       flash.message = message(code: "object.created", args: [message(code: "client"), entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      params.sort = params.sort ?: "fullName"
-      params.order = params.order ?: "asc"
-
-      def allColonies = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupColony)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
-
-      def allFacilities = Entity.createCriteria().list {
-        eq("type", metaDataService.etFacility)
-        profile {
-          order(params.sort, params.order)
-        }
-      }
+      def allColonies = entityDataService.getAllColonies()
+      def allFacilities = entityDataService.getAllFacilities()
 
       render view: "create", model: [client: ee.entity, allColonies: allColonies, allFacilities: allFacilities]
     }
@@ -316,7 +265,7 @@ class ClientProfileController {
   def addContact = {ContactCommand cc ->
     Entity client = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">'+message(code: "client.profile.name.insert")+ '</p>'
+      render {p(class: 'italic red', message(code: 'client.profile.name.insert'))}
       render template: 'contacts', model: [client: client]
       return
     }
@@ -370,7 +319,7 @@ class ClientProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -384,7 +333,7 @@ class ClientProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -398,7 +347,7 @@ class ClientProfileController {
 
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberClient)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+      render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     else
       new Attendance(client: client, facility: facility).save(failOnError: true)
 

@@ -17,6 +17,8 @@ import at.uenterprise.erp.Evaluation
 import at.uenterprise.erp.base.LinkHelperService
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.EVENT_TYPE
+import at.uenterprise.erp.LinkDataService
+import at.uenterprise.erp.EntityDataService
 
 class ProjectProfileController {
 
@@ -25,6 +27,8 @@ class ProjectProfileController {
   ProfileHelperService profileHelperService
   FunctionService functionService
   LinkHelperService linkHelperService
+  LinkDataService linkDataService
+  EntityDataService entityDataService
 
   def beforeInterceptor = [
           action:{
@@ -115,7 +119,7 @@ class ProjectProfileController {
 
         List themes = functionService.findAllByLink(project, null, metaDataService.ltGroupMember)
 
-        def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+        def allFacilities = entityDataService.getAllFacilities()
         // find all facilities linked to this project
         List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
@@ -137,7 +141,7 @@ class ProjectProfileController {
         Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
         // get all educators
-        def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
+        def allEducators = entityDataService.getAllEducators()
 
         // find all facilities linked to this project
         List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
@@ -178,7 +182,7 @@ class ProjectProfileController {
             plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
 
             // find colony the facility is linked to and add its resources as well
-            Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+            Entity colony = linkDataService.getColony(facility)
             plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
 
             // find all other facilities linked to the colony and add their resources if marked as available in colony
@@ -285,7 +289,7 @@ class ProjectProfileController {
         project.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "project"), project.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -813,7 +817,7 @@ class ProjectProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.target.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
     render template: 'facilities', model: [facilities: linking.targets, project: linking.source]
   }
 
@@ -842,7 +846,7 @@ class ProjectProfileController {
   def addResource = {
     def linking = functionService.linkEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'resources', model: [resources: linking.sources, projectDay: linking.target]
   }
 
@@ -854,7 +858,7 @@ class ProjectProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'educators', model: [educators: linking.sources, project: project, projectDay: linking.target]
   }
@@ -868,7 +872,7 @@ class ProjectProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'substitutes', model: [substitutes: linking.sources, project: project, projectDay: linking.target]
   }
@@ -882,7 +886,7 @@ class ProjectProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'parents', model: [parents: linking.sources, project: project, unit: linking.target, i: params.i]
@@ -898,7 +902,7 @@ class ProjectProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'partners', model: [partners: linking.sources, project: project, unit: linking.target, i: params.i]
@@ -914,7 +918,7 @@ class ProjectProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'themes', model: [themes: linking.targets, project: linking.source]
   }
 
@@ -942,7 +946,7 @@ class ProjectProfileController {
     def allParents = Entity.findAllByType(metaDataService.etParent)
 
     // get all educators
-    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
+    def allEducators = entityDataService.getAllEducators()
 
     // get all plannable resources
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
@@ -979,7 +983,7 @@ class ProjectProfileController {
       // add resources linked to the facility to plannable resources
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony = linkDataService.getColony(facility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
     }
 
@@ -1006,7 +1010,7 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id]
+      render template: 'educatorresults', model: [results: entityDataService.getAllEducators(), projectDay: params.id]
       return
     }
 
@@ -1023,7 +1027,7 @@ class ProjectProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -1040,7 +1044,7 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}, projectDay: params.id]
+      render template: 'substituteresults', model: [results: entityDataService.getAllEducators(), projectDay: params.id]
       return
     }
 
@@ -1057,7 +1061,7 @@ class ProjectProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -1110,7 +1114,7 @@ class ProjectProfileController {
       finalResults = results
 
     if (finalResults.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -1126,7 +1130,7 @@ class ProjectProfileController {
     if (entity.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-        render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+ '</p>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       render template: 'clients', model: [clients: linking.sources, project: linking.target]
     }
     // if the entity is a client group get all clients and add them
@@ -1137,7 +1141,7 @@ class ProjectProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<div class="red italic">"' + linking.source.profile.fullName+ '" '+message(code: "alreadyAssignedTo")+ '</div>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       }
 
       Entity project = Entity.get(params.id)
@@ -1275,7 +1279,7 @@ class ProjectProfileController {
     Date endDate = params.date('endDate', 'dd. MM. yy')
     
     if (!beginDate || !endDate)
-      render '<span class="red italic">' + message(code: "date.insert.fromto") +  '</span>'
+      render {span(class: 'red italic', message(code: 'date.insert.fromto'))}
     else {
       List projects = Entity.createCriteria().list {
         eq("type", metaDataService.etProject)
@@ -1287,7 +1291,7 @@ class ProjectProfileController {
       }
 
       if (projects.size() == 0) {
-        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        render {span(class: 'italic', message(code: 'searchMe.empty'))}
         return
       }
       else {
@@ -1298,7 +1302,7 @@ class ProjectProfileController {
 
   def searchbyname = {
     if (!params.name) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
 
@@ -1312,7 +1316,7 @@ class ProjectProfileController {
     }
 
     if (users.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
     else {
@@ -1327,7 +1331,7 @@ class ProjectProfileController {
       // find all projects that are linked to this theme
       List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
       if (projects.size() == 0) {
-        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        render {span(class: 'italic', message(code: 'searchMe.empty'))}
         return
       }
       else {
@@ -1335,7 +1339,7 @@ class ProjectProfileController {
       }
     }
     else
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
   }
 
   def searchbylabel = {
@@ -1352,7 +1356,7 @@ class ProjectProfileController {
     }
 
     if (result.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render {span(class: 'italic', message(code: 'searchMe.empty'))}
       return
     }
     else {
@@ -1434,7 +1438,7 @@ class ProjectProfileController {
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
 
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony = linkDataService.getColony(facility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
 
       // find all other facilities linked to the colony and add their resources if marked as available in colony
@@ -1574,7 +1578,7 @@ class ProjectProfileController {
     List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
     
     def allParents = Entity.findAllByType(metaDataService.etParent)
-    def allEducators = Entity.findAllByType(metaDataService.etEducator).findAll{it.user.enabled}
+    def allEducators = entityDataService.getAllEducators()
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
     List requiredResources = []
@@ -1608,7 +1612,7 @@ class ProjectProfileController {
       // add resources linked to the facility to plannable resources
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony = linkDataService.getColony(facility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
     }
 
@@ -1758,7 +1762,7 @@ class ProjectProfileController {
             return
         }
         else if (params.value.size() < 2) {
-            render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+            render {span(class: 'gray', message(code: 'minChars'))}
             return
         }
 
@@ -1775,7 +1779,7 @@ class ProjectProfileController {
         }
 
         if (results.size() == 0) {
-            render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
             return
         }
         else {
@@ -1786,7 +1790,7 @@ class ProjectProfileController {
     def addResponsible = {
         def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
         if (linking.duplicate)
-            render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
         render template: 'responsible', model: [responsibles: linking.sources, project: linking.target]
 
     }

@@ -69,7 +69,7 @@ class ResourceProfileController {
         resource.delete(flush: true)
         redirect(action: "list")
       }
-      catch (org.springframework.dao.DataIntegrityViolationException e) {
+      catch (org.springframework.dao.DataIntegrityViolationException ignore) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "resource"), resource.profile.fullName])
         redirect(action: "show", id: params.id)
       }
@@ -134,7 +134,7 @@ class ResourceProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -157,7 +157,7 @@ class ResourceProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -174,11 +174,11 @@ class ResourceProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltOwner)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
       render template: 'owner', model: [resowner: linking.sources, resourceInstance: linking.target]
     }
     else {
-      render '<span class="red italic">' + message(code: 'alreadyAssignedToOwner') + '</span>'
+      render {span(class: 'italic red', message(code: 'alreadyAssignedToOwner'))}
       render template: 'owner', model: [resowner: functionService.findByLink(null, resource, metaDataService.ltOwner), resourceInstance: resource]
     }
 
@@ -198,7 +198,7 @@ class ResourceProfileController {
       return
     }
     else if (params.value.size() < 2) {
-      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      render {span(class: 'gray', message(code: 'minChars'))}
       return
     }
 
@@ -219,7 +219,7 @@ class ResourceProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">'+message(code:'noResultsFound')+ '</span>'
+      render {span(class: 'italic', message(code: 'noResultsFound'))}
       return
     }
     else {
@@ -231,7 +231,7 @@ class ResourceProfileController {
   def addResponsible = {
     def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
     render template: 'responsible', model: [resresponsible: linking.sources, resourceInstance: linking.target]
 
   }

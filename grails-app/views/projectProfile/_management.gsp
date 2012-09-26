@@ -1,7 +1,7 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="responsible"/> <erp:accessCheck types="['Betreiber']"><a onclick="toggle('#responsible'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="responsible"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#responsible');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="responsible" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -15,15 +15,13 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="themes"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#themes');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Zu Thema zuordnen"/></a></erp:accessCheck></h5>
+    <h5><g:message code="themes"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#themes');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Zu Thema zuordnen"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="themes" style="display:none">
         <g:if test="${allThemes}">
             <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'addTheme', id: project.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
                 <g:select name="theme" from="${allThemes}" optionKey="id" optionValue="profile"/>
                 <div class="clear"></div>
                 <g:submitButton name="button" value="${message(code:'add')}"/>
-                <div class="clear"></div>
             </g:formRemote>
         </g:if>
         <g:else>
@@ -53,7 +51,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="clients"/> <span id="clientsSize"></span> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <h5><g:message code="clients"/> <span id="clientsSize"></span> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="clients" style="display:none">
 
         <g:message code="search"/>:<br/>
