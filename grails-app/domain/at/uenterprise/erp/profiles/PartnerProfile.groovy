@@ -26,7 +26,6 @@ class PartnerProfile extends Profile {
   Boolean   showTips = true
 
   static constraints = {
-    fullName    blank: false, size: 1..100, maxSize: 100
     description blank: true, maxSize: 20000
     street      size: 2..50, maxSize: 50
     phone       size: 2..20

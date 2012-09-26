@@ -65,7 +65,6 @@ class ClientProfile extends Profile {
   Integer socialSecurityNumber
 
   static constraints = {
-    fullName              blank: true, size: 1..100, maxSize: 100
     firstName             blank: false, size: 2..50, maxSize: 50
     lastName              blank: false, size: 2..50, maxSize: 50
     currentStreet         size: 2..50, maxSize: 50

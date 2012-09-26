@@ -6,7 +6,7 @@ public class Profile {
   String fullName
 
   static constraints = {
-    fullName  size: 5..80
+        fullName    blank: false, size: 1..100, maxSize: 100
   }
 
 }

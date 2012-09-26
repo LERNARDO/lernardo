@@ -29,7 +29,6 @@ class GroupActivityTemplateProfile extends Profile {
   Integer ageTo
 
   static constraints = {
-    fullName                  blank: false, size: 1..100, maxSize: 100
     description               blank: true, maxSize: 20000
     educationalObjectiveText  blank: true, maxSize: 2000
     ageFrom         nullable: true

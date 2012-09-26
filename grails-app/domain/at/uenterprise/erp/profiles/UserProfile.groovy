@@ -35,7 +35,6 @@ class UserProfile extends Profile {
   Integer overtimePay = 0
 
   static constraints = {
-    fullName  blank: true, size: 1..100, maxSize: 100
     firstName blank: false, maxSize: 50
     lastName  blank: false, maxSize: 50
     calendar  nullable: true
