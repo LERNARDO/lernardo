@@ -11,7 +11,6 @@
 </div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="object.total" args="[totalProjects, message(code: 'projects')]"/>
@@ -79,6 +78,5 @@
 
     <div id="searchresults"></div>
 
-  </div>
 </div>
 </body>

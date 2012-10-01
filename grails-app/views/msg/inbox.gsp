@@ -17,7 +17,6 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="buttons cleared">
       %{--<g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.outbox"/></g:link>--}%
@@ -62,6 +61,5 @@
       </div>
     </g:if>
 
-  </div>
 </div>
 </body>

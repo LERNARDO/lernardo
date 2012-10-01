@@ -8,7 +8,6 @@
   <h1><g:message code="object.create" args="[message(code: 'helper')]"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <g:hasErrors bean="${helperInstance}">
       <div class="errors">
@@ -51,6 +50,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

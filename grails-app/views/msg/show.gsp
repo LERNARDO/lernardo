@@ -7,7 +7,6 @@
   <h1><g:message code="msg"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <table class="private-msg" style="width: 100%">
       <tbody>
@@ -36,6 +35,5 @@
       <g:link class="buttonGray" action="inbox" id="${entity.id}"><g:message code="back"/></g:link>
     </div>
 
-  </div>
 </div>
 </body>

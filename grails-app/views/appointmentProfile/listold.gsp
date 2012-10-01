@@ -20,7 +20,6 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="object.found" args="[appointmentProfileInstanceTotal, message(code: 'appointments')]"/>
@@ -84,6 +83,5 @@
       </div>
     </g:if>
 
-  </div>
 </div>
 </body>

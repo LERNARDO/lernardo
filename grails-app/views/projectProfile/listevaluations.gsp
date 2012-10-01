@@ -7,7 +7,6 @@
   <h1>Tagebucheinträge verknüpft mit ${entity.profile.fullName}</h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       Es gibt insgesamt ${evaluations.size()} Tagebucheinträge verknüpft mit ${entity.profile.fullName}
@@ -49,6 +48,5 @@
       </g:each>
     </ul>
 
-  </div>
 </div>
 </body>

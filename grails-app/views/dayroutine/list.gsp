@@ -25,7 +25,6 @@
   <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <p><g:message code="dayroutine.create"/> <img onclick="toggle('#newroutine');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code:'dayroutine.create')}"/></p>
     <div id="newroutine" class="graypanel">
@@ -195,7 +194,6 @@
       </jq:jquery>
     </div>
 
-  </div>
 </div>
 
 <script type="text/javascript">

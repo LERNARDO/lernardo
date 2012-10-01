@@ -7,7 +7,6 @@
   <h1><g:message code="object.edit" args="[message(code: 'method')]"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <g:hasErrors bean="${methodInstance}">
       <div class="errors">
@@ -41,6 +40,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

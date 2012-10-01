@@ -27,12 +27,10 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg"><g:message code="evaluation.entrySize" args="[evaluationInstanceList.size()]"/></div>
     
     <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList, totalEvaluations: totalEvaluations, paginate: paginate]"/>
 
-  </div>
 </div>
 </body>

@@ -8,7 +8,6 @@
   <h1><g:message code="object.create" args="[message(code: 'client')]"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/errors" model="[bean: client]"/>
 
@@ -212,7 +211,7 @@
         <div class="button"><g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link></div>
       </div>
     </g:form>
-  </div>
+
 </div>
 </body>
  

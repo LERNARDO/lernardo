@@ -7,7 +7,6 @@
   <h1><g:message code="resource.management"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="object.total" args="[resourceTotal, message(code: 'resources')]"/>
@@ -40,6 +39,5 @@
       <g:paginate total="${resourceTotal}"/>
     </div>
 
-  </div>
 </div>
 </body>

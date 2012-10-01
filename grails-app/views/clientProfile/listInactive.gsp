@@ -19,7 +19,6 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="object.total" args="[totalClients, message(code: 'clients')]"/>
@@ -62,6 +61,5 @@
       <g:paginate total="${totalClients}"/>
     </div>
 
-  </div>
 </div>
 </body>

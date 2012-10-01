@@ -5,7 +5,6 @@
   </div>
 </div>
 <div class="boxGray">
-  <div class="second">
 
   <g:if test="${events}">
   <g:each in="${events}" var="event">
@@ -26,5 +25,4 @@
   <g:else>
     <span class="italic">Keine Live Ereignisse</span>
   </g:else>
-</div>
 </div>

@@ -8,7 +8,6 @@
   <h1><g:message code="process"/> - ${process.name}</h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <table>
       <tbody>
@@ -89,6 +88,5 @@
       </g:form>
     </div>
 
-  </div>
 </div>
 </body>

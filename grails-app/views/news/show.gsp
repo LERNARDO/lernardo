@@ -8,7 +8,6 @@
   <h1><g:message code="news"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
   <div id="news-container">
     <div class="item">
@@ -45,6 +44,6 @@
       </div>
     </div>
   </div>
-  </div>
+
 </div>
 </body>

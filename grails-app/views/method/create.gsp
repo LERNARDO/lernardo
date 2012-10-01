@@ -7,7 +7,6 @@
   <h1><g:message code="object.create" args="[message(code: 'method')]"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/errors" model="[bean: methodInstance]"/>
 
@@ -37,6 +36,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

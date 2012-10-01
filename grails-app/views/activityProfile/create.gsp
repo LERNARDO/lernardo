@@ -7,7 +7,6 @@
   <h1><g:message code="activityInstance"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/errors" model="[bean: ac]"/>
 
@@ -116,6 +115,5 @@
 
     </g:form>
 
-  </div>
 </div>
 </body>

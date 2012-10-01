@@ -7,7 +7,6 @@
   <h1><g:message code="evaluation.for" args="[entity.profile.fullName]"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="evaluation.sizeFor" args="[evaluationInstanceTotal, entity.profile.fullName]"/>
@@ -19,6 +18,5 @@
 
     <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList]"/>
 
-  </div>
 </div>
 </body>

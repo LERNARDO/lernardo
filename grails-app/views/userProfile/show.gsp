@@ -9,7 +9,6 @@
 <g:render template="/templates/favmodal" model="[entity: user]"/>
 
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/userNavigation" model="[entity: user]"/>
 
@@ -45,6 +44,5 @@
 
     </div>
 
-  </div>
 </div>
 </body>

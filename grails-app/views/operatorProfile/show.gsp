@@ -9,7 +9,6 @@
 <g:render template="/templates/favmodal" model="[entity: operator]"/>
 
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/operatorNavigation" model="[entity: operator]"/>
 
@@ -68,6 +67,5 @@
 
     </div>
 
-  </div>
 </div>
 </body>

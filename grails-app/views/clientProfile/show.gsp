@@ -10,7 +10,6 @@
 <g:render template="/templates/favmodal" model="[entity: client]"/>
 
 <div class="boxGray">
-<div class="second">
 
 <g:render template="/templates/clientNavigation" model="[entity: client]"/>
 
@@ -203,7 +202,6 @@
 
   %{--<g:render template="/templates/links" model="[entity: client]"/>--}%
 
-</div>
 </div>
 </div>
 </body>

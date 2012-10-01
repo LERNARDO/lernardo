@@ -1,6 +1,5 @@
 <%@ page import="at.uenterprise.erp.PublicationType" %>
 <div class="boxGray">
-  <div class="second">
 
       <h4><g:message code="object.create" args="[message(code: 'publication')]"/></h4>
 
@@ -74,4 +73,3 @@
 
       </g:uploadForm>
     </div>
-  </div>

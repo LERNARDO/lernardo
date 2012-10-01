@@ -25,7 +25,6 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg"><g:message code="timeEvaluation.chooseRange"/></div>
 
@@ -38,7 +37,6 @@
     <div id="evaluate" style="margin-top: 10px;">
     </div>
 
-  </div>
 </div>
 
 </body>

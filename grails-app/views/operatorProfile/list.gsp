@@ -7,7 +7,6 @@
   <h1><g:message code="operator"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="object.total" args="[totalOperators, message(code: 'operators')]"/>
@@ -48,6 +47,5 @@
 
     <div id="searchresults"></div>
 
-  </div>
 </div>
 </body>

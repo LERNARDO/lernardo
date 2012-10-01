@@ -25,7 +25,6 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="object.total" args="[methodInstanceTotal, message(code: 'methods')]"/>
@@ -60,6 +59,5 @@
       <g:paginate total="${methodInstanceTotal}"/>
     </div>
 
-  </div>
 </div>
 </body>

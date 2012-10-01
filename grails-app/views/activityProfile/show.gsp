@@ -12,7 +12,6 @@
 </div>
 
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/activityNavigation" model="[entity: activity]"/>
 
@@ -129,7 +128,6 @@
 
     </div>
 
-  </div>
 </div>
 
 </body>

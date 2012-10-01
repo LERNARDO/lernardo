@@ -7,7 +7,6 @@
   <h1>Aktivität bearbeiten</h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/errors" model="[bean: activity]"/>
 
@@ -48,6 +47,5 @@
 
     </g:form>
 
-  </div>
 </div>
 </body>

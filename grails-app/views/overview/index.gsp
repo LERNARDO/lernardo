@@ -29,7 +29,6 @@
   <h1><g:message code="profile.overview"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
       <erp:accessCheck roles="['ROLE_ADMIN']">
         <div class="overview" id="admin"></div>
@@ -40,8 +39,6 @@
       <div class="overview" id="planning"></div>
 
       <div class="clear"></div>
-
-  </div>
 
 </div>
 </body>

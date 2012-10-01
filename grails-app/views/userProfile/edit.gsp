@@ -10,7 +10,6 @@
   </div>--}%
 </div>
 <div class="boxGray" style="clear: both;">
-  <div class="second">
 
     <g:render template="/templates/errors" model="[bean: user]"/>
 
@@ -57,6 +56,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

@@ -7,7 +7,6 @@
   <h1><g:message code="comment.management"/></h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <div style="margin: 0 0 10px 0;">
       <g:formRemote name="formRemote" url="[controller: 'comment', action: 'updatelist']" update="results" before="showspinner('#results')">
@@ -44,6 +43,5 @@
     <div id="results">
     </div>
 
-  </div>
 </div>
 </body>

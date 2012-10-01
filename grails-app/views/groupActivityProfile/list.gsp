@@ -11,7 +11,6 @@
 </div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="object.total" args="[totalGroupActivities, message(code: 'groupActivities')]"/>
@@ -87,6 +86,5 @@
 
     <div id="searchresults"></div>
 
-  </div>
 </div>
 </body>

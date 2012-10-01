@@ -11,7 +11,6 @@
 </div>
 
 <div class="boxGray">
-  <div class="second">
 
     <erp:accessCheck types="['Betreiber','Pädagoge']">
       <div class="buttons cleared">
@@ -29,7 +28,6 @@
       <g:paginate total="${newsCount}"/>
     </div>
 
-  </div>
 </div>
 
 </body>

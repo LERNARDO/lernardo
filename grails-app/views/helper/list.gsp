@@ -7,7 +7,6 @@
   <h1><g:message code="helpers"/> ${helperFor}</h1>
 </div>
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:if test="${helperInstanceList.size() > 0}">
@@ -51,6 +50,5 @@
     </g:each>
     </g:if>
 
-  </div>
 </div>
 </body>

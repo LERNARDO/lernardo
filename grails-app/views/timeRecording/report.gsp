@@ -17,7 +17,6 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="privat.workday.chooseRange"/>
@@ -32,6 +31,5 @@
     <div id="results" style="margin-top: 10px">
     </div>
 
-  </div>
 </div>
 </body>

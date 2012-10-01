@@ -34,7 +34,6 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg"><g:message code="evaluation.entryinserted" args="[evaluationInstanceTotal]"/></div>
 
@@ -43,6 +42,5 @@
 
     <div id="remoteEvaluations"></div>
 
-  </div>
 </div>
 </body>

@@ -9,7 +9,6 @@
 </div>
 
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/errors" model="[bean: group]"/>
 
@@ -37,6 +36,5 @@
 
     </g:form>
 
-  </div>
 </div>
 </body>

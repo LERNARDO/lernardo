@@ -11,7 +11,6 @@
   </div>--}%
 </div>
 <div class="boxGray" style="clear: both;">
-  <div class="second">
 
     <table>
       <tbody>
@@ -64,6 +63,5 @@
       </g:form>
     </div>
 
-  </div>
 </div>
 </body>

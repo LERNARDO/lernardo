@@ -25,7 +25,6 @@
 <div class="clear"></div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       <g:message code="object.total" args="[labelInstanceTotal, message(code: 'labels')]"/>
@@ -59,7 +58,6 @@
       <g:paginate total="${labelInstanceTotal}"/>
     </div>--}%
 
-  </div>
 </div>
 </body>
 

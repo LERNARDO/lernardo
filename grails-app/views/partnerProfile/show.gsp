@@ -10,7 +10,6 @@
 <g:render template="/templates/favmodal" model="[entity: partner]"/>
 
 <div class="boxGray">
-  <div class="second">
 
     <g:render template="/templates/partnerNavigation" model="[entity: partner]"/>
 
@@ -84,6 +83,5 @@
 
     </div>
 
-  </div>
 </div>
 </body>

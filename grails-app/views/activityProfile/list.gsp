@@ -27,7 +27,6 @@
 </div>
 
 <div class="boxGray">
-  <div class="second">
 
     <div class="info-msg">
       ${activityCount} <g:message code="themeRooms"/>
@@ -75,7 +74,6 @@
       <g:paginate action="list" total="${activityCount}"/>
     </div>
 
-  </div>
 </div>
 </body>
 </html>
