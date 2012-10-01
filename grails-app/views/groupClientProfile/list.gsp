@@ -38,15 +38,15 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="creator"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="creator"/></td>
+          <td class="value">
             <span id="creators2"><g:message code="none"/></span> <a href="" onclick="jQuery('#creators2').html('${message(code: 'none')}'); clearElements(['#hiddentextfield1']); return false"><img src="${g.resource(dir:'images/icons', file:'cross.png')}" alt="Delete"/></a>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/></td>
+          <td class="value">
             <g:textField name="name" size="30"/>
           </td>
         </tr>

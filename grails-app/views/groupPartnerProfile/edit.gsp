@@ -17,22 +17,22 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="description"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="description"/></td>
+          <td class="value">
             <g:textArea data-counter="50" class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="3" cols="50" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="groupPartner.profile.service"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="groupPartner.profile.service"/></td>
+          <td class="value">
             <g:select name="service" from="${Setup.list()[0]?.partnerServices}" value="${group?.profile?.service}"/>
           </td>
         </tr>

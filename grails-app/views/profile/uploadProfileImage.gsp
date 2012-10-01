@@ -13,8 +13,8 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="profile.picture.select"/></td>
-            <td valign="top" class="value">
+            <td class="name"><g:message code="profile.picture.select"/></td>
+            <td class="value">
               <input size="40" type="file" name="asset">
             </td>
           </tr>

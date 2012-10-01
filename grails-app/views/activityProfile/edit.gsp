@@ -27,13 +27,13 @@
         </tr>
 
         <tr>
-          <td width="220" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.fullName', 'errors')}">
+          <td class="value ${hasErrors(bean: activity, field: 'profile.fullName', 'errors')}">
             <g:textField data-counter="50" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName').decodeHTML()}"/>
           </td>
-          <td width="350" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.date', 'errors')}">
+          <td class="value ${hasErrors(bean: activity, field: 'profile.date', 'errors')}">
             <g:textField class="datetimepicker2" name="date" value="${formatDate(date: activity?.profile?.date, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
           </td>
-          <td width="220" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.duration', 'errors')}">
+          <td class="value ${hasErrors(bean: activity, field: 'profile.duration', 'errors')}">
             <g:textField name="duration" value="${fieldValue(bean:activity, field:'profile.duration')}"/>
           </td>
         </tr>

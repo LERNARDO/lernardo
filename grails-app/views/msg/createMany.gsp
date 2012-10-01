@@ -16,8 +16,8 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="msg.to"/>:</td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="msg.to"/>:</td>
+          <td class="value">
             <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px; padding-bottom: 5px">
 
               <g:remoteField class="${hasErrors(bean: mc, field: 'receivers', 'errors')}" size="40" name="remoteField" update="remoteReceivers" action="remoteReceivers" before="showspinner('#remoteReceivers')"/>
@@ -39,15 +39,15 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="msg.subject"/>:</td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="msg.subject"/>:</td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: mc, field: 'subject', 'errors')}" size="50" name="subject" value="${fieldValue(bean: mc, field: 'subject').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="content"/>:</td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="content"/>:</td>
+          <td class="value">
             <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:mc,field:'content').decodeHTML()}
             </ckeditor:editor>

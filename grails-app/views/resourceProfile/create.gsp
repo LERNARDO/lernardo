@@ -17,20 +17,20 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
+            <td class="name"><g:message code="name"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="540" valign="top" class="value">
+            <td class="value">
               <g:textField data-counter="50" class="${hasErrors(bean: resourceInstance, field: 'profile.fullName', 'errors')}" size="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="description"/></td>
+            <td class="name"><g:message code="description"/></td>
           </tr>
           <tr>
-            <td valign="top" class="value">
+            <td class="value">
               <g:textArea data-counter="2000" class="${hasErrors(bean: resourceInstance, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resourceInstance, field: 'profile.description')}"/>
             </td>
           </tr>

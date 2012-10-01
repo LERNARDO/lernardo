@@ -35,28 +35,28 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="period"/></td>
+            <td class="name"><g:message code="period"/></td>
             <td class="value">
               <g:textField name="dateFrom" class="timepick" size="4"/> <g:message code="to"/> <g:textField name="dateTo" class="timepick" size="4"/> <g:message code="clock"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name">Tätigkeit</td>
+            <td class="name">Tätigkeit</td>
             <td class="value">
               <g:textField name="title" size="30"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="description"/></td>
+            <td class="name"><g:message code="description"/></td>
             <td class="value">
               <g:textArea name="description" rows="4" cols="50"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="activityInstance.profile.days"/></td>
+            <td class="name"><g:message code="activityInstance.profile.days"/></td>
             <td class="value">
               <g:checkBox name="monday"/> <g:message code="monday"/><br/>
               <g:checkBox name="tuesday"/> <g:message code="tuesday"/><br/>

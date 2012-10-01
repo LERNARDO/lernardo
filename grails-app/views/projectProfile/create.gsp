@@ -16,22 +16,22 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: pc, field: 'fullName', 'errors')}" required="" size="50" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="begin"/> <span class="required-indicator">*</span></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="begin"/> <span class="required-indicator">*</span></td>
+          <td class="value">
             <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" required="" value="${formatDate(date: pc?.startDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="end"/> <span class="required-indicator">*</span></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="end"/> <span class="required-indicator">*</span></td>
+          <td class="value">
             <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" required="" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
@@ -82,8 +82,8 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="description"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="description"/></td>
+          <td class="value">
             <ckeditor:editor name="description" height="200px" toolbar="Basic">
               ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
             </ckeditor:editor>
@@ -91,8 +91,8 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
+          <td class="value">
             <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
               ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
             </ckeditor:editor>

@@ -21,15 +21,15 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="title"/></td>
-            <td valign="top" class="value">
+            <td class="name"><g:message code="title"/></td>
+            <td class="value">
               <g:textField data-counter="50" class="${hasErrors(bean: publication, field: 'name', 'errors')}" id="name" name="name" size="50" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="publication.profile.file"/></td>
-            <td valign="top" class="value">
+            <td class="name"><g:message code="publication.profile.file"/></td>
+            <td class="value">
               <input size="50" id="file" type="file" name="file"/>
             </td>
           </tr>

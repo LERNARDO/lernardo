@@ -20,15 +20,15 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/></td>
+          <td class="value">
             <g:textField size="40" data-counter="50" class="${hasErrors(bean: labelInstance, field: 'name', 'errors')}" name="name" value="${fieldValue(bean: labelInstance, field: 'name').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="description"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="description"/></td>
+          <td class="value">
             <g:textArea rows="4" cols="50" data-counter="5000" class="${hasErrors(bean: labelInstance, field: 'description', 'errors')}" name="description" value="${fieldValue(bean: labelInstance, field: 'description').decodeHTML()}"/>
           </td>
         </tr>

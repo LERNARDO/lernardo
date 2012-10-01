@@ -27,8 +27,8 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/></td>
+          <td class="value">
             <g:textField name="name" size="30"/>
           </td>
         </tr>

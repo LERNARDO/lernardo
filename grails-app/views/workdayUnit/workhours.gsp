@@ -34,22 +34,22 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="active"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="active"/></td>
+          <td class="value">
             <g:checkBox name="active" value="true"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="type"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="type"/></td>
+          <td class="value">
             <g:select name="type" from="['user','educator']" valueMessagePrefix="profiletype"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="educator.profile.employment"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="educator.profile.employment"/></td>
+          <td class="value">
             <g:select name="employment" from="${Setup.list()[0]?.employmentStatus}" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>

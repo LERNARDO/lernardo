@@ -16,22 +16,22 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" required="" size="50" name="fullName" value="${workAroundName.decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="groupActivity.profile.realDuration"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="groupActivity.profile.realDuration"/></td>
+          <td class="value">
             <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="5" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration') ?: calculatedDuration}"/> <span><g:message code="minutes"/></span> <span class="gray">(<g:message code="calculatedTotalDuration"/>: ${calculatedDuration} <g:message code="minutes"/>)</span>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="groupActivity.profile.educationalObjectiveText"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="groupActivity.profile.educationalObjectiveText"/></td>
+          <td class="value">
             <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
               ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
             </ckeditor:editor>
@@ -39,8 +39,8 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="description"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="description"/></td>
+          <td class="value">
             <ckeditor:editor name="description" height="200px" toolbar="Basic">
               ${fieldValue(bean:group,field:'profile.description') ? fieldValue(bean:group,field:'profile.description').decodeHTML() : fieldValue(bean:template,field:'profile.description').decodeHTML()}
             </ckeditor:editor>

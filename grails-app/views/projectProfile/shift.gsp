@@ -15,8 +15,8 @@
     <table>
 
       <tr class="prop">
-        <td valign="top" class="name"><g:message code="shiftTo"/></td>
-        <td valign="top" class="value">
+        <td class="name"><g:message code="shiftTo"/></td>
+        <td class="value">
           <g:select from="${-4..4}" name="weeks" value="1"/> <span class="gray"><g:message code="weeks"/></span>
         </td>
       </tr>

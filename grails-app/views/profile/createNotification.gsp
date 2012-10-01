@@ -43,15 +43,15 @@
           <table>
           
             <tr class="prop">
-              <td valign="top" class="name"><g:message code="title"/></td>
-              <td valign="top" class="value">
+              <td class="name"><g:message code="title"/></td>
+              <td class="value">
                 <g:textField class="${hasErrors(bean:nc,field:'subject','errors')}" name="subject" size="50" value="${fieldValue(bean:nc,field:'subject')}"/>
               </td>
             </tr>
 
             <tr class="prop">
-              <td valign="top" class="name"><g:message code="content"/></td>
-              <td valign="top" class="value">
+              <td class="name"><g:message code="content"/></td>
+              <td class="value">
                 <ckeditor:editor name="content" height="200px" toolbar="Basic">
                   ${fieldValue(bean:nc,field:'content').decodeHTML()}
                 </ckeditor:editor>

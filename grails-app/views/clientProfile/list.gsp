@@ -29,57 +29,57 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="active"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="active"/></td>
+          <td class="value">
             <g:checkBox name="active" value="true"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/></td>
+          <td class="value">
             <g:textField name="name" size="30"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="gender"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="gender"/></td>
+          <td class="value">
             <g:select name="gender" from="${['0':message(code:'all'),'1':message(code:'male'),'2':message(code:'female')]}" optionKey="key" optionValue="value"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="birthDate"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="birthDate"/></td>
+          <td class="value">
             <span class="gray"><g:message code="from"/></span> <g:textField class="datepicker" name="birthDateFrom" size="5"/> <span class="gray"><g:message code="to"/></span> <g:textField class="datepicker" name="birthDateTo" size="5"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="groupColony"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="groupColony"/></td>
+          <td class="value">
             <g:select name="colony" from="${colonies}" optionKey="id" optionValue="profile" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="facility"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="facility"/></td>
+          <td class="value">
             <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="client.profile.school"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="client.profile.school"/></td>
+          <td class="value">
             <g:textField name="school" size="20"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="client.profile.schoolLevel"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="client.profile.schoolLevel"/></td>
+          <td class="value">
             <g:select name="schoolLevel" from="${schoolLevels}" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>

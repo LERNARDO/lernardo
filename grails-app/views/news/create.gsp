@@ -21,23 +21,23 @@
     <table>
 
       <tr class="prop">
-        <td valign="top" class="name"><g:message code="title"/></td>
-        <td valign="top" class="value">
+        <td class="name"><g:message code="title"/></td>
+        <td class="value">
           <g:textField data-counter="50" class="${hasErrors(bean: news, field: 'title', 'errors')}" name="title" size="50" value="${fieldValue(bean:news,field:'title').decodeHTML()}"/>
         </td>
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="name"><g:message code="teaser"/></td>
-        <td valign="top" class="value">
+        <td class="name"><g:message code="teaser"/></td>
+        <td class="value">
           <g:textArea data-counter="500" class="${hasErrors(bean: news, field: 'teaser', 'errors')}" name="teaser" rows="3" cols="50" value="${fieldValue(bean:news,field:'teaser').decodeHTML()}"/>
           <span class="gray">(<g:message code="teaser.info"/>)</span><br/><br/>
         </td>
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="name"><g:message code="content"/></td>
-        <td valign="top" class="value ${hasErrors(bean: news, field: 'content', 'errors')}">
+        <td class="name"><g:message code="content"/></td>
+        <td class="value ${hasErrors(bean: news, field: 'content', 'errors')}">
           <ckeditor:editor name="content" height="300px" toolbar="Basic">
             ${fieldValue(bean:news,field:'content').decodeHTML()}
           </ckeditor:editor>

@@ -16,20 +16,20 @@
         <tbody>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="msg.to"/>:</td>
-          <td valign="top" class="value"><span class="bold">${receiver.profile.fullName.decodeHTML()}</span></td>
+          <td class="name"><g:message code="msg.to"/>:</td>
+          <td class="value"><span class="bold">${receiver.profile.fullName.decodeHTML()}</span></td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="msg.subject"/>:</td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="msg.subject"/>:</td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: msgInstance, field: 'subject', 'errors')}" size="50" name="subject" value="${fieldValue(bean: msgInstance, field: 'subject').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="content"/>:</td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="content"/>:</td>
+          <td class="value">
             <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:msgInstance,field:'content').decodeHTML()}
             </ckeditor:editor>
