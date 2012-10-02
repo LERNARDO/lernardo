@@ -7,7 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="news"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <div id="news-container">
     <div class="item">

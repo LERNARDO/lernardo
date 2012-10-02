@@ -8,7 +8,7 @@
 </div>
 <g:render template="/templates/favmodal" model="[entity: child]"/>
 
-<div class="boxGray">
+<div class="boxContent">
 
       <g:render template="/templates/childNavigation" model="[entity: child]"/>
 

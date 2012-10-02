@@ -8,7 +8,7 @@
   <h1><g:message code="educators"/></h1>
 </div>
 
-<div class="boxGray">
+<div class="boxContent">
 
   <div class="info-msg">
     <g:message code="object.total" args="[totalEducators, message(code: 'educators')]"/>

@@ -14,19 +14,17 @@
   </div>
 </g:if>--}%
 
-%{--<div class="tabGrey">
+%{--<div class="tabInactive">
   <div class="second">
     <h1><g:link controller="activityProfile" action="create"><g:message code="themeRoom.create"/></g:link></h1>
   </div>
 </div>--}%
 
-<div class="boxGreen">
-  <div class="second">
+<div class="boxHeader">
     <h1><g:message code="themeRooms"/></h1>
-  </div>
 </div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="info-msg">
       ${activityCount} <g:message code="themeRooms"/>

@@ -10,7 +10,7 @@
   <h1><g:message code="newsp"/></h1>
 </div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <erp:accessCheck types="['Betreiber','Pädagoge']">
       <div class="buttons cleared">

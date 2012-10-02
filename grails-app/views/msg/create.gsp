@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="privat.msgCreate"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: msgInstance]"/>
 

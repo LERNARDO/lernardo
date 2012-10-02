@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1>Aktivität bearbeiten</h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: activity]"/>
 

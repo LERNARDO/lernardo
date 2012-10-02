@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="evaluation.for" args="[entity.profile.fullName]"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="evaluation.sizeFor" args="[evaluationInstanceTotal, entity.profile.fullName]"/>

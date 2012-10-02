@@ -10,7 +10,7 @@
 
 <div class="clear"></div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="info-msg"><g:message code="evaluation.entrysFound_p1"/> <g:link controller="evaluation" action="allevaluations" id="${entity.id}" params="[show: true]"><g:message code="evaluation.entrysFound_p2" args="[totalEvaluations]"/></g:link> <g:message code="evaluation.entrysFound_p3"/></div>
 

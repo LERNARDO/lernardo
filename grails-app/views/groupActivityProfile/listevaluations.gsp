@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1>Tagebucheinträge verknüpft mit ${entity.profile.fullName}</h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="info-msg">
       Es gibt insgesamt ${evaluations.size()} Tagebucheinträge verknüpft mit ${entity.profile.fullName}

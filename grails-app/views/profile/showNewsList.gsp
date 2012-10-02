@@ -15,8 +15,7 @@
 <div class="boxHeader">
   <h1><g:message code="newsp"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:if test="${!newsList}">
       <div class="info-msg">
@@ -51,7 +50,6 @@
       </div>
     </g:if>
 
-  </div>
 </div>
 </body>
 

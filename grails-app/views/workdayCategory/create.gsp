@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.create" args="[message(code: 'workdayCategory')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: workdayCategoryInstance]"/>
     <g:form>
@@ -50,6 +49,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

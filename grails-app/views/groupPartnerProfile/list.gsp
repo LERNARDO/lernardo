@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="groupPartners"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <div class="info-msg">
     <g:message code="object.total" args="[totalGroupPartners, message(code: 'groupPartners')]"/>

@@ -7,8 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="change.pwd"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:if test="${error}">
       <p class="italic red">Bitte Passwort 2x identisch eingeben!</p>
@@ -33,6 +32,5 @@
 
     </g:form>
 
-  </div>
 </div>
 </body>

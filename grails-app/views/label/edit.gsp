@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.edit" args="[message(code: 'label')]"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
     <g:hasErrors bean="${labelInstance}">
       <div class="errors">

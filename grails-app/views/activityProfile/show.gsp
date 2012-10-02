@@ -11,7 +11,7 @@
   <h1><g:message code="activity"/> - ${fieldValue(bean: activity, field: 'profile.fullName').decodeHTML()}</h1>
 </div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/activityNavigation" model="[entity: activity]"/>
 

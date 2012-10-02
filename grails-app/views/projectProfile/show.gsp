@@ -9,7 +9,7 @@
 </div>
 <g:render template="/templates/favmodal" model="[entity: project]"/>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/projectNavigation" model="[entity: project]"/>
 

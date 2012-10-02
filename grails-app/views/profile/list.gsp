@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="profile.list"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
       <div class="info-msg">
         <g:message code="object.total" args="[entityCount, message(code: 'profiles')]"/>
@@ -54,6 +53,5 @@
         </div>
       </g:if>
 
-  </div>
 </div>
 </body>

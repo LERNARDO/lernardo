@@ -7,8 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.create" args="[message(code: 'publication')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
       <g:hasErrors bean="${publication}">
         <div class="errors">
@@ -70,6 +69,6 @@
         </div>
 
       </g:uploadForm>
-    </div>
+
   </div>
 </body>

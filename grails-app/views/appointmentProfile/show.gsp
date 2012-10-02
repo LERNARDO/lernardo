@@ -10,7 +10,7 @@
     <g:link action="edit" id="${appointment.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:link>
   </div>--}%
 </div>
-<div class="boxGray" style="clear: both;">
+<div class="boxContent" style="clear: both;">
 
     <table>
       <tbody>

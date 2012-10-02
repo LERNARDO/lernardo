@@ -7,8 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.edit" args="[message(code: 'publication')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
       <g:hasErrors bean="${publication}">
         <div id="flash-msg">
@@ -47,6 +46,6 @@
         </div>
 
       </g:form>
-    </div>
+
   </div>
 </body>

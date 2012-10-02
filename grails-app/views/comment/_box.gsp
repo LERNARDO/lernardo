@@ -1,5 +1,4 @@
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <h4><g:message code="comments"/></h4>
 
@@ -23,5 +22,4 @@
 
     <g:render template="/comment/comments" model="[commented: commented]"/>
 
-  </div>
 </div>

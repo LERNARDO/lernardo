@@ -5,27 +5,21 @@
 
 <body>
 
-<div class="tabGreen">
-    <div class="second">
-        <h1>Setup</h1>
-    </div>
+<div class="tabActive">
+    <h1>Setup</h1>
 </div>
 
-<div class="tabGrey">
-    <div class="second">
-        <h1><g:link controller="method" action="index"><g:message code="vMethods"/></g:link></h1>
-    </div>
+<div class="tabInactive">
+    <h1><g:link controller="method" action="index"><g:message code="vMethods"/></g:link></h1>
 </div>
 
-<div class="tabGrey">
-    <div class="second">
-        <h1><g:link controller="label" action="index"><g:message code="labels"/></g:link></h1>
-    </div>
+<div class="tabInactive">
+    <h1><g:link controller="label" action="index"><g:message code="labels"/></g:link></h1>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="setup">
         <ul>

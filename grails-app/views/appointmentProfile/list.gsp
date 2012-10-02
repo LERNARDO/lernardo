@@ -1,4 +1,3 @@
-<%@ page import="at.uenterprise.erp.MetaDataService" %>
 <head>
   <meta name="layout" content="database"/>
   <title><g:message code="appointments"/></title>
@@ -7,21 +6,17 @@
 
 %{--<g:render template="/templates/contextEntity" model="[entity: entity]"/>--}%
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="appointment.current"/></h1>
-  </div>
 </div>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="appointmentProfile" action="listold"><g:message code="appointment.old"/></g:link></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="object.found" args="[appointmentProfileInstanceTotal, message(code: 'appointments')]"/>

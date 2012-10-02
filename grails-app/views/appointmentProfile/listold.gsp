@@ -1,25 +1,20 @@
-<%@ page import="at.uenterprise.erp.MetaDataService" %>
 <head>
   <meta name="layout" content="database"/>
   <title><g:message code="appointments"/></title>
 </head>
 <body>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="appointmentProfile" action="list"><g:message code="appointment.current"/></g:link></h1>
-  </div>
 </div>
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="appointment.old"/></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="object.found" args="[appointmentProfileInstanceTotal, message(code: 'appointments')]"/>

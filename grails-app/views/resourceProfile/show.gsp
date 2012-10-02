@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="resource"/> - ${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}</h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/resourceNavigation" model="[entity: resourceInstance]"/>
 

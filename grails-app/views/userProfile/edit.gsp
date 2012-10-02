@@ -9,7 +9,7 @@
     <g:link action="show" id="${user.id}"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="${message(code: 'cancel')}" align="top"/></g:link>
   </div>--}%
 </div>
-<div class="boxGray" style="clear: both;">
+<div class="boxContent" style="clear: both;">
 
     <g:render template="/templates/errors" model="[bean: user]"/>
 

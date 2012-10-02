@@ -9,7 +9,7 @@
     <g:link action="show" id="${appointmentProfileInstance.id}"><img src="${resource(dir: 'images/icons', file: 'icon_cancel.png')}" alt="${message(code: 'cancel')}" align="top"/></g:link>
   </div>
 </div>
-<div class="boxGray" style="clear: both;">
+<div class="boxContent" style="clear: both;">
 
     <g:render template="/templates/errors" model="[bean: appointmentProfileInstance]"/>
 

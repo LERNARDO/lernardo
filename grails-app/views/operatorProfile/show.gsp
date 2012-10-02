@@ -8,7 +8,7 @@
 </div>
 <g:render template="/templates/favmodal" model="[entity: operator]"/>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/operatorNavigation" model="[entity: operator]"/>
 

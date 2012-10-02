@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="groupClients"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <div class="info-msg">
     <g:message code="object.total" args="[totalGroupClients, message(code: 'groupClients')]"/>

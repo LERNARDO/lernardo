@@ -12,7 +12,7 @@
 
 <div class="clear"></div>
 
-<div class="boxGray">
+<div class="boxContent">
 
   <div class="info-msg">
     <g:message code="object.total" args="[totalTemplates, message(code: 'activityTemplates')]"/>

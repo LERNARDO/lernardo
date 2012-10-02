@@ -4,19 +4,15 @@
 </head>
 <body>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="msg.inbox"/></g:link></h1>
-  </div>
 </div>
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="msg.outbox"/></h1>
-  </div>
 </div>
 <div class="clear"></div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     %{--<div class="buttons cleared">
       <g:link class="buttonGreen" controller="msg" action="inbox" id="${entity.id}"><g:message code="msg.inbox"/></g:link>

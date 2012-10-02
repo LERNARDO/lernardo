@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="msg"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
     <table class="private-msg" style="width: 100%">
       <tbody>

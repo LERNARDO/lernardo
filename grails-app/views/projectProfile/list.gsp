@@ -4,13 +4,11 @@
 </head>
 <body>
 
-<div class="boxGreen">
-  <div class="second">
+<div class="boxHeader">
     <h1><g:message code="projects"/></h1>
-  </div>
 </div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="object.total" args="[totalProjects, message(code: 'projects')]"/>

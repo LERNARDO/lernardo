@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="workdayCategory"/> - ${workdayCategoryInstance.name}</h1>
 </div>
-<div class="boxGray" style="clear: both;">
-  <div class="second">
+<div class="boxContent" style="clear: both;">
 
     <table>
       <tbody>
@@ -47,6 +46,5 @@
       </div>
     </erp:accessCheck>
 
-  </div>
 </div>
 </body>

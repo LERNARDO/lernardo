@@ -1,5 +1,5 @@
 <%@ page import="at.uenterprise.erp.PublicationType" %>
-<div class="boxGray">
+<div class="boxContent">
 
       <h4><g:message code="object.create" args="[message(code: 'publication')]"/></h4>
 

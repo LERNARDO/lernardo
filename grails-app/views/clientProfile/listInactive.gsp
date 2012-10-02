@@ -4,21 +4,17 @@
 </head>
 <body>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="clientProfile" action="list"><g:message code="clients.active"/></g:link></h1>
-  </div>
 </div>
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="clients.inactive"/></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="object.total" args="[totalClients, message(code: 'clients')]"/>

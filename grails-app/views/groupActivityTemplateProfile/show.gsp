@@ -8,7 +8,7 @@
 </div>
 <g:render template="/templates/favmodal" model="[entity: group]"/>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/groupActivityTemplateNavigation" model="[entity: group]"/>
 

@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="publications"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:if test="${!publications}">
       <div class="info-msg">
@@ -45,7 +44,5 @@
       <g:render template="other" model="[entity: entity, publist: projecttemplatedocuments]"/>
     </g:if>
     
-  </div>
-
 </div>
 </body>

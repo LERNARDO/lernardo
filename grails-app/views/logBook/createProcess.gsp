@@ -7,7 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.create" args="[message(code: 'process')]"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <g:hasErrors bean="${process}">
     <div class="errors">

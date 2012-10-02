@@ -12,13 +12,11 @@
     </div>
   </div>
 </g:if>
-<div class="headerBlue">
-  <div class="second">
+<div class="boxHeader">
     <h1>Aktivitäten</h1>
-  </div>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
+
       <g:if test="${!activityList}">
         <p>Keine Aktivitäten gefunden.</p>
       </g:if>
@@ -48,7 +46,6 @@
         <g:paginate action="showActivityList" total="${activityCount}" params="[name:entity.name]"/>
       </div>
 
-  </div>
 </div>
 </body>
 

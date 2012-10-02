@@ -8,8 +8,7 @@
     <div class="boxHeader">
       <h1><g:message code="notification.create"/></h1>
     </div>
-    <div class="boxGray">
-      <div class="second">
+    <div class="boxContent">
 
         <g:hasErrors bean="${nc}">
           <div class="errors">
@@ -66,7 +65,6 @@
           </div>
         </g:form>
 
-      </div>
     </div>
   </body>
 </html>

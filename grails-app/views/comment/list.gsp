@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="comment.management"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
     <div style="margin: 0 0 10px 0;">
       <g:formRemote name="formRemote" url="[controller: 'comment', action: 'updatelist']" update="results" before="showspinner('#results')">

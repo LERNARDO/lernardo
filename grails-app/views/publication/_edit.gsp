@@ -1,6 +1,5 @@
 <%@ page import="at.uenterprise.erp.PublicationType" %>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <h4><g:message code="object.edit" args="[message(code: 'publication')]"/></h4>
 
@@ -44,5 +43,5 @@
         </div>
 
       </g:formRemote>
-    </div>
-  </div>
+
+</div>

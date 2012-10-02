@@ -6,8 +6,8 @@
   <div class="boxHeader">
     <h1><g:message code="profile.picture.change"/></h1>
   </div>
-  <div class="boxGray">
-    <div class="second">
+  <div class="boxContent">
+
       <g:uploadForm id="${entity.id}">
 
         <table>
@@ -35,6 +35,5 @@
         
       </g:uploadForm>
 
-    </div>
   </div>
 </body>

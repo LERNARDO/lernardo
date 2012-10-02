@@ -4,7 +4,7 @@
 
   </div>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <g:if test="${events}">
   <g:each in="${events}" var="event">
