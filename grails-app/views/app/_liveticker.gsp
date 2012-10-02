@@ -1,8 +1,5 @@
 <div class="liveHeader">
-  <div class="second">
     <h1>Liveticker <span class="livetickerdate">%{--<g:remoteLink action="hideticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_up.png')}" alt="Achtung" align="top"/></g:remoteLink>--}%<g:formatDate date="${new Date()}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:if test="${events.size() == 1}"><b><g:message code="ticker.event"/></b></g:if><g:elseif test="${events.size() > 1}"><b><g:message code="ticker.events" args="[events.size()]"/></b></g:elseif></span></h1>
-
-  </div>
 </div>
 <div class="boxContent">
 

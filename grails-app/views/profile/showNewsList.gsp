@@ -6,10 +6,8 @@
 <body>
 %{--<g:if test="${entity.profile.showTips}">
   <div class="toolTip" id="tooltip">
-    <div class="second">
       <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/></span> <g:message code="tooltip.news"/>
       <span style="float: right"><img onclick="toggle('#tooltip');" src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></span>
-    </div>
   </div>
 </g:if>--}%
 <div class="boxHeader">

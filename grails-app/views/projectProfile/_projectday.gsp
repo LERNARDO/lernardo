@@ -16,7 +16,7 @@
   });
 </script>
 
-<div class="element-box">
+<div class="projectday-container">
 
   <erp:accessCheck types="['Betreiber']" creatorof="${project}">
     <g:if test="${projectDays.size() > 1}">

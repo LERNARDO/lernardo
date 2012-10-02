@@ -189,7 +189,6 @@
       <div class="yui3-u" id="left">
 
         <div class="profile-box">
-          <div class="second">
 
             <div class="header"><g:message code="administration"/></div>
 
@@ -205,16 +204,13 @@
               </ul>
             </erp:accessCheck>
 
-          </div>
         </div>
 
         <div class="profile-box">
-          <div class="second">
             <div class="header"><g:message code="privat.head.online"/></div>
             <ul id="onlineusers">
               <g:render template="/templates/onlineUsers"/>
             </ul>
-          </div>
         </div>
 
       </div>
