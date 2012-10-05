@@ -3,7 +3,7 @@
     <g:each in="${plannableResources}" var="plannableResource" status="i">
       <erp:getResourceFree resource="${plannableResource}" entity="${projectDay}">
         <li style="padding: 2px 4px; margin: 0 0 5px 15px; list-style-type: circle; background: ${resourceFree == 0 ? '#dbb' : '#bdb'}">
-          ${resourceFree}/${plannableResource.profile.amount} "<g:link controller="resourceProfile" action="show" id="${plannableResource.id}">${plannableResource.profile.fullName}</g:link>" - ${plannableResource.profile.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'} <g:if test="${resourceFree > 0}"><span id="planresource${i}">- <g:remoteLink action="planresource" update="planresource${i}" id="${projectDay.id}" params="[resource: plannableResource.id, i: i, resourceFree: resourceFree]" ><g:message code="schedule"/></g:remoteLink></span></g:if><br/>
+          ${resourceFree}/${plannableResource.profile.amount} "<g:link controller="resourceProfile" action="show" id="${plannableResource.id}">${plannableResource.profile}</g:link>" - ${plannableResource.profile.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'} <g:if test="${resourceFree > 0}"><span id="planresource${i}">- <g:remoteLink action="planresource" update="planresource${i}" id="${projectDay.id}" params="[resource: plannableResource.id, i: i, resourceFree: resourceFree]" ><g:message code="schedule"/></g:remoteLink></span></g:if><br/>
           <g:if test="${reservedIn}">
             <g:message code="alreadyPlannedIn"/>:<br/>
             <g:each in="${reservedIn}" var="searchInstance">

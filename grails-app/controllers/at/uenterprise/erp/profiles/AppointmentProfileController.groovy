@@ -100,12 +100,12 @@ class AppointmentProfileController {
       if(appointment) {
         functionService.deleteReferences(appointment)
         try {
-          flash.message = message(code: "object.deleted", args: [message(code: "appointment"), appointment.profile.fullName])
+          flash.message = message(code: "object.deleted", args: [message(code: "appointment"), appointment.profile])
           appointment.delete(flush:true)
           redirect(action: "list")
         }
         catch(org.springframework.dao.DataIntegrityViolationException ignore) {
-          flash.message = message(code: "object.notDeleted", args: [message(code: "appointment"), appointment.profile.fullName])
+          flash.message = message(code: "object.notDeleted", args: [message(code: "appointment"), appointment.profile])
           redirect(action: "show", id: params.id)
         }
       }
@@ -141,7 +141,7 @@ class AppointmentProfileController {
       }
 
       if (appointment.profile.save() && appointment.save()) {
-        flash.message = message(code: "object.updated", args: [message(code: "appointment"), appointment.profile.fullName])
+        flash.message = message(code: "object.updated", args: [message(code: "appointment"), appointment.profile])
         redirect action: 'show', id: appointment.id
       }
       else {
@@ -169,7 +169,7 @@ class AppointmentProfileController {
         // create link to owner
         new Link(source: entity, target: owner, type: metaDataService.ltAppointment).save(failOnError: true)
 
-        flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile.fullName])
+        flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile])
         redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
         render view: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner]

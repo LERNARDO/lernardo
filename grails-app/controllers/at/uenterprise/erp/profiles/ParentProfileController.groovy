@@ -58,12 +58,12 @@ class ParentProfileController {
     if (parent) {
       functionService.deleteReferences(parent)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "parent"), parent.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "parent"), parent.profile])
         parent.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "parent"), parent.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "parent"), parent.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -115,7 +115,7 @@ class ParentProfileController {
     new Link(source: Entity.get(params.currentColony), target: parent, type: metaDataService.ltColonia).save()
 
     if (parent.profile.save() && parent.user.save() && parent.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "parent"), parent.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "parent"), parent.profile])
       redirect action: 'show', id: parent.id
     }
     else {
@@ -146,7 +146,7 @@ class ParentProfileController {
       // create link to colony
       new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
       
-      flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       def allColonies = entityDataService.getAllColonies()

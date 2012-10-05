@@ -100,12 +100,12 @@ class ThemeProfileController {
     if (theme) {
       functionService.deleteReferences(theme)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "theme"), theme.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "theme"), theme.profile])
         theme.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "theme"), theme.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "theme"), theme.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -183,7 +183,7 @@ class ThemeProfileController {
       if (params.parenttheme != "null")
         functionService.linkEntities(theme.id.toString(), params.parenttheme, metaDataService.ltSubTheme)
 
-      flash.message = message(code: "object.updated", args: [message(code: "theme"), theme.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "theme"), theme.profile])
       redirect action: 'show', id: theme.id
     }
     else {
@@ -266,7 +266,7 @@ class ThemeProfileController {
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      flash.message = message(code: "object.created", args: [message(code: "theme"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "theme"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
@@ -277,7 +277,7 @@ class ThemeProfileController {
   def addProject = {
     def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'projects', model: [projects: linking.sources, theme: linking.target]
   }
 
@@ -289,7 +289,7 @@ class ThemeProfileController {
   def addActivityGroup = {
     def linking = functionService.linkEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'activitygroups', model: [activitygroups: linking.sources, theme: linking.target]
   }
 

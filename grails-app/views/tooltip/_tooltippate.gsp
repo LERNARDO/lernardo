@@ -5,7 +5,7 @@
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="name"/>:</td>
-        <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
+        <td class="two">${fieldValue(bean: entity, field: 'profile').decodeHTML()}</td>
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="country"/>:</td>
@@ -17,7 +17,7 @@
             <erp:getGodchildrenOfPate entity="${entity}">
                 <ul>
                     <g:each in="${godchildren}" var="godchild">
-                        <li>${fieldValue(bean: godchild, field: 'profile.fullName').decodeHTML()}</li>
+                        <li>${fieldValue(bean: godchild, field: 'profile').decodeHTML()}</li>
                     </g:each>
                 </ul>
             </erp:getGodchildrenOfPate>

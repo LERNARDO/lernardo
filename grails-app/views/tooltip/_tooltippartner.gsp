@@ -5,7 +5,7 @@
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="name"/>:</td>
-        <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
+        <td class="two">${fieldValue(bean: entity, field: 'profile').decodeHTML()}</td>
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="partner.profile.services"/>:</td>
@@ -29,7 +29,7 @@
     <tr class="prop">
         <td class="one"><g:message code="groupColony"/>:</td>
         <td class="two">
-            <erp:getColonyOfEntity entity="${entity}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML()}</erp:getColonyOfEntity>
+            <erp:getColonyOfEntity entity="${entity}">${fieldValue(bean: colony, field: 'profile').decodeHTML()}</erp:getColonyOfEntity>
         </td>
     </tr>
 </table>

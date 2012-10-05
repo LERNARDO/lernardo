@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="parent"/> - ${parent.profile.fullName}</title>
+  <title><g:message code="parent"/> - ${parent.profile}</title>
 </head>
 
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${parent}"/> ${parent.profile.fullName} <span style="font-size: 12px;">(<g:message code="parent"/>)</span></h1>
+  <h1><erp:getFavorite entity="${parent}"/> ${parent.profile} <span style="font-size: 12px;">(<g:message code="parent"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: parent]"/>
 
@@ -44,7 +44,7 @@
               <tr class="prop">
                 <td class="one"><g:message code="lastName"/>:</td>
                 <td class="two">${fieldValue(bean: parent, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'} <g:if test="${family}">(<g:link class="largetooltip" data-idd="${family.id}" controller="groupFamilyProfile" action="show"
-                                                                                                                                                                         id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
+                                                                                                                                                                         id="${family.id}">Familie ${family.profile}</g:link>)</g:if></td>
               </tr>
 
               <tr class="prop">
@@ -64,7 +64,7 @@
 
               <tr class="prop">
                 <td class="one"><g:message code="groupColony"/>:</td>
-                <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+                <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile}</g:link></g:if><g:else><div class="italic"><g:message
                     code="noData"/></div></g:else></td>
               </tr>
 

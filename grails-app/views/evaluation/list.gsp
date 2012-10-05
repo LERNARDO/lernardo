@@ -4,12 +4,12 @@
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="evaluation.for" args="[entity.profile.fullName]"/></h1>
+  <h1><g:message code="evaluation.for" args="[entity.profile]"/></h1>
 </div>
 <div class="boxContent">
 
     <div class="info-msg">
-      <g:message code="evaluation.sizeFor" args="[evaluationInstanceTotal, entity.profile.fullName]"/>
+      <g:message code="evaluation.sizeFor" args="[evaluationInstanceTotal, entity.profile]"/>
     </div>
 
     <div class="buttons cleared">

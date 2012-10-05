@@ -18,7 +18,7 @@
         <tr class="prop">
           <td class="name"><g:message code="title"/></td>
           <td class="value">
-            <g:textField data-counter="50" class="${hasErrors(bean:appointmentProfileInstance,field:'profile.fullName','errors')}" size="50" name="fullName" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean:appointmentProfileInstance,field:'profile','errors')}" size="50" name="fullName" value="${fieldValue(bean:appointmentProfileInstance,field:'profile').decodeHTML()}"/>
           </td>
         </tr>
 

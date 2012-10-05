@@ -17,7 +17,7 @@
         <tr class="prop">
           <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td class="value">
-            <g:textField data-counter="50" class="${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: theme, field: 'profile', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: theme, field: 'profile').decodeHTML()}"/>
           </td>
         </tr>
 

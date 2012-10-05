@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="partner"/> - ${partner.profile.fullName}</title>
+  <title><g:message code="partner"/> - ${partner.profile}</title>
 </head>
 
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${partner}"/> ${partner.profile.fullName} <span style="font-size: 12px;">(<g:message code="partner"/>)</span></h1>
+  <h1><erp:getFavorite entity="${partner}"/> ${partner.profile} <span style="font-size: 12px;">(<g:message code="partner"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: partner]"/>
 
@@ -31,7 +31,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two">${fieldValue(bean: partner, field: 'profile.fullName') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+          <td class="two">${fieldValue(bean: partner, field: 'profile') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         <tr class="prop">
@@ -72,7 +72,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="groupColony"/>:</td>
-          <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+          <td class="two"><g:if test="${colony}"><g:link controller="${colony.type.supertype.name + 'Profile'}" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile}</g:link></g:if><g:else><div class="italic"><g:message
               code="noData"/></div></g:else></td>
         </tr>
 

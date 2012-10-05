@@ -306,7 +306,7 @@ class ActivityProfileController {
     activity.profile.date = functionService.convertToUTC(activity.profile.date)
 
     if (activity.profile.save() && activity.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "activity"), activity.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "activity"), activity.profile])
       redirect action: 'show', id: activity.id
     }
     else {
@@ -321,12 +321,12 @@ class ActivityProfileController {
     if (activity) {
       functionService.deleteReferences(activity)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "activity"), activity.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "activity"), activity.profile])
         activity.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "activity"), activity.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "activity"), activity.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -386,7 +386,7 @@ class ActivityProfileController {
     Entity template = Entity.get(params.id)
 
     def msg = message(code: "activityTemplate.selected")
-    render ("<b>${msg}</b> ${template.profile.fullName}")
+    render ("<b>${msg}</b> ${template.profile}")
   }
 
   /*
@@ -501,13 +501,13 @@ class ActivityProfileController {
     Entity facility = Entity.get(params.id)
 
     def msg = message(code: "facility.profile.selected")
-    render ("<b>${msg}</b> ${facility.profile.fullName}")
+    render ("<b>${msg}</b> ${facility.profile}")
   }
 
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltActEducator)
     if (linking.duplicate)
-      render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+      render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'educators', model: [educators: linking.sources, activity: linking.target]
   }
 
@@ -524,7 +524,7 @@ class ActivityProfileController {
     if (clientgroup.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
       if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       render template: 'clients', model: [clients: linking.sources, activity: linking.target]
     }
     // if the entity is a client group get all clients and add them
@@ -535,7 +535,7 @@ class ActivityProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltActClient)
         if (linking.duplicate)
-            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       }
 
       List clients2 = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
@@ -588,7 +588,7 @@ class ActivityProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltActFacility)
       if (linking.duplicate)
-          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile]))}
       render template: 'facilities', model: [facilities: linking.targets, activity: linking.source]
     }
     else {

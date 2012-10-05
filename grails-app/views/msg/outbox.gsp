@@ -37,7 +37,7 @@
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
               <td>
                 <erp:profileImage entity="${message.receiver}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-                ${message.receiver.profile.fullName.decodeHTML()}
+                ${message.receiver.profile.decodeHTML()}
               </td>
               <td><g:link action="show" id="${message.id}" params="[entity:entity.id,box:'outbox']">${message.subject.decodeHTML()}</g:link></td>
               <td><g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>

@@ -55,8 +55,8 @@
       <tbody>
       <g:each status="i" in="${activityList}" var="activity">
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-          <td><g:link action="show" id="${activity.id}">${activity.profile.fullName.decodeHTML()}</g:link></td>
-          <td><erp:getFacility entity="${activity}">${facility.profile.fullName.decodeHTML()}</erp:getFacility></td>
+          <td><g:link action="show" id="${activity.id}">${activity.profile.decodeHTML()}</g:link></td>
+          <td><erp:getFacility entity="${activity}">${facility.profile.decodeHTML()}</erp:getFacility></td>
           <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
           <td>${activity.profile.comments.size()}</td>
         </tr>

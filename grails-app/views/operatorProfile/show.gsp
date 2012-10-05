@@ -1,10 +1,10 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="profile"/> - ${operator.profile.fullName}</title>
+  <title><g:message code="profile"/> - ${operator.profile}</title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${operator}"/> ${operator.profile.fullName} <span style="font-size: 12px;">(<g:message code="operator"/>)</span></h1>
+  <h1><erp:getFavorite entity="${operator}"/> ${operator.profile} <span style="font-size: 12px;">(<g:message code="operator"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: operator]"/>
 
@@ -29,7 +29,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two">${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}</td>
+          <td class="two">${fieldValue(bean: operator, field: 'profile').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">

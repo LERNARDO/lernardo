@@ -1,10 +1,10 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="user"/> - ${user.profile.fullName}</title>
+  <title><g:message code="user"/> - ${user.profile}</title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${user}"/> ${user.profile.fullName} <span style="font-size: 12px;">(<g:message code="user"/>)</span></h1>
+  <h1><erp:getFavorite entity="${user}"/> ${user.profile} <span style="font-size: 12px;">(<g:message code="user"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: user]"/>
 

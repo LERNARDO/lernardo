@@ -5,7 +5,7 @@
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="name"/>:</td>
-        <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
+        <td class="two">${fieldValue(bean: entity, field: 'profile').decodeHTML()}</td>
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="begin"/>:</td>
@@ -25,7 +25,7 @@
             <erp:getProjectsOfTheme entity="${entity}">
                 <ul>
                     <g:each in="${projects}" var="project">
-                        <li>${project.profile.fullName.decodeHTML()}</li>
+                        <li>${project.profile.decodeHTML()}</li>
                     </g:each>
                 </ul>
             </erp:getProjectsOfTheme>
@@ -37,7 +37,7 @@
             <erp:getActivityGroupsOfTheme entity="${entity}">
                 <ul>
                     <g:each in="${activitygroups}" var="group">
-                        <li>${group.profile.fullName.decodeHTML()}</li>
+                        <li>${group.profile.decodeHTML()}</li>
                     </g:each>
                 </ul>
             </erp:getActivityGroupsOfTheme>

@@ -96,12 +96,12 @@ class ProjectTemplateProfileController {
     if (projectTemplate) {
       functionService.deleteReferences(projectTemplate)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "projectTemplate"), projectTemplate.profile])
         projectTemplate.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "projectTemplate"), projectTemplate.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -134,7 +134,7 @@ class ProjectTemplateProfileController {
       projectTemplate.profile.ageTo = 100
 
     if (projectTemplate.profile.save() && projectTemplate.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "projectTemplate"), projectTemplate.profile])
       redirect action: 'show', id: projectTemplate.id
     }
     else {
@@ -208,7 +208,7 @@ class ProjectTemplateProfileController {
     if (asset)
       new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
-    flash.message = message(code: "projectTemplate.copied", args: [entity.profile.fullName])
+    flash.message = message(code: "projectTemplate.copied", args: [entity.profile])
     redirect action: 'show', id: entity.id
   }
 
@@ -235,13 +235,13 @@ class ProjectTemplateProfileController {
       File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> angelegt.').save()
       functionService.createEvent(EVENT_TYPE.PROJECT_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      flash.message = message(code: "object.created", args: [message(code: "projectTemplate"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "projectTemplate"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [projectTemplate: ee.entity]
@@ -391,7 +391,7 @@ class ProjectTemplateProfileController {
     // calculate realDuration
     //int calculatedDuration = functionService.calculateDurationPU(projectUnits)
 
-    //render '<span style="color: #0b0; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde hinzugefügt</span>'
+    //render '<span style="color: #0b0; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile + ' wurde hinzugefügt</span>'
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates,
                                                        unit: projectUnitTemplate,
                                                        i: params.i,
@@ -421,7 +421,7 @@ class ProjectTemplateProfileController {
     // calculate realDuration
     //int calculatedDuration = functionService.calculateDurationPU(projectUnits)
 
-    //render '<span style="color: #b00; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde entfernt</span><br/>'
+    //render '<span style="color: #b00; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile + ' wurde entfernt</span><br/>'
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, i: params.i, projectTemplate: projectTemplate]
   }
 

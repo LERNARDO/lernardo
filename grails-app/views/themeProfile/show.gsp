@@ -1,10 +1,10 @@
 <head>
   <meta name="layout" content="planning"/>
-  <title><g:message code="theme"/> - ${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</title>
+  <title><g:message code="theme"/> - ${fieldValue(bean: theme, field: 'profile').decodeHTML()}</title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${theme}"/> ${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()} <span style="font-size: 12px;">(<g:message code="theme"/>)</span></h1>
+  <h1><erp:getFavorite entity="${theme}"/> ${fieldValue(bean: theme, field: 'profile').decodeHTML()} <span style="font-size: 12px;">(<g:message code="theme"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: theme]"/>
 
@@ -49,7 +49,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two">${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</td>
+          <td class="two">${fieldValue(bean: theme, field: 'profile').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
@@ -66,7 +66,7 @@
           <td class="one"><g:message code="themes.superior"/>:</td>
           <td class="two">
             <g:if test="${parenttheme}">
-              <g:link controller="themeProfile" action="show" id="${parenttheme.id}">${parenttheme.profile.fullName.decodeHTML()}</g:link>
+              <g:link controller="themeProfile" action="show" id="${parenttheme.id}">${parenttheme.profile.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic">Keinem übergeordneten Thema zugeordnet!</span>
@@ -76,7 +76,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="facility"/>:</td>
-          <td class="two"><g:link class="largetooltip" data-idd="${facility.id}" controller="facilityProfile" action="show" id="${facility?.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link></td>
+          <td class="two"><g:link class="largetooltip" data-idd="${facility.id}" controller="facilityProfile" action="show" id="${facility?.id}">${fieldValue(bean: facility, field: 'profile')}</g:link></td>
         </tr>
 
         <tr class="prop">

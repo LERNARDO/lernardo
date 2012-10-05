@@ -221,7 +221,7 @@
         <g:if test="${pates}">
             <ul>
                 <g:each in="${pates}" var="pate">
-                    <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}">${pate.profile.fullName.decodeHTML()}</g:link></li>
+                    <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}">${pate.profile.decodeHTML()}</g:link></li>
                 </g:each>
             </ul>
         </g:if>

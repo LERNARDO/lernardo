@@ -5,12 +5,12 @@
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="name"/>:</td>
-        <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
+        <td class="two">${fieldValue(bean: entity, field: 'profile').decodeHTML()}</td>
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="groupFamily"/>:</td>
         <td class="two">
-            <erp:getFamilyOfEntity entity="${entity}">${fieldValue(bean: family, field: 'profile.fullName').decodeHTML()}</erp:getFamilyOfEntity>
+            <erp:getFamilyOfEntity entity="${entity}">${fieldValue(bean: family, field: 'profile').decodeHTML()}</erp:getFamilyOfEntity>
         </td>
     </tr>
     <tr class="prop">

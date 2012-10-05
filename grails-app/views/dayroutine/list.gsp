@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="database"/>
-  <title>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></title>
+  <title>${entity.profile.decodeHTML()}: <g:message code="dayroutine"/></title>
 
   <g:javascript src="jquery/fullcalendar.min.js"/>
   <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}">
@@ -22,7 +22,7 @@
 <body>
 
 <div class="boxHeader">
-  <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></h1>
+  <h1>${entity.profile.decodeHTML()}: <g:message code="dayroutine"/></h1>
 </div>
 <div class="boxContent">
 

@@ -19,6 +19,7 @@ import at.uenterprise.erp.Folder
  * @author  Alexander Zeillinger
  */
 class ClientProfile extends Profile {
+    def grailsApplication
 
   SortedSet dates, materials, performances, healths
   List favorites
@@ -85,7 +86,10 @@ class ClientProfile extends Profile {
   }
 
   String toString() {
-    return "${lastName} ${firstName}"
+      if (grailsApplication.config.customer == "sueninos")
+          return "${firstName} ${lastName}"
+      else
+          return "${lastName} ${firstName}"
   }
 
 }

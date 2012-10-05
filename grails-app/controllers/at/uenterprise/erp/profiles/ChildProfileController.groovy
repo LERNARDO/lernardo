@@ -51,12 +51,12 @@ class ChildProfileController {
     if (child) {
       functionService.deleteReferences(child)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "child"), child.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "child"), child.profile])
         child.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "child"), child.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "child"), child.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -88,7 +88,7 @@ class ChildProfileController {
     child.user.properties = params
 
     if (child.profile.save() && child.user.save() && child.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "child"), child.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "child"), child.profile])
       redirect action: 'show', id: child.id
     }
     else {
@@ -111,7 +111,7 @@ class ChildProfileController {
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
-      flash.message = message(code: "object.created", args: [message(code: "child"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "child"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [child: ee.entity]

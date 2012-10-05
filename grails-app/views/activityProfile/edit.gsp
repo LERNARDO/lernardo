@@ -13,7 +13,7 @@
     <g:form id="${activity.id}" params="[name:currentEntity.name]">
       Vorlage:
       <erp:getTemplate entity="${activity}">
-        <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+        <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile}</g:link>
       </erp:getTemplate>
 
       <table>
@@ -26,8 +26,8 @@
         </tr>
 
         <tr>
-          <td class="value ${hasErrors(bean: activity, field: 'profile.fullName', 'errors')}">
-            <g:textField data-counter="50" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName').decodeHTML()}"/>
+          <td class="value ${hasErrors(bean: activity, field: 'profile', 'errors')}">
+            <g:textField data-counter="50" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile').decodeHTML()}"/>
           </td>
           <td class="value ${hasErrors(bean: activity, field: 'profile.date', 'errors')}">
             <g:textField class="datetimepicker2" name="date" value="${formatDate(date: activity?.profile?.date, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>

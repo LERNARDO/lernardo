@@ -29,7 +29,7 @@
       </div>
   </div>
 
-  <span class="member-name"><g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName.decodeHTML()}</g:link></span><br/>
+  <span class="member-name"><g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.decodeHTML()}</g:link></span><br/>
   <span class="member-type"><g:message code="${entity.type.supertype.name}"/></span><br/>
   <span class="member-other">
       <g:if test="${entity.type.name == 'Betreutengruppe'}">

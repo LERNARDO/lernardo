@@ -16,7 +16,7 @@
 
         <tr class="prop">
           <td class="name"><g:message code="msg.to"/>:</td>
-          <td class="value"><span class="bold">${receiver.profile.fullName.decodeHTML()}</span></td>
+          <td class="value"><span class="bold">${receiver.profile.decodeHTML()}</span></td>
         </tr>
 
         <tr class="prop">

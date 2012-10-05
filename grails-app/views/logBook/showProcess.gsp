@@ -33,7 +33,7 @@
           <g:if test="${process.facilities}">
             <ul>
               <g:each in="${process.facilities}" var="facility">
-                <li>${facility.profile.fullName.decodeHTML()}</li>
+                <li>${facility.profile.decodeHTML()}</li>
               </g:each>
             </ul>
           </g:if>
@@ -65,7 +65,7 @@
           <g:if test="${process.entities}">
             <ul>
               <g:each in="${process.entities}" var="entity">
-                <li><erp:getEntity entity="${entity}"><g:link controller="${result.type.supertype.name + 'Profile'}" action="show" id="${result.id}">${result.profile.fullName.decodeHTML()}</g:link></erp:getEntity></li>
+                <li><erp:getEntity entity="${entity}"><g:link controller="${result.type.supertype.name + 'Profile'}" action="show" id="${result.id}">${result.profile.decodeHTML()}</g:link></erp:getEntity></li>
               </g:each>
             </ul>
           </g:if>

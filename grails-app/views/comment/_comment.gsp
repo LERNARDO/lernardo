@@ -12,7 +12,7 @@
         <td style="width: 100%; vertical-align: top">
           <div class="infobar">
             <span class="gray">
-              <span class="name"><g:link controller="${creator.type.supertype.name + 'Profile'}" action="show" id="${creator.id}">${creator.profile.fullName.decodeHTML()}</g:link></span>
+              <span class="name"><g:link controller="${creator.type.supertype.name + 'Profile'}" action="show" id="${creator.id}">${creator.profile.decodeHTML()}</g:link></span>
               <g:message code="atDate"/> <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
               <erp:accessCheck types="['Betreiber']" me="${creator}">
                   <g:remoteLink controller="comment" action="edit" update="content${i}" id="${commented.id}" params="[comment: comment.id, i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:remoteLink>

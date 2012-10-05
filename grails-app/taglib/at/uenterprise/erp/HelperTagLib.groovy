@@ -42,7 +42,7 @@ class HelperTagLib {
             outputFolder(folder)
         }
         f.favorites?.each { Favorite favorite ->
-            out << '<li class="item fader">' + link(controller: favorite.entity.type.supertype.name + "Profile", action: "show", id: favorite.entity.id) {favorite.entity.profile.fullName} + ' <span class="gray">' + '(' + message(code: "profiletype." + favorite.entity.type.supertype.name) + ') ' + favorite.description + '</span> <span style="visibility: hidden">' +
+            out << '<li class="item fader">' + link(controller: favorite.entity.type.supertype.name + "Profile", action: "show", id: favorite.entity.id) {favorite.entity.profile} + ' <span class="gray">' + '(' + message(code: "profiletype." + favorite.entity.type.supertype.name) + ') ' + favorite.description + '</span> <span style="visibility: hidden">' +
                     remoteLink(action: "moveFavoriteUp", update: "favoriteslist", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'arrow_up.png') + '" align="top">'} + " " +
                     remoteLink(action: "moveFavoriteDown", update: "favoriteslist", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'arrow_down.png') + '" align="top">'} + " " +
                     remoteLink(action: "editFavorite", update: "faveditbox", id: favorite.id) {'<img src="' + resource(dir: 'images/icons', file: 'icon_edit.png') + '" align="top">'} + " " +
@@ -164,8 +164,8 @@ class HelperTagLib {
     Boolean findNow(Folder folder, Entity entity) {
         //println "---"
         //println "folder: " + folder.name
-        //folder.favorites.each {println it.entity.profile.fullName}
-        //println "entity: " + entity.profile.fullName
+        //folder.favorites.each {println it.entity.profile}
+        //println "entity: " + entity.profile
         def found = false
         if (folder.favorites.find {it.entity.id == entity.id}) {
             //println "found favorite in folder"
@@ -204,7 +204,7 @@ class HelperTagLib {
         Evaluation evaluation = attrs.evaluation
 
         if (evaluation.linkedTo.type == metaDataService.etGroupActivity)
-            out << link(controller: evaluation.linkedTo.type.supertype.name + 'Profile', action: 'show', id: evaluation.linkedTo.id) {evaluation.linkedTo.profile.fullName}
+            out << link(controller: evaluation.linkedTo.type.supertype.name + 'Profile', action: 'show', id: evaluation.linkedTo.id) {evaluation.linkedTo.profile}
         else {
             // find project day the project unit is linked to
             Entity projectDay = functionService.findByLink(evaluation.linkedTo, null, metaDataService.ltProjectDayUnit)
@@ -212,7 +212,7 @@ class HelperTagLib {
             // find project the project day is linked to
             if (projectDay) {
                 Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-                out << link(controller: 'projectProfile', action: 'show', id: project.id) {evaluation.linkedTo.profile.fullName + ' (' + message(code: 'project') + ': ' + project.profile.fullName + ')'}
+                out << link(controller: 'projectProfile', action: 'show', id: project.id) {evaluation.linkedTo.profile + ' (' + message(code: 'project') + ': ' + project.profile + ')'}
             }
         }
     }
@@ -250,7 +250,7 @@ class HelperTagLib {
                 out << '<th style="width: 40px;">' + message(code: 'date') + '</th>'
                 attendees.eachWithIndex { Attendee attendee, i ->
                     if (i >= page * 5 && i < page * 5 + 5)
-                        out << '<th>' + attendee.client.profile.fullName.decodeHTML() + '</th>'
+                        out << '<th>' + attendee.client.profile.decodeHTML() + '</th>'
                 }
                 out << '</tr>'
 
@@ -331,7 +331,7 @@ class HelperTagLib {
 
             def attendance = Attendance.findByClientAndFacility(client.client, facility)
             out << '<tr>'
-            out << '<td>' + client.client.profile.fullName + '</td>'
+            out << '<td>' + client.client.profile + '</td>'
 
             int totalCosts = 0
 
@@ -468,9 +468,9 @@ class HelperTagLib {
 
             def attendance = Attendance.findByClientAndFacility(client.client, facility)
             //if (!attendance)
-            //  log.info "no attendance found for client: ${client.client.profile.fullName} and facility: ${facility.profile.fullName} - this should not be possible"
+            //  log.info "no attendance found for client: ${client.client.profile} and facility: ${facility.profile} - this should not be possible"
             out << '<tr>'
-            out << '<td>' + client.client.profile.fullName + '</td>'
+            out << '<td>' + client.client.profile + '</td>'
 
             int totalCosts = 0
 
@@ -813,11 +813,11 @@ class HelperTagLib {
         if (!what) {
             what = Helper.get(attrs.event.what)
             if (who && what)
-                out << message(code: attrs.event.type.toString(), args: ['<a class="largetooltip" data-idd="' + who.id + '" href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a class="largetooltip" data-idd="' + what.id + '" href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
+                out << message(code: attrs.event.type.toString(), args: ['<a class="largetooltip" data-idd="' + who.id + '" href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile + '</span></a>', '<a class="largetooltip" data-idd="' + what.id + '" href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
         }
         else
         if (who && what)
-            out << message(code: attrs.event.type.toString(), args: ['<a class="largetooltip" data-idd="' + who.id + '" href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a class="largetooltip" data-idd="' + what.id + '" href="' + createLink(controller: what.type.supertype.name + 'Profile', action: 'show', id: what.id, params: [entity: what.id]) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
+            out << message(code: attrs.event.type.toString(), args: ['<a class="largetooltip" data-idd="' + who.id + '" href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile + '</span></a>', '<a class="largetooltip" data-idd="' + what.id + '" href="' + createLink(controller: what.type.supertype.name + 'Profile', action: 'show', id: what.id, params: [entity: what.id]) + '"><span class="bold">' + what.profile + '</span></a>']).decodeHTML()
     }
 
     /**
@@ -1356,10 +1356,10 @@ class HelperTagLib {
         Entity entity = Entity.get(id)
 
         def linksTarget = Link.findAllByTarget(entity)
-        List sourceNames = linksTarget*.source.profile.fullName
+        List sourceNames = linksTarget*.source.profile
 
         def linksSource = Link.findAllBySource(entity)
-        List targetNames = linksSource*.target.profile.fullName
+        List targetNames = linksSource*.target.profile
 
         if (sourceNames.size() == 0 && targetNames.size() == 0)
             out << "return confirm('${message(code: 'connectionsNone')}')"

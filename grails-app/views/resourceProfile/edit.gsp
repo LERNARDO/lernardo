@@ -21,7 +21,7 @@
 
           <tr class="prop">
             <td class="value">
-              <g:textField data-counter="50" class="${hasErrors(bean: resourceInstance, field: 'profile.fullName', 'errors')}" size="80" maxlength="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField data-counter="50" class="${hasErrors(bean: resourceInstance, field: 'profile', 'errors')}" size="80" maxlength="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile').decodeHTML()}"/>
             </td>
           </tr>
 

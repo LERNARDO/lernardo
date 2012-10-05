@@ -30,8 +30,8 @@
     </style>
   </head>
   <body>
-    <h1><g:message code="groupActivity"/> "${group.profile.fullName.encodeAsHTML()}"</h1>
-    <p class="gray"><g:message code="createdBy" args="[entity.profile.fullName, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]"/></p>
+    <h1><g:message code="groupActivity"/> "${group.profile.encodeAsHTML()}"</h1>
+    <p class="gray"><g:message code="createdBy" args="[entity.profile, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]"/></p>
     <h2><g:message code="data"/></h2>
     <table>
 
@@ -44,7 +44,7 @@
         <td class="one"><g:message code="groupActivityTemplate"/>:</td>
         <td class="two">
           <g:if test="${template}">
-            ${template.profile.fullName.encodeAsHTML()}
+            ${template.profile.encodeAsHTML()}
           </g:if>
           <g:else>
             <span class="italic"><g:message code="template.notAvailable"/></span>
@@ -88,7 +88,7 @@
     <h2><g:message code="activities"/></h2>
     <ul>
       <g:each in="${activities}" var="activity">
-        <li>${activity.profile.fullName.encodeAsHTML()} (${activity.profile.duration} min)</li>
+        <li>${activity.profile.encodeAsHTML()} (${activity.profile.duration} min)</li>
       </g:each>
     </ul>
 
@@ -96,7 +96,7 @@
     <g:if test="${themes}">
       <ul>
         <g:each in="${themes}" var="theme">
-          <li>${theme.profile.fullName.encodeAsHTML()}</li>
+          <li>${theme.profile.encodeAsHTML()}</li>
         </g:each>
       </ul>
     </g:if>
@@ -108,7 +108,7 @@
     <g:if test="${facilities}">
       <ul>
         <g:each in="${facilities}" var="facility">
-          <li>${facility.profile.fullName.encodeAsHTML()}</li>
+          <li>${facility.profile.encodeAsHTML()}</li>
         </g:each>
       </ul>
     </g:if>
@@ -121,7 +121,7 @@
       <ul>
       <g:each in="${educators}" var="educator">
         <li>
-          ${educator.profile.fullName.encodeAsHTML()}
+          ${educator.profile.encodeAsHTML()}
           <erp:getLocalTags entity="${educator}" target="${group}">
             <g:if test="${tags}">
               <g:if test="${tags[0]}">
@@ -145,7 +145,7 @@
       <ul>
       <g:each in="${substitutes}" var="substitute">
         <li>
-          ${substitute.profile.fullName.encodeAsHTML()}
+          ${substitute.profile.encodeAsHTML()}
           <erp:getLocalTags entity="${substitute}" target="${group}">
             <g:if test="${tags}">
               <g:if test="${tags[0]}">
@@ -169,7 +169,7 @@
       <ul>
       <g:each in="${clients}" var="client">
         <li>
-          ${client.profile.fullName.encodeAsHTML()}
+          ${client.profile.encodeAsHTML()}
           <erp:getLocalTags entity="${client}" target="${group}">
             <g:if test="${tags}">
               <g:if test="${tags[0]}">
@@ -193,7 +193,7 @@
       <ul>
       <g:each in="${parents}" var="parent">
         <li>
-          ${parent.profile.fullName.encodeAsHTML()}
+          ${parent.profile.encodeAsHTML()}
           <erp:getLocalTags entity="${parent}" target="${group}">
             <g:if test="${tags}">
               <g:if test="${tags[0]}">
@@ -216,7 +216,7 @@
       <ul>
       <g:each in="${partners}" var="partner">
         <li>
-          ${partner.profile.fullName.encodeAsHTML()}
+          ${partner.profile.encodeAsHTML()}
           <erp:getLocalTags entity="${partner}" target="${group}">
             <g:if test="${tags}">
               <g:if test="${tags[0]}">
@@ -243,7 +243,7 @@
 
           <tr class="prop">
             <td class="one"><g:message code="activityTemplate"/>:</td>
-            <td class="two">${activity.profile.fullName.encodeAsHTML()}</td>
+            <td class="two">${activity.profile.encodeAsHTML()}</td>
           </tr>
 
           <tr class="prop">

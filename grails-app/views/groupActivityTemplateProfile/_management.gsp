@@ -111,7 +111,7 @@
         <g:if test="${instances.size() > 0}">
             <ul>
             <g:each in="${instances}" var="instance">
-                <li style="list-style-type: disc"><g:link controller="groupActivityProfile" action="show" id="${instance.id}">${instance.profile.fullName}</g:link></li>
+                <li style="list-style-type: disc"><g:link controller="groupActivityProfile" action="show" id="${instance.id}">${instance.profile}</g:link></li>
             </g:each>
         </g:if>
         <g:else>

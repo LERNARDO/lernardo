@@ -3,7 +3,7 @@
     <tr>
       <td valign="top" width="250px">
         <erp:profileImage entity="${attendance.client}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-        ${attendance.client.profile.fullName.decodeHTML()}
+        ${attendance.client.profile.decodeHTML()}
         <erp:accessCheck types="['Betreiber']" facilities="${facilities}">
           <div style="text-align: right; margin-top: 5px;">
             <g:remoteLink class="buttonGray" update="attendance${i}" action="editAttendance" id="${attendance.id}" params="[i: i]"><g:message code="change"/></g:remoteLink>

@@ -285,12 +285,12 @@ class ProjectProfileController {
 
       functionService.deleteReferences(project)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "project"), project.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "project"), project.profile])
         project.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "project"), project.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "project"), project.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -437,7 +437,7 @@ class ProjectProfileController {
     project.profile.properties = params
 
     if (project.profile.save() && project.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile])
       redirect action: 'show', id: project.id
     }
     else {
@@ -482,7 +482,7 @@ class ProjectProfileController {
       projectDay.save()
     }
 
-    flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile.fullName])
+    flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile])
     redirect action: 'show', id: project.id
   }
 
@@ -565,7 +565,7 @@ class ProjectProfileController {
           entity.profile.addToLabels(label)
       }
 
-      flash.message = message(code: "object.created", args: [message(code: "project"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "project"), entity.profile])
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
@@ -646,7 +646,7 @@ class ProjectProfileController {
         calendarStart.add(Calendar.DATE, 1)
       }
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> geplant.').save()
       redirect action: 'show', id: entity.id
 
     } catch (EntityException ee) {
@@ -817,7 +817,7 @@ class ProjectProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile]))}
     render template: 'facilities', model: [facilities: linking.targets, project: linking.source]
   }
 
@@ -846,7 +846,7 @@ class ProjectProfileController {
   def addResource = {
     def linking = functionService.linkEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'resources', model: [resources: linking.sources, projectDay: linking.target]
   }
 
@@ -858,7 +858,7 @@ class ProjectProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'educators', model: [educators: linking.sources, project: project, projectDay: linking.target]
   }
@@ -872,7 +872,7 @@ class ProjectProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'substitutes', model: [substitutes: linking.sources, project: project, projectDay: linking.target]
   }
@@ -886,7 +886,7 @@ class ProjectProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'parents', model: [parents: linking.sources, project: project, unit: linking.target, i: params.i]
@@ -902,7 +902,7 @@ class ProjectProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'partners', model: [partners: linking.sources, project: project, unit: linking.target, i: params.i]
@@ -918,7 +918,7 @@ class ProjectProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMember)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'themes', model: [themes: linking.targets, project: linking.source]
   }
 
@@ -1130,7 +1130,7 @@ class ProjectProfileController {
     if (entity.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       render template: 'clients', model: [clients: linking.sources, project: linking.target]
     }
     // if the entity is a client group get all clients and add them
@@ -1141,7 +1141,7 @@ class ProjectProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       }
 
       Entity project = Entity.get(params.id)
@@ -1566,8 +1566,8 @@ class ProjectProfileController {
       informedEntities.addAll(functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDaySubstitute))
       
       informedEntities?.each { Entity ie ->
-        String subject = "Projekttag verschoben, Projekt " + project.profile.fullName.decodeHTML()
-        String content = '<p>Hallo ' + ie.profile.fullName + '!</p>Ich habe einen ' + link(controller: 'projectDayProfile', action: 'show', id: projectDay.id, params: [one: projectDay.id]) {'Projekttag'} + ' vom Projekt ' + project.profile.fullName.decodeHTML() + ' verschoben.'
+        String subject = "Projekttag verschoben, Projekt " + project.profile.decodeHTML()
+        String content = '<p>Hallo ' + ie.profile + '!</p>Ich habe einen ' + link(controller: 'projectDayProfile', action: 'show', id: projectDay.id, params: [one: projectDay.id]) {'Projekttag'} + ' vom Projekt ' + project.profile.decodeHTML() + ' verschoben.'
         functionService.createMessage(currentEntity, ie, ie, subject, content).save()
       }
 
@@ -1790,7 +1790,7 @@ class ProjectProfileController {
     def addResponsible = {
         def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
         if (linking.duplicate)
-            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
         render template: 'responsible', model: [responsibles: linking.sources, project: linking.target]
 
     }

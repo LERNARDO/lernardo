@@ -6,7 +6,7 @@
 
             <tr class="prop">
               <td class="one"><g:message code="name"/></td>
-              <td class="two" style="padding-right: 50px;">${unit.profile.fullName.decodeHTML()} <erp:accessCheck types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink><g:remoteLink action="moveUp" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_up.png')}" alt="${message(code:'up')}" align="top"/></g:remoteLink><g:remoteLink action="moveDown" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_down.png')}" alt="${message(code:'down')}" align="top"/></g:remoteLink></erp:accessCheck></td>
+              <td class="two" style="padding-right: 50px;">${unit.profile.decodeHTML()} <erp:accessCheck types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink><g:remoteLink action="moveUp" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_up.png')}" alt="${message(code:'up')}" align="top"/></g:remoteLink><g:remoteLink action="moveDown" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_down.png')}" alt="${message(code:'down')}" align="top"/></g:remoteLink></erp:accessCheck></td>
               <td class="one"><g:message code="begin"/></td>
               <td class="two" style="padding-right: 50px;"><g:formatDate date="${unit.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/></td>
               <td class="one"><g:message code="duration"/></td>
@@ -38,11 +38,11 @@
 
         <ol>
           <g:each in="${activityGroups}" var="activityGroup">
-            <li style="list-style: decimal; margin-left: 20px;"><g:link class="hover" controller="groupActivityTemplateProfile" action="show" data-idd="${activityGroup.id}" id="${activityGroup.id}" params="[entity:activityGroup.id]">${activityGroup.profile.fullName}</g:link> <span class="gray">(${activityGroup.profile.realDuration} min)</span></li>
+            <li style="list-style: decimal; margin-left: 20px;"><g:link class="hover" controller="groupActivityTemplateProfile" action="show" data-idd="${activityGroup.id}" id="${activityGroup.id}" params="[entity:activityGroup.id]">${activityGroup.profile}</g:link> <span class="gray">(${activityGroup.profile.realDuration} min)</span></li>
               <ul style="margin-top: 5px;">
                   <erp:getTemplatesOfGroupActivityTemplate groupActivityTemplate="${activityGroup}">
                       <g:each in="${templates}" var="template">
-                          <li style="list-style: disc; margin-left: 40px;"><g:link class="hover" controller="${template.type.supertype.name + 'Profile'}" action="show" data-idd="${template.id}" id="${template.id}">${template.profile.fullName.decodeHTML()}</g:link></li>
+                          <li style="list-style: disc; margin-left: 40px;"><g:link class="hover" controller="${template.type.supertype.name + 'Profile'}" action="show" data-idd="${template.id}" id="${template.id}">${template.profile.decodeHTML()}</g:link></li>
                       </g:each>
                   </erp:getTemplatesOfGroupActivityTemplate>
               </ul>

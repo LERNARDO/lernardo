@@ -18,7 +18,7 @@
         <tr class="prop">
           <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td class="value">
-            <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile').decodeHTML()}"/>
           </td>
         </tr>
 

@@ -23,10 +23,10 @@
       <tbody>
       <g:each in="${resourceList}" status="i" var="resource">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${resource.id}">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td><g:link action="show" id="${resource.id}">${fieldValue(bean: resource, field: 'profile').decodeHTML()}</g:link></td>
           <td>
             <erp:resourceCreatedIn resource="${resource}">
-              <g:link controller="${source.type.supertype.name + 'Profile'}" action="show" id="${source.id}">${source.profile.fullName}</g:link>
+              <g:link controller="${source.type.supertype.name + 'Profile'}" action="show" id="${source.id}">${source.profile}</g:link>
             </erp:resourceCreatedIn>
           </td>
           <td>${fieldValue(bean: resource, field: 'profile.amount').decodeHTML()}</td>

@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="planning"/>
-  <title><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</title>
+  <title><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile').decodeHTML()}</title>
 </head>
 
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${project}"/> ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()} <span style="font-size: 12px;">(<g:message code="project"/>)</span></h1>
+  <h1><erp:getFavorite entity="${project}"/> ${fieldValue(bean: project, field: 'profile').decodeHTML()} <span style="font-size: 12px;">(<g:message code="project"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: project]"/>
 
@@ -43,7 +43,7 @@
         <h4><g:message code="profile"/></h4>
 
       <g:if test="${template}">
-        <p><g:message code="projectTemplate"/>: <g:link class="largetooltip" data-idd="${template.id}" controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
+        <p><g:message code="projectTemplate"/>: <g:link class="largetooltip" data-idd="${template.id}" controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile}</g:link></p>
       </g:if>
 
       <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: project]"/></span> <erp:accessCheck roles="['ROLE_ADMIN']"><img onclick="toggle('#setcreator');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Ersteller ändern"/></erp:accessCheck></p>
@@ -58,7 +58,7 @@
 
             <tr class="prop">
               <td class="one"><g:message code="name"/></td>
-              <td class="two">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</td>
+              <td class="two">${fieldValue(bean: project, field: 'profile').decodeHTML()}</td>
             </tr>
 
             <tr class="prop">

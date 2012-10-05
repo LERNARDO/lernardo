@@ -1,10 +1,10 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="facility"/> - ${facility.profile.fullName}</title>
+  <title><g:message code="facility"/> - ${facility.profile}</title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${facility}"/> ${facility.profile.fullName} <span style="font-size: 12px;">(<g:message code="facility"/>)</span></h1>
+  <h1><erp:getFavorite entity="${facility}"/> ${facility.profile} <span style="font-size: 12px;">(<g:message code="facility"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: facility]"/>
 
@@ -29,7 +29,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two"><g:link action="show" id="${facility.id}">${facility.profile.fullName.decodeHTML()}</g:link></td>
+          <td class="two"><g:link action="show" id="${facility.id}">${facility.profile.decodeHTML()}</g:link></td>
         </tr>
 
         <tr class="prop">
@@ -41,7 +41,7 @@
           <td class="one"><g:message code="groupColony"/>:</td>
           <td class="two">
             <g:if test="${colony}">
-              <g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.fullName.decodeHTML()}</g:link>
+              <g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.zip} ${colony.profile.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic red"><g:message code="facility.profile.noCol"/></span>
