@@ -179,12 +179,12 @@ class GroupActivityProfileController {
     if (group) {
       functionService.deleteReferences(group)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "groupActivity"), group.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "groupActivity"), group.profile])
         group.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "groupActivity"), group.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "groupActivity"), group.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -214,7 +214,7 @@ class GroupActivityProfileController {
     group.profile.date = functionService.convertToUTC(group.profile.date)
 
     if (group.profile.save() && group.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "groupActivity"), group.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "groupActivity"), group.profile])
       redirect action: 'show', id: group.id
     }
     else {
@@ -258,7 +258,7 @@ class GroupActivityProfileController {
     Entity template = Entity.get(params.id)
 
     def msg = message(code: "activityTemplate.selected")
-    render ("<b>${msg}</b> ${template.profile.fullName}")
+    render ("<b>${msg}</b> ${template.profile}")
   }
 
   def create = {
@@ -278,7 +278,7 @@ class GroupActivityProfileController {
       calculatedDuration += it.profile.duration
     }
 
-    return [template: groupActivityTemplate, calculatedDuration: calculatedDuration, workAroundName: groupActivityTemplate.profile.fullName]
+    return [template: groupActivityTemplate, calculatedDuration: calculatedDuration, workAroundName: groupActivityTemplate.profile]
   }
 
   def save = {GroupActivityCommand ac ->
@@ -335,8 +335,8 @@ class GroupActivityProfileController {
           entity.profile.addToLabels(label)
         }
 
-        new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
-        flash.message = message(code: "object.created", args: [message(code: "groupActivity"), entity.profile.fullName])
+        new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> geplant.').save()
+        flash.message = message(code: "object.created", args: [message(code: "groupActivity"), entity.profile])
         redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
 
@@ -348,7 +348,7 @@ class GroupActivityProfileController {
           calculatedDuration += it.profile.duration
         }
 
-        render view: "create", model: [group: ee.entity, workAroundName: ee.entity.profile.fullName, template: groupActivityTemplate, calculatedDuration: calculatedDuration]
+        render view: "create", model: [group: ee.entity, workAroundName: ee.entity.profile, template: groupActivityTemplate, calculatedDuration: calculatedDuration]
       }
     }
     // multiple days
@@ -442,7 +442,7 @@ class GroupActivityProfileController {
             entity.profile.addToLabels(label)
           }
 
-          new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
+          new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> geplant.').save()
         }
 
         currentDate += 1
@@ -455,7 +455,7 @@ class GroupActivityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'educators', model: [educators: linking.sources, group: linking.target]
   }
 
@@ -467,7 +467,7 @@ class GroupActivityProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltGroupMemberSubstitute)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'substitutes', model: [substitutes: linking.sources, group: linking.target]
   }
 
@@ -479,7 +479,7 @@ class GroupActivityProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'parents', model: [parents: linking.sources, group: linking.target]
   }
 
@@ -491,7 +491,7 @@ class GroupActivityProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 
@@ -509,7 +509,7 @@ class GroupActivityProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
       if (linking.duplicate)
-          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile]))}
       render template: 'facilities', model: [facilities: linking.targets, group: linking.source]
     }
     else {
@@ -545,7 +545,7 @@ class GroupActivityProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.target.profile]))}
     render template: 'themes', model: [themes: linking.targets, group: linking.source]
   }
 
@@ -596,7 +596,7 @@ class GroupActivityProfileController {
     if (entity.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       render template: 'clients', model: [clients: linking.sources, group: linking.target]
     }
     // if the entity is a client group get all clients and add them
@@ -607,7 +607,7 @@ class GroupActivityProfileController {
       clients.each { Entity client ->
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       }
 
       Entity activitygroup = Entity.get(params.id)
@@ -650,7 +650,7 @@ class GroupActivityProfileController {
                                              partners: partners,
                                              template: template,
                                              withTemplates: params.printtemplates == "" ? 'true' : 'false'],
-                                             filename: message(code: 'groupActivity') + '_' + group.profile.fullName + '.pdf'
+                                             filename: message(code: 'groupActivity') + '_' + group.profile + '.pdf'
   }
 
   def searchbydate = {

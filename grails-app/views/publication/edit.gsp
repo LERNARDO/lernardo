@@ -7,8 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.edit" args="[message(code: 'publication')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
       <g:hasErrors bean="${publication}">
         <div id="flash-msg">
@@ -23,8 +22,8 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="title"/></td>
-            <td valign="top" class="value">
+            <td class="name"><g:message code="title"/></td>
+            <td class="value">
               <g:textField data-counter="50" class="${hasErrors(bean: publication, field: 'name', 'errors')}" id="name" name="name" size="50" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/>
             </td>
           </tr>
@@ -47,6 +46,6 @@
         </div>
 
       </g:form>
-    </div>
+
   </div>
 </body>

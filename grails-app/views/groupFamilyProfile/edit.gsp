@@ -9,7 +9,7 @@
     <h1><g:message code="object.edit" args="[message(code: 'groupFamily')]"/></h1>
 </div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: group]"/>
 
@@ -18,25 +18,25 @@
         <table>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
-                <td valign="top" class="value">
-                    <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}"
+                <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
+                <td class="value">
+                    <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile', 'errors')}"
                                  required="" size="30" name="fullName"
-                                 value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+                                 value="${fieldValue(bean: group, field: 'profile').decodeHTML()}"/>
                 </td>
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="groupFamily.profile.familyIncome"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="groupFamily.profile.familyIncome"/></td>
+                <td class="value">
                     <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="5"
                                  name="familyIncome" value="${group.profile.familyIncome}"/>
                 </td>
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="groupFamily.profile.amountHousehold"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="groupFamily.profile.amountHousehold"/></td>
+                <td class="value">
                     <g:textField class="${hasErrors(bean: group, field: 'profile.amountHousehold', 'errors')}" size="5"
                                  name="amountHousehold"
                                  value="${fieldValue(bean: group, field: 'profile.amountHousehold')}"/>
@@ -44,8 +44,8 @@
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="groupFamily.profile.livingConditions"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="groupFamily.profile.livingConditions"/></td>
+                <td class="value">
                     <g:textArea data-counter="500"
                                 class="${hasErrors(bean: group, field: 'profile.livingConditions', 'errors')}"
                             rows="5" cols="36" name="livingConditions"
@@ -54,8 +54,8 @@
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="groupFamily.profile.socioeconomicData"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="groupFamily.profile.socioeconomicData"/></td>
+                <td class="value">
                     <g:textArea data-counter="500"
                                 class="${hasErrors(bean: group, field: 'profile.socioeconomicData', 'errors')}"
                             rows="5" cols="36" name="socioeconomicData"
@@ -64,8 +64,8 @@
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="groupFamily.profile.otherInfo"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="groupFamily.profile.otherInfo"/></td>
+                <td class="value">
                     <g:textArea data-counter="500" class="${hasErrors(bean: group, field: 'profile.otherInfo', 'errors')}"
                                 rows="5" cols="36" name="otherInfo"
                                 value="${fieldValue(bean: group, field: 'profile.otherInfo')}"/>
@@ -73,8 +73,8 @@
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="groupFamily.profile.familyProblems"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="groupFamily.profile.familyProblems"/></td>
+                <td class="value">
                     <g:select name="familyProblems" from="${Setup.list()[0]?.familyProblems}"
                               value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
                 </td>

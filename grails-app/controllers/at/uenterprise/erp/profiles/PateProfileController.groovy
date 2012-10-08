@@ -55,12 +55,12 @@ class PateProfileController {
     if (pate) {
       functionService.deleteReferences(pate)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "pate"), pate.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "pate"), pate.profile])
         pate.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "pate"), pate.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "pate"), pate.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -92,7 +92,7 @@ class PateProfileController {
 
     if (pate.profile.save() && pate.user.save() && pate.save()) {
 
-      flash.message = message(code: "object.updated", args: [message(code: "pate"), pate.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "pate"), pate.profile])
       redirect action: 'show', id: pate.id
     }
     else {
@@ -115,7 +115,7 @@ class PateProfileController {
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
-      flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient).findAll{it.user.enabled}]
@@ -126,7 +126,7 @@ class PateProfileController {
   def addGodchildren = {
     def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltPate)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template:'godchildren', model: [godchildren: linking.sources, pate: linking.target]
   }
 

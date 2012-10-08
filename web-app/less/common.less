@@ -224,30 +224,6 @@ a {
     margin-bottom: 55px;
 }
 
-#right {
-    width: 188px;
-    margin-right: -228px;
-    padding: 0 15px;  
-    ul {
-      li {
-        margin: 0;
-        padding-left: 15px;
-      }
-    }
-    .icon-online {
-        background: url(../images/icons/online.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/online.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-star {
-        background: url(../images/icons/icon_star.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_star.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-}
-
 #database {
     background: lighten(@red, 45%);
     left: 79px;
@@ -735,9 +711,8 @@ ol li {
     border-radius: 5px;
     color: #444;
     font-size: 13px;
-    margin: 0 0 15px 0; }
-    .toolTip .second {
-        padding: 5px; }
+    margin: 0 0 15px 0;
+    padding: 5px; }
 
 .bold {
     font-weight: bold;
@@ -802,11 +777,15 @@ ul {
         margin-left: 15px;
         line-height: 19px; }
 
-.element-box {
+.projectday-container {
     border-top: 1px solid @gray;
-    margin-top: 8px; }
-    .element-box ul li {
-        list-style-type: disc; }
+    margin-top: 8px;
+    ul {
+        li {
+            list-style-type: disc;
+        }
+    }
+}
 
 .cal_navigation ul li {
     float: left;
@@ -816,21 +795,6 @@ ul {
 #banner {
     height: 115px;
     padding-bottom: 10px; }
-
-.headerBlue {
-    .gradient(top, #789fe8, #567ec6);
-    h1 {
-        color: #fff;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-weight: normal;
-        font-size: 14px;
-    }
-    .second {
-        padding: 4px 5px;
-    }
-}
 
 .helperButton {
     border: 1px solid #f33;
@@ -1280,7 +1244,11 @@ a {
         padding: 7px 4px 0 4px;
         color: #777;
         width: 200px;
+        vertical-align: top;
      }
+    .value {
+        vertical-align: top;
+    }
 }
 
 .overview {
@@ -1328,7 +1296,7 @@ a {
     }
 }
 
-.tabGreen {
+.tabActive {
     margin: 0 0 10px 0;
     h1 {
         color: darken(@cyan, 10%);
@@ -1343,7 +1311,7 @@ a {
     }
 }
 
-.tabGrey {
+.tabInactive {
     margin: 0 0 10px 0;
     h1 {
         margin: 0;
@@ -1367,7 +1335,7 @@ a {
     }
 }
 
-.tabGrey, .tabGreen {
+.tabActive, .tabInactive {
    width: 250px;
    float: left; }
 
@@ -1616,6 +1584,7 @@ a {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border: 1px solid @live-header-active-border;
+    padding: 4px 5px;
     h1 {
         color: #fff;
         margin: auto 0;
@@ -1623,9 +1592,6 @@ a {
         border: 0;
         font-weight: normal;
         font-size: 14px;
-    }
-    .second {
-        padding: 4px 5px;
     }
 }
 
@@ -1860,45 +1826,43 @@ a {
 .profile-box {
     color: #7b7b7b;
     margin-bottom: 15px;
-    .second {
+    padding: 5px;
+    table {
+        width: 100%;
+    }
+    .header {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        text-align: center;
+        color: @cyan;
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+    .area {
         padding: 5px;
-        table {
-            width: 100%;
-        }
-        .header {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-            text-align: center;
-            color: @cyan;
-            font-size: 16px;
-            margin-bottom: 6px;
-        }
-        .area {
-            padding: 5px;
-            color: darken(@cyan, 10%);
-            font-weight: bold;
-            text-transform: uppercase !important;
-        }
-        ul {
-            padding: 0;
-            li {
-                color: #444;
+        color: darken(@cyan, 10%);
+        font-weight: bold;
+        text-transform: uppercase !important;
+    }
+    ul {
+        padding: 0;
+        li {
+            color: #444;
+            margin-left: 10px;
+            padding: 1px 0 1px 10px;
+            list-style-type: none;
+            a {
                 margin-left: 10px;
-                padding: 1px 0 1px 10px;
-                list-style-type: none;
-                a {
-                    margin-left: 10px;
-                    color: #222;
-                    display: block;
-                    &:hover {
-                        color: #000;
-                        text-decoration: none;
-                    }
+                color: #222;
+                display: block;
+                &:hover {
+                    color: #000;
+                    text-decoration: none;
                 }
             }
         }
     }
-}                  
+}
 
 table.info {
     border-collapse: collapse;

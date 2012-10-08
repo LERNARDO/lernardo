@@ -1,15 +1,14 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="groupColony"/> - ${group.profile.fullName}</title>
+  <title><g:message code="groupColony"/> - ${group.profile}</title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${group}"/> ${group.profile.fullName} <span style="font-size: 12px;">(<g:message code="groupColony"/>)</span></h1>
+  <h1><erp:getFavorite entity="${group}"/> ${group.profile} <span style="font-size: 12px;">(<g:message code="groupColony"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: group]"/>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/defaultNavigation" model="[entity: group]"/>
 
@@ -29,7 +28,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+          <td class="two">${fieldValue(bean: group, field: 'profile').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
@@ -52,6 +51,5 @@
 
     </div>
 
-  </div>
 </div>
 </body>

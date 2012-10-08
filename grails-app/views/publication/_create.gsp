@@ -1,6 +1,5 @@
 <%@ page import="at.uenterprise.erp.PublicationType" %>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
       <h4><g:message code="object.create" args="[message(code: 'publication')]"/></h4>
 
@@ -15,23 +14,23 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="title"/></td>
-            <td valign="top" class="value">
+            <td class="name"><g:message code="title"/></td>
+            <td class="value">
               <g:textField data-counter="50" class="${hasErrors(bean: publication, field: 'name', 'errors')}" id="name" name="name" size="50" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="publication.profile.file"/></td>
-            <td valign="top" class="value">
+            <td class="name"><g:message code="publication.profile.file"/></td>
+            <td class="value">
               <input size="50" id="file" type="file" name="file"/>
             </td>
           </tr>
 
           <g:if test="${entity.user}">
             <tr class="prop">
-              <td valign="top" class="name"><g:message code="public"/></td>
-              <td valign="top" class="value">
+              <td class="name"><g:message code="public"/></td>
+              <td class="value">
                 <g:checkBox name="isPublic" value="${false}"/>
               </td>
             </tr>
@@ -74,4 +73,3 @@
 
       </g:uploadForm>
     </div>
-  </div>

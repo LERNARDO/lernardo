@@ -7,8 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.create" args="[message(code: 'parent')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: parent]"/>
 
@@ -17,120 +16,120 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="gender"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="gender"/></td>
+          <td class="value">
             <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:parent,field:'profile.gender')}" optionKey="key" optionValue="value"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="firstName"/> <span class="required-indicator">*</span></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="firstName"/> <span class="required-indicator">*</span></td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: parent, field: 'profile.firstName', 'errors')}" required="" size="25" name="firstName" value="${fieldValue(bean: parent, field: 'profile.firstName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="lastName"/> <span class="required-indicator">*</span></td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" required="" size="25" maxlength="30" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="birthDate"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="birthDate"/></td>
+          <td class="value">
             <g:textField name="birthDate" class="datepicker-birthday ${hasErrors(bean: parent, field: 'profile.birthDate', 'errors')}" value="${formatDate(date: parent?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.maritalStatus"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.maritalStatus"/></td>
+          <td class="value">
             <g:select name="maritalStatus" from="${Setup.list()[0]?.maritalStatus}" value="${parent?.profile?.maritalStatus}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="languages"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="languages"/></td>
+          <td class="value">
             <g:select name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.description"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.description"/></td>
+          <td class="value">
             <g:textArea data-counter="2000" name="comment" rows="5" cols="50" value="${fieldValue(bean: parent, field: 'profile.comment').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.education"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.education"/></td>
+          <td class="value">
             <g:select name="education" from="${Setup.list()[0]?.schoolLevels}" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.job"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.job"/></td>
+          <td class="value">
             <g:checkBox name="job" value="${parent?.profile?.job}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.jobType"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.jobType"/></td>
+          <td class="value">
             <g:select name="jobtypes" multiple="true" from="${Setup.list()[0]?.workDescriptions}" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
+          <td class="value">
             <g:textField class="${hasErrors(bean: parent, field: 'profile.jobIncome', 'errors')}" size="20" name="jobIncome" value="${parent?.profile?.jobIncome?.toInteger()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.jobFrequency"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.jobFrequency"/></td>
+          <td class="value">
             <g:textField class="${hasErrors(bean: parent, field: 'profile.jobFrequency', 'errors')}" size="30" name="jobFrequency" value="${parent?.profile?.jobFrequency}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="groupColony"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="groupColony"/></td>
+          <td class="value">
             <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="street"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="street"/></td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="socialSecurityNumber"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="socialSecurityNumber"/></td>
+          <td class="value">
             <g:textField class="${hasErrors(bean: parent, field: 'profile.socialSecurityNumber', 'errors')}" size="10" name="socialSecurityNumber" value="${fieldValue(bean: parent, field: 'profile.socialSecurityNumber')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="phone"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="phone"/></td>
+          <td class="value">
             <g:textField class="${hasErrors(bean: parent, field: 'profile.phone', 'errors')}" size="30" name="phone" value="${fieldValue(bean: parent, field: 'profile.phone')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="citizenship"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="citizenship"/></td>
+          <td class="value">
             <g:textField class="${hasErrors(bean: parent, field: 'profile.citizenship', 'errors')}" size="30" name="citizenship" value="${fieldValue(bean: parent, field: 'profile.citizenship')}"/>
           </td>
         </tr>
@@ -158,6 +157,6 @@
       </div>
 
     </g:form>    
-  </div>
+
 </div>
 </body>

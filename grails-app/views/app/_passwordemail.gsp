@@ -1,7 +1,7 @@
 <%@ page contentType="text/html" %>
 <html>
 <body>
-<p><span class="strong"><g:message code="hello.User" args="[entity.profile.fullName]"/></span></p>
+<p><span class="strong"><g:message code="hello.User" args="[entity.profile]"/></span></p>
 <br/>
 <p>
   <g:message code="password.reset" args="[grailsApplication.config.customerName, grailsApplication.config.application.name]"/><br/>

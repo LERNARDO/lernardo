@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="profile"/> - ${methodInstance.name}</h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <table>
 
@@ -44,6 +43,5 @@
       </div>
     </div>
 
-  </div>
 </div>
 </body>

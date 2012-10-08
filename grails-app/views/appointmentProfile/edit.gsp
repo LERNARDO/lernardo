@@ -9,8 +9,7 @@
     <g:link action="show" id="${appointmentProfileInstance.id}"><img src="${resource(dir: 'images/icons', file: 'icon_cancel.png')}" alt="${message(code: 'cancel')}" align="top"/></g:link>
   </div>
 </div>
-<div class="boxGray" style="clear: both;">
-  <div class="second">
+<div class="boxContent" style="clear: both;">
 
     <g:render template="/templates/errors" model="[bean: appointmentProfileInstance]"/>
 
@@ -19,43 +18,43 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="title"/></td>
-          <td valign="top" class="value">
-            <g:textField data-counter="50" class="${hasErrors(bean:appointmentProfileInstance,field:'profile.fullName','errors')}" size="50" name="fullName" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.fullName').decodeHTML()}"/>
+          <td class="name"><g:message code="title"/></td>
+          <td class="value">
+            <g:textField data-counter="50" class="${hasErrors(bean:appointmentProfileInstance,field:'profile','errors')}" size="50" name="fullName" value="${fieldValue(bean:appointmentProfileInstance,field:'profile').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="description"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="description"/></td>
+          <td class="value">
             <g:textArea class="${hasErrors(bean:appointmentProfileInstance,field:'profile.description','errors')}" rows="5" cols="50" name="description" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.description').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="begin"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="begin"/></td>
+          <td class="value">
             <g:textField class="datetimepicker2 ${hasErrors(bean:appointmentProfileInstance,field:'profile.beginDate','errors')}" name="beginDate" value="${formatDate(date: appointmentProfileInstance?.profile?.beginDate, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="end"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="end"/></td>
+          <td class="value">
             <g:textField class="datetimepicker2 ${hasErrors(bean:appointmentProfileInstance,field:'profile.endDate','errors')}" name="endDate" value="${formatDate(date: appointmentProfileInstance?.profile?.endDate, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="appointment.profile.allDay"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="appointment.profile.allDay"/></td>
+          <td class="value">
             <g:checkBox name="allDay" value="${appointmentProfileInstance?.profile?.allDay}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="appointment.profile.isPrivate"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="appointment.profile.isPrivate"/></td>
+          <td class="value">
             <g:checkBox name="isPrivate" value="${appointmentProfileInstance?.profile?.isPrivate}"/>
           </td>
         </tr>
@@ -68,6 +67,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

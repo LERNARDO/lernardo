@@ -53,7 +53,7 @@ class ExcelController {
     // client group
     if (params.type == 'clientgroup') {
 
-      WritableSheet sheet = workbook.createSheet(entity.profile.fullName, 0)
+      WritableSheet sheet = workbook.createSheet(entity.profile, 0)
 
       // auto-size cells
       for (int x = 0; x < 22; x++)
@@ -68,7 +68,7 @@ class ExcelController {
 
       // name
       sheet.addCell(new jxl.write.Label(0, 0, message(code: 'name'), formatBold))
-      sheet.addCell(new jxl.write.Label(1, 0, entity.profile.fullName, format))
+      sheet.addCell(new jxl.write.Label(1, 0, entity.profile, format))
 
       // description
       sheet.addCell(new jxl.write.Label(0, 1, message(code: 'description'), formatBold))
@@ -76,7 +76,7 @@ class ExcelController {
 
       // creator
       sheet.addCell(new jxl.write.Label(0, 3, message(code: 'creator'), formatBold))
-      sheet.addCell(new jxl.write.Label(1, 3, message(code: 'createdBy', args: [currentEntity.profile.fullName, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]), format))
+      sheet.addCell(new jxl.write.Label(1, 3, message(code: 'createdBy', args: [currentEntity.profile, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]), format))
 
       // column headers
       sheet.addCell(new jxl.write.Label(0, 5, message(code: 'lastName'), formatBold))
@@ -112,7 +112,7 @@ class ExcelController {
         sheet.addCell(new jxl.write.Label(5, row, client.profile.currentStreet, format))
         Entity colony = linkDataService.getColony(client)
         sheet.addCell(new jxl.write.Label(6, row, fieldValue(bean: colony, field: 'profile.zip').decodeHTML() ?: message(code:'noData'), format))
-        sheet.addCell(new jxl.write.Label(7, row, fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: message(code:'noData'), format))
+        sheet.addCell(new jxl.write.Label(7, row, fieldValue(bean: colony, field: 'profile').decodeHTML() ?: message(code:'noData'), format))
         sheet.addCell(new jxl.write.Label(8, row, fieldValue(bean: colony, field: 'profile.country').decodeHTML() ?: message(code:'noData'), format))
 
         sheet.addCell(new jxl.write.Label(9, row, fieldValue(bean: client, field: 'profile.originCity').decodeHTML() ?: message(code:'noData'), format))
@@ -168,7 +168,7 @@ class ExcelController {
         
         String par = ""
         parents.each {Entity parent ->
-          par = par + parent.profile.fullName + ': ' + (parent?.profile?.phone ?: message(code: 'noData')) + ', '
+          par = par + parent.profile + ': ' + (parent?.profile?.phone ?: message(code: 'noData')) + ', '
         } 
         sheet.addCell(new jxl.write.Label(20, row++, par, format))
       }
@@ -177,7 +177,7 @@ class ExcelController {
     // educator - personal time evaluation
     if (params.type == 'evaluation') {
 
-      WritableSheet sheet = workbook.createSheet(entity.profile.fullName, 0)
+      WritableSheet sheet = workbook.createSheet(entity.profile, 0)
 
       // auto-size cells
       for (int x = 0; x < 7; x++)
@@ -192,7 +192,7 @@ class ExcelController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      sheet.addCell(new jxl.write.Label(0, 0, 'Zeitauswertung von ' + entity.profile.fullName + ' für den Zeitraum von', format))
+      sheet.addCell(new jxl.write.Label(0, 0, 'Zeitauswertung von ' + entity.profile + ' für den Zeitraum von', format))
       sheet.addCell(new jxl.write.Label(0, 1, formatDate(date: date1, format: 'dd. MM. yyyy') + ' bis ' + formatDate(date: date2, format: 'dd. MM. yyyy'), formatBold))
 
       // column headers
@@ -272,7 +272,7 @@ class ExcelController {
       List workdaycategories = WorkdayCategory.list()
 
       sheet.addCell(new jxl.write.Label(0, 0, message(code:'educator.timeschedule.export.period', args:'[date1, date2]'), format))
-      sheet.addCell(new jxl.write.Label(0, 1, message(code:'educator.timeschedule.export.from', args:'[entity.profile.fullName]') + formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + message(code: 'atTime') + formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + message(code: 'clock'), format))
+      sheet.addCell(new jxl.write.Label(0, 1, message(code:'educator.timeschedule.export.from', args:'[entity.profile]') + formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + message(code: 'atTime') + formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + message(code: 'clock'), format))
 
     /*<h2><g:message code="profile.overview"/></h2>
     <table class="default-table">
@@ -292,7 +292,7 @@ class ExcelController {
       <g:each in="${educators}" status="i" var="educator">
         <erp:showHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td>${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</td>
+          <td>${fieldValue(bean: educator, field: 'profile').decodeHTML()}</td>
       <g:each in="${workdaycategories}" var="category">
       <td><erp:getHoursForCategory category="${category}" educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
           </g:each>
@@ -309,7 +309,7 @@ class ExcelController {
       <g:each in="${educators}" status="i" var="educator">
       <h1 style="page-break-before: always"><g:message code="educator.timeschedule.export.period" args="[date1, date2]"/></h1>
       <h2><g:message code="detailed.info"/></h2>
-      <h3>${educator.profile.fullName}</h3>
+      <h3>${educator.profile}</h3>
       <erp:getWorkdayUnits educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/>
       </g:each>*/
     }

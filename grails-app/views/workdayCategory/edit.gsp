@@ -9,8 +9,7 @@
     <g:link action="show" id="${workdayCategoryInstance.id}"><img src="${resource(dir: 'images/icons', file: 'icon_cancel.png')}" alt="${message(code: 'cancel')}" align="top"/></g:link>
   </div>
 </div>
-<div class="boxGray" style="clear: both;">
-  <div class="second">
+<div class="boxContent" style="clear: both;">
 
     <g:render template="/templates/errors" model="[bean: workdayCategoryInstance]"/>
 
@@ -19,29 +18,29 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="workdayCategory.name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="workdayCategory.name"/></td>
+          <td class="value">
             <g:textField class="${hasErrors(bean:workdayCategoryInstance,field:'name','errors')}" size="50" name="name" value="${fieldValue(bean:workdayCategoryInstance,field:'name').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="workdayCategory.count"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="workdayCategory.count"/></td>
+          <td class="value">
             <g:checkBox name="counts" value="${fieldValue(bean:workdayCategoryInstance,field:'counts')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="begin"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="begin"/></td>
+          <td class="value">
             <g:textField name="beginDate" class="datepicker ${hasErrors(bean: workdayCategoryInstance, field: 'beginDate', 'errors')}" value="${formatDate(date: workdayCategoryInstance.beginDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="end"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="end"/></td>
+          <td class="value">
             <g:textField name="endDate" class="datepicker ${hasErrors(bean: workdayCategoryInstance, field: 'endDate', 'errors')}" value="${formatDate(date: workdayCategoryInstance.endDate, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
@@ -54,6 +53,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

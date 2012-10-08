@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.edit" args="[message(code: 'resource')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: resource]"/>
 
@@ -17,60 +16,60 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
+            <td class="name"><g:message code="name"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="540" valign="top" class="value">
-              <g:textField data-counter="50" class="${hasErrors(bean: resourceInstance, field: 'profile.fullName', 'errors')}" size="80" maxlength="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}"/>
+            <td class="value">
+              <g:textField data-counter="50" class="${hasErrors(bean: resourceInstance, field: 'profile', 'errors')}" size="80" maxlength="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="description"/></td>
+            <td class="name"><g:message code="description"/></td>
           </tr>
           <tr>
-            <td valign="top" class="value">
+            <td class="value">
               <g:textArea data-counter="2000" class="${hasErrors(bean: resourceInstance, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resourceInstance, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="resource.profile.amount"/></td>
+            <td class="name"><g:message code="resource.profile.amount"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="540" valign="top" class="value">
+            <td class="value">
               <g:textField class="${hasErrors(bean: resourceInstance, field: 'profile.amount', 'errors')}" size="5" maxlength="5" name="amount" value="${fieldValue(bean: resourceInstance, field: 'profile.amount')}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="resource.profile.costs"/></td>
+            <td class="name"><g:message code="resource.profile.costs"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="540" valign="top" class="value">
+            <td class="value">
               <g:textField class="${hasErrors(bean: resourceInstance, field: 'profile.costs', 'errors')}" size="5" maxlength="5" name="costs" value="${fieldValue(bean: resourceInstance, field: 'profile.costs')}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="resource.profile.costsUnit"/></td>
+            <td class="name"><g:message code="resource.profile.costsUnit"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="540" valign="top" class="value">
+            <td class="value">
               <g:select name="costsUnit" from="${grailsApplication.config.costsUnit}" value="" valueMessagePrefix="costsUnit"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="resource.profile.classification"/></td>
+            <td class="name"><g:message code="resource.profile.classification"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="540" valign="top" class="value">
+            <td class="value">
               <g:select name="classification" from="${grailsApplication.config.resourceclasses}" value="" valueMessagePrefix="resourceclass"/>
             </td>
           </tr>
@@ -86,6 +85,6 @@
       </div>
       
     </g:form>
-  </div>
+
 </div>
 </body>

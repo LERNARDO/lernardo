@@ -322,14 +322,14 @@ class ProfileController {
   Boolean deleteFavorite(Folder folder, Entity entity) {
     //println "---"
     //println "folder: " + folder.name
-    //folder.favorites.each {println it.entity.profile.fullName}
-    //println "entity: " + entity.profile.fullName
+    //folder.favorites.each {println it.entity.profile}
+    //println "entity: " + entity.profile
     def fav = folder.favorites.find {it.entity.id == entity.id}
 
     def found = false
     if (fav) {
       //println "found favorite in folder"
-      //println fav.entity.profile.fullName
+      //println fav.entity.profile
       fav.folder.removeFromFavorites(fav)
       fav.delete(flush: true)
       return true
@@ -414,8 +414,8 @@ class ProfileController {
   def addCreator = {
     Entity creator = Entity.get(params.id)
 
-    //render ("<span class='gray'>" + message(code: 'creator') + "</span> ${creator.profile.fullName}")
-    render ("${creator.profile.fullName}")
+    //render ("<span class='gray'>" + message(code: 'creator') + "</span> ${creator.profile}")
+    render ("${creator.profile}")
   }
 
 }

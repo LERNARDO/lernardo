@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1>Admin Stuff</h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <h1 style="color: #f00; border: 0;">This is only for site admins, do not click anything here if you don't know what you are doing!</h1>
 
@@ -65,6 +64,5 @@
       <div class="result" id="favorites"></div>
     </div>
 
-  </div>
 </div>
 </body>

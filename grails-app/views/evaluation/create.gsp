@@ -7,8 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="evaluation.create"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:hasErrors bean="${evaluationInstance}">
       <div class="errors">
@@ -70,6 +69,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

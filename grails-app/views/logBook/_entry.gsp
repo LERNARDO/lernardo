@@ -20,7 +20,7 @@
   %>
   <g:each in="${attendees}" var="attendee">
     <tr>
-      <td>${attendee.client.profile.fullName.decodeHTML()}</td>
+      <td>${attendee.client.profile.decodeHTML()}</td>
       <g:each in="${attendee.processes}" var="process">
         <td>
           <g:checkBox name="checkbox" disabled="${entry.isChecked}" value="${process.hasParticipated}" onclick="${remoteFunction(update: 'entry', action: 'updateEntryProcess', id: process.id, params: [entry: entry.id])}"/>

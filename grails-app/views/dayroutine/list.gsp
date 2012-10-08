@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="database"/>
-  <title>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></title>
+  <title>${entity.profile.decodeHTML()}: <g:message code="dayroutine"/></title>
 
   <g:javascript src="jquery/fullcalendar.min.js"/>
   <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}">
@@ -22,10 +22,9 @@
 <body>
 
 <div class="boxHeader">
-  <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></h1>
+  <h1>${entity.profile.decodeHTML()}: <g:message code="dayroutine"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <p><g:message code="dayroutine.create"/> <img onclick="toggle('#newroutine');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code:'dayroutine.create')}"/></p>
     <div id="newroutine" class="graypanel">
@@ -35,28 +34,28 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="period"/></td>
+            <td class="name"><g:message code="period"/></td>
             <td class="value">
               <g:textField name="dateFrom" class="timepick" size="4"/> <g:message code="to"/> <g:textField name="dateTo" class="timepick" size="4"/> <g:message code="clock"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name">Tätigkeit</td>
+            <td class="name">Tätigkeit</td>
             <td class="value">
               <g:textField name="title" size="30"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="description"/></td>
+            <td class="name"><g:message code="description"/></td>
             <td class="value">
               <g:textArea name="description" rows="4" cols="50"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="activityInstance.profile.days"/></td>
+            <td class="name"><g:message code="activityInstance.profile.days"/></td>
             <td class="value">
               <g:checkBox name="monday"/> <g:message code="monday"/><br/>
               <g:checkBox name="tuesday"/> <g:message code="tuesday"/><br/>
@@ -195,7 +194,6 @@
       </jq:jquery>
     </div>
 
-  </div>
 </div>
 
 <script type="text/javascript">

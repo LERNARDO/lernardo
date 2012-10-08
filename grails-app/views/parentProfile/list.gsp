@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="parents"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <div class="info-msg">
     <g:message code="object.total" args="[totalParents, message(code: 'parents')]"/>
@@ -27,50 +27,50 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="active"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="active"/></td>
+          <td class="value">
             <g:checkBox name="active" value="true"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/></td>
+          <td class="value">
             <g:textField name="name" size="30"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="gender"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="gender"/></td>
+          <td class="value">
             <g:select name="gender" from="${['0':message(code:'all'),'1':message(code:'male'),'2':message(code:'female')]}" optionKey="key" optionValue="value"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="groupColony"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="groupColony"/></td>
+          <td class="value">
             <g:select name="colony" from="${colonies}" optionKey="id" optionValue="profile" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.maritalStatus"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.maritalStatus"/></td>
+          <td class="value">
             <g:select name="maritalStatus" from="${maritalStatus}" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="parent.profile.education"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="parent.profile.education"/></td>
+          <td class="value">
             <g:select name="education" from="${schoolLevels}" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="languages"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="languages"/></td>
+          <td class="value">
             <g:select name="languages" multiple="true" from="${languages}" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>

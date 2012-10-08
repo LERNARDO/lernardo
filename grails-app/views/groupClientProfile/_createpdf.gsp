@@ -25,14 +25,14 @@
     </style>
   </head>
   <body>
-    <h1><g:message code="groupClient"/> "${group.profile.fullName}"</h1>
-    <p class="gray"><g:message code="createdBy" args="[entity.profile.fullName, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]"/></p>
+    <h1><g:message code="groupClient"/> "${group.profile}"</h1>
+    <p class="gray"><g:message code="createdBy" args="[entity.profile, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]"/></p>
     <h2><g:message code="data"/></h2>
     <table>
 
       <tr class="prop">
         <td class="one"><g:message code="name"/>:</td>
-        <td class="two">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile').decodeHTML()}</td>
       </tr>
 
       <tr class="prop">
@@ -56,14 +56,14 @@
         <tbody>
         <g:each in="${clients}" status="i" var="client">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-            <td valign="top">${fieldValue(bean: client, field: 'profile.fullName').decodeHTML()}</td>
+            <td valign="top">${fieldValue(bean: client, field: 'profile').decodeHTML()}</td>
             <td valign="top"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
             <td valign="top">${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-            <td valign="top"><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</erp:getColony></td>
+            <td valign="top"><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</erp:getColony></td>
             <td valign="top">
               <erp:getParentsOfClient client="${client}">
                 <g:each in="${parents}" var="parent">
-                  ${parent.profile.fullName}: ${parent.profile.phone}<br/>
+                  ${parent.profile}: ${parent.profile.phone}<br/>
                 </g:each>
               </erp:getParentsOfClient>
               </td>

@@ -9,7 +9,7 @@
         <erp:profileImage entity="${searchInstance}" width="50" height="50" align="left"/>
       </g:link>
 
-      <div><g:link controller="${searchInstance.type.supertype.name + 'Profile'}" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName}</g:link></div>
+      <div><g:link controller="${searchInstance.type.supertype.name + 'Profile'}" action="show" id="${searchInstance.id}">${searchInstance.profile}</g:link></div>
       <div class="member-type"><g:message code="${searchInstance.type.supertype.name}"/></div>
       <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" />
 

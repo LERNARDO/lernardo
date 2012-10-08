@@ -75,12 +75,12 @@ class ClientProfileController {
     if (client) {
       functionService.deleteReferences(client)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "client"), client.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "client"), client.profile])
         client.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "client"), client.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "client"), client.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -130,7 +130,7 @@ class ClientProfileController {
     //new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
 
     if (client.profile.save() && client.user.save() && client.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "client"), client.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "client"), client.profile])
       redirect action: 'show', id: client.id
     }
     else {
@@ -171,7 +171,7 @@ class ClientProfileController {
       // create link to school
       //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
-      flash.message = message(code: "object.created", args: [message(code: "client"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "client"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       def allColonies = entityDataService.getAllColonies()
@@ -347,7 +347,7 @@ class ClientProfileController {
 
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberClient)
     if (linking.duplicate)
-      render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+      render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     else
       new Attendance(client: client, facility: facility).save(failOnError: true)
 

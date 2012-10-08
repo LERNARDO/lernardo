@@ -12,12 +12,12 @@
 
     <tr class="prop">
       <td class="one"><g:message code="from"/>:</td>
-      <td class="two">${evaluation.writer.profile.fullName}</td>
+      <td class="two">${evaluation.writer.profile}</td>
     </tr>
 
     <tr class="prop">
       <td class="one"><g:message code="client"/>:</td>
-      <td class="two"><g:link controller="clientProfile" action="show" id="${evaluation.owner.id}" params="[entity:evaluation.owner.id]">${evaluation.owner.profile.fullName}</g:link></td>
+      <td class="two"><g:link controller="clientProfile" action="show" id="${evaluation.owner.id}" params="[entity:evaluation.owner.id]">${evaluation.owner.profile}</g:link></td>
     </tr>
 
     <tr class="prop">

@@ -42,7 +42,7 @@
   <body>
 
     <h1><g:message code="timeEvaluation"/></h1>
-    <p class="gray"><g:message code="from"/> <span class="bold">${entity.profile.fullName}</span> <g:message code="forDateRange"/></p>
+    <p class="gray"><g:message code="from"/> <span class="bold">${entity.profile}</span> <g:message code="forDateRange"/></p>
     <h2><g:formatDate date="${date1}" format="dd.MM.yyyy"/> <g:message code="to"/> <g:formatDate date="${date2}" format="dd.MM.yyyy"/></h2>
 
     <table class="default-table" style="width: 100%;">

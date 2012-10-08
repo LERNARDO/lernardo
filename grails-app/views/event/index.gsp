@@ -61,7 +61,7 @@
       <h1><g:message code="events"/></h1>
     </div>
 
-    <div class="boxGray" style="padding-right: 20px;">
+    <div class="boxContent" style="padding-right: 20px;">
       <div class="second" id="events">
 
       </div>
@@ -73,7 +73,7 @@
       <h1><g:message code="newsp"/></h1>
     </div>
 
-    <div class="boxGray">
+    <div class="boxContent">
       <div class="second" id="news">
 
       </div>

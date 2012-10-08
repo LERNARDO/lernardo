@@ -65,12 +65,12 @@ class ResourceProfileController {
     if (resource) {
       functionService.deleteReferences(resource)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "resource"), resource.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "resource"), resource.profile])
         resource.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "resource"), resource.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "resource"), resource.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -98,7 +98,7 @@ class ResourceProfileController {
     resource.profile.properties = params
 
     if (resource.profile.save() && resource.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "resource"), resource.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "resource"), resource.profile])
       redirect action: 'show', id: resource.id
     }
     else {
@@ -117,7 +117,7 @@ class ResourceProfileController {
         ent.profile.properties = params
       }
 
-      flash.message = message(code: "object.created", args: [message(code: "resource"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "resource"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [resourceInstance: ee.entity]
@@ -174,7 +174,7 @@ class ResourceProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltOwner)
       if (linking.duplicate)
-          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       render template: 'owner', model: [resowner: linking.sources, resourceInstance: linking.target]
     }
     else {
@@ -231,7 +231,7 @@ class ResourceProfileController {
   def addResponsible = {
     def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'responsible', model: [resresponsible: linking.sources, resourceInstance: linking.target]
 
   }

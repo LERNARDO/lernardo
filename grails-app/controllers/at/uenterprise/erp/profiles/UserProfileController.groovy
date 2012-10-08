@@ -44,12 +44,12 @@ class UserProfileController {
     if (user) {
       functionService.deleteReferences(user)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "user"), user.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "user"), user.profile])
         user.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "user"), user.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "user"), user.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -80,7 +80,7 @@ class UserProfileController {
     user.user.properties = params
 
     if (user.profile.save() && user.user.save() && user.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "user"), user.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "user"), user.profile])
       redirect action: 'show', id: user.id
     }
     else {
@@ -101,7 +101,7 @@ class UserProfileController {
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
-      flash.message = message(code: "object.created", args: [message(code: "user"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "user"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [user: ee.entity]

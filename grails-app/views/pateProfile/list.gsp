@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="paten"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <div class="info-msg">
     <g:message code="object.total" args="[totalPates, message(code: 'paten')]"/>
@@ -27,22 +27,22 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="active"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="active"/></td>
+          <td class="value">
             <g:checkBox name="active" value="true"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/></td>
+          <td class="value">
             <g:textField name="name" size="30"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="country"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="country"/></td>
+          <td class="value">
             <g:select name="country" from="${nationalities}" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>

@@ -7,8 +7,7 @@
   <h1><g:message code="themes"/></h1>
 </div>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="object.total" args="[allThemes, message(code: 'themes')]"/>
@@ -26,6 +25,5 @@
       <g:render template="themes" model="[themes:themes]"/>
     </div>
 
-  </div>
 </div>
 </body>

@@ -8,8 +8,7 @@
     <div class="boxHeader">
       <h1><g:message code="notification.create"/></h1>
     </div>
-    <div class="boxGray">
-      <div class="second">
+    <div class="boxContent">
 
         <g:hasErrors bean="${nc}">
           <div class="errors">
@@ -43,15 +42,15 @@
           <table>
           
             <tr class="prop">
-              <td valign="top" class="name"><g:message code="title"/></td>
-              <td valign="top" class="value">
+              <td class="name"><g:message code="title"/></td>
+              <td class="value">
                 <g:textField class="${hasErrors(bean:nc,field:'subject','errors')}" name="subject" size="50" value="${fieldValue(bean:nc,field:'subject')}"/>
               </td>
             </tr>
 
             <tr class="prop">
-              <td valign="top" class="name"><g:message code="content"/></td>
-              <td valign="top" class="value">
+              <td class="name"><g:message code="content"/></td>
+              <td class="value">
                 <ckeditor:editor name="content" height="200px" toolbar="Basic">
                   ${fieldValue(bean:nc,field:'content').decodeHTML()}
                 </ckeditor:editor>
@@ -66,7 +65,6 @@
           </div>
         </g:form>
 
-      </div>
     </div>
   </body>
 </html>

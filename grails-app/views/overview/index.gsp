@@ -18,7 +18,7 @@
 <div class="boxHeader">
   <h1><g:message code="profile.overview.glossary"/> <img onclick="toggle('#glossar-toggled');" alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'bullet_arrow_toggle.png')}></h1>
 </div>
-<div class="boxGray" id="glossar-toggled">
+<div class="boxContent" id="glossar-toggled">
   <div class="second" id="userlist-results">
     <p><g:message code="profile.overview.glossaryLabel"/></p>
     <g:render template="glossary" model="[glossary: glossary]"/>
@@ -28,8 +28,7 @@
 <div class="boxHeader">
   <h1><g:message code="profile.overview"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
       <erp:accessCheck roles="['ROLE_ADMIN']">
         <div class="overview" id="admin"></div>
@@ -40,8 +39,6 @@
       <div class="overview" id="planning"></div>
 
       <div class="clear"></div>
-
-  </div>
 
 </div>
 </body>

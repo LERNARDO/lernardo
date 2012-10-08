@@ -30,10 +30,10 @@
       <div class="info">
         <g:message code="from"/>
         <erp:isEnabled entity="${newsitem.author}">
-          <g:link class="largetooltip" data-idd="${newsitem.author.id}" controller="${newsitem.author.type.supertype.name + 'Profile'}" action="show" id="${newsitem.author.id}">${newsitem.author.profile.fullName}</g:link>
+          <g:link class="largetooltip" data-idd="${newsitem.author.id}" controller="${newsitem.author.type.supertype.name + 'Profile'}" action="show" id="${newsitem.author.id}">${newsitem.author.profile}</g:link>
         </erp:isEnabled>
         <erp:notEnabled entity="${newsitem.author}">
-          <span class="notEnabled">${newsitem.author.profile.fullName}</span>
+          <span class="notEnabled">${newsitem.author.profile}</span>
         </erp:notEnabled>
         <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${newsitem.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
         <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${newsitem.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>

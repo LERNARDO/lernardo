@@ -1,5 +1,4 @@
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <h4><g:message code="publications"/></h4>
 
@@ -39,6 +38,4 @@
       <g:render template="other" model="[entity: entity, publist: projecttemplatedocuments]"/>
     </g:if>
     
-  </div>
-
 </div>

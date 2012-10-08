@@ -1,29 +1,28 @@
 <%@ page import="at.uenterprise.erp.base.Entity" %>
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="appointment"/> - ${appointment.profile.fullName}</title>
+  <title><g:message code="appointment"/> - ${appointment.profile}</title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="appointment"/> - ${appointment.profile.fullName}</h1>
+  <h1><g:message code="appointment"/> - ${appointment.profile}</h1>
   %{--<div class="icons" style="text-align: right;">
     <g:link action="edit" id="${appointment.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:link>
   </div>--}%
 </div>
-<div class="boxGray" style="clear: both;">
-  <div class="second">
+<div class="boxContent" style="clear: both;">
 
     <table>
       <tbody>
 
         <tr class="prop">
           <td class="one"><g:message code="owner"/></td>
-          <td class="two"><g:link controller="${belongsTo.type.supertype.name + 'Profile'}" action="show" id="${belongsTo.id}" params="[entity: belongsTo.id]">${fieldValue(bean: belongsTo, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td class="two"><g:link controller="${belongsTo.type.supertype.name + 'Profile'}" action="show" id="${belongsTo.id}" params="[entity: belongsTo.id]">${fieldValue(bean: belongsTo, field: 'profile').decodeHTML()}</g:link></td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="title"/></td>
-          <td class="two">${fieldValue(bean: appointment, field: 'profile.fullName').decodeHTML()}</td>
+          <td class="two">${fieldValue(bean: appointment, field: 'profile').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
@@ -64,6 +63,5 @@
       </g:form>
     </div>
 
-  </div>
 </div>
 </body>

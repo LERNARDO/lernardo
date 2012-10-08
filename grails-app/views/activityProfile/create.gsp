@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="activityInstance"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: ac]"/>
 
@@ -16,19 +15,19 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="name"><g:message code="begin"/></td>
-          <td valign="top" class="name"><g:message code="end"/></td>
+          <td class="name"><g:message code="name"/></td>
+          <td class="name"><g:message code="begin"/></td>
+          <td class="name"><g:message code="end"/></td>
         </tr>
 
         <tr>
-          <td width="380" valign="top" class="value">
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: ac, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: ac, field: 'fullName').decodeHTML()}"/>
           </td>
-          <td width="200" valign="top" class="value">
+          <td class="value">
             <g:textField name="periodStart" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodStart', 'errors')}" value="${formatDate(date: ac?.periodStart, format: 'dd. MM. yyyy')}"/>
           </td>
-          <td valign="top" class="value">
+          <td class="value">
             <g:textField name="periodEnd" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodEnd', 'errors')}" value="${formatDate(date: ac?.periodEnd, format: 'dd. MM. yyyy')}"/>
           </td>
         </tr>
@@ -116,6 +115,5 @@
 
     </g:form>
 
-  </div>
 </div>
 </body>

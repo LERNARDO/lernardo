@@ -4,20 +4,15 @@
 </head>
 <body>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="timeRecording" id="${entity.id}"><g:message code="privat.workday"/></g:link></h1>
-  </div>
 </div>
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="report"/></h1>
-  </div>
 </div>
 <div class="clear"></div>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="privat.workday.chooseRange"/>
@@ -32,6 +27,5 @@
     <div id="results" style="margin-top: 10px">
     </div>
 
-  </div>
 </div>
 </body>

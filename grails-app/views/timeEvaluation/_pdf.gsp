@@ -56,7 +56,7 @@
 </head>
 
 <body>
-<h1><g:message code="educator.timeschedule.export.period" args="[date1, date2]"/><br/><g:message code="educator.timeschedule.export.from" args="[entity.profile.fullName]"/> <g:formatDate
+<h1><g:message code="educator.timeschedule.export.period" args="[date1, date2]"/><br/><g:message code="educator.timeschedule.export.from" args="[entity.profile]"/> <g:formatDate
     date="${new Date()}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="atTime"/> <g:formatDate date="${new Date()}"
                                                                                                                                                                            format="HH:mm"
                                                                                                                                                                            timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message
@@ -82,7 +82,7 @@
     <g:each in="${subeducators.value}" status="i" var="person">
       <erp:showHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td>${fieldValue(bean: person, field: 'profile.fullName').decodeHTML()}</td>
+          <td>${fieldValue(bean: person, field: 'profile').decodeHTML()}</td>
           <g:each in="${workdaycategories}" var="category">
             <td><erp:getHoursForCategory category="${category}" educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
           </g:each>
@@ -102,7 +102,7 @@
     <erp:showHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}">
       <h1 style="page-break-before: always"><g:message code="educator.timeschedule.export.period" args="[date1, date2]"/></h1>
       <h2><g:message code="detailed.info"/></h2>
-      <h3>${person.profile.fullName}</h3>
+      <h3>${person.profile}</h3>
       <erp:getWorkdayUnits educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/>
     </erp:showHours>
   </g:each>
@@ -147,7 +147,7 @@
 
     <h2><g:message code="detailed.info"/></h2>
 
-    <h3>${person.profile.fullName}</h3>
+    <h3>${person.profile}</h3>
     <erp:getWorkdayUnits educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/>
   </erp:showHours>
 </g:each>

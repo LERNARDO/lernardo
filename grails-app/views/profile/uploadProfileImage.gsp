@@ -6,15 +6,15 @@
   <div class="boxHeader">
     <h1><g:message code="profile.picture.change"/></h1>
   </div>
-  <div class="boxGray">
-    <div class="second">
+  <div class="boxContent">
+
       <g:uploadForm id="${entity.id}">
 
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="profile.picture.select"/></td>
-            <td valign="top" class="value">
+            <td class="name"><g:message code="profile.picture.select"/></td>
+            <td class="value">
               <input size="40" type="file" name="asset">
             </td>
           </tr>
@@ -35,6 +35,5 @@
         
       </g:uploadForm>
 
-    </div>
   </div>
 </body>

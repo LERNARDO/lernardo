@@ -1,6 +1,5 @@
 <%@ page import="at.uenterprise.erp.PublicationType" %>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <h4><g:message code="object.edit" args="[message(code: 'publication')]"/></h4>
 
@@ -11,16 +10,16 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="title"/></td>
-            <td valign="top" class="value">
+            <td class="name"><g:message code="title"/></td>
+            <td class="value">
               <g:textField data-counter="50" class="${hasErrors(bean: publication, field: 'name', 'errors')}" id="name" name="name" size="50" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/>
             </td>
           </tr>
 
           <g:if test="${publication.entity.user}">
             <tr class="prop">
-              <td valign="top" class="name"><g:message code="public"/></td>
-              <td valign="top" class="value">
+              <td class="name"><g:message code="public"/></td>
+              <td class="value">
                 <g:checkBox name="isPublic" value="${publication.isPublic}"/>
               </td>
             </tr>
@@ -44,5 +43,5 @@
         </div>
 
       </g:formRemote>
-    </div>
-  </div>
+
+</div>

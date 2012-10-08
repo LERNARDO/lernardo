@@ -7,8 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.edit" args="[message(code: 'process')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: process]"/>
 
@@ -17,43 +16,43 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/></td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: process, field: 'name', 'errors')}" name="name" size="50" value="${fieldValue(bean:process,field:'name').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="costs"/> (${grailsApplication.config.currency})</td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="costs"/> (${grailsApplication.config.currency})</td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: process, field: 'costs', 'errors')}" name="costs" size="10" value="${fieldValue(bean:process,field:'costs').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="unit"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="unit"/></td>
+          <td class="value">
             <g:select name="unit" from="['perHour','perDay','perMonth']" value="${process.unit}" valueMessagePrefix="logunit"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="facilities"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="facilities"/></td>
+          <td class="value">
             <g:select name="facilities" from="${facilities}" optionKey="id" optionValue="profile" multiple="true" value="${process.facilities}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="usertypes"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="usertypes"/></td>
+          <td class="value">
             <g:select name="types" from="['educator','leadEducator','operator']" multiple="true" valueMessagePrefix="profiletype" value="${process.types}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="directSelection"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="directSelection"/></td>
+          <td class="value">
             <g:select name="entities" from="${entities}" multiple="true" optionKey="id" optionValue="profile" value="${currentEntities}"/>
           </td>
         </tr>
@@ -66,6 +65,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

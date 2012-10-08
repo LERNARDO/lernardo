@@ -5,27 +5,21 @@
 </head>
 <body>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="timeEvaluation"><g:message code="timeEvaluation"/></g:link></h1>
-  </div>
 </div>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="workdayCategory" action="index"><g:message code="privat.workdaycategories"/></g:link></h1>
-  </div>
 </div>
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="educator.profile.workHours"/></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
+<div class="boxContent">
 
   <div class="graypanel">
 
@@ -34,22 +28,22 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="active"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="active"/></td>
+          <td class="value">
             <g:checkBox name="active" value="true"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="type"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="type"/></td>
+          <td class="value">
             <g:select name="type" from="['user','educator']" valueMessagePrefix="profiletype"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="educator.profile.employment"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="educator.profile.employment"/></td>
+          <td class="value">
             <g:select name="employment" from="${Setup.list()[0]?.employmentStatus}" noSelection="['': message(code: 'all')]"/>
           </td>
         </tr>

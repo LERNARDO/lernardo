@@ -1,18 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title>${fieldValue(bean: activity, field: 'profile.fullName').decodeHTML()} <span style="font-size: 12px;">(<g:message code="activity"/>)</span></title>
+  <title>${fieldValue(bean: activity, field: 'profile').decodeHTML()} <span style="font-size: 12px;">(<g:message code="activity"/>)</span></title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="planning"/>
 </head>
 
 <body>
 <div class="boxHeader">
-  <h1><g:message code="activity"/> - ${fieldValue(bean: activity, field: 'profile.fullName').decodeHTML()}</h1>
+  <h1><g:message code="activity"/> - ${fieldValue(bean: activity, field: 'profile').decodeHTML()}</h1>
 </div>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/activityNavigation" model="[entity: activity]"/>
 
@@ -32,7 +31,7 @@
 
       <g:message code="template"/>:
       <erp:getTemplate entity="${activity}">
-        <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+        <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile}</g:link>
       </erp:getTemplate>
       <br/><br/>
 
@@ -41,7 +40,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/></td>
-          <td class="two">${activity.profile.fullName}</td>
+          <td class="two">${activity.profile}</td>
         </tr>
 
         <tr class="prop">
@@ -129,7 +128,6 @@
 
     </div>
 
-  </div>
 </div>
 
 </body>

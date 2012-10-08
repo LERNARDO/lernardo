@@ -9,8 +9,7 @@
     <h1>Import/Export</h1>
   </div>
 
-  <div class="boxGray">
-    <div class="second">
+  <div class="boxContent">
 
       Kinder importieren:
       <g:form controller="transfer" action="importChildren" enctype="multipart/form-data">
@@ -25,6 +24,6 @@
       <div class="clear"></div>
       <g:link class="buttonGreen" action="exportChildren">Export</g:link>
       <div class="clear"></div>
-    </div>
+
   </div>
 </body>

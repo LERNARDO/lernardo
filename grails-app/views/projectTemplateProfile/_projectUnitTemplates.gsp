@@ -5,7 +5,7 @@
 
   <g:each in="${projectUnitTemplates}" var="projectUnitTemplate" status="i">
     <div style="border: 1px solid #ccc; margin-top: 5px; border-radius: 5px; background: #fefefe; padding: 5px;">
-      <span class="bold">${i+1}. <g:message code="projectUnitTemplate"/>:</span> <span id="projectName${i}">${projectUnitTemplate.profile.fullName}</span> <erp:accessCheck types="['Betreiber','Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true">
+      <span class="bold">${i+1}. <g:message code="projectUnitTemplate"/>:</span> <span id="projectName${i}">${projectUnitTemplate.profile}</span> <erp:accessCheck types="['Betreiber','Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true">
         <g:remoteLink action="editProjectUnitTemplate" update="projectName${i}" id="${projectTemplate.id}" params="[projectUnitTemplate: projectUnitTemplate.id, i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:remoteLink>
         <g:remoteLink action="removeProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" params="[projectUnitTemplate: projectUnitTemplate.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code:'delete')}" align="top"/></g:remoteLink>
         <g:remoteLink action="moveUp" update="projectunittemplates2" id="${projectUnitTemplate.id}" params="[projectTemplate: projectTemplate.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_up.png')}" alt="${message(code:'up')}" align="top"/></g:remoteLink>

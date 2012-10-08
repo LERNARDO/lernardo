@@ -1,16 +1,15 @@
 <head>
-  <title><g:message code="activityTemplate"/> - ${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}</title>
+  <title><g:message code="activityTemplate"/> - ${fieldValue(bean: template, field: 'profile').decodeHTML()}</title>
   <meta name="layout" content="planning"/>
 </head>
 
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${template}"/> ${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()} <span style="font-size: 12px;">(<g:message code="activityTemplate"/>)</span></h1>
+  <h1><erp:getFavorite entity="${template}"/> ${fieldValue(bean: template, field: 'profile').decodeHTML()} <span style="font-size: 12px;">(<g:message code="activityTemplate"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: template]"/>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/templateNavigation" model="[entity: template]"/>
 
@@ -53,7 +52,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/></td>
-          <td class="two">${template.profile.fullName.decodeHTML()}</td>
+          <td class="two">${template.profile.decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
@@ -106,7 +105,6 @@
 
     </div>
 
-  </div>
 </div>
 
 </body>

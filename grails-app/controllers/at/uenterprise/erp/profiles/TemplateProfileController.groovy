@@ -73,7 +73,7 @@ class TemplateProfileController {
       template.profile.ageTo = 100
 
     if (template.profile.save() && template.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "template"), template.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "template"), template.profile])
       redirect action: 'show', id: template.id
     }
     else {
@@ -167,7 +167,7 @@ class TemplateProfileController {
     if (asset)
       new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
-    flash.message = message(code: "template.copied", args: [entity.profile.fullName])
+    flash.message = message(code: "template.copied", args: [entity.profile])
     redirect action: 'show', id: entity.id
   }
 
@@ -190,13 +190,13 @@ class TemplateProfileController {
       File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> angelegt.').save()
       functionService.createEvent(EVENT_TYPE.ACTIVITY_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      flash.message = message(code: "object.created", args: [message(code: "template"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "template"), entity.profile])
       redirect action: 'show', id: entity.id
 
     } catch (at.uenterprise.erp.base.EntityException ee) {
@@ -210,12 +210,12 @@ class TemplateProfileController {
     if (template) {
       functionService.deleteReferences(template)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "activityTemplate"), template.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "activityTemplate"), template.profile])
         template.delete(flush: true)
         redirect action: "list"
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "activityTemplate"), template.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "activityTemplate"), template.profile])
         redirect action: "show", id: params.id
       }
     }

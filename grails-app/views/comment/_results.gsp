@@ -21,8 +21,8 @@
                     </div>
                   </erp:accessCheck>--}%
                   <div class="infobar">
-                    <span class="gray"><g:message code="from"/> <span class="name"><g:link controller="${creator.type.supertype.name + 'Profile'}" action="show" id="${creator.id}">${creator.profile.fullName.decodeHTML()}</g:link></span>
-                    <g:message code="atDate"/> <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.key.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> zu <g:link controller="${comment.value.type.supertype.name + 'Profile'}" action="show" id="${comment.value.id}">${comment.value.profile.fullName.decodeHTML()}</g:link></span>
+                    <span class="gray"><g:message code="from"/> <span class="name"><g:link controller="${creator.type.supertype.name + 'Profile'}" action="show" id="${creator.id}">${creator.profile.decodeHTML()}</g:link></span>
+                    <g:message code="atDate"/> <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.key.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> zu <g:link controller="${comment.value.type.supertype.name + 'Profile'}" action="show" id="${comment.value.id}">${comment.value.profile.decodeHTML()}</g:link></span>
                   </div>
                   <div class="content">${comment.key.content.decodeHTML()}</div>
                 </td>

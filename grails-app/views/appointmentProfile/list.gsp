@@ -1,4 +1,3 @@
-<%@ page import="at.uenterprise.erp.MetaDataService" %>
 <head>
   <meta name="layout" content="database"/>
   <title><g:message code="appointments"/></title>
@@ -7,22 +6,17 @@
 
 %{--<g:render template="/templates/contextEntity" model="[entity: entity]"/>--}%
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="appointment.current"/></h1>
-  </div>
 </div>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="appointmentProfile" action="listold"><g:message code="appointment.old"/></g:link></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="object.found" args="[appointmentProfileInstanceTotal, message(code: 'appointments')]"/>
@@ -62,17 +56,17 @@
             <td style="line-height: 20px;">
               <g:if test="${appointmentProfileInstance.profile.isPrivate}">
                 <erp:accessCheck types="['Betreiber']" me="${entity}">
-                  <span class="bold"><g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link></span><br/>
+                  <span class="bold"><g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile')}</g:link></span><br/>
                   ${fieldValue(bean: appointmentProfileInstance, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
                   <g:set var="negation" value="negation"/> %{-- see below note why this is set --}%
                 </erp:accessCheck>
                 %{-- NOTE: if "negation" does not exist we know the custom tag did not evaluate to true so why can output the following else condition --}%
                 <g:if test="${!negation}">
-                  <g:message code="notAvailable"/> %{--${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')} --}%
+                  <g:message code="notAvailable"/> %{--${fieldValue(bean: appointmentProfileInstance, field: 'profile')} --}%
                 </g:if>
               </g:if>
               <g:else>
-                <span class="bold"><g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link></span><br/>
+                <span class="bold"><g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile')}</g:link></span><br/>
                 ${fieldValue(bean: appointmentProfileInstance, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
               </g:else>
             </td>
@@ -86,6 +80,5 @@
       </div>
     </g:if>
 
-  </div>
 </div>
 </body>

@@ -1,15 +1,14 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="child"/> - ${child.profile.fullName}</title>
+  <title><g:message code="child"/> - ${child.profile}</title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${child}"/> ${child.profile.fullName} <span style="font-size: 12px;">(<g:message code="child"/>)</span></h1>
+  <h1><erp:getFavorite entity="${child}"/> ${child.profile} <span style="font-size: 12px;">(<g:message code="child"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: child]"/>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
       <g:render template="/templates/childNavigation" model="[entity: child]"/>
 
@@ -39,7 +38,7 @@
 
           <tr class="prop">
             <td class="one"><g:message code="lastName"/>:</td>
-            <td class="two">${fieldValue(bean: child, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'} <g:if test="${family}">(<g:link class="largetooltip" data-idd="${family.id}" controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
+            <td class="two">${fieldValue(bean: child, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'} <g:if test="${family}">(<g:link class="largetooltip" data-idd="${family.id}" controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile}</g:link>)</g:if></td>
           </tr>
 
           <tr class="prop">
@@ -86,6 +85,5 @@
 
     </div>
 
-  </div>
 </div>
 </body>

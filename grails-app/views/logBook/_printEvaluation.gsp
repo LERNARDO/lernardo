@@ -66,8 +66,8 @@
   </head>
   <body>
 
-  <h1><g:message code="logBook.ofFrom" args="[facility.profile.fullName, formatDate(date: logMonth.date, format: 'MMMM yyyy')]"/></h1>
-  <p class="gray"><g:message code="createdBy" args="[currentEntity.profile.fullName, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]"/></p>
+  <h1><g:message code="logBook.ofFrom" args="[facility.profile, formatDate(date: logMonth.date, format: 'MMMM yyyy')]"/></h1>
+  <p class="gray"><g:message code="createdBy" args="[currentEntity.profile, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]"/></p>
 
   <h2><g:message code="profile.overview"/></h2>
   <erp:renderLogMonthPrint logMonth="${logMonth}" facility="${facility}" date="${date}"/>

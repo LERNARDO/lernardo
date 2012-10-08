@@ -4,28 +4,21 @@
 </head>
 <body>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="timeEvaluation"><g:message code="timeEvaluation"/></g:link></h1>
-  </div>
 </div>
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="workdayCategories"/></h1>
-  </div>
 </div>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="workdayUnit" action="workhours"><g:message code="educator.profile.workHours"/></g:link></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="object.found" args="[workdayCategoryInstanceTotal, message(code: 'workdayCategories')]"/>
@@ -64,6 +57,5 @@
       <g:paginate total="${workdayCategoryInstanceTotal}"/>
     </div>
 
-  </div>
 </div>
 </body>

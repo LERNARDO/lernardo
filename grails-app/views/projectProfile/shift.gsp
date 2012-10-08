@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.edit" args="[message(code: 'project')]"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <g:render template="/templates/errors" model="[bean: project]"/>
 
@@ -15,8 +15,8 @@
     <table>
 
       <tr class="prop">
-        <td valign="top" class="name"><g:message code="shiftTo"/></td>
-        <td valign="top" class="value">
+        <td class="name"><g:message code="shiftTo"/></td>
+        <td class="value">
           <g:select from="${-4..4}" name="weeks" value="1"/> <span class="gray"><g:message code="weeks"/></span>
         </td>
       </tr>

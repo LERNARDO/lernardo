@@ -1,13 +1,12 @@
 <head>
   <meta name="layout" content="database"/>
-  <title><g:message code="resource"/> - ${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}</title>
+  <title><g:message code="resource"/> - ${fieldValue(bean: resourceInstance, field: 'profile').decodeHTML()}</title>
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="resource"/> - ${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}</h1>
+  <h1><g:message code="resource"/> - ${fieldValue(bean: resourceInstance, field: 'profile').decodeHTML()}</h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/resourceNavigation" model="[entity: resourceInstance]"/>
 
@@ -16,12 +15,12 @@
 
       <tr class="prop">
         <td class="one"><g:message code="location"/>:</td>
-        <td class="two"><g:link controller="${location.type.supertype.name + 'Profile'}" action="show" id="${location.id}">${fieldValue(bean: location, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        <td class="two"><g:link controller="${location.type.supertype.name + 'Profile'}" action="show" id="${location.id}">${fieldValue(bean: location, field: 'profile').decodeHTML()}</g:link></td>
       </tr>
 
       <tr class="prop">
         <td class="one"><g:message code="name"/>:</td>
-        <td class="two">${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}</td>
+        <td class="two">${fieldValue(bean: resourceInstance, field: 'profile').decodeHTML()}</td>
       </tr>
 
       <tr class="prop">
@@ -79,6 +78,5 @@
       </div>
     </div>
 
-  </div>
 </div>
 </body>

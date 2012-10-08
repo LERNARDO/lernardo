@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.create" args="[message(code: 'resource')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: resourceInstance]"/>
 
@@ -17,20 +16,20 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
+            <td class="name"><g:message code="name"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="540" valign="top" class="value">
-              <g:textField data-counter="50" class="${hasErrors(bean: resourceInstance, field: 'profile.fullName', 'errors')}" size="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile.fullName').decodeHTML()}"/>
+            <td class="value">
+              <g:textField data-counter="50" class="${hasErrors(bean: resourceInstance, field: 'profile', 'errors')}" size="80" name="fullName" value="${fieldValue(bean: resourceInstance, field: 'profile').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="description"/></td>
+            <td class="name"><g:message code="description"/></td>
           </tr>
           <tr>
-            <td valign="top" class="value">
+            <td class="value">
               <g:textArea data-counter="2000" class="${hasErrors(bean: resourceInstance, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: resourceInstance, field: 'profile.description')}"/>
             </td>
           </tr>
@@ -47,6 +46,6 @@
       </div>
       
     </g:form>
-  </div>
+
 </div>
 </body>

@@ -15,7 +15,7 @@
           <table>
             <tr>
               <td><erp:profileImage entity="${entity}" width="65"/></td>
-              <td style="vertical-align: top; padding-left: 5px;"><span class="bold" style="color: #000">${entity.profile.fullName}</span></td>
+              <td style="vertical-align: top; padding-left: 5px;"><span class="bold" style="color: #000">${entity.profile}</span></td>
             </tr>
           </table>
         </div>

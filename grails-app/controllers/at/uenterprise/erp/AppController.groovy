@@ -518,14 +518,14 @@ class AppController {
     Entity entity = Entity.get(params.entity)
     Entity target = Entity.get(params.id)
     Link.findBySourceAndTarget(entity, target)?.delete()
-    render "<span style='text-decoration: line-through'>" + target.profile.fullName + "</span>"
+    render "<span style='text-decoration: line-through'>" + target.profile + "</span>"
   }
 
   def removesource = {
     Entity entity = Entity.get(params.entity)
     Entity source = Entity.get(params.id)
     Link.findBySourceAndTarget(source, entity)?.delete()
-    render "<span style='text-decoration: line-through'>" + source.profile.fullName + "</span>"
+    render "<span style='text-decoration: line-through'>" + source.profile + "</span>"
   }
 
 /*

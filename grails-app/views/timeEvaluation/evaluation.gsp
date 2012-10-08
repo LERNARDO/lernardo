@@ -4,28 +4,21 @@
 </head>
 <body>
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="timeEvaluation"/></h1>
-  </div>
 </div>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="workdayCategory" action="index"><g:message code="privat.workdaycategories"/></g:link></h1>
-  </div>
 </div>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="workdayUnit" action="workhours"><g:message code="educator.profile.workHours"/></g:link></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <div class="info-msg"><g:message code="timeEvaluation.chooseRange"/></div>
 
@@ -38,7 +31,6 @@
     <div id="evaluate" style="margin-top: 10px;">
     </div>
 
-  </div>
 </div>
 
 </body>

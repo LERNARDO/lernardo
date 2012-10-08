@@ -371,7 +371,7 @@ class EvaluationController {
     Entity entity = Entity.get(params.id)
 
     def msg = message(code: "selection")
-    render ('<b>' + msg + '</b> <a href="' + createLink(controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a>')
+    render ('<b>' + msg + '</b> <a href="' + createLink(controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id) + '">' + entity.profile + '</a>')
   }
 
   def removeLinkedTo = {

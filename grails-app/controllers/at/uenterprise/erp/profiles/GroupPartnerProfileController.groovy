@@ -56,12 +56,12 @@ class GroupPartnerProfileController {
     if (group) {
       functionService.deleteReferences(group)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "groupPartner"), group.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "groupPartner"), group.profile])
         group.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "groupPartner"), group.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "groupPartner"), group.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -89,7 +89,7 @@ class GroupPartnerProfileController {
     group.profile.properties = params
 
     if (group.profile.save() && group.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "groupPartner"), group.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "groupPartner"), group.profile])
       redirect action: 'show', id: group.id
     }
     else {
@@ -110,7 +110,7 @@ class GroupPartnerProfileController {
         ent.profile.properties = params
       }
 
-      flash.message = message(code: "object.created", args: [message(code: "groupPartner"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "groupPartner"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [group: ee.entity]
@@ -121,7 +121,7 @@ class GroupPartnerProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'partners', model: [partners: linking.sources, group: linking.target]
   }
 

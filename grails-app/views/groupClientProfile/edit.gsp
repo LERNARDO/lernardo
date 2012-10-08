@@ -6,8 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.edit" args="[message(code: 'groupClient')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: group]"/>
 
@@ -16,15 +15,15 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
-          <td valign="top" class="value">
-            <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+          <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
+          <td class="value">
+            <g:textField data-counter="50" class="${hasErrors(bean: group, field: 'profile', 'errors')}" required="" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="description"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="description"/></td>
+          <td class="value">
             <g:textArea data-counter="2000" class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="3" cols="50" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
           </td>
         </tr>
@@ -37,6 +36,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

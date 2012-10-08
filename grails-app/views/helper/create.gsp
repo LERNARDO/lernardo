@@ -7,8 +7,7 @@
 <div class="boxHeader">
   <h1><g:message code="object.create" args="[message(code: 'helper')]"/></h1>
 </div>
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:hasErrors bean="${helperInstance}">
       <div class="errors">
@@ -21,15 +20,15 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="title"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="title"/></td>
+          <td class="value">
             <g:textField data-counter="50" class="${hasErrors(bean: helperInstance, field: 'title', 'errors')}" name="title" size="50" value="${fieldValue(bean:helperInstance, field:'title')}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="text"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="text"/></td>
+          <td class="value">
             <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:helperInstance,field:'content').decodeHTML()}
             </ckeditor:editor>
@@ -37,8 +36,8 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="for2"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="for2"/></td>
+          <td class="value">
             <g:select name="types" multiple="true" from="${grailsApplication.config.helpertypes}" value="${helperInstance?.types}" valueMessagePrefix="profiletype"/>
           </td>
         </tr>
@@ -51,6 +50,6 @@
       </div>
 
     </g:form>
-  </div>
+
 </div>
 </body>

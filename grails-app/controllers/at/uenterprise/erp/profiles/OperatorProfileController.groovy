@@ -56,12 +56,12 @@ class OperatorProfileController {
     if (operator) {
       functionService.deleteReferences(operator)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "operator"), operator.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "operator"), operator.profile])
         operator.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "operator"), operator.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "operator"), operator.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -91,7 +91,7 @@ class OperatorProfileController {
     operator.user.properties = params
 
     if (operator.profile.save() && operator.user.save() && operator.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "operator"), operator.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "operator"), operator.profile])
       redirect action: 'show', id: operator.id
     }
     else {
@@ -112,7 +112,7 @@ class OperatorProfileController {
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
-      flash.message = message(code: "object.created", args: [message(code: "operator"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "operator"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
       render view: "create", model: [operator: ee.entity]
@@ -123,7 +123,7 @@ class OperatorProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltOperation)
     if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
     render template: 'facilities', model: [facilities: linking.sources, operator: linking.target]
   }
 

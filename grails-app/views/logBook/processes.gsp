@@ -5,36 +5,27 @@
 
 <body>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="logBook" action="entries"><g:message code="entries"/></g:link></h1>
-  </div>
 </div>
 
 %{--<erp:accessCheck types="['Betreiber']" facilities="${facilities}">--}%
-  <div class="tabGrey">
-    <div class="second">
+  <div class="tabInactive">
       <h1><g:link controller="logBook" action="evaluation"><g:message code="evaluation2"/></g:link></h1>
-    </div>
   </div>
 %{--</erp:accessCheck>--}%
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="processes"/></h1>
-  </div>
 </div>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="logBook" action="settings"><g:message code="attendance"/></g:link></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <div class="info-msg">
       <g:message code="object.total" args="[processes.size(), message(code: 'processes')]"/>
@@ -67,6 +58,5 @@
       </tbody>
     </table>
 
-  </div>
 </div>
 </body>

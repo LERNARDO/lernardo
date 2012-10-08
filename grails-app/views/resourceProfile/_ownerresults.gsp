@@ -6,7 +6,7 @@
         <table>
           <tr>
             <td><erp:profileImage entity="${entity}" width="65"/></td>
-            <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span></td>
+            <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile}</span></td>
           </tr>
         </table>
       </div>

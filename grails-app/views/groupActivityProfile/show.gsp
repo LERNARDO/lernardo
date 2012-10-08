@@ -1,16 +1,15 @@
 <head>
   <meta name="layout" content="planning"/>
-  <title><g:message code="groupActivity"/> - ${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</title>
+  <title><g:message code="groupActivity"/> - ${fieldValue(bean: group, field: 'profile').decodeHTML()}</title>
 </head>
 
 <body>
 <div class="boxHeader">
-  <h1><erp:getFavorite entity="${group}"/> ${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()} <span style="font-size: 12px;">(<g:message code="groupActivity"/>)</span></h1>
+  <h1><erp:getFavorite entity="${group}"/> ${fieldValue(bean: group, field: 'profile').decodeHTML()} <span style="font-size: 12px;">(<g:message code="groupActivity"/>)</span></h1>
 </div>
 <g:render template="/templates/favmodal" model="[entity: group]"/>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <g:render template="/templates/groupActivityNavigation" model="[entity: group]"/>
 
@@ -55,7 +54,7 @@
           <td class="one"><g:message code="groupActivityTemplate"/>:</td>
           <td class="two">
             <g:if test="${template}">
-              <g:link class="largetooltip" data-idd="${template.id}" controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
+              <g:link class="largetooltip" data-idd="${template.id}" controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic"><g:message code="template.notAvailable"/></span>
@@ -65,7 +64,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+          <td class="two">${fieldValue(bean: group, field: 'profile').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
@@ -105,7 +104,5 @@
 
     </div>
 
-  </div>
 </div>
-
 </body>

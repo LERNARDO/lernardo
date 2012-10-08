@@ -5,36 +5,27 @@
 
 <body>
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="logBook" action="entries"><g:message code="entries"/></g:link></h1>
-  </div>
 </div>
 
 %{--<erp:accessCheck types="['Betreiber']" facilities="${facilities}">--}%
-  <div class="tabGrey">
-    <div class="second">
+  <div class="tabInactive">
       <h1><g:link controller="logBook" action="evaluation"><g:message code="evaluation2"/></g:link></h1>
-    </div>
   </div>
 %{--</erp:accessCheck>--}%
 
-<div class="tabGrey">
-  <div class="second">
+<div class="tabInactive">
     <h1><g:link controller="logBook" action="processes"><g:message code="processes"/></g:link></h1>
-  </div>
 </div>
 
-<div class="tabGreen">
-  <div class="second">
+<div class="tabActive">
     <h1><g:message code="attendance"/></h1>
-  </div>
 </div>
 
 <div class="clear"></div>
 
-<div class="boxGray">
-  <div class="second">
+<div class="boxContent">
 
     <div class="graypanel">
       <g:formRemote name="formRemote" url="[controller: 'logBook', action: 'showAttendances']" update="attendances" before="showspinner('#attendances');">
@@ -45,6 +36,5 @@
 
     <div id="attendances"></div>
 
-  </div>
 </div>
 </body>

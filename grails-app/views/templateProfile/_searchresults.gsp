@@ -34,11 +34,11 @@
   <tbody>
   <g:each status="i" in="${allTemplates}" var="templateInstance">
     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-      <td><g:link action="show" id="${templateInstance.id}">${templateInstance.profile.fullName.decodeHTML()}</g:link></td>
+      <td><g:link action="show" id="${templateInstance.id}">${templateInstance.profile.decodeHTML()}</g:link></td>
       <td>${templateInstance.profile.duration}</td>
       <td><g:message code="socialForm.${templateInstance.profile.socialForm}"/></td>
       <td>${templateInstance.profile.comments.size()}</td>
-      <td><erp:createdBy entity="${templateInstance}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
+      <td><erp:createdBy entity="${templateInstance}">${creator?.profile?.decodeHTML()}</erp:createdBy></td>
     </tr>
   </g:each>
   </tbody>

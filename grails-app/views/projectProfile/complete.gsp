@@ -8,7 +8,7 @@
     <h1><g:message code="project.complete"/></h1>
 </div>
 
-<div class="boxGray">
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: project]"/>
 
@@ -17,43 +17,43 @@
         <table>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="project.objectiveReached"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="project.objectiveReached"/></td>
+                <td class="value">
                     <g:checkBox name="objectiveReached"/>
                 </td>
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="project.objectiveComment"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="project.objectiveComment"/></td>
+                <td class="value">
                     <g:textArea name="objectiveComment" rows="5" cols="50"/>
                 </td>
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="project.goodFactors"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="project.goodFactors"/></td>
+                <td class="value">
                     <g:textArea name="goodFactors" rows="5" cols="50"/>
                 </td>
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="project.badFactors"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="project.badFactors"/></td>
+                <td class="value">
                     <g:textArea name="badFactors" rows="5" cols="50"/>
                 </td>
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="project.wouldRepeatIt"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="project.wouldRepeatIt"/></td>
+                <td class="value">
                     <g:checkBox name="wouldRepeatIt"/>
                 </td>
             </tr>
 
             <tr class="prop">
-                <td valign="top" class="name"><g:message code="project.repeatReason"/></td>
-                <td valign="top" class="value">
+                <td class="name"><g:message code="project.repeatReason"/></td>
+                <td class="value">
                     <g:textArea name="repeatReason" rows="5" cols="50"/>
                 </td>
             </tr>

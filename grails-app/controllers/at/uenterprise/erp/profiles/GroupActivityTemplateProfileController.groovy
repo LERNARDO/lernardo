@@ -62,7 +62,7 @@ class GroupActivityTemplateProfileController {
                 eq("status", "done")
             }
         }
-        allTemplates.sort {it.profile.fullName}
+        allTemplates.sort {it.profile}
 
         // find all activity templates linked to this group
         //List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
@@ -100,12 +100,12 @@ class GroupActivityTemplateProfileController {
     if (group) {
       functionService.deleteReferences(group)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "groupActivityTemplate"), group.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "groupActivityTemplate"), group.profile])
         group.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "groupActivityTemplate"), group.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "groupActivityTemplate"), group.profile])
         redirect(action: "show", id: params.id)
       }
     }
@@ -138,7 +138,7 @@ class GroupActivityTemplateProfileController {
       group.profile.ageTo = 100
 
     if (group.profile.save() && group.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "groupActivityTemplate"), group.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "groupActivityTemplate"), group.profile])
       redirect action: 'show', id: group.id
     }
     else {
@@ -212,7 +212,7 @@ class GroupActivityTemplateProfileController {
     if (asset)
       new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
-    flash.message = message(code: "group.copied", args: [entity.profile.fullName])
+    flash.message = message(code: "group.copied", args: [entity.profile])
     redirect action: 'show', id: entity.id
 
   }
@@ -245,12 +245,12 @@ class GroupActivityTemplateProfileController {
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">'
-              + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="'
-              + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
+              + currentEntity.profile + '</a> hat die Aktivitätsblockvorlage <a href="'
+              + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> angelegt.').save()
 
       functionService.createEvent(EVENT_TYPE.GROUP_ACTIVITY_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
-      flash.message = message(code: "object.created", args: [message(code: "groupActivityTemplate"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "groupActivityTemplate"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       render view: "create", model: [group: ee.entity]
@@ -272,7 +272,7 @@ class GroupActivityTemplateProfileController {
         if (!linking.duplicate)
           groupActivityTemplate.profile.addToTemplates(it)
         if (linking.duplicate)
-            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       }
     }
 
@@ -470,7 +470,7 @@ class GroupActivityTemplateProfileController {
       }
     }
 
-    finalList.sort {it.profile.fullName}
+    finalList.sort {it.profile}
     render template: 'searchresults', model: [allTemplates: finalList]
   }
 

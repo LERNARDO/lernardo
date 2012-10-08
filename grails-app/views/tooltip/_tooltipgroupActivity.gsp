@@ -5,11 +5,11 @@
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="name"/>:</td>
-        <td class="two">${fieldValue(bean: entity, field: 'profile.fullName').decodeHTML()}</td>
+        <td class="two">${fieldValue(bean: entity, field: 'profile').decodeHTML()}</td>
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="template"/>:</td>
-        <td class="two"><erp:getTemplateOfGroupActivity entity="${entity}">${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}</erp:getTemplateOfGroupActivity></td>
+        <td class="two"><erp:getTemplateOfGroupActivity entity="${entity}">${fieldValue(bean: template, field: 'profile').decodeHTML()}</erp:getTemplateOfGroupActivity></td>
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="date"/>:</td>
@@ -18,7 +18,7 @@
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="facility"/>:</td>
-        <td class="two"><erp:getFacilityOfGroupActivity entity="${entity}">${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}</erp:getFacilityOfGroupActivity></td>
+        <td class="two"><erp:getFacilityOfGroupActivity entity="${entity}">${fieldValue(bean: facility, field: 'profile').decodeHTML()}</erp:getFacilityOfGroupActivity></td>
     </tr>
     <tr class="prop">
         <td class="one"><g:message code="educators"/>:</td>
@@ -26,7 +26,7 @@
             <erp:getEducatorsOfGroupActivity entity="${entity}">
                 <ul>
                     <g:each in="${educators}" var="educator">
-                        <li>${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</li>
+                        <li>${fieldValue(bean: educator, field: 'profile').decodeHTML()}</li>
                     </g:each>
                 </ul>
             </erp:getEducatorsOfGroupActivity>

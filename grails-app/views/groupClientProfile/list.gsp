@@ -6,7 +6,7 @@
 <div class="boxHeader">
   <h1><g:message code="groupClients"/></h1>
 </div>
-<div class="boxGray">
+<div class="boxContent">
 
   <div class="info-msg">
     <g:message code="object.total" args="[totalGroupClients, message(code: 'groupClients')]"/>
@@ -38,15 +38,15 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="creator"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="creator"/></td>
+          <td class="value">
             <span id="creators2"><g:message code="none"/></span> <a href="" onclick="jQuery('#creators2').html('${message(code: 'none')}'); clearElements(['#hiddentextfield1']); return false"><img src="${g.resource(dir:'images/icons', file:'cross.png')}" alt="Delete"/></a>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="value">
+          <td class="name"><g:message code="name"/></td>
+          <td class="value">
             <g:textField name="name" size="30"/>
           </td>
         </tr>

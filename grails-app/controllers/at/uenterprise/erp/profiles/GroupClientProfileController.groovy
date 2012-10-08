@@ -63,12 +63,12 @@ class GroupClientProfileController {
     if (group) {
       functionService.deleteReferences(group)
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "groupClient"), group.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "groupClient"), group.profile])
         group.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException ignore) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "groupClient"), group.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "groupClient"), group.profile])
         redirect(action: "show", id: params.id, params: [exception: e])
       }
     }
@@ -96,7 +96,7 @@ class GroupClientProfileController {
     group.profile.properties = params
 
     if (group.profile.save() && group.save()) {
-      flash.message = message(code: "object.updated", args: [message(code: "groupClient"), group.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "groupClient"), group.profile])
       redirect action: 'show', id: group.id
     }
     else {
@@ -121,7 +121,7 @@ class GroupClientProfileController {
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      flash.message = message(code: "object.created", args: [message(code: "groupClient"), entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "groupClient"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       render view: "create", model: [group: ee.entity]
@@ -138,7 +138,7 @@ class GroupClientProfileController {
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile.fullName]))}
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
       }
     }
 
@@ -236,7 +236,7 @@ class GroupClientProfileController {
         entity: currentEntity,
         group: group,
         clients: clients],
-        filename: message(code: 'groupClient') + '_' + group.profile.fullName + '.pdf'
+        filename: message(code: 'groupClient') + '_' + group.profile + '.pdf'
   }
 
   def define = {
