@@ -510,4 +510,12 @@ class TemplateProfileController {
     render template: 'labels', model: [template: template]
   }
 
+    def weightingAll = {
+        render template: "/templateProfile/weighting_all", model: [i: params.i, dropdown: params.dropdown]
+    }
+
+    def weightingChoose = {
+        render template: "/templateProfile/weighting_choose", model: [i: params.i, dropdown: params.dropdown]
+    }
+
 }

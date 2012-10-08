@@ -2159,13 +2159,13 @@ class HelperTagLib {
 
         Element element = Element.get(attrs.element)
 
-        def star = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star.png'/>"
-        def star_empty = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star_empty.png'/>"
+        def star = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star.png' />"
+        def star_empty = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star_empty.png' />"
 
         def updateDiv = "starBox${element.id}"
         def vote = element.voting
 
-        out << '<div>'
+        out << '<span>'
         // if the current entity is admin, operator or the creator display this
         if (currentEntity.user.authorities.find {it.authority == 'ROLE_ADMIN'} || currentEntity.type.id == metaDataService.etOperator.id || accessIsCreatorOf(currentEntity, attrs.template)) {
             out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 1]) { vote > 0 ? star : star_empty }
@@ -2182,7 +2182,7 @@ class HelperTagLib {
             //out << (vote > 3 ? star : star_empty)
             //out << (vote > 4 ? star : star_empty)
         }
-        out << '</div>'
+        out << '</span> ' + element.name
 
     }
 
