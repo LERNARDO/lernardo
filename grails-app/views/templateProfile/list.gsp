@@ -66,6 +66,9 @@
           <td class="name"><g:message code="labels"/></td>
           <td class="value">
             <g:select from="${allLabels}" multiple="true" name="labels" value="" style="min-height: 115px;"/>
+              <g:radioGroup name="labelLogic" labels="['UND','ODER']" values="[1,2]" value="1">
+                  <span>${it.radio} ${it.label}</span>
+              </g:radioGroup>
           </td>
         </tr>
 

@@ -331,13 +331,38 @@ class TemplateProfileController {
 
     if (params.labels) {
       List labels = params.list('labels')
-      results.each { Entity template ->
-        template.profile.labels.each { Label label ->
-          if (labels.contains(label.name)) {
-            if (!thirdPass.contains(template))
-              thirdPass.add(template)
+
+      if (params.labelLogic == "1") { // AND
+          results.each { Entity template ->
+              def passed = true
+              List templateLabels = template.profile.labels as List
+              labels.sort()
+              templateLabels.sort {it.name}
+
+              if (labels.size() != templateLabels.size())
+                  passed = false
+
+              if (passed) {
+                  labels.eachWithIndex { label, ind ->
+                      if (label != templateLabels[ind].name) {
+                          passed = false
+                      }
+                  }
+              }
+
+              if (passed)
+                  thirdPass.add(template)
           }
-        }
+      }
+      else { // OR
+          results.each { Entity template ->
+            template.profile.labels.each { Label label ->
+              if (labels.contains(label.name)) {
+                if (!thirdPass.contains(template))
+                  thirdPass.add(template)
+              }
+            }
+          }
       }
     }
     else
