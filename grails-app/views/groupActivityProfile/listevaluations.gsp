@@ -38,7 +38,7 @@
             </tr>
             <tr>
               <td class="bold vtop"><g:message code="linkedTo"/>:</td>
-              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}"><erp:createLinkFromEvaluation evaluation="${evaluation}"/> <erp:accessCheck types="['Betreiber']" me="${evaluation.writer}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></span></td>
+              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}"><erp:createLinkFromEvaluation linked="${evaluation.linkedTo}"/> <erp:accessCheck types="['Betreiber']" me="${evaluation.writer}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></span></td>
             </tr>
           </table>
           %{--<erp:accessCheck types="['Betreiber']" me="${evaluation.writer}">

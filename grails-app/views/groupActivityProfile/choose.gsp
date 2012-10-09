@@ -20,9 +20,7 @@
         <g:remoteField size="40" name="remoteField1" update="remoteTemplates" action="remoteTemplates" before="showspinner('#remoteTemplates')"/>
         <div id="remoteTemplates"></div>
 
-        <div style="visibility: hidden">
-          <g:textField name="template" id="hiddentextfield1" value=""/>
-        </div>
+        <g:hiddenField name="template" id="hiddenTemplateId" value=""/>
 
         <div id="templates2">
           <span class="gray"><g:message code="groupActivityTemplate.choose"/></span>

@@ -30,11 +30,9 @@
 
     <g:form action="update" id="${evaluationInstance.id}" params="[name:entity.name]">
 
-      <div style="visibility: hidden">
-        <g:textField name="linkedentity" id="hiddentextfield1" value="0"/>
-      </div>
+      <g:hiddenField name="linkedentity" id="hiddenEntityId" value="0"/>
 
-      <p><g:message code="linkedTo"/>: <g:if test="${evaluationInstance.linkedTo}"><erp:createLinkFromEvaluation evaluation="${evaluationInstance}"/></g:if><g:else><span class="italic"><g:message code="links.notLinked"/></span></g:else></p>
+      <p><g:message code="linkedTo"/>: <g:if test="${evaluationInstance.linkedTo}"><erp:createLinkFromEvaluation linked="${evaluationInstance.linkedTo}"/></g:if><g:else><span class="italic"><g:message code="links.notLinked"/></span></g:else></p>
 
       <p class="prop">
         <span class="name"><g:message code="title"/>: </span>

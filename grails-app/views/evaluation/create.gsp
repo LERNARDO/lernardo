@@ -25,12 +25,12 @@
       </div>
 
       <div id="results"></div>
-      %{--<div id="selected" style="padding-top: 5px;"></div>--}%
+      <div id="selected" style="padding-top: 5px;"></div>
     </div>
 
     <g:form action="save" params="[entity:entity.id]">
 
-      <p class="gray">
+      %{--<p class="gray">
         <g:message code="linkedTo"/><br/>
         <g:if test="${target}">
           <g:select name="linkedentity" id="hiddenselect" from="[target]" optionKey="id" optionValue="profile" value="${target?.id}"/>
@@ -38,7 +38,18 @@
         <g:else>
           <g:select name="linkedentity" id="hiddenselect" from="[]"/>
         </g:else>
-      </p>
+      </p>--}%
+
+      <g:hiddenField name="linkedentity" id="hiddenEntityId" value="${target?.id}"/>
+
+      <g:if test="${target}">
+          <p>
+            <g:message code="linkedTo"/>: <erp:createLinkFromEvaluation linked="${target}"/>
+          </p>
+      </g:if>
+      %{--<g:else>
+          <span class="italic"><g:message code="links.notLinked"/></span>
+      </g:else>--}%
 
       <p class="prop">
         <span class="name"><g:message code="title"/>: </span>

@@ -198,21 +198,21 @@ class HelperTagLib {
      * Returns a link to the groupActivity or project an evaluation is linked to
      *
      * @author Alexander Zeillinger
-     * @attr evaluation REQUIRED The evaluation to get the link from
+     * @attr linked REQUIRED The linked entity
      */
     def createLinkFromEvaluation = {attrs, body ->
-        Evaluation evaluation = attrs.evaluation
+        Entity linked = attrs.linked
 
-        if (evaluation.linkedTo.type == metaDataService.etGroupActivity)
-            out << link(controller: evaluation.linkedTo.type.supertype.name + 'Profile', action: 'show', id: evaluation.linkedTo.id) {evaluation.linkedTo.profile}
+        if (linked.type == metaDataService.etGroupActivity)
+            out << link(controller: linked.type.supertype.name + 'Profile', action: 'show', id: linked.id) {linked.profile}
         else {
             // find project day the project unit is linked to
-            Entity projectDay = functionService.findByLink(evaluation.linkedTo, null, metaDataService.ltProjectDayUnit)
+            Entity projectDay = functionService.findByLink(linked, null, metaDataService.ltProjectDayUnit)
 
             // find project the project day is linked to
             if (projectDay) {
                 Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-                out << link(controller: 'projectProfile', action: 'show', id: project.id) {evaluation.linkedTo.profile + ' (' + message(code: 'project') + ': ' + project.profile + ')'}
+                out << link(controller: 'projectProfile', action: 'show', id: project.id) {linked.profile + ' (' + message(code: 'project') + ': ' + project.profile + ')'}
             }
         }
     }

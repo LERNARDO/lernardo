@@ -42,7 +42,7 @@
     
     <tr class="prop">
       <td class="one"><g:message code="linkedTo"/>:</td>
-      <td class="two"><span id="linkedTo"><g:if test="${evaluation.linkedTo}"><erp:createLinkFromEvaluation evaluation="${evaluation}"/> <erp:accessCheck types="['Betreiber']" me="${evaluation.writer}"><g:remoteLink action="removeLinkedTo" update="linkedTo" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></g:if><g:else><span class="italic"><g:message code="links.notLinked"/></span></g:else></span></td>
+      <td class="two"><span id="linkedTo"><g:if test="${evaluation.linkedTo}"><erp:createLinkFromEvaluation linked="${evaluation.linkedTo}"/> <erp:accessCheck types="['Betreiber']" me="${evaluation.writer}"><g:remoteLink action="removeLinkedTo" update="linkedTo" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></g:if><g:else><span class="italic"><g:message code="links.notLinked"/></span></g:else></span></td>
     </tr>
 
   </table>
