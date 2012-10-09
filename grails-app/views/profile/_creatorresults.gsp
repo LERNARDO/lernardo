@@ -1,16 +1,13 @@
 <script type="text/javascript">
-
-  function kontrolle1(id) {
-    var textfield = document.getElementById("hiddentextfield1");
-    textfield.value = id;
-  }
-
+    function setHiddenId(id) {
+        $('#hiddenCreatorId').val(id);
+    }
 </script>
 
 <g:if test="${results}">
   <div class="remoteresults">
     <g:each in="${results}" var="entity">
-      <g:remoteLink url="[controller: 'profile', action: 'addCreator', id: entity.id]" update="creators2" before="kontrolle1('${entity.id}');">
+      <g:remoteLink url="[controller: 'profile', action: 'addCreator', id: entity.id]" update="creators2" before="setHiddenId('${entity.id}');">
         <div class="remoteresult">
           <table>
             <tr>

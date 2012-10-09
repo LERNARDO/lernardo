@@ -30,9 +30,7 @@
         <g:remoteField size="40" name="remoteField1" update="remoteCreators" controller="profile" action="remoteCreators" before="showspinner('#remoteCreators')"/>
         <div id="remoteCreators"></div>
 
-        <div style="visibility: hidden">
-          <g:textField name="creator" id="hiddentextfield1" value=""/>
-        </div>
+        <g:hiddenField name="creator" id="hiddenCreatorId" value=""/>
       </div>
 
       <table>

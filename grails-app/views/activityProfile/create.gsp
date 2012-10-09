@@ -40,9 +40,7 @@
         <g:remoteField size="40" name="remoteField1" update="remoteTemplates" action="remoteTemplates" before="showspinner('#remoteTemplates')"/>
         <div id="remoteTemplates"></div>
 
-        <div style="visibility: hidden">
-          <g:textField name="template" id="hiddentextfield1" value="default"/>
-        </div>
+        <g:hiddenField name="template" id="hiddenTemplateId" value="default"/>
 
         <div id="templates2">
         </div>

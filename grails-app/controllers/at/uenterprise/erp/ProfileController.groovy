@@ -374,6 +374,7 @@ class ProfileController {
 
   /*
   * retrieves all creators matching the search parameter
+  * used in lists when defining results
   */
   def remoteCreators = {
 

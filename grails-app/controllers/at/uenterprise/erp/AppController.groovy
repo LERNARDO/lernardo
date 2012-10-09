@@ -530,6 +530,7 @@ class AppController {
 
 /*
    * retrieves all educators, users and operators matching the search parameter
+   * used when changing the creator
    */
   def remoteCreators = {
     if (!params.value) {
