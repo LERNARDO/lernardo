@@ -16,9 +16,9 @@
     </tr>
     </thead>
     <tbody>
-      %{--<erp:timeEvaluation entities="${subeducators.value}" date1="${date1 ?: null}" date2="${date2 ?: null}" workdaycategories="${workdaycategories}"/>--}%
+      <erp:timeEvaluation entities="${subeducators.value}" date1="${date1 ?: null}" date2="${date2 ?: null}" workdaycategories="${workdaycategories}"/>
 
-      <g:each in="${subeducators.value}" status="i" var="person">
+      %{--<g:each in="${subeducators.value}" status="i" var="person">
         <erp:showHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td><g:link controller="${person.type.supertype.name + 'Profile'}" action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile.firstName').decodeHTML()} ${fieldValue(bean: person, field: 'profile.lastName').decodeHTML()}</g:link></td>
@@ -33,7 +33,8 @@
             <td><erp:getSalary educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
           </tr>
         </erp:showHours>
-      </g:each>
+      </g:each>--}%
+
     </tbody>
   </table>
 </g:each>

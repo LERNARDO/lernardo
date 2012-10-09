@@ -680,35 +680,128 @@ class HelperTagLib {
 
         BigDecimal total = 0
 
+        Map totalSum = [:]
+        attrs.workdaycategories.eachWithIndex { category, ind ->
+            totalSum[ind] = 0
+        }
+
+        NumberFormat df = new DecimalFormat("##0.00")
+
         attrs.entities.each { person ->
             if (calculateExpectedHours(person, date1, date2) > 0) {
                 out << '<tr>'
                 out << '<td>' + link(controller: person.type.supertype.name + "Profile", action: "show", id: person.id, params: [entity: person.id]) {fieldValue(bean: person, field: 'profile.firstName').decodeHTML() + " " + fieldValue(bean: person, field: 'profile.lastName').decodeHTML()} + "</td>"
-                attrs.workdaycategories.each { category ->
-                    '<td>' + functionService.getHoursForCategory(category: category, educator: person, date1: date1 ?: null, date2: date2 ?: null) + '</td>'
+                attrs.workdaycategories.eachWithIndex { category, ind ->
+                    if (category.counts) {
+                        out << '<td>' + df.format(functionService.getHoursForCategory(category, person, date1 ?: null, date2 ?: null)) + '</td>'
+                        totalSum[ind] += functionService.getHoursForCategory(category, person, date1 ?: null, date2 ?: null)
+                    }
                 }
-                out << '<td></td>'
-                out << '<td></td>'
-                out << '<td></td>'
-                out << '<td></td>'
+
+                // calculate total hours
+                BigDecimal hours = calculateTotalHours(person, date1, date2 + 1)
+                out << '<td>' + df.format(hours) + '</td>'
+
+                // calculate expected hours
+                hours = calculateExpectedHours(person, date1, date2)
+                out << '<td>' + df.format(hours) + '</td>'
+
+                // calculate confirmed hours
+                def allConfirmed = true
+                person.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+                    // check if the date of the workdayunit is between date1 and date2
+                    if (attrs.date1 != null && attrs.date2 != null) {
+                        if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+                            if (!workdayUnit.confirmed) {
+                                allConfirmed = false
+                            }
+                        }
+                    }
+                }
+
+                if (allConfirmed)
+                    out << "<td>${message(code: 'yes')}</td>"
+                else
+                    out << "<td>${message(code: 'no')}" + link(controller: 'msg', action: 'create', id: educator.id, params: [subject: 'Erinnerung Zeitaufzeichnung', content: attrs.date1 + ' - ' + attrs.date2]) {' (Erinnern)'} + "<td>"
+
+                // calculate salary
+
+                // calculate expected hours
+                BigDecimal expectedHours = 0
+                Calendar tcalendarStart = new GregorianCalendar();
+                tcalendarStart.setTime(date1);
+
+                Calendar tcalendarEnd = new GregorianCalendar();
+                tcalendarEnd.setTime(date2);
+
+                SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
+
+                while (tcalendarStart <= tcalendarEnd) {
+                    Date currentDate = tcalendarStart.getTime();
+
+                    if (tdf.format(currentDate) == 'Monday')
+                        expectedHours += person.profile.workHoursMonday
+                    else if (tdf.format(currentDate) == 'Tuesday')
+                        expectedHours += person.profile.workHoursTuesday
+                    else if (tdf.format(currentDate) == 'Wednesday')
+                        expectedHours += person.profile.workHoursWednesday
+                    else if (tdf.format(currentDate) == 'Thursday')
+                        expectedHours += person.profile.workHoursThursday
+                    else if (tdf.format(currentDate) == 'Friday')
+                        expectedHours += person.profile.workHoursFriday
+                    else if (tdf.format(currentDate) == 'Saturday')
+                        expectedHours += person.profile.workHoursSaturday
+                    else if (tdf.format(currentDate) == 'Sunday')
+                        expectedHours += person.profile.workHoursSunday
+
+                    tcalendarStart.add(Calendar.DATE, 1)
+                }
+
+                // calculate real hours
+                hours = 0
+                person.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+                    // check if the workdayunit should be counted
+                    WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
+                    if (category?.counts) {
+                        // check if the date of the workdayunit is between date1 and date2
+                        if (attrs.date1 != null && attrs.date2 != null) {
+                            if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+                                hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+                            }
+                        }
+                        else
+                            hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+                    }
+                }
+
+                // calculate salary
+                def result = 0
+                if (hours <= expectedHours)
+                    result += hours * (person?.profile?.hourlyWage ?: 0)
+                else
+                    result += expectedHours * (person?.profile?.hourlyWage ?: 0) + ((hours - expectedHours) * (person?.profile?.overtimePay ?: 0))
+
+                out << '<td>' + result + '</td>'
+
                 out << '</tr>'
             }
         }
 
-        /*<g:each in="${subeducators.value}" status="i" var="person">
-      <erp:showHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}">
-      <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-      <td><g:link controller="${person.type.supertype.name + 'Profile'}" action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile.firstName').decodeHTML()} ${fieldValue(bean: person, field: 'profile.lastName').decodeHTML()}</g:link></td>
-      <g:each in="${workdaycategories}" var="category">
-      <td><erp:getHoursForCategory category="${category}" educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-              </g:each>
-      <td><erp:getTotalHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-              <td><erp:getExpectedHours educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-              <td><erp:getHoursConfirmed educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-              <td><erp:getSalary educator="${person}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-            </tr>
-      </erp:showHours>
-        </g:each>*/
+        out << '<tr><td></td>'
+        totalSum.each() {
+            out << '<td></td>'
+        }
+        out << '<td></td></tr>'
+
+        out << '<tr>'
+        out << '<td>' + message(code: 'total') + '</td>'
+        BigDecimal sumOfTotal = 0
+        totalSum.each() { key, value ->
+            out << '<td>' + df.format(value) + '</td>'
+            sumOfTotal += value
+        }
+        out << '<td class="bold">' + df.format(sumOfTotal) + '</td>'
+        out << '</tr>'
     }
 
     /**

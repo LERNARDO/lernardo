@@ -575,10 +575,10 @@ class FunctionService {
    * Calculates the number of hours an educator has worked in a given category
    *
    * @author Alexander Zeillinger
+   * @attr category REQUIRED The category to check
    * @attr educator REQUIRED The educator to find the workdayunits of
    * @attr date1 REQUIRED The begin of the date range to check
    * @attr date2 REQUIRED The end of the date range to check
-   * @attr category REQUIRED The category to check
    */
   def getHoursForCategory(category, educator, date1, date2) {
     /*Date date1
@@ -590,6 +590,8 @@ class FunctionService {
 
     Entity educator = attrs.educator
     WorkdayCategory workdayCategory = attrs.category*/
+
+    date2 = date2 + 1
 
     BigDecimal hours = 0
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
@@ -606,8 +608,7 @@ class FunctionService {
       }
     }
 
-    NumberFormat df = new DecimalFormat("##0.00")
-    return df.format(hours)
+    return hours
   }
 
 }
