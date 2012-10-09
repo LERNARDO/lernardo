@@ -380,4 +380,10 @@ class EvaluationController {
     evaluation.save()
     render {span(class: 'italic', message(code: 'links.notLinked'))}
   }
+
+    def createpdf = {
+        Evaluation evaluation = Evaluation.get(params.id)
+        Entity currentEntity = entityHelperService.loggedIn
+        renderPdf template: 'printEvaluation', model: [pageformat: params.pageformat, currentEntity: currentEntity, evaluation: evaluation], filename: "Tagebucheintrag" + '.pdf'
+    }
 }

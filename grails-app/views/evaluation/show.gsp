@@ -47,13 +47,24 @@
 
   </table>
 
-  <erp:accessCheck types="['Betreiber']" me="${evaluation.writer}">
+
     <div class="buttons cleared">
-      <g:form id="${evaluation?.id}" params="[entity: entity.id]">
-        <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-        %{--<div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="return confirm('${message(code:'delete.warn')}');"/></div>--}%
-      </g:form>
+        <erp:accessCheck types="['Betreiber']" me="${evaluation.writer}">
+            <g:form id="${evaluation?.id}" params="[entity: entity.id]">
+                <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+            </g:form>
+        </erp:accessCheck>
+        <div class="button"><a class="buttonGreen" href="#" onclick="jQuery('#modal').modal(); return false">PDF</a></div>
     </div>
-  </erp:accessCheck>
+
+<div id="modal" style="display: none;">
+    <g:form action="createpdf" id="${evaluation.id}">
+        <p><g:message code="selectPageFormat"/></p>
+        <g:radioGroup name="pageformat" labels="['DIN A4 Hoch (210mm × 297mm)','DIN A4 Quer (297mm × 210mm)','Letter Hoch (216mm × 279mm)','Letter Quer (279mm × 216mm)']" values="[1,2,3,4]" value="1">
+            <p>${it.radio} ${it.label}</p>
+        </g:radioGroup>
+        <g:submitButton name="pdfbutton" value="${message(code: 'notification.send')}"/>
+    </g:form>
+</div>
 
 </body>
