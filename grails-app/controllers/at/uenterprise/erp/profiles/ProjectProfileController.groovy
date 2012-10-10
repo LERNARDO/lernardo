@@ -1821,6 +1821,19 @@ class ProjectProfileController {
         redirect action: "show", id: project.id
     }
 
+    def createpdf = {
+        Entity project = Entity.get(params.id)
+        Entity currentEntity = entityHelperService.loggedIn
+
+        Entity template = functionService.findByLink(null, project, metaDataService.ltTemplate) // find template
+
+        renderPdf template: 'createpdf', model: [pageformat: params.pageformat,
+                entity: currentEntity,
+                project: project,
+                template: template],
+                filename: message(code: 'project') + '_' + project.profile + '.pdf'
+    }
+
 }
 
 class ProjectCommand {
