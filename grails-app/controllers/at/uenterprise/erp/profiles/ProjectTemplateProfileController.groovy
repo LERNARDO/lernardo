@@ -682,6 +682,16 @@ class ProjectTemplateProfileController {
      }
    }
 
+    def createpdf = {
+        Entity template = Entity.get(params.id)
+        Entity currentEntity = entityHelperService.loggedIn
+
+        renderPdf template: 'createpdf', model: [pageformat: params.pageformat,
+                entity: currentEntity,
+                template: template],
+                filename: message(code: 'projectTemplate') + '_' + template.profile + '.pdf'
+    }
+
 }
 
 

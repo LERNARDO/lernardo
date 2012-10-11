@@ -634,4 +634,14 @@ class GroupActivityTemplateProfileController {
     render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'groupActivityTemplate', params: params]
   }
 
+    def createpdf = {
+        Entity template = Entity.get(params.id)
+        Entity currentEntity = entityHelperService.loggedIn
+
+        renderPdf template: 'createpdf', model: [pageformat: params.pageformat,
+                entity: currentEntity,
+                template: template],
+                filename: message(code: 'groupActivityTemplate') + '_' + template.profile + '.pdf'
+    }
+
 }
