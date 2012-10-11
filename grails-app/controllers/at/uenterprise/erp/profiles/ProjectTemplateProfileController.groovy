@@ -88,7 +88,8 @@ class ProjectTemplateProfileController {
                 calculatedDuration: calculatedDuration,
                 instances: instances,
                 groupActivityTemplateResources: groupActivityTemplateResources,
-                templateResources: templateResources]
+                templateResources: templateResources,
+                allLabels: functionService.getLabels()]
     }
 
   def delete = {
