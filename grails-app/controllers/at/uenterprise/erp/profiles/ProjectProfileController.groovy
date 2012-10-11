@@ -661,8 +661,13 @@ class ProjectProfileController {
 
     Entity currentEntity = entityHelperService.loggedIn
 
+    Date time = params.date('time', 'HH:mm')
+    time = functionService.convertToUTC(time)
+
     def project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
+    /*
+    OLD: calculate begin of new unit to be after the end of all previous units
     // set the correct time for the new unit
         // find all units linked to this projectDay
         List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
@@ -681,15 +686,18 @@ class ProjectProfileController {
 
         // finally update unit time
         Calendar calendar = new GregorianCalendar()
+     */
+
+    Calendar calendar = new GregorianCalendar()
 
     // find all activity template groups linked to the project unit template
-    groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
+    List groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
 
     // and link each group to the project unit
-    int duration2 = 0
+    int duration = 0
     groups.each {
       // set duration of unit
-      duration2 += it.profile.realDuration
+      duration += it.profile.realDuration
     }
 
     // create a new unit and copy the properties from the unit template
@@ -699,9 +707,11 @@ class ProjectProfileController {
       ent.profile.fullName = projectUnitTemplate.profile.fullName
 
       calendar.setTime(projectDay.profile.date)
-      calendar.add(Calendar.MINUTE, duration)
+      //calendar.add(Calendar.MINUTE, duration)
+      calendar.set(Calendar.HOUR_OF_DAY, time.getHours())
+      calendar.set(Calendar.MINUTE, time.getMinutes())
       ent.profile.date = calendar.getTime()
-      ent.profile.duration = duration2
+      ent.profile.duration = duration
     }
 
     // save creator
@@ -719,7 +729,7 @@ class ProjectProfileController {
 
     // return values for the template
         // find all units linked to this projectDay
-        units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+        List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
         // get all parents
         def allParents = Entity.findAllByType(metaDataService.etParent)

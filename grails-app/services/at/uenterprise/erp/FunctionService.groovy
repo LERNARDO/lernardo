@@ -189,6 +189,7 @@ class FunctionService {
     if ( !date ) return date
     Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))
     calendar.setTime(date)
+    // FIXME: DST seems to get ignored, checked on 11.10.2012
     calendar.add(Calendar.MINUTE, -((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000)).toInteger())
     return calendar.getTime()
   }

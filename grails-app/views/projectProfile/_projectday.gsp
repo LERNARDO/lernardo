@@ -13,6 +13,14 @@
                    '${message(code: "october")}', '${message(code: "november")}', '${message(code: "december")}'],
       dateFormat: 'dd. mm. yy'
     });
+
+      $('.timepick').timepicker({
+          timeText: '${message(code: "time")}',
+          hourText: '${message(code: "hour")}',
+          minuteText: '${message(code: "minute")}',
+          timeOnlyTitle: '${message(code: "chooseTime")}',
+          stepMinute: 5
+      });
   });
 </script>
 
@@ -55,7 +63,8 @@
       <table>
         <tr>
           <td style="padding: 5px 10px 0 0;"><g:select name="unit" from="${units}" optionKey="id" optionValue="profile"/></td>
-          <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+          <td><span class="gray"><g:message code="time"/>:</span> <g:textField name="time" class="timepick" size="4" value=""/></td>
+          <td style="padding-left: 10px;"><g:submitButton name="button" value="${message(code:'add')}"/></td>
         </tr>
       </table>
     </g:formRemote>
