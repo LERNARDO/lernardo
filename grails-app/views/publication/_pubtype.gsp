@@ -13,7 +13,7 @@
 <g:each var="pub" in="${publist}" status="i">
   <g:if test="${(!pub.isPublic && currentEntity == pub.entity) || pub.isPublic}">
     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-      <td><g:formatBoolean boolean="${pub.isPublic}" true="Öffentlich" false="Privat"/></td>
+      <td><g:formatBoolean boolean="${pub.isPublic}" true="${message(code: 'public')}" false="${message(code: 'private')}"/></td>
       <td class="title"><a target="_blank" href="${createLink(action: 'showasset', params: '[name: pub.entity.name]', id: pub.id)}">${pub.name}</a></td>
       %{-- TODO: uncomment when implemented --}%
       %{--<ub:meOrAdmin entityName="${entity}"><td><erp:showAccessLevel accesslevel="${pub.accesslevel}"/></td></ub:meOrAdmin>--}%

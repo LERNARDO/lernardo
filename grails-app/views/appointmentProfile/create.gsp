@@ -51,7 +51,7 @@
         </tr>
 
         <tr class="prop">
-          <td class="name"><g:message code="appointment.profile.isPrivate"/></td>
+          <td class="name"><g:message code="private"/></td>
           <td class="value">
             <g:checkBox name="isPrivate" value="${appointmentProfileInstance?.profile?.isPrivate}"/>
           </td>
