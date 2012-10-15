@@ -623,7 +623,7 @@ class ProjectProfileController {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayStart.getHours())
             calendarStart.set(Calendar.MINUTE, params.tuesdayStart.getMinutes())
             projectDayBegin = calendarStart.getTime()
-            calendarStart.set(Calendar.HOUR_OF_DAY, paramstuesdayEnd.getHours())
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayEnd.getHours())
             calendarStart.set(Calendar.MINUTE, params.tuesdayEnd.getMinutes())
             projectDayEnd = calendarStart.getTime()
           }
@@ -706,66 +706,75 @@ class ProjectProfileController {
 
     def project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
-    /*
-    OLD: calculate begin of new unit to be after the end of all previous units
-    // set the correct time for the new unit
-        // find all units linked to this projectDay
-        List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+    Calendar calendar = new GregorianCalendar()
+    calendar.setTime(projectDay.profile.date)
+    calendar.set(Calendar.HOUR_OF_DAY, time.getHours())
+    calendar.set(Calendar.MINUTE, time.getMinutes())
 
-        // find all groups linked to all units
-        List groups = []
-        units.each { Entity unit ->
-          groups.addAll(functionService.findAllByLink(null, unit, metaDataService.ltProjectUnit))
-        }
+    if (calendar.getTime().getTime() >= projectDay.profile.date.getTime()) {
 
-        // calculate total duration of all these groups
+        /*
+        OLD: calculate begin of new unit to be after the end of all previous units
+        // set the correct time for the new unit
+            // find all units linked to this projectDay
+            List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+
+            // find all groups linked to all units
+            List groups = []
+            units.each { Entity unit ->
+              groups.addAll(functionService.findAllByLink(null, unit, metaDataService.ltProjectUnit))
+            }
+
+            // calculate total duration of all these groups
+            int duration = 0
+            groups.each {
+              duration += it.profile.realDuration
+            }
+
+            // finally update unit time
+            Calendar calendar = new GregorianCalendar()
+         */
+
+        // find all activity template groups linked to the project unit template
+        List groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
+
+        // and link each group to the project unit
         int duration = 0
         groups.each {
+          // set duration of unit
           duration += it.profile.realDuration
         }
 
-        // finally update unit time
-        Calendar calendar = new GregorianCalendar()
-     */
+        // create a new unit and copy the properties from the unit template
+        EntityType etProjectUnit = metaDataService.etProjectUnit
+        Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
+          ent.profile.fullName = projectUnitTemplate.profile.fullName
 
-    Calendar calendar = new GregorianCalendar()
+          calendar.setTime(projectDay.profile.date)
+          //calendar.add(Calendar.MINUTE, duration)
+          calendar.set(Calendar.HOUR_OF_DAY, time.getHours())
+          calendar.set(Calendar.MINUTE, time.getMinutes())
+          ent.profile.date = calendar.getTime()
+          ent.profile.duration = duration
+        }
 
-    // find all activity template groups linked to the project unit template
-    List groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
+        // save creator
+        new Link(source: currentEntity, target: projectUnit, type: metaDataService.ltCreator).save()
 
-    // and link each group to the project unit
-    int duration = 0
-    groups.each {
-      // set duration of unit
-      duration += it.profile.realDuration
+        projectDay.profile.addToUnits(projectUnit.id.toString())
+
+        // link the new unit to the project day
+        new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
+
+        // and link each group to the project unit
+        groups.each { Entity group ->
+          new Link(source: group, target: projectUnit, type: metaDataService.ltProjectUnit).save()
+        }
+
     }
-
-    // create a new unit and copy the properties from the unit template
-    EntityType etProjectUnit = metaDataService.etProjectUnit
-    Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = projectUnitTemplate.profile.fullName
-
-      calendar.setTime(projectDay.profile.date)
-      //calendar.add(Calendar.MINUTE, duration)
-      calendar.set(Calendar.HOUR_OF_DAY, time.getHours())
-      calendar.set(Calendar.MINUTE, time.getMinutes())
-      ent.profile.date = calendar.getTime()
-      ent.profile.duration = duration
-    }
-
-    // save creator
-    new Link(source: currentEntity, target: projectUnit, type: metaDataService.ltCreator).save()
-
-    projectDay.profile.addToUnits(projectUnit.id.toString())
-
-    // link the new unit to the project day
-    new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
-
-    // and link each group to the project unit
-    groups.each { Entity group ->
-      new Link(source: group, target: projectUnit, type: metaDataService.ltProjectUnit).save()
-    }
+      else
+        render '<p class="red">' + message(code: 'projectUnit.notInRange') + '</p>'
 
     // return values for the template
         // find all units linked to this projectDay
