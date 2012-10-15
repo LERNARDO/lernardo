@@ -41,39 +41,95 @@
       <table class="${hasErrors(bean: pc, field: 'weekdays', 'errors')}">
         <tr>
           <td style="padding: 6px;">
-            <div style="margin-bottom: 3px;"><g:checkBox name="monday" value="${pc?.monday}" onclick="toggleDisabled('.mondayStart')"/> <g:message code="monday"/></div>
-            <g:if test="${pc?.monday}"><g:textField name="mondayStart" class="mondayStart timepick ${hasErrors(bean: pc, field: 'mondayStart', 'errors')}" size="4" value="${formatDate(date: pc?.mondayStart, format: 'HH:mm')}"/></g:if>
-            <g:else><g:textField disabled="disabled" name="mondayStart" class="mondayStart timepick ${hasErrors(bean: pc, field: 'mondayStart', 'errors')}" size="4" value="${formatDate(date: pc?.mondayStart, format: 'HH:mm')}"/></g:else>
+            <div style="margin-bottom: 3px;"><g:checkBox name="monday" value="${pc?.monday}" onclick="toggleDisabled('.mondayStart'); toggleDisabled('.mondayEnd');"/> <g:message code="monday"/></div>
+            <div style="width: 80px; text-align: right;">
+                <g:if test="${pc?.monday}">
+                    <g:message code="from"/> <g:textField name="mondayStart" class="mondayStart timepick ${hasErrors(bean: pc, field: 'mondayStart', 'errors')}" size="4" value="${formatDate(date: pc?.mondayStart, format: 'HH:mm')}"/><br/>
+                    <g:message code="to"/> <g:textField name="mondayEnd" class="mondayEnd timepick ${hasErrors(bean: pc, field: 'mondayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.mondayEnd, format: 'HH:mm')}"/>
+                </g:if>
+                <g:else>
+                    <g:message code="from"/> <g:textField disabled="disabled" name="mondayStart" class="mondayStart timepick ${hasErrors(bean: pc, field: 'mondayStart', 'errors')}" size="4" value="${formatDate(date: pc?.mondayStart, format: 'HH:mm')}"/><br/>
+                    <g:message code="to"/> <g:textField disabled="disabled" name="mondayEnd" class="mondayEnd timepick ${hasErrors(bean: pc, field: 'mondayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.mondayEnd, format: 'HH:mm')}"/>
+                </g:else>
+            </div>
           </td>
         <td style="padding: 6px;">
-          <div style="margin-bottom: 3px;"><g:checkBox name="tuesday" value="${pc?.tuesday}" onclick="toggleDisabled('.tuesdayStart')"/> <g:message code="tuesday"/></div>
-          <g:if test="${pc?.tuesday}"><g:textField name="tuesdayStart" class="tuesdayStart timepick ${hasErrors(bean: pc, field: 'tuesdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.tuesdayStart, format: 'HH:mm')}"/></g:if>
-          <g:else><g:textField disabled="disabled" name="tuesdayStart" class="tuesdayStart timepick ${hasErrors(bean: pc, field: 'tuesdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.tuesdayStart, format: 'HH:mm')}"/></g:else>
+          <div style="margin-bottom: 3px;"><g:checkBox name="tuesday" value="${pc?.tuesday}" onclick="toggleDisabled('.tuesdayStart'); toggleDisabled('.tuesdayEnd');"/> <g:message code="tuesday"/></div>
+          <div style="width: 80px; text-align: right;">
+              <g:if test="${pc?.tuesday}">
+                  <g:message code="from"/> <g:textField name="tuesdayStart" class="tuesdayStart timepick ${hasErrors(bean: pc, field: 'tuesdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.tuesdayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField name="tuesdayEnd" class="tuesdayEnd timepick ${hasErrors(bean: pc, field: 'tuesdayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.tuesdayEnd, format: 'HH:mm')}"/>
+              </g:if>
+              <g:else>
+                  <g:message code="from"/> <g:textField disabled="disabled" name="tuesdayStart" class="tuesdayStart timepick ${hasErrors(bean: pc, field: 'tuesdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.tuesdayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField disabled="disabled" name="tuesdayEnd" class="tuesdayEnd timepick ${hasErrors(bean: pc, field: 'tuesdayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.tuesdayEnd, format: 'HH:mm')}"/>
+              </g:else>
+          </div>
         </td>
         <td style="padding: 6px;">
-          <div style="margin-bottom: 3px;"><g:checkBox name="wednesday" value="${pc?.wednesday}" onclick="toggleDisabled('.wednesdayStart')"/> <g:message code="wednesday"/></div>
-          <g:if test="${pc?.wednesday}"><g:textField name="wednesdayStart" class="wednesdayStart timepick ${hasErrors(bean: pc, field: 'wednesdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.wednesdayStart, format: 'HH:mm')}"/></g:if>
-          <g:else><g:textField disabled="disabled" name="wednesdayStart" class="wednesdayStart timepick ${hasErrors(bean: pc, field: 'wednesdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.wednesdayStart, format: 'HH:mm')}"/></g:else>
+          <div style="margin-bottom: 3px;"><g:checkBox name="wednesday" value="${pc?.wednesday}" onclick="toggleDisabled('.wednesdayStart'); toggleDisabled('.wednesdayEnd');"/> <g:message code="wednesday"/></div>
+          <div style="width: 80px; text-align: right;">
+              <g:if test="${pc?.wednesday}">
+                  <g:message code="from"/> <g:textField name="wednesdayStart" class="wednesdayStart timepick ${hasErrors(bean: pc, field: 'wednesdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.wednesdayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField name="wednesdayEnd" class="wednesdayEnd timepick ${hasErrors(bean: pc, field: 'wednesdayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.wednesdayEnd, format: 'HH:mm')}"/>
+              </g:if>
+              <g:else>
+                  <g:message code="from"/> <g:textField disabled="disabled" name="wednesdayStart" class="wednesdayStart timepick ${hasErrors(bean: pc, field: 'wednesdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.wednesdayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField disabled="disabled" name="wednesdayEnd" class="wednesdayEnd timepick ${hasErrors(bean: pc, field: 'wednesdayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.wednesdayEnd, format: 'HH:mm')}"/>
+              </g:else>
+          </div>
         </td>
         <td style="padding: 6px;">
-          <div style="margin-bottom: 3px;"><g:checkBox name="thursday" value="${pc?.thursday}" onclick="toggleDisabled('.thursdayStart')"/> <g:message code="thursday"/></div>
-          <g:if test="${pc?.thursday}"><g:textField name="thursdayStart" class="thursdayStart timepick ${hasErrors(bean: pc, field: 'thursdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.thursdayStart, format: 'HH:mm')}"/></g:if>
-          <g:else><g:textField disabled="disabled" name="thursdayStart" class="thursdayStart timepick ${hasErrors(bean: pc, field: 'thursdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.thursdayStart, format: 'HH:mm')}"/></g:else>
+          <div style="margin-bottom: 3px;"><g:checkBox name="thursday" value="${pc?.thursday}" onclick="toggleDisabled('.thursdayStart'); toggleDisabled('.thursdayEnd');"/> <g:message code="thursday"/></div>
+          <div style="width: 80px; text-align: right;">
+              <g:if test="${pc?.thursday}">
+                  <g:message code="from"/> <g:textField name="thursdayStart" class="thursdayStart timepick ${hasErrors(bean: pc, field: 'thursdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.thursdayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField name="thursdayEnd" class="thursdayEnd timepick ${hasErrors(bean: pc, field: 'thursdayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.thursdayEnd, format: 'HH:mm')}"/>
+              </g:if>
+              <g:else>
+                  <g:message code="from"/> <g:textField disabled="disabled" name="thursdayStart" class="thursdayStart timepick ${hasErrors(bean: pc, field: 'thursdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.thursdayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField disabled="disabled" name="thursdayEnd" class="thursdayEnd timepick ${hasErrors(bean: pc, field: 'thursdayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.thursdayEnd, format: 'HH:mm')}"/>
+              </g:else>
+          </div>
         </td>
         <td style="padding: 6px;">
-          <div style="margin-bottom: 3px;"><g:checkBox name="friday" value="${pc?.friday}" onclick="toggleDisabled('.fridayStart')"/> <g:message code="friday"/></div>
-          <g:if test="${pc?.friday}"><g:textField name="fridayStart" class="fridayStart timepick ${hasErrors(bean: pc, field: 'fridayStart', 'errors')}" size="4" value="${formatDate(date: pc?.fridayStart, format: 'HH:mm')}"/></g:if>
-          <g:else><g:textField disabled="disabled" name="fridayStart" class="fridayStart timepick ${hasErrors(bean: pc, field: 'fridayStart', 'errors')}" size="4" value="${formatDate(date: pc?.fridayStart, format: 'HH:mm')}"/></g:else>
+          <div style="margin-bottom: 3px;"><g:checkBox name="friday" value="${pc?.friday}" onclick="toggleDisabled('.fridayStart'); toggleDisabled('.fridayEnd');"/> <g:message code="friday"/></div>
+          <div style="width: 80px; text-align: right;">
+              <g:if test="${pc?.friday}">
+                  <g:message code="from"/> <g:textField name="fridayStart" class="fridayStart timepick ${hasErrors(bean: pc, field: 'fridayStart', 'errors')}" size="4" value="${formatDate(date: pc?.fridayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField name="fridayEnd" class="fridayEnd timepick ${hasErrors(bean: pc, field: 'fridayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.fridayEnd, format: 'HH:mm')}"/>
+              </g:if>
+              <g:else>
+                  <g:message code="from"/> <g:textField disabled="disabled" name="fridayStart" class="fridayStart timepick ${hasErrors(bean: pc, field: 'fridayStart', 'errors')}" size="4" value="${formatDate(date: pc?.fridayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField disabled="disabled" name="fridayEnd" class="fridayEnd timepick ${hasErrors(bean: pc, field: 'fridayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.fridayEnd, format: 'HH:mm')}"/>
+              </g:else>
+          </div>
         </td>
         <td style="padding: 6px;">
-          <div style="margin-bottom: 3px;"><g:checkBox name="saturday" value="${pc?.saturday}" onclick="toggleDisabled('.saturdayStart')"/> <g:message code="saturday"/></div>
-          <g:if test="${pc?.saturday}"><g:textField name="saturdayStart" class="saturdayStart timepick ${hasErrors(bean: pc, field: 'saturdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.saturdayStart, format: 'HH:mm')}"/></g:if>
-          <g:else><g:textField disabled="disabled" name="saturdayStart" class="saturdayStart timepick ${hasErrors(bean: pc, field: 'saturdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.saturdayStart, format: 'HH:mm')}"/></g:else>
+          <div style="margin-bottom: 3px;"><g:checkBox name="saturday" value="${pc?.saturday}" onclick="toggleDisabled('.saturdayStart'); toggleDisabled('.saturdayEnd');"/> <g:message code="saturday"/></div>
+          <div style="width: 80px; text-align: right;">
+              <g:if test="${pc?.saturday}">
+                  <g:message code="from"/> <g:textField name="saturdayStart" class="saturdayStart timepick ${hasErrors(bean: pc, field: 'saturdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.saturdayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField name="saturdayEnd" class="saturdayEnd timepick ${hasErrors(bean: pc, field: 'saturdayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.saturdayEnd, format: 'HH:mm')}"/>
+              </g:if>
+              <g:else>
+                  <g:message code="from"/> <g:textField disabled="disabled" name="saturdayStart" class="saturdayStart timepick ${hasErrors(bean: pc, field: 'saturdayStart', 'errors')}" size="4" value="${formatDate(date: pc?.saturdayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField disabled="disabled" name="saturdayEnd" class="saturdayEnd timepick ${hasErrors(bean: pc, field: 'saturdayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.saturdayEnd, format: 'HH:mm')}"/>
+              </g:else>
+          </div>
         </td>
         <td style="padding: 6px;">
-          <div style="margin-bottom: 3px;"><g:checkBox name="sunday" value="${pc?.sunday}" onclick="toggleDisabled('.sundayStart')"/> <g:message code="sunday"/></div>
-          <g:if test="${pc?.sunday}"><g:textField name="sundayStart" class="sundayStart timepick ${hasErrors(bean: pc, field: 'sundayStart', 'errors')}" size="4" value="${formatDate(date: pc?.sundayStart, format: 'HH:mm')}"/></g:if>
-          <g:else><g:textField disabled="disabled" name="sundayStart" class="sundayStart timepick ${hasErrors(bean: pc, field: 'sundayStart', 'errors')}" size="4" value="${formatDate(date: pc?.sundayStart, format: 'HH:mm')}"/></g:else>
+          <div style="margin-bottom: 3px;"><g:checkBox name="sunday" value="${pc?.sunday}" onclick="toggleDisabled('.sundayStart'); toggleDisabled('.sundayEnd');"/> <g:message code="sunday"/></div>
+          <div style="width: 80px; text-align: right;">
+              <g:if test="${pc?.sunday}">
+                  <g:message code="from"/> <g:textField name="sundayStart" class="sundayStart timepick ${hasErrors(bean: pc, field: 'sundayStart', 'errors')}" size="4" value="${formatDate(date: pc?.sundayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField name="sundayEnd" class="sundayEnd timepick ${hasErrors(bean: pc, field: 'sundayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.sundayEnd, format: 'HH:mm')}"/>
+              </g:if>
+              <g:else>
+                  <g:message code="from"/> <g:textField disabled="disabled" name="sundayStart" class="sundayStart timepick ${hasErrors(bean: pc, field: 'sundayStart', 'errors')}" size="4" value="${formatDate(date: pc?.sundayStart, format: 'HH:mm')}"/><br/>
+                  <g:message code="to"/> <g:textField disabled="disabled" name="sundayEnd" class="sundayEnd timepick ${hasErrors(bean: pc, field: 'sundayEnd', 'errors')}" size="4" value="${formatDate(date: pc?.sundayEnd, format: 'HH:mm')}"/>
+              </g:else>
+         </div>
         </td>
       </tr>
     </table>

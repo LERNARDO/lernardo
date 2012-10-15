@@ -40,6 +40,9 @@
   <p>
     <span class="gray"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
   </p>
+  <p>
+    <span class="gray"><g:message code="projectDayEnd"/>:</span> <g:formatDate date="${projectDay?.profile?.endDate}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
+  </p>
 
   <g:message code="projectDayMove"/>:
   <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'moveProjectDay', id: projectDay.id]" update="projectDay" before="showspinner('#projectDay')">

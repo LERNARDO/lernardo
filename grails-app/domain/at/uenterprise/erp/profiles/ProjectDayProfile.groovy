@@ -14,6 +14,7 @@ class ProjectDayProfile extends Profile {
   Boolean complete = false
 
   Date date
+  Date endDate
 
   static constraints = {
   }

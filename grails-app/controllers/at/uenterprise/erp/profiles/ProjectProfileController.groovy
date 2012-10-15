@@ -40,6 +40,14 @@ class ProjectProfileController {
             params.saturdayStart = params.date('saturdayStart', 'HH:mm')
             params.sundayStart = params.date('sundayStart', 'HH:mm')
 
+            params.mondayEnd = params.date('mondayEnd', 'HH:mm')
+            params.tuesdayEnd = params.date('tuesdayEnd', 'HH:mm')
+            params.wednesdayEnd = params.date('wednesdayEnd', 'HH:mm')
+            params.thursdayEnd = params.date('thursdayEnd', 'HH:mm')
+            params.fridayEnd = params.date('fridayEnd', 'HH:mm')
+            params.saturdayEnd = params.date('saturdayEnd', 'HH:mm')
+            params.sundayEnd = params.date('sundayEnd', 'HH:mm')
+
             params.startDate = params.date('startDate', 'dd. MM. yy')
             params.endDate = params.date('endDate', 'dd. MM. yy')},
             only:['save','update']
@@ -588,6 +596,9 @@ class ProjectProfileController {
 
       SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
+      Date projectDayBegin
+      Date projectDayEnd
+
       // loop through the date range and compare the dates day with the params
       while (calendarStart <= calendarEnd) {
         Date currentDate = calendarStart.getTime()
@@ -603,30 +614,58 @@ class ProjectProfileController {
           if (df.format(currentDate) == 'Monday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayStart.getHours())
             calendarStart.set(Calendar.MINUTE, params.mondayStart.getMinutes())
+            projectDayBegin = calendarStart.getTime()
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayEnd.getHours())
+            calendarStart.set(Calendar.MINUTE, params.mondayEnd.getMinutes())
+            projectDayEnd = calendarStart.getTime()
           }
           else if (df.format(currentDate) == 'Tuesday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayStart.getHours())
             calendarStart.set(Calendar.MINUTE, params.tuesdayStart.getMinutes())
+            projectDayBegin = calendarStart.getTime()
+            calendarStart.set(Calendar.HOUR_OF_DAY, paramstuesdayEnd.getHours())
+            calendarStart.set(Calendar.MINUTE, params.tuesdayEnd.getMinutes())
+            projectDayEnd = calendarStart.getTime()
           }
           else if (df.format(currentDate) == 'Wednesday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayStart.getHours())
             calendarStart.set(Calendar.MINUTE, params.wednesdayStart.getMinutes())
+            projectDayBegin = calendarStart.getTime()
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayEnd.getHours())
+            calendarStart.set(Calendar.MINUTE, params.wednesdayEnd.getMinutes())
+            projectDayEnd = calendarStart.getTime()
           }
           else if (df.format(currentDate) == 'Thursday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayStart.getHours())
             calendarStart.set(Calendar.MINUTE, params.thursdayStart.getMinutes())
+            projectDayBegin = calendarStart.getTime()
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayEnd.getHours())
+            calendarStart.set(Calendar.MINUTE, params.thursdayEnd.getMinutes())
+            projectDayEnd = calendarStart.getTime()
           }
           else if (df.format(currentDate) == 'Friday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayStart.getHours())
             calendarStart.set(Calendar.MINUTE, params.fridayStart.getMinutes())
+            projectDayBegin = calendarStart.getTime()
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayEnd.getHours())
+            calendarStart.set(Calendar.MINUTE, params.fridayEnd.getMinutes())
+            projectDayEnd = calendarStart.getTime()
           }
           else if (df.format(currentDate) == 'Saturday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayStart.getHours())
             calendarStart.set(Calendar.MINUTE, params.saturdayStart.getMinutes())
+            projectDayBegin = calendarStart.getTime()
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayEnd.getHours())
+            calendarStart.set(Calendar.MINUTE, params.saturdayEnd.getMinutes())
+            projectDayEnd = calendarStart.getTime()
           }
           else if (df.format(currentDate) == 'Sunday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayStart.getHours())
             calendarStart.set(Calendar.MINUTE, params.sundayStart.getMinutes())
+            projectDayBegin = calendarStart.getTime()
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayEnd.getHours())
+            calendarStart.set(Calendar.MINUTE, params.sundayEnd.getMinutes())
+            projectDayEnd = calendarStart.getTime()
           }
 
           // create project day
@@ -634,7 +673,8 @@ class ProjectProfileController {
           Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
             ent.profile = profileHelperService.createProfileFor(ent) as Profile
             ent.profile.fullName = params.fullName
-            ent.profile.date = functionService.convertToUTC(calendarStart.getTime())
+            ent.profile.date = functionService.convertToUTC(projectDayBegin)
+            ent.profile.endDate = functionService.convertToUTC(projectDayEnd)
           }
 
           // link project day to project
