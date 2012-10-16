@@ -1893,6 +1893,27 @@ class ProjectProfileController {
                 filename: message(code: 'project') + '_' + project.profile + '.pdf'
     }
 
+    def editUnitDate = {
+        def unit = Entity.get(params.id)
+        render template: "editunitdate", model: [unit: unit, i: params.i]
+    }
+
+    def updateUnitDate = {
+        def unit = Entity.get(params.id)
+
+        Date time = params.date('time', 'HH:mm')
+        time = functionService.convertToUTC(time)
+
+        Calendar calendar = new GregorianCalendar()
+        calendar.setTime(unit.profile.date)
+        calendar.set(Calendar.HOUR_OF_DAY, time.getHours())
+        calendar.set(Calendar.MINUTE, time.getMinutes())
+        unit.profile.date = calendar.getTime()
+        unit.profile.save()
+
+        render template: "showunitdate", model: [unit: unit, i: params.i]
+    }
+
 }
 
 class ProjectCommand {

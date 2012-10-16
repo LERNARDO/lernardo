@@ -8,7 +8,7 @@
               <td class="one"><g:message code="name"/></td>
               <td class="two" style="padding-right: 50px;">${unit.profile.decodeHTML()} <erp:accessCheck types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink>%{--<g:remoteLink action="moveUp" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_up.png')}" alt="${message(code:'up')}" align="top"/></g:remoteLink><g:remoteLink action="moveDown" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_down.png')}" alt="${message(code:'down')}" align="top"/></g:remoteLink>--}%</erp:accessCheck></td>
               <td class="one"><g:message code="begin"/></td>
-              <td class="two" style="padding-right: 50px;"><g:formatDate date="${unit.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/></td>
+              <td id="unitDate${i}" class="two" style="padding-right: 50px;"><g:render template="showunitdate" model="[unit: unit, i: i]"/></td>
               <td class="one"><g:message code="duration"/></td>
               <td class="two">${unit.profile.duration} <g:message code="minutes"/></td>
             </tr>

@@ -1,0 +1,1 @@
+<g:formatDate date="${unit.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/> <g:remoteLink action="editUnitDate" update="unitDate${i}" id="${unit.id}" params="[i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:remoteLink>
