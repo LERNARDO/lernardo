@@ -248,7 +248,9 @@ class CalendarController {
         // 2. for each project day find the project it belongs to
         Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
-        // 3. for each project day get the project unit it is linked to
+        List responsibles = functionService.findAllByLink(null, project, metaDataService.ltResponsible)
+
+          // 3. for each project day get the project unit it is linked to
         List projectUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
         if (projectUnits && project) {
@@ -259,7 +261,13 @@ class CalendarController {
 
               def dateStart = new DateTime(functionService.convertFromUTC(projectUnit.profile.date))
               def dateEnd = dateStart.plusMinutes("$projectUnit.profile.duration".toInteger())
-              def description = "<b>${message(code: 'cal.projectUnit')}:</b> ${projectUnit.profile}"
+              def description = "<b>${message(code: 'cal.projectUnit')}:</b> ${projectUnit.profile}<br/>"
+              description += "<b>${message(code: 'projectDayComplete')}:</b> ${formatBoolean(boolean: projectDay.profile.complete, true: message(code: 'yes'), false: message(code: 'no'))}<br/>"
+              description += "<b>${message(code: 'responsible')}:</b> "
+
+                responsibles.each { responsible ->
+                    description += "${responsible.profile}<br/>"
+                }
 
               list << [id: projectUnit.id, title: "${message(code: 'project')}: ${project.profile}", start:dateStart.toDate(), end:dateEnd.toDate(), allDay: false, color: color, description: description, one: projectDay.id]
             }
@@ -283,13 +291,22 @@ class CalendarController {
           // 2. for each project day find the project it belongs to
           Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
+          List responsibles = functionService.findAllByLink(null, project, metaDataService.ltResponsible)
+
           // 3. for each project day get the project unit it is linked to
           List projectUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
           if (!projectUnits) {
             def dateStart = new DateTime(functionService.convertFromUTC(projectDay.profile.date))
             def dateEnd = dateStart.plusMinutes(60)
-            def description = "${message(code: 'project')}: ${project.profile}"
+            def description = "${message(code: 'project')}: ${project.profile}<br/>"
+            description += "<b>${message(code: 'projectDayComplete')}:</b> ${formatBoolean(boolean: projectDay.profile.complete, true: message(code: 'yes'), false: message(code: 'no'))}<br/>"
+            description += "<b>${message(code: 'responsible')}:</b> "
+
+            responsibles.each { responsible ->
+                description += "${responsible.profile}<br/>"
+            }
+
             list << [id: project.id, title: "${message(code: 'projectUnits.unplanned')}", start:dateStart.toDate(), end:dateEnd.toDate(), allDay: false, color: color, description: description, one: projectDay.id]
           }
         }
