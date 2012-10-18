@@ -53,7 +53,7 @@ class ExcelController {
     // client group
     if (params.type == 'clientgroup') {
 
-      WritableSheet sheet = workbook.createSheet(entity.profile, 0)
+      WritableSheet sheet = workbook.createSheet(entity.profile.fullName, 0)
 
       // auto-size cells
       for (int x = 0; x < 22; x++)
@@ -68,7 +68,7 @@ class ExcelController {
 
       // name
       sheet.addCell(new jxl.write.Label(0, 0, message(code: 'name'), formatBold))
-      sheet.addCell(new jxl.write.Label(1, 0, entity.profile, format))
+      sheet.addCell(new jxl.write.Label(1, 0, entity.profile.fullName, format))
 
       // description
       sheet.addCell(new jxl.write.Label(0, 1, message(code: 'description'), formatBold))
