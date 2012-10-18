@@ -232,6 +232,7 @@ class PublicationController {
 
     Publication pub = new Publication(params)
     pub.entity = entity
+    pub.creator = entityHelperService.loggedIn
     pub.type = metaDataService.ptDoc1 // temporarily hardcoded
 
     if (!entity.user)

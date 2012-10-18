@@ -1578,7 +1578,10 @@ class HelperTagLib {
             }
         }
         else if (creatorof instanceof Publication) {
-            result = (creatorof.entity.id == entity.id)
+            if (creatorof.creator)
+                result = (creatorof?.creator?.id == entity.id)
+            else
+                result = false
         }
 
         if (result)

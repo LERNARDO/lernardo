@@ -7,6 +7,7 @@
   %{--<ub:meOrAdmin entityName="${entity}"><th class="title"><g:message code="publication.type.visibility"/></th></ub:meOrAdmin>--}%
   %{--<th><g:message code="publication.type"/></th>--}%
   <th class="date"><g:message code="date"/></th>
+  <th><g:message code="creator"/></th>
   <th class="action"><g:message code="publication.type.function"/></th>
 </tr>
 
@@ -19,6 +20,12 @@
       %{--<ub:meOrAdmin entityName="${entity}"><td><erp:showAccessLevel accesslevel="${pub.accesslevel}"/></td></ub:meOrAdmin>--}%
       %{--<td><erp:getFileType type="${pub.asset.storage.contentType}"/></td>--}%
       <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+      <td><g:if test="${pub.creator}">
+          ${pub.creator.profile}
+      </g:if>
+      <g:else>
+          <span class="gray"><g:message code="noData"/></span>
+      </g:else></td>
       <td class="action">
         <erp:accessCheck types="['Betreiber']" creatorof="${pub}">
           <g:formRemote name="formRemote" url="[controller: 'publication', action: 'edit', id: pub.id]" update="content" before="showspinner('#content');">

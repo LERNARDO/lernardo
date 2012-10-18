@@ -18,10 +18,12 @@ class Publication {
   Date            dateCreated
   Integer         accesslevel = 0
   Boolean         isPublic = false
+  Entity          creator
 
   static constraints = {
     name        blank: false, maxSize: 50
     dateCreated nullable: true
+    creator     nullable: true
   }
 
 }
