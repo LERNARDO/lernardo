@@ -682,7 +682,9 @@ class HelperTagLib {
 
         Map totalSum = [:]
         attrs.workdaycategories.eachWithIndex { category, ind ->
-            totalSum[ind] = 0
+            if (category.counts) {
+                totalSum[ind] = 0
+            }
         }
 
         NumberFormat df = new DecimalFormat("##0.00")
