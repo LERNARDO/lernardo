@@ -924,10 +924,12 @@ class HelperTagLib {
     def profileImage = {attrs ->
         def imgattrs = [:]
         AssetStorage store = assetService.findStorage(attrs.entity, 'profile', 'latest')
-        if (store)
+        if (store) {
             imgattrs['src'] = g.createLink(controller: 'app', action: 'getImage', params: [type: 'profile', entity: attrs.entity.id, store: store.id])
-        else
-            imgattrs['src'] = g.resource(dir: 'images', file: 'default_asset.jpg')
+        }
+        else {
+            imgattrs['src'] = g.resource(dir: 'images/default', file: attrs.entity.type.supertype.name + '.jpg')
+        }
         attrs.name = attrs.entity.name
         attrs.each {key, val ->
             imgattrs[key] = val

@@ -521,7 +521,7 @@ class FunctionService {
 
     def sid = HashTools.SHA(content)
 
-    // see if we have it already stored somehow ...
+    // create a unique asset storage if it does not exist already ...
     def store = assetService.findStorage(sid)
     if (!store) {
       store = new AssetStorage (storageId: sid, contentType: contentType)
@@ -529,7 +529,7 @@ class FunctionService {
       store = store.save()
     }
 
-    // now see if we have a linked asset for this user type and storage
+    // check if there is already an asset with this entity, type and asset storage
     def asset = Asset.createCriteria().get {
       and {
         eq ('entity', ent)
@@ -546,7 +546,7 @@ class FunctionService {
 
     // only if it's not there, create a new one and link it with the storage
     if (!asset) {
-      asset = new Asset(entity:ent, storage:store, type:type)
+      asset = new Asset(entity: ent, storage: store, type: type)
       store.addToAssets(asset)
       if (!asset.save()) {
         asset.errors.allErrors.each {
