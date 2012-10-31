@@ -745,6 +745,12 @@ class ProjectProfileController {
           duration += it.profile.realDuration
         }
 
+        List activities = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltGroupMember)
+
+        activities.each {
+            duration += it.profile.duration
+        }
+
         // create a new unit and copy the properties from the unit template
         EntityType etProjectUnit = metaDataService.etProjectUnit
         Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
@@ -767,9 +773,14 @@ class ProjectProfileController {
         // link the new unit to the project day
         new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
 
-        // and link each group to the project unit
+        // link each activity template groups to the project unit
         groups.each { Entity group ->
           new Link(source: group, target: projectUnit, type: metaDataService.ltProjectUnit).save()
+        }
+
+        // link each activity template to the project unit
+        activities.each { Entity activity ->
+            new Link(source: activity, target: projectUnit, type: metaDataService.ltGroupMember).save()
         }
 
     }

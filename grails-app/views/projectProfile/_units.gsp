@@ -50,6 +50,16 @@
         </ol>
       </erp:getProjectUnitActivityGroups>
 
+        <h5 style="margin-bottom: 5px;"><g:message code="activityTemplates"/></h5>
+        <erp:getProjectUnitActivities projectUnit="${unit}">
+
+            <ol>
+                <g:each in="${activities}" var="activity">
+                    <li style="list-style: decimal; margin-left: 20px;"><g:link class="hover" controller="activityTemplateProfile" action="show" data-idd="${activity.id}" id="${activity.id}" params="[entity:activity.id]">${activity.profile}</g:link> %{--<span class="gray">(${activity.profile.duration} min)</span>--}%</li>
+                </g:each>
+            </ol>
+        </erp:getProjectUnitActivities>
+
       <h5 style="margin-bottom: 5px;"><g:message code="parents"/> <erp:getProjectUnitParentsCount projectUnit="${unit}"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#parents${i}');" src="${g.resource(dir:'images/icons', file:'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}" /></erp:accessCheck></h5>
       <div id="parents${i}" style="display:none">
         <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'addParent', id: unit.id, params: [i: i]]" update="parents2${i}" before="showspinner('#parents2${i}')">

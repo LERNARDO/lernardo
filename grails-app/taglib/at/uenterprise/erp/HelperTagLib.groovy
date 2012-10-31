@@ -1785,6 +1785,20 @@ class HelperTagLib {
     }
 
     /**
+     * Finds all activities linked to a project unit
+     *
+     * @author Alexander Zeillinger
+     * @attr projectUnit REQUIRED The project unit
+     */
+    def getProjectUnitActivities = {attrs, body ->
+        List projectUnitActivities = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltGroupMember)
+        if (projectUnitActivities)
+            out << body(activities: projectUnitActivities)
+        else
+            out << '<span class="italic">Keine Aktivitätsvorlagen gefunden</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+    }
+
+    /**
      * Finds all parents linked to a project unit
      *
      * @author Alexander Zeillinger
