@@ -1,7 +1,7 @@
 <g:if test="${results}">
   <div class="remoteresults" style="width:635px">
     <g:each in="${results}" var="entity">
-      <g:remoteLink url="[controller: 'projectTemplateProfile', action: 'addGroupActivityTemplate', id: projectUnitTemplate, params: [groupActivityTemplate: entity.id, i: i, projectTemplate: projectTemplate]]" update="groupActivities2-${i}" before="showspinner('#groupActivities2-${i}'); toggle('#groupActivities${i}');">
+      <g:remoteLink url="[controller: 'projectTemplateProfile', action: 'addActivityTemplate', id: projectUnitTemplate, params: [activityTemplate: entity.id, i: i, projectTemplate: projectTemplate]]" update="activities2-${i}" before="showspinner('#activities2-${i}'); toggle('#activities${i}');">
       <div class="remoteresult" style="width:300px">
         <table>
           <tr>

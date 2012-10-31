@@ -426,6 +426,49 @@ class ProjectTemplateProfileController {
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, i: params.i, projectTemplate: projectTemplate]
   }
 
+    def addActivityTemplate = {
+        Entity activityTemplate = Entity.get(params.activityTemplate)
+        Entity projectUnitTemplate = Entity.get(params.id)
+        Entity projectTemplate = Entity.get(params.projectTemplate)
+
+        // check if the activityTemplate isn't already linked to the projectUnitTemplate
+        def link = Link.createCriteria().get {
+            eq('source', activityTemplate)
+            eq('target', projectUnitTemplate)
+            eq('type', metaDataService.ltGroupMember)
+        }
+        if (!link)
+        // link groupActivityTemplate to projectUnit
+            new Link(source: activityTemplate, target: projectUnitTemplate, type: metaDataService.ltGroupMember).save()
+
+        // find all activityTemplates linked to the unit
+        List activityTemplates = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltGroupMember)
+
+        render template: 'activityTemplates', model: [activityTemplates: activityTemplates,
+                unit: projectUnitTemplate,
+                i: params.i,
+                projectTemplate: projectTemplate]
+    }
+
+    def removeActivityTemplate = {
+        Entity activityTemplate = Entity.get(params.activityTemplate)
+        Entity projectUnitTemplate = Entity.get(params.id)
+        Entity projectTemplate = Entity.get(params.projectTemplate)
+
+        // delete link
+        def link = Link.createCriteria().get {
+            eq('source', activityTemplate)
+            eq('target', projectUnitTemplate)
+            eq('type', metaDataService.ltGroupMember)
+        }
+        link.delete()
+
+        // find all groupActivityTemplates linked to the unit
+        List activityTemplates = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltGroupMember)
+
+        render template: 'activityTemplates', model: [activityTemplates: activityTemplates, unit: projectUnitTemplate, i: params.i, projectTemplate: projectTemplate]
+    }
+
   def updateduration = {
     Entity projectTemplate = Entity.get(params.id)
 
@@ -439,7 +482,7 @@ class ProjectTemplateProfileController {
   }
 
   /*
-   * retrieves all clients matching the search parameter
+   * retrieves all group activity templates matching the search parameter
    */
   def remoteGroupActivityTemplate = {
     if (!params.value) {
@@ -477,6 +520,46 @@ class ProjectTemplateProfileController {
       render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
     }
   }
+
+    /*
+    * retrieves all group activity templates matching the search parameter
+    */
+    def remoteActivityTemplate = {
+        if (!params.value) {
+            render ""
+            return
+        }
+        else if (params.value == "*") {
+            def results = Entity.createCriteria().list {
+                eq("type", metaDataService.etTemplate)
+                profile {
+                    eq("status", "done")
+                }
+            }
+            render template: 'activitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
+            return
+        }
+
+        def results = Entity.createCriteria().list {
+            eq('type', metaDataService.etTemplate)
+            profile {
+                eq('status', "done")
+            }
+            profile {
+                ilike('fullName', "%" + params.value + "%")
+                order('fullName','asc')
+            }
+            maxResults(15)
+        }
+
+        if (results.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            render template: 'activitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
+        }
+    }
 
   def templateHover = {
     Entity entity = Entity.get(params.id)
@@ -682,6 +765,34 @@ class ProjectTemplateProfileController {
        render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
      }
    }
+
+    def remoteActivityTemplateByLabel = {
+        List labels = params.list('labels')
+
+        List results = []
+
+        List activityTemplates = Entity.createCriteria().list {
+            eq("type", metaDataService.etTemplate)
+            profile {
+                eq("status", "done")
+            }
+        }
+
+        labels.each { String label ->
+            activityTemplates.each { Entity at ->
+                if (at.profile.labels.find {it.name == label})
+                    results.add(at)
+            }
+        }
+
+        if (results.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            render template: 'activitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
+        }
+    }
 
     def createpdf = {
         Entity template = Entity.get(params.id)

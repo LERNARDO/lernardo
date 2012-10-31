@@ -62,7 +62,7 @@ class FunctionService {
   }
 
   /**
-   * Calculates the duration of a list of project unit templates based on each units group activity templates durations
+   * Calculates the duration of a list of project unit templates based on each units group activity templates durations and activity template durations
    *
    * @author Alexander Zeillinger
    * @param projectUnitTemplates REQUIRED The project unit templates to calculate the duration from
@@ -81,6 +81,16 @@ class FunctionService {
     /*groupActivityTemplates.each {
       calculatedDuration += it.profile.realDuration
     }*/
+
+    List activityTemplates = []
+
+    projectUnitTemplates.each { Entity put ->
+      List ats = findAllByLink(null, put, metaDataService.ltGroupMember)
+        if (ats.size() > 0)
+          activityTemplates.addAll(ats)
+    }
+
+    calculatedDuration += activityTemplates*.profile.duration.sum(0)
 
     return calculatedDuration
   }

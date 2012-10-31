@@ -1838,6 +1838,20 @@ class HelperTagLib {
     }
 
     /**
+     * Finds all activity templates linked to a project unit
+     *
+     * @author Alexander Zeillinger
+     * @attr projectUnit REQUIRED The project unit
+     */
+    def getActivityTemplates = {attrs, body ->
+        List activityTemplates = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltGroupMember)
+        if (activityTemplates)
+            out << body(activityTemplates: activityTemplates)
+        else
+            out << '<span class="italic red" style="margin-left: 15px">' + message(code: 'activityTemplates.notAssigned') + '</span>'
+    }
+
+    /**
      * Finds all resources linked to an entity
      *
      * @author Alexander Zeillinger
