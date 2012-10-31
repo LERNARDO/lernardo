@@ -405,9 +405,16 @@ class TemplateProfileController {
                     correct++
                   }
                   //println '#correct ' + correct + ' of ' + method1lower.size()
-                  if (correct == method1lower.size())
-                    if (!list1.contains(a))
-                      list1 << a
+                  if (params.method1Logic == "1") { // AND
+                    if (correct == method1lower.size())
+                      if (!list1.contains(a))
+                        list1 << a
+                  }
+                  else {
+                    if (correct > 0)
+                      if (!list1.contains(a))
+                        list1 << a
+                  }
                   counter++
                 }
               }
@@ -433,9 +440,16 @@ class TemplateProfileController {
                   else {
                     correct++
                   }
-                  if (correct == method2lower.size())
-                    if (!list2.contains(a))
-                      list2 << a
+                    if (params.method2Logic == "1") { // AND
+                        if (correct == method2lower.size())
+                            if (!list2.contains(a))
+                                list2 << a
+                    }
+                    else {
+                        if (correct > 0)
+                            if (!list2.contains(a))
+                                list2 << a
+                    }
                   counter++
                 }
               }
@@ -460,9 +474,16 @@ class TemplateProfileController {
                   else {
                     correct++
                   }
-                  if (correct == method3lower.size())
-                    if (!list3.contains(a))
-                      list3 << a
+                    if (params.method3Logic == "1") { // AND
+                        if (correct == method3lower.size())
+                            if (!list3.contains(a))
+                                list3 << a
+                    }
+                    else {
+                        if (correct > 0)
+                            if (!list3.contains(a))
+                                list3 << a
+                    }
                   counter++
                 }
               }
