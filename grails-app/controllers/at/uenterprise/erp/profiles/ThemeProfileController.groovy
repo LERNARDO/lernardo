@@ -76,6 +76,8 @@ class ThemeProfileController {
     def management = {
         Entity theme = Entity.get(params.id)
 
+        List responsibles = functionService.findAllByLink(null, theme, metaDataService.ltResponsible)
+
         // find all projects which are within the theme duration
         List allProjects = Entity.findAllByType(metaDataService.etProject).findAll {it.profile.startDate >= theme.profile.startDate && it.profile.endDate <= theme.profile.endDate}
 
@@ -92,7 +94,8 @@ class ThemeProfileController {
                 allProjects: allProjects,
                 projects: projects,
                 allActivityGroups: allActivityGroups,
-                activitygroups: activitygroups]
+                activitygroups: activitygroups,
+                responsibles: responsibles]
     }
 
   def delete = {
@@ -332,4 +335,51 @@ class ThemeProfileController {
     Label.get(params.label).delete()
     render template: 'labels', model: [theme: theme]
   }
+
+    /*
+    * retrieves all entities matching the search parameter
+    */
+    def remoteResponsible = {
+        if (!params.value) {
+            render ""
+            return
+        }
+        else if (params.value.size() < 2) {
+            render {span(class: 'gray', message(code: 'minChars'))}
+            return
+        }
+
+        def results = Entity.createCriteria().list {
+            user {
+                eq('enabled', true)
+            }
+            eq('type', metaDataService.etEducator)
+            profile {
+                ilike('fullName', "%" + params.value + "%")
+                order('fullName','asc')
+            }
+            maxResults(15)
+        }
+
+        if (results.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            render template: 'responsibleresults', model: [results: results, themeID: params.id]
+        }
+    }
+
+    def addResponsible = {
+        def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
+        if (linking.duplicate)
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+        render template: 'responsible', model: [responsibles: linking.sources, theme: linking.target]
+
+    }
+
+    def removeResponsible = {
+        def breaking = functionService.breakEntities(params.responsible, params.id, metaDataService.ltResponsible)
+        render template: 'responsible', model: [responsibles: breaking.sources, theme: breaking.target]
+    }
 }

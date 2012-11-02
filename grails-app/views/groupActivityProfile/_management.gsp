@@ -21,6 +21,20 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
+    <h5><g:message code="responsible"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#responsible');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+    <div class="zusatz-add" id="responsible" style="display:none">
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteResponsible" controller="groupActivityProfile" action="remoteResponsible" id="${group.id}" before="showspinner('#remoteResponsible');"/>
+        <div id="remoteResponsible"></div>
+
+    </div>
+    <div class="zusatz-show" id="responsible2">
+        <g:render template="responsible" model="[responsibles: responsibles, group: group]"/>
+    </div>
+</div>
+
+<div class="zusatz">
     <h5><g:message code="activities"/></h5>
     <div class="zusatz-show">
         <g:if test="${templates}">
