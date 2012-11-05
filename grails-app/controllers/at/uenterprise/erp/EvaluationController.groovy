@@ -326,7 +326,10 @@ class EvaluationController {
       evaluationInstance.linkedTo = linkedEntity
     if (evaluationInstance.save(flush: true)) {
       flash.message = message(code: "evaluation.created")
-      redirect action: "list", id:  evaluationInstance.owner.id
+        if (linkedEntity)
+            redirect controller: linkedEntity.type.supertype.name + "Profile", action: "show", id: linkedEntity.id
+        else
+            redirect action: "list", id:  evaluationInstance.owner.id
     }
     else {
       render view: 'create', model: [evaluationInstance: evaluationInstance, entity: Entity.get(params.entity)]
