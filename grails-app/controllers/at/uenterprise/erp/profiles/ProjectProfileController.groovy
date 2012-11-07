@@ -1175,8 +1175,13 @@ class ProjectProfileController {
         clients.addAll(functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient))
       }
 
+      // check clients but don't check clientgroups
       results?.each { Entity client ->
-        if (clients.contains(client))
+        if (client.type.supertype.name == "client") {
+          if (clients.contains(client))
+            finalResults.add(client)
+        }
+        else
           finalResults.add(client)
       }
     }
