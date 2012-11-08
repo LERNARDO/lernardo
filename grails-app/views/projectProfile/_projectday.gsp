@@ -113,6 +113,22 @@
     </div>
   </div>
 
+    <div class="zusatz">
+        <h5><g:message code="clients"/> <span id="clientsSize"></span> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+        <div class="zusatz-add" id="clients" style="display:none">
+
+            <g:message code="search"/>:<br/>
+            <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${project.id}" params="[projectDay: projectDay.id]" before="showspinner('#remoteClients');"/>
+            <div id="remoteClients"></div>
+
+        </div>
+        <div id="clients2">
+            <erp:getProjectDayClients projectDay="${projectDay}">
+                <g:render template="clientsday" model="[clients: clients, project: project, day: projectDay]"/>
+            </erp:getProjectDayClients>
+        </div>
+    </div>
+
   <div class="zusatz">
     <h5><g:message code="resources.planned"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#resources');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
 

@@ -1757,6 +1757,20 @@ class HelperTagLib {
     }
 
     /**
+     * Finds all clients linked to a project day
+     *
+     * @author Alexander Zeillinger
+     * @attr projectDay REQUIRED The project day
+     */
+    def getProjectDayClients = {attrs, body ->
+        List projectDayClients = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltGroupMemberClient)
+        if (projectDayClients)
+            out << body(clients: projectDayClients)
+        else
+            out << '<span class="italic red">' + message(code: 'clients.choose') + '</span>'
+    }
+
+    /**
      * Finds all resources linked to a project day
      *
      * @author Alexander Zeillinger

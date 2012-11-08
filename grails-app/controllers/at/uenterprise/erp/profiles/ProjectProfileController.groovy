@@ -131,8 +131,18 @@ class ProjectProfileController {
         // find all facilities linked to this project
         List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
-        // find all clients linked to this project
-        List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+        // find all clients linked to any project day
+        List clients = []
+        List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+        projectDays.each { Entity pd ->
+            List pdclients = functionService.findAllByLink(null, pd, metaDataService.ltGroupMemberClient)
+            pdclients?.each { pdclient ->
+                if (!clients.contains(pdclient))
+                    clients.add(pdclient)
+            }
+
+        }
 
         render template: "management", model: [project: project, responsibles: responsibles,
                 allThemes: allThemes,
@@ -880,9 +890,39 @@ class ProjectProfileController {
   }
 
   def removeClient = {
-    def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-    render template: 'clients', model: [clients: breaking.sources, project: breaking.target]
+      Entity project = Entity.get(params.id)
+      Entity client = Entity.get(params.client)
+
+      // find all project days of the project
+      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+      // remove client if found in any project day
+      projectDays?.each { Entity pd ->
+          def link = Link.createCriteria().get {
+              eq('source', client)
+              eq('target', pd)
+              eq('type', metaDataService.ltGroupMemberClient)
+          }
+          link?.delete()
+      }
+
+      List clients = []
+      projectDays?.each { Entity pd ->
+          List pdclients = functionService.findAllByLink(null, pd, metaDataService.ltGroupMemberClient)
+          pdclients?.each { pdclient ->
+              if (!clients.contains(pdclient))
+                  clients.add(pdclient)
+          }
+
+      }
+    render template: "clients", model: [clients: clients, project: project]
   }
+
+    def removeClientDay = {
+        Entity day = Entity.get(params.day)
+        def breaking = functionService.breakEntities(params.client, params.day, metaDataService.ltGroupMemberClient)
+        render template: 'clientsday', model: [clients: breaking.sources, project: breaking.target, day: day]
+    }
 
   def addFacility = {
     def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
@@ -1197,16 +1237,81 @@ class ProjectProfileController {
     }
   }
 
+    /*
+    * retrieves all clients and client groups matching the search parameter
+    */
+    def remoteClientsDay = {
+        if (!params.value) {
+            render ""
+            return
+        }
+
+        def results = Entity.createCriteria().list {
+            or {
+                eq('type', metaDataService.etClient)
+                eq('type', metaDataService.etGroupClient)
+            }
+            profile {
+                ilike('fullName', "%" + params.value + "%")
+                order('fullName','asc')
+            }
+            maxResults(15)
+        }
+
+        // filter clients by facility: only take those clients which are linked to the facility the project is linked to
+        // if the project isn't linked to a facility yet, don't filter
+
+        // get facility
+        Entity project = Entity.get(params.id)
+        List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
+
+        List finalResults = []
+        if (facilities) {
+            // find all clients linked to the facilities
+            List clients = []
+            facilities.each { Entity facility ->
+                clients.addAll(functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient))
+            }
+
+            // check clients but don't check clientgroups
+            results?.each { Entity client ->
+                if (client.type.supertype.name == "client") {
+                    if (clients.contains(client))
+                        finalResults.add(client)
+                }
+                else
+                    finalResults.add(client)
+            }
+        }
+        else
+            finalResults = results
+
+        if (finalResults.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            Entity projectDay = Entity.get(params.int('projectDay'))
+            render template: 'clientresultsday', model: [results: finalResults, group: params.id, projectDay: projectDay]
+        }
+    }
+
   // adds a client or clients of a client group
   def addClient = {
     def entity = Entity.get(params.client)
+      Entity project = Entity.get(params.id)
+
+      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+
 
     // if the entity is a client add it
     if (entity.type.id == metaDataService.etClient.id) {
-      def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-      if (linking.duplicate)
-          render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
-      render template: 'clients', model: [clients: linking.sources, project: linking.target]
+        projectDays.each { Entity pd ->
+            def linking = functionService.linkEntities(params.client, pd.id.toString(), metaDataService.ltGroupMemberClient)
+            if (linking.duplicate)
+                render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+        }
     }
     // if the entity is a client group get all clients and add them
     else if (entity.type.id == metaDataService.etGroupClient.id) {
@@ -1214,17 +1319,58 @@ class ProjectProfileController {
       List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
 
       clients.each { Entity client ->
-        def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
-        if (linking.duplicate)
-            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+          projectDays.each { Entity pd ->
+            def linking = functionService.linkEntities(client.id.toString(), pd.id.toString(), metaDataService.ltGroupMemberClient)
+            if (linking.duplicate)
+                render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+          }
       }
 
-      Entity project = Entity.get(params.id)
-      List clients2 = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
-      render template: 'clients', model: [clients: clients2, project: project]
     }
 
+      List clients = []
+      projectDays.each { Entity pd ->
+          List pdclients = functionService.findAllByLink(null, pd, metaDataService.ltGroupMemberClient)
+          pdclients?.each { pdclient ->
+              if (!clients.contains(pdclient))
+                  clients.add(pdclient)
+          }
+
+      }
+
+      render template: 'clients', model: [clients: clients, project: project]
+
   }
+
+    // adds a client or clients of a client group
+    def addClientDay = {
+        def entity = Entity.get(params.client)
+        Entity day = Entity.get(params.day)
+
+        // if the entity is a client add it
+        if (entity.type.id == metaDataService.etClient.id) {
+            def linking = functionService.linkEntities(params.client, params.day, metaDataService.ltGroupMemberClient)
+            if (linking.duplicate)
+                render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+            render template: 'clientsday', model: [clients: linking.sources, project: linking.target, day: day]
+        }
+        // if the entity is a client group get all clients and add them
+        else if (entity.type.id == metaDataService.etGroupClient.id) {
+            // find all clients of the group
+            List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
+
+            clients.each { Entity client ->
+                def linking = functionService.linkEntities(client.id.toString(), params.day, metaDataService.ltGroupMemberClient)
+                if (linking.duplicate)
+                    render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+            }
+
+            Entity project = Entity.get(params.id)
+            List clients2 = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
+            render template: 'clientsday', model: [clients: clients2, project: project, day: day]
+        }
+
+    }
 
   def listevaluations = {
     Entity project = Entity.get(params.id)
@@ -1876,8 +2022,8 @@ class ProjectProfileController {
     }
 
     def updateClientsSize = {
-        Entity project = Entity.get(params.id)
-        List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+        Entity day = Entity.get(params.id)
+        List clients = functionService.findAllByLink(null, day, metaDataService.ltGroupMemberClient)
         render "(${clients.size()})"
     }
 
