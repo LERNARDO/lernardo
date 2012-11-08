@@ -1241,6 +1241,7 @@ class ProjectProfileController {
     * retrieves all clients and client groups matching the search parameter
     */
     def remoteClientsDay = {
+        println params
         if (!params.value) {
             render ""
             return
@@ -1291,7 +1292,7 @@ class ProjectProfileController {
             return
         }
         else {
-            Entity projectDay = Entity.get(params.int('projectDay'))
+            Entity projectDay = Entity.get(params.projectDay)
             render template: 'clientresultsday', model: [results: finalResults, group: params.id, projectDay: projectDay]
         }
     }

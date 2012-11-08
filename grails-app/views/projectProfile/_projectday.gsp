@@ -118,7 +118,7 @@
         <div class="zusatz-add" id="clients" style="display:none">
 
             <g:message code="search"/>:<br/>
-            <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${project.id}" params="[projectDay: projectDay.id]" before="showspinner('#remoteClients');"/>
+            <erp:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClientsDay" id="${project.id}" params="[projectDay: projectDay.id]" before="showspinner('#remoteClients');"/>
             <div id="remoteClients"></div>
 
         </div>
