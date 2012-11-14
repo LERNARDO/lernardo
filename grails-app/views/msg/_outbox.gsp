@@ -1,16 +1,4 @@
-<head>
-  <title><g:message code="msg.outbox"/></title>
-  <meta name="layout" content="database"/>
-</head>
-<body>
-
-<div class="tabInactive">
-    <h1><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="msg.inbox"/></g:link></h1>
-</div>
-<div class="tabActive">
-    <h1><g:message code="msg.outbox"/></h1>
-</div>
-<div class="clear"></div>
+<h4><g:remoteLink update="content" controller="msg" action="inbox" id="${entity.id}" before="showspinner('#content');"><g:message code="msg.inbox"/></g:remoteLink> - <g:message code="msg.outbox"/></h4>
 
 <div class="boxContent">
 
@@ -39,7 +27,7 @@
                 <erp:profileImage entity="${message.receiver}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
                 ${message.receiver.profile.decodeHTML()}
               </td>
-              <td><g:link action="show" id="${message.id}" params="[entity:entity.id,box:'outbox']">${message.subject.decodeHTML()}</g:link></td>
+              <td><g:remoteLink update="content" action="show" id="${message.id}" params="[entity: entity.id, box: 'outbox']"  before="showspinner('#content');">${message.subject.decodeHTML()}</g:remoteLink></td>
               <td><g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             </tr>
           </g:each>
@@ -54,4 +42,3 @@
     </g:if>
 
 </div>
-</body>

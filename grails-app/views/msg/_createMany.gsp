@@ -1,16 +1,11 @@
-<head>
-  <title><g:message code="privat.msgCreate"/></title>
-  <meta name="layout" content="database"/>
-</head>
-<body>
-<div class="boxHeader">
-  <h1><g:message code="privat.msgCreate"/></h1>
-</div>
+<h4><g:message code="privat.msgCreate"/></h4>
+
 <div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: mc]"/>
 
-    <g:form action="saveMany" id="${msgInstance?.id}" params="[entity: entity.id]">
+    <g:formRemote name="formRemote" url="[controller: 'msg', action: 'saveMany', id: msgInstance.id, params: [entity: entity.id]]" update="content">
+    %{--<g:form action="saveMany" id="${msgInstance?.id}" params="[entity: entity.id]">--}%
 
       <table>
 
@@ -47,20 +42,17 @@
         <tr class="prop">
           <td class="name"><g:message code="content"/>:</td>
           <td class="value">
-            <ckeditor:editor name="content" height="200px" toolbar="Basic">
-              ${fieldValue(bean:mc,field:'content').decodeHTML()}
-            </ckeditor:editor>
+              <g:textArea name="content" rows="10" cols="50"/>
           </td>
         </tr>
 
       </table>
 
       <div class="buttons cleared">
-        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code: 'send')}"/></div>
-        <g:link class="buttonGray" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="cancel"/></g:link>
+        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code: 'send')}" onclick="parent.frames[0].FCK.UpdateLinkedField();" /></div>
+        <g:remoteLink update="content" class="buttonGray" controller="msg" action="inbox" id="${entity.id}" before="showspinner('#content');"><g:message code="cancel"/></g:remoteLink>
       </div>
 
-    </g:form>
+    </g:formRemote>
 
 </div>
-</body>

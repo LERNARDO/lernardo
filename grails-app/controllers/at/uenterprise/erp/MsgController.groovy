@@ -37,7 +37,7 @@ class MsgController {
     //int totalMessages = Msg.countByEntityAndSenderNotEqual(entity, entity)
     int totalMessages = Msg.countByEntityAndReceiver(entity, entity)
 
-    return [messages: messages,
+    render template: "inbox", model: [messages: messages,
             totalMessages: totalMessages,
             entity: entity]
   }
@@ -60,7 +60,7 @@ class MsgController {
     }
     int totalMessages = Msg.countByEntityAndSender(entity, entity)
 
-    return [messages: messages,
+    render template: "outbox", model: [messages: messages,
             totalMessages: totalMessages,
             entity: entity]
   }
@@ -88,7 +88,7 @@ class MsgController {
       else
         message.read = true
 
-    return [msgInstance: message,
+    render template: "show", model: [msgInstance: message,
             entity: Entity.get(params.entity),
             box: params.box]
 
@@ -154,7 +154,7 @@ class MsgController {
         message.content = params.content.decodeHTML()
 
     Entity entity = Entity.get(params.id)
-    return [msgInstance: message,
+    render template: "create", model: [msgInstance: message,
             receiver: entity,
             entity: entity,
             reply: params.reply ?: 'false']
@@ -164,7 +164,7 @@ class MsgController {
     def message = new Msg()
     Entity entity = Entity.get(params.id)
 
-    return [msgInstance: message,
+    render template: "createMany", model: [msgInstance: message,
             entity: entity]
   }
 
@@ -177,7 +177,7 @@ class MsgController {
       params.receivers.each { id ->
         receivers.add(Entity.get(id))
       }
-      render view: 'createMany', model: [mc: mc, entity: entity1, receivers: receivers]
+      render template: 'createMany', model: [mc: mc, entity: entity1, receivers: receivers]
       return
     }
 
@@ -209,7 +209,7 @@ class MsgController {
       redirect action: 'inbox', id: currentEntity.id
     }
     else
-      render view: 'createMany', model: [msgInstance: msg, entity: Entity.get(params.entity.toInteger())]
+      render template: 'createMany', model: [msgInstance: msg, entity: Entity.get(params.entity.toInteger())]
 
   }
 
@@ -230,7 +230,7 @@ class MsgController {
         redirect controller: receiver.type.supertype.name + 'Profile', action: 'show', id: receiver.id, params: [entity: receiver]
     }
     else {
-      render view: 'create', model: [msgInstance: msg, receiver: receiver, reply: params.reply, entity: Entity.get(params.entity.toInteger())]
+      render template: 'create', model: [msgInstance: msg, receiver: receiver, reply: params.reply, entity: Entity.get(params.entity.toInteger())]
     }
 
   }

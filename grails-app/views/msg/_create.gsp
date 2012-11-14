@@ -1,11 +1,5 @@
-<head>
-  <title><g:message code="privat.msgCreate"/></title>
-  <meta name="layout" content="database"/>
-</head>
-<body>
-<div class="boxHeader">
-  <h1><g:message code="privat.msgCreate"/></h1>
-</div>
+<h4><g:message code="privat.msgCreate"/></h4>
+
 <div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: msgInstance]"/>
@@ -29,9 +23,7 @@
         <tr class="prop">
           <td class="name"><g:message code="content"/>:</td>
           <td class="value">
-            <ckeditor:editor name="content" height="200px" toolbar="Basic">
-              ${fieldValue(bean:msgInstance,field:'content').decodeHTML()}
-            </ckeditor:editor>
+              <g:textArea name="content" rows="10" cols="50"/>
           </td>
         </tr>
 
@@ -39,11 +31,10 @@
       </table>
 
       <div class="buttons cleared">
-        <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="${message(code: 'send')}"/></div>
-        <g:link class="buttonGray" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="cancel"/></g:link>
+        <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="${message(code: 'send')}" onclick="parent.frames[0].CK.UpdateLinkedField();" /></div>
+        <g:remoteLink update="content" class="buttonGray" controller="msg" action="outbox" id="${entity.id}" before="showspinner('#content');"><g:message code="cancel"/></g:remoteLink>
       </div>
 
     </g:form>
 
 </div>
-</body>

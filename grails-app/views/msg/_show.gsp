@@ -1,11 +1,5 @@
-<head>
-  <title><g:message code="msg"/></title>
-  <meta name="layout" content="database"/>
-</head>
-<body>
-<div class="boxHeader">
-  <h1><g:message code="msg"/></h1>
-</div>
+<h4><g:message code="msg"/></h4>
+
 <div class="boxContent">
 
     <table class="private-msg" style="width: 100%">
@@ -29,11 +23,10 @@
     <div class="buttons cleared">
       %{--reply is only possible when sender account is enabled--}%
       <erp:isEnabled entity="${msgInstance.sender}">
-        <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id, subject:'AW: '+msgInstance.subject.encodeAsHTML(), reply: 'true']"><g:message code="reply"/></g:link>
+        <g:remoteLink update="content" class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id, subject:'AW: '+msgInstance.subject.encodeAsHTML(), reply: 'true']" before="showspinner('#content');"><g:message code="reply"/></g:remoteLink>
       </erp:isEnabled>
-      <g:link class="buttonRed" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:box]"><g:message code="delete"/></g:link>
-      <g:link class="buttonGray" action="inbox" id="${entity.id}"><g:message code="back"/></g:link>
+      <g:remoteLink update="content" class="buttonRed" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:box]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><g:message code="delete"/></g:remoteLink>
+      <g:remoteLink update="content" class="buttonGray" action="${box}" id="${entity.id}" before="showspinner('#content');"><g:message code="back"/></g:remoteLink>
     </div>
 
 </div>
-</body>
