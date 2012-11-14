@@ -92,7 +92,8 @@ class GroupActivityTemplateProfileController {
                 calculatedDuration: calculatedDuration,
                 methods: Method.findAllByType('template'),
                 instances: instances,
-                templateResources: templateResources]
+                templateResources: templateResources,
+                allLabels: functionService.getLabels()]
     }
 
   def delete = {
