@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>${grailsApplication.config.application.name} ${grailsApplication.config.customerName} - <g:layoutTitle/></title>
+  <title>${grailsApplication.config.application.name} %{--${grailsApplication.config.customerName}--}% - <g:layoutTitle/></title>
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <r:require modules="start"/>
 

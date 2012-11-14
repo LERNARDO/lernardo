@@ -58,7 +58,7 @@ class EducatorProfileController {
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
-    return [educator: educator, enlistedBy: enlistedBy, colony: colony]
+    return [educator: educator, enlistedBy: enlistedBy, colony: colony, ajax: params.ajax]
   }
 
     def management = {

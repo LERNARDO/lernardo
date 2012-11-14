@@ -15,9 +15,9 @@
       <div class="tabnav">
         <ul>
           <li><g:link controller="childProfile" action="show" id="${child.id}"><g:message code="profile"/></g:link></li>
-          <li><g:remoteLink update="content" controller="publication" action="list" id="${child.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${child}"/></g:remoteLink></li>
+          <li><g:remoteLink update="content" controller="publication" action="list" id="${child.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${child}"/></g:remoteLink></li>
           <li><g:link controller="msg" action="inbox" id="${child.id}"><g:message code="privat.posts"/></g:link></li>
-          <li><g:remoteLink update="content" style="border-right: none" controller="appointmentProfile" action="index" id="${child.id}"><g:message code="appointments"/></g:remoteLink></li>
+          <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${child.id}" before="showspinner('#content');"><g:message code="appointments"/></g:remoteLink></li>
         </ul>
       </div>
 
@@ -86,4 +86,7 @@
     </div>
 
 </div>
+
+<g:render template="/templates/ajaxCommands" model="${ajax}"/>
+
 </body>

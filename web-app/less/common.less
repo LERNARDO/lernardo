@@ -112,7 +112,7 @@ a {
                 }
             }
             a {
-                font-weight: bold;
+                //font-weight: bold;
                 text-decoration: none;
                 padding: 0 2px 0 2px;
                 &.me {
@@ -212,14 +212,14 @@ a {
 }
 
 #grid {
-    padding-left: 230px;
+    //padding-left: 230px;
     background: #fff;
     padding-top: 15px;
 }
 
 #main {
     width: 100%;
-    border-left: 1px solid #ddd;
+    //border-left: 1px solid #ddd;
     //padding-bottom: 50px;
     margin-bottom: 55px;
 }
@@ -1728,7 +1728,7 @@ a {
 
 .tabnav {
     padding: 15px 0 0 4px;
-    border-bottom: 2px solid #bbb;
+    //border-bottom: 2px solid #bbb;
     ul {
         margin: 0;
         padding-bottom: 3px;
@@ -1737,13 +1737,26 @@ a {
             padding: 0;
             display: inline;
             a {
-                background: #ddd;
+                background: #eee;
                 padding: 6px 20px;
                 color: #444;
-                border-right: 1px solid #bbb;
+                border: 1px solid #ccc;
                 &:hover {
-                    background: #bbb;
+                    background: #ccc;
                     color: #000;
+                    border: 1px solid #aaa;
+                }
+            }
+            &:last-child {
+                a {
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                }
+            }
+            &:first-child {
+                a {
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
                 }
             }
         }
@@ -2018,4 +2031,10 @@ table.info {
 
 .starbox  {
     padding: 5px 0;
+}
+
+.buttonLeft {
+    color: @blue;
+    border: none;
+    background: none;
 }

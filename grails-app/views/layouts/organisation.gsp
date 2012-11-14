@@ -187,7 +187,7 @@
 
     <div class="yui3-g" id="grid">
 
-      <div class="yui3-u" id="left">
+      %{--<div class="yui3-u" id="left">
 
         <div class="profile-box">
 
@@ -208,7 +208,7 @@
             </ul>
         </div>
 
-      </div>
+      </div>--}%
 
       <div class="yui3-u" id="main">
         <g:if test="${flash.message}">

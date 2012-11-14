@@ -16,7 +16,7 @@
     </erp:getNewInboxMessages>
 
     <erp:getCurrentAppointments entity="${currentEntity}">
-      <g:link class="tooltip" data-tooltip="${message(code: 'appointments')}" controller="appointmentProfile" action="list" id="${currentEntity.id}">
+      <g:link class="tooltip" data-tooltip="${message(code: 'appointments')}" controller="${currentEntity.type.supertype.name + 'Profile'}" action="show" id="${currentEntity.id}" params="[ajax: 'appointments']">
       <span class="notificationbox inactive">
         <span class="gray">${result}</span> <img src="${g.resource(dir:'images/icons', file:'icon_appointments.png')}" alt="Appointments" style="position: relative; top: 3px;"/>
       </span>

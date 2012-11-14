@@ -188,7 +188,7 @@
 
     <div class="yui3-g" id="grid">
 
-      <div class="yui3-u" id="left">
+      %{--<div class="yui3-u" id="left">
 
         <div class="profile-box">
 
@@ -200,7 +200,7 @@
               <li class="profile-activities"><g:link controller="groupActivityProfile" action="list"><g:message code="groupActivities"/></g:link></li>
               <li class="profile-template"><g:link controller="projectTemplateProfile" action="list"><g:message code="projectTemplates"/></g:link></li>
               <li class="icon-admin"><g:link controller="projectProfile" action="list"><g:message code="projects"/></g:link></li>
-              %{--<li class="profile-activities"><g:link controller="activityProfile" action="list"><g:message code="imgmenu.activity.name"/></g:link></li>--}%
+              --}%%{--<li class="profile-activities"><g:link controller="activityProfile" action="list"><g:message code="imgmenu.activity.name"/></g:link></li>--}%%{--
               <li class="icon-admin"><g:link controller="themeProfile" action="list"><g:message code="themes"/></g:link></li>
             </ul>
 
@@ -213,7 +213,7 @@
             </ul>
         </div>
 
-      </div>
+      </div>--}%
 
       <div class="yui3-u" id="main">
         <g:if test="${flash.message}">

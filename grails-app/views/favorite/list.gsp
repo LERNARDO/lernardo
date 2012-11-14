@@ -3,7 +3,7 @@
   <title><g:message code="favorites"/></title>
 </head>
 <body>
-<div class="boxHeader">
+<div class="boxHeader" style="margin-top: 15px;">
   <h1><g:message code="favorites"/></h1>
 </div>
 <div class="boxContent">

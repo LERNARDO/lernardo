@@ -20,7 +20,7 @@
         <li><g:link controller="activityProfile" action="show" id="${activity.id}"><g:message code="profile"/></g:link></li>
         <li><g:remoteLink update="content" controller="publication" action="list" id="${activity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${activity}"/></g:remoteLink></li>
         <erp:accessCheck types="['Betreiber','Pädagoge']">
-          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${activity.id}"><g:message code="comments"/> (${activity.profile.comments.size()}) </g:remoteLink></li>
+          <li><g:remoteLink update="content" controller="comment" action="show" id="${activity.id}" before="showspinner('#content');"><g:message code="comments"/> (${activity.profile.comments.size()}) </g:remoteLink></li>
         </erp:accessCheck>
       </ul>
     </div>

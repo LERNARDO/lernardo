@@ -15,8 +15,8 @@
     <div class="tabnav">
       <ul>
         <li><g:link controller="groupClientProfile" action="show" id="${group.id}"><g:message code="profile"/></g:link></li>
-          <li><g:remoteLink update="content" controller="groupClientProfile" action="management" id="${group.id}"><g:message code="management"/></g:remoteLink></li>
-        <li><g:remoteLink style="border-right: none;" update="content" controller="publication" action="list" id="${group.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${group}"/></g:remoteLink></li>
+        <li><g:remoteLink update="content" controller="groupClientProfile" action="management" id="${group.id}" before="showspinner('#content');"><g:message code="management"/></g:remoteLink></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${group.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${group}"/></g:remoteLink></li>
       </ul>
     </div>
 

@@ -16,10 +16,10 @@
     <div class="tabnav">
       <ul>
         <li><g:link controller="parentProfile" action="show" id="${parent.id}"><g:message code="profile"/></g:link></li>
-        <li><g:remoteLink update="content" controller="publication" action="list" id="${parent.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${parent}"/></g:remoteLink></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${parent.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${parent}"/></g:remoteLink></li>
         <li><g:link controller="msg" action="inbox" id="${parent.id}"><g:message code="privat.posts"/></g:link></li>
-        <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${parent.id}"><g:message code="appointments"/></g:remoteLink></li>
-        <li><g:link style="border-right: none" controller="evaluation" action="list" id="${parent.id}"><g:message code="privat.evaluation"/></g:link></li>
+        <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${parent.id}" before="showspinner('#content');"><g:message code="appointments"/></g:remoteLink></li>
+        <li><g:link controller="evaluation" action="list" id="${parent.id}"><g:message code="privat.evaluation"/></g:link></li>
       </ul>
     </div>
 
@@ -170,4 +170,7 @@
     </div>
 
 </div>
+
+<g:render template="/templates/ajaxCommands" model="${ajax}"/>
+
 </body>

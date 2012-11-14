@@ -16,12 +16,12 @@
 <div class="tabnav">
   <ul>
     <li><g:link controller="educatorProfile" action="show" id="${educator.id}"><g:message code="profile"/></g:link></li>
-    <li><g:remoteLink update="content" controller="educatorProfile" action="management" id="${educator.id}"><g:message code="management"/></g:remoteLink></li>
-    <li><g:remoteLink update="content" controller="publication" action="list" id="${educator.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${educator}"/></g:remoteLink></li>
+    <li><g:remoteLink update="content" controller="educatorProfile" action="management" id="${educator.id}" before="showspinner('#content');"><g:message code="management"/></g:remoteLink></li>
+    <li><g:remoteLink update="content" controller="publication" action="list" id="${educator.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${educator}"/></g:remoteLink></li>
     <li><g:link controller="msg" action="inbox" id="${educator.id}"><g:message code="privat.posts"/></g:link></li>
-    <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${educator.id}"><g:message code="appointments"/></g:remoteLink></li>
+    <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${educator.id}" before="showspinner('#content');"><g:message code="appointments"/></g:remoteLink></li>
     <li><g:link controller="evaluation" action="myevaluations" id="${educator.id}"><g:message code="privat.evaluation"/></g:link></li>
-    <li><g:link style="border-right: none" controller="timeRecording" id="${educator.id}"><g:message code="privat.workday"/></g:link></li>
+    <li><g:link controller="timeRecording" id="${educator.id}"><g:message code="privat.workday"/></g:link></li>
   </ul>
 </div>
 
@@ -227,4 +227,7 @@
 
 </div>
 </div>
+
+<g:render template="/templates/ajaxCommands" model="${ajax}"/>
+
 </body>

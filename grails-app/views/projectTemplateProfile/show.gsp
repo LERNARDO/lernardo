@@ -28,10 +28,10 @@
     <div class="tabnav">
       <ul>
         <li><g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}"><g:message code="profile"/></g:link></li>
-          <li><g:remoteLink update="content" controller="projectTemplateProfile" action="management" id="${projectTemplate.id}"><g:message code="management"/></g:remoteLink></li>
-        <li><g:remoteLink update="content" controller="publication" action="list" id="${projectTemplate.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${projectTemplate}"/></g:remoteLink></li>
+        <li><g:remoteLink update="content" controller="projectTemplateProfile" action="management" id="${projectTemplate.id}" before="showspinner('#content');"><g:message code="management"/></g:remoteLink></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${projectTemplate.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${projectTemplate}"/></g:remoteLink></li>
         <erp:accessCheck types="['Betreiber','Pädagoge']">
-          <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${projectTemplate.id}"><g:message code="comments"/> (${projectTemplate.profile.comments.size()}) </g:remoteLink></li>
+          <li><g:remoteLink update="content" controller="comment" action="show" id="${projectTemplate.id}" before="showspinner('#content');"><g:message code="comments"/> (${projectTemplate.profile.comments.size()}) </g:remoteLink></li>
         </erp:accessCheck>
       </ul>
     </div>

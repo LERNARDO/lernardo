@@ -1,7 +1,7 @@
 // spinner credits: http://fgnass.github.com/spin.js/ and https://gist.github.com/1290439
 
 function showspinner(id) {
-    $(id).html("").spin({lines: 9, length: 4, width: 3, radius: 5, top: 0, left: 0});
+    $(id).html("").spin({lines: 9, length: 4, width: 3, radius: 5, top: 15, left: 0});
 }
 
 function hidespinner(id) {

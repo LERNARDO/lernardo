@@ -16,10 +16,10 @@
       <div class="tabnav">
         <ul>
           <li><g:link controller="pateProfile" action="show" id="${pate.id}"><g:message code="profile"/></g:link></li>
-            <li><g:remoteLink update="content" controller="pateProfile" action="management" id="${pate.id}"><g:message code="management"/></g:remoteLink></li>
-          <li><g:remoteLink update="content" controller="publication" action="list" id="${pate.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${pate}"/></g:remoteLink></li>
+          <li><g:remoteLink update="content" controller="pateProfile" action="management" id="${pate.id}" before="showspinner('#content');"><g:message code="management"/></g:remoteLink></li>
+          <li><g:remoteLink update="content" controller="publication" action="list" id="${pate.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${pate}"/></g:remoteLink></li>
           <li><g:link controller="msg" action="inbox" id="${pate.id}"><g:message code="privat.posts"/></g:link></li>
-          <li><g:remoteLink update="content" style="border-right: none" controller="appointmentProfile" action="index" id="${pate.id}"><g:message code="appointments"/></g:remoteLink></li>
+          <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${pate.id}" before="showspinner('#content');"><g:message code="appointments"/></g:remoteLink></li>
         </ul>
       </div>
 
@@ -92,4 +92,7 @@
       </div>
 
 </div>
+
+<g:render template="/templates/ajaxCommands" model="${ajax}"/>
+
 </body>

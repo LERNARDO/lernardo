@@ -36,7 +36,7 @@ class UserProfileController {
       return
     }
 
-    return [user: user]
+    return [user: user, ajax: params.ajax]
   }
 
   def delete = {

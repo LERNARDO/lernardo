@@ -57,7 +57,7 @@ class ClientProfileController {
     Entity colony = linkDataService.getColony(client)
     Entity family = linkDataService.getFamily(client)
 
-    return [client: client, colony: colony, family: family]
+    return [client: client, colony: colony, family: family, ajax: params.ajax]
 
   }
 

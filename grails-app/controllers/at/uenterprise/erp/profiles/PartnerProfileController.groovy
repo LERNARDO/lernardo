@@ -47,7 +47,7 @@ class PartnerProfileController {
 
     Entity colony = linkDataService.getColony(partner)
 
-    return [partner: partner, colony: colony]
+    return [partner: partner, colony: colony, ajax: params.ajax]
 
   }
 
