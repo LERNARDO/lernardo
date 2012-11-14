@@ -16,7 +16,7 @@ class TimeRecordingController {
     Entity entity = Entity.get(params.id)
     List workdaycategories = WorkdayCategory.list()
 
-    return [entity: entity, workdaycategories: workdaycategories]
+    render template: "record", model: [entity: entity, workdaycategories: workdaycategories]
   }
 
   def showRecords = {
@@ -208,7 +208,7 @@ class TimeRecordingController {
 
   def report = {
     Entity entity = Entity.get(params.id)
-    return [entity: entity]
+    render template: "report", model: [entity: entity]
   }
 
   def showReport = {

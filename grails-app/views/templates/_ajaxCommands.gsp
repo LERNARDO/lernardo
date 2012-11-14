@@ -5,3 +5,10 @@
         });
     </script>
 </g:if>
+<g:if test="${ajax == 'publications'}">
+    <script type="text/javascript">
+        $(function() {
+            ${remoteFunction(controller: "publication", action: "list", update: "content")}
+        });
+    </script>
+</g:if>

@@ -21,7 +21,7 @@
     <li><g:link controller="msg" action="inbox" id="${educator.id}"><g:message code="privat.posts"/></g:link></li>
     <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${educator.id}" before="showspinner('#content');"><g:message code="appointments"/></g:remoteLink></li>
     <li><g:link controller="evaluation" action="myevaluations" id="${educator.id}"><g:message code="privat.evaluation"/></g:link></li>
-    <li><g:link controller="timeRecording" id="${educator.id}"><g:message code="privat.workday"/></g:link></li>
+    <li><g:remoteLink update="content" controller="timeRecording" id="${educator.id}" before="showspinner('#content');"><g:message code="privat.workday"/></g:remoteLink></li>
   </ul>
 </div>
 

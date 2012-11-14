@@ -1,4 +1,4 @@
-<h4><g:remoteLink update="content" controller="appointmentProfile" action="list"><g:message code="appointment.current"/></g:remoteLink> - <g:message code="appointment.old"/></h4>
+<h4><g:remoteLink update="content" controller="appointmentProfile" action="list" before="showspinner('#content');"><g:message code="appointment.current"/></g:remoteLink> - <g:message code="appointment.old"/></h4>
 
 <div class="boxContent">
 
