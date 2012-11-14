@@ -340,8 +340,8 @@ class BootStrap {
                 entityHelperService.createEntityWithUserAndProfile("parent" + i, etParent, "parent" + i + "@domain.org", "parentFirstName parentLastName " + i) {Entity ent ->
                     ent.user.locale = new Locale("de", "DE")
                     ParentProfile prf = (ParentProfile) ent.profile
-                    prf.firstName = "parentFirstName"
-                    prf.lastName = "parentLastName"
+                    prf.firstName = "parentFirstName" + i
+                    prf.lastName = "parentLastName" + i
                     prf.gender = generator.nextInt(2) + 1
                     prf.currentStreet = "dummyStreet"
                     prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
@@ -372,8 +372,8 @@ class BootStrap {
                 Entity entity = entityHelperService.createEntityWithUserAndProfile("client" + i, etClient, "client" + i + "@domain.org", "clientFirstName clientLastName " + i) {Entity ent ->
                     ent.user.locale = new Locale("de", "DE")
                     ClientProfile prf = (ClientProfile) ent.profile
-                    prf.firstName = "clientFirstName"
-                    prf.lastName = "clientLastName"
+                    prf.firstName = "clientFirstName" + i
+                    prf.lastName = "clientLastName" + i
                     prf.gender = generator.nextInt(2) + 1
                     prf.interests = "dummyInterests"
                     prf.currentStreet = "dummyStreet"
@@ -411,8 +411,8 @@ class BootStrap {
                 entityHelperService.createEntityWithUserAndProfile("child" + i, etChild, "child" + i + "@domain.org", "childFirstName childLastName " + i) {Entity ent ->
                     ent.user.locale = new Locale("de", "DE")
                     ChildProfile prf = (ChildProfile) ent.profile
-                    prf.firstName = "childFirstName"
-                    prf.lastName = "childLastName"
+                    prf.firstName = "childFirstName" + i
+                    prf.lastName = "childLastName" + i
                     prf.gender = generator.nextInt(2) + 1
                     prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
                     prf.job = generator.nextBoolean()
@@ -476,8 +476,8 @@ class BootStrap {
                 entityHelperService.createEntityWithUserAndProfile("pate" + i, etPate, "pate" + i + "@domain.org", "pateFirstName pateLastName " + i) {Entity ent ->
                     ent.user.locale = new Locale("de", "DE")
                     PateProfile prf = (PateProfile) ent.profile
-                    prf.firstName = "pateFirstName"
-                    prf.lastName = "pateLastName"
+                    prf.firstName = "pateFirstName" + i
+                    prf.lastName = "pateLastName" + i
                     prf.zip = "12345"
                     prf.city = "dummyCity"
                     prf.street = "dummyStreet"
