@@ -161,12 +161,15 @@ class GroupClientProfileController {
     //def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
 
-    def allClients = Entity.createCriteria().list {
+    def allClients = Entity.createCriteria().listDistinct {
       if (params.type != "all")
         eq('type', params.type)
       if (params.name)
         profile {
           ilike('fullName', "%" + params.name + "%")
+        }
+        user {
+            eq('enabled', true)
         }
       profile {
         if (params.gender != "0")
