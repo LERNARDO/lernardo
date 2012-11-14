@@ -1,19 +1,30 @@
-<head>
-  <meta name="layout" content="database"/>
-  <title><g:message code="object.edit" args="[message(code: 'appointment')]"/></title>
-</head>
-<body>
-<div class="boxHeader">
-  <h1 style="float: left"><g:message code="object.edit" args="[message(code: 'appointment')]"/></h1>
-  <div class="icons" style="text-align: right;">
-    <g:link action="show" id="${appointmentProfileInstance.id}"><img src="${resource(dir: 'images/icons', file: 'icon_cancel.png')}" alt="${message(code: 'cancel')}" align="top"/></g:link>
-  </div>
-</div>
-<div class="boxContent" style="clear: both;">
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.datetimepicker2').datetimepicker({
+            timeText: '${message(code: "time")}',
+            hourText: '${message(code: "hour")}',
+            minuteText: '${message(code: "minute")}',
+            dayNamesMin: ['${message(code: "sunday.short")}', '${message(code: "monday.short")}', '${message(code: "tuesday.short")}',
+                '${message(code: "wednesday.short")}', '${message(code: "thursday.short")}', '${message(code: "friday.short")}',
+                '${message(code: "saturday.short")}'],
+            monthNames: ['${message(code: "january")}', '${message(code: "february")}', '${message(code: "march")}',
+                '${message(code: "april")}', '${message(code: "may")}', '${message(code: "june")}',
+                '${message(code: "july")}', '${message(code: "august")}', '${message(code: "september")}',
+                '${message(code: "october")}', '${message(code: "november")}', '${message(code: "december")}'],
+            dateFormat: 'dd. mm. yy,',
+            timeFormat: 'hh:mm',
+            stepMinute: 5
+        });
+    });
+</script>
+
+<h4><g:message code="object.create" args="[message(code: 'appointment')]"/></h4>
+
+<div class="boxContent">
 
     <g:render template="/templates/errors" model="[bean: appointmentProfileInstance]"/>
 
-    <g:form id="${appointmentProfileInstance.id}">
+    <g:formRemote name="formRemote" url="[controller: 'appointmentProfile', action: 'save', id: createdFor.id]" update="content">
 
       <table>
 
@@ -62,11 +73,10 @@
       </table>
 
       <div class="buttons cleared">
-        <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
+        <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'save')}" /></div>
+        <g:remoteLink update="content" class="buttonGray" action="list"><g:message code="cancel"/></g:remoteLink>
       </div>
 
-    </g:form>
+    </g:formRemote>
 
 </div>
-</body>

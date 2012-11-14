@@ -49,7 +49,7 @@ class AppointmentProfileController {
       def upperBound = params.offset + 10 < resulttotal ? params.offset + 10 : resulttotal
       appointments = appointments.subList(params.offset, upperBound)
 
-      [appointmentProfileInstanceList: appointments,
+      render template: "list", model: [appointmentProfileInstanceList: appointments,
        appointmentProfileInstanceTotal: resulttotal,
        entity: entity]
     }
@@ -73,7 +73,7 @@ class AppointmentProfileController {
       def upperBound = params.offset + 10 < resulttotal ? params.offset + 10 : resulttotal
       appointments = appointments.subList(params.offset, upperBound)
 
-      [appointmentProfileInstanceList: appointments,
+      render template: "listold", model: [appointmentProfileInstanceList: appointments,
        appointmentProfileInstanceTotal: resulttotal,
        entity: entity]
     }
@@ -85,11 +85,11 @@ class AppointmentProfileController {
         // find owner of appointment
         Entity belongsTo = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
 
-        [appointment: appointment, entity: appointment, belongsTo: belongsTo]
+        render template: "show", model: [appointment: appointment, entity: appointment, belongsTo: belongsTo]
       }
       else {
         flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
-        redirect action: list
+        redirect action: "list"
       }
 
     }
@@ -111,7 +111,7 @@ class AppointmentProfileController {
       }
       else {
         flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
-        redirect(action: "list")
+        redirect action: "list"
       }
     }
 
@@ -124,7 +124,7 @@ class AppointmentProfileController {
       return
     }
 
-    return [ appointmentProfileInstance : appointment ]
+    render template: "edit", model: [ appointmentProfileInstance : appointment ]
 
     }
 
@@ -145,13 +145,13 @@ class AppointmentProfileController {
         redirect action: 'show', id: appointment.id
       }
       else {
-        render view: 'edit', model: [appointmentProfileInstance: appointment]
+        render template: 'edit', model: [appointmentProfileInstance: appointment]
       }
     }
 
     def create = {
       Entity entity = Entity.get(params.id)
-      return [createdFor: entity, entity: entity]
+      render template: "create", model: [createdFor: entity, entity: entity]
     }
 
     def save = {
@@ -172,7 +172,7 @@ class AppointmentProfileController {
         flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile])
         redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
-        render view: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner]
+        render template: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner]
       }
 
     }

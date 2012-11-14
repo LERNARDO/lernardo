@@ -18,7 +18,7 @@
         <li><g:remoteLink update="content" controller="operatorProfile" action="management" id="${operator.id}"><g:message code="management"/></g:remoteLink></li>
         <li><g:remoteLink update="content" controller="publication" action="list" id="${operator.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${operator}"/></g:remoteLink></li>
         <li><g:link controller="msg" action="inbox" id="${operator.id}"><g:message code="privat.posts"/></g:link></li>
-        <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${operator.id}"><g:message code="appointments"/></g:link></li>
+        <li><g:remoteLink update="content" style="border-right: none" controller="appointmentProfile" action="index" id="${operator.id}"><g:message code="appointments"/></g:remoteLink></li>
       </ul>
     </div>
 

@@ -1,15 +1,7 @@
 <%@ page import="at.uenterprise.erp.base.Entity" %>
-<head>
-  <meta name="layout" content="database"/>
-  <title><g:message code="appointment"/> - ${appointment.profile}</title>
-</head>
-<body>
-<div class="boxHeader">
-  <h1><g:message code="appointment"/> - ${appointment.profile}</h1>
-  %{--<div class="icons" style="text-align: right;">
-    <g:link action="edit" id="${appointment.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:link>
-  </div>--}%
-</div>
+
+<h4><g:message code="appointment"/> - ${appointment.profile}</h4>
+
 <div class="boxContent" style="clear: both;">
 
     <table>
@@ -46,7 +38,7 @@
         </tr>
 
         <tr class="prop">
-          <td class="one"><g:message code="appointment.profile.isPrivate"/></td>
+          <td class="one"><g:message code="private"/></td>
           <td class="two"><g:formatBoolean boolean="${appointment.profile.isPrivate}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
         </tr>
 
@@ -54,14 +46,15 @@
     </table>
 
     <div class="buttons cleared">
-      <g:form id="${appointment.id}">
         <erp:accessCheck types="['Betreiber']" me="${belongsTo}">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" /></div>
+            <g:formRemote name="formRemote" url="[controller: 'appointmentProfile', action: 'edit', id: appointment.id]" update="content">
+                <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+            </g:formRemote>
+            <g:formRemote name="formRemote" url="[controller: 'appointmentProfile', action: 'delete', id: appointment.id]" update="content" before="if(!confirm('${message(code:'delete.warn')}')) return false">
+                <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}"/></div>
+            </g:formRemote>
         </erp:accessCheck>
-        <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
-      </g:form>
+        <g:remoteLink update="content" class="buttonGray" action="list"><g:message code="back"/></g:remoteLink>
     </div>
 
 </div>
-</body>

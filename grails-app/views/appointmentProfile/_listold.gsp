@@ -1,20 +1,4 @@
-<head>
-  <meta name="layout" content="database"/>
-  <title><g:message code="appointments"/></title>
-</head>
-<body>
-
-%{--<g:render template="/templates/contextEntity" model="[entity: entity]"/>--}%
-
-<div class="tabActive">
-    <h1><g:message code="appointment.current"/></h1>
-</div>
-
-<div class="tabInactive">
-    <h1><g:link controller="appointmentProfile" action="listold"><g:message code="appointment.old"/></g:link></h1>
-</div>
-
-<div class="clear"></div>
+<h4><g:remoteLink update="content" controller="appointmentProfile" action="list"><g:message code="appointment.current"/></g:remoteLink> - <g:message code="appointment.old"/></h4>
 
 <div class="boxContent">
 
@@ -22,14 +6,14 @@
       <g:message code="object.found" args="[appointmentProfileInstanceTotal, message(code: 'appointments')]"/>
     </div>
 
-    <erp:accessCheck types="['Betreiber']" me="${entity}">
+    %{--<erp:accessCheck types="['Betreiber']" me="${entity}">
       <div class="buttons cleared">
         <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'appointment')])}"/></div>
           <div class="button"><g:link class="buttonGray" controller="calendar" action="show"><g:message code="toCalendar"/></g:link></div>
         </g:form>
       </div>
-    </erp:accessCheck>
+    </erp:accessCheck>--}%
 
     <g:if test="${appointmentProfileInstanceList}">
       <table class="default-table">
@@ -56,7 +40,7 @@
             <td style="line-height: 20px;">
               <g:if test="${appointmentProfileInstance.profile.isPrivate}">
                 <erp:accessCheck types="['Betreiber']" me="${entity}">
-                  <span class="bold"><g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile')}</g:link></span><br/>
+                  <span class="bold"><g:remoteLink update="content" action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile')}</g:remoteLink></span><br/>
                   ${fieldValue(bean: appointmentProfileInstance, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
                   <g:set var="negation" value="negation"/> %{-- see below note why this is set --}%
                 </erp:accessCheck>
@@ -66,7 +50,7 @@
                 </g:if>
               </g:if>
               <g:else>
-                <span class="bold"><g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile')}</g:link></span><br/>
+                <span class="bold"><g:remoteLink update="content" action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile')}</g:remoteLink></span><br/>
                 ${fieldValue(bean: appointmentProfileInstance, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}
               </g:else>
             </td>
@@ -81,4 +65,3 @@
     </g:if>
 
 </div>
-</body>

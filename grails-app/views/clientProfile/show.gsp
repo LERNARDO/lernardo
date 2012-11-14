@@ -19,7 +19,7 @@
     <li><g:remoteLink update="content" controller="clientProfile" action="management" id="${client.id}"><g:message code="management"/></g:remoteLink></li>
     <li><g:remoteLink update="content" controller="publication" action="list" id="${client.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${client}"/></g:remoteLink></li>
     <li><g:link controller="msg" action="inbox" id="${client.id}"><g:message code="privat.posts"/></g:link></li>
-    <li><g:link controller="appointmentProfile" action="index" id="${client.id}"><g:message code="appointments"/></g:link></li>
+    <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${client.id}"><g:message code="appointments"/></g:remoteLink></li>
     <li><g:link style="border-right: none" controller="evaluation" action="list" id="${client.id}"><g:message code="privat.evaluation"/></g:link></li>
   </ul>
 </div>
