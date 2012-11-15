@@ -17,7 +17,7 @@
         <li><g:link controller="facilityProfile" action="show" id="${facility.id}"><g:message code="profile"/></g:link></li>
         <li><g:remoteLink update="content" controller="facilityProfile" action="management" id="${facility.id}" before="showspinner('#content');"><g:message code="management"/></g:remoteLink></li>
         <li><g:remoteLink update="content" controller="publication" action="list" id="${facility.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${facility}"/></g:remoteLink></li>
-        <li><g:link controller="dayroutine" action="list" id="${facility.id}"><g:message code="dayroutine"/></g:link></li>
+        <li><g:remoteLink update="content" controller="dayroutine" action="list" id="${facility.id}" before="showspinner('#content');"><g:message code="dayroutine"/></g:remoteLink></li>
       </ul>
     </div>
 

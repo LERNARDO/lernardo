@@ -21,7 +21,7 @@ class DayroutineController {
     // find all routines of that day and facility
     List routines = Dayroutine.findAllByFacilityAndDay(entity, day).sort() {it.dateFrom.getHours()}
 
-    return [routines: routines, entity: entity, day: day]
+    render template: "list", model: [routines: routines, entity: entity, day: day]
   }
 
   def updateday = {

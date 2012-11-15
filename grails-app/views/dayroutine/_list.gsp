@@ -1,7 +1,4 @@
 <head>
-  <meta name="layout" content="database"/>
-  <title>${entity.profile.decodeHTML()}: <g:message code="dayroutine"/></title>
-
   <g:javascript src="jquery/fullcalendar.min.js"/>
   <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}">
 
@@ -14,20 +11,28 @@
       $('.foo').slideUp(300).delay(300).queue(function() {
         $(this).remove();
       });
-    }
+    };
 
+    $(document).ready(function() {
+        $('.timepick').timepicker({
+            timeText: '${message(code: "time")}',
+            hourText: '${message(code: "hour")}',
+            minuteText: '${message(code: "minute")}',
+            timeOnlyTitle: '${message(code: "chooseTime")}',
+            stepMinute: 5
+        });
+    });
   </script>
 </head>
 
 <body>
 
-<div class="boxHeader">
-  <h1>${entity.profile.decodeHTML()}: <g:message code="dayroutine"/></h1>
-</div>
+<h4><g:message code="dayroutine"/></h4>
+
 <div class="boxContent">
 
     <p><g:message code="dayroutine.create"/> <img onclick="toggle('#newroutine');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code:'dayroutine.create')}"/></p>
-    <div id="newroutine" class="graypanel">
+    <div id="newroutine" style="display: none;" class="graypanel">
 
       <g:formRemote name="formRemote" url="[controller: 'dayroutine', action: 'save', id: entity.id]" update="dayroutine" before="showspinner('#dayroutine')">
 
@@ -36,7 +41,7 @@
           <tr class="prop">
             <td class="name"><g:message code="period"/></td>
             <td class="value">
-              <g:textField name="dateFrom" class="timepick" size="4"/> <g:message code="to"/> <g:textField name="dateTo" class="timepick" size="4"/> <g:message code="clock"/>
+              <g:textField name="dateFrom" class="timepick" size="4"/> <span style="vertical-align: middle;"><g:message code="to"/></span> <g:textField name="dateTo" class="timepick" size="4"/> <span style="vertical-align: middle;"><g:message code="clock"/></span>
             </td>
           </tr>
 
