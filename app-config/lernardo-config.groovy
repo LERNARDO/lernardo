@@ -8,6 +8,23 @@ customer = "noe"
 
 // nothing needs to be changed below this line
 
+// this is the mail plugin configuration
+grails {
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        username = "lernardomailer@gmail.com"
+        password = "theansweris42"
+        props = ["mail.smtp.auth": "true",
+                "mail.smtp.socketFactory.port": "465",
+                "mail.smtp.socketFactory.class": "javax.net.ssl.SSLSocketFactory",
+                "mail.smtp.socketFactory.fallback": "false"]
+    }
+}
+
+// this will be used if no "from" is supplied in a mail
+grails.mail.default.from = "lernardomailer@gmail.com"
+
 if (customer == "sueninos") {
 
     // ---------------------------------------------------------------------------------------------
