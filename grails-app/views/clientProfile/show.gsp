@@ -18,7 +18,7 @@
     <li><g:link controller="clientProfile" action="show" id="${client.id}"><g:message code="profile"/></g:link></li>
     <li><g:remoteLink update="content" controller="clientProfile" action="management" id="${client.id}" before="showspinner('#content');"><g:message code="management"/></g:remoteLink></li>
     <li><g:remoteLink update="content" controller="publication" action="list" id="${client.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${client}"/></g:remoteLink></li>
-    <li><g:link controller="msg" action="inbox" id="${client.id}"><g:message code="privat.posts"/></g:link></li>
+    <li><g:remoteLink update="content" controller="msg" action="inbox" id="${client.id}" before="showspinner('#content');"><g:message code="privat.posts"/></g:remoteLink></li>
     <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${client.id}" before="showspinner('#content');"><g:message code="appointments"/></g:remoteLink></li>
     <li><g:link controller="evaluation" action="list" id="${client.id}"><g:message code="privat.evaluation"/></g:link></li>
   </ul>
