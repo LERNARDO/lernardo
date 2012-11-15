@@ -381,6 +381,12 @@ a {
             background: url(../images/icons/icon_resource.png) 5px 50% no-repeat lighten(@yellow, 40%);
         }
     }
+    .icon-key {
+        background: url(../images/icons/icon_key.png) 5px 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_key.png) 5px 50% no-repeat lighten(@yellow, 40%);
+        }
+    }
 }
 
 .new {
@@ -408,14 +414,17 @@ a {
 }
 
 #left {
-    width: 200px;
-    margin-left: -232px;
-    padding: 0 15px;
+    //width: 200px;
+    //margin-left: -232px;
+    //padding: 0 15px;
     ul {
       li {
         padding: 5px 0 5px 20px;
         margin: 0;
       }
+    }
+    input[type="submit"] {
+        padding-left: 10px;
     }
     a {
         text-decoration: none;
@@ -637,6 +646,42 @@ a {
         background: url(../images/icons/online.png) 5px 50% no-repeat;
         &:hover {
             background: url(../images/icons/online.png) 5px 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-mail {
+        background: url(../images/icons/icon_mail.png) 5px 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_mail.png) 5px 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-delete {
+        background: url(../images/icons/icon_remove_old.png) 5px 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_remove_old.png) 5px 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-enabled {
+        background: url(../images/icons/icon_enabled.png) 5px 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_enabled.png) 5px 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-disabled {
+        background: url(../images/icons/icon_disabled.png) 5px 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_disabled.png) 5px 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-network {
+        background: url(../images/icons/icon_contact.png) 5px 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_contact.png) 5px 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-key {
+        background: url(../images/icons/icon_key.png) 5px 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_key.png) 5px 50% no-repeat lighten(@cyan, 50%);
         }
     }
 }
@@ -1729,6 +1774,43 @@ a {
 .tabnav {
     padding: 15px 0 0 4px;
     //border-bottom: 2px solid #bbb;
+    ul {
+        margin: 0;
+        padding-bottom: 3px;
+        li {
+            margin: 0 0 0 -4px;
+            padding: 0;
+            display: inline;
+            a {
+                background: #eee;
+                padding: 6px 20px;
+                color: #444;
+                border: 1px solid #ccc;
+                &:hover {
+                    background: #ccc;
+                    color: #000;
+                    border: 1px solid #aaa;
+                }
+            }
+            &:last-child {
+                a {
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                }
+            }
+            &:first-child {
+                a {
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                }
+            }
+        }
+    }
+}
+
+.tabnav2 {
+    padding: 5px 0 0 18px;
+//border-bottom: 2px solid #bbb;
     ul {
         margin: 0;
         padding-bottom: 3px;
