@@ -94,7 +94,7 @@
 
       <div style="border-bottom: 1px solid #ddd; margin: 5px 0;"></div>
 
-      <g:remoteField style="margin: 10px 0 0 8px; font-size: 12px;" placeholder="Person hinzufügen" size="30" name="instantSearch" update="calender-results" paramName="name" url="[controller: 'calendar', action: 'search', params: [child: 'yes', client: 'yes', educator: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes', user: 'yes']]" before="showspinner('#calender-results')" />
+      <g:remoteField style="margin: 10px 0 0 8px; font-size: 12px;" placeholder="${message code: 'addPerson'}" size="30" name="instantSearch" update="calender-results" paramName="name" url="[controller: 'calendar', action: 'search', params: [child: 'yes', client: 'yes', educator: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes', user: 'yes']]" before="showspinner('#calender-results')" />
       <div style="margin: 10px 0 0 8px; font-size: 12px;" class="membersearch-results" id="calender-results"></div>
 
       <div id="results">
