@@ -275,7 +275,7 @@ class ProfileController {
   def uploadProfileImage = {
     Entity entity = Entity.get(params.id)
 
-    return [entity: entity]
+    render template: "uploadProfileImage", model: [entity: entity]
     }
 
   def savePic = {

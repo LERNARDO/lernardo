@@ -4,7 +4,7 @@
       <div style="width: 160px;" onmouseover="$('#mypic').css('opacity', '1');" onmouseout="$('#mypic').css('opacity', '0');">
         <erp:profileImage entity="${entity}" width="160" height="160"/>
         <erp:accessCheck types="['Betreiber']" creatorof="${entity}">
-          <div id="mypic"><g:link controller="profile" action="uploadProfileImage" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></div>
+          <div id="mypic"><g:remoteLink update="content" controller="profile" action="uploadProfileImage" id="${entity.id}" before="showspinner('#content');"><g:message code="privat.picture.change"/></g:remoteLink></div>
         </erp:accessCheck>
       </div>
     </td>
