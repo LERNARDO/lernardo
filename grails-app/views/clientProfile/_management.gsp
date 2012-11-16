@@ -160,7 +160,7 @@
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="educator.profile.emContact"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#contacts');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+    <h5><g:message code="educator.profile.emContact"/> <erp:accessCheck types="['Betreiber']" facilities="${facilities}"><img onclick="toggle('#contacts');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addContact', id: client.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
@@ -210,7 +210,7 @@
     </div>
 
     <div class="zusatz-show" id="contacts2">
-        <g:render template="contacts" model="[client: client]"/>
+        <g:render template="contacts" model="[client: client, facilities: facilities]"/>
     </div>
 </div>
 

@@ -56,8 +56,9 @@ class ClientProfileController {
 
     Entity colony = linkDataService.getColony(client)
     Entity family = linkDataService.getFamily(client)
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
 
-    return [client: client, colony: colony, family: family, ajax: params.ajax]
+    return [client: client, colony: colony, family: family, facilities: facilities, ajax: params.ajax]
 
   }
 
@@ -271,14 +272,20 @@ class ClientProfileController {
     }
     Contact contact = new Contact(params)
     client.profile.addToContacts(contact)
-    render template: 'contacts', model: [client: client]
+
+    List facilities = functionService.findAllByLink(client, null, metaDataService.ltGroupMemberClient).findAll {it.type == metaDataService.etFacility}
+
+    render template: 'contacts', model: [client: client, facilities: facilities]
   }
 
   def removeContact = {
     Entity client = Entity.get(params.id)
     client.profile.removeFromContacts(Contact.get(params.contact))
     Contact.get(params.contact).delete()
-    render template: 'contacts', model: [client: client]
+
+    List facilities = functionService.findAllByLink(client, null, metaDataService.ltGroupMemberClient).findAll {it.type == metaDataService.etFacility}
+
+    render template: 'contacts', model: [client: client, facilities: facilities]
   }
 
   def addSchoolDate = {

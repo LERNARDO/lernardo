@@ -12,7 +12,7 @@
 <div>
 
     <div style="float: left; width: 200px;">
-        <g:render template="/templates/clientNavigation" model="[entity: client]"/>
+        <g:render template="/templates/clientNavigation" model="[entity: client, facilities: facilities]"/>
     </div>
 
     <div style="margin-left: 200px; border-left: 1px solid #ccc;">
