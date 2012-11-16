@@ -43,7 +43,7 @@
       <g:each in="${clients}" status="i" var="client">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td>
-            <erp:profileImage entity="${client}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+            <erp:profileImage entity="${client}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
             <g:link action="show" id="${client.id}">${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}</g:link>
           </td>
           <td>${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}</td>

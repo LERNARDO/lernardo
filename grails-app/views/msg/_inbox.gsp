@@ -27,7 +27,7 @@
                 <g:if test="${!message.read}">
                   <img src="${g.resource(dir: 'images/icons', file: 'icon_new.png')}" alt="new" valign="top"/>
                 </g:if>
-                <erp:profileImage entity="${message.sender}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+                <erp:profileImage entity="${message.sender}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
                 ${message.sender.profile.decodeHTML()}
               </td>
               <td><g:remoteLink update="content" action="show" id="${message.id}" params="[entity: entity.id, box: 'inbox']"  before="showspinner('#content');">${message.subject.decodeHTML()}</g:remoteLink></td>

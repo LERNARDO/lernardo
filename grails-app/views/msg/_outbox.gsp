@@ -24,7 +24,7 @@
           <g:each in="${messages}" status="i" var="message">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
               <td>
-                <erp:profileImage entity="${message.receiver}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+                <erp:profileImage entity="${message.receiver}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
                 ${message.receiver.profile.decodeHTML()}
               </td>
               <td><g:remoteLink update="content" action="show" id="${message.id}" params="[entity: entity.id, box: 'outbox']"  before="showspinner('#content');">${message.subject.decodeHTML()}</g:remoteLink></td>

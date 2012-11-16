@@ -5,7 +5,7 @@
   <erp:notEnabled entity="${entity}">
     <span class="notEnabled">${entity.profile}</span>
   </erp:notEnabled>--}%
-  <erp:profileImage entity="${entity}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+  <erp:profileImage entity="${entity}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
   <g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.decodeHTML()}</g:link>
 </td>
 %{--<td class="col">${entity.type.name}</td>  --}%

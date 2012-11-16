@@ -11,7 +11,7 @@
                 <div class="remoteresult">
                     <table>
                         <tr>
-                            <td><erp:profileImage entity="${entity}" width="65"/></td>
+                            <td><erp:profileImage entity="${entity}" width="65" height="65"/></td>
                             <td style="vertical-align: top; padding-left: 5px;"><span class="bold" style="color: #000">${entity.profile}</span></td>
                         </tr>
                     </table>

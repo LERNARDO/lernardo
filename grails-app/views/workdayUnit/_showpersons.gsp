@@ -33,7 +33,7 @@
     <g:each in="${persons}" status="i" var="person">
       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
         <td>
-          <erp:profileImage entity="${person}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+          <erp:profileImage entity="${person}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
           <g:link class="largetooltip" data-idd="${person.id}" controller="${person.type.supertype.name + 'Profile'}" action="show" id="${person.id}" params="[entity: person.id]">${fieldValue(bean: person, field: 'profile').decodeHTML()}</g:link>
         </td>
         <td id="${i}a"><g:render template="showworkhours" model="[person: person, i: i]"/></td>

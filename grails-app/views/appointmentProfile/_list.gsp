@@ -31,7 +31,7 @@
             </td>
             <td style="width: 150px;">
               <g:if test="${appointmentProfileInstance.profile.allDay}">
-                Ganztägig
+                <g:message code="appointment.profile.allDay"/>
               </g:if>
               <g:else>
                 <g:formatDate date="${appointmentProfileInstance.profile.beginDate}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <g:formatDate date="${appointmentProfileInstance.profile.endDate}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>

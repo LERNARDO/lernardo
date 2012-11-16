@@ -2,7 +2,7 @@
   <table class="default-table">
     <tr>
       <td valign="top" width="250px">
-        <erp:profileImage entity="${attendance.client}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+        <erp:profileImage entity="${attendance.client}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
         ${attendance.client.profile.decodeHTML()}
         <erp:accessCheck types="['Betreiber']" facilities="${facilities}">
           <div style="text-align: right; margin-top: 5px;">
