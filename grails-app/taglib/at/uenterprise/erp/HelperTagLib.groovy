@@ -1677,20 +1677,16 @@ class HelperTagLib {
     }
 
     /**
-     * Finds the project a project unit belongs to
+     * Finds the project a project day belongs to
      *
      * @author Alexander Zeillinger
-     * @attr unit REQUIRED The project unit
+     * @attr day REQUIRED The project day
      */
-    def getProjectOfUnit = {attrs ->
-        // find project day the project unit is linked to
-        Entity projectDay = functionService.findByLink(attrs.unit, null, metaDataService.ltProjectDayUnit)
+    def getProjectOfDay= {attrs ->
 
-        // find project the project day is linked to
-        if (projectDay) {
-            Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-            out << message(code: 'project') + ": " + project?.profile?.fullName ?: 'not found'
-        }
+        Entity project = functionService.findByLink(attrs.day, null, metaDataService.ltProjectMember)
+        out << message(code: 'project') + ": " + project?.profile?.fullName ?: 'not found'
+
     }
 
     /**

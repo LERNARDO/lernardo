@@ -13,11 +13,14 @@
           <tr>
             <td><erp:profileImage entity="${entity}" width="65" height="65"/></td>
             <td style="vertical-align: top; padding-left: 5px;">
-              <span class="bold" style="color: #000">${entity.profile}</span><br/>
-              <g:message code="${entity.type.supertype.name}"/><br/>
-              <g:if test="${entity.type.supertype.name == 'projectUnit'}">
-                <erp:getProjectOfUnit unit="${entity}"/>
-              </g:if>
+                <g:if test="${entity.type.supertype.name == 'projectDay'}">
+                    <g:message code="${entity.type.supertype.name}"/><br/>
+                    <erp:getProjectOfDay day="${entity}"/>
+                </g:if>
+                <g:else>
+                    <span class="bold" style="color: #000">${entity.profile}</span><br/>
+                    <g:message code="${entity.type.supertype.name}"/><br/>
+                </g:else>
             </td>
           </tr>
         </table>

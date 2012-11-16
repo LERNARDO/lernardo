@@ -19,7 +19,7 @@ class EvaluationController {
 
   // shows all evaluations of a given client
   def list = {
-    params.max = Math.min(params.int('max') ?: 5, 100)
+    params.max = Math.min(params.int('max') ?: 10, 100)
     params.offset = params.int('offset') ?: 0
     params.sort = params.sort ?: 'dateCreated'
     params.order = params.order ?: 'desc'
@@ -32,19 +32,13 @@ class EvaluationController {
   }
 
   def allevaluations = {
-    params.max = Math.min(params.int('max') ?: 5, 100)
-    params.offset = params.int('offset') ?: 0
-    params.sort = params.sort ?: 'dateCreated'
-    params.order = params.order ?: 'desc'
-    def show = params.show ?: false
-    List evaluations = Evaluation.list(params)
     Entity entity = entityHelperService.loggedIn
-    return [evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity, show: show]
+    return [totalEvaluations: Evaluation.count(), entity: entity]
   }
 
   // shows all evaluations made by a given educator
   def myevaluations = {
-    params.max = Math.min(params.int('max') ?: 5, 100)
+    params.max = Math.min(params.int('max') ?: 10, 100)
     params.offset = params.int('offset') ?: 0
     params.sort = params.sort ?: 'dateCreated'
     params.order = params.order ?: 'desc'
@@ -54,6 +48,22 @@ class EvaluationController {
     return [evaluationInstanceList: evaluations,
             evaluationInstanceTotal: Evaluation.countByWriter(entity),
             entity: entity]
+  }
+
+  def showAll = {
+      params.max = Math.min(params.int('max') ?: 10, 100)
+      params.offset = params.int('offset') ?: 0
+      params.sort = params.sort ?: 'dateCreated'
+      params.order = params.order ?: 'desc'
+      List evaluations = Evaluation.list(params)
+      Entity entity = entityHelperService.loggedIn
+      render template: 'evaluations', model: [evaluationInstanceList: evaluations, totalEvaluations: Evaluation.count(), entity: entity, paginate: 'all']
+  }
+
+  def showSingleClient = {
+      Entity entity = Entity.get(params.id)
+      List evaluations = Evaluation.findAllByOwner(entity, params)
+      render template: 'evaluations', model: [evaluationInstanceList: evaluations, totalEvaluations: Evaluation.countByOwner(entity), entity: entity, paginate: 'oneClient']
   }
 
   def showMine = {
@@ -327,7 +337,12 @@ class EvaluationController {
     if (evaluationInstance.save(flush: true)) {
       flash.message = message(code: "evaluation.created")
         if (linkedEntity)
-            redirect controller: linkedEntity.type.supertype.name + "Profile", action: "show", id: linkedEntity.id
+            if (linkedEntity.type.supertype.name == "projectDay") {
+                Entity project = functionService.findByLink(linkedEntity, null, metaDataService.ltProjectMember)
+                redirect controller: "projectProfile", action: "show", id: project.id
+            }
+            else
+                redirect controller: linkedEntity.type.supertype.name + "Profile", action: "show", id: linkedEntity.id
         else
             redirect action: "list", id:  evaluationInstance.owner.id
     }
@@ -346,7 +361,7 @@ class EvaluationController {
       List entities = Entity.createCriteria().list {
         or {
             eq("type", metaDataService.etGroupActivity)
-            eq("type", metaDataService.etProjectUnit)
+            eq("type", metaDataService.etProjectDay)
           }
       }
 

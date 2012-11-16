@@ -1,6 +1,13 @@
 <head>
   <title><g:message code="evaluation.evaluation"/></title>
   <meta name="layout" content="database"/>
+
+    <script type="text/javascript">
+        $(function() {
+            ${remoteFunction(controller: "evaluation", action: "showSingleClient", update: "remoteEvaluations", id: entity.id)}
+        });
+    </script>
+
 </head>
 <body>
 <div class="boxHeader">
@@ -16,7 +23,7 @@
       <g:link class="buttonGreen" action="create" id="${entity.id}"><g:message code="evaluation.create"/></g:link>
     </div>
 
-    <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList]"/>
+    <div id="remoteEvaluations"></div>
 
 </div>
 </body>

@@ -8,7 +8,7 @@
           <g:render template="/app/localtags" model="[entity: client, target: day, tags: tags, update: 'tagclient' + i]"/>
         </erp:getLocalTags>
       </span>
-      %{--<span style="font-size: 10px">| <g:link controller="evaluation" action="create" id="${client.id}" params="[target: project.id]"><g:message code="evaluation.create"/></g:link></span>--}%
+      <span style="font-size: 10px">| <g:link controller="evaluation" action="create" id="${client.id}" params="[target: day.id]"><g:message code="evaluation.create"/></g:link></span>
     </li>
   </g:each>
   </ul>

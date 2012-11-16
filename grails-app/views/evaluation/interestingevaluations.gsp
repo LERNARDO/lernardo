@@ -22,7 +22,7 @@
 
 <div class="boxContent">
 
-    <div class="info-msg"><g:message code="evaluation.entrySize" args="[evaluationInstanceList.size()]"/></div>
+    <div class="info-msg"><g:message code="evaluation.entrySize" args="[totalEvaluations]"/></div>
     
     <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList, totalEvaluations: totalEvaluations, paginate: paginate]"/>
 
