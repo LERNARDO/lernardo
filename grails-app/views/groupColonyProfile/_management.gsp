@@ -9,12 +9,12 @@
 
             <table>
                 <tr>
-                    <td><g:message code="firstName"/>:</td>
-                    <td><g:textField id="cFirstName" size="30" name="firstName" value=""/></td>
+                    <td><g:message code="firstName"/>: <span class="required-indicator">*</span></td>
+                    <td><g:textField required="" id="cFirstName" size="30" name="firstName" value=""/></td>
                 </tr>
                 <tr>
-                    <td><g:message code="lastName"/>:</td>
-                    <td><g:textField id="cLastName" size="30" name="lastName" value=""/></td>
+                    <td><g:message code="lastName"/>: <span class="required-indicator">*</span></td>
+                    <td><g:textField required="" id="cLastName" size="30" name="lastName" value=""/></td>
                 </tr>
                 <tr>
                     <td><g:message code="country"/>:</td>

@@ -167,12 +167,12 @@
 
             <table>
                 <tr>
-                    <td><g:message code="firstName"/>:</td>
-                    <td><g:textField name="firstName" size="30"/></td>
+                    <td><g:message code="firstName"/>: <span class="required-indicator">*</span></td>
+                    <td><g:textField required="" name="firstName" size="30"/></td>
                 </tr>
                 <tr>
-                    <td><g:message code="lastName"/>:</td>
-                    <td><g:textField name="lastName" size="30"/></td>
+                    <td><g:message code="lastName"/>: <span class="required-indicator">*</span></td>
+                    <td><g:textField required="" name="lastName" size="30"/></td>
                 </tr>
                 <tr>
                     <td><g:message code="country"/>:</td>
