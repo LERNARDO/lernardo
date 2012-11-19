@@ -5,7 +5,6 @@
     <g:render template="/templates/errors" model="[bean: mc]"/>
 
     <g:formRemote name="formRemote" url="[controller: 'msg', action: 'saveMany', id: msgInstance.id, params: [entity: entity.id]]" update="content">
-    %{--<g:form action="saveMany" id="${msgInstance?.id}" params="[entity: entity.id]">--}%
 
       <table>
 

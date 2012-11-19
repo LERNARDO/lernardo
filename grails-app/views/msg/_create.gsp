@@ -4,7 +4,7 @@
 
     <g:render template="/templates/errors" model="[bean: msgInstance]"/>
 
-    <g:form action="save" params="[receiver: receiver.id, reply: reply, entity: entity.id]" id="${msgInstance.id}">
+    <g:formRemote name="formRemote" url="[controller: 'msg', action: 'save', id: msgInstance.id, params: [receiver: receiver.id, reply: reply, entity: entity.id]]" update="content">
       <table width="100%">
         <tbody>
 
@@ -35,6 +35,6 @@
         <g:remoteLink update="content" class="buttonGray" controller="msg" action="outbox" id="${entity.id}" before="showspinner('#content');"><g:message code="cancel"/></g:remoteLink>
       </div>
 
-    </g:form>
+    </g:formRemote>
 
 </div>
