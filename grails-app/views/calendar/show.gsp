@@ -69,14 +69,11 @@
 
       <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; text-align: center; color: #36808E; font-size: 16px; margin-bottom: 6px;"><g:message code="imgmenu.calendar.name"/></div>
 
-        <div style="margin: 0 auto; width: 110px;">
+        <div style="margin: 0 auto; width: 120px;">
             <div class="buttons cleared">
-                <g:form controller="appointmentProfile" id="${currentEntity.id}">
-                    <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'appointment')])}"/></div>
-                </g:form>
+                <a style="width: 110px" class="buttonGreen" href="" onclick="$('#modal-calendar').modal(); return false;"><g:message code="object.create" args="[message(code: 'appointment')]"/></a>
             </div>
         </div>
-
 
       <div class="calenderperson">
         <table style="width: 100%;">

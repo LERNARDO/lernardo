@@ -169,8 +169,12 @@ class AppointmentProfileController {
         // create link to owner
         new Link(source: entity, target: owner, type: metaDataService.ltAppointment).save(failOnError: true)
 
-        flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile])
-        redirect action: 'show', id: entity.id
+        if (params.fromCalendar)
+            redirect controller:  "calendar", action: "show"
+        else {
+            flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile])
+            redirect action: 'show', id: entity.id
+        }
       } catch (EntityException ee) {
         render template: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner]
       }

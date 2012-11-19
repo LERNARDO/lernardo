@@ -121,7 +121,7 @@
 </jq:jquery>
 
 <div id="modal-calendar" style="display: none;">
-    <g:form controller="appointmentProfile" action="save" id="${currentEntity.id}">
+    <g:form controller="appointmentProfile" action="save" id="${currentEntity.id}" params="[fromCalendar: true]">
 
         <table>
 

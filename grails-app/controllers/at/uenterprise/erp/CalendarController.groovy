@@ -60,7 +60,7 @@ class CalendarController {
     Entity currentEntity = entityHelperService.loggedIn
 
     List calEntities = currentEntity?.profile?.calendar?.entities?.toArray()
-    calEntities = calEntities.sort {it.entity.profile}
+    calEntities = calEntities.sort {it.entity.profile.fullName}
 
     List operators = Entity.findAllByType(metaDataService.etOperator)
 
@@ -166,13 +166,13 @@ class CalendarController {
     // get all appointments
     eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
 
-    // get all group activities the educator is part of
+    // get all group activities
     eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
 
-    // get all themeroom activities the educator is part of
-    eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
+    // get all themeroom activities
+    //eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
 
-    // get all project units the educator is part of
+    // get all project units
     eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
 
     // get all project unit placeholders
@@ -204,6 +204,7 @@ class CalendarController {
 
     // get all group activities the educator is part of
     List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberEducator)
+    temp.addAll(functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient))
     EntityType etGroupActivity = metaDataService.etGroupActivity
     temp.each { Entity group ->
       if (group.type.id == etGroupActivity.id)
@@ -239,8 +240,15 @@ class CalendarController {
   List getProjectUnits(start, end, entity, currentEntity, color) {
     List list = []
 
-    // 1. find all project days the educator is linked to
+    // 1. find all project days
     List projectDays = functionService.findAllByLink(entity, null, metaDataService.ltProjectDayEducator)
+
+    List moreDays = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+      EntityType etProjectDay = metaDataService.etProjectDay
+      moreDays.each { Entity day ->
+          if (day.type.id == etProjectDay.id)
+              projectDays.add(day)
+      }
 
     List unitsDone = []
     if (projectDays) {
@@ -250,7 +258,7 @@ class CalendarController {
 
         List responsibles = functionService.findAllByLink(null, project, metaDataService.ltResponsible)
 
-          // 3. for each project day get the project unit it is linked to
+          // 3. for each project day get the project units it is linked to
         List projectUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
         if (projectUnits && project) {
