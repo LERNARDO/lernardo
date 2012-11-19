@@ -112,8 +112,9 @@ class ProjectProfileController {
     else {
       // find projectTemplate of this project
       Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
+      List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
-      [project: project, template: template, allLabels: functionService.getLabels()]
+      [project: project, template: template, allLabels: functionService.getLabels(), facilities: facilities]
     }
   }
 
@@ -452,13 +453,19 @@ class ProjectProfileController {
     //currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
     //log.info "current project days: " + currentPDs.size()
 
-    project.profile.properties = params
+    //project.profile.properties = params
+      // FIXME: manually defining properties to be updated, above code won't work for some weird reason
+      project.profile.fullName = params.fullName
+      project.profile.description = params.description
+      project.profile.educationalObjective = params.educationalObjective
+      project.profile.educationalObjectiveText = params.educationalObjectiveText
 
     if (project.profile.save() && project.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile])
       redirect action: 'show', id: project.id
     }
     else {
+      println project.errors
       render view: 'edit', model: [project: project]
     }
   }

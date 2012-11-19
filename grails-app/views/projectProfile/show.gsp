@@ -11,7 +11,7 @@
 
 <div class="boxContent">
 
-    <g:render template="/templates/projectNavigation" model="[entity: project]"/>
+    <g:render template="/templates/projectNavigation" model="[entity: project, facilities: facilities]"/>
 
       <div style="margin-top: 10px; height: 30px;">
           <span class="zusatz-show" id="labels2">

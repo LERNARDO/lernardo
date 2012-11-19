@@ -1747,7 +1747,7 @@ class HelperTagLib {
     def getProjectDaySubstitutes = {attrs, body ->
         List projectDaySubstitutes = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDaySubstitute)
         if (projectDaySubstitutes)
-            out << body(educators: projectDaySubstitutes)
+            out << body(substitutes: projectDaySubstitutes)
         else
             out << '<span class="italic red">' + message(code: 'substitutes.choose') + '</span>'
     }
@@ -1760,6 +1760,7 @@ class HelperTagLib {
      */
     def getProjectDayClients = {attrs, body ->
         List projectDayClients = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltGroupMemberClient)
+        projectDayClients.sort {it.profile.firstName}
         if (projectDayClients)
             out << body(clients: projectDayClients)
         else
