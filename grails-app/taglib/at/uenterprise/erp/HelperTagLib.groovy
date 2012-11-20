@@ -724,7 +724,7 @@ class HelperTagLib {
                 if (allConfirmed)
                     out << "<td>${message(code: 'yes')}</td>"
                 else
-                    out << "<td>${message(code: 'no')}" + link(controller: 'msg', action: 'create', id: educator.id, params: [subject: 'Erinnerung Zeitaufzeichnung', content: attrs.date1 + ' - ' + attrs.date2]) {' (Erinnern)'} + "<td>"
+                    out << "<td>${message(code: 'no')}" + link(controller: 'msg', action: 'create', id: person.id, params: [subject: 'Erinnerung Zeitaufzeichnung', content: attrs.date1 + ' - ' + attrs.date2]) {' (Erinnern)'} + "<td>"
 
                 // calculate salary
 
