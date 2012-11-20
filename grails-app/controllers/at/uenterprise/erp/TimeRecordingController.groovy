@@ -121,7 +121,8 @@ class TimeRecordingController {
       List existingWorkdayunits = []
       if (entity.type.id == metaDataService.etEducator.id || entity.type.id == metaDataService.etUser.id) {
         entity.profile.workdayunits.each { workday ->
-          if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+            Date workdayDate = functionService.convertFromUTC(workday.date1)
+          if (workdayDate.getYear() == params.date.getYear() && workdayDate.getMonth() == params.date.getMonth() && workdayDate.getDate() == params.date.getDate()) {
             existingWorkdayunits << workday
           }
         }
@@ -144,7 +145,8 @@ class TimeRecordingController {
       List workdayunits = []
       if (entity.type.id == metaDataService.etEducator.id || entity.type.id == metaDataService.etUser.id) {
         entity.profile.workdayunits.each { workday ->
-          if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+            Date workdayDate = functionService.convertFromUTC(workday.date1)
+          if (workdayDate.getYear() == params.date.getYear() && workdayDate.getMonth() == params.date.getMonth() && workdayDate.getDate() == params.date.getDate()) {
             workdayunits << workday
           }
         }
@@ -169,7 +171,8 @@ class TimeRecordingController {
 
     List workdayunits = []
     entity.profile.workdayunits.each { workday ->
-      if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+        Date workdayDate = functionService.convertFromUTC(workday.date1)
+      if (workdayDate.getYear() == params.date.getYear() && workdayDate.getMonth() == params.date.getMonth() && workdayDate.getDate() == params.date.getDate()) {
         workday.confirmed = true
         workdayunits.add(workday)
       }
@@ -190,7 +193,8 @@ class TimeRecordingController {
 
     List workdayunits = []
     entity.profile.workdayunits.each { workday ->
-      if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+        Date workdayDate = functionService.convertFromUTC(workday.date1)
+      if (workdayDate.getYear() == params.date.getYear() && workdayDate.getMonth() == params.date.getMonth() && workdayDate.getDate() == params.date.getDate()) {
         workday.confirmed = false
         workdayunits.add(workday)
       }
