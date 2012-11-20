@@ -193,10 +193,10 @@
         <div class="email">
           <table width="100%">
             <tr>
-              <td valign="middle">
+              %{--<td valign="middle">
                 <g:message code="active"/>
                 <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
-              </td>
+              </td>--}%
               <td valign="middle">
                 <g:message code="email"/> <span class="required-indicator">*</span>
                 <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" required="" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>

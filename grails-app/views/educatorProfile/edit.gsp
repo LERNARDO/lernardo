@@ -231,12 +231,12 @@
       <div class="email">
         <table width="100%">
           <tr>
-            <erp:accessCheck types="['Betreiber']">
+            %{--<erp:accessCheck types="['Betreiber']">
               <td>
                 <g:message code="active"/>
                 <g:checkBox name="enabled" value="${educator?.user?.enabled}" style="vertical-align: bottom"/>
              </td>
-            </erp:accessCheck>
+            </erp:accessCheck>--}%
             <td>
               <g:message code="email"/> <span class="required-indicator">*</span>
               <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" required="" size="30" type="text" maxlength="80" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
