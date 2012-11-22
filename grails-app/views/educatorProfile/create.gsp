@@ -120,6 +120,13 @@
           </td>
         </tr>
 
+          <tr class="prop">
+              <td class="name"><g:message code="entryDate"/> <span class="required-indicator">*</span></td>
+              <td class="value">
+                  <g:textField class="datepicker" required="" size="12" name="entryDate" value=""/>
+              </td>
+          </tr>
+
       </table>
 
       <h4><g:message code="educator.profile.curAddress"/></h4>

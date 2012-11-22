@@ -188,6 +188,13 @@
             </td>
           </tr>
 
+            <tr class="prop">
+                <td class="name"><g:message code="entryDate"/> <span class="required-indicator">*</span></td>
+                <td class="value">
+                    <g:textField class="datepicker" required="" size="12" name="entryDate" value=""/>
+                </td>
+            </tr>
+
         </table>
 
         <div class="email">

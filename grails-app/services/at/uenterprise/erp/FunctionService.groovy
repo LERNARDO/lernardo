@@ -37,6 +37,69 @@ class FunctionService {
         return folders
     }
 
+    /**
+     * Updates the status of all educators, clients, pates and parents
+     *
+     * @author Alexander Zeillinger
+     */
+    def updateStatus() {
+        Date currentDate = new Date()
+
+        List users = Entity.findAllByType(metaDataService.etClient)
+        users.addAll(Entity.findAllByType(metaDataService.etEducator))
+        users.addAll(Entity.findAllByType(metaDataService.etPate))
+        users.addAll(Entity.findAllByType(metaDataService.etParent))
+
+        users?.each { Entity entity ->
+            def dates = entity.profile.dates
+            dates?.toList()?.reverse()
+
+            //dates?.each {println it.date}
+            //println "--"
+
+            for(CDate date : dates) { // this may need some tweaking depending on types
+                if (date.date < currentDate) {
+                    entity.user.enabled = date.type == 'entry'
+                    entity.user.save()
+                    break
+                }
+            }
+        }
+    }
+
+    /**
+     * Updates the status of a single entity
+     *
+     * @author Alexander Zeillinger
+     * @param entity REQUIRED An entity to update the status of
+     */
+    def updateSingleStatus(Entity entity) {
+        Date currentDate = new Date()
+
+        def dates = entity.profile.dates
+        dates?.toList()?.reverse()
+
+        //dates?.each {println it.date}
+        //println "--"
+
+        for(CDate date : dates) { // this may need some tweaking depending on types
+            if (date.date < currentDate) {
+                entity.user.enabled = date.type == 'entry'
+                entity.user.save()
+                break
+            }
+        }
+
+        /*dates.each { Date date ->
+            if (date.date < currentDate) {
+                entity.user.enabled = date.type == 'exit'
+                entity.user.save()
+                return
+            }
+        }*/
+
+    }
+
   /**
    * Calculates the duration of a list of project units based on each units group activity templates durations
    *

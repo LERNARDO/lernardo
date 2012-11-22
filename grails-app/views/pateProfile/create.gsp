@@ -72,16 +72,23 @@
           </td>
         </tr>
 
+          <tr class="prop">
+              <td class="name"><g:message code="entryDate"/> <span class="required-indicator">*</span></td>
+              <td class="value">
+                  <g:textField class="datepicker" required="" size="12" name="entryDate" value=""/>
+              </td>
+          </tr>
+
       </table>
 
       <div class="email">
         <table>
 
           <tr>
-            <td width="90" valign="middle">
+            %{--<td width="90" valign="middle">
               <g:message code="active"/>
               <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
-            </td>
+            </td>--}%
             <td width="350" valign="middle">
               <g:message code="email"/> <span class="required-indicator">*</span>
               <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" required="" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>

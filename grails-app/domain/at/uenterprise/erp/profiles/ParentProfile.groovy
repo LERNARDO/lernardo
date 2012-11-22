@@ -3,6 +3,7 @@ package at.uenterprise.erp.profiles
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Folder
+import at.uenterprise.erp.CDate
 
 /**
  * This class represents the profile of parents
@@ -14,7 +15,8 @@ class ParentProfile extends Profile {
   List favorites
   static hasMany = [languages: String,
                     jobtypes: String,
-                    favorites: String]
+                    favorites: String,
+                    dates: CDate]
 
   Folder    favoritesFolder
   ECalendar calendar

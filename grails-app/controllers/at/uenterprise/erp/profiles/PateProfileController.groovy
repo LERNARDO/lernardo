@@ -9,6 +9,7 @@ import at.uenterprise.erp.Folder
 import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
 import at.uenterprise.erp.base.Link
+import at.uenterprise.erp.CDate
 
 class PateProfileController {
   MetaDataService metaDataService
@@ -115,6 +116,17 @@ class PateProfileController {
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
 
+        // create entry date
+        params.entryDate = params.date('entryDate', 'dd. MM. yy') ?: params.date('entryDate', 'dd.MM.yy')
+
+        CDate date = new CDate()
+        date.date = params.entryDate
+        date.type = 'entry'
+        entity.profile.addToDates(date)
+
+        // change active/inactive status
+        functionService.updateSingleStatus(entity)
+
       flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
@@ -196,4 +208,31 @@ class PateProfileController {
 
     render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'pate', params: params]
   }
+
+    def addDate = {
+        Entity pate = Entity.get(params.id)
+
+        params.date = params.date('date', 'dd. MM. yy') ?: params.date('date', 'dd.MM.yy')
+
+        if (params.date) {
+            CDate date = new CDate(params)
+            date.type = pate.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
+            pate.profile.addToDates(date)
+
+            // change active/inactive status
+            functionService.updateSingleStatus(pate)
+        }
+        render template: 'dates', model: [pate: pate]
+    }
+
+    def removeDate = {
+        Entity pate = Entity.get(params.id)
+        CDate date = CDate.get(params.date)
+        pate.profile.removeFromDates(date)
+
+        // change active/inactive status
+        functionService.updateSingleStatus(pate)
+
+        render template: 'dates', model: [pate: pate]
+    }
 }

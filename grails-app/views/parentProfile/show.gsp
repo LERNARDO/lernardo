@@ -16,6 +16,7 @@
     <div class="tabnav">
       <ul>
         <li><g:link controller="parentProfile" action="show" id="${parent.id}"><g:message code="profile"/></g:link></li>
+        <li><g:remoteLink update="content" controller="parentProfile" action="management" id="${parent.id}" before="showspinner('#content');"><g:message code="management"/></g:remoteLink></li>
         <li><g:remoteLink update="content" controller="publication" action="list" id="${parent.id}" before="showspinner('#content');"><g:message code="publications"/> <erp:getPublicationCount entity="${parent}"/></g:remoteLink></li>
         <li><g:remoteLink update="content" controller="msg" action="inbox" id="${parent.id}" before="showspinner('#content');"><g:message code="privat.posts"/></g:remoteLink></li>
         <li><g:remoteLink update="content" controller="appointmentProfile" action="index" id="${parent.id}" before="showspinner('#content');"><g:message code="appointments"/></g:remoteLink></li>

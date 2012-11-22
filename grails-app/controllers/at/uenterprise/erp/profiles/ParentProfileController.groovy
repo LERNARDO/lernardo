@@ -11,6 +11,7 @@ import at.uenterprise.erp.FolderType
 import at.uenterprise.erp.Setup
 import at.uenterprise.erp.EntityDataService
 import at.uenterprise.erp.LinkDataService
+import at.uenterprise.erp.CDate
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -36,6 +37,12 @@ class ParentProfileController {
 
     return [totalParents: totalParents, colonies: colonies, maritalStatus: maritalStatus, languages: languages, schoolLevels: schoolLevels]
   }
+
+    def management = {
+        Entity parent = Entity.get(params.id)
+
+        render template: "management", model: [parent: parent]
+    }
 
   def show = {
     Entity parent = Entity.get(params.id)
@@ -145,6 +152,17 @@ class ParentProfileController {
 
       // create link to colony
       new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
+
+        // create entry date
+        params.entryDate = params.date('entryDate', 'dd. MM. yy') ?: params.date('entryDate', 'dd.MM.yy')
+
+        CDate date = new CDate()
+        date.date = params.entryDate
+        date.type = 'entry'
+        entity.profile.addToDates(date)
+
+        // change active/inactive status
+        functionService.updateSingleStatus(entity)
       
       flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile])
       redirect action: 'show', id: entity.id
@@ -203,4 +221,31 @@ class ParentProfileController {
 
     render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'parent', params: params]
   }
+
+    def addDate = {
+        Entity parent = Entity.get(params.id)
+
+        params.date = params.date('date', 'dd. MM. yy') ?: params.date('date', 'dd.MM.yy')
+
+        if (params.date) {
+            CDate date = new CDate(params)
+            date.type = parent.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
+            parent.profile.addToDates(date)
+
+            // change active/inactive status
+            functionService.updateSingleStatus(parent)
+        }
+        render template: 'dates', model: [parent: parent]
+    }
+
+    def removeDate = {
+        Entity parent = Entity.get(params.id)
+        CDate date = CDate.get(params.date)
+        parent.profile.removeFromDates(date)
+
+        // change active/inactive status
+        functionService.updateSingleStatus(parent)
+
+        render template: 'dates', model: [parent: parent]
+    }
 }

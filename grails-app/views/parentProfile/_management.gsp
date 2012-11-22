@@ -23,27 +23,13 @@
     <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck types="['Betreiber', 'Pädagoge']"><img onclick="toggle('#dates');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="dates" style="display:none">
-        <g:formRemote name="formRemote4" url="[controller: 'pateProfile', action: 'addDate', id: pate.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
+        <g:formRemote name="formRemote4" url="[controller: 'parentProfile', action: 'addDate', id: parent.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
             <g:textField name="date" size="12" class="datepicker" value=""/>
             <g:submitButton name="button" value="${message(code: 'add')}"/>
         </g:formRemote>
     </div>
 
     <div class="zusatz-show" id="dates2">
-        <g:render template="dates" model="[pate: pate]"/>
-    </div>
-</div>
-
-<div class="zusatz">
-    <h5><g:message code="pate.profile.gcs"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#godchildren');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
-    <div class="zusatz-add" id="godchildren" style="display:none">
-
-        <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${pate.id}" before="showspinner('#remoteClients')"/>
-        <div id="remoteClients"></div>
-
-    </div>
-    <div class="zusatz-show" id="godchildren2">
-        <g:render template="godchildren" model="[godchildren: godchildren, pate: pate]"/>
+        <g:render template="dates" model="[parent: parent]"/>
     </div>
 </div>

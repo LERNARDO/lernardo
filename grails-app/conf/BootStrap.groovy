@@ -324,6 +324,7 @@ class BootStrap {
                     prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
                 }
                 new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltWorking).save(failOnError: true)
+                entity.profile.addToDates(date: new Date(), type: "entry")
             }
         }
 
@@ -337,7 +338,7 @@ class BootStrap {
 
         for (i in 1..dummies) {
             if (!Entity.findByName("parent" + i)) {
-                entityHelperService.createEntityWithUserAndProfile("parent" + i, etParent, "parent" + i + "@domain.org", "parentFirstName parentLastName " + i) {Entity ent ->
+                Entity entity = entityHelperService.createEntityWithUserAndProfile("parent" + i, etParent, "parent" + i + "@domain.org", "parentFirstName parentLastName " + i) {Entity ent ->
                     ent.user.locale = new Locale("de", "DE")
                     ParentProfile prf = (ParentProfile) ent.profile
                     prf.firstName = "parentFirstName" + i
@@ -356,6 +357,7 @@ class BootStrap {
                     }
                     prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
                 }
+                entity.profile.addToDates(date: new Date(), type: "entry")
             }
         }
 
@@ -395,6 +397,7 @@ class BootStrap {
                     prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
                 }
                 new Link(source: entity, target: Entity.findByName("facility1"), type: metaDataService.ltGroupMemberClient).save(failOnError: true)
+                entity.profile.addToDates(date: new Date(), type: "entry")
             }
         }
 
@@ -473,7 +476,7 @@ class BootStrap {
 
         for (i in 1..dummies) {
             if (!Entity.findByName("pate" + i)) {
-                entityHelperService.createEntityWithUserAndProfile("pate" + i, etPate, "pate" + i + "@domain.org", "pateFirstName pateLastName " + i) {Entity ent ->
+                Entity entity = entityHelperService.createEntityWithUserAndProfile("pate" + i, etPate, "pate" + i + "@domain.org", "pateFirstName pateLastName " + i) {Entity ent ->
                     ent.user.locale = new Locale("de", "DE")
                     PateProfile prf = (PateProfile) ent.profile
                     prf.firstName = "pateFirstName" + i
@@ -485,6 +488,7 @@ class BootStrap {
                     prf.motherTongue = "dummyMotherTongue"
                     prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
                 }
+                entity.profile.addToDates(date: new Date(), type: "entry")
             }
         }
 

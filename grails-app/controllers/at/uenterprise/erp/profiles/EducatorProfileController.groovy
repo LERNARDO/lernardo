@@ -178,6 +178,17 @@ class EducatorProfileController {
       // create link to colony
       new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
 
+        // create entry date
+        params.entryDate = params.date('entryDate', 'dd. MM. yy') ?: params.date('entryDate', 'dd.MM.yy')
+
+        CDate date = new CDate()
+        date.date = params.entryDate
+        date.type = 'entry'
+        entity.profile.addToDates(date)
+
+        // change active/inactive status
+        functionService.updateSingleStatus(entity)
+
       flash.message = message(code: "object.created", args: [message(code: "educator"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (at.uenterprise.erp.base.EntityException ee) {
@@ -198,8 +209,7 @@ class EducatorProfileController {
       educator.profile.addToDates(date)
       
       // change active/inactive status
-      educator.user.enabled = date.type == 'entry'
-      educator.user.save()
+      functionService.updateSingleStatus(educator)
     }
     render template: 'dates', model: [educator: educator]
   }
@@ -210,8 +220,7 @@ class EducatorProfileController {
     educator.profile.removeFromDates(date)
 
     // change active/inactive status
-    educator.user.enabled = date.type == 'exit'
-    educator.user.save()
+    functionService.updateSingleStatus(educator)
 
     render template: 'dates', model: [educator: educator]
   }

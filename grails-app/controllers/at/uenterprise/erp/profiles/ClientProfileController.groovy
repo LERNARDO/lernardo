@@ -172,6 +172,17 @@ class ClientProfileController {
       // create link to school
       //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
+      // create entry date
+        params.entryDate = params.date('entryDate', 'dd. MM. yy') ?: params.date('entryDate', 'dd.MM.yy')
+
+        CDate date = new CDate()
+        date.date = params.entryDate
+        date.type = 'entry'
+        entity.profile.addToDates(date)
+
+        // change active/inactive status
+        functionService.updateSingleStatus(entity)
+
       flash.message = message(code: "object.created", args: [message(code: "client"), entity.profile])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
@@ -232,8 +243,7 @@ class ClientProfileController {
       client.profile.addToDates(date)
 
       // change active/inactive status
-      client.user.enabled = date.type == 'exit'
-      client.user.save()
+      functionService.updateSingleStatus(client)
     }
     render template: 'dates', model: [client: client]
   }
@@ -244,8 +254,7 @@ class ClientProfileController {
     client.profile.removeFromDates(date)
 
     // change active/inactive status
-    client.user.enabled = date.type == 'exit'
-    client.user.save()
+    functionService.updateSingleStatus(client)
 
     render template: 'dates', model: [client: client]
   }
