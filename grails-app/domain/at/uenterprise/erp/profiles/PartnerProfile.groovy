@@ -24,6 +24,9 @@ class PartnerProfile extends Profile {
   String    phone
   String    website
   Boolean   showTips = true
+  String    country
+  String    zip
+  String    city
 
   static constraints = {
     description blank: true, maxSize: 20000
@@ -32,6 +35,9 @@ class PartnerProfile extends Profile {
     website     blank: true, size: 2..50
     calendar    nullable: true
     favoritesFolder nullable: true
+    country     size: 2..50, nullable: true
+    zip         size: 4..10, nullable: true
+    city        size: 2..50, maxSize: 50, nullable: true
   }
 
   String toString() {

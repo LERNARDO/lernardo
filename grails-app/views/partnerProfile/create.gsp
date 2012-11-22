@@ -51,6 +51,13 @@
           </td>
         </tr>
 
+          <tr class="prop">
+              <td class="name"><g:message code="zip"/></td>
+              <td class="value">
+                  <g:textField class="${hasErrors(bean: partner, field: 'profile.zip', 'errors')}" size="10" name="zip" value="${fieldValue(bean: partner, field: 'profile.zip').decodeHTML()}"/>
+              </td>
+          </tr>
+
         <tr class="prop">
           <td class="name"><g:message code="street"/></td>
           <td class="value">
@@ -58,12 +65,19 @@
           </td>
         </tr>
 
-        <tr class="prop">
-          <td class="name"><g:message code="groupColony"/></td>
-          <td class="value">
-            <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile"/>
-          </td>
-        </tr>
+          <tr class="prop">
+              <td class="name"><g:message code="city"/></td>
+              <td class="value">
+                  <g:textField data-counter="50" class="${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" name="city" value="${fieldValue(bean: partner, field: 'profile.city').decodeHTML()}"/>
+              </td>
+          </tr>
+
+          <tr class="prop">
+              <td class="name"><g:message code="country"/></td>
+              <td class="value">
+                  <g:textField class="${hasErrors(bean: partner, field: 'profile.country', 'errors')}" size="30" name="street" value="${fieldValue(bean: partner, field: 'profile.country').decodeHTML()}"/>
+              </td>
+          </tr>
 
       </table>
 

@@ -45,9 +45,7 @@ class PartnerProfileController {
       return
     }
 
-    Entity colony = linkDataService.getColony(partner)
-
-    return [partner: partner, colony: colony, ajax: params.ajax]
+    return [partner: partner, ajax: params.ajax]
 
   }
 
@@ -87,11 +85,7 @@ class PartnerProfileController {
       return
     }
 
-    Entity colony = linkDataService.getColony(partner)
-
-    def allColonies = entityDataService.getAllColonies()
-
-    return [partner: partner, colony: colony, allColonies: allColonies]
+    return [partner: partner]
 
   }
 
@@ -110,18 +104,11 @@ class PartnerProfileController {
       redirect action: 'show', id: partner.id
     }
     else {
-      Entity colony = linkDataService.getColony(partner)
-
-      def allColonies = entityDataService.getAllColonies()
-      render view: 'edit', model: [partner: partner, colony: colony, allColonies: allColonies]
+      render view: 'edit', model: [partner: partner]
     }
   }
 
-  def create = {
-    def allColonies = entityDataService.getAllColonies()
-
-    [allColonies: allColonies]
-  }
+  def create = {}
 
   def save = {
     EntityType etPartner = metaDataService.etPartner
@@ -133,9 +120,6 @@ class PartnerProfileController {
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save()
       }
-
-      // create link to colony
-      new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
 
       flash.message = message(code: "object.created", args: [message(code: "partner"), entity.profile])
       redirect action: 'show', id: entity.id
