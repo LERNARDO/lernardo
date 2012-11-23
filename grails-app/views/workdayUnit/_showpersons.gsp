@@ -10,6 +10,11 @@
                         data: {id : $(this).attr('data-idd')}
                     }
                 },
+                position: {
+                    my: 'bottom left',
+                    at: 'top right',
+                    target: $(this)
+                },
                 show: {
                     delay: 1000
                 }

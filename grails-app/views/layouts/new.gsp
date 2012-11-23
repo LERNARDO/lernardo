@@ -22,10 +22,10 @@ $('.tooltip').each(function() {
      }
    },
    position: {
-     my: 'top left',  // Position my top left...
-     at: 'right bottom', // at the bottom right of...
-     target: $(this) // my target
-   },
+            my: 'bottom left',
+            at: 'top right',
+            target: $(this)
+          },
    style: {
      classes: 'ui-tooltip-blue'
    }
@@ -40,10 +40,10 @@ $('.tooltiphelp').each(function() {
      }
    },
    position: {
-     my: 'top left',  // Position my top left...
-     at: 'right bottom', // at the bottom right of...
-     target: $(this) // my target
-   },
+            my: 'bottom left',
+            at: 'top right',
+            target: $(this)
+          },
    style: {
      classes: 'ui-tooltip-green'
    }
@@ -59,6 +59,11 @@ $('.largetooltip').each(function() {
               type: 'GET',
               data: {id : $(this).attr('data-idd')}
             }
+          },
+          position: {
+            my: 'bottom left',
+            at: 'top right',
+            target: $(this)
           },
           show: {
             delay: 1000
