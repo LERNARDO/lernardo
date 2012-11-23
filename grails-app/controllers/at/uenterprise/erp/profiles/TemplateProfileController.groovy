@@ -187,8 +187,8 @@ class TemplateProfileController {
           ent.profile.ageTo = 100
       }
       // add default profile image
-      File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
-      def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+      //File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
+      //def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> angelegt.').save()
       functionService.createEvent(EVENT_TYPE.ACTIVITY_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())

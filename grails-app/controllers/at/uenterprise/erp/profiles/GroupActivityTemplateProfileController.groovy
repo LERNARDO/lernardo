@@ -239,8 +239,8 @@ class GroupActivityTemplateProfileController {
           ent.profile.ageTo = 100
       }
       // add default profile image
-      File file = ApplicationHolder.application.parentContext.getResource("images/default_groupactivitytemplate.png").getFile()
-      def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+      //File file = ApplicationHolder.application.parentContext.getResource("images/default_groupactivitytemplate.png").getFile()
+      //def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()

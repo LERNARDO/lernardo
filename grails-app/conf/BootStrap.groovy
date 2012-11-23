@@ -570,8 +570,8 @@ class BootStrap {
                     ent.profile.type = "default"
                 }
                 // add default profile image
-                File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
-                assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+                //File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
+                //assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
                 // save creator
                 new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
                 functionService.createEvent(EVENT_TYPE.ACTIVITY_TEMPLATE_CREATED, Entity.findByName('admin').id.toInteger(), entity.id.toInteger())
@@ -819,8 +819,8 @@ class BootStrap {
                 }
 
                 // add default profile image
-                File file = ApplicationHolder.application.parentContext.getResource("images/default_groupactivitytemplate.png").getFile()
-                /*def result = */ assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+                //File file = ApplicationHolder.application.parentContext.getResource("images/default_groupactivitytemplate.png").getFile()
+                //assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
                 // save creator
                 new Link(source: Entity.findByName("educator${generator.nextInt(dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
@@ -879,8 +879,8 @@ class BootStrap {
                         ent.profile.status = "notDone"
                 }
                 // add default profile image
-                File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
-                /*def result = */ assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+                //File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
+                //assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
                 // save creator
                 new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
             }
