@@ -21,6 +21,6 @@
       <g:submitButton name="submit" value="OK"/>
     </g:form>
     <div class="clear"></div>
-    <g:link controller="calendar" action="removeEntity" id="${calEntity.id}">Person entfernen</g:link>
+    <g:link controller="calendar" action="removeEntity" id="${calEntity.id}"><g:message code="person.remove"/></g:link>
   </div>
 </g:each>

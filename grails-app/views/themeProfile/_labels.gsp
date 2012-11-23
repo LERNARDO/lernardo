@@ -3,7 +3,7 @@
     <span class="tag">
       <span class="tail"></span>
       <span class="hole"></span>
-      ${label.name} <erp:accessCheck types="['Betreiber','Pädagoge']" creatorof="${theme}" checkoperator="true"><g:remoteLink action="removeLabel" update="labels2" id="${theme.id}" params="[label: label.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false">(entfernen)</g:remoteLink></erp:accessCheck>
+      ${label.name} <erp:accessCheck types="['Betreiber','Pädagoge']" creatorof="${theme}" checkoperator="true"><g:remoteLink action="removeLabel" update="labels2" id="${theme.id}" params="[label: label.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false">(<g:message code="remove"/>)</g:remoteLink></erp:accessCheck>
     </span>
   </g:each>
 </g:if>
