@@ -13,7 +13,7 @@
 
 <body>
 
-<div id="welcome">
+%{--<div id="welcome">
   <div id="head">
     <span style="color: #aaa;"><g:message code="welcomeTo"/></span> ${grailsApplication.config.application.name}
   </div>
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-</div>
+</div>--}%
 
 
 <div class="yui3-g">

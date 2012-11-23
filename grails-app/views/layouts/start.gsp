@@ -107,7 +107,7 @@
       <div class="clear"></div>
     </div>--}%
 
-    <div id="bd">
+    <div id="bd" style="padding-top: 15px;">
       <g:layoutBody/>
     </div>
 
