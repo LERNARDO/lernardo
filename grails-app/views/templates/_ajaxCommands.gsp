@@ -12,3 +12,10 @@
         });
     </script>
 </g:if>
+<g:if test="${ajax == 'messages'}">
+    <script type="text/javascript">
+        $(function() {
+            ${remoteFunction(controller: "msg", action: "inbox", update: "content")}
+        });
+    </script>
+</g:if>

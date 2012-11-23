@@ -24,7 +24,7 @@ class MsgController {
     params.max = Math.min(params.int('max') ?: 10, 100)
     params.offset = params.int('offset') ?: 0
 
-    Entity entity = Entity.get(params.id)
+    Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
 
     def messages = Msg.createCriteria().list {
       eq('entity', entity)
@@ -49,7 +49,7 @@ class MsgController {
     params.max = Math.min(params.int('max') ?: 10, 100)
     params.offset = params.int('offset') ?: 0
 
-    Entity entity = Entity.get(params.id)
+    Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
 
     def messages = Msg.createCriteria().list {
       eq('entity', entity)

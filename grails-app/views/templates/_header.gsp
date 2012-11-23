@@ -3,7 +3,7 @@
 
   <span id="notifications">
     <erp:getNewInboxMessages entity="${currentEntity}">
-      <g:link class="tooltip" data-tooltip="${message(code: 'privat.posts')}" controller="msg" action="inbox" id="${currentEntity.id}">
+      <g:link class="tooltip" data-tooltip="${message(code: 'privat.posts')}" controller="${currentEntity.type.supertype.name + 'Profile'}" action="show" id="${currentEntity.id}" params="[ajax: 'messages']">
       <span class="notificationbox ${result > 0 ? 'active' : 'inactive'}">
         <g:if test="${result > 0}">
           <span class="white">${result}</span> <img src="${g.resource(dir:'images/icons', file:'icon_mail.png')}" alt="Mail" style="position: relative; top: 3px;"/>
