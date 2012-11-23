@@ -37,6 +37,9 @@
   <span class="member-name"><g:link class="largetooltip" data-idd="${entity.id}" controller="${entity.type.supertype.name + 'Profile'}" action="show" id="${entity.id}">${entity.profile.decodeHTML()}</g:link></span><br/>
   <span class="member-type"><g:message code="${entity.type.supertype.name}"/></span><br/>
   <span class="member-other">
+      <erp:createdBy entity="${entity}">
+        <g:message code="creator"/>: ${creator.profile}<br/>
+      </erp:createdBy>
       <g:if test="${entity.type.name == 'Betreutengruppe'}">
         <a href="#" onclick="jQuery('#modal${i}').modal(); return false"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" style="position: relative; top: 4px;"/></a> <g:link controller="excel" action="report" id="${entity.id}" params="[type: 'clientgroup']"><img src="${g.resource(dir:'images/icons', file:'icon_xls.png')}" alt="XLS" style="position: relative; top: 4px;"/></g:link>
         <div id="modal${i}" style="display: none;">
