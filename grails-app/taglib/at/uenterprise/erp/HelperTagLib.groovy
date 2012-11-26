@@ -908,11 +908,11 @@ class HelperTagLib {
         if (!what) {
             what = Helper.get(attrs.event.what)
             if (who && what)
-                out << message(code: attrs.event.type.toString(), args: ['<a class="largetooltip" data-idd="' + who.id + '" href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile + '</span></a>', '<a class="largetooltip" data-idd="' + what.id + '" href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
+                out << message(code: attrs.event.type.toString(), args: ['<a class="largetooltip" data-idd="' + who.id + '" href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a class="largetooltip" data-idd="' + what.id + '" href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
         }
         else
         if (who && what)
-            out << message(code: attrs.event.type.toString(), args: ['<a class="largetooltip" data-idd="' + who.id + '" href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile + '</span></a>', '<a class="largetooltip" data-idd="' + what.id + '" href="' + createLink(controller: what.type.supertype.name + 'Profile', action: 'show', id: what.id, params: [entity: what.id]) + '"><span class="bold">' + what.profile + '</span></a>']).decodeHTML()
+            out << message(code: attrs.event.type.toString(), args: ['<a class="largetooltip" data-idd="' + who.id + '" href="' + createLink(controller: who.type.supertype.name + 'Profile', action: 'show', id: who.id, params: [entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a class="largetooltip" data-idd="' + what.id + '" href="' + createLink(controller: what.type.supertype.name + 'Profile', action: 'show', id: what.id, params: [entity: what.id]) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
     }
 
     /**

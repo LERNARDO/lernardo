@@ -44,7 +44,11 @@ class TemplateProfile extends Profile {
   }
 
   String toString() {
-    return "${fullName} (${duration}min)"
+    return "${fullName}"
   }
+
+    String nameDuration() {
+        return "${fullName} (${duration}min)"
+    }
 
 }
