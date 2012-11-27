@@ -28,14 +28,12 @@ class MsgController {
 
     def messages = Msg.createCriteria().list {
       eq('entity', entity)
-      //ne('sender', entity)
-      eq('receiver', entity)
+      ne('sender', entity)
       order("dateCreated", "desc")
       maxResults(params.max)
       firstResult(params.offset)
     }
-    //int totalMessages = Msg.countByEntityAndSenderNotEqual(entity, entity)
-    int totalMessages = Msg.countByEntityAndReceiver(entity, entity)
+    int totalMessages = Msg.countByEntityAndSenderNotEqual(entity, entity)
 
     render template: "inbox", model: [messages: messages,
             totalMessages: totalMessages,
@@ -185,43 +183,31 @@ class MsgController {
 
     params.receivers = params.list('receivers')
 
-    def failed = false
-    def msg = null
+    // create first instance to be saved in outbox of sender
+    functionService.createMessage(currentEntity, params.receivers, currentEntity, params.subject, params.content, true).save() // the sender wrote it so it is already read
+
     params.receivers.each { id ->
       Entity entity = Entity.get(id)
 
-      if (entity != currentEntity) {
-
-        // create first instance to be saved in outbox of sender
-        msg = functionService.createMessage(currentEntity, entity, currentEntity, params.subject, params.content, true) // the sender wrote it so it is already read
-        if (!msg.save()) {
-          failed = true
-        }
-
-      }
-
       // create second instance to be saved in inbox of receiver
-      functionService.createMessage(currentEntity, entity, entity, params.subject, params.content).save()
+      functionService.createMessage(currentEntity, params.receivers, entity, params.subject, params.content).save()
     }
 
-    if (!failed) {
-      flash.message = message(code: "msg.sent", args: [params.subject])
-      redirect action: 'inbox', id: currentEntity.id
-    }
-    else
-      render template: 'createMany', model: [msgInstance: msg, entity: Entity.get(params.entity.toInteger())]
+    flash.message = message(code: "msg.sent", args: [params.subject])
+    redirect action: 'inbox', id: currentEntity.id
+
 
   }
 
   def save = {
-    Entity receiver = Entity.get(params.receiver.toInteger())
+    Entity receiver = Entity.get(params.int('receiver'))
     Entity currentEntity = entityHelperService.loggedIn
 
     // create first instance to be saved in outbox of sender
-    functionService.createMessage(currentEntity, receiver, currentEntity, params.subject, params.content, true).save() // the sender wrote it so it is already read
+    functionService.createMessage(currentEntity, [receiver.id.toString()], currentEntity, params.subject, params.content, true).save() // the sender wrote it so it is already read
 
     // create second instance to be saved in inbox of receiver
-    def msg = functionService.createMessage(currentEntity, receiver, receiver, params.subject, params.content)
+    def msg = functionService.createMessage(currentEntity, [receiver.id.toString()], receiver, params.subject, params.content)
     if (msg.save()) {
       flash.message = message(code: "msg.sent", args: [params.subject])
       if (params.reply == "true")

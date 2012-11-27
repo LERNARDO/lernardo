@@ -11,12 +11,13 @@ class Msg {
 
   static belongsTo = [entity: Entity]
 
+  static hasMany = [receivers: Entity]
+
   String  subject
   String  content
   Date    dateCreated
   Date    lastUpdated
   Entity  sender
-  Entity  receiver
   Boolean read = false
 
   static constraints = {

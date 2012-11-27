@@ -10,7 +10,7 @@
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="value name"><g:link controller="${msgInstance.sender.type.supertype.name + 'Profile'}" action="show" id="${msgInstance.sender.id}">${msgInstance.sender.profile.decodeHTML()}</g:link> <g:message code="for"/> <g:link controller="${msgInstance.receiver.type.supertype.name + 'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.decodeHTML()}</g:link> <span style="float: right"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></span></td>
+        <td valign="top" class="value name"><g:link controller="${msgInstance.sender.type.supertype.name + 'Profile'}" action="show" id="${msgInstance.sender.id}">${msgInstance.sender.profile.decodeHTML()}</g:link> <g:message code="for"/> <g:each in="${msgInstance.receivers}" var="receiver"><g:link controller="${receiver.type.supertype.name + 'Profile'}" action="show" id="${receiver.id}">${receiver.profile.decodeHTML()}</g:link>, </g:each> <span style="float: right"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></span></td>
       </tr>
 
       <tr class="prop">

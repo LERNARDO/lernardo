@@ -39,7 +39,7 @@
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}"/></div>
           <erp:notMe entity="${entity}">
             <g:if test="${entity.user.enabled}">
-              <g:link class="buttonGreen" controller="msg" action="create" id="${entity.id}"><g:message code="privat.msgCreate"/></g:link>
+              <g:remoteLink update="content" class="buttonGreen" controller="msg" action="create" id="${entity.id}"><g:message code="privat.msgCreate"/></g:remoteLink>
             </g:if>
           </erp:notMe>
         </g:form>

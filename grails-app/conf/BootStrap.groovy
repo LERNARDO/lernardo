@@ -1077,8 +1077,8 @@ class BootStrap {
         Entity second = Entity.findByName("educator1")
 
         for (i in 1..dummies) {
-            functionService.createMessage(first, second, first, "subject${i}", "content", true).save()
-            functionService.createMessage(first, second, second, "subject${i}", "content").save()
+            functionService.createMessage(first, [second.id.toString()], first, "subject${i}", "content", true).save()
+            functionService.createMessage(first, [second.id.toString()], second, "subject${i}", "content").save()
         }
     }
 

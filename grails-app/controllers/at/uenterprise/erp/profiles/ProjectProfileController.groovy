@@ -1791,7 +1791,7 @@ class ProjectProfileController {
       informedEntities?.each { Entity ie ->
         String subject = "Projekttag verschoben, Projekt " + project.profile.decodeHTML()
         String content = '<p>Hallo ' + ie.profile + '!</p>Ich habe einen ' + link(controller: 'projectDayProfile', action: 'show', id: projectDay.id, params: [one: projectDay.id]) {'Projekttag'} + ' vom Projekt ' + project.profile.decodeHTML() + ' verschoben.'
-        functionService.createMessage(currentEntity, ie, ie, subject, content).save()
+        functionService.createMessage(currentEntity, [ie], ie, subject, content).save()
       }
 
     }
