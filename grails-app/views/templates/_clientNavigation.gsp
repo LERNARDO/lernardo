@@ -17,7 +17,7 @@
                 <li class="icon-disabled"><span style="margin-left: 10px; color: #666;"><g:message code="isInactive"/></span></li>
             </g:else>
         </erp:isSystemAdmin>
-        <li class="icon-mail"><span style="margin-left: 10px; color: #666;">${fieldValue(bean: entity, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</span></li>
+        <li class="icon-mail"><span style="margin-left: 10px; color: #666;"><erp:truncate string="${entity.user.email}" length="18"/></span></li>
         <g:form id="${entity?.id}">
             <erp:accessCheck types="['Betreiber']" me="${entity}" facilities="${facilities}">
                 <li class="icon-edit"><g:actionSubmit style="border: none; background: none; cursor: pointer;" action="edit" value="${message(code: 'edit')}" /></li>
