@@ -16,7 +16,6 @@
             <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:checkResourceAccess>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
-          <erp:getFavorite entity="${entity}"/>
         </g:form>
       </div>
         <div id="favmodal" style="display: none;">

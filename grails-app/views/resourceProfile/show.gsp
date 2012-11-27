@@ -4,7 +4,7 @@
 </head>
 <body>
 <div class="boxHeader">
-  <h1><g:message code="resource"/> - ${fieldValue(bean: resourceInstance, field: 'profile').decodeHTML()}</h1>
+  <h1><erp:getFavorite entity="${resourceInstance}"/> ${fieldValue(bean: resourceInstance, field: 'profile').decodeHTML()} <span style="font-size: 12px;">(<g:message code="resource"/>)</span></h1>
 </div>
 <div class="boxContent">
 

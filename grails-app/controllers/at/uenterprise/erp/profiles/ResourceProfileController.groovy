@@ -54,7 +54,7 @@ class ResourceProfileController {
     }
     else {
       Entity location = functionService.findByLink(resourceInstance, null, metaDataService.ltResource)
-      Entity resowner = functionService.findByLink(null, resourceInstance, metaDataService.ltOwner)
+      List resowner = functionService.findAllByLink(null, resourceInstance, metaDataService.ltOwner)
       List resresponsible = functionService.findAllByLink(null, resourceInstance, metaDataService.ltResponsible)
       [resourceInstance: resourceInstance, location: location, resowner: resowner, resresponsible: resresponsible]
     }
@@ -179,7 +179,7 @@ class ResourceProfileController {
     }
     else {
       render {span(class: 'italic red', message(code: 'alreadyAssignedToOwner'))}
-      render template: 'owner', model: [resowner: functionService.findByLink(null, resource, metaDataService.ltOwner), resourceInstance: resource]
+      render template: 'owner', model: [resowner: functionService.findAllByLink(null, resource, metaDataService.ltOwner), resourceInstance: resource]
     }
 
   }
