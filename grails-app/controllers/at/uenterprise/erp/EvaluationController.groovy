@@ -61,6 +61,11 @@ class EvaluationController {
   }
 
   def showSingleClient = {
+      params.max = Math.min(params.int('max') ?: 10, 100)
+      params.offset = params.int('offset') ?: 0
+      params.sort = params.sort ?: 'dateCreated'
+      params.order = params.order ?: 'desc'
+
       Entity entity = Entity.get(params.id)
       List evaluations = Evaluation.findAllByOwner(entity, params)
       render template: 'evaluations', model: [evaluationInstanceList: evaluations, totalEvaluations: Evaluation.countByOwner(entity), entity: entity, paginate: 'oneClient']
