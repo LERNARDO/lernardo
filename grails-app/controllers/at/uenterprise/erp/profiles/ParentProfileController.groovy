@@ -35,7 +35,12 @@ class ParentProfileController {
     List languages = Setup.list()[0]?.languages
     List schoolLevels = Setup.list()[0]?.schoolLevels
 
-    return [totalParents: totalParents, colonies: colonies, maritalStatus: maritalStatus, languages: languages, schoolLevels: schoolLevels]
+    return [totalParents: totalParents,
+            colonies: colonies,
+            maritalStatus: maritalStatus,
+            languages: languages,
+            schoolLevels: schoolLevels,
+            facilities: Entity.findAllByType(metaDataService.etFacility)]
   }
 
     def management = {

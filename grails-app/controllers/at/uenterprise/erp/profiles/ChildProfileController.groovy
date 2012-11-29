@@ -28,7 +28,9 @@ class ChildProfileController {
     int totalChildren = Entity.countByType(metaDataService.etChild)
     List families = Entity.findAllByType(metaDataService.etGroupFamily)
 
-    return [totalChildren: totalChildren, families: families]
+    return [totalChildren: totalChildren,
+            families: families,
+            facilities: Entity.findAllByType(metaDataService.etFacility)]
   }
 
   def show = {
