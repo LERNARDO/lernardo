@@ -26,6 +26,19 @@
 </div>
 
 <div id="content">
+
+    <p style="margin-top: 10px;"><g:message code="leadingFunction"/>
+    <g:if test="${leadingFacilities}">
+        <g:each in="${leadingFacilities}" var="facility" status="i">
+            <g:link controller="facilityProfile" action="show" id="${facility.id}">${facility.profile}</g:link><g:if test="${i + 1 != leadingFacilities.size()}">, </g:if>
+        </g:each>
+    </g:if>
+    <g:else>
+        <span class="gray"><g:message code="noLeadingFunction"/></span>
+    </g:else>
+    </p>
+
+
   <table>
   <tr>
   <td style="padding-right: 40px; vertical-align: top;">
