@@ -124,7 +124,9 @@ class ClientProfileController {
 
     // update link to colony
     Link.findByTargetAndType(client, metaDataService.ltColonia)?.delete()
-    new Link(source: Entity.get(params.currentColony), target: client, type: metaDataService.ltColonia).save()
+    if (params.currentColony) {
+        new Link(source: Entity.get(params.currentColony), target: client, type: metaDataService.ltColonia).save()
+    }
 
     // update link to school
     //Link.findByTargetAndType(client, metaDataService.ltFacility)?.delete()
@@ -167,7 +169,8 @@ class ClientProfileController {
       }
 
       // create link to colony
-      new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
+      if (params.currentColony)
+        new Link(source: Entity.get(params.currentColony), target: entity, type: metaDataService.ltColonia).save()
 
       // create link to school
       //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()

@@ -67,7 +67,7 @@
           <tr class="prop">
             <td class="name"><g:message code="groupColony"/></td>
             <td class="value">
-              <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile" value="${colony?.id}"/>
+              <g:select name="currentColony" from="${allColonies}" optionKey="id" optionValue="profile" value="${colony?.id}" noSelection="['': message(code: 'none')]"/>
             </td>
           </tr>
 
