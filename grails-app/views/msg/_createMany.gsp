@@ -4,7 +4,7 @@
 
     <g:render template="/templates/errors" model="[bean: mc]"/>
 
-    <g:formRemote name="formRemote" url="[controller: 'msg', action: 'saveMany', id: msgInstance.id, params: [entity: entity.id]]" update="content">
+    <g:formRemote name="formRemote" url="[controller: 'msg', action: 'saveMany', id: mc.id, params: [entity: entity.id]]" update="content">
 
       <table>
 
@@ -49,7 +49,7 @@
 
       <div class="buttons cleared">
         <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code: 'send')}" onclick="parent.frames[0].FCK.UpdateLinkedField();" /></div>
-        <g:remoteLink update="content" class="buttonGray" controller="msg" action="inbox" id="${entity.id}" before="showspinner('#content');"><g:message code="cancel"/></g:remoteLink>
+        <g:remoteLink update="content" class="buttonGray" controller="msg" action="inbox" before="showspinner('#content');"><g:message code="cancel"/></g:remoteLink>
       </div>
 
     </g:formRemote>

@@ -159,11 +159,30 @@ class MsgController {
   }
 
   def createMany = {
+    def originalMessage = Msg.get(params.original)
     def message = new Msg()
+
+      // if this is an answer to a message use the subject
+      if (params.subject)
+          message.subject = params.subject.decodeHTML()
+      if (params.content)
+          message.content = params.content.decodeHTML()
+
     Entity entity = Entity.get(params.id)
 
-    render template: "createMany", model: [msgInstance: message,
-            entity: entity]
+    List receivers = []
+
+    if (originalMessage) {
+        receivers.add(originalMessage.sender)
+
+        originalMessage.receivers.each { Entity receiver ->
+            if (receiver.id != entityHelperService.loggedIn.id)
+                receivers.add(receiver)
+        }
+    }
+
+    render template: "createMany", model: [mc: message,
+            entity: entity, receivers: receivers]
   }
 
   def saveMany = {MessageCommand mc->
