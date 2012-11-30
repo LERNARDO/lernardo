@@ -13,7 +13,7 @@
                 position: {
                     my: 'bottom left',
                     at: 'top right',
-                    target: $(this)
+                    target: 'mouse' //$(this)
                 },
                 show: {
                     delay: 1000

@@ -13,7 +13,7 @@
         position: {
           my: 'left center',  // Position my top left...
           at: 'right center', // at the bottom right of...
-          target: $(this) // my target
+          target: 'mouse' //$(this) // my target
         }
       });
     });

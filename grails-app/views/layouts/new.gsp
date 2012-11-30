@@ -24,7 +24,7 @@ $('.tooltip').each(function() {
    position: {
             my: 'bottom left',
             at: 'top right',
-            target: $(this)
+            target: 'mouse' //$(this)
           },
    style: {
      classes: 'ui-tooltip-blue'
@@ -42,7 +42,7 @@ $('.tooltiphelp').each(function() {
    position: {
             my: 'bottom left',
             at: 'top right',
-            target: $(this)
+            target: 'mouse' //$(this)
           },
    style: {
      classes: 'ui-tooltip-green'
@@ -63,7 +63,7 @@ $('.largetooltip').each(function() {
           position: {
             my: 'bottom left',
             at: 'top right',
-            target: $(this)
+            target: 'mouse' //$(this)
           },
           show: {
             delay: 1000

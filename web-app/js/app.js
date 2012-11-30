@@ -78,7 +78,7 @@ $(document).ready(function() {
             position: {
                 my: 'top left',  // Position my top left...
                 at: 'right bottom', // at the bottom right of...
-                target: $(this) // my target
+                target: 'mouse' //$(this) // my target
             },
             style: {
                 classes: 'ui-tooltip-blue'

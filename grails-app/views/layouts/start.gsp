@@ -22,7 +22,7 @@
           position: {
             my: 'bottom left',
             at: 'top right',
-            target: $(this)
+            target: 'mouse' //$(this)
           },
           style: {
             classes: 'ui-tooltip-blue'
@@ -40,7 +40,7 @@
           position: {
             my: 'bottom left',
             at: 'top right',
-            target: $(this)
+            target: 'mouse' //$(this)
           },
           style: {
             classes: 'ui-tooltip-green'
@@ -61,7 +61,7 @@
           position: {
             my: 'bottom left',
             at: 'top right',
-            target: $(this)
+            target: 'mouse' //$(this)
           },
           show: {
             delay: 1000
