@@ -66,7 +66,7 @@
             <td class="two">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
-        <tr class="prop">
+        %{--<tr class="prop">
             <td class="one"><g:message code="project.profile.educationalObjective"/></td>
             <td class="two">
                 <g:if test="${project.profile.educationalObjective}">
@@ -76,7 +76,7 @@
                     <span class="italic"><g:message code="none"/></span>
                 </g:else>
             </td>
-        </tr>
+        </tr>--}%
 
         <tr class="prop">
             <td class="one"><g:message code="project.profile.educationalObjectiveText"/></td>

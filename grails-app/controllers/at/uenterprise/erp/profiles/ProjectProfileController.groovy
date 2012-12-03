@@ -457,7 +457,7 @@ class ProjectProfileController {
       // FIXME: manually defining properties to be updated, above code won't work for some weird reason
       project.profile.fullName = params.fullName
       project.profile.description = params.description
-      project.profile.educationalObjective = params.educationalObjective
+      //project.profile.educationalObjective = params.educationalObjective
       project.profile.educationalObjectiveText = params.educationalObjectiveText
 
     if (project.profile.save() && project.save()) {

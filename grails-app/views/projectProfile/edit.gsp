@@ -30,12 +30,12 @@
         </td>
       </tr>
 
-      <tr class="prop">
+      %{--<tr class="prop">
         <td class="name"><g:message code="project.profile.educationalObjective"/></td>
         <td class="value">
           <g:select from="['succeeded','notSucceeded']" name="educationalObjective" value="${project.profile.educationalObjective}" noSelection="['': message(code: 'none')]" valueMessagePrefix="goal"/>
         </td>
-      </tr>
+      </tr>--}%
 
       <tr class="prop">
         <td class="name"><g:message code="project.profile.educationalObjectiveText"/></td>

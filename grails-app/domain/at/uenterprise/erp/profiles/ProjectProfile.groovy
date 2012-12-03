@@ -18,7 +18,7 @@ class ProjectProfile extends Profile {
     Date startDate
     Date endDate
     String description
-    String educationalObjective
+    //String educationalObjective
     String educationalObjectiveText
 
     Boolean completed = false
@@ -33,7 +33,7 @@ class ProjectProfile extends Profile {
 
     static constraints = {
         description blank: true, maxSize: 20000
-        educationalObjective nullable: true
+        //educationalObjective nullable: true
         educationalObjectiveText nullable: true, maxSize: 2000
 
         objectiveComment nullable: true, maxSize: 2000
