@@ -2,11 +2,11 @@
   <title><g:message code="evaluation.personel"/></title>
   <meta name="layout" content="database"/>
 
-  <script type="text/javascript">
+  <g:javascript>
       $(function() {
-        ${remoteFunction(controller: "evaluation", action: "showMine", update: "remoteEvaluations", id: entity.id, params: [value: ""])}
+        ${remoteFunction(controller: "evaluation", action: "showMine", update: "remoteEvaluations", id: entity.id, before: "showspinner('#remoteEvaluations')", params: [value: ""])}
       });
-    </script>
+    </g:javascript>
 
 </head>
 <body>
