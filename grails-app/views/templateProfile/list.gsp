@@ -29,20 +29,14 @@
   <div class="graypanel">
     <g:formRemote name="formRemote" url="[controller: 'templateProfile', action: 'define']" update="searchresults" before="showspinner('#searchresults')">
 
-      <div style="margin-bottom: 10px;">
-        <span class="gray"><g:message code="creator"/>:</span><br/>
-
-        <g:remoteField size="40" name="remoteField1" update="remoteCreators" controller="profile" action="remoteCreators" before="showspinner('#remoteCreators')"/>
-        <div id="remoteCreators"></div>
-
-        <g:hiddenField name="creator" id="hiddenCreatorId" value=""/>
-      </div>
-
       <table>
 
         <tr class="prop">
           <td class="name"><g:message code="creator"/></td>
           <td class="value">
+              <g:remoteField size="40" name="remoteField1" update="remoteCreators" controller="profile" action="remoteCreators" before="showspinner('#remoteCreators')"/>
+              <div id="remoteCreators"></div>
+              <g:hiddenField name="creator" id="hiddenCreatorId" value=""/>
             <span id="creators2"><g:message code="none"/></span> <a href="" onclick="jQuery('#creators2').html('${message(code: 'none')}'); clearElements(['#hiddenCreatorId']); return false"><img src="${g.resource(dir:'images/icons', file:'cross.png')}" alt="Delete"/></a>
           </td>
         </tr>
