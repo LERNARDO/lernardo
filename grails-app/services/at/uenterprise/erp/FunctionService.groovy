@@ -211,7 +211,8 @@ class FunctionService {
   def deleteReferences(Entity entity) {
     Link.findAllBySourceOrTarget(entity, entity).each {it.delete()}
     Event.findAllByWhoOrWhat(entity.id.toInteger(), entity.id.toInteger()).each {it.delete()}
-    Msg.findAllBySenderOrReceiver(entity, entity).each {it.delete()}
+    Msg.findAllBySender(entity).each {it.delete()}
+    Msg.findAll {it.receivers.contains(entity)}.each {it.delete()}
     Publication.findAllByEntity(entity).each {it.delete()}
     Evaluation.findByOwnerOrWriter(entity, entity).each {it.delete()}
     News.findAllByAuthor(entity).each {it.delete()}
