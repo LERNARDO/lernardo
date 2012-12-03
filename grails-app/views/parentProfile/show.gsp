@@ -151,12 +151,17 @@
 
                 <tr class="prop">
                   <td class="one"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency}):</td>
-                  <td class="two">${fieldValue(bean: parent, field: 'profile.jobIncome')}</td>
+                  <td class="two"><g:if test="${parent.profile.jobIncome}">${fieldValue(bean: parent, field: 'profile.jobIncome')}</g:if><g:else><div class="italic"><g:message code="none"/></div></g:else></td>
                 </tr>
+
+                  <tr class="prop">
+                      <td class="one"><g:message code="parent.profile.incomeFrequency"/>:</td>
+                      <td class="two"><g:if test="${parent.profile.incomeFrequency}"><g:message code="incomeFrequency.${parent?.profile?.incomeFrequency}"/></g:if><g:else><div class="italic"><g:message code="none"/></div></g:else></td>
+                  </tr>
 
                 <tr class="prop">
                   <td class="one"><g:message code="parent.profile.jobFrequency"/>:</td>
-                  <td class="two">${fieldValue(bean: parent, field: 'profile.jobFrequency')}</td>
+                  <td class="two"><g:if test="${parent.profile.jobFrequency}">${fieldValue(bean: parent, field: 'profile.jobFrequency')}</g:if><g:else><div class="italic"><g:message code="none"/></div></g:else></td>
                 </tr>
               </g:if>
 

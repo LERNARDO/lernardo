@@ -92,6 +92,13 @@
           </td>
         </tr>
 
+          <tr class="prop">
+              <td class="name"><g:message code="parent.profile.incomeFrequency"/></td>
+              <td class="value">
+                  <g:select name="incomeFrequency" from="['monthly','biweekly','weekly']" value="${parent?.profile?.incomeFrequency}" valueMessagePrefix="incomeFrequency" noSelection="['': message(code: 'none')]"/>
+              </td>
+          </tr>
+
         <tr class="prop">
           <td class="name"><g:message code="parent.profile.jobFrequency"/></td>
           <td class="value">

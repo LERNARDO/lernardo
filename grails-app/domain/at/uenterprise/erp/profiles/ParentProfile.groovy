@@ -35,6 +35,7 @@ class ParentProfile extends Profile {
   Boolean job
   Integer jobIncome
   String  jobFrequency
+  String  incomeFrequency
 
   Boolean showTips = true
 
@@ -50,6 +51,7 @@ class ParentProfile extends Profile {
     jobFrequency          nullable: true, blank: true, maxSize: 50
     education             nullable: true, blank: true
     comment               blank: true, maxSize: 2000
+    incomeFrequency       nullable: true
 
     socialSecurityNumber  nullable: true, size: 10..10
     phone                 nullable: true
