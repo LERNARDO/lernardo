@@ -955,7 +955,12 @@ class BootStrap {
                 ent.profile = profileHelperService.createProfileFor(ent) as Profile
                 ent.profile.fullName = entity.profile.fullName
                 ent.profile.date = functionService.convertToUTC(calendarStart.getTime())
-                ent.profile.endDate = functionService.convertToUTC(calendarStart.getTime() + 1)
+
+                Calendar tempCal = Calendar.getInstance()
+                tempCal.setTime(ent.profile.date)
+                tempCal.add(Calendar.HOUR_OF_DAY, 5)
+
+                ent.profile.endDate = tempCal.getTime()
             }
 
             // link project day to project
