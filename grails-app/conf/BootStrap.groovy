@@ -79,7 +79,6 @@ class BootStrap {
                 //createDefaultLinks()
                 createDefaultTags()
                 createDefaultActivityTemplates()
-                //createDefaultActivities()
                 createDefaultPartner()
                 createDefaultColonies()
                 createDefaultParents()
@@ -605,27 +604,6 @@ class BootStrap {
             }
         }
 
-    }
-
-    void createDefaultActivities() {
-        log.info("creating activities")
-
-        EntityType etActivity = metaDataService.etActivity
-
-        if (!Entity.findByName('klettern')) {
-            def entity = entityHelperService.createEntity("klettern", etActivity) {Entity ent ->
-                ent.profile = profileHelperService.createProfileFor(ent) as Profile
-                ent.profile.fullName = "Klettern"
-                ent.profile.date = new Date()
-                ent.profile.duration = 60
-            }
-
-            new Link(source: Entity.findByName('educator1'), target: entity, type: metaDataService.ltActEducator).save(failOnError: true)
-            new Link(source: Entity.findByName('client1'), target: entity, type: metaDataService.ltActClient).save(failOnError: true)
-            new Link(source: Entity.findByName('facility1'), target: entity, type: metaDataService.ltActFacility).save(failOnError: true)
-            new Link(source: Entity.findByName('template1'), target: entity, type: metaDataService.ltActTemplate).save(failOnError: true)
-            new Link(source: Entity.findByName('educator1'), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
-        }
     }
 
     void createDefaultPosts() {

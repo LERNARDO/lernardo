@@ -4,7 +4,6 @@ import at.uenterprise.erp.base.Entity
 import at.uenterprise.erp.base.EntityType
 import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.base.SecHelperService
-import at.uenterprise.erp.profiles.ActivityProfile
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.support.RequestContextUtils
 
@@ -157,48 +156,6 @@ class ProfileController {
       flash.message = message(code: "pass.notChanged")
       redirect action: changePassword, params: [name: params.name]
     }
-  }
-
-  /*
-   * shows a list of news the entity has contributed
-   */
-  def showNewsList = {
-    params.offset = params.int('offset') ?: 0
-    params.max = params.int('max') ?: 10
-
-    Entity entity = Entity.get(params.id)
-    List news = News.findAllByAuthor(entity, params)
-    return ['entity': entity,
-            'news': news,
-            'newsCount': news.size()]
-  }
-
-  /*
-   * shows a list of all activites of a given entity
-   */
-  def showActivityList = {
-    params.offset = params.int('offset') ?: 0
-    params.max = params.int('max') ?: 10
-
-    Entity entity = Entity.get(params.id)
-
-    // find all activities the entity is owner, or in the educator or client list
-    // Unfortunately we loose control over sort and max, need to find a workaround
-    def activityList = ActivityProfile.findAllByOwner(entity)
-    ActivityProfile.list().each {
-      for (a in it.educators) {
-        if (a == entity)
-          activityList << it
-      }
-      for (a in it.clients) {
-        if (a == entity)
-          activityList << it
-      }
-    }
-
-    return ['entity': entity,
-            'activityList': activityList,
-            'activityCount': activityList.size()]
   }
 
   /*
