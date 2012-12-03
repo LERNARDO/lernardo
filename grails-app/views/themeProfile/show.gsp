@@ -74,10 +74,10 @@
           </td>
         </tr>
 
-        <tr class="prop">
+        %{--<tr class="prop">
           <td class="one"><g:message code="facility"/>:</td>
           <td class="two"><g:link class="largetooltip" data-idd="${facility.id}" controller="facilityProfile" action="show" id="${facility?.id}">${fieldValue(bean: facility, field: 'profile')}</g:link></td>
-        </tr>
+        </tr>--}%
 
         <tr class="prop">
           <td class="one"><g:message code="description"/>:</td>

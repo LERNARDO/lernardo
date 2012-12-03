@@ -62,7 +62,7 @@
           <tr class="prop">
             <td class="name"><g:message code="theme"/></td>
             <td class="value">
-              <g:select name="theme" from="${themes}" optionKey="id" optionValue="profile" noSelection="['': message(code: 'non')]"/>
+              <g:select name="theme" from="${themes}" optionKey="id" optionValue="${{it.profile.nameWithDate()}}" noSelection="['': message(code: 'non')]"/>
             </td>
           </tr>
 

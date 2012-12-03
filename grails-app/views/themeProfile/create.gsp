@@ -42,12 +42,12 @@
           </td>
         </tr>
 
-        <tr class="prop">
+        %{--<tr class="prop">
           <td class="name"><g:message code="facility"/></td>
           <td class="value">
             <g:select from="${allFacilities}" name="facility" optionKey="id" optionValue="profile" value=""/>
           </td>
-        </tr>
+        </tr>--}%
 
         <tr class="prop">
           <td class="name"><g:message code="description"/></td>

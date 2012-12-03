@@ -38,16 +38,16 @@
         <tr class="prop">
           <td class="name"><g:message code="themes.superior"/></td>
           <td class="value">
-            <g:select from="${allThemes}" name="parenttheme" optionKey="id" optionValue="profile" noSelection="[null: 'Keines']"/>
+            <g:select from="${allThemes}" name="parenttheme" value="${parenttheme.id}" optionKey="id" optionValue="profile" noSelection="[null: 'Keines']"/>
           </td>
         </tr>
 
-        <tr class="prop">
+        %{--<tr class="prop">
           <td class="name"><g:message code="facility"/></td>
           <td class="value">
             <g:select from="${allFacilities}" name="facility" optionKey="id" optionValue="profile" value=""/>
           </td>
-        </tr>
+        </tr>--}%
 
         <tr class="prop">
           <td class="name"><g:message code="description"/></td>

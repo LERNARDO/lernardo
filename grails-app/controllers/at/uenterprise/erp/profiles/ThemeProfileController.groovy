@@ -32,15 +32,15 @@ class ThemeProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.int('offset') ?: 0
+    /*params.offset = params.int('offset') ?: 0
     params.max = Math.min(params.int('max') ?: 15, 100)
     params.sort = params.sort ?: "dateCreated"
-    params.order = params.order ?: "desc"
+    params.order = params.order ?: "desc" */
 
     Entity currentEntity = entityHelperService.loggedIn
     List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
 
-    List allThemes = Entity.findAllByType(metaDataService.etTheme)
+    List allThemes = Entity.findAllByType(metaDataService.etTheme).sort {it.profile.dateCreated}.reverse()
     // find only themes without a parent
     List themes = allThemes.inject([]) { result, theme ->
       def subthemes = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
@@ -61,13 +61,13 @@ class ThemeProfileController {
     }
     else {
       // find the facility linked to this theme
-      Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
+      //Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
 
       // find parent theme linked to this theme (if any)
       Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
 
       [theme: theme,
-       facility: facility,
+       //facility: facility,
        parenttheme: parenttheme,
        allLabels: functionService.getLabels()]
     }
@@ -157,7 +157,7 @@ class ThemeProfileController {
       }
 
       [theme: theme,
-       allFacilities: Entity.findAllByType(metaDataService.etFacility),
+       //allFacilities: Entity.findAllByType(metaDataService.etFacility),
        allThemes: allThemes,
        parenttheme: functionService.findByLink(theme, null, metaDataService.ltSubTheme),
        facility: functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)]
@@ -174,10 +174,10 @@ class ThemeProfileController {
     if (theme.profile.save() && theme.save()) {
 
       // delete current link to facility
-      Link.findBySourceAndType(theme, metaDataService.ltThemeOfFacility)?.delete()
+      //Link.findBySourceAndType(theme, metaDataService.ltThemeOfFacility)?.delete()
 
       // link theme to facility
-      functionService.linkEntities(theme.id.toString(), params.facility, metaDataService.ltThemeOfFacility)
+      //functionService.linkEntities(theme.id.toString(), params.facility, metaDataService.ltThemeOfFacility)
 
       // delete current link to parent theme if any
       Link.findBySourceAndType(theme, metaDataService.ltSubTheme)?.delete()
@@ -230,17 +230,17 @@ class ThemeProfileController {
 
   def create = {
 
-    Entity currentEntity = entityHelperService.loggedIn
+    //Entity currentEntity = entityHelperService.loggedIn
 
-    List allFacilities
+    //List allFacilities
 
     // if the current entity is an educator only return facilities he is linked to, else all facilities
-    if (currentEntity.type.id == metaDataService.etEducator.id)
+    /*if (currentEntity.type.id == metaDataService.etEducator.id)
       allFacilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
     else
-      allFacilities = Entity.findAllByType(metaDataService.etFacility)
+      allFacilities = Entity.findAllByType(metaDataService.etFacility)*/
 
-    return [allFacilities: allFacilities,
+    return [//allFacilities: allFacilities,
             allThemes: Entity.findAllByType(metaDataService.etTheme)]
   }
 

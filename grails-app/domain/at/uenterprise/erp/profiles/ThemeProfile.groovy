@@ -2,6 +2,7 @@ package at.uenterprise.erp.profiles
 
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.Label
+import java.text.SimpleDateFormat
 
 /**
  * This class represents the profile of themes
@@ -27,5 +28,10 @@ class ThemeProfile extends Profile {
   String toString() {
     return "${fullName}"
   }
+
+    String nameWithDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", new Locale("en"))
+        return "${fullName}: ${sdf.format(startDate)} - ${sdf.format(endDate)}"
+    }
 
 }
