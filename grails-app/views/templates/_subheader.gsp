@@ -77,5 +77,6 @@
         <li class="icon-network"><g:link controller="comment" action="list"><g:message code="comment.management"/></g:link></li>
         <li class="icon-group"><g:link controller="profile" action="list"><g:message code="profile.list"/></g:link></li>
         <li class="icon-resource"><g:link controller="resourceProfile" action="list"><g:message code="resource.management"/></g:link></li>
+        <li class="icon-resource"><g:link controller="goal" action="list">Marco Logico</g:link></li>
     </ul>
 </div>
