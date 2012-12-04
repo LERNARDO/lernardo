@@ -21,7 +21,7 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="responsible"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#responsible');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+    <h5><g:message code="responsible"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#responsible');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="responsible" style="display:none">
 
         <g:message code="search"/>:<br/>
