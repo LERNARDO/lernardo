@@ -26,7 +26,7 @@ class EvaluationController {
     Entity entity = Entity.get(params.id)
     List evaluations = Evaluation.findAllByOwner(entity, params)
 
-    return [evaluationInstanceList: evaluations,
+    render template: "list", model: [evaluationInstanceList: evaluations,
             evaluationInstanceTotal: Evaluation.countByOwner(entity),
             entity: entity]
   }
@@ -45,7 +45,7 @@ class EvaluationController {
     Entity entity = Entity.get(params.id)
     List evaluations = Evaluation.findAllByWriter(entity, params)
 
-    return [evaluationInstanceList: evaluations,
+    render template: "myevaluations", model: [evaluationInstanceList: evaluations,
             evaluationInstanceTotal: Evaluation.countByWriter(entity),
             entity: entity]
   }
@@ -237,7 +237,7 @@ class EvaluationController {
     def upperBound = params.offset + params.max < totalEvaluations ? params.offset + params.max : totalEvaluations
     evaluations = evaluations.subList(params.offset, upperBound)
 
-    return [evaluationInstanceList: evaluations,
+    render template: "interestingevaluations", model: [evaluationInstanceList: evaluations,
             totalEvaluations: totalEvaluations,
             entity: entity,
             paginate: 'interesting']

@@ -1,16 +1,4 @@
-<head>
-  <title><g:message code="evaluation.interesting"/></title>
-  <meta name="layout" content="database"/>
-</head>
-<body>
-
-<div class="tabInactive">
-    <h1><g:link controller="evaluation" action="myevaluations" id="${entity.id}"><g:message code="evaluation.myentry"/></g:link></h1>
-</div>
-
-<div class="tabActive">
-    <h1><g:message code="evaluation.interestentry"/></h1>
-</div>
+<h4><g:remoteLink update="content" controller="evaluation" action="myevaluations" id="${entity.id}" before="showspinner('#content');"><g:message code="evaluation.myentry"/></g:remoteLink> - <g:message code="evaluation.interestentry"/></h4>
 
 %{--<erp:accessCheck types="['Betreiber']">
   <div class="tabInactive">
@@ -27,4 +15,3 @@
     <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList, totalEvaluations: totalEvaluations, paginate: paginate]"/>
 
 </div>
-</body>
