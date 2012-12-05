@@ -38,8 +38,8 @@ class ClientProfileController {
 
   def list = {
     int totalClients = Entity.countByType(metaDataService.etClient)
-    List colonies = Entity.findAllByType(metaDataService.etGroupColony)
-    List facilities = Entity.findAllByType(metaDataService.etFacility)
+    List colonies = Entity.findAllByType(metaDataService.etGroupColony).sort {it.profile.fullName}
+    List facilities = Entity.findAllByType(metaDataService.etFacility).sort {it.profile.fullName}
     List schoolLevels = Setup.list()[0]?.schoolLevels
 
     return [totalClients: totalClients, colonies: colonies, facilities: facilities, schoolLevels: schoolLevels]
