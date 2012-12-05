@@ -84,7 +84,7 @@
     <div id="educators" style="display:none">
 
       <g:message code="search"/>:<br/>
-      <g:remoteField name="remoteField" size="40" update="educatorresults" action="remoteEducators" id="${projectDay.id}" before="showspinner('#educatorresults')"/>
+      <erp:remoteField name="remoteField" size="40" update="educatorresults" action="remoteEducatorsDay" id="${project.id}" params="[projectDay: projectDay.id]" before="showspinner('#educatorresults')"/>
       <div id="educatorresults"></div>
 
     </div>

@@ -60,6 +60,20 @@
 
     </div>
     <div class="zusatz-show" id="clients2">
-        <g:render template="clients" model="[clients: clients]"/>
+        <g:render template="clients" model="[clients: clients, project: project]"/>
+    </div>
+</div>
+
+<div class="zusatz">
+    <h5><g:message code="educators"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#educators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+    <div class="zusatz-add" id="educators" style="display:none">
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteEducators" action="remoteEducators" id="${project.id}" before="showspinner('#remoteEducators');"/>
+        <div id="remoteEducators"></div>
+
+    </div>
+    <div class="zusatz-show" id="educators2">
+        <g:render template="educators" model="[educators: educators, project: project]"/>
     </div>
 </div>

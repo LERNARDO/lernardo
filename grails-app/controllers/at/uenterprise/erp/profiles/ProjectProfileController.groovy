@@ -132,9 +132,10 @@ class ProjectProfileController {
         // find all facilities linked to this project
         List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
+        List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
         // find all clients linked to any project day
         List clients = []
-        List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
 
         projectDays.each { Entity pd ->
             List pdclients = functionService.findAllByLink(null, pd, metaDataService.ltGroupMemberClient)
@@ -142,7 +143,17 @@ class ProjectProfileController {
                 if (!clients.contains(pdclient))
                     clients.add(pdclient)
             }
+        }
 
+        // find all educators linked to any project day
+        List educators = []
+
+        projectDays.each { Entity pd ->
+            List pdeducators = functionService.findAllByLink(null, pd, metaDataService.ltProjectDayEducator)
+            pdeducators?.each { pdeducator ->
+                if (!educators.contains(pdeducator))
+                    educators.add(pdeducator)
+            }
         }
 
         render template: "management", model: [project: project, responsibles: responsibles,
@@ -150,7 +161,8 @@ class ProjectProfileController {
                 themes: themes,
                 allFacilities: allFacilities,
                 facilities: facilities,
-                clients: clients]
+                clients: clients,
+                educators: educators]
     }
 
     def projectdays = {
@@ -973,18 +985,72 @@ class ProjectProfileController {
   }
 
   def addEducator = {
-    def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
-    if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
-    def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
-    render template: 'educators', model: [educators: linking.sources, project: project, projectDay: linking.target]
+      def entity = Entity.get(params.educator)
+      Entity project = Entity.get(params.id)
+
+      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+      projectDays.each { Entity pd ->
+          def linking = functionService.linkEntities(params.educator, pd.id.toString(), metaDataService.ltProjectDayEducator)
+          if (linking.duplicate)
+              render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+      }
+
+      List educators = []
+
+      projectDays.each { Entity pd ->
+          List pdeducators = functionService.findAllByLink(null, pd, metaDataService.ltProjectDayEducator)
+          pdeducators?.each { pdeducator ->
+              if (!educators.contains(pdeducator))
+                  educators.add(pdeducator)
+          }
+      }
+
+      render template: 'educators', model: [educators: educators, project: project]
   }
 
+    def addEducatorDay = {
+        def linking = functionService.linkEntities(params.educator, params.day, metaDataService.ltProjectDayEducator)
+        if (linking.duplicate)
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+        def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
+        render template: 'educatorsday', model: [educators: linking.sources, project: project, day: linking.target]
+    }
+
   def removeEducator = {
-    def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
-    def project = functionService.findByLink(breaking.target, null, metaDataService.ltProjectMember)
-    render template: 'educators', model: [educators: breaking.sources, project: project, projectDay: breaking.target]
+      Entity project = Entity.get(params.id)
+      Entity educator = Entity.get(params.educator)
+
+      // find all project days of the project
+      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+      // remove client if found in any project day
+      projectDays?.each { Entity pd ->
+          def link = Link.createCriteria().get {
+              eq('source', educator)
+              eq('target', pd)
+              eq('type', metaDataService.ltProjectDayEducator)
+          }
+          link?.delete()
+      }
+
+      List educators = []
+      projectDays?.each { Entity pd ->
+          List pdeducators = functionService.findAllByLink(null, pd, metaDataService.ltProjectDayEducator)
+          pdeducators?.each { pdeducator ->
+              if (!educators.contains(pdeducator))
+                  educators.add(pdeducator)
+          }
+
+      }
+      render template: "educators", model: [educators: educators, project: project]
   }
+
+    def removeEducatorDay = {
+        Entity day = Entity.get(params.day)
+        def breaking = functionService.breakEntities(params.client, params.day, metaDataService.ltProjectDayEducator)
+        render template: 'educatorsday', model: [educators: breaking.sources, project: breaking.target, day: day]
+    }
 
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
@@ -1148,9 +1214,44 @@ class ProjectProfileController {
       return
     }
     else {
-      render template: 'educatorresults', model: [results: results, projectDay: params.id]
+      render template: 'educatorresults', model: [results: results, group: params.id]
     }
   }
+
+    /*
+    * retrieves all educators matching the search parameter
+    */
+    def remoteEducatorsDay = {
+        if (!params.value) {
+            render ""
+            return
+        }
+        else if (params.value == "*") {
+            render template: 'educatorresultsday', model: [results: entityDataService.getAllEducators(), group: params.id, projectDay: params.id]
+            return
+        }
+
+        def results = Entity.createCriteria().listDistinct {
+            eq('type', metaDataService.etEducator)
+            user {
+                eq("enabled", true)
+            }
+            profile {
+                ilike('fullName', "%" + params.value + "%")
+                order('fullName','asc')
+            }
+            maxResults(15)
+        }
+
+        if (results.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            Entity projectDay = Entity.get(params.projectDay)
+            render template: 'educatorresultsday', model: [results: results, group: params.id, projectDay: projectDay]
+        }
+    }
 
   /*
    * retrieves all substitute educators matching the search parameter
@@ -1248,7 +1349,6 @@ class ProjectProfileController {
     * retrieves all clients and client groups matching the search parameter
     */
     def remoteClientsDay = {
-        println params
         if (!params.value) {
             render ""
             return

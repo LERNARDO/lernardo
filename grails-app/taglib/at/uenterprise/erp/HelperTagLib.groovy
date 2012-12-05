@@ -1729,6 +1729,7 @@ class HelperTagLib {
      *
      * @author Alexander Zeillinger
      * @attr projectDay REQUIRED The project day
+     * @return educators a list of educators
      */
     def getProjectDayEducators = {attrs, body ->
         List projectDayEducators = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayEducator)
