@@ -77,7 +77,7 @@
           <td class="name"><g:message code="vMethod"/> 1</td>
           <td class="value">
             <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller: 'groupActivityTemplateProfile', action: 'listMethods', update: 'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
-              <g:radioGroup name="method1Logic" labels="[message(code: 'AND'), message(code: 'OR')]" values="[1,2]" value="1">
+              <g:radioGroup name="method1Logic" labels="[message(code: 'AND'), message(code: 'OR')]" values="[1,2]" value="2">
                   <span>${it.radio} ${it.label}</span>
               </g:radioGroup>
               <div id="elements1"></div>
@@ -88,7 +88,7 @@
           <td class="name"><g:message code="vMethod"/> 2</td>
           <td class="value">
             <g:select name="method2" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller: 'groupActivityTemplateProfile', action: 'listMethods', update: 'elements2', params:'\'id=\' + this.value+\'&dropdown=\'+2')}"/>
-              <g:radioGroup name="method2Logic" labels="[message(code: 'AND'), message(code: 'OR')]" values="[1,2]" value="1">
+              <g:radioGroup name="method2Logic" labels="[message(code: 'AND'), message(code: 'OR')]" values="[1,2]" value="2">
                   <span>${it.radio} ${it.label}</span>
               </g:radioGroup>
               <div id="elements2"></div>
@@ -99,7 +99,7 @@
           <td class="name"><g:message code="vMethod"/> 3</td>
           <td class="value">
             <g:select name="method3" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller: 'groupActivityTemplateProfile', action: 'listMethods', update: 'elements3', params:'\'id=\' + this.value+\'&dropdown=\'+3')}"/>
-              <g:radioGroup name="method3Logic" labels="[message(code: 'AND'), message(code: 'OR')]" values="[1,2]" value="1">
+              <g:radioGroup name="method3Logic" labels="[message(code: 'AND'), message(code: 'OR')]" values="[1,2]" value="2">
                   <span>${it.radio} ${it.label}</span>
               </g:radioGroup>
               <div id="elements3"></div>
