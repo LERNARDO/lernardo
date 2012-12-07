@@ -34,7 +34,7 @@ class TimeRecordingController {
       }
     }
 
-    List workdaycategories = WorkdayCategory.list()
+    List workdaycategories = WorkdayCategory.list().sort {it.name}
 
     render template: 'showrecords', model: [workdayunits: workdayunits,
         date: params.date,
