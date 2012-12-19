@@ -44,7 +44,7 @@ class ChildProfileController {
 
     Entity family = linkDataService.getFamily(child)
 
-    return [child: child, family: family, ajax: params.ajax]
+    return [child: child, family: family, ajax: params.ajax, ajaxId: params.ajaxId]
   }
 
   def delete = {

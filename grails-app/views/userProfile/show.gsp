@@ -46,7 +46,7 @@
 
 </div>
 
-<g:render template="/templates/ajaxCommands" model="${ajax}"/>
+<g:render template="/templates/ajaxCommands" model="[ajax: ajax, ajaxId: ajaxId]"/>
 
 </body>
 

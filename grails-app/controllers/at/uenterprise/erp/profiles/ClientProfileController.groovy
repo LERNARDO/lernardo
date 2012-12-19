@@ -58,7 +58,7 @@ class ClientProfileController {
     Entity family = linkDataService.getFamily(client)
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
-    return [client: client, colony: colony, family: family, facilities: facilities, ajax: params.ajax]
+    return [client: client, colony: colony, family: family, facilities: facilities, ajax: params.ajax, ajaxId: params.ajaxId]
 
   }
 

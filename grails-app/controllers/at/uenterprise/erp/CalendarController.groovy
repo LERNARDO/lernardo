@@ -33,12 +33,14 @@ class CalendarController {
           eq("type", metaDataService.ltAppointment)
         }
         if (result)
-          redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
+          redirect controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id, params: [ajax: 'appointments', ajaxId: entity.id]
         else
           redirect action: 'show'
       }
-      else
-        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
+      else {
+        Entity owner = functionService.findByLink(entity, null, metaDataService.ltAppointment)
+        redirect controller: owner.type.supertype.name + 'Profile', action: 'show', id: owner.id, params: [ajax: 'appointments', ajaxId: entity.id]
+      }
     }
     else if (entity.type.supertype.name == 'projectUnit') {
         // find projectDay of projectUnit

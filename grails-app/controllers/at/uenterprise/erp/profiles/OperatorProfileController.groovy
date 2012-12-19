@@ -37,7 +37,7 @@ class OperatorProfileController {
       return
     }
 
-    return [operator: operator, ajax: params.ajax]
+    return [operator: operator, ajax: params.ajax, ajaxId: params.ajaxId]
 
   }
 

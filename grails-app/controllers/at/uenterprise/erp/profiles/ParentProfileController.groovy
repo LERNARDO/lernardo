@@ -61,7 +61,7 @@ class ParentProfileController {
     Entity colony = linkDataService.getColony(parent)
     Entity family = linkDataService.getFamily(parent)
 
-    return [parent: parent, family: family, colony: colony, ajax: params.ajax]
+    return [parent: parent, family: family, colony: colony, ajax: params.ajax, ajaxId: params.ajaxId]
 
   }
 

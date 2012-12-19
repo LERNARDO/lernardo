@@ -40,7 +40,7 @@ class PateProfileController {
       return
     }
 
-    return [pate: pate, ajax: params.ajax]
+    return [pate: pate, ajax: params.ajax, ajaxId: params.ajaxId]
   }
 
     def management = {

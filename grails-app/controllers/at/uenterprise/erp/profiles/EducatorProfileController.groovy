@@ -60,7 +60,7 @@ class EducatorProfileController {
 
     List leadingFacilities = functionService.findAllByLink(educator, null, metaDataService.ltLeadEducator)
 
-    return [educator: educator, enlistedBy: enlistedBy, colony: colony, ajax: params.ajax, leadingFacilities: leadingFacilities]
+    return [educator: educator, enlistedBy: enlistedBy, colony: colony, ajax: params.ajax, ajaxId: params.ajaxId, leadingFacilities: leadingFacilities]
   }
 
     def management = {

@@ -45,7 +45,7 @@ class PartnerProfileController {
       return
     }
 
-    return [partner: partner, ajax: params.ajax]
+    return [partner: partner, ajax: params.ajax, ajaxId: params.ajaxId]
 
   }
 
