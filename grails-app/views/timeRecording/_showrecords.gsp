@@ -96,11 +96,11 @@
 </g:if>
 
 <g:if test="${!datesOrdered}">
-    <div class="red italic">Die Endzeit liegt vor der Beginnzeit!</div>
+    <div class="red italic"><g:message code="endBeforeBegin"/></div>
 </g:if>
 
 <g:if test="${intersection}">
-    <div class="red italic">Der Eintrag überschneidet sich mit einem anderen Eintrag!</div>
+    <div class="red italic"><g:message code="entryOverlapping"/></div>
 </g:if>
 
 <p class="bold"><g:message code="workdayUnit.alreadyEntered"/></p>

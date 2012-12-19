@@ -28,9 +28,7 @@
 <div id="modal" style="display: none;">
   <g:form controller="groupActivityProfile" action="createpdf" id="${entity.id}">
     <p><g:message code="selectPageFormat"/></p>
-    <g:radioGroup name="pageformat" labels="['DIN A4 Hoch (210mm × 297mm)','DIN A4 Quer (297mm × 210mm)','Letter Hoch (216mm × 279mm)','Letter Quer (279mm × 216mm)']" values="[1,2,3,4]" value="1">
-      <p>${it.radio} ${it.label}</p>
-    </g:radioGroup>
+    <g:render template="/templates/printRadioGroup"/>
     <p>
       <g:checkBox name="printtemplates" value=""/> <g:message code="activityTemplates.with"/>
     </p>

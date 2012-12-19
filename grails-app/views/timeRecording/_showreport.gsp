@@ -20,9 +20,7 @@
 <div id="modal" style="display: none;">
   <g:form action="pdf" id="${entity.id}" params="[date1: formatDate(date: date1, format: 'dd. MM. yyyy'), date2: formatDate(date: date2, format: 'dd. MM. yyyy')]">
     <p><g:message code="selectPageFormat"/></p>
-    <g:radioGroup name="pageformat" labels="['DIN A4 Hoch (210mm × 297mm)','DIN A4 Quer (297mm × 210mm)','Letter Hoch (216mm × 279mm)','Letter Quer (279mm × 216mm)']" values="[1,2,3,4]" value="1">
-      <p>${it.radio} ${it.label}</p>
-    </g:radioGroup>
+    <g:render template="/templates/printRadioGroup"/>
     <g:submitButton name="pdfbutton" value="${message(code: 'notification.send')}"/>
   </g:form>
 </div>
