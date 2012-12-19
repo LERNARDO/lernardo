@@ -76,7 +76,7 @@
 
       <div class="buttons cleared">
         <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="${message(code:'save')}"/></div>
-        <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
+        <g:link controller="${entity.type.supertype.name + 'Profile'}" class="buttonGray" action="show" id="${entity.id}" params="[ajax: 'evaluations', ajaxId: entity.id]"><g:message code="cancel"/></g:link>
       </div>
 
     </g:form>

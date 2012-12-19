@@ -28,3 +28,10 @@
         });
     </script>
 </g:if>
+<g:if test="${ajax == 'evaluations'}">
+    <script type="text/javascript">
+        $(function() {
+            ${remoteFunction(controller: "evaluation", action: "list", id: ajaxId, update: "content")}
+        });
+    </script>
+</g:if>

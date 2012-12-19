@@ -71,6 +71,37 @@ class ClientProfileController {
         render template: "management", model: [client: client, pates: pates, facilities: facilities]
     }
 
+    def participations = {
+        Entity client = Entity.get(params.id)
+        params.current = params.current ?: "true"
+
+        // find all projects the client has participated in
+
+        // get all projects
+        List projects = Entity.findAllByType(metaDataService.etProject)
+
+        // filter by current or past projects
+        if (params.current == "true")
+            projects = projects.findAll {it.profile.endDate > new Date()}
+        else
+            projects = projects.findAll {it.profile.endDate < new Date()}
+
+        List finalProjects = []
+
+        projects?.each { Entity project ->
+            List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+            projectDays.each { Entity pd ->
+                List pdclients = functionService.findAllByLink(null, pd, metaDataService.ltGroupMemberClient)
+                if (pdclients.contains(client))
+                    if (!finalProjects.contains(project))
+                        finalProjects.add(project)
+            }
+        }
+
+        render template: "participations", model: [results: finalProjects, current: params.current, clientId: params.id]
+    }
+
   def delete = {
     Entity client = Entity.get(params.id)
     if (client) {
