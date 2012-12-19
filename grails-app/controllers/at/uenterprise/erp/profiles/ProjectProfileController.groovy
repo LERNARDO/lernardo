@@ -144,6 +144,7 @@ class ProjectProfileController {
                     clients.add(pdclient)
             }
         }
+        clients.sort {it.profile.firstName}
 
         // find all educators linked to any project day
         List educators = []
@@ -934,6 +935,8 @@ class ProjectProfileController {
           }
 
       }
+
+      clients.sort {it.profile.firstName}
     render template: "clients", model: [clients: clients, project: project]
   }
 
@@ -1445,6 +1448,7 @@ class ProjectProfileController {
           }
 
       }
+      clients.sort {it.profile.firstName}
 
       render template: 'clients', model: [clients: clients, project: project]
 
