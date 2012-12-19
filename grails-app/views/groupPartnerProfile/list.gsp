@@ -12,13 +12,13 @@
     <g:message code="object.total" args="[totalGroupPartners, message(code: 'groupPartners')]"/>
   </div>
 
-  <erp:accessCheck types="['Betreiber']">
+  %{--<erp:accessCheck types="['Betreiber']">--}%
     <div class="buttons cleared">
       <g:form>
         <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'groupPartner')])}"/></div>
       </g:form>
     </div>
-  </erp:accessCheck>
+  %{--</erp:accessCheck>--}%
 
   <div class="graypanel">
 

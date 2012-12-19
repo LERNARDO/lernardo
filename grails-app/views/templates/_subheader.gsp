@@ -42,7 +42,6 @@
         <li class="icon-child"><g:link controller="childProfile" action="list"><g:message code="children"/></g:link></li>
         <li class="icon-pate"><g:link controller="pateProfile" action="list"><g:message code="paten"/></g:link></li>
         <li class="icon-facility"><g:link controller="facilityProfile" action="list"><g:message code="facilities"/></g:link></li>
-        <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="list"><g:message code="groupPartners"/></g:link></li>
         <li class="icon-partner"><g:link controller="partnerProfile" action="list"><g:message code="partners"/></g:link></li>
         <li class="icon-colony"><g:link controller="groupColonyProfile" action="list"><g:message code="groupColonies"/></g:link></li>
     </ul>
@@ -76,6 +75,7 @@
         <li class="icon-network"><g:link controller="comment" action="list"><g:message code="comment.management"/></g:link></li>
         <li class="icon-group"><g:link controller="profile" action="list"><g:message code="profile.list"/></g:link></li>
         <li class="icon-resource"><g:link controller="resourceProfile" action="list"><g:message code="resource.management"/></g:link></li>
+        <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="list"><g:message code="groupPartners"/></g:link></li>
         <li class="icon-resource"><g:link controller="goal" action="list">Marco Logico</g:link></li>
     </ul>
 </div>

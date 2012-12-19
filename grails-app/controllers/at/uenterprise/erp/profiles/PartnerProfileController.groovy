@@ -52,7 +52,9 @@ class PartnerProfileController {
     def management = {
         Entity partner = Entity.get(params.id)
 
-        render template: "management", model: [partner: partner]
+        List grouppartners = functionService.findAllByLink(partner, null, metaDataService.ltGroupMember)
+
+        render template: "management", model: [partner: partner, grouppartners: grouppartners]
 
     }
 
@@ -206,6 +208,49 @@ class PartnerProfileController {
 
     render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'parent', params: params]
   }
+
+   /*
+   * retrieves all group partners matching the search parameter
+   */
+    def remoteGroupPartners = {
+        if (!params.value) {
+            render ""
+            return
+        }
+        else if (params.value.size() < 2) {
+            render {span(class: 'gray', message(code: 'minChars'))}
+            return
+        }
+
+        def results = Entity.createCriteria().listDistinct {
+            eq('type', metaDataService.etGroupPartner)
+            profile {
+                ilike('fullName', "%" + params.value + "%")
+                order('fullName','asc')
+            }
+            maxResults(15)
+        }
+
+        if (results.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            render template: 'grouppartnerresults', model: [results: results, partner: params.id]
+        }
+    }
+
+    def addGroupPartner = {
+        def linking = functionService.linkEntities(params.id, params.group, metaDataService.ltGroupMember)
+        if (linking.duplicate)
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+        render template: 'grouppartners', model: [partner: linking.source, grouppartners: linking.targets]
+    }
+
+    def removeGroupPartner = {
+        def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMember)
+        render template: 'grouppartners', model: [partner: breaking.source, grouppartners: breaking.targets]
+    }
 }
 
 class ContactCommand {

@@ -53,3 +53,17 @@
         <g:render template="contacts" model="[partner: partner]"/>
     </div>
 </div>
+
+<div class="zusatz">
+    <h5><g:message code="groupPartner"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#grouppartners');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+    <div class="zusatz-add" id="grouppartners" style="display:none">
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteGroupPartners" action="remoteGroupPartners" id="${partner.id}" before="showspinner('#remoteGroupPartners');"/>
+        <div id="remoteGroupPartners"></div>
+
+    </div>
+    <div class="zusatz-show" id="grouppartners2">
+        <g:render template="grouppartners" model="[grouppartners: grouppartners, partner: partner]"/>
+    </div>
+</div>
