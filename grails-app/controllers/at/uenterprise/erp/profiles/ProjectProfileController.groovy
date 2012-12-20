@@ -2093,7 +2093,7 @@ class ProjectProfileController {
             return
         }
 
-        def results = Entity.createCriteria().list {
+        def results = Entity.createCriteria().listDistinct {
             user {
                 eq('enabled', true)
             }
