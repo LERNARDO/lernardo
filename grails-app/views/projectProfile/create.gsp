@@ -136,23 +136,23 @@
 
       <table>
 
-        <tr class="prop">
-          <td class="name"><g:message code="description"/></td>
-          <td class="value">
-            <ckeditor:editor name="description" height="200px" toolbar="Basic">
-              ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
-            </ckeditor:editor>
-          </td>
-        </tr>
+          <tr class="prop">
+              <td class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
+              <td class="value">
+                  <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
+                      ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
+                  </ckeditor:editor>
+              </td>
+          </tr>
 
-        <tr class="prop">
-          <td class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
-          <td class="value">
-            <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
-              ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
-            </ckeditor:editor>
-          </td>
-        </tr>
+          <tr class="prop">
+              <td class="name"><g:message code="description"/></td>
+              <td class="value">
+                  <ckeditor:editor name="description" height="200px" toolbar="Basic">
+                    ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
+                  </ckeditor:editor>
+              </td>
+          </tr>
 
       </table>
 

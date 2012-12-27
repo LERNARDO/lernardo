@@ -16,7 +16,7 @@
             </tbody>
       </table>
 
-      <h5 style="margin-bottom: 5px;"><g:message code="groupActivityTemplates"/></h5>
+      <h5 style="margin-bottom: 5px;"><g:message code="groupActivities"/></h5>
       <erp:getProjectUnitActivityGroups projectUnit="${unit}">
 
         <script type="text/javascript">

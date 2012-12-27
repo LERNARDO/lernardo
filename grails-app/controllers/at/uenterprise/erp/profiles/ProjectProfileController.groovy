@@ -1496,7 +1496,7 @@ class ProjectProfileController {
       evaluations.addAll(Evaluation.findAllByLinkedTo(pd))
     }
 
-    return [evaluations: evaluations, entity: project]
+    render template: "listevaluations", model: [evaluations: evaluations, entity: project]
   }
 
    def moveUp = {

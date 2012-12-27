@@ -22,26 +22,19 @@
       </tr>
 
       <tr class="prop">
+          <td class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
+          <td class="value">
+              <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
+                  ${fieldValue(bean:project,field:'profile.educationalObjectiveText').decodeHTML()}
+              </ckeditor:editor>
+          </td>
+      </tr>
+
+      <tr class="prop">
         <td class="name"><g:message code="description"/></td>
         <td class="value">
           <ckeditor:editor name="description" height="200px" toolbar="Basic">
             ${fieldValue(bean:project,field:'profile.description').decodeHTML()}
-          </ckeditor:editor>
-        </td>
-      </tr>
-
-      %{--<tr class="prop">
-        <td class="name"><g:message code="project.profile.educationalObjective"/></td>
-        <td class="value">
-          <g:select from="['succeeded','notSucceeded']" name="educationalObjective" value="${project.profile.educationalObjective}" noSelection="['': message(code: 'none')]" valueMessagePrefix="goal"/>
-        </td>
-      </tr>--}%
-
-      <tr class="prop">
-        <td class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
-        <td class="value">
-          <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
-            ${fieldValue(bean:project,field:'profile.educationalObjectiveText').decodeHTML()}
           </ckeditor:editor>
         </td>
       </tr>
