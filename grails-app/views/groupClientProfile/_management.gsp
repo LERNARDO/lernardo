@@ -3,6 +3,20 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
+    <h5><g:message code="leadEducators"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#leadeducators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+    <div class="zusatz-add" id="leadeducators" style="display:none">
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteLeadEducators" action="remoteLeadEducators" id="${group.id}" before="showspinner('#remoteLeadEducators');"/>
+        <div id="remoteLeadEducators"></div>
+
+    </div>
+    <div class="zusatz-show" id="leadeducators2">
+        <g:render template="leadeducators" model="[leadeducators: leadeducators]"/>
+    </div>
+</div>
+
+<div class="zusatz">
     <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="clients" style="display:none;">
         <p class="gray"><g:message code="groupClient.clients.info"/></p>

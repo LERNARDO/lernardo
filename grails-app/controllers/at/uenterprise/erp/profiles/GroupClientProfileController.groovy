@@ -51,11 +51,15 @@ class GroupClientProfileController {
         List allColonies = Entity.findAllByType(metaDataService.etGroupColony)
         List allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
+        // find lead educators
+        List leadEducators = functionService.findAllByLink(null, group, metaDataService.ltLeadEducator)
+
         render template: "management", model: [group: group,
                 clients: clients,
                 allClients: allClients,
                 allColonies: allColonies,
-                allFacilities: allFacilities]
+                allFacilities: allFacilities,
+                leadeducators: leadEducators]
     }
 
   def delete = {
@@ -275,5 +279,51 @@ class GroupClientProfileController {
 
     render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'groupClient', params: params]
   }
+
+    def addLeadEducator = {
+        def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
+        if (linking.duplicate)
+            render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
+        render template: 'leadeducators', model: [leadeducators: linking.sources, group: linking.target]
+    }
+
+    def removeLeadEducator = {
+        def breaking = functionService.breakEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
+        render template: 'leadeducators', model: [leadeducators: breaking.sources, group: breaking.target]
+    }
+
+    /*
+    * retrieves all educators matching the search parameter
+    */
+    def remoteLeadEducators = {
+        if (!params.value) {
+            render ""
+            return
+        }
+        else if (params.value.size() < 2) {
+            render {span(class: 'gray', message(code: 'minChars'))}
+            return
+        }
+
+        def results = Entity.createCriteria().listDistinct {
+            eq('type', metaDataService.etEducator)
+            user {
+                eq("enabled", true)
+            }
+            profile {
+                ilike('fullName', "%" + params.value + "%")
+                order('fullName','asc')
+            }
+            maxResults(15)
+        }
+
+        if (results.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            render template: 'leadeducatorresults', model: [results: results, group: params.id]
+        }
+    }
 
 }
