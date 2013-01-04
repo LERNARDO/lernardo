@@ -374,6 +374,7 @@ class AppController {
   def addLocalTag = {
     Entity entity = Entity.get(params.entity)
     Entity target = Entity.get(params.target)
+    Entity project = Entity.get(params.projectID)
 
     def c = Link.createCriteria()
 
@@ -418,7 +419,7 @@ class AppController {
     else
       tags.add(false)
 
-    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update]
+    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update, project: project]
   }
 
   /*
@@ -446,6 +447,7 @@ class AppController {
   def removeLocalTag = {
     Entity entity = Entity.get(params.entity)
     Entity target = Entity.get(params.target)
+    Entity project = Entity.get(params.projectID)
 
     def c = Link.createCriteria()
 
@@ -488,7 +490,7 @@ class AppController {
     else
       tags.add(false)
 
-    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update]
+    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update, project: project]
   }
 
   /*
