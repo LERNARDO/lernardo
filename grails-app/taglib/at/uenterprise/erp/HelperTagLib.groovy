@@ -206,14 +206,8 @@ class HelperTagLib {
         if (linked.type == metaDataService.etGroupActivity)
             out << link(controller: linked.type.supertype.name + 'Profile', action: 'show', id: linked.id) {linked.profile}
         else {
-            // find project day the project unit is linked to
-            Entity projectDay = functionService.findByLink(linked, null, metaDataService.ltProjectDayUnit)
-
-            // find project the project day is linked to
-            if (projectDay) {
-                Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-                out << link(controller: 'projectProfile', action: 'show', id: project.id) {linked.profile + ' (' + message(code: 'project') + ': ' + project.profile + ')'}
-            }
+            Entity project = functionService.findByLink(attrs.linked, null, metaDataService.ltProjectMember)
+            out << link(controller: 'projectProfile', action: 'show', id: project.id) {linked.profile.fullName + ' (' + message(code: 'project') + ': ' + project.profile.fullName + ')'}
         }
     }
 

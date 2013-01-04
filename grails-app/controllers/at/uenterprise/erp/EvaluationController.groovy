@@ -246,7 +246,7 @@ class EvaluationController {
 
   def show = {
     Evaluation evaluationInstance = Evaluation.get(params.id)
-    Entity entity = Entity.get(params.entity)
+    Entity entity = Entity.get(params.entity) ?: entityHelperService.loggedIn
 
     if (evaluationInstance) {
       [evaluation: evaluationInstance, entity: entity]
