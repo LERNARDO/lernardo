@@ -35,7 +35,7 @@
         <g:render template="/requiredResources/resources" model="[template: projectTemplate]"/>
     </div>
     <div id="templateresources">
-        <g:render template="templateresources" model="[templateResources: templateResources, groupActivityTemplateResources: groupActivityTemplateResources, projectTemplate: projectTemplate]"/>
+        <g:render template="templateresources" model="[templateResources: templateResources, projectTemplate: projectTemplate]"/>
     </div>
 </div>
 

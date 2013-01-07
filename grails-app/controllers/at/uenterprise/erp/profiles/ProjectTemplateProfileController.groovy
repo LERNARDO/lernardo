@@ -10,12 +10,9 @@ import at.uenterprise.erp.base.Link
 import at.uenterprise.erp.FunctionService
 
 import at.uenterprise.erp.Live
-import org.codehaus.groovy.grails.commons.ApplicationHolder
-import at.uenterprise.erp.base.AssetService
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.base.Asset
-import at.uenterprise.erp.Resource
 import at.uenterprise.erp.EVENT_TYPE
 
 class ProjectTemplateProfileController {
@@ -23,7 +20,6 @@ class ProjectTemplateProfileController {
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService
   FunctionService functionService
-  AssetService assetService
 
   def index = {
     redirect action: "list", params: params
@@ -63,31 +59,20 @@ class ProjectTemplateProfileController {
         // find all instances of this template
         List instances = functionService.findAllByLink(projectTemplate, null, metaDataService.ltProjectTemplate)
 
-        // get all resources of all templates
-        // get all groupActivityTemplates of all projectUnitTemplates
-        List groupActivityTemplates = []
-        projectUnitTemplates.each { put ->
-            List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
-            tempTemplates.each { tt ->
-                if (!groupActivityTemplates.contains(tt))
-                    groupActivityTemplates.add(tt)
-            }
+        List activityTemplates = []
+        // find all activityTemplates linked to the units
+        projectUnitTemplates?.each { Entity put ->
+            activityTemplates.addAll(functionService.findAllByLink(null, put, metaDataService.ltGroupMember))
         }
-        List groupActivityTemplateResources = []
+
         List templateResources = []
-        groupActivityTemplates.each { Entity groupActivityTemplate ->
-            groupActivityTemplateResources.addAll(groupActivityTemplate.profile.resources)
-            // get all templates linked to the groupActivityTemplate
-            List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
-            templates.each {
-                templateResources.addAll(it.profile.resources)
-            }
+        activityTemplates.each { Entity at ->
+            templateResources.addAll(at.profile.resources)
         }
 
         render template: "management", model: [projectTemplate: projectTemplate, projectUnitTemplates: projectUnitTemplates,
                 calculatedDuration: calculatedDuration,
                 instances: instances,
-                groupActivityTemplateResources: groupActivityTemplateResources,
                 templateResources: templateResources,
                 allLabels: functionService.getLabels()]
     }
@@ -176,12 +161,12 @@ class ProjectTemplateProfileController {
       // link projectUnitTemplate and projectTemplate
       new Link(source: projectUnitTemplate, target: entity, type: metaDataService.ltProjectUnitTemplate).save()
 
-      // find group activity templates linked to the original project unit
-      List groupActivityTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+      // find activity templates linked to the original project unit
+      List activityTemplates = functionService.findAllByLink(null, original, metaDataService.ltGroupMember)
 
-      // link group activity templates to the project unit templates of the copy
-      groupActivityTemplates.each { Entity gat ->
-        new Link(source: gat, target: projectUnitTemplate, type: metaDataService.ltProjectUnitMember).save()
+      // link activity templates to the project unit templates of the copy
+      activityTemplates?.each { Entity at ->
+        new Link(source: at, target: projectUnitTemplate, type: metaDataService.ltGroupMember).save()
       }
     }
 
@@ -232,9 +217,6 @@ class ProjectTemplateProfileController {
         if (!params.ageTo)
           ent.profile.ageTo = 100
       }
-      // add default profile image
-      //File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
-      //def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> angelegt.').save()
       functionService.createEvent(EVENT_TYPE.PROJECT_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
@@ -292,13 +274,10 @@ class ProjectTemplateProfileController {
         projectUnitTemplates.add(Entity.get(it.toInteger()))
       }
 
-      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
-
       // calculate realDuration
       int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
-      render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates,
-                                                       projectUnitTemplates: projectUnitTemplates,
+      render template: 'projectUnitTemplates', model: [projectUnitTemplates: projectUnitTemplates,
                                                        projectTemplate: projectTemplate,
                                                        calculatedDuration: calculatedDuration,
                                                        allLabels: Label.findAllByType('template', params)]
@@ -313,13 +292,10 @@ class ProjectTemplateProfileController {
         projectUnitTemplates.add(Entity.get(it.toInteger()))
       }
 
-      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
-
       // calculate realDuration
       int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
-      render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates,
-                                                       projectUnitTemplates: projectUnitTemplates,
+      render template: 'projectUnitTemplates', model: [projectUnitTemplates: projectUnitTemplates,
                                                        projectTemplate: projectTemplate,
                                                        calculatedDuration: calculatedDuration,
                                                        allLabels: Label.findAllByType('template', params)]
@@ -338,8 +314,8 @@ class ProjectTemplateProfileController {
     }
     link.delete()
 
-    // delete links of groupActivityTemplates to projectUnitTemplate
-    Link.findAllByTargetAndType(projectUnitTemplate, metaDataService.ltProjectUnitMember).each {it.delete()}
+    // delete links of activityTemplates to projectUnitTemplate
+    Link.findAllByTargetAndType(projectUnitTemplate, metaDataService.ltGroupMember)?.each {it.delete()}
 
     projectTemplate.profile.removeFromTemplates(params.projectUnitTemplate)
 
@@ -353,77 +329,13 @@ class ProjectTemplateProfileController {
       projectUnitTemplates.add(Entity.get(it.toInteger()))
     }
 
-    List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
-
     // calculate realDuration
     int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
-
-
-    render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates,
-                                                     projectUnitTemplates: projectUnitTemplates,
+    render template: 'projectUnitTemplates', model: [projectUnitTemplates: projectUnitTemplates,
                                                      projectTemplate: projectTemplate,
                                                      calculatedDuration: calculatedDuration,
                                                      allLabels: Label.findAllByType('template', params)]
-  }
-
-  def addGroupActivityTemplate = {
-    Entity groupActivityTemplate = Entity.get(params.groupActivityTemplate)
-    Entity projectUnitTemplate = Entity.get(params.id)
-    Entity projectTemplate = Entity.get(params.projectTemplate)
-
-    // check if the groupActivityTemplate isn't already linked to the projectUnitTemplate
-    def link = Link.createCriteria().get {
-      eq('source', groupActivityTemplate)
-      eq('target', projectUnitTemplate)
-      eq('type', metaDataService.ltProjectUnitMember)
-    }
-    if (!link)
-      // link groupActivityTemplate to projectUnit
-      new Link(source: groupActivityTemplate, target: projectUnitTemplate, type: metaDataService.ltProjectUnitMember).save()
-
-    // find all groupActivityTemplates linked to the unit
-    List groupActivityTemplates = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
-
-    // find all projectunits of this projectTemplate
-    //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-    // List projectUnits = links.collect {it.source}
-
-    // calculate realDuration
-    //int calculatedDuration = functionService.calculateDurationPU(projectUnits)
-
-    //render '<span style="color: #0b0; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile + ' wurde hinzugefügt</span>'
-    render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates,
-                                                       unit: projectUnitTemplate,
-                                                       i: params.i,
-                                                       projectTemplate: projectTemplate]
-  }
-
-  def removeGroupActivityTemplate = {
-    Entity groupActivityTemplate = Entity.get(params.groupActivityTemplate)
-    Entity projectUnitTemplate = Entity.get(params.id)
-    Entity projectTemplate = Entity.get(params.projectTemplate)
-
-    // delete link
-    def link = Link.createCriteria().get {
-      eq('source', groupActivityTemplate)
-      eq('target', projectUnitTemplate)
-      eq('type', metaDataService.ltProjectUnitMember)
-    }
-    link.delete()
-
-    // find all groupActivityTemplates linked to the unit
-    List groupActivityTemplates = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
-
-    // find all projectunits of this projectTemplate
-    //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-    //List projectUnits = links.collect {it.source}
-
-    // calculate realDuration
-    //int calculatedDuration = functionService.calculateDurationPU(projectUnits)
-
-    //render '<span style="color: #b00; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile + ' wurde entfernt</span><br/>'
-    render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, i: params.i, projectTemplate: projectTemplate]
   }
 
     def addActivityTemplate = {
@@ -438,7 +350,7 @@ class ProjectTemplateProfileController {
             eq('type', metaDataService.ltGroupMember)
         }
         if (!link)
-        // link groupActivityTemplate to projectUnit
+        // link activityTemplate to projectUnit
             new Link(source: activityTemplate, target: projectUnitTemplate, type: metaDataService.ltGroupMember).save()
 
         // find all activityTemplates linked to the unit
@@ -463,7 +375,7 @@ class ProjectTemplateProfileController {
         }
         link.delete()
 
-        // find all groupActivityTemplates linked to the unit
+        // find all activityTemplates linked to the unit
         List activityTemplates = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltGroupMember)
 
         render template: 'activityTemplates', model: [activityTemplates: activityTemplates, unit: projectUnitTemplate, i: params.i, projectTemplate: projectTemplate]
@@ -479,46 +391,6 @@ class ProjectTemplateProfileController {
     int calculatedDuration = functionService.calculateDurationPUT(projectUnitTemplates)
 
     render template: 'updateduration', model: [calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]
-  }
-
-  /*
-   * retrieves all group activity templates matching the search parameter
-   */
-  def remoteGroupActivityTemplate = {
-    if (!params.value) {
-      render ""
-      return
-    }
-    else if (params.value == "*") {
-      def results = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupActivityTemplate)
-        profile {
-          eq("status", "done")
-        }
-      }
-      render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
-      return
-    }
-
-    def results = Entity.createCriteria().list {
-      eq('type', metaDataService.etGroupActivityTemplate)
-      profile {
-        eq('status', "done")
-      }
-      profile {
-        ilike('fullName', "%" + params.value + "%")
-        order('fullName','asc')
-      }
-      maxResults(15)
-    }
-
-    if (results.size() == 0) {
-      render {span(class: 'italic', message(code: 'noResultsFound'))}
-      return
-    }
-    else {
-      render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
-    }
   }
 
     /*
@@ -611,14 +483,7 @@ class ProjectTemplateProfileController {
     group.profile.templates.each {
       templates.add(Entity.get(it.toInteger()))
     }
-    // get all groupactivitytemplates that are set to completed
-    def allGroupActivityTemplates = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupActivityTemplate)
-      profile {
-        eq("status", "done")
-      }
-    }
-    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, allGroupActivityTemplates: allGroupActivityTemplates]
+    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates]
   }
 
   def moveDown = {
@@ -631,14 +496,7 @@ class ProjectTemplateProfileController {
     group.profile.templates.each {
       templates.add(Entity.get(it.toInteger()))
     }
-    // get all groupactivitytemplates that are set to completed
-    def allGroupActivityTemplates = Entity.createCriteria().list {
-      eq("type", metaDataService.etGroupActivityTemplate)
-      profile {
-        eq("status", "done")
-      }
-    }
-    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, allGroupActivityTemplates: allGroupActivityTemplates]
+    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates]
   }
 
   def refreshtemplateresources = {
@@ -650,28 +508,18 @@ class ProjectTemplateProfileController {
       projectUnitTemplates.add(Entity.get(it.toInteger()))
     }
 
-    // get all resources of all templates
-    // get all groupActivityTemplates of all projectUnitTemplates
-    List groupActivityTemplates = []
-      projectUnitTemplates.each { put ->
-        List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
-        tempTemplates.each { tt ->
-          if (!groupActivityTemplates.contains(tt))
-            groupActivityTemplates.add(tt)
-        }
-      }
-      List groupActivityTemplateResources = []
-      List templateResources = []
-      groupActivityTemplates.each { Entity groupActivityTemplate ->
-        groupActivityTemplateResources.addAll(groupActivityTemplate.profile.resources)
-        // get all templates linked to the groupActivityTemplate
-        List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
-        templates.each {
-          templateResources.addAll(it.profile.resources)
-        }
-      }
+    List activityTemplates = []
+    // find all activityTemplates linked to the unit
+    projectUnitTemplates?.each { Entity put ->
+        activityTemplates.addAll(functionService.findAllByLink(null, put, metaDataService.ltGroupMember))
+    }
 
-    render template: 'templateresources', model: [templateResources: templateResources, groupActivityTemplateResources: groupActivityTemplateResources, projectTemplate: projectTemplate]
+    List templateResources = []
+      activityTemplates.each { Entity at ->
+        templateResources.addAll(at.profile.resources)
+    }
+
+    render template: 'templateresources', model: [templateResources: templateResources, projectTemplate: projectTemplate]
   }
 
   def define = {
@@ -738,34 +586,6 @@ class ProjectTemplateProfileController {
     render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'projectTemplate', params: params]
   }
 
-   def remoteGroupActivityTemplateByLabel = {
-     List labels = params.list('labels')
-     
-     List results = []
-
-     List groupActivityTemplates = Entity.createCriteria().list {
-       eq("type", metaDataService.etGroupActivityTemplate)
-       profile {
-         eq("status", "done")
-       }
-     }
-     
-     labels.each { String label ->
-       groupActivityTemplates.each { Entity gat ->
-         if (gat.profile.labels.find {it.name == label})
-           results.add(gat)
-       }
-     }
-     
-     if (results.size() == 0) {
-       render {span(class: 'italic', message(code: 'noResultsFound'))}
-       return
-     }
-     else {
-       render template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate]
-     }
-   }
-
     def remoteActivityTemplateByLabel = {
         List labels = params.list('labels')
 
@@ -805,5 +625,3 @@ class ProjectTemplateProfileController {
     }
 
 }
-
-

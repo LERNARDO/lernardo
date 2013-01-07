@@ -125,26 +125,12 @@ class FunctionService {
   }
 
   /**
-   * Calculates the duration of a list of project unit templates based on each units group activity templates durations and activity template durations
+   * Calculates the duration of a list of project unit templates based on each units activity template durations
    *
    * @author Alexander Zeillinger
    * @param projectUnitTemplates REQUIRED The project unit templates to calculate the duration from
    */
   int calculateDurationPUT(List projectUnitTemplates) {
-    // find all groupActivityTemplates linked to all projectUnitTemplates of this projectTemplate
-    List groupActivityTemplates = []
-
-    projectUnitTemplates.each { Entity put ->
-      List gats = findAllByLink(null, put, metaDataService.ltProjectUnitMember)
-      if (gats.size() > 0)
-        groupActivityTemplates.addAll(gats)
-    }
-
-    int calculatedDuration = groupActivityTemplates*.profile.realDuration.sum(0)
-    /*groupActivityTemplates.each {
-      calculatedDuration += it.profile.realDuration
-    }*/
-
     List activityTemplates = []
 
     projectUnitTemplates.each { Entity put ->
@@ -153,7 +139,7 @@ class FunctionService {
           activityTemplates.addAll(ats)
     }
 
-    calculatedDuration += activityTemplates*.profile.duration.sum(0)
+    int calculatedDuration = activityTemplates*.profile.duration.sum(0)
 
     return calculatedDuration
   }
@@ -228,7 +214,6 @@ class FunctionService {
           or {
             eq("type", metaDataService.etActivity)
             eq("type", metaDataService.etGroupActivity)
-            eq("type", metaDataService.etGroupActivityTemplate)
             eq("type", metaDataService.etProject)
             eq("type", metaDataService.etProjectTemplate)
             eq("type", metaDataService.etTemplate)

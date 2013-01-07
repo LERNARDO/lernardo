@@ -64,5 +64,11 @@
       <div class="result" id="favorites"></div>
     </div>
 
+    <div class="adminbox">
+        <div class="bold">Convert ABV to PV</div>
+        <g:remoteLink update="conversion" action="conversion" before="showspinner('#conversion');">Convert</g:remoteLink>
+        <div class="result" id="conversion"></div>
+    </div>
+
 </div>
 </body>

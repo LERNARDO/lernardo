@@ -5,6 +5,10 @@ import at.uenterprise.erp.base.Link
 import at.uenterprise.erp.base.AssetStorage
 import at.uenterprise.erp.base.Asset
 import at.uenterprise.erp.logbook.Attendance
+import at.uenterprise.erp.base.EntityType
+import at.uenterprise.erp.base.Profile
+import at.uenterprise.erp.base.EntityHelperService
+import at.uenterprise.erp.base.ProfileHelperService
 
 /**
  * This controller contains only actions for various admin related things
@@ -14,6 +18,8 @@ import at.uenterprise.erp.logbook.Attendance
 class AdminController {
   FunctionService functionService
   MetaDataService metaDataService
+  EntityHelperService entityHelperService
+  ProfileHelperService profileHelperService
 
   def index = {
     redirect action: "stuff"
@@ -343,5 +349,65 @@ class AdminController {
     }
     render "-Done-"
   }
+
+    def conversion = {
+
+        List groupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+
+        EntityType etProjectTemplate = metaDataService.etProjectTemplate
+        EntityType etProjectUnitTemplate = metaDataService.etProjectUnitTemplate
+
+        groupActivityTemplates?.each { Entity gat ->
+
+            Entity entity = entityHelperService.createEntity("projectTemplate", etProjectTemplate) {Entity ent ->
+                ent.profile = profileHelperService.createProfileFor(ent) as Profile
+
+                    ent.profile.fullName = gat.profile.fullName
+                    ent.profile.description = gat.profile.description
+                    ent.profile.status = gat.profile.status
+                    ent.profile.educationalObjectiveText = gat.profile.educationalObjectiveText
+                    ent.profile.ageFrom = gat.profile.ageFrom
+                    ent.profile.ageTo = gat.profile.ageTo
+            }
+
+            // comments
+            gat.profile.comments.each { Comment gatcomment ->
+                Comment comment = new Comment(content: gatcomment.content, creator: gatcomment.creator, dateCreated: gatcomment.dateCreated).save()
+                entity.profile.addToComments(comment)
+            }
+
+            // labels
+            gat.profile.labels.each { Label gatlabel ->
+                Label label = new Label(name: gatlabel.name, description: gatlabel.description, type: "instance").save()
+                entity.profile.addToLabels(label)
+            }
+
+            // resources
+            gat.profile.resources.each { Resource gatresource ->
+                Resource resource = new Resource(name: gatresource.name, description: gatresource.description, amount: gatresource.amount)
+                entity.profile.addToResources(resource)
+            }
+
+            // add a project unit and add the activities from the group activity template
+            Entity projectUnitTemplate = entityHelperService.createEntity("projectUnitTemplate", etProjectUnitTemplate) {Entity ent2 ->
+                ent2.profile = profileHelperService.createProfileFor(ent2) as Profile
+                ent2.profile.fullName = message(code: "unit")+ " 1"
+                ent2.profile.duration = 0
+            }
+            // link project unit to project template
+            new Link(source: projectUnitTemplate, target: entity, type: metaDataService.ltProjectUnitTemplate).save()
+            entity.profile.addToTemplates(projectUnitTemplate.id.toString())
+
+            gat.profile.templates.each { String gattemplate ->
+                // link activity template to project unit
+                new Link(source: Entity.get(gattemplate), target: projectUnitTemplate, type: metaDataService.ltGroupMember).save()
+            }
+
+            // save creator
+            def gatCreator = functionService.findByLink(null, gat, metaDataService.ltCreator)
+            new Link(source: gatCreator, target: entity, type: metaDataService.ltCreator).save()
+        }
+        render "Done"
+    }
 
 }

@@ -194,7 +194,6 @@ class ProfileController {
           ne("type", metaDataService.etTemplate)
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupActivity)
-          ne("type", metaDataService.etGroupActivityTemplate) // TODO: find out why this is ignored on TEST environment?!
           ne("type", metaDataService.etGroupClient)
           ne("type", metaDataService.etGroupColony) // TODO: find out why this is ignored on TEST environment?!
           ne("type", metaDataService.etGroupFamily)
