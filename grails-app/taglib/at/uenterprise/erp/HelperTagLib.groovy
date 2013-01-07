@@ -195,7 +195,7 @@ class HelperTagLib {
     }
 
     /**
-     * Returns a link to the groupActivity or project an evaluation is linked to
+     * Returns a link to the project an evaluation is linked to
      *
      * @author Alexander Zeillinger
      * @attr linked REQUIRED The linked entity
@@ -203,12 +203,8 @@ class HelperTagLib {
     def createLinkFromEvaluation = {attrs, body ->
         Entity linked = attrs.linked
 
-        if (linked.type == metaDataService.etGroupActivity)
-            out << link(controller: linked.type.supertype.name + 'Profile', action: 'show', id: linked.id) {linked.profile}
-        else {
-            Entity project = functionService.findByLink(attrs.linked, null, metaDataService.ltProjectMember)
-            out << link(controller: 'projectProfile', action: 'show', id: project.id) {linked.profile.fullName + ' (' + message(code: 'project') + ': ' + project.profile.fullName + ')'}
-        }
+        Entity project = functionService.findByLink(attrs.linked, null, metaDataService.ltProjectMember)
+        out << link(controller: 'projectProfile', action: 'show', id: project.id) {linked.profile.fullName + ' (' + message(code: 'project') + ': ' + project.profile.fullName + ')'}
     }
 
     def renderLogMonthEntries = {attrs, body ->
@@ -811,14 +807,10 @@ class HelperTagLib {
         Calendar calendar = new GregorianCalendar()
         calendar.setTime(attrs.entity.profile.date)
 
-        if (attrs.entity.type.id == metaDataService.etGroupActivity.id)
-            calendar.add(Calendar.MINUTE, attrs.entity.profile.realDuration)
-        else {
-            // get all project units of a project day and calculate the sum of their durations
-            List units = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectDayUnit)
-            int duration = units*.profile.duration.sum(0)
-            calendar.add(Calendar.MINUTE, duration)
-        }
+        // get all project units of a project day and calculate the sum of their durations
+        List units = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectDayUnit)
+        int duration = units*.profile.duration.sum(0)
+        calendar.add(Calendar.MINUTE, duration)
 
         // get begin and end date of the group activity or project
         Date entityBegin = attrs.entity.profile.date
@@ -1774,20 +1766,6 @@ class HelperTagLib {
             out << body(resources: projectDayResources)
         else
             out << '<span class="italic">' + message(code: 'resources.notAssigned') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
-    }
-
-    /**
-     * Finds all activity groups linked to a project unit
-     *
-     * @author Alexander Zeillinger
-     * @attr projectUnit REQUIRED The project unit
-     */
-    def getProjectUnitActivityGroups = {attrs, body ->
-        List projectUnitActivityGroups = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnit)
-        if (projectUnitActivityGroups)
-            out << body(activityGroups: projectUnitActivityGroups)
-        else
-            out << '<span class="italic">' + message(code: "groupActivityTemplates.notFound") + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
     }
 
     /**

@@ -32,22 +32,3 @@
         <g:render template="projects" model="[projects: projects, theme: theme]"/>
     </div>
 </div>
-
-<div class="zusatz">
-    <h5><g:message code="groupActivities"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#activitygroups');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Aktivitätsblöcke zuordnen"/></erp:accessCheck></h5>
-    <div class="zusatz-add" id="activitygroups" style="display:none">
-        <g:if test="${allActivityGroups}">
-            <g:formRemote name="formRemote" url="[controller: 'themeProfile', action: 'addActivityGroup', id: theme.id]" update="activitygroups2" before="showspinner('#activitygroups2');" after="toggle('#activitygroups');">
-                <g:select name="activitygroup" from="${allActivityGroups}" optionKey="id" optionValue="profile"/>
-                <div class="clear"></div>
-                <g:submitButton name="button" value="${message(code:'add')}"/>
-            </g:formRemote>
-        </g:if>
-        <g:else>
-            <g:message code="theme.noGroupActivities"/>
-        </g:else>
-    </div>
-    <div class="zusatz-show" id="activitygroups2">
-        <g:render template="activitygroups" model="[activitygroups: activitygroups, theme: theme]"/>
-    </div>
-</div>

@@ -125,7 +125,6 @@ class BootStrap {
    servletContext.etGroupFamily            = metaDataService.etGroupFamily
    servletContext.etGroupClient            = metaDataService.etGroupClient
    servletContext.etGroupColony            = metaDataService.etGroupColony
-   servletContext.etGroupActivity          = metaDataService.etGroupActivity
    servletContext.etPate                   = metaDataService.etPate
    servletContext.etPartner                = metaDataService.etPartner
    servletContext.etResource               = metaDataService.etResource

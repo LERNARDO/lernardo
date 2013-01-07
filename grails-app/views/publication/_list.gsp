@@ -27,15 +27,5 @@
       <h4><g:message code="fromActivityTemplates"/></h4>
       <g:render template="other" model="[entity: entity, publist: activitytemplatesdocuments]"/>
     </g:if>
-
-    <g:if test="${groupactivitytemplatesdocuments}">
-      <h4><g:message code="fromGroupActivityTemplates"/></h4>
-      <g:render template="other" model="[entity: entity, publist: groupactivitytemplatesdocuments]"/>
-    </g:if>
-
-    <g:if test="${projecttemplatedocuments}">
-      <h4><g:message code="fromProjectTemplate"/></h4>
-      <g:render template="other" model="[entity: entity, publist: projecttemplatedocuments]"/>
-    </g:if>
     
 </div>

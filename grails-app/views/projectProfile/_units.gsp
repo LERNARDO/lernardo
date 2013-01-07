@@ -16,42 +16,25 @@
             </tbody>
       </table>
 
-      <h5 style="margin-bottom: 5px;"><g:message code="groupActivities"/></h5>
-      <erp:getProjectUnitActivityGroups projectUnit="${unit}">
-
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $('.hover').each(function() {
-              $(this).qtip({
-                content: {
-                  text: 'Loading...',
-                  ajax: {
-                    url: '${grailsApplication.config.grails.serverURL}/projectTemplateProfile/templateHover',
-                    type: 'GET',
-                    data: {id : $(this).attr('data-idd')}
-                  }
-                }
-              });
-            });
-          });
-        </script>
-
-        <ol>
-          <g:each in="${activityGroups}" var="activityGroup">
-            <li style="list-style: decimal; margin-left: 20px;"><g:link class="hover" controller="groupActivityTemplateProfile" action="show" data-idd="${activityGroup.id}" id="${activityGroup.id}" params="[entity:activityGroup.id]">${activityGroup.profile}</g:link> <span class="gray">(${activityGroup.profile.realDuration} min)</span></li>
-              <ul style="margin-top: 5px;">
-                  <erp:getTemplatesOfGroupActivityTemplate groupActivityTemplate="${activityGroup}">
-                      <g:each in="${templates}" var="template">
-                          <li style="list-style: disc; margin-left: 40px;"><g:link class="hover" controller="${template.type.supertype.name + 'Profile'}" action="show" data-idd="${template.id}" id="${template.id}">${template.profile.decodeHTML()}</g:link></li>
-                      </g:each>
-                  </erp:getTemplatesOfGroupActivityTemplate>
-              </ul>
-          </g:each>
-        </ol>
-      </erp:getProjectUnitActivityGroups>
-
         <h5 style="margin-bottom: 5px;"><g:message code="activityTemplates"/></h5>
         <erp:getProjectUnitActivities projectUnit="${unit}">
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.hover').each(function() {
+                        $(this).qtip({
+                            content: {
+                                text: 'Loading...',
+                                ajax: {
+                                    url: '${grailsApplication.config.grails.serverURL}/projectTemplateProfile/templateHover',
+                                    type: 'GET',
+                                    data: {id : $(this).attr('data-idd')}
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
 
             <ol>
                 <g:each in="${activities}" var="activity">

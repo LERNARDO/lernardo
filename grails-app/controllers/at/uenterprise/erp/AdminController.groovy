@@ -350,7 +350,7 @@ class AdminController {
     render "-Done-"
   }
 
-    def conversion = {
+    def convertGATtoPT = {
 
         List groupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -368,6 +368,20 @@ class AdminController {
                     ent.profile.educationalObjectiveText = gat.profile.educationalObjectiveText
                     ent.profile.ageFrom = gat.profile.ageFrom
                     ent.profile.ageTo = gat.profile.ageTo
+            }
+
+            // publications
+            List publications = Publication.findAllByEntity(gat)
+            publications?.each { Publication pub ->
+                pub.entity = entity
+                pub.save()
+            }
+
+            // profile picture
+            gat.assets.each { Asset asset ->
+                if (asset.type == "profile") {
+                    new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+                }
             }
 
             // comments
@@ -406,6 +420,147 @@ class AdminController {
             // save creator
             def gatCreator = functionService.findByLink(null, gat, metaDataService.ltCreator)
             new Link(source: gatCreator, target: entity, type: metaDataService.ltCreator).save()
+        }
+        render "Done"
+    }
+
+    def convertGAtoP = {
+        List groupActivities = Entity.findAllByType(metaDataService.etGroupActivity)
+
+        EntityType etProject = metaDataService.etProject
+        EntityType etProjectDay = metaDataService.etProjectDay
+        EntityType etProjectUnit = metaDataService.etProjectUnit
+
+        groupActivities?.each { Entity ga ->
+
+            Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
+                ent.profile = profileHelperService.createProfileFor(ent) as Profile
+
+                ent.profile.fullName = ga.profile.fullName
+                ent.profile.description = ga.profile.description
+                ent.profile.educationalObjectiveText = ga.profile.educationalObjectiveText
+                ent.profile.startDate = ga.profile.date
+                ent.profile.endDate = ga.profile.date + 1
+            }
+
+            // publications
+            List publications = Publication.findAllByEntity(ga)
+            publications?.each { Publication pub ->
+                pub.entity = entity
+                pub.save()
+            }
+
+            // profile picture
+            ga.assets.each { Asset asset ->
+                if (asset.type == "profile") {
+                    new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+                }
+            }
+
+            // comments
+            ga.profile.comments.each { Comment gacomment ->
+                Comment comment = new Comment(content: gacomment.content, creator: gacomment.creator, dateCreated: gacomment.dateCreated).save()
+                entity.profile.addToComments(comment)
+            }
+
+            // labels
+            ga.profile.labels.each { Label galabel ->
+                Label label = new Label(name: galabel.name, description: galabel.description, type: "instance").save()
+                entity.profile.addToLabels(label)
+            }
+
+            // save creator
+            def gaCreator = functionService.findByLink(null, ga, metaDataService.ltCreator)
+            new Link(source: gaCreator, target: entity, type: metaDataService.ltCreator).save()
+
+            // responsibles
+            List gaResponsibles = functionService.findAllByLink(null, ga, metaDataService.ltResponsible)
+            gaResponsibles?.each { Entity gaResponsible ->
+                new Link(source: gaResponsible, target: entity, type: metaDataService.ltResponsible).save()
+            }
+
+            // themes
+            List gaThemes = functionService.findAllByLink(ga, null, metaDataService.ltGroupMemberActivityGroup)
+            gaThemes?.each { Entity gaTheme ->
+                new Link(source: entity, target: gaTheme, type: metaDataService.ltGroupMember).save()
+            }
+
+            // facilities
+            List gaFacilities = functionService.findAllByLink(ga, null, metaDataService.ltGroupMemberFacility)
+            gaFacilities?.each { Entity gaFacility ->
+                new Link(source: entity, target: gaFacility, type: metaDataService.ltGroupMemberFacility).save()
+            }
+
+                    // create project day
+                    Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
+                        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                        ent.profile.fullName = ga.profile.fullName
+                        ent.profile.date = ga.profile.date
+                        ent.profile.endDate = ga.profile.date + 1
+                    }
+
+                    // link project day to project
+                    new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
+
+                    // educators
+                    List gaEducators = functionService.findAllByLink(null, ga, metaDataService.ltGroupMemberEducator)
+                    gaEducators?.each { Entity gaEducator ->
+                        new Link(source: gaEducator, target: projectDay, type: metaDataService.ltProjectDayEducator).save()
+                    }
+
+                    // substitutes
+                    List gaSubstitutes = functionService.findAllByLink(null, ga, metaDataService.ltGroupMemberSubstitute)
+                    gaSubstitutes?.each { Entity gaSubstitute ->
+                        new Link(source: gaSubstitute, target: projectDay, type: metaDataService.ltProjectDaySubstitute).save()
+                    }
+
+                    // clients
+                    List gaClients = functionService.findAllByLink(null, ga, metaDataService.ltGroupMemberClient)
+                    gaClients?.each { Entity gaClient ->
+                        new Link(source: gaClient, target: projectDay, type: metaDataService.ltGroupMemberClient).save()
+                    }
+
+                            // get activities of group activity
+                            List activities = functionService.findAllByLink(null, ga, metaDataService.ltGroupMember)
+
+                            def duration = 0
+                            activities.each {
+                                duration += it.profile.duration
+                            }
+
+                            // create unit
+                            Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
+                                ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                                ent.profile.fullName = ga.profile.fullName
+                                ent.profile.date = ga.profile.date
+                                ent.profile.duration = duration
+                            }
+
+                            // save creator
+                            new Link(source: gaCreator, target: projectUnit, type: metaDataService.ltCreator).save()
+
+                            projectDay.profile.addToUnits(projectUnit.id.toString())
+
+                            // link the new unit to the project day
+                            new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
+
+                            // activities
+                            activities.each { Entity activity ->
+                                new Link(source: activity, target: projectUnit, type: metaDataService.ltGroupMember).save()
+                            }
+
+                            // parents
+                            List gaParents = functionService.findAllByLink(null, ga, metaDataService.ltGroupMemberParent)
+                            gaParents?.each { Entity gaParent ->
+                                new Link(source: gaParent, target: projectUnit, type: metaDataService.ltProjectUnitParent).save()
+                            }
+
+                            // partner
+                            List gaPartners = functionService.findAllByLink(null, ga, metaDataService.ltGroupMemberPartner)
+                            gaPartners?.each { Entity gaPartner ->
+                                new Link(source: gaPartner, target: projectUnit, type: metaDataService.ltProjectUnitPartner).save()
+                            }
+
         }
         render "Done"
     }

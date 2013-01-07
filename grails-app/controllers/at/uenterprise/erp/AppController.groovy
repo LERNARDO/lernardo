@@ -110,37 +110,6 @@ class AppController {
 
     Entity entity = Entity.get(params.id)
 
-    if (params.type == 'groupActivities') {
-      List groupActivities = []
-      if (entity.type.id == metaDataService.etEducator.id)
-        groupActivities = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberEducator)
-      else if (entity.type.id == metaDataService.etParent.id) {
-        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberParent)
-        temp.each {
-          if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
-        }
-      }
-      else if (entity.type.id == metaDataService.etPartner.id) {
-        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberPartner)
-        temp.each {
-          if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
-        }
-      }
-      else if (entity.type.id == metaDataService.etFacility.id) {
-        List temp = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberFacility)
-        temp.each {
-          if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
-        }
-      }
-      else if (entity.type.id == metaDataService.etClient.id) {
-        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
-        temp.each {
-          if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
-        }
-      }
-      render template: "/templates/linkscontent", model: [list: groupActivities]
-    }
-
     if (params.type == 'projects') {
       List projects = []
       if (entity.type.id == metaDataService.etEducator.id) {

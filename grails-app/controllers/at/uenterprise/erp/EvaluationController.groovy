@@ -357,17 +357,14 @@ class EvaluationController {
   }
 
    /*
-   * retrieves group activities or project units matching the search parameter of the instant search
+   * retrieves project units matching the search parameter of the instant search
    */
   def searchMe = {
     Date searchDate = params.date('myDate', 'dd. MM. yyyy')
 
     if (searchDate) {
       List entities = Entity.createCriteria().list {
-        or {
-            eq("type", metaDataService.etGroupActivity)
-            eq("type", metaDataService.etProjectDay)
-          }
+          eq("type", metaDataService.etProjectDay)
       }
 
       SimpleDateFormat sdf = new SimpleDateFormat("d M yyyy", new Locale("en"))

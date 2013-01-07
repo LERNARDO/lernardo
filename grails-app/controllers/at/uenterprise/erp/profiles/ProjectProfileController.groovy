@@ -861,54 +861,6 @@ class ProjectProfileController {
     render template: 'units', model: [units: units, projectDay: projectDay]
   }
 
-  // not used atm
-  def addGroupActivityTemplate = {
-    Entity groupActivityTemplate = Entity.get(params.groupActivityTemplate)
-    Entity projectUnit = Entity.get(params.projectUnit)
-    Entity project = Entity.get(params.id)
-
-    // check if the groupActivityTemplate isn't already linked to the projectUnit
-    def link = Link.createCriteria().get {
-      eq('source', groupActivityTemplate)
-      eq('target', projectUnit)
-      eq('type', metaDataService.ltProjectUnitMember)
-    }
-    if (!link)
-    // link groupActivityTemplate to projectUnit
-      new Link(source: groupActivityTemplate, target: projectUnit, type: metaDataService.ltProjectUnitMember).save()
-
-    // find all project units of this project
-    List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
-
-    // calculate realDuration
-    int calculatedDuration = functionService.calculateDurationPU(projectUnits)
-
-    render template: 'projectUnits', model: [projectUnits: projectUnits, project: project, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
-  }
-
-  // not used atm
-  def removeGroupActivityTemplate = {
-    Entity groupActivityTemplate = Entity.get(params.groupActivityTemplate)
-    Entity projectUnit = Entity.get(params.projectUnit)
-    Entity project = Entity.get(params.id)
-
-    // delete link
-    def link = Link.createCriteria().get {
-      eq('source', groupActivityTemplate)
-      eq('target', projectUnit)
-      eq('type', metaDataService.ltProjectUnitMember)
-    }
-    link.delete()
-
-    // find all projectunits of this project
-    List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
-
-    // calculate realDuration
-    int calculatedDuration = functionService.calculateDurationPU(projectUnits)
-
-    render template: 'projectUnits', model: [projectUnits: projectUnits, project: project, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
-  }
-
   def removeClient = {
       Entity project = Entity.get(params.id)
       Entity client = Entity.get(params.client)

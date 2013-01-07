@@ -213,7 +213,6 @@ class FunctionService {
       List entities = Entity.createCriteria().list {
           or {
             eq("type", metaDataService.etActivity)
-            eq("type", metaDataService.etGroupActivity)
             eq("type", metaDataService.etProject)
             eq("type", metaDataService.etProjectTemplate)
             eq("type", metaDataService.etTemplate)

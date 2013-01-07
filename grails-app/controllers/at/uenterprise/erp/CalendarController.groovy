@@ -168,9 +168,6 @@ class CalendarController {
     // get all appointments
     eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
 
-    // get all group activities
-    eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
-
     // get all themeroom activities
     //eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
 
@@ -194,29 +191,6 @@ class CalendarController {
       def title = appointment.profile.isPrivate && entity.id != currentEntity.id ? "${message(code: 'appointment')}: ${message(code: 'notAvailable')}" : "${message(code: 'appointment')}: ${appointment.profile}"
       def description = appointment.profile.isPrivate && entity.id != currentEntity.id ? "<b>${message(code: 'description')}:</b> ${message(code: 'notAvailable')}" : "<b>${message(code: 'description')}:</b> ${appointment.profile.description}"
       list << [id: appointment.id, title: title, start: functionService.convertFromUTC(appointment.profile.beginDate), end: functionService.convertFromUTC(appointment.profile.endDate), allDay: appointment.profile.allDay, color: color, description: description]
-    }
-
-    return list
-  }
-
-  List getGroupActivities(start, end, entity, currentEntity, color) {
-    List list = []
-
-    List groupActivities = []
-
-    // get all group activities the educator is part of
-    List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberEducator)
-    temp.addAll(functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient))
-    EntityType etGroupActivity = metaDataService.etGroupActivity
-    temp.each { Entity group ->
-      if (group.type.id == etGroupActivity.id)
-        groupActivities.add(group)
-    }
-
-    groupActivities.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity groupActivity ->
-      def dateStart = new DateTime(functionService.convertFromUTC(groupActivity.profile.date))
-      def dateEnd = dateStart.plusMinutes("$groupActivity.profile.realDuration".toInteger())
-      list << [id: groupActivity.id, title: "${message(code: 'groupActivity')}: ${groupActivity.profile}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, color: color, description: "<b>${message(code: 'activityTemplate.goal')}:</b> " + groupActivity.profile.educationalObjectiveText]
     }
 
     return list
@@ -386,8 +360,6 @@ class CalendarController {
           eq("type", metaDataService.etProjectTemplate)
         if (params.project)
           eq("type", metaDataService.etProject)
-        if (params.groupActivity)
-          eq("type", metaDataService.etGroupActivity)
         if (params.user)
           eq("type", metaDataService.etUser)
       }

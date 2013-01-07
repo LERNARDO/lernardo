@@ -65,9 +65,15 @@
     </div>
 
     <div class="adminbox">
-        <div class="bold">Convert ABV to PV</div>
-        <g:remoteLink update="conversion" action="conversion" before="showspinner('#conversion');">Convert</g:remoteLink>
-        <div class="result" id="conversion"></div>
+        <div class="bold">Convert GAT to PT</div>
+        <g:remoteLink update="convertGATtoPT" action="convertGATtoPT" before="showspinner('#convertGATtoPT');">Convert</g:remoteLink>
+        <div class="result" id="convertGATtoPT"></div>
+    </div>
+
+    <div class="adminbox">
+        <div class="bold">Convert GA to P</div>
+        <g:remoteLink update="convertGAtoP" action="convertGAtoP" before="showspinner('#convertGAtoP');">Convert</g:remoteLink>
+        <div class="result" id="convertGAtoP"></div>
     </div>
 
 </div>

@@ -84,17 +84,9 @@ class ThemeProfileController {
         // find all projects currently linked to this theme
         List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
 
-        // find all activity groups which are within the theme duration
-        List allActivityGroups = Entity.findAllByType(metaDataService.etGroupActivity).findAll {it.profile.date >= theme.profile.startDate && it.profile.date <= theme.profile.endDate}
-
-        // find all activity groups currently linked to this theme
-        List activitygroups = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
-
         render template: "management", model: [theme: theme,
                 allProjects: allProjects,
                 projects: projects,
-                allActivityGroups: allActivityGroups,
-                activitygroups: activitygroups,
                 responsibles: responsibles]
     }
 
@@ -289,21 +281,9 @@ class ThemeProfileController {
     render template: 'projects', model: [projects: breaking.sources, theme: breaking.target]
   }
 
-  def addActivityGroup = {
-    def linking = functionService.linkEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
-    if (linking.duplicate)
-        render {p(class: 'red italic', message(code: "alreadyAssignedTo", args: [linking.source.profile]))}
-    render template: 'activitygroups', model: [activitygroups: linking.sources, theme: linking.target]
-  }
-
-  def removeActivityGroup = {
-    def breaking = functionService.breakEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
-    render template: 'activitygroups', model: [activitygroups: breaking.sources, theme: breaking.target]
-  }
-
-  /*
-  * adds a label to an entity by creating a new label instance and copying the properties from the given "label template"
-  */
+    /*
+    * adds a label to an entity by creating a new label instance and copying the properties from the given "label template"
+    */
   def addLabel = {
     Entity entity = Entity.get(params.id)
     Label labelTemplate = Label.get(params.label)

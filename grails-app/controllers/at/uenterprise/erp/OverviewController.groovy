@@ -21,7 +21,6 @@ class OverviewController {
 
     render template: 'planning', model: [allActivityTemplates: Entity.countByType(metaDataService.etTemplate),
                                         allActivities: activities,
-                                        allActivityGroups: Entity.countByType(metaDataService.etGroupActivity),
                                         allProjectTemplates: Entity.countByType(metaDataService.etProjectTemplate),
                                         allProjects: Entity.countByType(metaDataService.etProject),
                                         allThemes: Entity.countByType(metaDataService.etTheme)]
@@ -176,8 +175,6 @@ class OverviewController {
           eq("type", metaDataService.etProjectTemplate)
         if (params.project)
           eq("type", metaDataService.etProject)
-        if (params.groupActivity)
-          eq("type", metaDataService.etGroupActivity)
       }
       profile {
         and {
