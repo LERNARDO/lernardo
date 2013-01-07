@@ -12,14 +12,14 @@ class UpdateJob {
     FunctionService functionService
     //def timeout = 5000l // execute job once in 5 seconds
 
-    static triggers = {
-        cron name: 'myTrigger', cronExpression: "0 0 * * * ?" // execute every day at midnight
-    }
+    //static triggers = {
+    //    cron name: 'myTrigger', cronExpression: "0 0 * * * ?" // execute every day at midnight
+    //}
 
     def group = "MyGroup"
 
     def execute(){
-        functionService.updateStatus()
+        //functionService.updateStatus()
     }
 
 }
