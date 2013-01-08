@@ -92,7 +92,7 @@ class BootStrap {
                 //createDefaultResources()
                 createDefaultMethods()
                 createDefaultClientGroups()
-                createDefaultActivityTemplateGroups()
+                //createDefaultActivityTemplateGroups()
                 createDefaultThemes()
                 createDefaultComments()
                 createDefaultProjectTemplates()
@@ -102,7 +102,7 @@ class BootStrap {
                 createDefaultWorkdayUnits()
 
                 createDefaultAppointments()
-                createDefaultGroupActivities()
+                //createDefaultGroupActivities()
                 createDefaultMessages()
                 createDefaultLabels()
                 createDefaultFolders()
@@ -504,8 +504,9 @@ class BootStrap {
         log.info("creating default links")
 
         def admin = Entity.findByName('admin')
-        def daniel = Entity.findByName('danielszabo')
-        def patrizia = Entity.findByName('patriziarosenkranz')
+
+        def educator1 = Entity.findByName('educator1')
+        def educator2 = Entity.findByName('educator2')
 
         // make admin a friend of everyone
         List users = Entity.list()
@@ -517,11 +518,11 @@ class BootStrap {
         }
 
         // friend links - make alex the initiator via dynamic link attribute
-        Link liap = linkHelperService.createLink(daniel, patrizia, metaDataService.ltFriendship) {link, dad ->
+        Link liap = linkHelperService.createLink(educator1, educator2, metaDataService.ltFriendship) {link, dad ->
             dad.initiator = "true"
         }
         // back link does not (necessarily) has a dynattr
-        new Link(source: patrizia, target: daniel, type: metaDataService.ltFriendship).save(failOnError: true)
+        new Link(source: educator2, target: educator1, type: metaDataService.ltFriendship).save(failOnError: true)
 
         // here's how we would ask for the a dynattr (given the link)
         if (liap.das.initiator) {
@@ -569,7 +570,7 @@ class BootStrap {
     void createDefaultComments() {
         log.info("creating comments")
 
-        Comment comment = new Comment(content: 'dummyComment', creator: Entity.findByName('patriziarosenkranz').id).save(failOnError: true)
+        Comment comment = new Comment(content: 'dummyComment', creator: Entity.findByName('admin2').id).save(failOnError: true)
         Entity entity = Entity.findByName("template1")
         entity.profile.addToComments(comment)
 
@@ -1099,11 +1100,9 @@ class BootStrap {
         Folder someFolder = new Folder(name: "some", description: "some folder", type: favFolderType, folder: admin.profile.favoritesFolder).save(failOnError: true)
         admin.profile.favoritesFolder.addToFolders(someFolder)
 
-        Favorite daniel = new Favorite(entity: Entity.findByName('danielszabo'), description: "Kollege", folder: admin.profile.favoritesFolder).save(failOnError: true)
-        admin.profile.favoritesFolder.addToFavorites(daniel)
+        Favorite admin2 = new Favorite(entity: Entity.findByName('admin2'), description: "Another admin", folder: admin.profile.favoritesFolder).save(failOnError: true)
+        admin.profile.favoritesFolder.addToFavorites(admin2)
 
-        Favorite patrizia = new Favorite(entity: Entity.findByName('patriziarosenkranz'), description: "Kollegin", folder: someFolder).save(failOnError: true)
-        someFolder.addToFavorites(patrizia)
     }
 
 }
