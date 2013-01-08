@@ -257,24 +257,13 @@ class BootStrap {
         }
 
         // admin users
-        if (!Entity.findByName('patriziarosenkranz')) {
-            entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.net", "Patrizia Rosenkranz") {Entity ent ->
+        if (!Entity.findByName('admin2')) {
+            entityHelperService.createEntityWithUserAndProfile("admin2", etUser, "admin2@lernardo.net", "Admin2") {Entity ent ->
                 ent.user.addToAuthorities(metaDataService.adminRole)
                 ent.user.locale = new Locale("de", "DE")
                 UserProfile prf = (UserProfile) ent.profile
-                prf.firstName = "Patrizia"
-                prf.lastName = "Rosenkranz"
-                prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
-            }
-        }
-
-        if (!Entity.findByName('danielszabo')) {
-            entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lernardo.net", "Daniel Szabo") {Entity ent ->
-                ent.user.addToAuthorities(metaDataService.adminRole)
-                ent.user.locale = new Locale("de", "DE")
-                UserProfile prf = (UserProfile) ent.profile
-                prf.firstName = "Daniel"
-                prf.lastName = "Szabo"
+                prf.firstName = "Admin"
+                prf.lastName = "Admin"
                 prf.favoritesFolder = new Folder(name: "root", type: FolderType.findByName("favorite")).save(failOnError: true)
             }
         }
