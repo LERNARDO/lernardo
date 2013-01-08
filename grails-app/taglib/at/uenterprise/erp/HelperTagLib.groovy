@@ -622,7 +622,7 @@ class HelperTagLib {
             BigDecimal total = 0
             Date currentDate = calendarStart.getTime()
             out << "<tr>"
-            out << "<td>" + formatDate(date: currentDate, format: "dd.MM.yyyy") + "</td>"
+            out << "<td>" + formatDate(date: currentDate, format: "EE, dd.MM.yyyy") + "</td>"
             workdaycategories.eachWithIndex { wdcat, i ->
                 BigDecimal hours = 0
                 entity.profile.workdayunits.each { WorkdayUnit workdayUnit ->
