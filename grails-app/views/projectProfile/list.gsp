@@ -14,6 +14,14 @@
       <g:message code="object.total" args="[totalProjects, message(code: 'projects')]"/>
     </div>
 
+    <div class="buttons cleared">
+        <erp:accessCheck types="['Pädagoge','Betreiber']">
+            <g:form>
+                <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'project')])}"/></div>
+            </g:form>
+        </erp:accessCheck>
+    </div>
+
     <div class="graypanel">
 
       <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'define']" update="searchresults" before="showspinner('#searchresults')">

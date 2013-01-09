@@ -295,13 +295,13 @@ class ProjectProfileController {
     return [template: projectTemplate]
   }
 
-  def save = {ProjectCommand pc->
+  def save = {ProjectCommand pc ->
     Entity currentEntity = entityHelperService.loggedIn
 
-    Entity projectTemplate = Entity.get(params.id)
+    //Entity projectTemplate = Entity.get(params.id)
 
     if (pc.hasErrors()) {
-      render view: 'create', model: [pc: pc, template: projectTemplate]
+      render view: 'create', model: [pc: pc]
       return
     }
 
@@ -352,14 +352,14 @@ class ProjectProfileController {
         //ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
       }
       // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
-      projectTemplate.assets.each { Asset asset ->
+      /*projectTemplate.assets.each { Asset asset ->
         if (asset.type == "profile") {
           new Asset(entity: entity, storage: asset.storage, type: "profile").save()
         }
-      }
+      }*/
 
       // copy labels from template
-      projectTemplate.profile.labels.each { Label templateLabel ->
+      /*projectTemplate.profile.labels.each { Label templateLabel ->
           Label label = new Label()
 
           label.name = templateLabel.name
@@ -367,7 +367,7 @@ class ProjectProfileController {
           label.type = "instance"
 
           entity.profile.addToLabels(label)
-      }
+      }*/
 
       flash.message = message(code: "object.created", args: [message(code: "project"), entity.profile])
 
@@ -375,7 +375,7 @@ class ProjectProfileController {
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       // create link to template
-      new Link(source: projectTemplate, target: entity, type: metaDataService.ltProjectTemplate).save()
+      //new Link(source: projectTemplate, target: entity, type: metaDataService.ltProjectTemplate).save()
 
       // create project days
       Date periodStart = params.startDate

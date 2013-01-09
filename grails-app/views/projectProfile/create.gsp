@@ -10,8 +10,7 @@
 
     <g:render template="/templates/errors" model="[bean: pc]"/>
 
-    <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile}</g:link></p>
-    <g:form id="${template?.id}">
+    <g:form>
       <table>
 
         <tr class="prop">
