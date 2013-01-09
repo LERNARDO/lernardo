@@ -175,6 +175,9 @@ class ProjectProfileController {
         // get all educators
         def allEducators = entityDataService.getAllEducators()
 
+        // get all partners
+        def allPartners = Entity.findAllByType(metaDataService.etPartner)
+
         // find all facilities linked to this project
         List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
@@ -285,6 +288,7 @@ class ProjectProfileController {
                 requiredResources: requiredResources,
                 units: units,
                 allParents: allParents,
+                allPartners: allPartners,
                 projectDays: projectDays,
                 active: params.one ?: projectDays[0]?.id,
                 day: projectDay]
@@ -727,7 +731,7 @@ class ProjectProfileController {
 
   def addUnit = {
     Entity projectDay = Entity.get(params.id)
-    Entity projectUnitTemplate = Entity.get(params.unit)
+    //Entity projectUnitTemplate = Entity.get(params.unit)
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -743,56 +747,18 @@ class ProjectProfileController {
 
     if (calendar.getTime().getTime() >= projectDay.profile.date.getTime()) {
 
-        /*
-        OLD: calculate begin of new unit to be after the end of all previous units
-        // set the correct time for the new unit
-            // find all units linked to this projectDay
-            List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
-
-            // find all groups linked to all units
-            List groups = []
-            units.each { Entity unit ->
-              groups.addAll(functionService.findAllByLink(null, unit, metaDataService.ltProjectUnit))
-            }
-
-            // calculate total duration of all these groups
-            int duration = 0
-            groups.each {
-              duration += it.profile.realDuration
-            }
-
-            // finally update unit time
-            Calendar calendar = new GregorianCalendar()
-         */
-
-        // find all activity template groups linked to the project unit template
-        List groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
-
-        // and link each group to the project unit
-        int duration = 0
-        groups.each {
-          // set duration of unit
-          duration += it.profile.realDuration
-        }
-
-        List activities = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltGroupMember)
-
-        activities.each {
-            duration += it.profile.duration
-        }
-
-        // create a new unit and copy the properties from the unit template
+        // create a new project unit
         EntityType etProjectUnit = metaDataService.etProjectUnit
         Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.fullName = projectUnitTemplate.profile.fullName
+          ent.profile.fullName = params.unit
 
           calendar.setTime(projectDay.profile.date)
           //calendar.add(Calendar.MINUTE, duration)
           calendar.set(Calendar.HOUR_OF_DAY, time.getHours())
           calendar.set(Calendar.MINUTE, time.getMinutes())
           ent.profile.date = calendar.getTime()
-          ent.profile.duration = duration
+          ent.profile.duration = 0
         }
 
         // save creator
@@ -802,16 +768,6 @@ class ProjectProfileController {
 
         // link the new unit to the project day
         new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
-
-        // link each activity template groups to the project unit
-        groups.each { Entity group ->
-          new Link(source: group, target: projectUnit, type: metaDataService.ltProjectUnit).save()
-        }
-
-        // link each activity template to the project unit
-        activities.each { Entity activity ->
-            new Link(source: activity, target: projectUnit, type: metaDataService.ltGroupMember).save()
-        }
 
     }
       else
@@ -1086,6 +1042,9 @@ class ProjectProfileController {
     // get all educators
     def allEducators = entityDataService.getAllEducators()
 
+    // get all educators
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+
     // get all plannable resources
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
@@ -1131,6 +1090,7 @@ class ProjectProfileController {
                                               resources: resources,
                                               allEducators: allEducators,
                                               allParents: allParents,
+                                              allPartners: allPartners,
                                               units: units,
                                               projectDays: projectDays,
                                               active: projectDay.id,
@@ -2132,6 +2092,132 @@ class ProjectProfileController {
         unit.profile.save()
 
         render template: "showunitdate", model: [unit: unit, i: params.i]
+    }
+
+    def editUnitName = {
+        def unit = Entity.get(params.id)
+        render template: "editunitname", model: [unit: unit, i: params.i]
+    }
+
+    def updateUnitName = {
+        def unit = Entity.get(params.id)
+
+        unit.profile.fullName = params.fullName
+        unit.profile.save()
+
+        render template: "showunitname", model: [unit: unit, i: params.i]
+    }
+
+    /*
+    * retrieves all activity templates matching the search parameter
+    */
+    def remoteActivityTemplate = {
+        if (!params.value) {
+            render ""
+            return
+        }
+        else if (params.value == "*") {
+            def results = Entity.createCriteria().list {
+                eq("type", metaDataService.etTemplate)
+                profile {
+                    eq("status", "done")
+                }
+            }
+            render template: 'activitytemplateresults', model: [results: results, projectUnit: params.id, i: params.i, project: params.project]
+            return
+        }
+
+        def results = Entity.createCriteria().list {
+            eq('type', metaDataService.etTemplate)
+            profile {
+                eq('status', "done")
+            }
+            profile {
+                ilike('fullName', "%" + params.value + "%")
+                order('fullName','asc')
+            }
+            maxResults(15)
+        }
+
+        if (results.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            render template: 'activitytemplateresults', model: [results: results, projectUnitID: params.id, i: params.i, project: params.project]
+        }
+    }
+
+    def addActivityTemplate = {
+        println "action called"
+        Entity activityTemplate = Entity.get(params.activityTemplate)
+        Entity projectUnit = Entity.get(params.id)
+        Entity project = Entity.get(params.project)
+
+        // check if the activityTemplate isn't already linked to the projectUnit
+        def link = Link.createCriteria().get {
+            eq('source', activityTemplate)
+            eq('target', projectUnit)
+            eq('type', metaDataService.ltGroupMember)
+        }
+        if (!link)
+        // link activityTemplate to projectUnit
+            new Link(source: activityTemplate, target: projectUnit, type: metaDataService.ltGroupMember).save()
+
+        // find all activityTemplates linked to the unit
+        List activityTemplates = functionService.findAllByLink(null, projectUnit, metaDataService.ltGroupMember)
+
+        render template: 'activityTemplates', model: [activityTemplates: activityTemplates,
+                unit: projectUnit,
+                i: params.i,
+                project: project]
+    }
+
+    def removeActivityTemplate = {
+        Entity activityTemplate = Entity.get(params.activityTemplate)
+        Entity projectUnit = Entity.get(params.id)
+        Entity project = Entity.get(params.project)
+
+        // delete link
+        def link = Link.createCriteria().get {
+            eq('source', activityTemplate)
+            eq('target', projectUnit)
+            eq('type', metaDataService.ltGroupMember)
+        }
+        link.delete()
+
+        // find all activityTemplates linked to the unit
+        List activityTemplates = functionService.findAllByLink(null, projectUnit, metaDataService.ltGroupMember)
+
+        render template: 'activityTemplates', model: [activityTemplates: activityTemplates, unit: projectUnit, i: params.i, project: project]
+    }
+
+    def remoteActivityTemplateByLabel = {
+        List labels = params.list('labels')
+
+        List results = []
+
+        List activityTemplates = Entity.createCriteria().list {
+            eq("type", metaDataService.etTemplate)
+            profile {
+                eq("status", "done")
+            }
+        }
+
+        labels.each { String label ->
+            activityTemplates.each { Entity at ->
+                if (at.profile.labels.find {it.name == label})
+                    results.add(at)
+            }
+        }
+
+        if (results.size() == 0) {
+            render {span(class: 'italic', message(code: 'noResultsFound'))}
+            return
+        }
+        else {
+            render template: 'activitytemplateresults', model: [results: results, projectUnit: params.id, i: params.i, project: params.project]
+        }
     }
 
 }

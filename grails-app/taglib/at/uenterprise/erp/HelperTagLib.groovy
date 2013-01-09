@@ -25,6 +25,16 @@ class HelperTagLib {
     LinkDataService linkDataService
     static namespace = "erp"
 
+    /**
+     * Returns all labels
+     *
+     * @author Alexander Zeillinger
+     */
+    def getAllLabels = {attrs, body ->
+        List labels = functionService.getLabels()
+        out << body(allLabels: labels)
+    }
+
     def getFolders = {attrs, body ->
         Entity currentEntity = entityHelperService.loggedIn
         List folders = functionService.getFolders(currentEntity.profile.favoritesFolder)
@@ -1829,10 +1839,15 @@ class HelperTagLib {
      */
     def getActivityTemplates = {attrs, body ->
         List activityTemplates = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltGroupMember)
+
+        out << render(template:'/projectProfile/activityTemplates', model: [activityTemplates: activityTemplates, unit: attrs.projectUnit, i: attrs.i, project: attrs.project])
+
+        /*<g:render template="/projectProfile/activityTemplates", model: [activityTemplates: activityTemplates, unit: attrs.unit, i: attrs.i, project: attrs.project]"/>
+        </erp:getActivityTemplates>
         if (activityTemplates)
             out << body(activityTemplates: activityTemplates)
         else
-            out << '<span class="italic red" style="margin-left: 15px">' + message(code: 'activityTemplates.notAssigned') + '</span>'
+            out << '<span class="italic red" style="margin-left: 15px">' + message(code: 'activityTemplates.notAssigned') + '</span>'*/
     }
 
     /**

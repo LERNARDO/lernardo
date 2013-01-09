@@ -42,9 +42,9 @@
     <div id="content">
         <h4><g:message code="profile"/></h4>
 
-      <g:if test="${template}">
+%{--      <g:if test="${template}">
         <p><g:message code="projectTemplate"/>: <g:link class="largetooltip" data-idd="${template.id}" controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile}</g:link></p>
-      </g:if>
+      </g:if>--}%
 
       <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: project]"/></span> <erp:accessCheck roles="['ROLE_ADMIN']"><img onclick="toggle('#setcreator');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="Ersteller ändern"/></erp:accessCheck></p>
       <div class="zusatz-add" id="setcreator" style="display:none">

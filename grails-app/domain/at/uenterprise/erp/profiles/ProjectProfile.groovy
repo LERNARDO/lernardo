@@ -31,6 +31,8 @@ class ProjectProfile extends Profile {
     Boolean wouldRepeatIt = false
     String repeatReason
 
+    String status
+
     static constraints = {
         description blank: true, maxSize: 20000
         //educationalObjective nullable: true
@@ -40,6 +42,8 @@ class ProjectProfile extends Profile {
         goodFactors nullable: true, maxSize: 2000
         badFactors nullable: true, maxSize: 2000
         repeatReason nullable: true, maxSize: 2000
+
+        status nullable: true
     }
 
     String toString() {

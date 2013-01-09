@@ -5,8 +5,8 @@
             <tbody>
 
             <tr class="prop">
-              <td class="one"><g:message code="name"/></td>
-              <td class="two" style="padding-right: 50px;">${unit.profile.decodeHTML()} <erp:accessCheck types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink>%{--<g:remoteLink action="moveUp" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_up.png')}" alt="${message(code:'up')}" align="top"/></g:remoteLink><g:remoteLink action="moveDown" update="units2" id="${unit.id}" params="[projectDay: projectDay.id]"><img src="${g.resource(dir: 'images/icons', file: 'arrow_down.png')}" alt="${message(code:'down')}" align="top"/></g:remoteLink>--}%</erp:accessCheck></td>
+              <td class="one"><erp:accessCheck types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck> <g:message code="name"/></td>
+              <td id="unitName${i}" class="two" style="padding-right: 50px;"><g:render template="showunitname" model="[unit: unit, i: i]"/></td>
               <td class="one"><g:message code="begin"/></td>
               <td id="unitDate${i}" class="two" style="padding-right: 50px;"><g:render template="showunitdate" model="[unit: unit, i: i]"/></td>
               <td class="one"><g:message code="duration"/></td>
@@ -16,7 +16,31 @@
             </tbody>
       </table>
 
-        <h5 style="margin-bottom: 5px;"><g:message code="activityTemplates"/></h5>
+        <h5 style="margin-bottom: 5px;"><g:message code="activityTemplates"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#activities${i}');" src="${g.resource(dir:'images/icons', file:'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+        <div id="activities${i}" style="display: none; margin: 0 0 5px 0;">
+
+            <g:message code="search"/>:<br/>
+            <erp:remoteField size="40" name="remoteField${i}" update="remoteActivityTemplate${i}" action="remoteActivityTemplate" id="${unit.id}" params="[i: i, project: project.id]" before="showspinner('#remoteActivityTemplate${i}')"/><br/>
+
+            <g:message code="labels"/>:<br/>
+            <g:formRemote name="bla" url="[action: 'remoteActivityTemplateByLabel', id: unit.id, params: [i: i, project: project.id]]" update="remoteActivityTemplate${i}">
+                <erp:getAllLabels>
+                    <g:select from="${allLabels}" multiple="true" name="labels" value="" style="min-height: 115px;"/>
+                </erp:getAllLabels>
+                <g:submitButton name="bla" value="OK"/>
+            </g:formRemote>
+
+            <div id="remoteActivityTemplate${i}"></div>
+
+        </div>
+
+        <div id="activities2-${i}">
+            <erp:getActivityTemplates projectUnit="${unit}" i="${i}" project="${project}"/>
+                %{--<g:render template="activityTemplates" model="[activityTemplates: activityTemplates, unit: unit, i: i, project: project]"/>
+            </erp:getActivityTemplates>--}%
+        </div>
+
+        %{--<h5 style="margin-bottom: 5px;"><g:message code="activityTemplates"/></h5>
         <erp:getProjectUnitActivities projectUnit="${unit}">
 
             <script type="text/javascript">
@@ -38,10 +62,10 @@
 
             <ol>
                 <g:each in="${activities}" var="activity">
-                    <li style="list-style: decimal; margin-left: 20px;"><g:link class="hover" controller="activityTemplateProfile" action="show" data-idd="${activity.id}" id="${activity.id}" params="[entity:activity.id]">${activity.profile}</g:link> %{--<span class="gray">(${activity.profile.duration} min)</span>--}%</li>
+                    <li style="list-style: decimal; margin-left: 20px;"><g:link class="hover" controller="activityTemplateProfile" action="show" data-idd="${activity.id}" id="${activity.id}" params="[entity:activity.id]">${activity.profile}</g:link> --}%%{--<span class="gray">(${activity.profile.duration} min)</span>--}%%{--</li>
                 </g:each>
             </ol>
-        </erp:getProjectUnitActivities>
+        </erp:getProjectUnitActivities>--}%
 
       <h5 style="margin-bottom: 5px;"><g:message code="parents"/> <erp:getProjectUnitParentsCount projectUnit="${unit}"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#parents${i}');" src="${g.resource(dir:'images/icons', file:'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}" /></erp:accessCheck></h5>
       <div id="parents${i}" style="display:none">
