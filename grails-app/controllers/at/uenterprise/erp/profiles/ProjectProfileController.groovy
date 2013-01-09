@@ -169,129 +169,10 @@ class ProjectProfileController {
     def projectdays = {
         Entity project = Entity.get(params.id)
 
-        // find projectTemplate of this project
-        Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
+        // get number of project days
+        def projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember).size()
 
-        // get all educators
-        def allEducators = entityDataService.getAllEducators()
-
-        // get all partners
-        def allPartners = Entity.findAllByType(metaDataService.etPartner)
-
-        // find all facilities linked to this project
-        List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
-
-        List units = []
-        template?.profile?.templates?.each {
-            units.add(Entity.get(it.toInteger()))
-        }
-
-        // find all project days linked to this project
-        List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
-        projectDays.sort {it.profile.date}
-
-        Entity projectDay = params.one ? projectDays.find {it.id == params.int('one')} : (projectDays[0] ?: null)
-
-        // find all clients linked to this project
-        List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
-
-        // get all parents
-        def families = []
-        clients.each { Entity client ->
-            // get all families
-            families.addAll(functionService.findAllByLink(client, null, metaDataService.ltGroupFamily))
-        }
-        def allParents = []
-        families.each { Entity family ->
-            // get all parents
-            def temp = functionService.findAllByLink(null, family, metaDataService.ltGroupMemberParent)
-            temp.each {
-                if (!allParents.contains(it))
-                    allParents << it
-            }
-        }
-
-        List plannableResources = []
-        facilities.each { Entity facility ->
-            // add resources linked to the facility to plannable resources
-            plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
-
-            // find colony the facility is linked to and add its resources as well
-            Entity colony = linkDataService.getColony(facility)
-            plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
-
-            // find all other facilities linked to the colony and add their resources if marked as available in colony
-            List colonyResources = []
-            List otherFacilities = functionService.findAllByLink(null, colony, metaDataService.ltGroupMemberFacility)
-            otherFacilities.each { Entity of ->
-                List tempResources = functionService.findAllByLink(null, of, metaDataService.ltResource)
-                tempResources.each { Entity tr ->
-                    if (tr.profile.classification == "colony") {
-                        if (!colonyResources.contains(tr)) {
-                            colonyResources.add(tr)
-                        }
-                    }
-                }
-            }
-            colonyResources.each {
-                if (!plannableResources.contains(it))
-                    plannableResources.add(it)
-            }
-            //plannableResources.addAll(colonyResources)
-        }
-
-        // add all resources that are available everywhere
-        List everywhereResources = Entity.createCriteria().list {
-            eq("type", metaDataService.etResource)
-            profile {
-                eq("classification", "everywhere")
-            }
-        }
-        everywhereResources.each {
-            if (!plannableResources.contains(it))
-                plannableResources.add(it)
-        }
-        //plannableResources.addAll(everywhereResources)
-
-        List requiredResources = []
-        if (template)
-            requiredResources.addAll(template?.profile?.resources)
-        // find all project units linked to the project day
-        List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
-
-        // find all groups linked to all units
-        List groups = []
-        pUnits.each { Entity pUnit ->
-            groups.addAll(functionService.findAllByLink(null, pUnit, metaDataService.ltProjectUnit))
-        }
-
-        // for every group activity template add its resources
-        groups.each {
-            requiredResources.addAll(it.profile.resources)
-        }
-        // for every group activity template find its activity templates and add resources as well
-        groups.each { Entity group ->
-            List temps = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
-            temps.each { temp ->
-                temp.profile.resources.each {
-                    if (!requiredResources.contains(it))
-                        requiredResources.add(it)
-                }
-            }
-        }
-
-        List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
-
-        render template: "projectdays", model: [project: project, allEducators: allEducators,
-                resources: resources,
-                plannableResources: plannableResources,
-                requiredResources: requiredResources,
-                units: units,
-                allParents: allParents,
-                allPartners: allPartners,
-                projectDays: projectDays,
-                active: params.one ?: projectDays[0]?.id,
-                day: projectDay]
+        render template: "projectdays", model: [projectDays: projectDays, project: project]
     }
 
   def delete = {
@@ -352,130 +233,11 @@ class ProjectProfileController {
   def update = {
     Entity project = Entity.get(params.id)
 
-    //project.profile.fullName = params.fullName
-    //project.profile.description = params.description
-
-    // update project days based on the new begin and end date
-    /*def currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
-    //log.info "current project days: " + currentPDs.size()
-
-    Date tperiodStart = params.startDate
-    Date tperiodEnd = params.endDate
-    params.endDate.setHours(23);
-    params.endDate.setMinutes(59);
-
-    Calendar tcalendarStart = new GregorianCalendar();
-    tcalendarStart.setTime(tperiodStart);
-
-    Calendar tcalendarEnd = new GregorianCalendar();
-    tcalendarEnd.setTime(tperiodEnd);
-
-    SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
-
-    // 1. check if every current project day is within the new date range of the project, if not delete those which aren't
-    //log.info "removing days outside the new date range"
-    List toDelete = []
-    currentPDs.each { Entity pd ->
-      if (pd.profile.date < tcalendarStart.getTime() || pd.profile.date > tcalendarEnd.getTime()) {
-        //log.info "found a projectday that is outside the new daterange"
-        toDelete.add(pd)
-      }
-    }
-    toDelete.each { Entity pd ->
-      Link.findBySourceAndType(pd, metaDataService.ltProjectMember)?.delete()
-      Link.findAllBySourceOrTarget(pd, pd).each {it.delete()}
-      pd.delete()
-    }
-
-    // get a new list of project days
-    currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
-    //log.info "current project days: " + currentPDs.size()
-
-    // 2. create new project days if any
-    //log.info "creating new project days"
-    // loop through the date range and compare the dates day with the params
-    while (tcalendarStart <= tcalendarEnd) {
-      Date currentDate = tcalendarStart.getTime();
-
-      // check if no project day exists on the current date
-      boolean dayExists = false
-      currentPDs.each {
-        if (it.profile.date.date == currentDate.date && it.profile.date.month == currentDate.month) {
-          //log.info it.profile.date.date
-          //log.info it.profile.date.month
-          //log.info "skipping day"
-          dayExists = true
-        }
-      }
-
-      if (!dayExists) {
-        //log.info params.wednesday
-        //log.info tdf.format(currentDate)
-        if ((params.monday && (tdf.format(currentDate) == 'Monday')) ||
-                (params.tuesday && (tdf.format(currentDate) == 'Tuesday')) ||
-                (params.wednesday && (tdf.format(currentDate) == 'Wednesday')) ||
-                (params.thursday && (tdf.format(currentDate) == 'Thursday')) ||
-                (params.friday && (tdf.format(currentDate) == 'Friday')) ||
-                (params.saturday && (tdf.format(currentDate) == 'Saturday')) ||
-                (params.sunday && (tdf.format(currentDate) == 'Sunday'))) {
-          //log.info "found matching day"
-
-          if (tdf.format(currentDate) == 'Monday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.mondayStart.getHours())
-            tcalendarStart.set(Calendar.MINUTE, params.mondayStart.getMinutes())
-          }
-          else if (tdf.format(currentDate) == 'Tuesday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayStart.getHours())
-            tcalendarStart.set(Calendar.MINUTE, params.tuesdayStart.getMinutes())
-          }
-          else if (tdf.format(currentDate) == 'Wednesday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayStart.getHours())
-            tcalendarStart.set(Calendar.MINUTE, params.wednesdayStart.getMinutes())
-          }
-          else if (tdf.format(currentDate) == 'Thursday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayStart.getHours())
-            tcalendarStart.set(Calendar.MINUTE, params.thursdayStart.getMinutes())
-          }
-          else if (tdf.format(currentDate) == 'Friday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.fridayStart.getHours())
-            tcalendarStart.set(Calendar.MINUTE, params.fridayStart.getMinutes())
-          }
-          else if (tdf.format(currentDate) == 'Saturday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayStart.getHours())
-            tcalendarStart.set(Calendar.MINUTE, params.saturdayStart.getMinutes())
-          }
-          else if (tdf.format(currentDate) == 'Sunday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.sundayStart.getHours())
-            tcalendarStart.set(Calendar.MINUTE, params.sundayStart.getMinutes())
-          }
-
-          // create project day
-          EntityType etProjectDay = metaDataService.etProjectDay
-          Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
-            ent.profile = profileHelperService.createProfileFor(ent) as Profile
-            ent.profile.date = tcalendarStart.getTime();
-            ent.profile.fullName = params.fullName
-            ent.profile.date = functionService.convertToUTC(ent.profile.date)
-          }
-
-          new Link(source: projectDay, target: project, type: metaDataService.ltProjectMember).save()
-
-        }
-      }
-
-      // increment calendar
-      tcalendarStart.add(Calendar.DATE, 1)
-    }*/
-
-    //currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
-    //log.info "current project days: " + currentPDs.size()
-
     //project.profile.properties = params
-      // FIXME: manually defining properties to be updated, above code won't work for some weird reason
-      project.profile.fullName = params.fullName
-      project.profile.description = params.description
-      //project.profile.educationalObjective = params.educationalObjective
-      project.profile.educationalObjectiveText = params.educationalObjectiveText
+    // FIXME: manually defining properties to be updated, above code won't work for some weird reason
+    project.profile.fullName = params.fullName
+    project.profile.description = params.description
+    project.profile.educationalObjectiveText = params.educationalObjectiveText
 
     if (project.profile.save() && project.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile])
@@ -1031,10 +793,10 @@ class ProjectProfileController {
     Entity projectDay = params.id ? Entity.get(params.id) : projectDays[0]
 
     // find projectTemplate of this project
-    Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
+    //Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
     // find all units linked to the template
-    List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
+    //List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
 
     // get all parents
     def allParents = Entity.findAllByType(metaDataService.etParent)
@@ -1049,8 +811,8 @@ class ProjectProfileController {
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
     List requiredResources = []
-      if (template)
-        requiredResources.addAll(template.profile.resources)
+      //if (template)
+        //requiredResources.addAll(template.profile.resources)
       // find all project units linked to the project day
       List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
@@ -1091,7 +853,6 @@ class ProjectProfileController {
                                               allEducators: allEducators,
                                               allParents: allParents,
                                               allPartners: allPartners,
-                                              units: units,
                                               projectDays: projectDays,
                                               active: projectDay.id,
                                               project: project,

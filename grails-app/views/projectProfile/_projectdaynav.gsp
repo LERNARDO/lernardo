@@ -13,7 +13,7 @@
   </div>
 
   <div class="zusatz-show">
-    <g:render template="projectday" model="[project: project, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, allPartners: allPartners, units: units, plannableResources: plannableResources, requiredResources: requiredResources, outOfRange: outOfRange, conflictingDate: conflictingDate]"/>
+    <g:render template="projectday" model="[project: project, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, allPartners: allPartners, plannableResources: plannableResources, requiredResources: requiredResources, outOfRange: outOfRange, conflictingDate: conflictingDate]"/>
   </div>
 
 </g:if>
