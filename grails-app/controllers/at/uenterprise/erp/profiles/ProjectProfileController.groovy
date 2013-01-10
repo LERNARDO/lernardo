@@ -1910,7 +1910,6 @@ class ProjectProfileController {
     }
 
     def addActivityTemplate = {
-        println "action called"
         Entity activityTemplate = Entity.get(params.activityTemplate)
         Entity projectUnit = Entity.get(params.id)
         Entity project = Entity.get(params.project)

@@ -565,4 +565,107 @@ class AdminController {
         render "Done"
     }
 
+    def convertPTtoP = {
+        List projectTemplates = Entity.findAllByType(metaDataService.etProjectTemplate)
+
+        EntityType etProject = metaDataService.etProject
+        EntityType etProjectDay = metaDataService.etProjectDay
+        EntityType etProjectUnit = metaDataService.etProjectUnit
+
+        projectTemplates?.each { Entity pt ->
+
+            Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
+                ent.profile = profileHelperService.createProfileFor(ent) as Profile
+
+                ent.profile.fullName = pt.profile.fullName
+                ent.profile.description = pt.profile.description
+                ent.profile.educationalObjectiveText = pt.profile.educationalObjectiveText
+                ent.profile.startDate = new Date()
+                ent.profile.endDate = ent.profile.startDate + 1
+                ent.profile.status = pt.profile.status
+            }
+
+            // publications
+            List publications = Publication.findAllByEntity(pt)
+            publications?.each { Publication pub ->
+                pub.entity = entity
+                pub.save()
+            }
+
+            // profile picture
+            pt.assets.each { Asset asset ->
+                if (asset.type == "profile") {
+                    new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+                }
+            }
+
+            // comments
+            pt.profile.comments.each { Comment ptcomment ->
+                Comment comment = new Comment(content: ptcomment.content, creator: ptcomment.creator, dateCreated: ptcomment.dateCreated).save()
+                entity.profile.addToComments(comment)
+            }
+
+            // labels
+            pt.profile.labels.each { Label ptlabel ->
+                Label label = new Label(name: ptlabel.name, description: ptlabel.description, type: "instance").save()
+                entity.profile.addToLabels(label)
+            }
+
+            // save creator
+            def ptCreator = functionService.findByLink(null, pt, metaDataService.ltCreator)
+            new Link(source: ptCreator, target: entity, type: metaDataService.ltCreator).save()
+
+                    // create project day
+                    Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
+                        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                        ent.profile.fullName = pt.profile.fullName
+                        ent.profile.date = entity.profile.startDate
+                        ent.profile.endDate = entity.profile.endDate
+                    }
+
+                    // link project day to project
+                    new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
+
+                            // find all projectUnitTemplates of this projectTemplate
+                            List projectUnitTemplates = []
+                            pt.profile.templates.each {
+                                projectUnitTemplates.add(Entity.get(it.toInteger()))
+                            }
+
+                            projectUnitTemplates?.each { Entity put ->
+
+                                List activityTemplates = []
+
+                                List ats = functionService.findAllByLink(null, put, metaDataService.ltGroupMember)
+                                if (ats.size() > 0)
+                                    activityTemplates.addAll(ats)
+
+                                int duration = activityTemplates*.profile.duration.sum(0)
+
+                                // create unit
+                                Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
+                                    ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                                    ent.profile.fullName = pt.profile.fullName
+                                    ent.profile.date = entity.profile.startDate
+                                    ent.profile.duration = duration
+                                }
+
+                                activityTemplates?.each { Entity at ->
+                                    // check if the activityTemplate isn't already linked to the projectUnit
+                                    def link = Link.createCriteria().get {
+                                        eq('source', at)
+                                        eq('target', projectUnit)
+                                        eq('type', metaDataService.ltGroupMember)
+                                    }
+                                    if (!link)
+                                        // link activityTemplate to projectUnit
+                                        new Link(source: at, target: projectUnit, type: metaDataService.ltGroupMember).save()
+                                }
+
+                            }
+
+        }
+        render "Done"
+    }
+
 }

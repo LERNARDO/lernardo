@@ -76,5 +76,11 @@
         <div class="result" id="convertGAtoP"></div>
     </div>
 
+    <div class="adminbox">
+        <div class="bold">Convert PT to P</div>
+        <g:remoteLink update="convertPTtoP" action="convertPTtoP" before="showspinner('#convertPTtoP');">Convert</g:remoteLink>
+        <div class="result" id="convertPTtoP"></div>
+    </div>
+
 </div>
 </body>

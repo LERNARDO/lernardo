@@ -18,7 +18,6 @@
       });
     });
 
-    //${remoteFunction(action: 'updateduration', update: 'updateduration', id: project.id)}
   });
 </script>
 
