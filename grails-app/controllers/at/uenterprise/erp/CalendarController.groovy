@@ -168,9 +168,6 @@ class CalendarController {
     // get all appointments
     eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
 
-    // get all themeroom activities
-    //eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
-
     // get all project units
     eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
 
@@ -191,23 +188,6 @@ class CalendarController {
       def title = appointment.profile.isPrivate && entity.id != currentEntity.id ? "${message(code: 'appointment')}: ${message(code: 'notAvailable')}" : "${message(code: 'appointment')}: ${appointment.profile}"
       def description = appointment.profile.isPrivate && entity.id != currentEntity.id ? "<b>${message(code: 'description')}:</b> ${message(code: 'notAvailable')}" : "<b>${message(code: 'description')}:</b> ${appointment.profile.description}"
       list << [id: appointment.id, title: title, start: functionService.convertFromUTC(appointment.profile.beginDate), end: functionService.convertFromUTC(appointment.profile.endDate), allDay: appointment.profile.allDay, color: color, description: description]
-    }
-
-    return list
-  }
-
-  List getThemeRoomActivities(start, end, entity, currentEntity, color) {
-    List list = []
-
-    List themeRoomActivities = []
-
-    themeRoomActivities.addAll(functionService.findAllByLink(entity, null, metaDataService.ltActEducator))
-
-    themeRoomActivities.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity themeRoomActivity ->
-      def dateStart = new DateTime(functionService.convertFromUTC(themeRoomActivity.profile.date))
-      def dateEnd = dateStart.plusMinutes("$themeRoomActivity.profile.duration".toInteger())
-      def description = "<b>${message(code: 'duration')}:</b> ${themeRoomActivity.profile.duration} min"
-      list << [id: themeRoomActivity.id, title: "${message(code: 'cal.activityInstance')}: ${themeRoomActivity.profile}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, color: color, description: description]
     }
 
     return list

@@ -317,7 +317,7 @@ class HelperTagLib {
         processes?.each { ProcessPaid process ->
             out << '<th>' + process.process.name + '</th>'
         }
-        out << '<th>' + message(code: 'activityInstance.profile.days') + '</th>'
+        out << '<th>' + message(code: 'days') + '</th>'
         out << '<th>' + message(code: "total") + grailsApplication.config.currencySymbol + '</th>'
         out << '</tr>'
 
@@ -454,7 +454,7 @@ class HelperTagLib {
         processes?.each { process ->
             out << '<th>' + process.process.name + '</th>'
         }
-        out << '<th>' + message(code: "activityInstance.profile.days") + '</th>'
+        out << '<th>' + message(code: "days") + '</th>'
         out << '<th>' + message(code: "total") + grailsApplication.config.currencySymbol + '</th>'
         out << '</tr>'
 

@@ -1,11 +1,5 @@
 <h4><g:message code="evaluation.myentry"/> - <g:remoteLink update="content" controller="evaluation" action="interestingevaluations" id="${entity.id}" before="showspinner('#content');"><g:message code="evaluation.interestentry"/></g:remoteLink></h4>
 
-%{--<erp:accessCheck types="['Betreiber']">
-  <div class="tabInactive">
-      <h1><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allentry"/></g:link></h1>
-  </div>
-</erp:accessCheck>--}%
-
 <div class="clear"></div>
 
 <div class="boxContent">

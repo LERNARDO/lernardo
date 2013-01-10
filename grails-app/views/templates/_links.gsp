@@ -3,13 +3,10 @@
   <div class="linkstabs">
 
     <erp:accessCheck entity="${entity}" types="['Pädagoge','Einrichtung','Betreuter','Partner','Erziehungsberechtigter']">
-      <span class="linktab"><g:remoteLink update="linkscontent" controller="app" action="updatelinks" id="${entity.id}" params="[type: 'groupActivities']" before="showspinner('#linkscontent')"><g:message code="groupActivities"/></g:remoteLink></span>
-    </erp:accessCheck>
-    <erp:accessCheck entity="${entity}" types="['Pädagoge','Einrichtung','Betreuter','Partner','Erziehungsberechtigter']">
       <span class="linktab"><g:remoteLink update="linkscontent" controller="app" action="updatelinks" id="${entity.id}" params="[type: 'projects']" before="showspinner('#linkscontent')"><g:message code="projects"/></g:remoteLink></span>
     </erp:accessCheck>
     <erp:accessCheck entity="${entity}" types="['Einrichtung','Betreuter','Pädagoge']">
-      <span class="linktab"><g:remoteLink update="linkscontent" controller="app" action="updatelinks" id="${entity.id}" params="[type: 'activities']" before="showspinner('#linkscontent')"><g:message code="activityInstances"/></g:remoteLink></span>
+      <span class="linktab"><g:remoteLink update="linkscontent" controller="app" action="updatelinks" id="${entity.id}" params="[type: 'activities']" before="showspinner('#linkscontent')"><g:message code="activities"/></g:remoteLink></span>
     </erp:accessCheck>
 
     <erp:accessCheck entity="${entity}" types="['Erziehungsberechtigter','Betreuter','Kind']">

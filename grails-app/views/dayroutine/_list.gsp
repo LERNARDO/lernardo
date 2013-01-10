@@ -60,7 +60,7 @@
           </tr>
 
           <tr class="prop">
-            <td class="name"><g:message code="activityInstance.profile.days"/></td>
+            <td class="name"><g:message code="days"/></td>
             <td class="value">
               <g:checkBox name="monday"/> <g:message code="monday"/><br/>
               <g:checkBox name="tuesday"/> <g:message code="tuesday"/><br/>
