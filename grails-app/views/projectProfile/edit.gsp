@@ -21,6 +21,15 @@
         </td>
       </tr>
 
+        <erp:accessCheck types="['Betreiber']" creatorof="${project}">
+            <tr class="prop">
+                <td class="name"><g:message code="status"/></td>
+                <td class="value">
+                    <g:select name="status" from="['done','notDone','notDoneOpen']" value="${fieldValue(bean: project, field: 'profile.status')}" valueMessagePrefix="status" noSelection="${['null':message(code: 'status.null')]}"/>
+                </td>
+            </tr>
+        </erp:accessCheck>
+
       <tr class="prop">
           <td class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
           <td class="value">

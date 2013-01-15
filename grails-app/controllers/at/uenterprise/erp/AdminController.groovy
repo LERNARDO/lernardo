@@ -384,6 +384,13 @@ class AdminController {
                 }
             }
 
+            // favorites
+            List favorites = Favorite.findAllByEntity(gat)
+            favorites?.each { Favorite fav ->
+                fav.entity = entity
+                fav.save()
+            }
+
             // comments
             gat.profile.comments.each { Comment gatcomment ->
                 Comment comment = new Comment(content: gatcomment.content, creator: gatcomment.creator, dateCreated: gatcomment.dateCreated).save()
@@ -437,8 +444,8 @@ class AdminController {
                 ent.profile = profileHelperService.createProfileFor(ent) as Profile
 
                 ent.profile.fullName = ga.profile.fullName
-                ent.profile.description = ga.profile.description
-                ent.profile.educationalObjectiveText = ga.profile.educationalObjectiveText
+                ent.profile.description = ga.profile.description ?: ""
+                ent.profile.educationalObjectiveText = ga.profile.educationalObjectiveText ?: ""
                 ent.profile.startDate = ga.profile.date
                 ent.profile.endDate = ga.profile.date + 1
             }
@@ -455,6 +462,13 @@ class AdminController {
                 if (asset.type == "profile") {
                     new Asset(entity: entity, storage: asset.storage, type: "profile").save()
                 }
+            }
+
+            // favorites
+            List favorites = Favorite.findAllByEntity(ga)
+            favorites?.each { Favorite fav ->
+                fav.entity = entity
+                fav.save()
             }
 
             // comments
@@ -578,8 +592,8 @@ class AdminController {
                 ent.profile = profileHelperService.createProfileFor(ent) as Profile
 
                 ent.profile.fullName = pt.profile.fullName
-                ent.profile.description = pt.profile.description
-                ent.profile.educationalObjectiveText = pt.profile.educationalObjectiveText
+                ent.profile.description = pt.profile.description  ?: ""
+                ent.profile.educationalObjectiveText = pt.profile.educationalObjectiveText  ?: ""
                 ent.profile.startDate = new Date()
                 ent.profile.endDate = ent.profile.startDate + 1
                 ent.profile.status = pt.profile.status
@@ -597,6 +611,13 @@ class AdminController {
                 if (asset.type == "profile") {
                     new Asset(entity: entity, storage: asset.storage, type: "profile").save()
                 }
+            }
+
+            // favorites
+            List favorites = Favorite.findAllByEntity(pt)
+            favorites?.each { Favorite fav ->
+                fav.entity = entity
+                fav.save()
             }
 
             // comments
@@ -628,8 +649,8 @@ class AdminController {
 
                             // find all projectUnitTemplates of this projectTemplate
                             List projectUnitTemplates = []
-                            pt.profile.templates.each {
-                                projectUnitTemplates.add(Entity.get(it.toInteger()))
+                            pt.profile.templates.each { String put ->
+                                projectUnitTemplates.add(Entity.get(put.toInteger()))
                             }
 
                             projectUnitTemplates?.each { Entity put ->
@@ -649,6 +670,11 @@ class AdminController {
                                     ent.profile.date = entity.profile.startDate
                                     ent.profile.duration = duration
                                 }
+
+                                projectDay.profile.addToUnits(projectUnit.id.toString())
+
+                                // link the new unit to the project day
+                                new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
 
                                 activityTemplates?.each { Entity at ->
                                     // check if the activityTemplate isn't already linked to the projectUnit

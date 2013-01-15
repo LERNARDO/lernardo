@@ -811,31 +811,19 @@ class ProjectProfileController {
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
     List requiredResources = []
-      //if (template)
-        //requiredResources.addAll(template.profile.resources)
-      // find all project units linked to the project day
-      List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+    // find all project units linked to the project day
+    List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
-      // find all groups linked to all units
-      List groups = []
-      pUnits.each { Entity pUnit ->
-        groups.addAll(functionService.findAllByLink(null, pUnit, metaDataService.ltProjectUnit))
-      }
-
-      // for every group activity template add its resources
-      groups.each {
-        requiredResources.addAll(it.profile.resources)
-      }
-      // for every group activity template find its activity templates and add resources as well
-      groups.each { Entity group ->
-        List temps = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
-        temps.each { temp ->
-          temp.profile.resources.each {
-            if (!requiredResources.contains(it))
-              requiredResources.add(it)
-          }
+    // find all activities linked to all units
+    pUnits.each { Entity pUnit ->
+      List activities = functionService.findAllByLink(null, pUnit, metaDataService.ltGroupMember)
+      activities?.each { Entity activity ->
+        activity.profile.resources.each {
+          if (!requiredResources.contains(it))
+            requiredResources.add(it)
         }
       }
+    }
 
     List plannableResources = []
     facilities.each { Entity facility ->

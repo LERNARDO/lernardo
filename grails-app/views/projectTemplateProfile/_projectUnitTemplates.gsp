@@ -30,9 +30,9 @@
         </div>
 
         <div id="activities2-${i}">
-            <erp:getActivityTemplates projectUnit="${projectUnitTemplate}">
-                <g:render template="activityTemplates" model="[activityTemplates: activityTemplates, unit: projectUnitTemplate, i: i, projectTemplate: projectTemplate]"/>
-            </erp:getActivityTemplates>
+            <erp:getActivityTemplates projectUnit="${projectUnitTemplate}" i="${i}" project="${projectTemplate}" />
+                %{--<g:render template="activityTemplates" model="[activityTemplates: activityTemplates, unit: projectUnitTemplate, i: i, projectTemplate: projectTemplate]"/>--}%
+            %{--</erp:getActivityTemplates>--}%
         </div>
 
     </div>

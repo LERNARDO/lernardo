@@ -62,6 +62,11 @@
             </tr>
 
             <tr class="prop">
+                <td class="one"><g:message code="status"/>:</td>
+                <td class="two"><g:message code="status.${project.profile.status}"/></td>
+            </tr>
+
+            <tr class="prop">
               <td class="one"><g:message code="begin"/></td>
               <td class="two"><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" /></td>
             </tr>

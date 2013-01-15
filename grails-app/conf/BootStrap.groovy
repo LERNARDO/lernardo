@@ -92,7 +92,7 @@ class BootStrap {
                 //createDefaultResources()
                 createDefaultMethods()
                 createDefaultClientGroups()
-                //createDefaultActivityTemplateGroups()
+                createDefaultActivityTemplateGroups()
                 createDefaultThemes()
                 createDefaultComments()
                 createDefaultProjectTemplates()
@@ -761,7 +761,7 @@ class BootStrap {
 
         Random generator = new Random()
 
-        for (i in 1..dummies) {
+        for (i in 1..1) {
             if (!Entity.findByName("groupActivityTemplate" + i)) {
                 Entity entity = entityHelperService.createEntity("groupActivityTemplate" + i, etGroupActivityTemplate) {Entity ent ->
                     ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -833,7 +833,7 @@ class BootStrap {
 
         Random generator = new Random()
 
-        for (i in 1..dummies) {
+        for (i in 1..1) {
             if (!Entity.findByName("projectTemplate" + i)) {
                 def entity = entityHelperService.createEntity("projectTemplate" + i, etProjectTemplate) {Entity ent ->
                     ent.profile = profileHelperService.createProfileFor(ent) as Profile
