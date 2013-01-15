@@ -38,7 +38,7 @@
         <tr class="prop">
           <td class="name"><g:message code="themes.superior"/></td>
           <td class="value">
-            <g:select from="${allThemes}" name="parenttheme" value="${parenttheme.id}" optionKey="id" optionValue="profile" noSelection="[null: 'Keines']"/>
+            <g:select from="${allThemes}" name="parenttheme" value="${parenttheme?.id}" optionKey="id" optionValue="profile" noSelection="[null: 'Keines']"/>
           </td>
         </tr>
 
