@@ -61,8 +61,8 @@ class CommentController {
 
     if (params.activitytemplates)
       entities.addAll(Entity.findAllByType(metaDataService.etTemplate))
-    if (params.projecttemplates)
-      entities.addAll(Entity.findAllByType(metaDataService.etProjectTemplate))
+    //if (params.projecttemplates)
+      //entities.addAll(Entity.findAllByType(metaDataService.etProjectTemplate))
     if (params.projects)
       entities.addAll(Entity.findAllByType(metaDataService.etProject))
 
