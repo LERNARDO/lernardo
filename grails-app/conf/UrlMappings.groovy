@@ -1,13 +1,13 @@
 class UrlMappings {
     static mappings = {
 
-        "/prf/$name/$content?" {
+        /*"/prf/$name/$content?" {
             controller = 'profile'
             action = 'show'
             constraints {
                 // apply constraints here
             }
-        }
+        }*/
 
         // default mapping
         "/$controller/$action?/$id?" {
