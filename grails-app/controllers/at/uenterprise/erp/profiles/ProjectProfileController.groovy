@@ -291,202 +291,362 @@ class ProjectProfileController {
   }
 
   def create = {
-    Entity projectTemplate = Entity.get(params.id)
-    return [template: projectTemplate]
+    Entity project = Entity.get(params.id)
+
+    int days = 0
+    if (project) {
+        days = Link.countByTargetAndType(project, metaDataService.ltProjectMember)
+    }
+    return [template: project, days: days]
   }
 
   def save = {ProjectCommand pc ->
     Entity currentEntity = entityHelperService.loggedIn
-
-    //Entity projectTemplate = Entity.get(params.id)
 
     if (pc.hasErrors()) {
       render view: 'create', model: [pc: pc]
       return
     }
 
-    // first check if the number of project days is > 0
-    int checkdays = 0
-
-    Date tperiodStart = params.startDate
-    Date tperiodEnd = params.endDate
-    tperiodEnd.setHours(23)
-    tperiodEnd.setMinutes(59)
-
-    Calendar tcalendarStart = new GregorianCalendar()
-    tcalendarStart.setTime(tperiodStart)
-
-    Calendar tcalendarEnd = new GregorianCalendar()
-    tcalendarEnd.setTime(tperiodEnd)
-
-    SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
-
-    while (tcalendarStart <= tcalendarEnd) {
-       Date currentDate = tcalendarStart.getTime()
-
-       if ((params.monday && (tdf.format(currentDate) == 'Monday')) ||
-           (params.tuesday && (tdf.format(currentDate) == 'Tuesday')) ||
-           (params.wednesday && (tdf.format(currentDate) == 'Wednesday')) ||
-           (params.thursday && (tdf.format(currentDate) == 'Thursday')) ||
-           (params.friday && (tdf.format(currentDate) == 'Friday')) ||
-           (params.saturday && (tdf.format(currentDate) == 'Saturday')) ||
-           (params.sunday && (tdf.format(currentDate) == 'Sunday'))) {
-            checkdays++
-         }
-      tcalendarStart.add(Calendar.DATE, 1)
-    }
-    if (checkdays == 0) {
-      flash.message = message(code: "project.noDays")
-      render view: "create", model: [template: Entity.get(params.id)]
-      return
-    }
-
-    // if there is more than 1 project day create project
     EntityType etProject = metaDataService.etProject
 
-    try {
-      Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.properties = params
-        //ent.profile.startDate = functionService.convertToUTC(ent.profile.startDate)
-        //ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
-      }
-      // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
-      /*projectTemplate.assets.each { Asset asset ->
-        if (asset.type == "profile") {
-          new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+    // --- create a totally new project ---
+    if (!params.template) {
+        // first check if the number of project days between the chosen begin and end date is > 0
+        int checkdays = 0
+
+        Date tperiodStart = params.startDate
+        Date tperiodEnd = params.endDate
+        tperiodEnd.setHours(23)
+        tperiodEnd.setMinutes(59)
+
+        Calendar tcalendarStart = new GregorianCalendar()
+        tcalendarStart.setTime(tperiodStart)
+
+        Calendar tcalendarEnd = new GregorianCalendar()
+        tcalendarEnd.setTime(tperiodEnd)
+
+        SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
+
+        while (tcalendarStart <= tcalendarEnd) {
+           Date currentDate = tcalendarStart.getTime()
+
+           if ((params.monday && (tdf.format(currentDate) == 'Monday')) ||
+               (params.tuesday && (tdf.format(currentDate) == 'Tuesday')) ||
+               (params.wednesday && (tdf.format(currentDate) == 'Wednesday')) ||
+               (params.thursday && (tdf.format(currentDate) == 'Thursday')) ||
+               (params.friday && (tdf.format(currentDate) == 'Friday')) ||
+               (params.saturday && (tdf.format(currentDate) == 'Saturday')) ||
+               (params.sunday && (tdf.format(currentDate) == 'Sunday'))) {
+                checkdays++
+             }
+          tcalendarStart.add(Calendar.DATE, 1)
         }
-      }*/
+        if (checkdays == 0) {
+          flash.message = message(code: "project.noDays")
+          render view: "create", model: [template: Entity.get(params.id)]
+          return
+        }
 
-      // copy labels from template
-      /*projectTemplate.profile.labels.each { Label templateLabel ->
-          Label label = new Label()
-
-          label.name = templateLabel.name
-          label.description = templateLabel.description
-          label.type = "instance"
-
-          entity.profile.addToLabels(label)
-      }*/
-
-      flash.message = message(code: "object.created", args: [message(code: "project"), entity.profile])
-
-      // save creator
-      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
-
-      // create link to template
-      //new Link(source: projectTemplate, target: entity, type: metaDataService.ltProjectTemplate).save()
-
-      // create project days
-      Date periodStart = params.startDate
-      Date periodEnd = params.endDate
-
-      periodEnd.setHours(23)
-      periodEnd.setMinutes(59)
-
-      Calendar calendarStart = new GregorianCalendar()
-      calendarStart.setTime(periodStart)
-
-      Calendar calendarEnd = new GregorianCalendar()
-      calendarEnd.setTime(periodEnd)
-
-      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
-
-      Date projectDayBegin
-      Date projectDayEnd
-
-      // loop through the date range and compare the dates day with the params
-      while (calendarStart <= calendarEnd) {
-        Date currentDate = calendarStart.getTime()
-
-        if ((params.monday && (df.format(currentDate) == 'Monday')) ||
-                (params.tuesday && (df.format(currentDate) == 'Tuesday')) ||
-                (params.wednesday && (df.format(currentDate) == 'Wednesday')) ||
-                (params.thursday && (df.format(currentDate) == 'Thursday')) ||
-                (params.friday && (df.format(currentDate) == 'Friday')) ||
-                (params.saturday && (df.format(currentDate) == 'Saturday')) ||
-                (params.sunday && (df.format(currentDate) == 'Sunday'))) {
-
-          if (df.format(currentDate) == 'Monday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayStart.getHours())
-            calendarStart.set(Calendar.MINUTE, params.mondayStart.getMinutes())
-            projectDayBegin = calendarStart.getTime()
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayEnd.getHours())
-            calendarStart.set(Calendar.MINUTE, params.mondayEnd.getMinutes())
-            projectDayEnd = calendarStart.getTime()
-          }
-          else if (df.format(currentDate) == 'Tuesday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayStart.getHours())
-            calendarStart.set(Calendar.MINUTE, params.tuesdayStart.getMinutes())
-            projectDayBegin = calendarStart.getTime()
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayEnd.getHours())
-            calendarStart.set(Calendar.MINUTE, params.tuesdayEnd.getMinutes())
-            projectDayEnd = calendarStart.getTime()
-          }
-          else if (df.format(currentDate) == 'Wednesday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayStart.getHours())
-            calendarStart.set(Calendar.MINUTE, params.wednesdayStart.getMinutes())
-            projectDayBegin = calendarStart.getTime()
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayEnd.getHours())
-            calendarStart.set(Calendar.MINUTE, params.wednesdayEnd.getMinutes())
-            projectDayEnd = calendarStart.getTime()
-          }
-          else if (df.format(currentDate) == 'Thursday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayStart.getHours())
-            calendarStart.set(Calendar.MINUTE, params.thursdayStart.getMinutes())
-            projectDayBegin = calendarStart.getTime()
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayEnd.getHours())
-            calendarStart.set(Calendar.MINUTE, params.thursdayEnd.getMinutes())
-            projectDayEnd = calendarStart.getTime()
-          }
-          else if (df.format(currentDate) == 'Friday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayStart.getHours())
-            calendarStart.set(Calendar.MINUTE, params.fridayStart.getMinutes())
-            projectDayBegin = calendarStart.getTime()
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayEnd.getHours())
-            calendarStart.set(Calendar.MINUTE, params.fridayEnd.getMinutes())
-            projectDayEnd = calendarStart.getTime()
-          }
-          else if (df.format(currentDate) == 'Saturday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayStart.getHours())
-            calendarStart.set(Calendar.MINUTE, params.saturdayStart.getMinutes())
-            projectDayBegin = calendarStart.getTime()
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayEnd.getHours())
-            calendarStart.set(Calendar.MINUTE, params.saturdayEnd.getMinutes())
-            projectDayEnd = calendarStart.getTime()
-          }
-          else if (df.format(currentDate) == 'Sunday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayStart.getHours())
-            calendarStart.set(Calendar.MINUTE, params.sundayStart.getMinutes())
-            projectDayBegin = calendarStart.getTime()
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayEnd.getHours())
-            calendarStart.set(Calendar.MINUTE, params.sundayEnd.getMinutes())
-            projectDayEnd = calendarStart.getTime()
-          }
-
-          // create project day
-          EntityType etProjectDay = metaDataService.etProjectDay
-          Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
+        // if there is more than 1 project day create project
+        try {
+          Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
             ent.profile = profileHelperService.createProfileFor(ent) as Profile
-            ent.profile.fullName = params.fullName
-            ent.profile.date = functionService.convertToUTC(projectDayBegin)
-            ent.profile.endDate = functionService.convertToUTC(projectDayEnd)
+            ent.profile.properties = params
           }
 
-          // link project day to project
-          new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
+          // save creator
+          new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
+          // create project days
+          Date periodStart = params.startDate
+          Date periodEnd = params.endDate
+
+          periodEnd.setHours(23)
+          periodEnd.setMinutes(59)
+
+          Calendar calendarStart = new GregorianCalendar()
+          calendarStart.setTime(periodStart)
+
+          Calendar calendarEnd = new GregorianCalendar()
+          calendarEnd.setTime(periodEnd)
+
+          SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
+
+          Date projectDayBegin
+          Date projectDayEnd
+
+          // loop through the date range and compare the dates day with the params
+          while (calendarStart <= calendarEnd) {
+            Date currentDate = calendarStart.getTime()
+
+            if ((params.monday && (df.format(currentDate) == 'Monday')) ||
+                    (params.tuesday && (df.format(currentDate) == 'Tuesday')) ||
+                    (params.wednesday && (df.format(currentDate) == 'Wednesday')) ||
+                    (params.thursday && (df.format(currentDate) == 'Thursday')) ||
+                    (params.friday && (df.format(currentDate) == 'Friday')) ||
+                    (params.saturday && (df.format(currentDate) == 'Saturday')) ||
+                    (params.sunday && (df.format(currentDate) == 'Sunday'))) {
+
+              if (df.format(currentDate) == 'Monday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayStart.getHours())
+                calendarStart.set(Calendar.MINUTE, params.mondayStart.getMinutes())
+                projectDayBegin = calendarStart.getTime()
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayEnd.getHours())
+                calendarStart.set(Calendar.MINUTE, params.mondayEnd.getMinutes())
+                projectDayEnd = calendarStart.getTime()
+              }
+              else if (df.format(currentDate) == 'Tuesday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayStart.getHours())
+                calendarStart.set(Calendar.MINUTE, params.tuesdayStart.getMinutes())
+                projectDayBegin = calendarStart.getTime()
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayEnd.getHours())
+                calendarStart.set(Calendar.MINUTE, params.tuesdayEnd.getMinutes())
+                projectDayEnd = calendarStart.getTime()
+              }
+              else if (df.format(currentDate) == 'Wednesday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayStart.getHours())
+                calendarStart.set(Calendar.MINUTE, params.wednesdayStart.getMinutes())
+                projectDayBegin = calendarStart.getTime()
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayEnd.getHours())
+                calendarStart.set(Calendar.MINUTE, params.wednesdayEnd.getMinutes())
+                projectDayEnd = calendarStart.getTime()
+              }
+              else if (df.format(currentDate) == 'Thursday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayStart.getHours())
+                calendarStart.set(Calendar.MINUTE, params.thursdayStart.getMinutes())
+                projectDayBegin = calendarStart.getTime()
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayEnd.getHours())
+                calendarStart.set(Calendar.MINUTE, params.thursdayEnd.getMinutes())
+                projectDayEnd = calendarStart.getTime()
+              }
+              else if (df.format(currentDate) == 'Friday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayStart.getHours())
+                calendarStart.set(Calendar.MINUTE, params.fridayStart.getMinutes())
+                projectDayBegin = calendarStart.getTime()
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayEnd.getHours())
+                calendarStart.set(Calendar.MINUTE, params.fridayEnd.getMinutes())
+                projectDayEnd = calendarStart.getTime()
+              }
+              else if (df.format(currentDate) == 'Saturday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayStart.getHours())
+                calendarStart.set(Calendar.MINUTE, params.saturdayStart.getMinutes())
+                projectDayBegin = calendarStart.getTime()
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayEnd.getHours())
+                calendarStart.set(Calendar.MINUTE, params.saturdayEnd.getMinutes())
+                projectDayEnd = calendarStart.getTime()
+              }
+              else if (df.format(currentDate) == 'Sunday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayStart.getHours())
+                calendarStart.set(Calendar.MINUTE, params.sundayStart.getMinutes())
+                projectDayBegin = calendarStart.getTime()
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayEnd.getHours())
+                calendarStart.set(Calendar.MINUTE, params.sundayEnd.getMinutes())
+                projectDayEnd = calendarStart.getTime()
+              }
+
+              // create project day
+              EntityType etProjectDay = metaDataService.etProjectDay
+              Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
+                ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                ent.profile.fullName = params.fullName
+                ent.profile.date = functionService.convertToUTC(projectDayBegin)
+                ent.profile.endDate = functionService.convertToUTC(projectDayEnd)
+              }
+
+              // link project day to project
+              new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
+
+            }
+
+            // increment calendar
+            calendarStart.add(Calendar.DATE, 1)
+          }
+
+          flash.message = message(code: "object.created", args: [message(code: "project"), entity.profile])
+
+          new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> geplant.').save()
+          redirect action: 'show', id: entity.id
+
+        } catch (EntityException ee) {
+          render view: "create", model: [project: ee.entity]
         }
+    }
+    else {
+        // repeat project
 
-        // increment calendar
-        calendarStart.add(Calendar.DATE, 1)
-      }
+        Entity template = Entity.get(params.template)
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> geplant.').save()
-      redirect action: 'show', id: entity.id
+        // get project days of template
+        List pds = functionService.findAllByLink(null, template, metaDataService.ltProjectMember)
+        pds = pds.sort {it.profile.date}
 
-    } catch (EntityException ee) {
-      render view: "create", model: [project: ee.entity]
+        EntityType etProjectUnit = metaDataService.etProjectUnit
+
+        try {
+            Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
+                ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                ent.profile.properties = params
+                ent.profile.endDate = params.endDate ?: new Date()
+            }
+
+            // save creator
+            new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+
+            // create project days
+            Date periodStart = params.startDate
+
+            Calendar calendarStart = new GregorianCalendar()
+            calendarStart.setTime(periodStart)
+
+            SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
+
+            Date projectDayBegin
+            Date projectDayEnd
+
+            int daysPlanned = 0
+
+            // loop through the date range and compare the dates day with the params
+            while (daysPlanned < params.int('days')) {
+                Date currentDate = calendarStart.getTime()
+
+                if ((params.monday && (df.format(currentDate) == 'Monday')) ||
+                        (params.tuesday && (df.format(currentDate) == 'Tuesday')) ||
+                        (params.wednesday && (df.format(currentDate) == 'Wednesday')) ||
+                        (params.thursday && (df.format(currentDate) == 'Thursday')) ||
+                        (params.friday && (df.format(currentDate) == 'Friday')) ||
+                        (params.saturday && (df.format(currentDate) == 'Saturday')) ||
+                        (params.sunday && (df.format(currentDate) == 'Sunday'))) {
+
+                    if (df.format(currentDate) == 'Monday') {
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayStart.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.mondayStart.getMinutes())
+                        projectDayBegin = calendarStart.getTime()
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayEnd.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.mondayEnd.getMinutes())
+                        projectDayEnd = calendarStart.getTime()
+                    }
+                    else if (df.format(currentDate) == 'Tuesday') {
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayStart.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.tuesdayStart.getMinutes())
+                        projectDayBegin = calendarStart.getTime()
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayEnd.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.tuesdayEnd.getMinutes())
+                        projectDayEnd = calendarStart.getTime()
+                    }
+                    else if (df.format(currentDate) == 'Wednesday') {
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayStart.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.wednesdayStart.getMinutes())
+                        projectDayBegin = calendarStart.getTime()
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayEnd.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.wednesdayEnd.getMinutes())
+                        projectDayEnd = calendarStart.getTime()
+                    }
+                    else if (df.format(currentDate) == 'Thursday') {
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayStart.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.thursdayStart.getMinutes())
+                        projectDayBegin = calendarStart.getTime()
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayEnd.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.thursdayEnd.getMinutes())
+                        projectDayEnd = calendarStart.getTime()
+                    }
+                    else if (df.format(currentDate) == 'Friday') {
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayStart.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.fridayStart.getMinutes())
+                        projectDayBegin = calendarStart.getTime()
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayEnd.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.fridayEnd.getMinutes())
+                        projectDayEnd = calendarStart.getTime()
+                    }
+                    else if (df.format(currentDate) == 'Saturday') {
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayStart.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.saturdayStart.getMinutes())
+                        projectDayBegin = calendarStart.getTime()
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayEnd.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.saturdayEnd.getMinutes())
+                        projectDayEnd = calendarStart.getTime()
+                    }
+                    else if (df.format(currentDate) == 'Sunday') {
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayStart.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.sundayStart.getMinutes())
+                        projectDayBegin = calendarStart.getTime()
+                        calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayEnd.getHours())
+                        calendarStart.set(Calendar.MINUTE, params.sundayEnd.getMinutes())
+                        projectDayEnd = calendarStart.getTime()
+                    }
+
+                    // create project day
+                    EntityType etProjectDay = metaDataService.etProjectDay
+                    Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
+                        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                        ent.profile.fullName = params.fullName
+                        ent.profile.date = functionService.convertToUTC(projectDayBegin)
+                        ent.profile.endDate = functionService.convertToUTC(projectDayEnd)
+                    }
+
+                    // link project day to project
+                    new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
+
+                    // find all project units of the n-th day of the template and duplicate them
+                    List projectUnits = []
+                    pds[daysPlanned].profile.units.each { String pu ->
+                        projectUnits.add(Entity.get(pu.toInteger()))
+                    }
+
+                    projectUnits?.each { Entity pu ->
+
+                        List activityTemplates = []
+
+                        List ats = functionService.findAllByLink(null, pu, metaDataService.ltGroupMember)
+                        if (ats.size() > 0)
+                            activityTemplates.addAll(ats)
+
+                        int duration = activityTemplates*.profile.duration.sum(0)
+
+                        // create unit
+                        Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
+                            ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                            ent.profile.fullName = pu.profile.fullName
+                            ent.profile.date = pu.profile.date
+                            ent.profile.duration = duration
+                        }
+
+                        projectDay.profile.addToUnits(projectUnit.id.toString())
+
+                        // link the new unit to the project day
+                        new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
+
+                        activityTemplates?.each { Entity at ->
+                            // check if the activityTemplate isn't already linked to the projectUnit
+                            def link = Link.createCriteria().get {
+                                eq('source', at)
+                                eq('target', projectUnit)
+                                eq('type', metaDataService.ltGroupMember)
+                            }
+                            if (!link)
+                            // link activityTemplate to projectUnit
+                                new Link(source: at, target: projectUnit, type: metaDataService.ltGroupMember).save()
+                        }
+                    }
+
+                    daysPlanned++
+
+                }
+
+                // increment calendar
+                calendarStart.add(Calendar.DATE, 1)
+            }
+            entity.profile.endDate = calendarStart.getTime()
+            entity.profile.save()
+
+            flash.message = message(code: "object.created", args: [message(code: "project"), entity.profile])
+
+            new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name + 'Profile', action: 'show', id: currentEntity.id) + '">' + currentEntity.profile + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile + '</a> geplant.').save()
+            redirect action: 'show', id: entity.id
+
+        } catch (EntityException ee) {
+            render view: "create", model: [project: ee.entity]
+        }
     }
 
   }
@@ -2004,9 +2164,9 @@ class ProjectCommand {
     sundayStart    validator: {val, obj -> return !((val == null) & obj.sunday)}*/
 
     startDate nullable: false
-    endDate   nullable: false, validator: {val, obj ->
-                                             return val > obj.startDate
-                                          }
+    //endDate   nullable: false, validator: {val, obj ->
+    //                                         return val > obj.startDate
+    //                                      }
     /*weekdays  validator: {val, obj ->
                             return !(!obj.monday && !obj.tuesday && !obj.wednesday && !obj.thursday && !obj.friday && !obj.saturday && !obj.sunday)
                          }*/

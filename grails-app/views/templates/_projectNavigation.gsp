@@ -17,6 +17,9 @@
               <g:if test="${!entity.profile.completed}">
                 <div class="button"><g:actionSubmit class="buttonGreen" action="complete" value="${message(code: 'project.complete')}" /></div>
               </g:if>
+              <div class="button">
+                  <g:link class="buttonGreen" action="create" id="${entity.id}"><g:message code="project.repeat"/></g:link>
+              </div>
             <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>

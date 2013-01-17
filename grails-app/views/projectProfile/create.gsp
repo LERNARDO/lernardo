@@ -10,13 +10,13 @@
 
     <g:render template="/templates/errors" model="[bean: pc]"/>
 
-    <g:form>
+    <g:form params="[days: days, template: template?.id]">
       <table>
 
         <tr class="prop">
           <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td class="value">
-            <g:textField data-counter="50" class="${hasErrors(bean: pc, field: 'fullName', 'errors')}" required="" size="50" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: template, field: 'profile.fullName', 'errors')}" required="" size="50" name="fullName" value="${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -27,12 +27,22 @@
           </td>
         </tr>
 
-        <tr class="prop">
-          <td class="name"><g:message code="end"/> <span class="required-indicator">*</span></td>
-          <td class="value">
-            <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" required="" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy')}"/>
-          </td>
-        </tr>
+        <g:if test="${days > 0}">
+            <tr class="prop">
+                <td class="name"><g:message code="days"/></td>
+                <td class="value">
+                    <span style="top: 7px; position: relative;">${days}</span>
+                </td>
+            </tr>
+        </g:if>
+        <g:else>
+            <tr class="prop">
+                <td class="name"><g:message code="end"/> <span class="required-indicator">*</span></td>
+                <td class="value">
+                    <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" required="" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy')}"/>
+                </td>
+            </tr>
+        </g:else>
 
       </table>
 
