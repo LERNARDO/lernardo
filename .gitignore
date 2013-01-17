@@ -1,3 +1,5 @@
+app-config/*
+
 out/
 plugins/
 target/*
@@ -12,6 +14,3 @@ target/*
 
 /web-app/WEB-INF/tld/c.tld
 /web-app/WEB-INF/tld/fmt.tld
-
-app-config/*
-scripts/*
