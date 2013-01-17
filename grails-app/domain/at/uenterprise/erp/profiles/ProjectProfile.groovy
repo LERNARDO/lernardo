@@ -1,5 +1,6 @@
 package at.uenterprise.erp.profiles
 
+import at.uenterprise.erp.Resource
 import at.uenterprise.erp.base.Profile
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Label
@@ -13,7 +14,8 @@ class ProjectProfile extends Profile {
 
     SortedSet comments
     static hasMany = [comments: Comment,
-            labels: Label]
+                      labels: Label,
+                      resources: Resource]
 
     Date startDate
     Date endDate

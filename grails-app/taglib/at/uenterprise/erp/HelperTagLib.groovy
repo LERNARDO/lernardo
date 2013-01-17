@@ -1548,7 +1548,7 @@ class HelperTagLib {
 
         def result = false
         if (checkstatus instanceof Entity) {
-            if (checkstatus.profile.status && checkstatus.profile.status == 'notDoneOpen')
+            if (checkstatus?.profile?.status && checkstatus?.profile?.status == 'notDoneOpen')
                 result = true
         }
 

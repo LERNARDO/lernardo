@@ -632,6 +632,15 @@ class AdminController {
                 entity.profile.addToLabels(label)
             }
 
+            // resources
+            pt.profile.resources.each { Resource res ->
+                Resource resource = new Resource()
+                resource.name = res.name
+                resource.description = res.description
+                res.amount = res.amount
+                entity.profile.addToResources(resource)
+            }
+
             // save creator
             def ptCreator = functionService.findByLink(null, pt, metaDataService.ltCreator)
             new Link(source: ptCreator, target: entity, type: metaDataService.ltCreator).save()

@@ -112,19 +112,12 @@ grails.resources.modules = {
 // log4j configuration
 log4j = {
 
-    // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
-
     appenders {
         'null' name: 'stacktrace'  // turn off stacktrace.log
 
         console(
                 name: 'stdout',
                 threshold: org.apache.log4j.Level.DEBUG, // ALL | TRACE | DEBUG | INFO | WARN | ERROR | FATAL | OFF
-                //layout: pattern(conversionPattern: "${appName} - %d{HH:mm:ss} - [%p] - %c -> %m%n")
                 layout: pattern(conversionPattern: "%d{HH:mm:ss} - %p - %c -> %m%n")
         )
 
