@@ -19,6 +19,10 @@ class GoalController {
         [goalInstance: new Goal(params)]
     }
 
+    def create_new() {
+
+    }
+
     def save() {
         def goalInstance = new Goal(params)
         goalInstance.type = "main"
