@@ -8,7 +8,8 @@ import at.uenterprise.erp.base.DefaultObjectService
 import at.uenterprise.erp.base.EntityHelperService
 import at.uenterprise.erp.base.ProfileHelperService
 import at.uenterprise.erp.base.AssetService
-
+import at.uenterprise.erp.lfa.Maingoal
+import at.uenterprise.erp.lfa.Subgoal
 import at.uenterprise.erp.profiles.ClientProfile
 import at.uenterprise.erp.profiles.FacilityProfile
 import at.uenterprise.erp.profiles.OperatorProfile
@@ -73,6 +74,7 @@ class BootStrap {
             if (GrailsUtil.environment == "development") {
                 //importChildren()
                 createSetup()
+                createLogframes()
                 createDefaultOperator()
                 createDefaultFacilities()
                 createDefaultEducators()
@@ -237,6 +239,17 @@ class BootStrap {
             new FolderType(name: "favorite").save()
         if (!FolderType.findByName("publication"))
             new FolderType(name: "publication").save()
+    }
+
+    void createLogframes() {
+        log.info("creating logframes")
+
+        def mainGoal = new Maingoal(name: "Weltfrieden", description: "Beendigung sämtlicher Konflikte und Kriege").save()
+
+        mainGoal.addToSubGoals(name: "Religionen abschaffen", description: "Ursache vieler Konflikte")
+        mainGoal.addToSubGoals(name: "Armut beseitigen")
+        mainGoal.addToSubGoals(name: "Bedingungsloses Grundeinkommen")
+
     }
 
     void createDefaultUsers() {

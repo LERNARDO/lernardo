@@ -1,0 +1,2 @@
+<div>${maingoal.name} <g:remoteLink action="editMainGoal" id="${maingoal.id}" update="maingoal${i}" params="[i: i]"><img src="${resource(dir: 'images/icons', file: 'icon_edit2.png')}" alt="mail" style="top: 1px; position: relative"/></g:remoteLink> <g:remoteLink action="removeMainGoal" id="${maingoal.id}" update="maingoals"><img src="${resource(dir: 'images/icons', file: 'icon_remove_old.png')}" alt="mail" style="top: 1px; position: relative"/></g:remoteLink></div>
+<div class="description">${maingoal.description}</div>

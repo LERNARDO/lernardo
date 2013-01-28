@@ -12,14 +12,17 @@ class GoalController {
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [goalInstanceList: Goal.list(params), goalInstanceTotal: Goal.count()]
+        [goalInstanceList: Maingoal.list(params), goalInstanceTotal: Maingoal.count()]
     }
 
     def create() {
         [goalInstance: new Goal(params)]
     }
 
-    def create_new() {
+    def show_new() {
+        def subgoal = Subgoal.get(params.id)
+
+        [subgoal: subgoal]
 
     }
 
@@ -104,5 +107,80 @@ class GoalController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'goal.label', default: 'Goal'), params.id])
             redirect(action: "show", id: params.id)
         }
+    }
+
+    def addMainGoal() {
+        Maingoal mainGoal = new Maingoal(params)
+        mainGoal.save(flush: true)
+
+        forward action: "showMainGoals"
+    }
+
+    def removeMainGoal() {
+        Maingoal mainGoal = Maingoal.get(params.id)
+        mainGoal.delete(flush: true)
+
+        forward action: "showMainGoals"
+    }
+
+    def addSubGoal() {
+        Maingoal mainGoal = Maingoal.get(params.id)
+
+        Subgoal subGoal = new Subgoal(params)
+        mainGoal.addToSubGoals(subGoal)
+
+        render template: "subgoals", model: [maingoal: mainGoal, i: params.i]
+    }
+
+    def removeSubGoal() {
+        println params
+        Maingoal mainGoal = Maingoal.get(params.id)
+        Subgoal subGoal = Subgoal.get(params.long('subgoal'))
+
+        mainGoal.removeFromSubGoals(subGoal)
+        subGoal.delete(flush: true)
+
+        render template: "subgoals", model: [maingoal: mainGoal, i: params.i]
+    }
+
+    def showMainGoals() {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        render template: "maingoals", model: [goalInstanceList: Maingoal.list(params), goalInstanceTotal: Maingoal.count()]
+    }
+
+    def editMainGoal() {
+        Maingoal mainGoal = Maingoal.get(params.id)
+
+        render template: "editmaingoal", model: [maingoal: mainGoal, i: params.i]
+    }
+
+    def updateMainGoal() {
+        Maingoal mainGoal = Maingoal.get(params.id)
+        mainGoal.properties = params
+        mainGoal.save(flush: true)
+
+        render template: "showmaingoal", model: [maingoal: mainGoal, i: params.i]
+    }
+
+    def updateElement() {
+        def element
+        if (params.type == "maingoal") {
+            element = Maingoal.get(params.id)
+        }
+        else if (params.type == "subgoal")
+            element = Subgoal.get(params.id)
+
+        element.properties = params
+        element.save()
+
+        redirect action: "show_new", id: params.id
+    }
+
+    def addResult() {
+        Subgoal subgoal = Subgoal.get(params.id)
+
+        subgoal.addToResults(description: "Neues Resultat")
+
+        redirect action: "show_new", id: subgoal.id
     }
 }
