@@ -169,11 +169,13 @@ class GoalController {
         }
         else if (params.type == "subgoal")
             element = Subgoal.get(params.id)
+        else if (params.type == "result")
+            element = Result.get(params.id)
 
         element.properties = params
         element.save()
 
-        redirect action: "show_new", id: params.id
+        redirect action: "show_new", id: params.masterId
     }
 
     def addResult() {

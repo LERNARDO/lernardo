@@ -8,7 +8,8 @@
 
         <script type="text/javascript">
 
-                setModal = function(id, name, text, title, type) {
+                setModal = function(masterId, id, name, text, title, type) {
+                    $('#hiddenMaster').val(masterId);
                     $('#hiddenId').val(id);
                     $('#hiddenType').val(type);
                     $('#modaltext').attr('name', name);
@@ -36,7 +37,7 @@
             <div style="background: #cc932e; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
                 <span class="gray">${subgoal.mainGoal.name}</span>
                 <div style="margin: 5px 0;">${subgoal.mainGoal.description}</div>
-                %{--<a href="" onclick="setModal(${subgoal.mainGoal.id}, 'description', '${subgoal.mainGoal.description}', 'Oberziel Beschreibung', 'maingoal'); return false;">Bearbeiten</a>--}%
+                <a href="" onclick="setModal(${subgoal.id}, ${subgoal.mainGoal.id}, 'description', '${subgoal.mainGoal.description}', 'Oberziel Beschreibung', 'maingoal'); return false;">Bearbeiten</a>
             </div>
             <div style="background: #fff; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
                 <div>
@@ -47,7 +48,7 @@
                         <span class="gray">Keine Indikatoren eingetragen!</span>
                     </g:else>
                 </div>
-                %{--<a href="" onclick="setModal(${subgoal.mainGoal.id}, 'indicator', '${subgoal.mainGoal.indicator}', 'Oberziel Indikatoren', 'maingoal'); return false;">Bearbeiten</a>--}%
+                <a href="" onclick="setModal(${subgoal.id}, ${subgoal.mainGoal.id}, 'indicator', '${subgoal.mainGoal.indicator}', 'Oberziel Indikatoren', 'maingoal'); return false;">Bearbeiten</a>
             </div>
             <div style="background: #fff; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
                 <div>
@@ -58,7 +59,7 @@
                         <span class="gray">Keine Quellen eingetragen!</span>
                     </g:else>
                 </div>
-                %{--<a href="" onclick="setModal(${subgoal.mainGoal.id}, 'sources', '${subgoal.mainGoal.sources}', 'Oberziel Quellen', 'maingoal'); return false;">Bearbeiten</a>--}%
+                <a href="" onclick="setModal(${subgoal.id}, ${subgoal.mainGoal.id}, 'sources', '${subgoal.mainGoal.sources}', 'Oberziel Quellen', 'maingoal'); return false;">Bearbeiten</a>
             </div>
         </div>
 
@@ -66,7 +67,7 @@
                 <div style="background: #cc932e; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
                     <span class="gray">${subgoal.name}</span>
                     <div style="margin: 5px 0;">${subgoal.description}</div>
-                    <a href="" onclick="setModal(${subgoal.id}, 'description', '${subgoal.description}', 'Ziel Beschreibung', 'subgoal'); return false;">Bearbeiten</a>
+                    <a href="" onclick="setModal(${subgoal.id}, ${subgoal.id}, 'description', '${subgoal.description}', 'Ziel Beschreibung', 'subgoal'); return false;">Bearbeiten</a>
                 </div>
                 <div style="background: #fff; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
                     <div>
@@ -77,7 +78,7 @@
                             <span class="gray">Keine Indikatoren eingetragen!</span>
                         </g:else>
                     </div>
-                    <a href="" onclick="setModal(${subgoal.id}, 'indicator', '${subgoal.indicator}', 'Ziel Indikatoren', 'subgoal'); return false;">Bearbeiten</a>
+                    <a href="" onclick="setModal(${subgoal.id}, ${subgoal.id}, 'indicator', '${subgoal.indicator}', 'Ziel Indikatoren', 'subgoal'); return false;">Bearbeiten</a>
                 </div>
                 <div style="background: #fff; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
                     <div>
@@ -88,7 +89,7 @@
                             <span class="gray">Keine Quellen eingetragen!</span>
                         </g:else>
                     </div>
-                    <a href="" onclick="setModal(${subgoal.id}, 'sources', '${subgoal.sources}', 'Ziel Quellen', 'subgoal'); return false;">Bearbeiten</a>
+                    <a href="" onclick="setModal(${subgoal.id}, ${subgoal.id}, 'sources', '${subgoal.sources}', 'Ziel Quellen', 'subgoal'); return false;">Bearbeiten</a>
                 </div>
                 <div style="background: #fff; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
                     <div>
@@ -99,31 +100,48 @@
                             <span class="gray">Keine Annahmen eingetragen!</span>
                         </g:else>
                     </div>
-                    <a href="" onclick="setModal(${subgoal.id}, 'assumptions', '${subgoal.assumptions}', 'Ziel Annahmen', 'subgoal'); return false;">Bearbeiten</a>
+                    <a href="" onclick="setModal(${subgoal.id}, ${subgoal.id}, 'assumptions', '${subgoal.assumptions}', 'Ziel Annahmen', 'subgoal'); return false;">Bearbeiten</a>
                 </div>
         </div>
 
         <g:each in="${subgoal.results}" var="result">
             <div style="border: 1px solid #698f43; background: #8ec25b; margin: 0 0 10px 0; width: 1290px;" class="cleared">
                 <div style="background: #cc932e; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
-                    <span class="gray">Resultate</span>
-                    <div style="margin: 5px 0;">Lorem ipsum dolor sit amet</div>
-                    %{--<g:link action="none">Bearbeiten..</g:link>--}%
+                    <div>${result.description}</div>
+                    <a href="" onclick="setModal(${subgoal.id}, ${result.id}, 'description', '${result.description}', 'Resultat Beschreibung', 'result'); return false;">Bearbeiten</a>
                 </div>
                 <div style="background: #fff; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
-                    <span class="gray">Indikator Resultate</span>
-                    <div style="margin: 5px 0;">Lorem ipsum dolor sit amet</div>
-                    %{--<g:link action="none">Bearbeiten..</g:link>--}%
+                    <div>
+                        <g:if test="${result.indicator}">
+                            ${result.indicator}
+                        </g:if>
+                        <g:else>
+                            <span class="gray">Keine Indikatoren eingetragen!</span>
+                        </g:else>
+                    </div>
+                    <a href="" onclick="setModal(${subgoal.id}, ${result.id}, 'indicator', '${result.indicator}', 'Resultat Indikator', 'result'); return false;">Bearbeiten</a>
                 </div>
                 <div style="background: #fff; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
-                    <span class="gray">Quelle Resultate</span>
-                    <div style="margin: 5px 0;">Lorem ipsum dolor sit amet</div>
-                    %{--<g:link action="none">Bearbeiten..</g:link>--}%
+                    <div>
+                        <g:if test="${result.sources}">
+                            ${result.sources}
+                        </g:if>
+                        <g:else>
+                            <span class="gray">Keine Quellen eingetragen!</span>
+                        </g:else>
+                    </div>
+                    <a href="" onclick="setModal(${subgoal.id}, ${result.id}, 'sources', '${result.sources}', 'Resultat Quellen', 'result'); return false;">Bearbeiten</a>
                 </div>
                 <div style="background: #fff; border: 1px solid #444; padding: 10px; margin: 10px; height: 100px; width: 230px; float: left;">
-                    <span class="gray">Annahme Resultate</span>
-                    <div style="margin: 5px 0;">Lorem ipsum dolor sit amet</div>
-                    %{--<g:link action="none">Bearbeiten..</g:link>--}%
+                    <div>
+                        <g:if test="${result.assumptions}">
+                            ${result.assumptions}
+                        </g:if>
+                        <g:else>
+                            <span class="gray">Keine Annahmen eingetragen!</span>
+                        </g:else>
+                    </div>
+                    <a href="" onclick="setModal(${subgoal.id}, ${result.id}, 'assumptions', '${result.assumptions}', 'Resultat Annahmen', 'result'); return false;">Bearbeiten</a>
                 </div>
                 <div class="clear"></div>
 
@@ -169,6 +187,7 @@
 
         <p id="modaltitle"></p>
         <g:form controller="goal" action="updateElement">
+            <g:hiddenField id="hiddenMaster" name="masterId" value=""/>
             <g:hiddenField id="hiddenId" name="id" value=""/>
             <g:hiddenField id="hiddenType" name="type" value=""/>
             <g:textArea id="modaltext" rows="20" cols="90" name="none" value=""/><br/>

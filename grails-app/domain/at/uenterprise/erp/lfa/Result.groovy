@@ -8,19 +8,19 @@ class Result {
     static belongsTo = [subgoal: Subgoal]
 
     String description
-    String resources
-    String costs
-    String requirements
+    String indicator
+    String sources
+    String assumptions
 
     static constraints = {
-        resources nullable: true
-        costs nullable: true
-        requirements nullable: true
+        indicator nullable: true
+        sources nullable: true
+        assumptions nullable: true
     }
 
     static mapping = {
-        resources type: "text"
-        costs type: "text"
-        requirements type: "text"
+        indicator type: "text"
+        sources type: "text"
+        assumptions type: "text"
     }
 }
