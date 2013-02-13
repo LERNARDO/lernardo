@@ -187,20 +187,47 @@ class PateProfileController {
     params.offset = params.int('offset') ?: 0
     params.max = Math.min(params.int('max') ?: 20, 40)
 
-    // 1. pass - filter by object properties
-    def results = Entity.createCriteria().listDistinct  {
-      eq('type', metaDataService.etPate)
-      user {
-        eq('enabled', params.active ? true : false)
+      def results = []
+      if (params.client != "") {
+
+        // 1. pass - filter by object properties
+        results = Entity.createCriteria().listDistinct  {
+          eq('type', metaDataService.etPate)
+          user {
+            eq('enabled', params.active ? true : false)
+          }
+          profile {
+            if (params.name)
+              ilike('fullName', "%" + params.name + "%")
+            if (params.country)
+              eq('country', params.country)
+            order(params.sort, params.order)
+          }
+        }
       }
-      profile {
-        if (params.name)
-          ilike('fullName', "%" + params.name + "%")
-        if (params.country)
-          eq('country', params.country)
-        order(params.sort, params.order)
+      else {
+
+          // 2. pass find all clients
+          def second = Entity.createCriteria().listDistinct  {
+              eq('type', metaDataService.etClient)
+              user {
+                  eq('enabled', true)
+              }
+              profile {
+                  ilike('fullName', "%" + params.client + "%")
+                  order(params.sort, params.order)
+              }
+          }
+
+          List pates = []
+          second?.each { Entity client ->
+              pates.addAll(functionService.findAllByLink(client, null, metaDataService.ltPate))
+          }
+          pates?.each {
+              if (!results.contains(it))
+                  results.add(it)
+          }
       }
-    }
 
     int totalResults = results.size()
     int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults

@@ -47,6 +47,13 @@
           </td>
         </tr>
 
+          <tr class="prop">
+              <td class="name"><g:message code="client"/></td>
+              <td class="value">
+                  <g:textField name="client" size="30"/>
+              </td>
+          </tr>
+
       </table>
 
       <g:submitButton name="button" value="${message(code:'define')}"/>
