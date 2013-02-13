@@ -414,6 +414,6 @@
 </div>
 </div>--}%
 
-<g:render template="/templates/ajaxCommands" model="[ajax: ajax, ajaxId: ajaxId]"/>
+<g:render template="/templates/ajaxCommands" model="[ajax: ajax, ajaxId: ajaxId, id: client.id]"/>
 
 </body>

@@ -3,7 +3,6 @@ package at.uenterprise.erp
 import at.uenterprise.erp.base.Entity
 import at.uenterprise.erp.base.EntityHelperService
 import java.text.SimpleDateFormat
-import java.util.regex.Pattern
 
 class EvaluationController {
   EntityHelperService entityHelperService
@@ -249,7 +248,7 @@ class EvaluationController {
     Entity entity = Entity.get(params.entity) ?: entityHelperService.loggedIn
 
     if (evaluationInstance) {
-      [evaluation: evaluationInstance, entity: entity]
+      render template: "show", model:[evaluation: evaluationInstance, entity: entity]
     }
     else {
       flash.message = message(code: "evaluation.idNotFound", args: [params.id])
@@ -286,7 +285,7 @@ class EvaluationController {
       return
     }
 
-    return [evaluationInstance: evaluationInstance, entity: entity]
+    render template: "edit", model: [evaluationInstance: evaluationInstance, entity: entity]
 
   }
 
@@ -299,7 +298,7 @@ class EvaluationController {
 
           evaluationInstance.errors.rejectValue("version", "evaluation.optimistic.locking.failure", "Another user has updated this Evaluation while you were editing.")
 
-          render view: 'edit', model: [evaluationInstance: evaluationInstance]
+          render template: 'edit', model: [evaluationInstance: evaluationInstance]
           return
         }
       }
@@ -309,10 +308,10 @@ class EvaluationController {
         evaluationInstance.linkedTo = linkedEntity
       if (!evaluationInstance.hasErrors() && evaluationInstance.save()) {
         flash.message = message(code: "evaluation.updated")
-        redirect action: 'show', id: evaluationInstance.id, params: [entity: evaluationInstance.owner.id]
+        redirect controller: "clientProfile",  action: 'show', id: evaluationInstance.owner.id, params: [ajax: 'showevaluation', ajaxId: evaluationInstance.id]
       }
       else {
-        render view: 'edit', model: [evaluationInstance: evaluationInstance]
+        render template: 'edit', model: [evaluationInstance: evaluationInstance]
       }
     }
     else {
@@ -327,21 +326,21 @@ class EvaluationController {
     Entity entity = Entity.get(params.id)
     Entity target = Entity.get(params.target)
 
-    return [evaluationInstance: evaluationInstance,
+    render template: "create", model: [evaluationInstance: evaluationInstance,
             entity: entity,
             target: target]
   }
 
   def save = {
     Evaluation evaluationInstance = new Evaluation(params)
-    evaluationInstance.owner = Entity.get(params.entity)
+    evaluationInstance.owner = Entity.get(params.id)
     evaluationInstance.writer = entityHelperService.loggedIn
     Entity linkedEntity = Entity.get(params.int('linkedentity'))
     if (linkedEntity)
-      evaluationInstance.linkedTo = linkedEntity
+        evaluationInstance.linkedTo = linkedEntity
     if (evaluationInstance.save(flush: true)) {
-      flash.message = message(code: "evaluation.created")
-        if (linkedEntity)
+        flash.message = message(code: "evaluation.created")
+        /*if (linkedEntity)
             if (linkedEntity.type.supertype.name == "projectDay") {
                 Entity project = functionService.findByLink(linkedEntity, null, metaDataService.ltProjectMember)
                 redirect controller: "projectProfile", action: "show", id: project.id
@@ -349,10 +348,11 @@ class EvaluationController {
             else
                 redirect controller: linkedEntity.type.supertype.name + "Profile", action: "show", id: linkedEntity.id
         else
-            redirect action: "list", id:  evaluationInstance.owner.id
+            redirect action: "list", id:  evaluationInstance.owner.id*/
+        redirect controller: "clientProfile", action: "show", id: params.id, params: [ajax: 'showevaluation', ajaxId: evaluationInstance.id]
     }
     else {
-      render view: 'create', model: [evaluationInstance: evaluationInstance, entity: Entity.get(params.entity)]
+      render template: 'create', model: [evaluationInstance: evaluationInstance, entity: Entity.get(params.id)]
     }
   }
 

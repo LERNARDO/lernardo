@@ -35,3 +35,17 @@
         });
     </script>
 </g:if>
+<g:if test="${ajax == 'showevaluation'}">
+    <script type="text/javascript">
+        $(function() {
+            ${remoteFunction(controller: "evaluation", action: "show", id: ajaxId, update: "content")}
+        });
+    </script>
+</g:if>
+<g:if test="${ajax == 'createevaluation'}">
+    <script type="text/javascript">
+        $(function() {
+            ${remoteFunction(controller: "evaluation", action: "create", id: id, params: [target: ajaxId], update: "content")}
+        });
+    </script>
+</g:if>

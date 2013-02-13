@@ -6,11 +6,11 @@
       <g:message code="evaluation.sizeFor" args="[evaluationInstanceTotal, entity.profile]"/>
     </div>
 
-    <div class="buttons cleared">
-      <g:link class="buttonGreen" action="create" id="${entity.id}"><g:message code="evaluation.create"/></g:link>
+    <div class="buttons">
+      <g:remoteLink update="content" class="buttonGreen" action="create" id="${entity.id}"><g:message code="evaluation.create"/></g:remoteLink>
     </div>
 
-    <div id="remoteEvaluations"></div>
+    <div id="remoteEvaluations" style="padding-top: 40px;"></div>
 
 </div>
 
