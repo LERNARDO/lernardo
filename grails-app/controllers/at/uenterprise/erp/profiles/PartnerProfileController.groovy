@@ -251,6 +251,20 @@ class PartnerProfileController {
         def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMember)
         render template: 'grouppartners', model: [partner: breaking.source, grouppartners: breaking.targets]
     }
+
+    def createpdf = {
+        Entity partner = Entity.get(params.id)
+        renderPdf template: 'createpdf', model: [pageformat: params.pageformat,
+                partner: partner],
+                filename: message(code: 'partner') + '_' + partner.profile + '.pdf'
+    }
+
+    def createpdfall = {
+        List partners = Entity.findAllByType(metaDataService.etPartner)
+        renderPdf template: 'createpdfall', model: [pageformat: params.pageformat,
+                partners: partners],
+                filename: message(code: 'partner') + '.pdf'
+    }
 }
 
 class ContactCommand {

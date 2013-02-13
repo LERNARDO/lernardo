@@ -17,6 +17,13 @@
       <g:form>
         <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'partner')])}"/></div>
       </g:form>
+        <a href="#" onclick="jQuery('#modalpartner').modal(); return false"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" style="position: relative; top: 4px;"/> Alle Partner drucken</a>
+        <div id="modalpartner" style="display: none;">
+            <g:form action="createpdfall">
+                <g:render template="/templates/printRadioGroup"/>
+                <g:submitButton name="pdfbutton" value="${message(code: 'notification.send')}"/>
+            </g:form>
+        </div>
     </div>
   </erp:accessCheck>
 

@@ -54,6 +54,15 @@
               <div class="member-type"><span class="green"><g:message code="project.completed"/></span></div>
           </g:if>
       </g:if>
+      <g:if test="${entity.type.name == 'Partner'}">
+          <a href="#" onclick="jQuery('#modal${i}').modal(); return false"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" style="position: relative; top: 4px;"/></a>
+          <div id="modal${i}" style="display: none;">
+              <g:form action="createpdf" id="${entity.id}">
+                  <g:render template="/templates/printRadioGroup"/>
+                  <g:submitButton name="pdfbutton" value="${message(code: 'notification.send')}"/>
+              </g:form>
+          </div>
+      </g:if>
   </span>
 
 </div>
