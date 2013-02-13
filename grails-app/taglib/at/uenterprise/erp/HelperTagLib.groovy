@@ -638,9 +638,8 @@ class HelperTagLib {
                 entity.profile.workdayunits.each { WorkdayUnit workdayUnit ->
                     if (workdayUnit.category == wdcat.name) {
                         // check if the date of the workdayunit is between date1 and date2
-                        if (df.format(workdayUnit.date1) == df.format(currentDate)) {
-                            hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
-
+                        if (df.format(functionService.convertFromUTC(workdayUnit.date1)) == df.format(currentDate)) {
+                            hours += (functionService.convertFromUTC(workdayUnit.date2).getTime() - functionService.convertFromUTC(workdayUnit.date1).getTime()) / 1000 / 60 / 60
                         }
                     }
                 }
