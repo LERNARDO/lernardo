@@ -238,6 +238,7 @@ class ProjectProfileController {
     project.profile.fullName = params.fullName
     project.profile.description = params.description
     project.profile.educationalObjectiveText = params.educationalObjectiveText
+    project.profile.status = params.status
 
     if (project.profile.save() && project.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile])
