@@ -27,7 +27,7 @@
         <tr class="prop">
           <td class="name"><g:message code="workdayCategory.count"/></td>
           <td class="value">
-            <g:checkBox name="counts" value="${fieldValue(bean:workdayCategoryInstance,field:'counts')}"/>
+            <g:checkBox name="counts" value="${workdayCategoryInstance?.counts}"/>
           </td>
         </tr>
 
