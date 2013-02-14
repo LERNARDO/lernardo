@@ -63,7 +63,7 @@
         %{--<li class="icon-template"><g:link controller="projectTemplateProfile" action="list"><g:message code="projectTemplates"/></g:link></li>--}%
         <li class="icon-template"><g:link controller="projectProfile" action="list"><g:message code="projects"/></g:link></li>
         <li class="icon-template"><g:link controller="themeProfile" action="list"><g:message code="themes"/></g:link></li>
-        <li class="icon-template"><g:link controller="goal" action="list">Logframes</g:link></li>
+        %{--<li class="icon-template"><g:link controller="goal" action="list">Logframes</g:link></li>--}%
     </ul>
 </div>
 
