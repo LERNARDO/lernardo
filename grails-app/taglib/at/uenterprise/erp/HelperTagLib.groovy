@@ -621,6 +621,8 @@ class HelperTagLib {
 
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy", new Locale("en"))
 
+        SimpleDateFormat weekday = new SimpleDateFormat("EEEE", new Locale("en"))
+
         List workdaycategories = WorkdayCategory.list()
 
         List sums = []
@@ -631,10 +633,16 @@ class HelperTagLib {
         while (calendarStart <= calendarEnd) {
             BigDecimal total = 0
             Date currentDate = calendarStart.getTime()
+
+            if (weekday.format(currentDate) == 'Monday') {
+                out << "<tr>"
+                out << "<td style='border-top: 1px solid #000;' colspan='${workdaycategories.size() + 2}'>" + message(code: 'calendarWeek') + " " + calendarStart.get(Calendar.WEEK_OF_YEAR) + "</td>"
+                out << "</tr>"
+            }
+
             out << "<tr>"
             out << "<td>" + remoteLink(action: 'record', update: 'content', id: entity.id, params: [date: formatDate(date: currentDate, format: "dd. MM. yy")]) {formatDate(date: currentDate, format: "EE, dd.MM.yyyy")} + "</td>"
-            //out << "<td>" + remoteLink(action: 'showRecords', update: 'records', id: entity.id, params: [date: formatDate(date: currentDate, format: "dd. MM. yy")]) {formatDate(date: currentDate, format: "EE, dd.MM.yyyy")} + "</td>"
-            //out << "<td>" + formatDate(date: currentDate, format: "EE, dd.MM.yyyy") + "</td>"
+
             workdaycategories.eachWithIndex { wdcat, i ->
                 BigDecimal hours = 0
                 entity.profile.workdayunits.each { WorkdayUnit workdayUnit ->
