@@ -16,7 +16,9 @@ class TimeRecordingController {
     Entity entity = Entity.get(params.id)
     List workdaycategories = WorkdayCategory.list()
 
-    render template: "record", model: [entity: entity, workdaycategories: workdaycategories]
+    Date date = params.date('date', 'dd. MM. yy')
+
+    render template: "record", model: [entity: entity, workdaycategories: workdaycategories, date: date]
   }
 
   def showRecords = {

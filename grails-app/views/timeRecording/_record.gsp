@@ -21,6 +21,14 @@
     });
 </script>
 
+<g:if test="${date}">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            ${remoteFunction(controller: "timeRecording", action: "showRecords", update: "records", id: entity.id, params:[date: formatDate(date: date, format: "dd. MM. yy")], before: "showspinner('#records')")}
+        });
+    </script>
+</g:if>
+
 <h4><g:message code="privat.workday"/> - <g:remoteLink update="content" controller="timeRecording" action="report" id="${entity.id}" before="showspinner('#content');"><g:message code="report"/></g:remoteLink></h4>
 
 <div class="boxContent">
@@ -30,7 +38,7 @@
     </div>
 
     <g:formRemote name="formRemote" url="[controller: 'timeRecording', action: 'showRecords', id: entity.id]" update="records" before="showspinner('#records')">
-      <g:textField name="date" size="30" value="${new Date().format('dd. MM. yyyy')}" class="datepicker-birthday"/>
+      <g:textField name="date" size="30" value="${date ? formatDate(date: date, format: "dd. MM. yyyy") : new Date().format('dd. MM. yyyy')}" class="datepicker-birthday"/>
       <g:submitButton name="submitButton" value="OK"/>
     </g:formRemote>
 
