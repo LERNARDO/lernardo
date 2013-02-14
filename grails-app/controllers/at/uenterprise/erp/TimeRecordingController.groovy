@@ -34,6 +34,11 @@ class TimeRecordingController {
       }
     }
 
+      def hours = 0
+      workdayunits?.each {
+          hours += (it.date2.getTime() - it.date1.getTime()) / (60 * 60 * 1000)
+      }
+
     List workdaycategories = WorkdayCategory.list().sort {it.name}
 
     render template: 'showrecords', model: [workdayunits: workdayunits,
@@ -41,7 +46,8 @@ class TimeRecordingController {
         workdaycategories: workdaycategories,
         datesOrdered: true,
         entity: entity,
-        currentEntity: entityHelperService.loggedIn]
+        currentEntity: entityHelperService.loggedIn,
+        hours: hours]
   }
 
   def editRecord = {
@@ -152,6 +158,11 @@ class TimeRecordingController {
         }
       }
 
+        def hours = 0
+        workdayunits?.each {
+            hours += (it.date2.getTime() - it.date1.getTime()) / (60 * 60 * 1000)
+        }
+
       List workdaycategories = WorkdayCategory.list()
 
       render template: 'showrecords', model: [workdayunits: workdayunits,
@@ -160,7 +171,8 @@ class TimeRecordingController {
           intersection: intersection,
           datesOrdered: datesOrdered,
           entity: entity,
-          currentEntity: entityHelperService.loggedIn]
+          currentEntity: entityHelperService.loggedIn,
+          hours: hours]
     }
     else
       render {p(class: 'red', message(code: 'iebuggy'))}

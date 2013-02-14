@@ -8,6 +8,24 @@
       stepMinute: 5
     });
   });
+
+  $('.tooltiphelp').each(function() {
+      $(this).qtip({
+          content: {
+              text: function(api) {
+                  return $(this).attr('data-tooltip');
+              }
+          },
+          position: {
+              my: 'bottom left',
+              at: 'top right',
+              target: 'mouse' //$(this)
+          },
+          style: {
+              classes: 'ui-tooltip-green'
+          }
+      });
+  });
 </script>
 
 <g:set var="confirmed" value="true"/>
@@ -23,12 +41,12 @@
             <g:datePicker name="date" value="${date}"/>
           </span>
 
-          <g:submitButton name="button" value="${message(code: 'day.confirm')}"/>
+          <g:submitButton name="button" value="${message(code: 'day.confirm')}"/> <img class="tooltiphelp" data-tooltip="${message(code: 'workdayUnit.confirmation')}" src="${g.resource(dir:'images/icons', file:'icon_help.png')}" alt="Help" style="position: relative; top: 3px;"/>
 
-          <div class="clear"></div>
+          <div class="clear" style="margin-top: 15px;"></div>
       </g:formRemote>
 
-      <p><g:message code="workdayUnit.confirmation"/></p>
+      %{--<p><g:message code="workdayUnit.confirmation"/></p>--}%
     </g:if>
 
   </g:if>
@@ -103,7 +121,7 @@
     <div class="red italic"><g:message code="entryOverlapping"/></div>
 </g:if>
 
-<p class="bold"><g:message code="workdayUnit.alreadyEntered"/></p>
+<p class="bold"><g:message code="workdayUnit.alreadyEntered"/> (<g:formatNumber number="${hours}" type="number"/> <g:message code="hours"/>)</p>
 <g:if test="${workdayunits}">
 
   <g:each in="${workdayunits}" var="unit" status="i">
