@@ -231,11 +231,10 @@ class TimeRecordingController {
 
   def showReport = {
     Entity entity = Entity.get(params.id)
-    List workdaycategories = WorkdayCategory.list()
     Date date1 = params.date('date1', 'dd. MM. yy')
     Date date2 = params.date('date2', 'dd. MM. yy')
 
-    render template: 'showreport', model: [entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2]
+    render template: 'showreport', model: [entity: entity, date1: date1, date2: date2]
   }
 
   def pdf = {

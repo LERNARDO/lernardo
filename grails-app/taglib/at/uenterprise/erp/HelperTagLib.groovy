@@ -630,6 +630,18 @@ class HelperTagLib {
             sums.add(0)
         }
 
+        List unitsWithDescription = []
+
+        out << '<table class="default-table" style="width: 100%;">'
+        out << '<thead>'
+        out << '<tr>'
+        out << '<th>' + message(code: "date") + '</th>'
+        workdaycategories?.each {
+            out << '<th>' + it.name + ' (h)</th>'
+        }
+        out << '<th>' + message(code: "total") + '</th>'
+        out << '</tr></thead><tbody>'
+
         while (calendarStart <= calendarEnd) {
             BigDecimal total = 0
             Date currentDate = calendarStart.getTime()
@@ -650,6 +662,8 @@ class HelperTagLib {
                         // check if the date of the workdayunit is between date1 and date2
                         if (df.format(functionService.convertFromUTC(workdayUnit.date1)) == df.format(currentDate)) {
                             hours += (functionService.convertFromUTC(workdayUnit.date2).getTime() - functionService.convertFromUTC(workdayUnit.date1).getTime()) / 1000 / 60 / 60
+                            if (workdayUnit.description.size() > 0)
+                                unitsWithDescription.add(workdayUnit)
                         }
                     }
                 }
@@ -670,6 +684,14 @@ class HelperTagLib {
         }
         out << "<td class='bold'>" + Math.round(sums.sum() * 2) / 2 + "</td>"
         out << "</tr>"
+
+        out << "</tbody>"
+        out << "</table>"
+
+        out << '<h4>' + message(code: "descriptions") + '</h4>'
+        unitsWithDescription?.each { WorkdayUnit unit ->
+            out << '<div style="margin: 5px 0;"><span class="gray">' + formatDate(date: unit.date1, format: "dd.MM.yy, HH:mm", timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + ' - ' + formatDate(date: unit.date2, format: "dd.MM.yy, HH:mm", timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + '</span> ' + unit.description + '</div>'
+        }
     }
 
     /** WIP

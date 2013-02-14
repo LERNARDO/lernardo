@@ -45,20 +45,7 @@
     <p class="gray"><g:message code="from"/> <span class="bold">${entity.profile}</span> <g:message code="forDateRange"/></p>
     <h2><g:formatDate date="${date1}" format="dd.MM.yyyy"/> <g:message code="to"/> <g:formatDate date="${date2}" format="dd.MM.yyyy"/></h2>
 
-    <table class="default-table" style="width: 100%;">
-      <thead>
-      <tr>
-        <th><g:message code="date"/></th>
-        <g:each in="${workdaycategories}" var="category">
-          <th>${category.name} (h)</th>
-        </g:each>
-        <th><g:message code="total"/> (h)</th>
-      </tr>
-      </thead>
-      <tbody>
-        <erp:timeRecordingReport entity="${entity}" date1="${date1}" date2="${date2}"/>
-      </tbody>
-    </table>
+    <erp:timeRecordingReport entity="${entity}" date1="${date1}" date2="${date2}"/>
 
   </body>
 </html>

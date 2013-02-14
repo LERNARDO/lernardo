@@ -1,17 +1,4 @@
-<table class="default-table">
-  <thead>
-  <tr>
-    <th><g:message code="date"/></th>
-    <g:each in="${workdaycategories}" var="category">
-      <th>${category.name} (h)</th>
-    </g:each>
-    <th><g:message code="total"/> (h)</th>
-  </tr>
-  </thead>
-  <tbody>
-    <erp:timeRecordingReport entity="${entity}" date1="${date1}" date2="${date2}"/>
-  </tbody>
-</table>
+<erp:timeRecordingReport entity="${entity}" date1="${date1}" date2="${date2}"/>
 
 <br/>
 <a href="#" onclick="jQuery('#modal').modal(); return false"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" align="top"/> PDF</a>
