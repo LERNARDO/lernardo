@@ -76,6 +76,11 @@
         </tr>
 
         <tr class="prop">
+            <td class="one"><g:message code="activityTemplate.goal"/></td>
+            <td class="two">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+        </tr>
+
+        <tr class="prop">
           <td class="one"><g:message code="description"/></td>
           <td class="two">${template.profile.description.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
@@ -93,11 +98,6 @@
         <tr class="prop">
           <td class="one"><g:message code="activityTemplate.ageTo"/></td>
           <td class="two">${template?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td class="one"><g:message code="activityTemplate.goal"/></td>
-          <td class="two">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
         </tr>
 
         </tbody>

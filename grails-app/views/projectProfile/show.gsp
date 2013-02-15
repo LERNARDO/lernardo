@@ -76,6 +76,11 @@
               <td class="two"><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" /></td>
             </tr>
 
+        <tr class="prop">
+            <td class="one"><g:message code="project.profile.educationalObjectiveText"/></td>
+            <td class="two">${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
+        </tr>
+
             <tr class="prop">
               <td class="one"><g:message code="description"/></td>
               <td class="two">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
@@ -92,11 +97,6 @@
                 </g:else>
               </td>
             </tr>--}%
-
-            <tr class="prop">
-              <td class="one"><g:message code="project.profile.educationalObjectiveText"/></td>
-              <td class="two">${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+ '</span>'}</td>
-            </tr>
 
             <g:if test="${project.profile.completed}">
                 <tr class="prop">

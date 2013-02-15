@@ -63,6 +63,15 @@
           </td>
         </tr>
 
+          <tr class="prop">
+              <td class="name"><g:message code="activityTemplate.goal"/></td>
+              <td class="value">
+                  <ckeditor:editor name="goal" height="200px" toolbar="Basic">
+                      ${fieldValue(bean:template,field:'profile.goal').decodeHTML()}
+                  </ckeditor:editor>
+              </td>
+          </tr>
+
         <tr class="prop">
           <td class="name"><g:message code="description"/></td>
           <td class="value">
@@ -77,15 +86,6 @@
           <td class="value">
             <ckeditor:editor name="chosenMaterials" height="200px" toolbar="Basic">
               ${fieldValue(bean:template,field:'profile.chosenMaterials').decodeHTML()}
-            </ckeditor:editor>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td class="name"><g:message code="activityTemplate.goal"/></td>
-          <td class="value">
-            <ckeditor:editor name="goal" height="200px" toolbar="Basic">
-              ${fieldValue(bean:template,field:'profile.goal').decodeHTML()}
             </ckeditor:editor>
           </td>
         </tr>
