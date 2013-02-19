@@ -5,8 +5,15 @@ public class Profile {
 
   String fullName
 
+    String activityParams
+
   static constraints = {
         fullName    blank: false, size: 1..100, maxSize: 100
+      activityParams nullable: true
   }
+
+    static mapping = {
+        activityParams type: "text"
+    }
 
 }

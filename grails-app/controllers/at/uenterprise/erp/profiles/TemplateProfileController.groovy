@@ -15,6 +15,7 @@ import at.uenterprise.erp.base.AssetService
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Live
+import grails.converters.JSON
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.base.Asset
@@ -51,11 +52,20 @@ class TemplateProfileController {
     }
     int totalTemplates = Entity.countByType(etTemplate)
 
+      Entity currentEntity = entityHelperService.loggedIn
+
+      if (currentEntity.profile.activityParams) {
+          def json = JSON.parse(currentEntity.profile.activityParams)
+          json.each {
+              params[it.key] = it.value
+          }
+      }
+
     return [allTemplates: templates,
             totalTemplates: totalTemplates,
             methods: Method.findAllByType('template'),
             allLabels: functionService.getLabels(),
-            paginate: true]
+            paginate: true, params: params]
   }
 
   def edit = {
@@ -278,6 +288,13 @@ class TemplateProfileController {
   }
 
   def define = {
+    def jsonString = (params as JSON).toString()
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    currentEntity.profile.activityParams = jsonString
+    currentEntity.profile.save()
+
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
     params.offset = params.int('offset') ?: 0
@@ -305,7 +322,7 @@ class TemplateProfileController {
       profile {
         if (params.name)
           ilike('fullName', "%" + params.name + "%")
-        if (params.duration1 != 'all')
+        if (params.duration1 != '0')
           between('duration', params.duration1.toInteger(), params.duration2.toInteger())
         if (params.ageFrom)
           le('ageFrom', params.ageFrom.toInteger())
@@ -371,12 +388,12 @@ class TemplateProfileController {
     // 4. filter by methods
     List fourthPass = []
 
-    if (params.method1 != 'none' || params.method2 != 'none' || params.method3 != 'none') {
+    if (params.method1 != '0' || params.method2 != '0' || params.method3 != '0') {
       List list1 = []
       List list2 = []
       List list3 = []
 
-      if (params.method1 != 'none') {
+      if (params.method1 != '0') {
         // now check each template for their correct element values
         thirdPass.each { a ->
           //println '----------'
@@ -424,7 +441,7 @@ class TemplateProfileController {
         //println finalList
       }
 
-      if (params.method2 != 'none') {
+      if (params.method2 != '0') {
         thirdPass.each { a ->
           a.profile.each { b ->
             b.methods.each { d ->
@@ -458,7 +475,7 @@ class TemplateProfileController {
         }
       }
 
-      if (params.method3 != 'none') {
+      if (params.method3 != '0') {
         thirdPass.each { a ->
           a.profile.each { b ->
             b.methods.each { d ->

@@ -491,7 +491,7 @@ class GroupActivityTemplateProfileController {
     if (params.currentvalue == 'undefined')
       params.currentvalue = 0
 
-    if (params.value == "all")
+    if (params.value == "0")
       render '<span id="duration2" style="display: none">0</span>'
     else {
       int value = params.int('value')

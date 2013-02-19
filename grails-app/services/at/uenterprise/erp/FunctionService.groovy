@@ -27,6 +27,8 @@ class FunctionService {
 
   boolean transactional = true
 
+  String activityParams = ""
+
     List getFolders(Folder f) {
         List folders = []
         f.folders.each {
