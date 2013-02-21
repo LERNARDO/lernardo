@@ -344,9 +344,8 @@ class TemplateProfileController {
         }
 
         // 3. filter by labels
-        List thirdPass = []
-
         if (params.labels) {
+            List tempResults = []
             List labels = params.list('labels')
 
             if (params.labelLogic == "1") { // AND
@@ -368,101 +367,82 @@ class TemplateProfileController {
                     }
 
                     if (passed)
-                        thirdPass.add(template)
+                        tempResults.add(template)
                 }
             } else { // OR
                 results.each { Entity template ->
                     template.profile.labels.each { Label label ->
                         if (labels.contains(label.name)) {
-                            if (!thirdPass.contains(template))
-                                thirdPass.add(template)
+                            if (!tempResults.contains(template))
+                                tempResults.add(template)
                         }
                     }
                 }
             }
-        } else
-            thirdPass = results
+            results = tempResults
+        }
 
         // 4. filter by methods
-        List fourthPass = []
-
         if (params.method1 != '0' || params.method2 != '0' || params.method3 != '0') {
+            List tempResults = []
             List list1 = []
             List list2 = []
             List list3 = []
 
             if (params.method1 != '0') {
-                // now check each template for their correct element values
-                thirdPass.each { a ->
-                    //println '----------'
-                    //println a
-                    a.profile.each { b ->
-                        //println 'Profile: ' + b
-                        b.methods.each { d ->
-                            //println 'Method: ' + d
-                            if (d.name == Method.get(params.method1).name) {
-                                def counter = 0
-                                def correct = 0
-                                d.elements.each { e ->
-                                    //println e.name + ' - ' + method1lower[counter] + ' to ' + method1upper[counter]
-                                    if (method1lower[counter] != 'all' && method1upper[counter] != 'all') {
-
-                                        if (e.voting >= method1lower[counter].toInteger() && e.voting <= method1upper[counter].toInteger()) {
-                                            //println counter + '# element OK, is ' + e.voting
-                                            correct++
-                                        }
-                                        //else {
-                                        //  println counter + '# element not OK, is ' + e.voting
-                                        //}
-                                    } else {
-                                        //println counter + '# element OK'
+                results.each { template ->
+                    template.profile.methods.each { method ->
+                        if (method.name == Method.get(params.method1).name) {
+                            def counter = 0
+                            def correct = 0
+                            method.elements.each { element ->
+                                if (method1lower[counter] != 'all' && method1upper[counter] != 'all') {
+                                    if (element.voting >= method1lower[counter].toInteger() && element.voting <= method1upper[counter].toInteger()) {
                                         correct++
                                     }
-                                    //println '#correct ' + correct + ' of ' + method1lower.size()
-                                    if (params.method1Logic == "1") { // AND
-                                        if (correct == method1lower.size())
-                                            if (!list1.contains(a))
-                                                list1 << a
-                                    } else {
-                                        if (correct > 0)
-                                            if (!list1.contains(a))
-                                                list1 << a
-                                    }
-                                    counter++
+                                } else {
+                                    correct++
                                 }
+                                if (params.method1Logic == "1") { // AND
+                                    if (correct == method1lower.size())
+                                        if (!list1.contains(template))
+                                            list1.add(template)
+                                } else {
+                                    if (correct > 0)
+                                        if (!list1.contains(template))
+                                            list1.add(template)
+                                }
+                                counter++
                             }
                         }
                     }
                 }
-                //println finalList
             }
 
             if (params.method2 != '0') {
-                thirdPass.each { a ->
-                    a.profile.each { b ->
-                        b.methods.each { d ->
-                            if (d.name == Method.get(params.method2).name) {
-                                def counter = 0
-                                def correct = 0
-                                d.elements.each { e ->
-                                    if (method2lower[counter] != 'all' && method2upper[counter] != 'all') {
-                                        if (e.voting >= method2lower[counter].toInteger() && e.voting <= method2upper[counter].toInteger()) {
-                                            correct++
-                                        }
-                                    } else {
+                results.each { template ->
+                    template.profile.methods.each { method ->
+                        if (method.name == Method.get(params.method2).name) {
+                            def counter = 0
+                            def correct = 0
+                            method.elements.each { element ->
+                                if (method2lower[counter] != 'all' && method2upper[counter] != 'all') {
+                                    if (element.voting >= method2lower[counter].toInteger() && element.voting <= method2upper[counter].toInteger()) {
                                         correct++
                                     }
-                                    if (params.method2Logic == "1") { // AND
-                                        if (correct == method2lower.size())
-                                            if (!list2.contains(a))
-                                                list2 << a
-                                    } else {
-                                        if (correct > 0)
-                                            if (!list2.contains(a))
-                                                list2 << a
-                                    }
-                                    counter++
+                                } else {
+                                    correct++
                                 }
+                                if (params.method2Logic == "1") { // AND
+                                    if (correct == method2lower.size())
+                                        if (!list2.contains(template))
+                                            list2.add(template)
+                                } else {
+                                    if (correct > 0)
+                                        if (!list2.contains(template))
+                                            list2.add(template)
+                                }
+                                counter++
                             }
                         }
                     }
@@ -470,31 +450,29 @@ class TemplateProfileController {
             }
 
             if (params.method3 != '0') {
-                thirdPass.each { a ->
-                    a.profile.each { b ->
-                        b.methods.each { d ->
-                            if (d.name == Method.get(params.method3).name) {
-                                def counter = 0
-                                def correct = 0
-                                d.elements.each { e ->
-                                    if (method3lower[counter] != 'all' && method3upper[counter] != 'all') {
-                                        if (e.voting >= method3lower[counter].toInteger() && e.voting <= method3upper[counter].toInteger()) {
-                                            correct++
-                                        }
-                                    } else {
+                results.each { template ->
+                    template.profile.methods.each { method ->
+                        if (method.name == Method.get(params.method3).name) {
+                            def counter = 0
+                            def correct = 0
+                            method.elements.each { element ->
+                                if (method3lower[counter] != 'all' && method3upper[counter] != 'all') {
+                                    if (element.voting >= method3lower[counter].toInteger() && element.voting <= method3upper[counter].toInteger()) {
                                         correct++
                                     }
-                                    if (params.method3Logic == "1") { // AND
-                                        if (correct == method3lower.size())
-                                            if (!list3.contains(a))
-                                                list3 << a
-                                    } else {
-                                        if (correct > 0)
-                                            if (!list3.contains(a))
-                                                list3 << a
-                                    }
-                                    counter++
+                                } else {
+                                    correct++
                                 }
+                                if (params.method3Logic == "1") { // AND
+                                    if (correct == method3lower.size())
+                                        if (!list3.contains(template))
+                                            list3.add(template)
+                                } else {
+                                    if (correct > 0)
+                                        if (!list3.contains(template))
+                                            list3.add(template)
+                                }
+                                counter++
                             }
                         }
                     }
@@ -502,23 +480,21 @@ class TemplateProfileController {
             }
 
             // if the template is in all lists which means it passed all 3 method validations then add it to the final list
-            thirdPass.each { a ->
-                if (params.method1 != 'none' && params.method2 == 'none' && params.method3 == 'none') {
-                    if (list1.contains(a))
-                        fourthPass << a
-                } else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 == 'none') {
-                    if (list1.contains(a) && list2.contains(a))
-                        fourthPass << a
-                } else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 != 'none') {
-                    if (list1.contains(a) && list2.contains(a) && list3.contains(a))
-                        fourthPass << a
+            results.each { result ->
+                if (params.method1 != '0' && params.method2 == '0' && params.method3 == '0') {
+                    if (list1.contains(result))
+                        tempResults.add(result)
+                } else if (params.method1 != '0' && params.method2 != '0' && params.method3 == '0') {
+                    if (list1.contains(result) && list2.contains(result))
+                        tempResults.add(result)
+                } else if (params.method1 != '0' && params.method2 != '0' && params.method3 != '0') {
+                    if (list1.contains(result) && list2.contains(result) && list3.contains(result))
+                        tempResults.add(result)
                 }
             }
 
-        } else
-            fourthPass = thirdPass
-
-        results = fourthPass
+            results = tempResults
+        }
 
         int totalResults = results.size()
         int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults

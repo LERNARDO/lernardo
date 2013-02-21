@@ -1816,91 +1816,86 @@ class ProjectProfileController {
     render template: 'resources', model: [resources: resources, projectDay: group]
   }
 
-  def define = {
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 20, 40)
+    def define = {
+        params.sort = params.sort ?: "fullName"
+        params.order = params.order ?: "asc"
+        params.offset = params.int('offset') ?: 0
+        params.max = Math.min(params.int('max') ?: 20, 40)
 
-    // swap age values if necessary
-    if (params.int('ageTo') < params.int('ageFrom')) {
-      def temp = params.ageTo
-      params.ageTo = params.ageFrom
-      params.ageFrom = temp
-    }
-
-    Date beginDate = params.date('beginDate', 'dd. MM. yy')
-    Date endDate = params.date('endDate', 'dd. MM. yy')
-
-    // 1. pass - filter by object properties
-    def results = Entity.createCriteria().list  {
-      eq('type', metaDataService.etProject)
-      profile {
-        if (params.name)
-          ilike('fullName', "%" + params.name + "%")
-        if (beginDate)
-          ge("startDate", beginDate)
-        if (endDate)
-          le("endDate", endDate)
-        if (params.ageFrom)
-          le('ageFrom', params.ageFrom.toInteger())
-        if (params.ageTo)
-          ge('ageTo', params.ageTo.toInteger())
-        order(params.sort, params.order)
-      }
-    }
-
-    // 2. pass - filter by creator
-    if (params.creator != "") {
-      results = results.findAll { Entity entity ->
-        Link.createCriteria().get {
-          eq('source', Entity.get(params.int('creator')))
-          eq('target', entity)
-          eq('type', metaDataService.ltCreator)
+        // swap age values if necessary
+        if (params.int('ageTo') < params.int('ageFrom')) {
+            def temp = params.ageTo
+            params.ageTo = params.ageFrom
+            params.ageFrom = temp
         }
-      }
-    }
 
-    // 3. filter by labels
-    List thirdPass = []
+        Date beginDate = params.date('beginDate', 'dd. MM. yy')
+        Date endDate = params.date('endDate', 'dd. MM. yy')
 
-    if (params.labels) {
-      List labels = params.list('labels')
-      results.each { Entity template ->
-        template.profile.labels.each { Label label ->
-          if (labels.contains(label.name)) {
-            if (!thirdPass.contains(template))
-              thirdPass.add(template)
-          }
+        // 1. pass - filter by object properties
+        def results = Entity.createCriteria().list {
+            eq('type', metaDataService.etProject)
+            profile {
+                if (params.name)
+                    ilike('fullName', "%" + params.name + "%")
+                if (beginDate)
+                    ge("startDate", beginDate)
+                if (endDate)
+                    le("endDate", endDate)
+                if (params.ageFrom)
+                    le('ageFrom', params.ageFrom.toInteger())
+                if (params.ageTo)
+                    ge('ageTo', params.ageTo.toInteger())
+                order(params.sort, params.order)
+            }
         }
-      }
+
+        // 2. pass - filter by creator
+        if (params.creator != "") {
+            results = results.findAll { Entity entity ->
+                Link.createCriteria().get {
+                    eq('source', Entity.get(params.int('creator')))
+                    eq('target', entity)
+                    eq('type', metaDataService.ltCreator)
+                }
+            }
+        }
+
+        // 3. filter by labels
+        if (params.labels) {
+            List tempResults = []
+            List labels = params.list('labels')
+            results.each { Entity template ->
+                template.profile.labels.each { Label label ->
+                    if (labels.contains(label.name)) {
+                        if (!tempResults.contains(template))
+                            tempResults.add(template)
+                    }
+                }
+            }
+            results = tempResults
+        }
+
+        // 4. filter by theme
+        if (params.theme != "") {
+            List tempResults = []
+            Entity theme = Entity.get(params.theme)
+            List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
+
+            projects.each { Entity project ->
+                if (results.contains(project))
+                    tempResults.add(project)
+            }
+
+            results = tempResults
+        }
+
+        int totalResults = results.size()
+        int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+        results = results.subList(params.offset, upperBound)
+
+        render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'project', params: params]
     }
-    else
-      thirdPass = results
-
-    // 4. filter by theme
-    List fourthPass = []
-
-    if (params.theme != "") {
-      Entity theme = Entity.get(params.theme)
-      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
-
-      projects.each { Entity project ->
-        if (thirdPass.contains(project))
-          fourthPass.add(project)
-      }
-    }
-    else
-      fourthPass = thirdPass
-
-    results = fourthPass
-
-    int totalResults = results.size()
-    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
-    results = results.subList(params.offset, upperBound)
-
-    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'project', params: params]
-  }
 
     /*
     * retrieves all entities matching the search parameter
