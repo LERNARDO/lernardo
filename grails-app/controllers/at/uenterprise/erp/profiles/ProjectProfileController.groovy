@@ -1669,10 +1669,12 @@ class ProjectProfileController {
     List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
     projectDays.sort {it.profile.date}
 
-    Date date = functionService.convertToUTC(params.date('date', 'dd. MM. yy HH:mm'))
+    Date date = functionService.convertToUTC(params.date('date', 'dd. MM. yy'))
+      date.setHours(projectDay.profile.date.getHours())
+      date.setMinutes(projectDay.profile.date.getMinutes())
 
     // calculate difference in minutes of hours and minutes of old and new date
-    int difference = (date.getHours() * 60 + date.getMinutes()) - (projectDay.profile.date.getHours() * 60 + projectDay.profile.date.getMinutes())
+    //int difference = (date.getHours() * 60 + date.getMinutes()) - (projectDay.profile.date.getHours() * 60 + projectDay.profile.date.getMinutes())
 
     // check if the new date doesn't conflict with the date of another project day
     def conflictingDate = false
@@ -1693,6 +1695,7 @@ class ProjectProfileController {
       projectDay.profile.date = date
       projectDay.profile.save()
 
+      /*
       // update date of all linked project units
       List projectDayUnits = []
         projectDay.profile.units.each {
@@ -1719,6 +1722,7 @@ class ProjectProfileController {
         String content = '<p>Hallo ' + ie.profile + '!</p>Ich habe einen ' + link(controller: 'projectDayProfile', action: 'show', id: projectDay.id, params: [one: projectDay.id]) {'Projekttag'} + ' vom Projekt ' + project.profile.decodeHTML() + ' verschoben.'
         functionService.createMessage(currentEntity, [ie], ie, subject, content).save()
       }
+      */
 
     }
 
@@ -2122,6 +2126,50 @@ class ProjectProfileController {
         else {
             render template: 'activitytemplateresults', model: [results: results, projectUnit: params.id, i: params.i, project: params.project]
         }
+    }
+
+    def change_begin () {
+        def projectDay = Entity.get(params.id)
+
+        render template: 'edit_begin', model: [projectDay: projectDay]
+    }
+
+    def update_begin() {
+        def projectDay = Entity.get(params.id)
+        params.date = params.date('date', 'HH:mm')
+
+        Calendar calendar = new GregorianCalendar()
+        calendar.setTime(projectDay.profile.date)
+        calendar.set(Calendar.HOUR, params.date.getHours())
+        calendar.set(Calendar.MINUTE, params.date.getMinutes())
+        params.date = calendar.getTime()
+
+        projectDay.profile.date = functionService.convertToUTC(params.date)
+        projectDay.profile.save()
+
+        render template: 'show_begin', model: [projectDay: projectDay]
+    }
+
+    def change_end () {
+        def projectDay = Entity.get(params.id)
+
+        render template: 'edit_end', model: [projectDay: projectDay]
+    }
+
+    def update_end() {
+        def projectDay = Entity.get(params.id)
+        params.date = params.date('date', 'HH:mm')
+
+        Calendar calendar = new GregorianCalendar()
+        calendar.setTime(projectDay.profile.date)
+        calendar.set(Calendar.HOUR, params.date.getHours())
+        calendar.set(Calendar.MINUTE, params.date.getMinutes())
+        params.date = calendar.getTime()
+
+        projectDay.profile.endDate = functionService.convertToUTC(params.date)
+        projectDay.profile.save()
+
+        render template: 'show_end', model: [projectDay: projectDay]
     }
 
 }

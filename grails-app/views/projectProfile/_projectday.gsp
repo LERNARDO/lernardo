@@ -21,6 +21,21 @@
           timeOnlyTitle: '${message(code: "chooseTime")}',
           stepMinute: 5
       });
+
+      $(".datepicker").datepicker({
+          monthNamesShort: ['${message(code: "january.short")}', '${message(code: "february.short")}', '${message(code: "march.short")}',
+              '${message(code: "april.short")}', '${message(code: "may.short")}', '${message(code: "june.short")}',
+              '${message(code: "july.short")}', '${message(code: "august.short")}', '${message(code: "september.short")}',
+              '${message(code: "october.short")}', '${message(code: "november.short")}', '${message(code: "december.short")}'],
+          dayNamesMin: ['${message(code: "sunday.short")}', '${message(code: "monday.short")}', '${message(code: "tuesday.short")}',
+              '${message(code: "wednesday.short")}', '${message(code: "thursday.short")}', '${message(code: "friday.short")}',
+              '${message(code: "saturday.short")}'],
+          changeMonth: true,
+          changeYear: true,
+          dateFormat: 'dd. mm. yy',
+          minDate: new Date(1900, 1, 1),
+          firstDay: 1,
+          autoSize: true});
   });
 </script>
 
@@ -38,17 +53,17 @@
     <span class="gray"><g:message code="projectDayComplete"/>:</span> <g:checkBox name="checkbox" value="${projectDay.profile.complete}" onclick="${remoteFunction(update: 'projectDay', controller: 'projectDayProfile', action: 'completeDay', id: projectDay.id, params: [project: project.id])}"/>
   </p>
   <p>
-    <span class="gray"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
+    <span class="gray"><g:message code="projectDayBegin"/>:</span> <span id="begin"><g:render template="show_begin" model="[projectDay: projectDay]"/></span>
   </p>
   <p>
-    <span class="gray"><g:message code="projectDayEnd"/>:</span> <g:formatDate date="${projectDay?.profile?.endDate}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
+    <span class="gray"><g:message code="projectDayEnd"/>:</span> <span id="end"><g:render template="show_end" model="[projectDay: projectDay]"/></span>
   </p>
 
   <g:message code="projectDayMove"/>:
   <g:formRemote name="formRemote" url="[controller: 'projectProfile', action: 'moveProjectDay', id: projectDay.id]" update="projectDay" before="showspinner('#projectDay')">
     <table>
       <tr>
-        <td style="padding: 5px 10px 0 0;"><g:textField name="date" class="datetimepicker" value="${formatDate(date: projectDay.profile.date, format: 'dd. MM. yyyy HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/></td>
+        <td style="padding: 5px 10px 0 0;"><g:textField name="date" class="datepicker" value="${formatDate(date: projectDay.profile.date, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/></td>
         <td><g:submitButton name="button" value="${message(code:'change')}"/></td>
       </tr>
     </table>
