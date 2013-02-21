@@ -287,256 +287,245 @@ class TemplateProfileController {
     render erp.starBox(element: element.id)
   }
 
-  def define = {
-    def jsonString = (params as JSON).toString()
+    def define = {
+        def jsonString = (params as JSON).toString()
 
-    Entity currentEntity = entityHelperService.loggedIn
+        Entity currentEntity = entityHelperService.loggedIn
 
-    currentEntity.profile.activityParams = jsonString
-    currentEntity.profile.save()
+        currentEntity.profile.activityParams = jsonString
+        currentEntity.profile.save()
 
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-    params.offset = params.int('offset') ?: 0
-    params.max = Math.min(params.int('max') ?: 20, 40)
+        params.sort = params.sort ?: "fullName"
+        params.order = params.order ?: "asc"
+        params.offset = params.int('offset') ?: 0
+        params.max = Math.min(params.int('max') ?: 20, 40)
 
-    def method1lower = params.list('method1lower')
-    def method1upper = params.list('method1upper')
+        def method1lower = params.list('method1lower')
+        def method1upper = params.list('method1upper')
 
-    def method2lower = params.list('method2lower')
-    def method2upper = params.list('method2upper')
+        def method2lower = params.list('method2lower')
+        def method2upper = params.list('method2upper')
 
-    def method3lower = params.list('method3lower')
-    def method3upper = params.list('method3upper')
+        def method3lower = params.list('method3lower')
+        def method3upper = params.list('method3upper')
 
-    // swap age values if necessary
-    if (params.int('ageTo') < params.int('ageFrom')) {
-      def temp = params.ageTo
-      params.ageTo = params.ageFrom
-      params.ageFrom = temp
-    }
-
-    // 1. pass - filter by object properties
-    def results = Entity.createCriteria().list  {
-      eq('type', metaDataService.etTemplate)
-      profile {
-        if (params.name)
-          ilike('fullName', "%" + params.name + "%")
-        if (params.duration1 != '0')
-          between('duration', params.duration1.toInteger(), params.duration2.toInteger())
-        if (params.ageFrom)
-          le('ageFrom', params.ageFrom.toInteger())
-        if (params.ageTo)
-          ge('ageTo', params.ageTo.toInteger())
-        order(params.sort, params.order)
-      }
-    }
-
-    // 2. pass - filter by creator
-    if (params.creator != "") {
-      results = results.findAll { Entity entity ->
-        Link.createCriteria().get {
-          eq('source', Entity.get(params.int('creator')))
-          eq('target', entity)
-          eq('type', metaDataService.ltCreator)
+        // swap age values if necessary
+        if (params.int('ageTo') < params.int('ageFrom')) {
+            def temp = params.ageTo
+            params.ageTo = params.ageFrom
+            params.ageFrom = temp
         }
-      }
-    }
 
-    // 3. filter by labels
-    List thirdPass = []
-
-    if (params.labels) {
-      List labels = params.list('labels')
-
-      if (params.labelLogic == "1") { // AND
-          results.each { Entity template ->
-              def passed = true
-              List templateLabels = template.profile.labels as List
-              labels.sort()
-              templateLabels.sort {it.name}
-
-              if (labels.size() != templateLabels.size())
-                  passed = false
-
-              if (passed) {
-                  labels.eachWithIndex { label, ind ->
-                      if (label != templateLabels[ind].name) {
-                          passed = false
-                      }
-                  }
-              }
-
-              if (passed)
-                  thirdPass.add(template)
-          }
-      }
-      else { // OR
-          results.each { Entity template ->
-            template.profile.labels.each { Label label ->
-              if (labels.contains(label.name)) {
-                if (!thirdPass.contains(template))
-                  thirdPass.add(template)
-              }
+        // 1. pass - filter by object properties
+        def results = Entity.createCriteria().list {
+            eq('type', metaDataService.etTemplate)
+            profile {
+                if (params.name)
+                    ilike('fullName', "%" + params.name + "%")
+                if (params.duration1 != '0')
+                    between('duration', params.duration1.toInteger(), params.duration2.toInteger())
+                if (params.ageFrom)
+                    le('ageFrom', params.ageFrom.toInteger())
+                if (params.ageTo)
+                    ge('ageTo', params.ageTo.toInteger())
+                order(params.sort, params.order)
             }
-          }
-      }
-    }
-    else
-      thirdPass = results
+        }
 
-    // 4. filter by methods
-    List fourthPass = []
-
-    if (params.method1 != '0' || params.method2 != '0' || params.method3 != '0') {
-      List list1 = []
-      List list2 = []
-      List list3 = []
-
-      if (params.method1 != '0') {
-        // now check each template for their correct element values
-        thirdPass.each { a ->
-          //println '----------'
-          //println a
-          a.profile.each { b ->
-            //println 'Profile: ' + b
-            b.methods.each { d ->
-              //println 'Method: ' + d
-              if (d.name == Method.get(params.method1).name) {
-                def counter = 0
-                def correct = 0
-                d.elements.each { e ->
-                  //println e.name + ' - ' + method1lower[counter] + ' to ' + method1upper[counter]
-                  if (method1lower[counter] != 'all' && method1upper[counter] != 'all') {
-
-                    if (e.voting >= method1lower[counter].toInteger() && e.voting <= method1upper[counter].toInteger()) {
-                      //println counter + '# element OK, is ' + e.voting
-                      correct++
-                    }
-                    //else {
-                    //  println counter + '# element not OK, is ' + e.voting
-                    //}
-                  }
-                  else {
-                    //println counter + '# element OK'
-                    correct++
-                  }
-                  //println '#correct ' + correct + ' of ' + method1lower.size()
-                  if (params.method1Logic == "1") { // AND
-                    if (correct == method1lower.size())
-                      if (!list1.contains(a))
-                        list1 << a
-                  }
-                  else {
-                    if (correct > 0)
-                      if (!list1.contains(a))
-                        list1 << a
-                  }
-                  counter++
+        // 2. pass - filter by creator
+        if (params.creator != "") {
+            results = results.findAll { Entity entity ->
+                Link.createCriteria().get {
+                    eq('source', Entity.get(params.int('creator')))
+                    eq('target', entity)
+                    eq('type', metaDataService.ltCreator)
                 }
-              }
             }
-          }
         }
-        //println finalList
-      }
 
-      if (params.method2 != '0') {
-        thirdPass.each { a ->
-          a.profile.each { b ->
-            b.methods.each { d ->
-              if (d.name == Method.get(params.method2).name) {
-                def counter = 0
-                def correct = 0
-                d.elements.each { e ->
-                  if (method2lower[counter] != 'all' && method2upper[counter] != 'all') {
-                    if (e.voting >= method2lower[counter].toInteger() && e.voting <= method2upper[counter].toInteger()) {
-                      correct++
+        // 3. filter by labels
+        List thirdPass = []
+
+        if (params.labels) {
+            List labels = params.list('labels')
+
+            if (params.labelLogic == "1") { // AND
+                results.each { Entity template ->
+                    def passed = true
+                    List templateLabels = template.profile.labels as List
+                    if (labels.size() > 1) labels.sort()
+                    templateLabels.sort { it.name }
+
+                    if (labels.size() != templateLabels.size())
+                        passed = false
+
+                    if (passed) {
+                        labels.eachWithIndex { label, ind ->
+                            if (label != templateLabels[ind].name) {
+                                passed = false
+                            }
+                        }
                     }
-                  }
-                  else {
-                    correct++
-                  }
-                    if (params.method2Logic == "1") { // AND
-                        if (correct == method2lower.size())
-                            if (!list2.contains(a))
-                                list2 << a
-                    }
-                    else {
-                        if (correct > 0)
-                            if (!list2.contains(a))
-                                list2 << a
-                    }
-                  counter++
+
+                    if (passed)
+                        thirdPass.add(template)
                 }
-              }
-            }
-          }
-        }
-      }
-
-      if (params.method3 != '0') {
-        thirdPass.each { a ->
-          a.profile.each { b ->
-            b.methods.each { d ->
-              if (d.name == Method.get(params.method3).name) {
-                def counter = 0
-                def correct = 0
-                d.elements.each { e ->
-                  if (method3lower[counter] != 'all' && method3upper[counter] != 'all') {
-                    if (e.voting >= method3lower[counter].toInteger() && e.voting <= method3upper[counter].toInteger()) {
-                      correct++
+            } else { // OR
+                results.each { Entity template ->
+                    template.profile.labels.each { Label label ->
+                        if (labels.contains(label.name)) {
+                            if (!thirdPass.contains(template))
+                                thirdPass.add(template)
+                        }
                     }
-                  }
-                  else {
-                    correct++
-                  }
-                    if (params.method3Logic == "1") { // AND
-                        if (correct == method3lower.size())
-                            if (!list3.contains(a))
-                                list3 << a
-                    }
-                    else {
-                        if (correct > 0)
-                            if (!list3.contains(a))
-                                list3 << a
-                    }
-                  counter++
                 }
-              }
             }
-          }
-        }
-      }
+        } else
+            thirdPass = results
 
-      // if the template is in all lists which means it passed all 3 method validations then add it to the final list
-      thirdPass.each { a ->
-        if (params.method1 != 'none' && params.method2 == 'none' && params.method3 == 'none') {
-        if (list1.contains(a))
-          fourthPass << a
-        }
-        else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 == 'none') {
-        if (list1.contains(a) && list2.contains(a))
-          fourthPass << a
-        }
-        else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 != 'none') {
-        if (list1.contains(a) && list2.contains(a) && list3.contains(a))
-          fourthPass << a
-        }
-      }
+        // 4. filter by methods
+        List fourthPass = []
 
+        if (params.method1 != '0' || params.method2 != '0' || params.method3 != '0') {
+            List list1 = []
+            List list2 = []
+            List list3 = []
+
+            if (params.method1 != '0') {
+                // now check each template for their correct element values
+                thirdPass.each { a ->
+                    //println '----------'
+                    //println a
+                    a.profile.each { b ->
+                        //println 'Profile: ' + b
+                        b.methods.each { d ->
+                            //println 'Method: ' + d
+                            if (d.name == Method.get(params.method1).name) {
+                                def counter = 0
+                                def correct = 0
+                                d.elements.each { e ->
+                                    //println e.name + ' - ' + method1lower[counter] + ' to ' + method1upper[counter]
+                                    if (method1lower[counter] != 'all' && method1upper[counter] != 'all') {
+
+                                        if (e.voting >= method1lower[counter].toInteger() && e.voting <= method1upper[counter].toInteger()) {
+                                            //println counter + '# element OK, is ' + e.voting
+                                            correct++
+                                        }
+                                        //else {
+                                        //  println counter + '# element not OK, is ' + e.voting
+                                        //}
+                                    } else {
+                                        //println counter + '# element OK'
+                                        correct++
+                                    }
+                                    //println '#correct ' + correct + ' of ' + method1lower.size()
+                                    if (params.method1Logic == "1") { // AND
+                                        if (correct == method1lower.size())
+                                            if (!list1.contains(a))
+                                                list1 << a
+                                    } else {
+                                        if (correct > 0)
+                                            if (!list1.contains(a))
+                                                list1 << a
+                                    }
+                                    counter++
+                                }
+                            }
+                        }
+                    }
+                }
+                //println finalList
+            }
+
+            if (params.method2 != '0') {
+                thirdPass.each { a ->
+                    a.profile.each { b ->
+                        b.methods.each { d ->
+                            if (d.name == Method.get(params.method2).name) {
+                                def counter = 0
+                                def correct = 0
+                                d.elements.each { e ->
+                                    if (method2lower[counter] != 'all' && method2upper[counter] != 'all') {
+                                        if (e.voting >= method2lower[counter].toInteger() && e.voting <= method2upper[counter].toInteger()) {
+                                            correct++
+                                        }
+                                    } else {
+                                        correct++
+                                    }
+                                    if (params.method2Logic == "1") { // AND
+                                        if (correct == method2lower.size())
+                                            if (!list2.contains(a))
+                                                list2 << a
+                                    } else {
+                                        if (correct > 0)
+                                            if (!list2.contains(a))
+                                                list2 << a
+                                    }
+                                    counter++
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (params.method3 != '0') {
+                thirdPass.each { a ->
+                    a.profile.each { b ->
+                        b.methods.each { d ->
+                            if (d.name == Method.get(params.method3).name) {
+                                def counter = 0
+                                def correct = 0
+                                d.elements.each { e ->
+                                    if (method3lower[counter] != 'all' && method3upper[counter] != 'all') {
+                                        if (e.voting >= method3lower[counter].toInteger() && e.voting <= method3upper[counter].toInteger()) {
+                                            correct++
+                                        }
+                                    } else {
+                                        correct++
+                                    }
+                                    if (params.method3Logic == "1") { // AND
+                                        if (correct == method3lower.size())
+                                            if (!list3.contains(a))
+                                                list3 << a
+                                    } else {
+                                        if (correct > 0)
+                                            if (!list3.contains(a))
+                                                list3 << a
+                                    }
+                                    counter++
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // if the template is in all lists which means it passed all 3 method validations then add it to the final list
+            thirdPass.each { a ->
+                if (params.method1 != 'none' && params.method2 == 'none' && params.method3 == 'none') {
+                    if (list1.contains(a))
+                        fourthPass << a
+                } else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 == 'none') {
+                    if (list1.contains(a) && list2.contains(a))
+                        fourthPass << a
+                } else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 != 'none') {
+                    if (list1.contains(a) && list2.contains(a) && list3.contains(a))
+                        fourthPass << a
+                }
+            }
+
+        } else
+            fourthPass = thirdPass
+
+        results = fourthPass
+
+        int totalResults = results.size()
+        int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
+        results = results.subList(params.offset, upperBound)
+
+        render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'template', params: params]
     }
-    else
-      fourthPass = thirdPass
-
-    results = fourthPass
-
-    int totalResults = results.size()
-    int upperBound = params.offset + params.max < totalResults ? params.offset + params.max : totalResults
-    results = results.subList(params.offset, upperBound)
-
-    render template: '/templates/searchresults', model: [results: results, totalResults: totalResults, type: 'template', params: params]
-  }
 
    /*
    * adds a label to an entity by creating a new label instance and copying the properties from the given "label template"

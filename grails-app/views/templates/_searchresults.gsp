@@ -7,6 +7,7 @@
 </g:each>
 <div class="clear"></div>
 
+
 <div class="paginateButtons">
-  <util:remotePaginate controller="${type}Profile" action="define" total="${totalResults}" update="searchresults" before="showspinner('#searchresults')" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}" params="${params}"/>
+  <util:remotePaginate controller="${type}Profile" action="define" total="${totalResults ?: '0'}" update="searchresults" before="showspinner('#searchresults')" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}" params="${params}"/>
 </div>
