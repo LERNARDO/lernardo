@@ -180,6 +180,19 @@ class MethodController {
             int i = method.elements.indexOf(element)
             use(Collections){ method.elements.swap(i, i - 1) }
         }
+
+        // find all instances of this method and change the order as well
+        /*Method.findAllByNameAndType(method.name, "instance").each { Method m ->
+
+            Element e = m.elements.find {it.name == element.name}
+
+            if (m.elements.indexOf(e) > 0) {
+                int i = m.elements.indexOf(e)
+                use(Collections){ m.elements.swap(i, i - 1) }
+            }
+
+        }*/
+
         render template: 'elements', model: [methodInstance: method]
     }
 
@@ -191,6 +204,19 @@ class MethodController {
             int i = method.elements.indexOf(element)
             use(Collections){ method.elements.swap(i, i + 1) }
         }
+
+        // find all instances of this method and change the order as well
+        /*Method.findAllByNameAndType(method.name, "instance").each { Method m ->
+
+            Element e = m.elements.find {it.name == element.name}
+
+            if (m.elements.indexOf(e) < (m.elements.size() - 1)) {
+                int i = m.elements.indexOf(e)
+                use(Collections){ m.elements.swap(i, i + 1) }
+            }
+
+        }*/
+
         render template: 'elements', model: [methodInstance: method]
     }
 }
