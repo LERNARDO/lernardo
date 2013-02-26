@@ -82,18 +82,18 @@ class ClientProfileController {
 
         // filter by current or past projects
         if (params.current == "true")
-            projects = projects.findAll {it.profile.endDate > new Date()}
+            projects = projects?.findAll {it.profile.endDate > new Date()}
         else
-            projects = projects.findAll {it.profile.endDate < new Date()}
+            projects = projects?.findAll {it.profile.endDate < new Date()}
 
         List finalProjects = []
 
         projects?.each { Entity project ->
             List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
 
-            projectDays.each { Entity pd ->
+            projectDays?.each { Entity pd ->
                 List pdclients = functionService.findAllByLink(null, pd, metaDataService.ltGroupMemberClient)
-                if (pdclients.contains(client))
+                if (pdclients?.contains(client))
                     if (!finalProjects.contains(project))
                         finalProjects.add(project)
             }
