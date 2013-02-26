@@ -82,6 +82,7 @@
         <tr>
           <td style="padding: 5px 10px 0 0;"><g:textField required="" size="25" name="unit" value=""/>%{--<g:select name="unit" from="${units}" optionKey="id" optionValue="profile"/>--}%</td>
           <td><span class="gray"><g:message code="time"/>:</span> <g:textField name="time" required="" class="timepick" size="4" value=""/></td>
+          <td style="padding-left: 10px;"><span class="gray"><g:message code="duration"/>:</span> <g:textField name="duration" required="" size="4" value=""/> <span class="gray">(<g:message code="minutes"/>)</span></td>
           <td style="padding-left: 10px;"><g:submitButton name="button" value="${message(code:'add')}"/></td>
         </tr>
       </table>

@@ -681,7 +681,7 @@ class ProjectProfileController {
           calendar.set(Calendar.HOUR_OF_DAY, time.getHours())
           calendar.set(Calendar.MINUTE, time.getMinutes())
           ent.profile.date = calendar.getTime()
-          ent.profile.duration = 0
+          ent.profile.duration = params.int('duration')
         }
 
         // save creator
@@ -2015,6 +2015,20 @@ class ProjectProfileController {
         unit.profile.save()
 
         render template: "showunitname", model: [unit: unit, i: params.i]
+    }
+
+    def editUnitDuration = {
+        def unit = Entity.get(params.id)
+        render template: "editunitduration", model: [unit: unit, i: params.i]
+    }
+
+    def updateUnitDuration = {
+        def unit = Entity.get(params.id)
+
+        unit.profile.duration = params.int('duration')
+        unit.profile.save()
+
+        render template: "showunitduration", model: [unit: unit, i: params.i]
     }
 
     /*

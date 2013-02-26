@@ -10,7 +10,7 @@
               <td class="one"><g:message code="begin"/></td>
               <td id="unitDate${i}" class="two" style="padding-right: 50px;"><g:render template="showunitdate" model="[unit: unit, i: i]"/></td>
               <td class="one"><g:message code="duration"/></td>
-              <td class="two">${unit.profile.duration} <g:message code="minutes"/></td>
+              <td id="unitDuration${i}" class="two"><g:render template="showunitduration" model="[unit: unit, i: i]"/></td>
             </tr>
 
             </tbody>

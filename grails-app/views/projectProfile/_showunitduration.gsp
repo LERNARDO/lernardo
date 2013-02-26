@@ -1,0 +1,1 @@
+${unit.profile.duration} <g:message code="minutes"/> <g:remoteLink action="editUnitDuration" update="unitDuration${i}" id="${unit.id}" params="[i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:remoteLink>
