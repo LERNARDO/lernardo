@@ -120,6 +120,7 @@
         dateFormat: 'dd. mm. yy',
         minDate: new Date(1900, 1, 1),
         firstDay: 1,
+        yearRange: 'c-20:c+20',
         autoSize: true});
 
       $('.datetimepicker').datetimepicker({
