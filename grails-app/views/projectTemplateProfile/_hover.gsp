@@ -4,3 +4,4 @@
     ${resource.name},
   </g:each><br/>
 <span class="bold"><g:message code="publications"/>:</span> <erp:getPublicationCount entity="${entity}"/><br/>
+<span class="bold"><g:message code="duration"/>:</span> ${entity.profile.duration} <g:message code="minutes"/><br/>
