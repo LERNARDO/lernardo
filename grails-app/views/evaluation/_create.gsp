@@ -53,7 +53,7 @@
 
       <p class="gray"><g:message code="description"/><br/>
         <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
-          <ckeditor:editor name="description" height="200px" toolbar="Basic">
+          <ckeditor:editor name="description" height="200px" toolbar="Basic" removeInstance="true">
             ${fieldValue(bean:evaluationInstance,field:'description').decodeHTML()}
           </ckeditor:editor>
         </span>
@@ -61,14 +61,15 @@
 
       <p class="gray"><g:message code="action"/><br/>
         <span class="${hasErrors(bean: evaluationInstance, field: 'method', 'errors')}">
-          <ckeditor:editor name="method" height="200px" toolbar="Basic">
+          <ckeditor:editor name="method" height="200px" toolbar="Basic" removeInstance="true">
             ${fieldValue(bean:evaluationInstance,field:'method').decodeHTML()}
           </ckeditor:editor>
         </span>
       </p>
 
       <div class="buttons cleared">
-        <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="${message(code:'save')}"/></div>
+        <div class="button"><g:submitButton name="submitButton" class="buttonGreen" onclick="for ( instance in CKEDITOR.instances )
+        CKEDITOR.instances[instance].updateElement(); CKEDITOR.instances[instance].setData('');" value="${message(code:'save')}"/></div>
         <g:link controller="${entity.type.supertype.name + 'Profile'}" class="buttonGray" action="show" id="${entity.id}" params="[ajax: 'evaluations', ajaxId: entity.id]"><g:message code="cancel"/></g:link>
       </div>
 
