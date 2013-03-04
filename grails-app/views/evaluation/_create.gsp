@@ -1,3 +1,23 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".datepicker").datepicker({
+            monthNamesShort: ['${message(code: "january.short")}', '${message(code: "february.short")}', '${message(code: "march.short")}',
+                '${message(code: "april.short")}', '${message(code: "may.short")}', '${message(code: "june.short")}',
+                '${message(code: "july.short")}', '${message(code: "august.short")}', '${message(code: "september.short")}',
+                '${message(code: "october.short")}', '${message(code: "november.short")}', '${message(code: "december.short")}'],
+            dayNamesMin: ['${message(code: "sunday.short")}', '${message(code: "monday.short")}', '${message(code: "tuesday.short")}',
+                '${message(code: "wednesday.short")}', '${message(code: "thursday.short")}', '${message(code: "friday.short")}',
+                '${message(code: "saturday.short")}'],
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd. mm. yy',
+            minDate: new Date(1900, 1, 1),
+            firstDay: 1,
+            yearRange: 'c-20:c+20',
+            autoSize: true});
+    });
+</script>
+
 <h4><g:message code="evaluation.create"/></h4>
 
 <div class="boxContent">
@@ -12,7 +32,7 @@
       <div id="select-box">
         <p><g:message code="evaluation.linkToActivity"/></p>
         <g:formRemote name="formRemote" update="results" url="[controller: 'evaluation', action: 'searchMe']" before="showspinner('#results')">
-          <g:textField class="datepicker-birthday" name="myDate" value=""/>
+          <g:textField class="datepicker" name="myDate" value=""/>
           <g:submitButton name="submit" value="OK"/>
         </g:formRemote>
       </div>
