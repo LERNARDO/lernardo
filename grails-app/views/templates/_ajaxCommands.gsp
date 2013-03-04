@@ -49,3 +49,10 @@
         });
     </script>
 </g:if>
+<g:if test="${ajax == 'changePicture'}">
+    <script type="text/javascript">
+        $(function() {
+            ${remoteFunction(controller: "profile", action: "uploadProfileImage", id: ajaxId, update: "content")}
+        });
+    </script>
+</g:if>

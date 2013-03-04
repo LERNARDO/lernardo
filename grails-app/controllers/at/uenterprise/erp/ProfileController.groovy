@@ -240,7 +240,7 @@ class ProfileController {
     if (asset && !asset.empty) {
       if (asset.getSize() / 1024 > 150) {
         flash.message = message(code: "profile.picture.tooLarge", args: ['150'])
-        redirect action: 'uploadProfileImage', id: params.id
+          redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [ajax: 'changePicture', ajaxId: params.id]
       }
       else {
         flash.message = message(code: "profile.picture.select.ok")
