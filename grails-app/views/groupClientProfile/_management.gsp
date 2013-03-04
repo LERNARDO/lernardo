@@ -3,7 +3,7 @@
 <h4><g:message code="management"/></h4>
 
 <div class="zusatz">
-    <h5><g:message code="leadEducators"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#leadeducators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+    <h5><g:message code="leadEducators"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#leadeducators');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="leadeducators" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -12,12 +12,12 @@
 
     </div>
     <div class="zusatz-show" id="leadeducators2">
-        <g:render template="leadeducators" model="[leadeducators: leadeducators]"/>
+        <g:render template="leadeducators" model="[leadeducators: leadeducators, group: group]"/>
     </div>
 </div>
 
 <div class="zusatz">
-    <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
+    <h5><g:message code="clients"/> <erp:accessCheck types="['Betreiber']" creatorof="${group}"><img onclick="toggle('#clients');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
     <div class="zusatz-add" id="clients" style="display:none;">
         <p class="gray"><g:message code="groupClient.clients.info"/></p>
         <g:formRemote name="formRemote0" url="[controller: 'groupClientProfile', action: 'updateselect']" update="clientselect" before="showspinner('#clientselect')">
