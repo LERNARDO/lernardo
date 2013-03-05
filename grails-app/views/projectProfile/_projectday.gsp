@@ -173,18 +173,8 @@
 
   <div class="zusatz">
     <h5><g:message code="resources.planned"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#resources');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
-
     <div class="zusatz-add" id="resources" style="display:none">
-
       <div id="plannableresources">
-        %{--<erp:getProjectDayUnits projectDay="${projectDay}">
-          <g:if test="${units}">
-            --}%%{--<g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>--}%%{--
-          </g:if>
-          <g:else>
-            <span class="italic"><g:message code="resources.planInfo"/></span><br/>
-          </g:else>
-        </erp:getProjectDayUnits>--}%
       </div>
     </div>
     <div class="zusatz-show" id="resources2">
