@@ -8,7 +8,7 @@
 
     <g:each in="${evaluations}" status="i" var="evaluation">
         <div style="border-top: 1px solid #ccc; padding: 10px 0;">
-            <p><g:link controller="evaluation" action="show" id="${evaluation.id}">${evaluation.title}</g:link> <g:message code="atDate"/> <g:formatDate date="${evaluation.linkedTo.profile.date}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="about"/> <span class="bold">${evaluation.owner.profile}</span> <g:message code="from"/> ${evaluation.writer.profile}</p>
+            <p><g:remoteLink update="content" controller="evaluation" action="show" id="${evaluation.id}">${evaluation.title}</g:remoteLink> <g:message code="atDate"/> <g:formatDate date="${evaluation.linkedTo.profile.date}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="about"/> <span class="bold">${evaluation.owner.profile}</span> <g:message code="from"/> ${evaluation.writer.profile}</p>
 
 %{--            <table>
                 <tr>

@@ -214,7 +214,7 @@ class HelperTagLib {
         Entity linked = attrs.linked
 
         Entity project = functionService.findByLink(attrs.linked, null, metaDataService.ltProjectMember)
-        out << link(controller: 'projectProfile', action: 'show', id: project.id) {linked.profile.fullName + ' (' + message(code: 'project') + ': ' + project.profile.fullName + ')'}
+        out << link(controller: 'projectProfile', action: 'show', id: project.id, params: [one: linked.id]) {linked.profile.fullName + ' (' + message(code: 'project') + ': ' + project.profile.fullName + ')'}
     }
 
     def renderLogMonthEntries = {attrs, body ->
