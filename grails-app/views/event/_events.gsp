@@ -59,6 +59,6 @@
   </table>
 
   <div class="paginateButtons">
-    <util:remotePaginate action="remoteEvents" total="${totalEvents}" update="events" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}"/>
+    <util:remotePaginate action="remoteEvents" total="${totalEvents ?: '0'}" update="events" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}"/>
   </div>
 </g:if>

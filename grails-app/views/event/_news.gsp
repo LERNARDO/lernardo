@@ -11,5 +11,5 @@
 </div>
 
 <div class="paginateButtons">
-  <util:remotePaginate action="remoteNews" total="${totalNews}" update="news" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}"/>
+  <util:remotePaginate action="remoteNews" total="${totalNews ?: '0'}" update="news" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}"/>
 </div>
