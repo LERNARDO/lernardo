@@ -107,7 +107,7 @@
 
     <div id="educators2">
       <erp:getProjectDayEducators projectDay="${projectDay}">
-        <g:render template="educators" model="[educators: educators, project: project, projectDay: projectDay]"/>
+        <g:render template="educatorsday" model="[educators: educators, project: project, projectDay: projectDay]"/>
       </erp:getProjectDayEducators>
     </div>
   </div>
