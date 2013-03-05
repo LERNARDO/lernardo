@@ -332,7 +332,6 @@ class EvaluationController {
   }
 
   def save = {
-      println params
     Evaluation evaluationInstance = new Evaluation(params)
     evaluationInstance.owner = Entity.get(params.id)
     evaluationInstance.writer = entityHelperService.loggedIn

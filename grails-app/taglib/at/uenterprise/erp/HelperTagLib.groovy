@@ -2373,4 +2373,8 @@ class HelperTagLib {
             out << body()
     }
 
+    def getEvaluationCountForClientAndDay = {attrs ->
+        out << Evaluation.countByOwnerAndLinkedTo(attrs.client, attrs.day)
+    }
+
 }

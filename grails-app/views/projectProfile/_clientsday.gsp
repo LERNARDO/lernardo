@@ -8,7 +8,7 @@
           <g:render template="/app/localtags" model="[entity: client, target: day, tags: tags, update: 'tagclient' + i, project: project]"/>
         </erp:getLocalTags>
       </span>
-      <span style="font-size: 10px;">| <g:link controller="clientProfile" action="show" id="${client.id}" params="[ajax: 'createevaluation', ajaxId: day.id]"><g:message code="evaluation.create"/></g:link></span>
+      <span style="font-size: 10px;">| <g:link controller="clientProfile" action="show" id="${client.id}" params="[ajax: 'createevaluation', ajaxId: day.id]"><g:message code="evaluation.create"/></g:link> (<erp:getEvaluationCountForClientAndDay client="${client}" day="${day}"/> <g:message code="available"/>)</span>
     </li>
   </g:each>
   </ul>
