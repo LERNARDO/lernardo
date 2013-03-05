@@ -32,7 +32,7 @@ class EventController {
     params.order = 'desc'
     params.readOnly = true
     List news = News.list(params)
-    def totalNews= News.count()
+    def totalNews = News.count()
 
     render template: 'news', model: [news: news, totalNews: totalNews]
   }

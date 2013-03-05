@@ -23,8 +23,8 @@ class AppFilters {
                     Entity e = entityHelperService.getLoggedIn()
                     if (e) {
                         model['currentEntity'] = e
-                        e.user.lastAction = new Date()
-                        e.user.save()
+                        //e.user.lastAction = new Date()
+                        //e.user.save()
                     }
                 }
             }
