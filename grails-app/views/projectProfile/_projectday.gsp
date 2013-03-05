@@ -145,32 +145,46 @@
         </div>
     </div>
 
+    <div class="zusatz">
+        <h5><g:message code="resources.required"/></h5>
+        <div style="margin: 5px 0;"><g:message code="fromProject"/></div>
+        <g:if test="${ownRequiredResources}">
+            <ul>
+                <g:each in="${ownRequiredResources}" var="requiredResource">
+                    <li>${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+                </g:each>
+            </ul>
+        </g:if>
+        <g:else>
+            <div class="italic" style="margin-top: 5px;"><g:message code="resources.noneRequired"/></div>
+        </g:else>
+        <div style="margin: 5px 0;"><g:message code="fromActivities"/></div>
+        <g:if test="${requiredResources}">
+            <ul>
+                <g:each in="${requiredResources}" var="requiredResource">
+                    <li>${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+                </g:each>
+            </ul>
+        </g:if>
+        <g:else>
+            <div class="italic" style="margin-top: 5px;"><g:message code="resources.noneRequired"/></div>
+        </g:else>
+    </div>
+
   <div class="zusatz">
     <h5><g:message code="resources.planned"/> <erp:accessCheck types="['Betreiber']" creatorof="${project}"><img onclick="toggle('#resources');" src="${g.resource(dir: 'images/icons', file: 'bullet_arrow_toggle.png')}" alt="${message(code: 'add')}"/></erp:accessCheck></h5>
 
     <div class="zusatz-add" id="resources" style="display:none">
-      <span class="bold"><g:message code="resources.required"/></span>
-      <g:if test="${requiredResources}">
-        <ul style="margin: 5px 5px 0 15px;">
-          <g:each in="${requiredResources}" var="requiredResource">
-            <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
-          </g:each>
-        </ul>
-      </g:if>
-      <g:else>
-        <div class="italic" style="margin: 5px;"><g:message code="resources.noneRequired"/></div>
-      </g:else>
 
-      <span class="bold"><g:message code="resource.profile"/></span> %{--<g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}" before="showspinner('#plannableresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>--}%
       <div id="plannableresources">
-        <erp:getProjectDayUnits projectDay="${projectDay}">
+        %{--<erp:getProjectDayUnits projectDay="${projectDay}">
           <g:if test="${units}">
-            <g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>
+            --}%%{--<g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>--}%%{--
           </g:if>
           <g:else>
             <span class="italic"><g:message code="resources.planInfo"/></span><br/>
           </g:else>
-        </erp:getProjectDayUnits>
+        </erp:getProjectDayUnits>--}%
       </div>
     </div>
     <div class="zusatz-show" id="resources2">

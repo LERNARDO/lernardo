@@ -865,7 +865,7 @@ class HelperTagLib {
         List reservedIn = []
 
         // now check for every link if it falls into the duration of the entity and if yes reduce the available amount
-        links.each { Link link ->
+        links?.each { Link link ->
             Date resourceBegin = new Date()
             resourceBegin.setTime(link.das.beginDate.toLong() * 1000)
             Date resourceEnd = new Date()

@@ -997,7 +997,13 @@ class ProjectProfileController {
     // get all plannable resources
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
+    List ownRequiredResources = []
+      project.profile.resources.each {
+          ownRequiredResources.add(it)
+      }
+
     List requiredResources = []
+
     // find all project units linked to the project day
     List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
@@ -1032,7 +1038,8 @@ class ProjectProfileController {
                                               active: projectDay.id,
                                               project: project,
                                               plannableResources: plannableResources,
-                                              requiredResources: requiredResources]
+                                              requiredResources: requiredResources,
+                                              ownRequiredResources: ownRequiredResources]
   }
 
   /*
@@ -1552,7 +1559,7 @@ class ProjectProfileController {
     Calendar calendar = new GregorianCalendar()
     calendar.setTime(projectDay.profile.date)
 
-    // get all project units of a project day and calculate their duration sum
+    // get all project units of the project day and calculate their duration sum
     List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
     int duration = 0
     units.each {
@@ -1567,8 +1574,8 @@ class ProjectProfileController {
 
       if (!existing) {
         Link link = linkHelperService.createLink(resource, projectDay, metaDataService.ltResourcePlanned) {link, dad ->
-          dad.beginDate = projectDay.profile.date.getTime() / 1000
-          dad.endDate = calendar.getTime().getTime() / 1000
+          dad.beginDate = (projectDay.profile.date.getTime() / 1000).toInteger()
+          dad.endDate = (calendar.getTime().getTime() / 1000).toInteger()
           dad.amount = params.amount
         }
       }
