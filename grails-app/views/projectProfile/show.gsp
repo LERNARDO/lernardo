@@ -141,5 +141,14 @@
     </div>
 
 </div>
+
+<g:if test="${one != null}">
+    <script type="text/javascript">
+        $(function() {
+            ${remoteFunction(controller: "projectProfile", action: "projectdays", id: project.id, params: [day: one], update: "content")}
+        });
+    </script>
+</g:if>
+
 </body>
 

@@ -114,7 +114,7 @@ class ProjectProfileController {
       Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
       List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
-      [project: project, template: template, allLabels: functionService.getLabels(), facilities: facilities]
+      [project: project, template: template, allLabels: functionService.getLabels(), facilities: facilities, one: params.one ?: null]
     }
   }
 
@@ -172,7 +172,7 @@ class ProjectProfileController {
         // get number of project days
         def projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember).size()
 
-        render template: "projectdays", model: [projectDays: projectDays, project: project]
+        render template: "projectdays", model: [projectDays: projectDays, project: project, day: params.day]
     }
 
   def delete = {

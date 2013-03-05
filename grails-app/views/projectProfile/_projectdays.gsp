@@ -7,6 +7,6 @@
 
 <script type="text/javascript">
     $(function() {
-        ${remoteFunction(action: 'setprojectday', update: 'projectDay', params: [project: project.id], before: "showspinner('#projectDay')")}
+        ${remoteFunction(action: 'setprojectday', update: 'projectDay', id: day, params: [project: project.id], before: "showspinner('#projectDay')")}
     });
 </script>
