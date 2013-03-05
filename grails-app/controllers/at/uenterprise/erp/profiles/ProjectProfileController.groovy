@@ -458,6 +458,32 @@ class ProjectProfileController {
               // link project day to project
               new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
 
+              // create 3 project units
+              EntityType etProjectUnit = metaDataService.etProjectUnit
+              for (i in 1..3) {
+                  def name = message(code: 'introduction')
+                  if (i == 2)
+                      name = message(code: 'execution')
+                  if (i == 3)
+                      name = message(code: 'completion')
+                    // create a new project unit
+
+                    Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
+                        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                        ent.profile.fullName = name
+                        ent.profile.date = projectDay.profile.date
+                        ent.profile.duration = 0
+                    }
+
+                    // save creator
+                    new Link(source: currentEntity, target: projectUnit, type: metaDataService.ltCreator).save()
+
+                    projectDay.profile.addToUnits(projectUnit.id.toString())
+
+                    // link the new unit to the project day
+                    new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
+              }
+
             }
 
             // increment calendar
