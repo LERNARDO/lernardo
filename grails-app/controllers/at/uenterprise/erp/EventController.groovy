@@ -19,6 +19,7 @@ class EventController {
     params.max = 10
     params.sort = 'dateCreated'
     params.order = 'desc'
+    params.readOnly = true
     List events = Event.list(params)
     def totalEvents = Event.count()
 
@@ -29,6 +30,7 @@ class EventController {
     params.max = 5
     params.sort = 'dateCreated'
     params.order = 'desc'
+    params.readOnly = true
     List news = News.list(params)
     def totalNews= News.count()
 
