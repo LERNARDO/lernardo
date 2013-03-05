@@ -2,12 +2,14 @@
   <meta name="layout" content="start"/>
   <title><g:message code="events"/></title>
 
-    <script type="text/javascript">
+    <g:javascript>
         $(function() {
+            showspinner('#events');
+            showspinner('#news');
             ${remoteFunction(controller: "event", action: "remoteEvents", update: "events")}
             ${remoteFunction(controller: "event", action: "remoteNews", update: "news")}
         });
-    </script>
+    </g:javascript>
 
 </head>
 
