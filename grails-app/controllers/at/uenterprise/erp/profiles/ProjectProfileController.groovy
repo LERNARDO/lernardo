@@ -2171,7 +2171,7 @@ class ProjectProfileController {
             return
         }
         else {
-            render template: 'activitytemplateresults', model: [results: results, projectUnit: params.id, i: params.i, project: params.project]
+            render template: 'activitytemplateresults', model: [results: results, projectUnitID: params.id, i: params.i, project: params.project]
         }
     }
 
