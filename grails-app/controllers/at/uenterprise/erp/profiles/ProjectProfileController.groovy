@@ -292,13 +292,13 @@ class ProjectProfileController {
   }
 
   def create = {
-    Entity project = Entity.get(params.id)
+      Entity project = Entity.get(params.id)
 
-    int days = 0
-    if (project) {
-        days = Link.countByTargetAndType(project, metaDataService.ltProjectMember)
-    }
-    return [template: project, days: days]
+      int days = 0
+      if (project) {
+          days = Link.countByTargetAndType(project, metaDataService.ltProjectMember)
+      }
+      return [template: project, days: days]
   }
 
   def save = {ProjectCommand pc ->
@@ -344,8 +344,8 @@ class ProjectProfileController {
           tcalendarStart.add(Calendar.DATE, 1)
         }
         if (checkdays == 0) {
-          flash.message = message(code: "project.noDays")
-          render view: "create", model: [template: Entity.get(params.id)]
+          pc.errors.rejectValue('weekdays', 'project.noDays')
+          render view: "create", model: [pc: pc]
           return
         }
 
@@ -2214,9 +2214,13 @@ class ProjectProfileController {
         params.date = calendar.getTime()
 
         projectDay.profile.endDate = functionService.convertToUTC(params.date)
-        projectDay.profile.save()
 
-        render template: 'show_end', model: [projectDay: projectDay]
+        if (projectDay.profile.endDate < projectDay.profile.date)
+            render template: 'edit_end', model: [projectDay: projectDay]
+        else {
+            projectDay.profile.save()
+            render template: 'show_end', model: [projectDay: projectDay]
+        }
     }
 
 }
@@ -2226,13 +2230,21 @@ class ProjectCommand {
   Date startDate
   Date endDate
 
-  /*Date mondayStart
+  Date mondayStart
   Date tuesdayStart
   Date wednesdayStart
   Date thursdayStart
   Date fridayStart
   Date saturdayStart
   Date sundayStart
+
+    Date mondayEnd
+    Date tuesdayEnd
+    Date wednesdayEnd
+    Date thursdayEnd
+    Date fridayEnd
+    Date saturdayEnd
+    Date sundayEnd
 
   Boolean monday
   Boolean tuesday
@@ -2241,26 +2253,19 @@ class ProjectCommand {
   Boolean friday
   Boolean saturday
   Boolean sunday
-  Boolean weekdays*/
+
+  Boolean weekdays
 
   static constraints = {
     fullName  blank: false
 
-    /*mondayStart    validator: {val, obj -> return !((val == null) & obj.monday)}
-    tuesdayStart   validator: {val, obj -> return !((val == null) & obj.tuesday)}
-    wednesdayStart validator: {val, obj -> return !((val == null) & obj.wednesday)}
-    thursdayStart  validator: {val, obj -> return !((val == null) & obj.thursday)}
-    fridayStart    validator: {val, obj -> return !((val == null) & obj.friday)}
-    saturdayStart  validator: {val, obj -> return !((val == null) & obj.saturday)}
-    sundayStart    validator: {val, obj -> return !((val == null) & obj.sunday)}*/
-
     startDate nullable: false
-    //endDate   nullable: false, validator: {val, obj ->
-    //                                         return val > obj.startDate
-    //                                      }
-    /*weekdays  validator: {val, obj ->
-                            return !(!obj.monday && !obj.tuesday && !obj.wednesday && !obj.thursday && !obj.friday && !obj.saturday && !obj.sunday)
-                         }*/
+    endDate   nullable: false, validator: {val, obj ->
+                                             return val > obj.startDate
+                                          }
+    //weekdays  validator: {val, obj ->
+    //                        return !(!obj.monday && !obj.tuesday && !obj.wednesday && !obj.thursday && !obj.friday && !obj.saturday && !obj.sunday)
+    //                     }
   }
 
 }

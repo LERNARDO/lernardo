@@ -16,7 +16,7 @@
         <tr class="prop">
           <td class="name"><g:message code="name"/> <span class="required-indicator">*</span></td>
           <td class="value">
-            <g:textField data-counter="50" class="${hasErrors(bean: template, field: 'profile.fullName', 'errors')}" required="" size="50" name="fullName" value="${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}"/>
+            <g:textField data-counter="50" class="${hasErrors(bean: pc, field: 'fullName', 'errors')}" required="" size="50" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
           </td>
         </tr>
 
@@ -143,27 +143,15 @@
       </tr>
     </table>
 
-      <table>
+        <h4><g:message code="project.profile.educationalObjectiveText"/></h4>
+        <ckeditor:editor name="educationalObjectiveText" height="150px" width="650px" toolbar="Basic">
+            ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
+        </ckeditor:editor>
 
-          <tr class="prop">
-              <td class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
-              <td class="value">
-                  <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
-                      ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
-                  </ckeditor:editor>
-              </td>
-          </tr>
-
-          <tr class="prop">
-              <td class="name"><g:message code="description"/></td>
-              <td class="value">
-                  <ckeditor:editor name="description" height="200px" toolbar="Basic">
-                    ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
-                  </ckeditor:editor>
-              </td>
-          </tr>
-
-      </table>
+        <h4><g:message code="description"/></h4>
+        <ckeditor:editor name="description" height="150px" width="650px" toolbar="Basic">
+            ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
+        </ckeditor:editor>
 
       <div class="buttons cleared">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>

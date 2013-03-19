@@ -19,15 +19,18 @@ function clearElements(elements) {
         $(elements[x]).val('');
 }
 
-// toggles the disabled attribute of an element
+// toggles an element between disabled and enabled
 function toggleDisabled(id) {
     var status = $(id).attr('disabled');
     if (!status) {
         $(id).attr('disabled', 'disabled');
         $(id).val('');
+        $(id).removeAttr('required');
     }
-    else
+    else {
         $(id).removeAttr('disabled');
+        $(id).attr('required', '');
+    }
 }
 
 $(document).ready(function() {
