@@ -1,6 +1,8 @@
 <head>
   <meta name="layout" content="planning"/>
   <title><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile').decodeHTML()}</title>
+    <g:javascript src="jquery/fullcalendar.min.js"/>
+    <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}">
 </head>
 
 <body>

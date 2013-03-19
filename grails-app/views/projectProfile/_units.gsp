@@ -1,12 +1,15 @@
 <g:if test="${units}">
   <g:each in="${units}" var="unit" status="i">
-    <div class="graypanel" style="margin: 5px 0 5px 0;">
+    <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="addUnit('${unit.id}');"/>
+    <div class="graypanel unitBox" style="margin: 5px 0 5px 0; display: none;" id="unit${unit.id}">
       <table>
             <tbody>
 
             <tr class="prop">
-              <td class="one"><erp:accessCheck types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck> <g:message code="name"/></td>
+              <td class="one"><erp:accessCheck types="['Betreiber']" creatorof="${project}"><g:link action="removeUnit" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:link></erp:accessCheck> <g:message code="name"/></td>
               <td id="unitName${i}" class="two" style="padding-right: 50px;"><g:render template="showunitname" model="[unit: unit, i: i]"/></td>
+            </tr>
+            <tr class="prop">
               <td class="one"><g:message code="begin"/></td>
               <td id="unitDate${i}" class="two" style="padding-right: 50px;"><g:render template="showunitdate" model="[unit: unit, i: i]"/></td>
               <td class="one"><g:message code="duration"/></td>

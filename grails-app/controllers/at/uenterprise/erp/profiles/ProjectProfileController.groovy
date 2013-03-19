@@ -740,6 +740,8 @@ class ProjectProfileController {
     Entity projectDay = Entity.get(params.id)
     Entity projectUnit = Entity.get(params.unit)
 
+    def project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
     // delete link
     def link = Link.createCriteria().get {
       eq('source', projectUnit)
@@ -761,9 +763,10 @@ class ProjectProfileController {
     projectUnit.delete()
 
     // find all project units of this project
-    List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+    //List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
-    render template: 'units', model: [units: units, projectDay: projectDay]
+    //render template: 'units', model: [units: units, projectDay: projectDay, project: project]
+     redirect action: "show", id: project.id, params: [one: projectDay.id]
   }
 
   def removeClient = {
